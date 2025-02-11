@@ -4,90 +4,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Write My Socials</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
+    /* Import Editorial-Style Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Didot&display=swap');
 
     body {
       background-color: white;
       font-family: 'Playfair Display', serif;
       margin: 0;
       padding: 0;
-    }
-
+   
+html
+Copy
+Edit
     /* Navigation Bar */
     nav {
       background: white;
       border-bottom: 1px solid black;
       padding: 1rem 0;
       text-align: center;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       font-weight: bold;
-      letter-spacing: 0.1rem;
-      font-family: 'Libre Baskerville', serif;
+      letter-spacing: 0.05rem;
+      font-family: 'Didot', serif; /* Matches logo aesthetic */
     }
 
     nav a {
       text-decoration: none;
       color: black;
       margin: 0 15px;
-      transition: all 0.3s ease-in-out;
+      text-transform: uppercase;
+      transition: text-shadow 0.3s ease-in-out;
     }
 
-    /* Pink Glow Hover Effect */
     nav a:hover {
       text-shadow: 0 0 10px #ffb6c1;
-      color: #ffb6c1;
-    }
-
-    /* Responsive Nav */
-    @media (max-width: 768px) {
-      nav {
-        font-size: 1rem;
-      }
-      nav a {
-        margin: 0 10px;
-      }
     }
 
     /* Logo */
     #logo {
       display: block;
-      margin: 20px auto 10px;
+      margin: 50px auto 10px;
       width: 40%;
-      max-width: 250px;
     }
 
     /* Marquee */
     marquee {
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: normal;
       margin-top: 5px;
       font-family: 'Playfair Display', serif;
-      color: black;
+      color: black; /* Changed from pink to black */
     }
 
-    /* Intro Text */
-    .intro-text {
+    /* Chandelier Styling */
+    .chandelier-container {
       text-align: center;
-      margin-top: 2rem;
-      padding-bottom: 2rem;
+      position: relative;
+      margin-top: -30px; /* Move it above the logo */
     }
 
-    .intro-text h3 {
-      font-size: 1.3rem;
-      font-weight: bold;
+    .chandelier {
+      width: 250px;
+      opacity: 0.9;
+      animation: glow 2s infinite alternate ease-in-out;
     }
 
-    /* Main Image */
-    .main-image {
-      display: block;
-      margin: 40px auto;
-      max-width: 1000px;
-      width: 100%;
-      height: auto;
+    /* Chandelier Glow Effect */
+    @keyframes glow {
+      0% { filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.5)); }
+      100% { filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.9)); }
     }
 
-    /* Sidebar (Hot Pink Glow) */
+    /* Subtle Flickering Effect */
+    @keyframes flicker {
+      0% { opacity: 0.9; }
+      50% { opacity: 1; }
+      100% { opacity: 0.8; }
+    }
+
+    .chandelier {
+      animation: flicker 1.5s infinite alternate ease-in-out;
+    }
+
+    /* Sidebar */
     .sidebar {
       position: fixed;
       left: 0;
@@ -96,21 +95,6 @@
       width: 5px;
       background-color: hotpink;
       box-shadow: 0 0 10px hotpink;
-    }
-
-    /* Neon Hot Pink Scrollbar */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: hotpink;
-      border-radius: 10px;
-      box-shadow: 0 0 10px hotpink;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: white;
     }
 
     /* Realistic Bubble Effect */
@@ -136,7 +120,6 @@
     .baby-pink-highlight {
       color: #ffb6c1;
     }
-
   </style>
 </head>
 <body>
@@ -151,9 +134,14 @@
     <a href="#">BLOG</a>
   </nav>
 
-  <img id="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-01-02%20at%2018.16.56.png" alt="Write My Socials Logo">
+  <!-- Chandelier -->
+  <div class="chandelier-container">
+    <img class="chandelier" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/chandelier.png" alt="Elegant Black Chandelier">
+  </div>
 
-  <marquee behavior="alternate"><h1 class="baby-pink-highlight">The Creative Agency that Understands your Direction</h1></marquee>
+  <img id="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Screenshot%202025-01-02%20at%2018.16.56.png" alt="Write My Socials Logo">
+
+  <marquee behavior="alternate"><h1 class="baby-pink-highlight" style="color: black;">The Creative Agency that Understands your Direction</h1></marquee>
 
   <div class="intro-text">
     <h3>Crafted by Passion, Honed with Love for your Brand.</h3>
@@ -164,7 +152,7 @@
     <p><i>We work with you to uplift your brand to your desired outcome.</i></p>
   </div>
 
-  <img class="main-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/success.jpg" alt="Success Image">
+  <img class="main-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/success.jpg" alt="Success Image">
 
   <script>
     function createBubbles() {
