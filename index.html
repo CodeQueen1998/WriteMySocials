@@ -94,7 +94,7 @@
       100% { opacity: 0.6; transform: scale(1.1); }
     }
 
-    /* Logo Centered Under Chandelier */
+    /* Logo Centered Under Chandelier (Slightly Smaller) */
     .logo-container {
       display: flex;
       justify-content: center;
@@ -102,17 +102,17 @@
     }
 
     .logo {
-      width: 55%;
+      width: 45%; /* Reduced size for better aesthetics */
       display: block;
     }
 
-    /* Marquee */
+    /* Marquee Directly Under Logo */
     .marquee-container {
-      margin-top: -10px;
+      margin-top: -5px;
     }
 
     marquee {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-family: 'Didot', serif;
       color: black;
       font-weight: bold;
@@ -159,6 +159,14 @@
       opacity: 0.8;
     }
 
+    /* Popping Animation */
+    @keyframes pop {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.7; }
+      100% { transform: scale(0); opacity: 0; }
+    }
+
+    /* Floating Up Animation */
     @keyframes floatUp {
       0% {
         transform: translateY(0) scale(1);
@@ -185,14 +193,14 @@
       overflow: hidden;
     }
 
-    /* Responsive Design (Mobile = Desktop) */
+    /* Responsive Design */
     @media (max-width: 768px) {
-      .logo { width: 65%; }
+      .logo { width: 50%; }
       .main-image { width: 70%; }
     }
 
     @media (max-width: 480px) {
-      .logo { width: 75%; }
+      .logo { width: 60%; }
       .main-image { width: 80%; }
     }
   </style>
@@ -211,13 +219,17 @@
 
   <!-- Chandelier -->
   <div class="chandelier-container">
-    <img class="chandelier" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/chandelier.png">
+    <img class="chandelier" src="chandelier.png">
     <div class="chandelier-glow"></div>
   </div>
 
   <!-- Logo -->
   <div class="logo-container">
-    <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Screenshot%202025-01-02%20at%2018.16.56.png" alt="Write My Socials Logo">
+    <img class="logo" src="logo.png" alt="Write My Socials Logo">
+  </div>
+
+  <!-- Marquee -->
+  <div class="marquee-container">
     <marquee behavior="alternate"><h3>The Creative Agency that Understands your Direction</h3></marquee>
   </div>
 
@@ -232,7 +244,7 @@
   </div>
 
   <!-- Clients Featured On Image -->
-  <img class="main-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Clients%20Featured%20on1.png" alt="Success Image">
+  <img class="main-image" src="clients-featured-on.png" alt="Success Image">
 
   <!-- Bubbles Effect -->
   <div class="bubbles-container">
@@ -243,11 +255,14 @@
         bubble.style.width = `${Math.random() * 40 + 10}px`;
         bubble.style.height = bubble.style.width;
         bubble.style.left = `${Math.random() * 100}vw`;
-        bubble.style.animationDuration = `${Math.random() * 4 + 3}s`;
+        bubble.style.animation = `floatUp ${Math.random() * 4 + 3}s linear infinite, pop 0.5s ${Math.random() * 5 + 3}s forwards`;
         document.querySelector(".bubbles-container").appendChild(bubble);
       }
     </script>
   </div>
+
+</body>
+</html>
 
 </body>
 </html>
