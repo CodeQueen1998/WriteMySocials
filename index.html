@@ -68,11 +68,21 @@
     .chandelier {
       width: 150px;
       opacity: 0.9;
-      filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 1));
+      filter: drop-shadow(0px 0px 20px rgba(255, 255, 255, 1));
       animation: glow 2s infinite alternate ease-in-out, flicker 1.5s infinite alternate ease-in-out;
     }
 
-    /* Chandelier Glow & Flicker Effects */
+    /* Glow Effect Under Chandelier */
+    .chandelier-glow {
+      position: absolute;
+      top: 100%;
+      width: 180px;
+      height: 50px;
+      background: radial-gradient(circle, rgba(255, 255, 180, 0.6) 0%, rgba(255, 255, 180, 0) 70%);
+      animation: pageGlow 5s infinite alternate ease-in-out;
+    }
+
+    /* Keyframes for Chandelier Effects */
     @keyframes glow {
       0% { filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.5)); }
       100% { filter: drop-shadow(0px 0px 25px rgba(255, 255, 255, 1)); }
@@ -84,24 +94,31 @@
       100% { opacity: 0.85; }
     }
 
+    @keyframes pageGlow {
+      0% { opacity: 0.2; transform: translateY(5px); }
+      50% { opacity: 0.5; transform: translateY(0px); }
+      100% { opacity: 0.3; transform: translateY(3px); }
+    }
+
     /* Logo Styling */
     .logo {
       width: 50%;
       display: block;
-      margin: -20px auto 0px;
+      margin-top: -20px;
     }
 
     /* Marquee */
     .marquee-container {
-      margin-top: -5px;
+      margin-top: -10px;
     }
 
     marquee {
-      font-size: 1.2rem;
-      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; /* Slightly bigger */
+      font-family: 'Didot', serif; /* Editorial font */
       color: black;
+      font-weight: bold;
       width: 90%;
-      padding: 8px 0;
+      padding: 12px 0;
     }
 
     /* Main Content Styling */
@@ -110,7 +127,7 @@
       margin: auto;
       text-align: center;
       line-height: 1.8;
-      margin-top: 30px;
+      margin-top: 50px;
     }
 
     h3 {
@@ -131,7 +148,7 @@
     .main-image {
       width: 50%;
       display: block;
-      margin: 50px auto;
+      margin: 80px auto; /* More spacing before the clients' section */
     }
 
     /* Responsive Design */
@@ -145,19 +162,24 @@
         width: 130px;
       }
 
+      .chandelier-glow {
+        width: 140px;
+        height: 40px;
+      }
+
       .logo {
         width: 70%;
         margin-top: -15px;
       }
 
       marquee {
-        font-size: 1rem;
-        padding: 5px 0;
+        font-size: 1.2rem;
+        padding: 8px 0;
       }
 
       .main-image {
         width: 70%;
-        margin: 40px auto;
+        margin: 60px auto;
       }
     }
 
@@ -170,12 +192,17 @@
         width: 100px;
       }
 
+      .chandelier-glow {
+        width: 120px;
+        height: 35px;
+      }
+
       .logo {
         width: 80%;
       }
 
       marquee {
-        font-size: 0.9rem;
+        font-size: 1rem;
       }
 
       .main-image {
@@ -199,6 +226,7 @@
   <!-- Chandelier -->
   <div class="chandelier-container">
     <img class="chandelier" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/chandelier.png">
+    <div class="chandelier-glow"></div>
   </div>
 
   <!-- Logo -->
@@ -206,7 +234,7 @@
 
   <!-- Marquee -->
   <div class="marquee-container">
-    <marquee behavior="alternate"><h3 style="color: black;">The Creative Agency that Understands your Direction</h3></marquee>
+    <marquee behavior="alternate"><h3>The Creative Agency that Understands your Direction</h3></marquee>
   </div>
 
   <!-- Content -->
@@ -219,9 +247,8 @@
     <p class="italic-text">We work with you to uplift your brand to your desired outcome.</p>
   </div>
 
-  <!-- Success Image -->
-  <img class="main-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/success.jpg" alt="Success Image">
+  <!-- Clients Featured On Image -->
+  <img class="main-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Clients%20Featured%20on1.png" alt="Success Image">
 
 </body>
 </html>
-
