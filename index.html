@@ -4,13 +4,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Write My Socials</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
+
     body {
       background-color: white;
       font-family: 'Optima', sans-serif;
       margin: 0;
       padding: 0;
     }
+
     nav {
       background: white;
       border-bottom: 1px solid black;
@@ -19,34 +21,41 @@
       font-size: 1.5rem;
       font-weight: bold;
       letter-spacing: 0.1rem;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Libre Baskerville', serif;
     }
+
     nav a {
       text-decoration: none;
       color: black;
       margin: 0 15px;
     }
+
     nav a:hover {
       text-decoration: underline;
     }
+
     #logo {
       display: block;
       margin: 20px auto 10px;
       width: 40%;
     }
+
     marquee {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: bold;
       margin-top: 5px;
     }
+
     .intro-text {
       text-align: center;
       margin-top: 2rem;
       padding-bottom: 2rem;
     }
+
     .intro-text h3 {
       font-size: 1.5rem;
     }
+
     .main-image {
       display: block;
       margin: 40px auto;
@@ -54,37 +63,41 @@
       width: 100%;
       height: auto;
     }
+
     .social-icons {
       position: absolute;
       top: 10px;
       left: 10px;
     }
+
     .social-icons img {
       margin-right: 10px;
       width: 30px;
       height: 30px;
     }
-    .confetti {
+
+    /* Bubble Effect */
+    .bubble {
       position: fixed;
-      top: 0;
-      left: 50%;
-      width: 10px;
-      height: 10px;
-      background: silver;
-      opacity: 0.8;
-      animation: fall 3s infinite linear, fade 3s infinite alternate;
+      bottom: -50px;
+      background: rgba(173, 216, 230, 0.6);
+      border-radius: 50%;
+      animation: rise 5s linear infinite, fadeOut 5s linear infinite;
     }
-    @keyframes fall {
+
+    @keyframes rise {
       0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(100vh); opacity: 0; }
+      100% { transform: translateY(-100vh); opacity: 0; }
     }
-    @keyframes fade {
+
+    @keyframes fadeOut {
       0% { opacity: 1; }
       100% { opacity: 0; }
     }
   </style>
 </head>
 <body>
+
   <div class="social-icons">
     <a href="https://www.instagram.com/writemysocials">
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/download-1.jpg" alt="Instagram">
@@ -119,18 +132,22 @@
   <img class="main-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/success.jpg" alt="Success Image">
 
   <script>
-    function createConfetti() {
-      for (let i = 0; i < 30; i++) {
-        let confetti = document.createElement("div");
-        confetti.classList.add("confetti");
-        confetti.style.left = Math.random() * 100 + "vw";
-        confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
-        document.body.appendChild(confetti);
-        setTimeout(() => confetti.remove(), 5000);
+    function createBubbles() {
+      for (let i = 0; i < 10; i++) {
+        let bubble = document.createElement("div");
+        bubble.classList.add("bubble");
+        let size = Math.random() * 50 + 10 + "px";
+        bubble.style.width = size;
+        bubble.style.height = size;
+        bubble.style.left = Math.random() * 100 + "vw";
+        bubble.style.animationDuration = Math.random() * 3 + 2 + "s";
+        document.body.appendChild(bubble);
+        setTimeout(() => bubble.remove(), 5000);
       }
     }
-    setInterval(createConfetti, 3000);
+    setInterval(createBubbles, 3000);
   </script>
+
 </body>
 </html>
 
