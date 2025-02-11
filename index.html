@@ -58,52 +58,107 @@ div {
 </html>
 
 
-<body>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-</style>
-</body>
-</html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-div.scrollmenu {
-  background-color: #333;
-  overflow: auto;
-  white-space: nowrap;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Animated Nav Bar</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
 
-div.scrollmenu a {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px;
-  text-decoration: none;
-}
+        /* Scrollable Menu Styling */
+        .scrollmenu {
+            background: linear-gradient(90deg, #222, #444); /* Smooth gradient */
+            overflow: auto;
+            white-space: nowrap;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
 
-div.scrollmenu a:hover {
-  background-color: #333;
-}
-</style>
+        /* Navigation Links */
+        .scrollmenu a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Hover Effects */
+        .scrollmenu a:hover {
+            color: #ffcc00; /* Gold */
+            text-shadow: 0 0 8px #ffcc00;
+        }
+
+        /* Underline Animation */
+        .scrollmenu a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 5px;
+            width: 0;
+            height: 2px;
+            background-color: #ffcc00;
+            transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+        }
+
+        .scrollmenu a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Responsive - Centered on Small Screens */
+        @media screen and (max-width: 600px) {
+            .scrollmenu {
+                text-align: center;
+            }
+
+            .scrollmenu a {
+                padding: 12px 15px;
+                font-size: 16px;
+            }
+        }
+
+        /* Push Content Down (Prevent Overlapping) */
+        .content {
+            margin-top: 60px;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-  
-<div class="scrollmenu">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="services.html">Services</a>
-    <a href="1 on 1.html">1to1</a>
-  <a href="experience.html">Experience</a>
-  <a href="blog.html">Blog</a>
-</div>
+
+    <div class="scrollmenu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="1 on 1.html">1to1</a>
+        <a href="experience.html">Experience</a>
+        <a href="blog.html">Blog</a>
+    </div>
+
+    <div class="content">
+        <h1>Welcome to Write My Socials</h1>
+        <p>Now with a sleek, glowing navigation bar.</p>
+    </div>
+
 </body>
 </html>
 <body>
