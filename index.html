@@ -34,19 +34,23 @@
       border-bottom: 1px solid black;
       padding: 1rem 0;
       text-align: center;
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       font-weight: bold;
-      letter-spacing: 0.05rem;
       font-family: 'Didot', serif;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
     }
 
     nav a {
       text-decoration: none;
       color: black;
-      margin: 0 15px;
-    
+      margin: 0 10px;
       text-transform: uppercase;
       transition: text-shadow 0.3s ease-in-out;
+      display: inline-block;
     }
 
     nav a:hover {
@@ -57,42 +61,47 @@
     .chandelier-container {
       display: flex;
       justify-content: center;
-      margin-top: 10px;
+      margin-top: 80px;
+      position: relative;
     }
 
     .chandelier {
-      width: 180px;
+      width: 150px;
       opacity: 0.9;
+      filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 1));
       animation: glow 2s infinite alternate ease-in-out, flicker 1.5s infinite alternate ease-in-out;
     }
 
     /* Chandelier Glow & Flicker Effects */
     @keyframes glow {
       0% { filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.5)); }
-      100% { filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.9)); }
+      100% { filter: drop-shadow(0px 0px 25px rgba(255, 255, 255, 1)); }
     }
+
     @keyframes flicker {
       0% { opacity: 0.9; }
       50% { opacity: 1; }
-      100% { opacity: 0.8; }
+      100% { opacity: 0.85; }
     }
 
     /* Logo Styling */
     .logo {
-      width: 45%;
+      width: 50%;
       display: block;
-      margin: 20px auto 10px;
+      margin: -20px auto 0px;
     }
 
     /* Marquee */
+    .marquee-container {
+      margin-top: -5px;
+    }
+
     marquee {
       font-size: 1.2rem;
-      font-weight: normal;
       font-family: 'Playfair Display', serif;
       color: black;
       width: 90%;
-      margin: 0 auto;
-      padding: 10px 0;
+      padding: 8px 0;
     }
 
     /* Main Content Styling */
@@ -101,6 +110,7 @@
       margin: auto;
       text-align: center;
       line-height: 1.8;
+      margin-top: 30px;
     }
 
     h3 {
@@ -121,9 +131,57 @@
     .main-image {
       width: 50%;
       display: block;
-      margin: 30px auto;
+      margin: 50px auto;
     }
 
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      nav {
+        font-size: 1rem;
+        padding: 0.8rem 0;
+      }
+
+      .chandelier {
+        width: 130px;
+      }
+
+      .logo {
+        width: 70%;
+        margin-top: -15px;
+      }
+
+      marquee {
+        font-size: 1rem;
+        padding: 5px 0;
+      }
+
+      .main-image {
+        width: 70%;
+        margin: 40px auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        font-size: 0.9rem;
+      }
+
+      .chandelier {
+        width: 100px;
+      }
+
+      .logo {
+        width: 80%;
+      }
+
+      marquee {
+        font-size: 0.9rem;
+      }
+
+      .main-image {
+        width: 80%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -142,10 +200,14 @@
   <div class="chandelier-container">
     <img class="chandelier" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/chandelier.png">
   </div>
-    <!-- logo -->
+
+  <!-- Logo -->
   <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Screenshot%202025-01-02%20at%2018.16.56.png" alt="Write My Socials Logo">
+
   <!-- Marquee -->
-  <marquee behavior="alternate"><h3 style="color: black;">The Creative Agency that Understands your Direction</h3></marquee>
+  <div class="marquee-container">
+    <marquee behavior="alternate"><h3 style="color: black;">The Creative Agency that Understands your Direction</h3></marquee>
+  </div>
 
   <!-- Content -->
   <div class="content">
