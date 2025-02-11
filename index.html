@@ -16,19 +16,9 @@
       overflow-x: hidden;
     }
 
-    /* Hot Pink Scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: white; }
-    ::-webkit-scrollbar-thumb {
-      background: hotpink;
-      border-radius: 10px;
-      box-shadow: 0 0 10px hotpink;
-    }
-
     /* Navigation Bar */
     nav {
       background: white;
-      border-bottom: 1px solid black;
       padding: 1rem 0;
       text-align: center;
       font-size: 1.1rem;
@@ -39,20 +29,21 @@
       top: 0;
       left: 0;
       z-index: 1000;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     nav a {
       text-decoration: none;
       color: black;
-      margin: 0 10px;
+      margin: 0 15px;
       text-transform: uppercase;
-      transition: text-shadow 0.3s ease-in-out;
+      transition: opacity 0.3s ease-in-out;
       display: inline-block;
     }
 
-    nav a:hover { text-shadow: 0 0 10px #ffb6c1; }
+    nav a:hover { opacity: 0.6; }
 
-    /* Chandelier */
+    /* Decorative Chandelier */
     .chandelier-container {
       display: flex;
       justify-content: center;
@@ -63,30 +54,39 @@
     .chandelier {
       width: 180px;
       opacity: 0.9;
-      filter: drop-shadow(0px 0px 20px rgba(255, 192, 203, 0.8));
+      filter: drop-shadow(0px 0px 15px rgba(255, 192, 203, 0.8));
       animation: shimmer 1.5s infinite alternate ease-in-out;
     }
 
     @keyframes shimmer {
-      0% { filter: drop-shadow(0px 0px 15px rgba(255, 192, 203, 0.5)); }
-      100% { filter: drop-shadow(0px 0px 35px rgba(255, 192, 203, 1)); }
+      0% { filter: drop-shadow(0px 0px 10px rgba(255, 192, 203, 0.5)); }
+      100% { filter: drop-shadow(0px 0px 30px rgba(255, 192, 203, 1)); }
     }
 
-    /* Logo */
+    /* Logo with Soft Floating Effect */
     .logo-container {
       display: flex;
       justify-content: center;
-      margin-top: 20px;
+      margin-top: -10px;
+      position: relative;
     }
 
     .logo {
-      width: 180px;
+      width: 200px;
       display: block;
-      filter: drop-shadow(0px 0px 10px hotpink);
+      border-radius: 15px;
+      filter: drop-shadow(0px 5px 15px rgba(255, 182, 193, 0.5));
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
     }
 
     /* Marquee */
-    .marquee-container { margin-top: -10px; }
+    .marquee-container { margin-top: -15px; }
     marquee {
       font-size: 1.5rem;
       font-family: 'Didot', serif;
@@ -98,70 +98,30 @@
 
     /* Content */
     .content {
-      margin-top: 50px;
-      max-width: 80%;
-      margin-left: auto;
-      margin-right: auto;
+      max-width: 70%;
+      margin: 50px auto;
       line-height: 1.8;
-      z-index: 2;
-      position: relative;
+      font-size: 1.1rem;
     }
 
-    h3 { font-weight: bold; font-size: 1.4rem; }
-    p { font-size: 1.1rem; }
+    h3 {
+      font-size: 1.4rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
 
-    /* Image */
+    /* Soft Glow Image */
     .main-image {
-      width: 50%;
+      width: 60%;
       display: block;
       margin: 50px auto;
-      position: relative;
-      z-index: 2;
+      border-radius: 10px;
+      filter: drop-shadow(0px 5px 20px rgba(255, 182, 193, 0.6));
+      transition: transform 0.5s ease-in-out;
     }
 
-    /* Bubbles */
-    .bubble-container, .confetti-container {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      top: 0;
-      left: 0;
-      z-index: 1;
-    }
+    .main-image:hover { transform: scale(1.02); }
 
-    .bubble {
-      position: absolute;
-      bottom: -10px;
-      background: rgba(173, 216, 230, 0.6);
-      border-radius: 50%;
-      animation: rise 6s linear infinite, pop 6s ease-in-out infinite;
-    }
-
-    @keyframes rise {
-      from { transform: translateY(100vh); }
-      to { transform: translateY(-10vh); }
-    }
-
-    @keyframes pop {
-      90% { opacity: 1; transform: scale(1); }
-      100% { opacity: 0; transform: scale(1.5); }
-    }
-
-    /* Confetti */
-    .confetti {
-      position: absolute;
-      background: hotpink;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      animation: fall 3s linear infinite;
-    }
-
-    @keyframes fall {
-      from { transform: translateY(-10vh); opacity: 1; }
-      to { transform: translateY(100vh); opacity: 0; }
-    }
   </style>
 </head>
 <body>
@@ -183,7 +143,7 @@
 
   <!-- Logo -->
   <div class="logo-container">
-    <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="Write My Socials Logo">
+    <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/logo.png" alt="Write My Socials Logo">
   </div>
 
   <!-- Marquee -->
@@ -204,20 +164,6 @@
   <!-- Clients Image -->
   <img class="main-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Clients%20Featured%20on1.png" alt="Clients Featured On">
 
-  <!-- Floating Elements -->
-  <div class="bubble-container"></div>
-  <div class="confetti-container"></div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const container = document.querySelector(".bubble-container");
-      for (let i = 0; i < 20; i++) {
-        let bubble = document.createElement("div");
-        bubble.className = "bubble";
-        container.appendChild(bubble);
-      }
-    });
-  </script>
-
 </body>
 </html>
+
