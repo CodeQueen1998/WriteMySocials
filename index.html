@@ -12,18 +12,16 @@
       font-family: 'Playfair Display', serif;
       margin: 0;
       padding: 0;
-      text-align: center; /* Ensuring text is centered */
+      text-align: center;
     }
 
     /* Hot Pink Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
-
     ::-webkit-scrollbar-track {
       background: white;
     }
-
     ::-webkit-scrollbar-thumb {
       background: hotpink;
       border-radius: 10px;
@@ -36,7 +34,7 @@
       border-bottom: 1px solid black;
       padding: 1rem 0;
       text-align: center;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: bold;
       letter-spacing: 0.05rem;
       font-family: 'Didot', serif;
@@ -54,42 +52,46 @@
       text-shadow: 0 0 10px #ffb6c1;
     }
 
-    /* Marquee */
-    marquee {
-      font-size: 1rem; /* Reduced from before */
-      font-weight: normal;
-      font-family: 'Playfair Display', serif;
-      color: black;
-      width: 80%;
-      margin: auto;
-    }
-
     /* Chandelier Styling */
     .chandelier-container {
-      text-align: center;
-      position: relative;
-      top: -50px;
       display: flex;
       justify-content: center;
+      margin-top: 10px;
     }
 
     .chandelier {
-      width: 200px; /* Adjusted to fit well */
+      width: 180px;
       opacity: 0.9;
       animation: glow 2s infinite alternate ease-in-out, flicker 1.5s infinite alternate ease-in-out;
     }
 
-    /* Chandelier Glow Effect */
+    /* Chandelier Glow & Flicker Effects */
     @keyframes glow {
       0% { filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.5)); }
       100% { filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.9)); }
     }
-
-    /* Flickering Light Effect */
     @keyframes flicker {
       0% { opacity: 0.9; }
       50% { opacity: 1; }
       100% { opacity: 0.8; }
+    }
+
+    /* Logo Styling */
+    .logo {
+      width: 45%;
+      display: block;
+      margin: 20px auto 10px;
+    }
+
+    /* Marquee */
+    marquee {
+      font-size: 1.2rem;
+      font-weight: normal;
+      font-family: 'Playfair Display', serif;
+      color: black;
+      width: 90%;
+      margin: 0 auto;
+      padding: 10px 0;
     }
 
     /* Main Content Styling */
@@ -97,153 +99,42 @@
       max-width: 80%;
       margin: auto;
       text-align: center;
+      line-height: 1.8;
     }
 
-    /* Success Image */
-    .main-image {
-      width: 50%; /* Reduced to prevent breaking layout */
-      margin-top: 20px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-  </style>
-</head>
-<body>
-
-  <nav>
-    <a href="#">HOME</a>
-    <a href="#">ABOUT</a>
-    <a href="#">SERVICES</a>
-    <a href="#">1 TO 1</a>
-    <a href="#">EXPERIENCE</a>
-    <a href="#">BLOG</a>
-  </nav>
-
-  <!-- Chandelier -->
-  <div class="chandelier-container">
-    <img class="chandelier" src="<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Write My Socials</title>
-  <style>
-    /* Import Editorial-Style Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Didot&display=swap');
-
-    body {
-      background-color: white;
-      font-family: 'Playfair Display', serif;
-      margin: 0;
-      padding: 0;
-      text-align: center; /* Ensuring text is centered */
-    }
-
-    /* Hot Pink Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: white;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: hotpink;
-      border-radius: 10px;
-      box-shadow: 0 0 10px hotpink;
-    }
-
-    /* Navigation Bar */
-    nav {
-      background: white;
-      border-bottom: 1px solid black;
-      padding: 1rem 0;
-      text-align: center;
-      font-size: 1.5rem;
+    h3 {
       font-weight: bold;
-      letter-spacing: 0.05rem;
-      font-family: 'Didot', serif;
+      font-size: 1.4rem;
     }
 
-    nav a {
-      text-decoration: none;
-      color: black;
-      margin: 0 15px;
-      text-transform: uppercase;
-      transition: text-shadow 0.3s ease-in-out;
+    p {
+      font-size: 1.1rem;
     }
 
-    nav a:hover {
-      text-shadow: 0 0 10px #ffb6c1;
-    }
-
-    /* Marquee */
-    marquee {
-      font-size: 1rem; /* Reduced from before */
-      font-weight: normal;
-      font-family: 'Playfair Display', serif;
-      color: black;
-      width: 80%;
-      margin: auto;
-    }
-
-    /* Chandelier Styling */
-    .chandelier-container {
-      text-align: center;
-      position: relative;
-      top: -50px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .chandelier {
-      width: 200px; /* Adjusted to fit well */
-      opacity: 0.9;
-      animation: glow 2s infinite alternate ease-in-out, flicker 1.5s infinite alternate ease-in-out;
-    }
-
-    /* Chandelier Glow Effect */
-    @keyframes glow {
-      0% { filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.5)); }
-      100% { filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.9)); }
-    }
-
-    /* Flickering Light Effect */
-    @keyframes flicker {
-      0% { opacity: 0.9; }
-      50% { opacity: 1; }
-      100% { opacity: 0.8; }
-    }
-
-    /* Main Content Styling */
-    .content {
-      max-width: 80%;
-      margin: auto;
-      text-align: center;
+    .italic-text {
+      font-style: italic;
+      font-size: 1.1rem;
     }
 
     /* Success Image */
     .main-image {
-      width: 50%; /* Reduced to prevent breaking layout */
-      margin-top: 20px;
+      width: 50%;
       display: block;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 30px auto;
     }
-    
+
   </style>
 </head>
 <body>
 
+  <!-- Navigation Bar -->
   <nav>
-    <a href="#">HOME</a>
-    <a href="#">ABOUT</a>
-    <a href="#">SERVICES</a>
-    <a href="#">1 TO 1</a>
-    <a href="#">EXPERIENCE</a>
-    <a href="#">BLOG</a>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">1 to 1</a>
+    <a href="#">Experience</a>
+    <a href="#">Blog</a>
   </nav>
 
   <!-- Chandelier -->
@@ -252,7 +143,7 @@
   </div>
 
   <!-- Logo -->
-  <img id="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Screenshot%202025-01-02%20at%2018.16.56.png" alt="Write My Socials Logo">
+  <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Screenshot%202025-01-02%20at%2018.16.56.png" alt="Write My Socials Logo">
 
   <!-- Marquee -->
   <marquee behavior="alternate"><h1 style="color: black;">The Creative Agency that Understands your Direction</h1></marquee>
@@ -263,32 +154,8 @@
     <p>In the marketing world, there’s a lot of overpromising and underdelivering.</p>
     <p>Write My Socials meets your vision,</p>
     <p>and works with you to ensure your goals are tangible.</p>
-    <p>We’re realistic with you about your expectations</p>
-    <p><i>We work with you to uplift your brand to your desired outcome.</i></p>
-  </div>
-
-  <!-- Success Image -->
-  <img class="main-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/success.jpg" alt="Success Image">
-
-</body>
-</html>
-" alt="Elegant Black Chandelier">
-  </div>
-
-  <!-- Logo -->
-  <img id="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Screenshot%202025-01-02%20at%2018.16.56.png" alt="Write My Socials Logo">
-
-  <!-- Marquee -->
-  <marquee behavior="alternate"><h1 style="color: black;">The Creative Agency that Understands your Direction</h1></marquee>
-
-  <!-- Content -->
-  <div class="content">
-    <h3>Crafted by Passion, Honed with Love for your Brand.</h3>
-    <p>In the marketing world, there’s a lot of overpromising and underdelivering.</p>
-    <p>Write My Socials meets your vision,</p>
-    <p>and works with you to ensure your goals are tangible.</p>
-    <p>We’re realistic with you about your expectations</p>
-    <p><i>We work with you to uplift your brand to your desired outcome.</i></p>
+    <p>We’re realistic with you about your expectations.</p>
+    <p class="italic-text">We work with you to uplift your brand to your desired outcome.</p>
   </div>
 
   <!-- Success Image -->
