@@ -57,42 +57,42 @@ div {
 </body>
 </html>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Animated Nav Bar</title>
+    <title>Chic Editorial Nav</title>
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Playfair Display', serif; /* Elegant font */
+            background-color: #fff;
         }
 
-        /* Scrollable Menu Styling */
+        /* Scrollable Menu */
         .scrollmenu {
-            background: linear-gradient(90deg, #222, #444); /* Smooth gradient */
+            background: white;
             overflow: auto;
             white-space: nowrap;
-            padding: 10px 0;
+            padding: 15px 0;
             position: fixed;
             width: 100%;
             top: 0;
             left: 0;
             z-index: 1000;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid #ddd;
+            text-align: center;
         }
 
         /* Navigation Links */
         .scrollmenu a {
             display: inline-block;
-            color: white;
+            color: black;
             text-align: center;
-            padding: 14px 20px;
+            padding: 12px 20px;
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 500;
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -100,21 +100,15 @@ div {
             transition: all 0.3s ease-in-out;
         }
 
-        /* Hover Effects */
-        .scrollmenu a:hover {
-            color: #ffcc00; /* Gold */
-            text-shadow: 0 0 8px #ffcc00;
-        }
-
         /* Underline Animation */
         .scrollmenu a::after {
             content: "";
             position: absolute;
             left: 50%;
-            bottom: 5px;
+            bottom: 0px;
             width: 0;
             height: 2px;
-            background-color: #ffcc00;
+            background-color: black;
             transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
         }
 
@@ -123,23 +117,25 @@ div {
             left: 0;
         }
 
-        /* Responsive - Centered on Small Screens */
-        @media screen and (max-width: 600px) {
-            .scrollmenu {
-                text-align: center;
-            }
+        /* Click (Active) Effect */
+        .scrollmenu a:active {
+            color: #ff69b4; /* Chic Pink */
+            text-shadow: 0 0 8px #ff69b4;
+        }
 
+        /* Responsive */
+        @media screen and (max-width: 600px) {
             .scrollmenu a {
-                padding: 12px 15px;
+                padding: 10px 15px;
                 font-size: 16px;
             }
         }
 
         /* Push Content Down (Prevent Overlapping) */
         .content {
-            margin-top: 60px;
+            margin-top: 70px;
             text-align: center;
-            padding: 20px;
+            padding: 30px;
         }
     </style>
 </head>
@@ -155,8 +151,8 @@ div {
     </div>
 
     <div class="content">
-        <h1>Welcome to Write My Socials</h1>
-        <p>Now with a sleek, glowing navigation bar.</p>
+        <h1>Welcome to Your Editorial Space</h1>
+        <p>Effortlessly chic, just like you wanted.</p>
     </div>
 
 </body>
