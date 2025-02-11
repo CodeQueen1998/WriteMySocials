@@ -14,12 +14,13 @@
       padding: 0;
     }
 
+    /* Navigation Bar */
     nav {
       background: white;
       border-bottom: 1px solid black;
       padding: 1rem 0;
       text-align: center;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: bold;
       letter-spacing: 0.1rem;
       font-family: 'Libre Baskerville', serif;
@@ -29,25 +30,43 @@
       text-decoration: none;
       color: black;
       margin: 0 15px;
+      transition: all 0.3s ease-in-out;
     }
 
+    /* Pink Glow Hover Effect */
     nav a:hover {
-      text-decoration: underline;
+      text-shadow: 0 0 10px #ffb6c1;
+      color: #ffb6c1;
     }
 
+    /* Responsive Nav */
+    @media (max-width: 768px) {
+      nav {
+        font-size: 1rem;
+      }
+      nav a {
+        margin: 0 10px;
+      }
+    }
+
+    /* Logo */
     #logo {
       display: block;
       margin: 20px auto 10px;
       width: 40%;
+      max-width: 250px;
     }
 
+    /* Marquee */
     marquee {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: normal;
       margin-top: 5px;
       font-family: 'Playfair Display', serif;
+      color: black;
     }
 
+    /* Intro Text */
     .intro-text {
       text-align: center;
       margin-top: 2rem;
@@ -59,6 +78,7 @@
       font-weight: bold;
     }
 
+    /* Main Image */
     .main-image {
       display: block;
       margin: 40px auto;
@@ -67,7 +87,7 @@
       height: auto;
     }
 
-    /* Sidebar */
+    /* Sidebar (Hot Pink Glow) */
     .sidebar {
       position: fixed;
       left: 0;
@@ -76,6 +96,21 @@
       width: 5px;
       background-color: hotpink;
       box-shadow: 0 0 10px hotpink;
+    }
+
+    /* Neon Hot Pink Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: hotpink;
+      border-radius: 10px;
+      box-shadow: 0 0 10px hotpink;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: white;
     }
 
     /* Realistic Bubble Effect */
@@ -101,6 +136,7 @@
     .baby-pink-highlight {
       color: #ffb6c1;
     }
+
   </style>
 </head>
 <body>
@@ -148,4 +184,3 @@
   </script>
 </body>
 </html>
-
