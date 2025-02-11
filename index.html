@@ -52,7 +52,7 @@
 
     nav a:hover { text-shadow: 0 0 10px #ffb6c1; }
 
-    /* Chandelier Styling */
+    /* Chandelier */
     .chandelier-container {
       display: flex;
       justify-content: center;
@@ -67,36 +67,22 @@
       animation: shimmer 1.5s infinite alternate ease-in-out;
     }
 
-    .chandelier-glow {
-      position: absolute;
-      top: 100%;
-      width: 200px;
-      height: 60px;
-      background: radial-gradient(circle, rgba(255, 192, 203, 0.8) 0%, rgba(255, 192, 203, 0) 70%);
-      animation: shimmerGlow 3s infinite alternate ease-in-out;
-    }
-
     @keyframes shimmer {
       0% { filter: drop-shadow(0px 0px 15px rgba(255, 192, 203, 0.5)); }
       100% { filter: drop-shadow(0px 0px 35px rgba(255, 192, 203, 1)); }
-    }
-
-    @keyframes shimmerGlow {
-      0% { opacity: 0.3; transform: scale(1); }
-      100% { opacity: 0.6; transform: scale(1.1); }
     }
 
     /* Logo */
     .logo-container {
       display: flex;
       justify-content: center;
-      margin-top: -15px;
+      margin-top: 20px;
     }
 
     .logo {
       width: 180px;
       display: block;
-      filter: drop-shadow(0px 0px 15px hotpink);
+      filter: drop-shadow(0px 0px 10px hotpink);
     }
 
     /* Marquee */
@@ -110,7 +96,30 @@
       padding: 12px 0;
     }
 
-    /* Bubbles Animation */
+    /* Content */
+    .content {
+      margin-top: 50px;
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+      z-index: 2;
+      position: relative;
+    }
+
+    h3 { font-weight: bold; font-size: 1.4rem; }
+    p { font-size: 1.1rem; }
+
+    /* Image */
+    .main-image {
+      width: 50%;
+      display: block;
+      margin: 50px auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Bubbles */
     .bubble-container, .confetti-container {
       position: fixed;
       width: 100%;
@@ -118,7 +127,7 @@
       pointer-events: none;
       top: 0;
       left: 0;
-      z-index: 10;
+      z-index: 1;
     }
 
     .bubble {
@@ -139,7 +148,7 @@
       100% { opacity: 0; transform: scale(1.5); }
     }
 
-    /* Confetti Animation */
+    /* Confetti */
     .confetti {
       position: absolute;
       background: hotpink;
@@ -153,32 +162,23 @@
       from { transform: translateY(-10vh); opacity: 1; }
       to { transform: translateY(100vh); opacity: 0; }
     }
-
-    /* Responsive */
-    @media (max-width: 768px) { .logo { width: 150px; } }
-    @media (max-width: 480px) { .logo { width: 130px; } }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
+  <!-- Navigation -->
   <nav>
     <a href="#">Home</a>
     <a href="#">About</a>
     <a href="#">Services</a>
     <a href="#">1 to 1</a>
     <a href="#">Experience</a>
-    <a href="#">
-html
-Copy
-Edit
-      Blog</a>
+    <a href="#">Blog</a>
   </nav>
 
   <!-- Chandelier -->
   <div class="chandelier-container">
-    <img class="chandelier" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/chandelier.png">
-    <div class="chandelier-glow"></div>
+    <img class="chandelier" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/chandelier.png" alt="Chandelier">
   </div>
 
   <!-- Logo -->
@@ -191,43 +191,32 @@ Edit
     <marquee behavior="alternate"><h3>The Creative Agency that Understands your Direction</h3></marquee>
   </div>
 
-  <!-- Bubbles -->
-  <div class="bubble-container"></div>
+  <!-- Content -->
+  <div class="content">
+    <h3>Crafted by Passion, Honed with Love for your Brand.</h3>
+    <p>In the marketing world, there’s a lot of overpromising and underdelivering.</p>
+    <p>Write My Socials meets your vision,</p>
+    <p>and works with you to ensure your goals are tangible.</p>
+    <p>We’re realistic with you about your expectations.</p>
+    <p class="italic-text">We work with you to uplift your brand to your desired outcome.</p>
+  </div>
 
-  <!-- Confetti -->
+  <!-- Clients Image -->
+  <img class="main-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Clients%20Featured%20on1.png" alt="Clients Featured On">
+
+  <!-- Floating Elements -->
+  <div class="bubble-container"></div>
   <div class="confetti-container"></div>
 
   <script>
-    // Floating Bubbles
-    function createBubbles() {
+    document.addEventListener("DOMContentLoaded", function () {
       const container = document.querySelector(".bubble-container");
       for (let i = 0; i < 20; i++) {
         let bubble = document.createElement("div");
         bubble.className = "bubble";
-        bubble.style.width = `${Math.random() * 40 + 10}px`;
-        bubble.style.height = bubble.style.width;
-        bubble.style.left = `${Math.random() * 100}vw`;
-        bubble.style.animationDuration = `${Math.random() * 6 + 3}s`;
         container.appendChild(bubble);
       }
-    }
-
-    // Hot Pink Confetti
-    function createConfetti() {
-      const container = document.querySelector(".confetti-container");
-      for (let i = 0; i < 50; i++) {
-        let confetti = document.createElement("div");
-        confetti.className = "confetti";
-        confetti.style.left = `${Math.random() * 100}vw`;
-        confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
-        confetti.style.width = `${Math.random() * 10 + 5}px`;
-        confetti.style.height = confetti.style.width;
-        container.appendChild(confetti);
-      }
-    }
-
-    createBubbles();
-    createConfetti();
+    });
   </script>
 
 </body>
