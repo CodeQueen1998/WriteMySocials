@@ -1,268 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Write My Socials</title>
-  <style>
-    /* Import Editorial-Style Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Didot&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write My Socials</title>
 
-    body {
-      background-color: white;
-      font-family: 'Playfair Display', serif;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      overflow-x: hidden;
-    }
+    <style>
+        /* Reset Default Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: white;
+        }
 
-    /* Hot Pink Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: white;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: hotpink;
-      border-radius: 10px;
-      box-shadow: 0 0 10px hotpink;
-    }
+        /* Center Logo & Adjust Size */
+        .logo-container {
+            text-align: center;
+            margin-top: 50px;
+        }
 
-    /* Navigation Bar */
-    nav {
-      background: white;
-      border-bottom: 1px solid black;
-      padding: 1rem 0;
-      text-align: center;
-      font-size: 1.1rem;
-      font-weight: bold;
-      font-family: 'Didot', serif;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 1000;
-    }
+        .logo {
+            width: 180px; /* Adjust size here */
+            filter: drop-shadow(0px 0px 15px hotpink);
+        }
 
-    nav a {
-      text-decoration: none;
-      color: black;
-      margin: 0 10px;
-      text-transform: uppercase;
-      transition: text-shadow 0.3s ease-in-out;
-      display: inline-block;
-    }
+        /* Marquee Styling */
+        .marquee {
+            display: block;
+            margin: 20px auto;
+            font-size: 18px;
+            color: black;
+            font-weight: bold;
+        }
 
-    nav a:hover {
-      text-shadow: 0 0 10px #ffb6c1;
-    }
+        /* HOT PINK SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
 
-    /* Chandelier Styling */
-    .chandelier-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 80px;
-      position: relative;
-    }
+        ::-webkit-scrollbar-thumb {
+            background: hotpink;
+            border-radius: 10px;
+            box-shadow: 0 0 10px hotpink;
+        }
 
-    .chandelier {
-      width: 180px;
-      opacity: 0.9;
-      filter: drop-shadow(0px 0px 20px rgba(255, 192, 203, 0.8));
-      animation: shimmer 1.5s infinite alternate ease-in-out;
-    }
+        /* Ensure Scrollbar Works on Mobile */
+        html {
+            scrollbar-color: hotpink white; 
+            scrollbar-width: thin; 
+        }
 
-    /* Stronger Glow Effect Under Chandelier */
-    .chandelier-glow {
-      position: absolute;
-      top: 100%;
-      width: 200px;
-      height: 60px;
-      background: radial-gradient(circle, rgba(255, 192, 203, 0.8) 0%, rgba(255, 192, 203, 0) 70%);
-      animation: shimmerGlow 3s infinite alternate ease-in-out;
-    }
+        /* Floating & Popping Bubbles */
+        .bubble-container, .confetti-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
 
-    /* Keyframes for Chandelier Effects */
-    @keyframes shimmer {
-      0% { filter: drop-shadow(0px 0px 15px rgba(255, 192, 203, 0.5)); }
-      100% { filter: drop-shadow(0px 0px 35px rgba(255, 192, 203, 1)); }
-    }
+        .bubble {
+            position: absolute;
+            bottom: -10px;
+            background: rgba(173, 216, 230, 0.6);
+            border-radius: 50%;
+            animation: rise 4s linear infinite, pop 4s ease-in-out infinite;
+        }
 
-    @keyframes shimmerGlow {
-      0% { opacity: 0.3; transform: scale(1); }
-      100% { opacity: 0.6; transform: scale(1.1); }
-    }
+        /* Bubbles Rise Up */
+        @keyframes rise {
+            from { transform: translateY(100vh); }
+            to { transform: translateY(-10vh); }
+        }
 
-    /* Logo Centered Under Chandelier (Slightly Smaller) */
-    .logo-container {
-      display: flex;
-      justify-content: center;
-      margin-top: -15px;
-    }
+        /* Bubbles Pop Effect */
+        @keyframes pop {
+            90% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.5); }
+        }
 
-    .logo {
-      width: 45%; /* Reduced size for better aesthetics */
-      display: block;
-    }
+        /* Confetti Animation */
+        .confetti {
+            position: absolute;
+            background: hotpink;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: fall 3s linear infinite;
+        }
 
-    /* Marquee Directly Under Logo */
-    .marquee-container {
-      margin-top: -5px;
-    }
-
-    marquee {
-      font-size: 1.4rem;
-      font-family: 'Didot', serif;
-      color: black;
-      font-weight: bold;
-      width: 90%;
-      padding: 12px 0;
-    }
-
-    /* Main Content Styling */
-    .content {
-      max-width: 80%;
-      margin: auto;
-      text-align: center;
-      line-height: 1.8;
-      margin-top: 50px;
-    }
-
-    h3 {
-      font-weight: bold;
-      font-size: 1.4rem;
-    }
-
-    p {
-      font-size: 1.1rem;
-    }
-
-    .italic-text {
-      font-style: italic;
-      font-size: 1.1rem;
-    }
-
-    /* Success Image */
-    .main-image {
-      width: 50%;
-      display: block;
-      margin: 80px auto;
-    }
-
-    /* Pink Bubbles Animation */
-    .bubble {
-      position: absolute;
-      background: rgba(255, 192, 203, 0.6);
-      border-radius: 50%;
-      animation: floatUp 6s infinite ease-in-out;
-      opacity: 0.8;
-    }
-
-    /* Popping Animation */
-    @keyframes pop {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.4); opacity: 0.7; }
-      100% { transform: scale(0); opacity: 0; }
-    }
-
-    /* Floating Up Animation */
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      50% {
-        transform: translateY(-300px) scale(1.2);
-        opacity: 0.8;
-      }
-      100% {
-        transform: translateY(-500px) scale(1.5);
-        opacity: 0;
-      }
-    }
-
-    /* Generate Multiple Bubbles */
-    .bubbles-container {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .logo { width: 50%; }
-      .main-image { width: 70%; }
-    }
-
-    @media (max-width: 480px) {
-      .logo { width: 60%; }
-      .main-image { width: 80%; }
-    }
-  </style>
+        /* Confetti Falling Effect */
+        @keyframes fall {
+            from { transform: translateY(-10vh); opacity: 1; }
+            to { transform: translateY(100vh); opacity: 0; }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">1 to 1</a>
-    <a href="#">Experience</a>
-    <a href="#">Blog</a>
-  </nav>
+    <!-- Centered Logo with Glow -->
+    <div class="logo-container">
+        <img src="your-logo.png" alt="Logo" class="logo">
+    </div>
 
-  <!-- Chandelier -->
-  <div class="chandelier-container">
-    <img class="chandelier" src="chandelier.png">
-    <div class="chandelier-glow"></div>
-  </div>
+    <!-- Marquee Directly Under Logo -->
+    <marquee class="marquee">Your Scrolling Text Here</marquee>
 
-  <!-- Logo -->
-  <div class="logo-container">
-    <img class="logo" src="logo.png" alt="Write My Socials Logo">
-  </div>
+    <!-- Bubble & Confetti Effects -->
+    <div class="bubble-container"></div>
+    <div class="confetti-container"></div>
 
-  <!-- Marquee -->
-  <div class="marquee-container">
-    <marquee behavior="alternate"><h3>The Creative Agency that Understands your Direction</h3></marquee>
-  </div>
-
-  <!-- Content -->
-  <div class="content">
-    <h3>Crafted by Passion, Honed with Love for your Brand.</h3>
-    <p>In the marketing world, there’s a lot of overpromising and underdelivering.</p>
-    <p>Write My Socials meets your vision,</p>
-    <p>and works with you to ensure your goals are tangible.</p>
-    <p>We’re realistic with you about your expectations.</p>
-    <p class="italic-text">We work with you to uplift your brand to your desired outcome.</p>
-  </div>
-
-  <!-- Clients Featured On Image -->
-  <img class="main-image" src="clients-featured-on.png" alt="Success Image">
-
-  <!-- Bubbles Effect -->
-  <div class="bubbles-container">
     <script>
-      for (let i = 0; i < 20; i++) {
-        let bubble = document.createElement("div");
-        bubble.className = "bubble";
-        bubble.style.width = `${Math.random() * 40 + 10}px`;
-        bubble.style.height = bubble.style.width;
-        bubble.style.left = `${Math.random() * 100}vw`;
-        bubble.style.animation = `floatUp ${Math.random() * 4 + 3}s linear infinite, pop 0.5s ${Math.random() * 5 + 3}s forwards`;
-        document.querySelector(".bubbles-container").appendChild(bubble);
-      }
-    </script>
-  </div>
+        // Function to Create Bubbles
+        function createBubble() {
+            const bubble = document.createElement("div");
+            bubble.classList.add("bubble");
+            document.querySelector(".bubble-container").appendChild(bubble);
 
-</body>
-</html>
+            let size = Math.random() * 50 + 10;
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${Math.random() * 100}vw`;
+
+            setTimeout(() => {
+                bubble.remove();
+            }, 4000);
+        }
+
+        // Function to Create Confetti
+        function createConfetti() {
+            const confetti = document.createElement("div");
+            confetti.classList.add("confetti");
+            document.querySelector(".confetti-container").appendChild(confetti);
+
+            let size = Math.random() * 10 + 5;
+            confetti.style.width = `${size}px`;
+            confetti.style.height = `${size}px`;
+            confetti.style.left = `${Math.random() * 100}vw`;
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 3000);
+        }
+
+        // Generate Bubbles & Confetti Continuously
+        setInterval(createBubble, 500);
+        setInterval(createConfetti, 300);
+    </script>
 
 </body>
 </html>
