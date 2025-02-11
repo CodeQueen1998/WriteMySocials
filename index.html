@@ -13,6 +13,7 @@
       margin: 0;
       padding: 0;
       text-align: center;
+      overflow-x: hidden;
     }
 
     /* Hot Pink Scrollbar */
@@ -66,45 +67,43 @@
     }
 
     .chandelier {
-      width: 150px;
+      width: 180px;
       opacity: 0.9;
-      filter: drop-shadow(0px 0px 20px rgba(255, 255, 255, 1));
-      animation: glow 2s infinite alternate ease-in-out, flicker 1.5s infinite alternate ease-in-out;
+      filter: drop-shadow(0px 0px 20px rgba(255, 192, 203, 0.8));
+      animation: shimmer 1.5s infinite alternate ease-in-out;
     }
 
-    /* Glow Effect Under Chandelier */
+    /* Stronger Glow Effect Under Chandelier */
     .chandelier-glow {
       position: absolute;
       top: 100%;
-      width: 180px;
-      height: 50px;
-      background: radial-gradient(circle, rgba(255, 255, 180, 0.6) 0%, rgba(255, 255, 180, 0) 70%);
-      animation: pageGlow 5s infinite alternate ease-in-out;
+      width: 200px;
+      height: 60px;
+      background: radial-gradient(circle, rgba(255, 192, 203, 0.8) 0%, rgba(255, 192, 203, 0) 70%);
+      animation: shimmerGlow 3s infinite alternate ease-in-out;
     }
 
     /* Keyframes for Chandelier Effects */
-    @keyframes glow {
-      0% { filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.5)); }
-      100% { filter: drop-shadow(0px 0px 25px rgba(255, 255, 255, 1)); }
+    @keyframes shimmer {
+      0% { filter: drop-shadow(0px 0px 15px rgba(255, 192, 203, 0.5)); }
+      100% { filter: drop-shadow(0px 0px 35px rgba(255, 192, 203, 1)); }
     }
 
-    @keyframes flicker {
-      0% { opacity: 0.9; }
-      50% { opacity: 1; }
-      100% { opacity: 0.85; }
+    @keyframes shimmerGlow {
+      0% { opacity: 0.3; transform: scale(1); }
+      100% { opacity: 0.6; transform: scale(1.1); }
     }
 
-    @keyframes pageGlow {
-      0% { opacity: 0.2; transform: translateY(5px); }
-      50% { opacity: 0.5; transform: translateY(0px); }
-      100% { opacity: 0.3; transform: translateY(3px); }
+    /* Logo Centered Under Chandelier */
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      margin-top: -15px;
     }
 
-    /* Logo Styling */
     .logo {
-      width: 50%;
+      width: 55%;
       display: block;
-      margin-top: -20px;
     }
 
     /* Marquee */
@@ -113,8 +112,8 @@
     }
 
     marquee {
-      font-size: 1.5rem; /* Slightly bigger */
-      font-family: 'Didot', serif; /* Editorial font */
+      font-size: 1.5rem;
+      font-family: 'Didot', serif;
       color: black;
       font-weight: bold;
       width: 90%;
@@ -148,66 +147,53 @@
     .main-image {
       width: 50%;
       display: block;
-      margin: 80px auto; /* More spacing before the clients' section */
+      margin: 80px auto;
     }
 
-    /* Responsive Design */
+    /* Pink Bubbles Animation */
+    .bubble {
+      position: absolute;
+      background: rgba(255, 192, 203, 0.6);
+      border-radius: 50%;
+      animation: floatUp 6s infinite ease-in-out;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-300px) scale(1.2);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-500px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* Generate Multiple Bubbles */
+    .bubbles-container {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    /* Responsive Design (Mobile = Desktop) */
     @media (max-width: 768px) {
-      nav {
-        font-size: 1rem;
-        padding: 0.8rem 0;
-      }
-
-      .chandelier {
-        width: 130px;
-      }
-
-      .chandelier-glow {
-        width: 140px;
-        height: 40px;
-      }
-
-      .logo {
-        width: 70%;
-        margin-top: -15px;
-      }
-
-      marquee {
-        font-size: 1.2rem;
-        padding: 8px 0;
-      }
-
-      .main-image {
-        width: 70%;
-        margin: 60px auto;
-      }
+      .logo { width: 65%; }
+      .main-image { width: 70%; }
     }
 
     @media (max-width: 480px) {
-      nav {
-        font-size: 0.9rem;
-      }
-
-      .chandelier {
-        width: 100px;
-      }
-
-      .chandelier-glow {
-        width: 120px;
-        height: 35px;
-      }
-
-      .logo {
-        width: 80%;
-      }
-
-      marquee {
-        font-size: 1rem;
-      }
-
-      .main-image {
-        width: 80%;
-      }
+      .logo { width: 75%; }
+      .main-image { width: 80%; }
     }
   </style>
 </head>
@@ -230,7 +216,9 @@
   </div>
 
   <!-- Logo -->
-  <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Screenshot%202025-01-02%20at%2018.16.56.png" alt="Write My Socials Logo">
+  <div class="logo-container">
+    <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Screenshot%202025-01-02%20at%2018.16.56.png" alt="Write My Socials Logo">
+  </div>
 
   <!-- Marquee -->
   <div class="marquee-container">
@@ -248,7 +236,22 @@
   </div>
 
   <!-- Clients Featured On Image -->
-  <"https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Clients%20Featured%20on1.png alt="Success Image">
+  <img class="main-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Clients%20Featured%20on1.png" alt="Success Image">
+
+  <!-- Bubbles Effect -->
+  <div class="bubbles-container">
+    <script>
+      for (let i = 0; i < 20; i++) {
+        let bubble = document.createElement("div");
+        bubble.className = "bubble";
+        bubble.style.width = `${Math.random() * 40 + 10}px`;
+        bubble.style.height = bubble.style.width;
+        bubble.style.left = `${Math.random() * 100}vw`;
+        bubble.style.animationDuration = `${Math.random() * 4 + 3}s`;
+        document.querySelector(".bubbles-container").appendChild(bubble);
+      }
+    </script>
+  </div>
 
 </body>
 </html>
