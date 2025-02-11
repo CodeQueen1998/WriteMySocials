@@ -1,155 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Write My Socials</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Write My Socials</title>
+  <style>
+    /* Import Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Didot&display=swap');
 
-    <style>
-        /* Reset Default Styles */
-        body {
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            background-color: white;
-        }
+    body {
+      background-color: white;
+      font-family: 'Playfair Display', serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      overflow-x: hidden;
+    }
 
-        /* Center Logo & Adjust Size */
-        .logo-container {
-            text-align: center;
-            margin-top: 50px;
-        }
+    /* Hot Pink Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: white; }
+    ::-webkit-scrollbar-thumb {
+      background: hotpink;
+      border-radius: 10px;
+      box-shadow: 0 0 10px hotpink;
+    }
 
-        .logo {
-            width: 180px; /* Adjust size here */
-            filter: drop-shadow(0px 0px 15px hotpink);
-        }
+    /* Navigation Bar */
+    nav {
+      background: white;
+      border-bottom: 1px solid black;
+      padding: 1rem 0;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      font-family: 'Didot', serif;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
 
-        /* Marquee Styling */
-        .marquee {
-            display: block;
-            margin: 20px auto;
-            font-size: 18px;
-            color: black;
-            font-weight: bold;
-        }
+    nav a {
+      text-decoration: none;
+      color: black;
+      margin: 0 10px;
+      text-transform: uppercase;
+      transition: text-shadow 0.3s ease-in-out;
+      display: inline-block;
+    }
 
-        /* HOT PINK SCROLLBAR */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
+    nav a:hover { text-shadow: 0 0 10px #ffb6c1; }
 
-        ::-webkit-scrollbar-thumb {
-            background: hotpink;
-            border-radius: 10px;
-            box-shadow: 0 0 10px hotpink;
-        }
+    /* Chandelier Styling */
+    .chandelier-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 80px;
+      position: relative;
+    }
 
-        /* Ensure Scrollbar Works on Mobile */
-        html {
-            scrollbar-color: hotpink white; 
-            scrollbar-width: thin; 
-        }
+    .chandelier {
+      width: 180px;
+      opacity: 0.9;
+      filter: drop-shadow(0px 0px 20px rgba(255, 192, 203, 0.8));
+      animation: shimmer 1.5s infinite alternate ease-in-out;
+    }
 
-        /* Floating & Popping Bubbles */
-        .bubble-container, .confetti-container {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            top: 0;
-            left: 0;
-            z-index: 10;
-        }
+    .chandelier-glow {
+      position: absolute;
+      top: 100%;
+      width: 200px;
+      height: 60px;
+      background: radial-gradient(circle, rgba(255, 192, 203, 0.8) 0%, rgba(255, 192, 203, 0) 70%);
+      animation: shimmerGlow 3s infinite alternate ease-in-out;
+    }
 
-        .bubble {
-            position: absolute;
-            bottom: -10px;
-            background: rgba(173, 216, 230, 0.6);
-            border-radius: 50%;
-            animation: rise 4s linear infinite, pop 4s ease-in-out infinite;
-        }
+    @keyframes shimmer {
+      0% { filter: drop-shadow(0px 0px 15px rgba(255, 192, 203, 0.5)); }
+      100% { filter: drop-shadow(0px 0px 35px rgba(255, 192, 203, 1)); }
+    }
 
-        /* Bubbles Rise Up */
-        @keyframes rise {
-            from { transform: translateY(100vh); }
-            to { transform: translateY(-10vh); }
-        }
+    @keyframes shimmerGlow {
+      0% { opacity: 0.3; transform: scale(1); }
+      100% { opacity: 0.6; transform: scale(1.1); }
+    }
 
-        /* Bubbles Pop Effect */
-        @keyframes pop {
-            90% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(1.5); }
-        }
+    /* Logo */
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      margin-top: -15px;
+    }
 
-        /* Confetti Animation */
-        .confetti {
-            position: absolute;
-            background: hotpink;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            animation: fall 3s linear infinite;
-        }
+    .logo {
+      width: 180px;
+      display: block;
+      filter: drop-shadow(0px 0px 15px hotpink);
+    }
 
-        /* Confetti Falling Effect */
-        @keyframes fall {
-            from { transform: translateY(-10vh); opacity: 1; }
-            to { transform: translateY(100vh); opacity: 0; }
-        }
-    </style>
+    /* Marquee */
+    .marquee-container { margin-top: -10px; }
+    marquee {
+      font-size: 1.5rem;
+      font-family: 'Didot', serif;
+      color: black;
+      font-weight: bold;
+      width: 90%;
+      padding: 12px 0;
+    }
+
+    /* Bubbles Animation */
+    .bubble-container, .confetti-container {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -10px;
+      background: rgba(173, 216, 230, 0.6);
+      border-radius: 50%;
+      animation: rise 6s linear infinite, pop 6s ease-in-out infinite;
+    }
+
+    @keyframes rise {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); }
+    }
+
+    @keyframes pop {
+      90% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(1.5); }
+    }
+
+    /* Confetti Animation */
+    .confetti {
+      position: absolute;
+      background: hotpink;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      animation: fall 3s linear infinite;
+    }
+
+    @keyframes fall {
+      from { transform: translateY(-10vh); opacity: 1; }
+      to { transform: translateY(100vh); opacity: 0; }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) { .logo { width: 150px; } }
+    @media (max-width: 480px) { .logo { width: 130px; } }
+  </style>
 </head>
 <body>
 
-    <!-- Centered Logo with Glow -->
-    <div class="logo-container">
-        <img src="your-logo.png" alt="Logo" class="logo">
-    </div>
+  <!-- Navigation Bar -->
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">1 to 1</a>
+    <a href="#">Experience</a>
+    <a href="#">
+html
+Copy
+Edit
+      Blog</a>
+  </nav>
 
-    <!-- Marquee Directly Under Logo -->
-    <marquee class="marquee">Your Scrolling Text Here</marquee>
+  <!-- Chandelier -->
+  <div class="chandelier-container">
+    <img class="chandelier" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/chandelier.png">
+    <div class="chandelier-glow"></div>
+  </div>
 
-    <!-- Bubble & Confetti Effects -->
-    <div class="bubble-container"></div>
-    <div class="confetti-container"></div>
+  <!-- Logo -->
+  <div class="logo-container">
+    <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/logo.png" alt="Write My Socials Logo">
+  </div>
 
-    <script>
-        // Function to Create Bubbles
-        function createBubble() {
-            const bubble = document.createElement("div");
-            bubble.classList.add("bubble");
-            document.querySelector(".bubble-container").appendChild(bubble);
+  <!-- Marquee -->
+  <div class="marquee-container">
+    <marquee behavior="alternate"><h3>The Creative Agency that Understands your Direction</h3></marquee>
+  </div>
 
-            let size = Math.random() * 50 + 10;
-            bubble.style.width = `${size}px`;
-            bubble.style.height = `${size}px`;
-            bubble.style.left = `${Math.random() * 100}vw`;
+  <!-- Bubbles -->
+  <div class="bubble-container"></div>
 
-            setTimeout(() => {
-                bubble.remove();
-            }, 4000);
-        }
+  <!-- Confetti -->
+  <div class="confetti-container"></div>
 
-        // Function to Create Confetti
-        function createConfetti() {
-            const confetti = document.createElement("div");
-            confetti.classList.add("confetti");
-            document.querySelector(".confetti-container").appendChild(confetti);
+  <script>
+    // Floating Bubbles
+    function createBubbles() {
+      const container = document.querySelector(".bubble-container");
+      for (let i = 0; i < 20; i++) {
+        let bubble = document.createElement("div");
+        bubble.className = "bubble";
+        bubble.style.width = `${Math.random() * 40 + 10}px`;
+        bubble.style.height = bubble.style.width;
+        bubble.style.left = `${Math.random() * 100}vw`;
+        bubble.style.animationDuration = `${Math.random() * 6 + 3}s`;
+        container.appendChild(bubble);
+      }
+    }
 
-            let size = Math.random() * 10 + 5;
-            confetti.style.width = `${size}px`;
-            confetti.style.height = `${size}px`;
-            confetti.style.left = `${Math.random() * 100}vw`;
+    // Hot Pink Confetti
+    function createConfetti() {
+      const container = document.querySelector(".confetti-container");
+      for (let i = 0; i < 50; i++) {
+        let confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = `${Math.random() * 100}vw`;
+        confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        confetti.style.width = `${Math.random() * 10 + 5}px`;
+        confetti.style.height = confetti.style.width;
+        container.appendChild(confetti);
+      }
+    }
 
-            setTimeout(() => {
-                confetti.remove();
-            }, 3000);
-        }
-
-        // Generate Bubbles & Confetti Continuously
-        setInterval(createBubble, 500);
-        setInterval(createConfetti, 300);
-    </script>
+    createBubbles();
+    createConfetti();
+  </script>
 
 </body>
 </html>
