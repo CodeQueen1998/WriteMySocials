@@ -61,25 +61,6 @@
       text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
     }
 
-    /* Social Media Icons */
-    .social-icons {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      display: flex;
-      gap: 8px;
-    }
-
-    .social-icons img {
-      width: 25px;
-      height: 25px;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .social-icons img:hover {
-      transform: scale(1.2);
-    }
-
     /* Chandelier */
     .chandelier-container {
       display: flex;
@@ -95,7 +76,7 @@
       animation: glow 1.5s infinite alternate ease-in-out;
     }
 
-    /* Softer Glow Effect */
+    /* Floating Logo Effect */
     @keyframes glow {
       0% { filter: drop-shadow(0px 0px 10px rgba(255, 182, 193, 0.3)); }
       100% { filter: drop-shadow(0px 0px 25px rgba(255, 182, 193, 0.8)); }
@@ -116,7 +97,6 @@
       animation: float 3s ease-in-out infinite;
     }
 
-    /* Floating Logo Effect */
     @keyframes float {
       0% { transform: translateY(0); }
       50% { transform: translateY(-5px); }
@@ -137,26 +117,7 @@
       padding: 12px 0;
     }
 
-    /* Main Content Styling */
-    .content-container {
-      margin: 40px auto;
-      width: 90%;
-      max-width: 800px;
-      text-align: justify;
-    }
-
-    h3 {
-      text-align: center;
-      font-weight: bold;
-      font-size: 1.3rem;
-    }
-
-    p {
-      font-size: 1.1rem;
-      line-height: 1.5;
-    }
-
-    /* Image Styling */
+    /* Feature Image Styling */
     .feature-image {
       width: 100%;
       max-width: 1000px;
@@ -165,11 +126,90 @@
       display: block;
     }
 
+    /* Content Layout */
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin: 40px auto;
+      max-width: 800px;
+    }
+
+    .glowing-image {
+      width: 40%;
+      max-width: 300px;
+      filter: drop-shadow(0px 0px 15px rgba(255, 105, 180, 0.8));
+      animation: glow 1.5s infinite alternate;
+    }
+
+    /* Social Media Icons */
+    .social-icons {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-icons img {
+      width: 30px;
+      height: 30px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.2);
+    }
+
+    /* Falling Pink Sparkly Confetti */
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: hotpink;
+      opacity: 0.7;
+      border-radius: 50%;
+      animation: fall 4s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+    }
+
+    /* Media Queries for Mobile */
+    @media (max-width: 768px) {
+      .glowing-image {
+        width: 60%;
+      }
+      
+      .social-icons {
+        top: 5px;
+        right: 5px;
+        gap: 8px;
+      }
+    }
   </style>
 </head>
 <body>
 
+  <!-- Falling Confetti -->
+  <script>
+    function createConfetti() {
+      const confetti = document.createElement("div");
+      confetti.classList.add("confetti");
+      confetti.style.left = Math.random() * 100 + "vw";
+      confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
+      document.body.appendChild(confetti);
 
+      setTimeout(() => {
+        confetti.remove();
+      }, 5000);
+    }
+
+    setInterval(createConfetti, 300);
+  </script>
 
   <!-- Navigation -->
   <nav>
@@ -195,55 +235,21 @@
   <div class="marquee-container">
     <marquee behavior="alternate"><h1>The Creative Agency that Understands your Direction</h1></marquee>
   </div>
+
   <!-- Social Media Icons -->
-</a></p>
-<p><a href="https://www.instagram.com/writemysocials">
-<img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/download-1.jpg" alt="W3Schools.com" width="45" height="50" style="position: absolute; left: 50px; top: 100px;">
-</a></p>
-
-<p><a href="https://www.tiktok.com/@writemysocials">
-<img src="
-https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/htm.jpg" alt="W3Schools.com" width="45" height="50" style="position: absolute; left: 100px; top: 100px;">
-</a></p>
-  
+  <div class="social-icons">
+    <a href="https://www.instagram.com/writemysocials">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
+    </a>
+    <a href="https://www.tiktok.com/@writemysocials">
+      <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok">
+    </a>
   </div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
 
-<div style="display: flex; align-items: center; gap: 20px;">
-    <!-- Image on the left -->
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Untitled%20design.png" 
-         alt="Trulli" style="width: 40%; max-width: 300px;">
-
-    <!-- Text content on the right -->
-    <div style="flex: 1; text-align: center; font-family: 'Georgia', serif; font-size: 16px; line-height: 1.6;">
-        <h3 style="font-size: 22px; font-weight: bold;">Crafted by Passion, Honed with Love for your Brand.</h3>
-        <p>In the marketing world, there’s a lot of overpromising and underdelivering.</p>
-        <p>Write My Socials meets your vision and works with you to ensure your goals are tangible.</p>
-        <p>We’re realistic with you about your expectations.</p>
-        <p><i>We work with you to uplift your brand to your desired outcome.</i></p>
-    </div>
-</div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-
-  <!-- Feature Image -->
-  <img class="feature-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/success.jpg" alt="Success">
+  <!-- Image + Text -->
+  <div class="content-wrapper">
+    <img class="glowing-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Untitled%20design.png" alt="Trulli">
+  </div>
 
 </body>
-</html>
 </html>
