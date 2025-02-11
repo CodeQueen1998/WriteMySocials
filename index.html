@@ -1,132 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Write My Socials</title>
+  <title>Write My Socials - The Creative Agency</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Optima, sans-serif;
+      font-family: "Optima", sans-serif;
     }
 
     body {
-      background-color: #f9f9f9;
-      overflow-x: hidden;
+      background-color: white;
+      color: #333;
       text-align: center;
+      padding: 20px;
     }
 
-    header {
-      position: relative;
-      margin: 50px 0;
+    /* Navigation bar */
+    nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: white;
+      padding: 15px 0;
+      border-bottom: 2px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      font-size: 18px;
+      letter-spacing: 0.05em;
+      padding: 10px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    marquee {
+      margin: 30px auto;
+      font-size: 24px;
+      color: #333;
     }
 
     img.logo {
       width: 40%;
       max-width: 300px;
+      display: block;
+      margin: 0 auto;
     }
 
-    marquee {
-      font-size: 2em;
+    .hero-text {
+      margin-top: 20px;
+    }
+
+    h3 {
       font-weight: bold;
-      color: #333;
-      margin: 20px 0;
-    }
-
-    .content {
       margin-top: 40px;
-      text-align: center;
-      padding: 20px;
     }
 
-    .content h3 {
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-
-    .content p2 {
+    p2 {
       display: block;
       margin: 10px 0;
-      font-size: 1.1em;
-      color: #666;
     }
 
-    .image-container {
-      margin: 50px 0;
-    }
-
-    img.feature-image {
+    .success-image {
       width: 100%;
       max-width: 1000px;
       height: auto;
-      border-radius: 10px;
+      margin-top: 50px;
     }
 
-    /* Bubble Animation */
-    .bubbles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .bubble {
+    /* Confetti Animation */
+    .confetti {
       position: absolute;
-      bottom: -100px;
-      background: rgba(173, 216, 230, 0.7);
-      border-radius: 50%;
-      animation: rise 10s infinite ease-in;
+      width: 10px;
+      height: 10px;
+      background-color: pink;
+      animation: fall 3s infinite linear;
     }
 
-    @keyframes rise {
+    @keyframes fall {
       0% {
-        transform: translateY(0) scale(0.8);
-      }
-      50% {
-        transform: translateY(-50vh) scale(1);
+        transform: translateY(-100px) rotate(0deg);
       }
       100% {
-        transform: translateY(-100vh) scale(0.6);
+        transform: translateY(100vh) rotate(360deg);
       }
+    }
+
+    /* Confetti Container */
+    #confetti-container {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-01-02%20at%2018.16.56.png" alt="Paris" class="logo">
-    <marquee behavior="alternate">The Creative Agency that Understands your Direction</marquee>
-  </header>
+  <nav>
+    <a href="#">HOME</a>
+    <a href="#">ABOUT</a>
+    <a href="#">SERVICES</a>
+    <a href="#">1TO1</a>
+    <a href="#">EXPERIENCE</a>
+    <a href="#">BLOG</a>
+  </nav>
 
-  <div class="content">
+  <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-01-02%20at%2018.16.56.png" alt="Paris" class="logo">
+
+  <marquee behavior="alternate"><H1>The Creative Agency that Understands your Direction</H1></marquee>
+
+  <div class="hero-text">
     <b><h3>Crafted by Passion, Honed with Love for your Brand.</h3></b>
     <p2>In the marketing world, there’s a lot of overpromising and underdelivering.</p2>
-    <br>
     <p2>Write My Socials meets your vision,</p2>
-    <br>
     <p2>and works with you to ensure your goals are tangible.</p2>
-    <br>
     <p2>We’re realistic with you about your expectations</p2>
-    <br>
-    <p2><i>We work with you to uplift your brand to your desired outcome.</i></p2>
+    <p2><I>We work with you to uplift your brand to your desired outcome.</I></p2>
   </div>
 
-  <div class="image-container">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/success.jpg" alt="Success Image" class="feature-image">
-  </div>
+  <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/success.jpg" alt="Girl in a jacket" class="success-image">
 
-  <!-- Bubbles Animation -->
-  <div class="bubbles">
-    <div class="bubble" style="width: 40px; height: 40px; left: 10%; animation-duration: 8s;"></div>
-    <div class="bubble" style="width: 50px; height: 50px; left: 25%; animation-duration: 10s;"></div>
-    <div class="bubble" style="width: 30px; height: 30px; left: 40%; animation-duration: 7s;"></div>
-    <div class="bubble" style="width: 60px; height: 60px; left: 70%; animation-duration: 11s;"></div>
-    <div class="bubble" style="width: 20px; height: 20px; left: 85%; animation-duration: 6s;"></div>
-  </div>
+  <!-- Confetti Animation -->
+  <div id="confetti-container"></div>
+  <script>
+    function createConfetti() {
+      const confettiContainer = document.getElementById('confetti-container');
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = `${Math.random() * 100}vw`;
+        confetti.style.backgroundColor = ['pink', 'silver'][Math.floor(Math.random() * 2)];
+        confetti.style.animationDelay = `${Math.random() * 2}s`;
+        confettiContainer.appendChild(confetti);
+      }
+    }
+
+    createConfetti();
+  </script>
 </body>
 </html>
 
