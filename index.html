@@ -5,36 +5,39 @@
   <title>Write My Socials</title>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Optima:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500;700&display=swap');
 
+    /* General Styles */
     body {
       background-color: white;
-      font-family: 'Optima', serif;
+      font-family: 'Playfair Display', serif;
       margin: 0;
       padding: 0;
       text-align: center;
       overflow-x: hidden;
+      color: #333;
     }
 
-    /* Neon Pink Scrollbar */
+    /* Elegant Scrollbar */
     ::-webkit-scrollbar {
-      width: 10px;
+      width: 8px;
     }
     ::-webkit-scrollbar-track {
-      background: #f8f8f8;
+      background: #f3f3f3;
     }
     ::-webkit-scrollbar-thumb {
-      background: hotpink;
+      background: #ffb6c1;
       border-radius: 10px;
     }
 
-    /* Navigation */
+    /* Navigation - Centered & Clean */
     nav {
       background: white;
       padding: 1rem 0;
       text-align: center;
-      font-size: 1.1rem;
-      font-weight: bold;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
       position: fixed;
       width: 100%;
       top: 0;
@@ -43,50 +46,55 @@
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
 
-    /* Glowing Hover Effect */
     nav a {
       text-decoration: none;
       color: black;
       margin: 0 15px;
       text-transform: uppercase;
-      transition: 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+      letter-spacing: 1px;
+      font-weight: 500;
     }
+
     nav a:hover {
-      color: hotpink;
-      text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+      color: #ff69b4;
+      text-shadow: 0 0 12px rgba(255, 105, 180, 0.7);
     }
 
     /* Chandelier */
     .chandelier-container {
       display: flex;
       justify-content: center;
-      margin-top: 100px;
+      margin-top: 90px;
     }
+
     .chandelier {
-      width: 140px;
+      width: 120px;
       opacity: 0.9;
-      filter: drop-shadow(0px 0px 15px rgba(255, 182, 193, 0.6));
+      filter: drop-shadow(0px 0px 12px rgba(255, 182, 193, 0.5));
     }
 
     /* Logo */
     .logo-container {
       display: flex;
       justify-content: center;
-      margin-top: -20px;
+      margin-top: -10px;
     }
+
     .logo {
-      width: 260px;
-      filter: drop-shadow(0px 5px 10px rgba(255, 182, 193, 0.4));
+      width: 250px;
+      filter: drop-shadow(0px 3px 8px rgba(255, 182, 193, 0.3));
     }
 
     /* Marquee */
     .marquee-container {
-      margin-top: 20px;
+      margin-top: 10px;
     }
+
     marquee {
-      font-size: 18px;
-      font-weight: bold;
-      width: 100%;
+      font-size: 16px;
+      font-weight: 500;
+      font-family: 'Poppins', sans-serif;
       color: black;
     }
 
@@ -95,15 +103,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      max-width: 900px;
+      max-width: 850px;
       margin: 50px auto;
-      padding: 20px;
+      padding: 30px;
+      border-radius: 10px;
     }
 
     .glowing-image {
       width: 40%;
       max-width: 300px;
-      box-shadow: 0 0 20px hotpink;
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
       border-radius: 10px;
       margin-right: 20px;
     }
@@ -111,40 +120,70 @@
     .text-content {
       flex: 1;
       text-align: left;
-      font-size: 18px;
-      line-height: 1.6;
+      font-size: 17px;
+      line-height: 1.8;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+    }
+
+    h3 {
+      font-size: 22px;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 10px;
     }
 
     /* Social Media Icons */
     .social-icons {
       display: flex;
       justify-content: center;
-      margin-top: 70px;
+      margin-top: 60px;
       gap: 15px;
     }
+
     .social-icons img {
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       transition: transform 0.3s ease-in-out;
     }
+
     .social-icons img:hover {
-      transform: scale(1.2);
+      transform: scale(1.1);
+      filter: drop-shadow(0px 0px 12px rgba(255, 105, 180, 0.7));
     }
 
     /* Feature Image */
     .feature-image {
-      width: 90%;
-      max-width: 800px;
+      width: 85%;
+      max-width: 750px;
       display: block;
-      margin: 50px auto;
+      margin: 40px auto;
       border-radius: 10px;
-      box-shadow: 0 0 20px hotpink;
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+    }
+
+    /* Fade-in Effect */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(15px);
+      animation: fadeInUp 1.2s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Mobile Styles */
     @media (max-width: 768px) {
       nav {
-        font-size: 1rem;
+        font-size: 0.9rem;
       }
       .content-wrapper {
         flex-direction: column;
@@ -152,7 +191,7 @@
       }
       .glowing-image {
         width: 80%;
-        margin: 0 auto 20px auto;
+        margin-bottom: 15px;
       }
       .text-content {
         text-align: center;
@@ -167,7 +206,7 @@
 <body>
 
   <!-- Navigation -->
-  <nav>
+  <nav class="fade-in">
     <a href="#">Home</a>
     <a href="#">About</a>
     <a href="#">Services</a>
@@ -177,46 +216,41 @@
   </nav>
 
   <!-- Chandelier -->
-  <div class="chandelier-container">
+  <div class="chandelier-container fade-in">
     <img class="chandelier" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/chandelier.png" alt="Chandelier">
   </div>
 
   <!-- Logo -->
-  <div class="logo-container">
-    <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="Write My Socials Logo">
+  <div class="logo-container fade-in">
+    <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="Write My Socials Logo">
   </div>
 
   <!-- Marquee -->
-  <div class="marquee-container">
+  <div class="marquee-container fade-in">
     <marquee behavior="alternate">✨ The Creative Agency that Understands Your Direction ✨</marquee>
   </div>
 
   <!-- Social Media Icons -->
-  <div class="social-icons">
+  <div class="social-icons fade-in">
     <a href="https://www.instagram.com/writemysocials">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/download-1.jpg" alt="Instagram">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/download-1.jpg" alt="Instagram">
     </a>
     <a href="https://www.tiktok.com/@writemysocials">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/htm.jpg" alt="TikTok">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/htm.jpg" alt="TikTok">
     </a>
   </div>
 
-  <!-- Image + Text -->
-  <div class="content-wrapper">
-    <img class="glowing-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Untitled%20design.png" alt="Image">
-
+  <!-- Content -->
+  <div class="content-wrapper fade-in">
+    <img class="glowing-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Untitled%20design.png" alt="Image">
     <div class="text-content">
       <h3>Crafted by Passion, Honed with Love for your Brand.</h3>
-      <p>In the marketing world, there’s a lot of overpromising and underdelivering.</p>
-      <p>Write My Socials meets your vision and works with you to ensure your goals are tangible.</p>
-      <p>We’re realistic with you about your expectations.</p>
-      <p><i>We work with you to uplift your brand to your desired outcome.</i></p>
+      <p>We work with you to uplift your brand to your desired outcome.</p>
     </div>
   </div>
 
   <!-- Feature Image -->
-  <img class="feature-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/success.jpg" alt="Success">
+  <img class="feature-image fade-in" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/success.jpg" alt="Success">
 
 </body>
 </html>
-
