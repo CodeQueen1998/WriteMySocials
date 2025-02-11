@@ -16,6 +16,20 @@
       overflow-x: hidden;
     }
 
+    /* HOT PINK SCROLLBAR */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f8f8f8;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: hotpink;
+      border-radius: 10px;
+    }
+
     /* Navigation Bar */
     nav {
       background: white;
@@ -37,48 +51,56 @@
       color: black;
       margin: 0 15px;
       text-transform: uppercase;
-      transition: opacity 0.3s ease-in-out;
+      transition: 0.3s ease-in-out;
       display: inline-block;
     }
 
-    nav a:hover { opacity: 0.6; }
+    /* Glowing Hover Effect */
+    nav a:hover {
+      color: hotpink;
+      text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+    }
 
-    /* Decorative Chandelier */
+    /* Chandelier */
     .chandelier-container {
       display: flex;
       justify-content: center;
-      margin-top: 80px;
+      margin-top: 90px;
       position: relative;
     }
 
     .chandelier {
-      width: 180px;
+      width: 150px;
       opacity: 0.9;
-      filter: drop-shadow(0px 0px 15px rgba(255, 192, 203, 0.8));
-      animation: shimmer 1.5s infinite alternate ease-in-out;
+      filter: drop-shadow(0px 0px 20px rgba(255, 192, 203, 0.7));
+      animation: glow 1.5s infinite alternate ease-in-out;
     }
 
-    @keyframes shimmer {
+    /* Chandelier Glow Effect */
+    @keyframes glow {
       0% { filter: drop-shadow(0px 0px 10px rgba(255, 192, 203, 0.5)); }
-      100% { filter: drop-shadow(0px 0px 30px rgba(255, 192, 203, 1)); }
+      100% { filter: drop-shadow(0px 0px 40px rgba(255, 192, 203, 1)); }
     }
 
-    /* Logo with Soft Floating Effect */
+    /* Logo */
     .logo-container {
       display: flex;
       justify-content: center;
-      margin-top: -10px;
+      margin-top: -20px;
       position: relative;
     }
 
     .logo {
-      width: 200px;
+      width: 250px; /* Increased Size */
       display: block;
-      border-radius: 15px;
-      filter: drop-shadow(0px 5px 15px rgba(255, 182, 193, 0.5));
+      filter: drop-shadow(0px 10px 20px rgba(255, 182, 193, 0.5));
       animation: float 3s ease-in-out infinite;
+      background: white;
+      border-radius: 15px;
+      padding: 15px; /* Softens edges */
     }
 
+    /* Floating Logo Effect */
     @keyframes float {
       0% { transform: translateY(0); }
       50% { transform: translateY(-5px); }
@@ -86,7 +108,10 @@
     }
 
     /* Marquee */
-    .marquee-container { margin-top: -15px; }
+    .marquee-container {
+      margin-top: 10px;
+    }
+
     marquee {
       font-size: 1.5rem;
       font-family: 'Didot', serif;
@@ -96,31 +121,37 @@
       padding: 12px 0;
     }
 
-    /* Content */
-    .content {
-      max-width: 70%;
-      margin: 50px auto;
-      line-height: 1.8;
-      font-size: 1.1rem;
+    /* Confetti & Bubbles */
+    .confetti-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
     }
 
-    h3 {
-      font-size: 1.4rem;
-      font-weight: bold;
-      letter-spacing: 0.5px;
+    .confetti {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background-color: hotpink;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: fall linear infinite;
     }
 
-    /* Soft Glow Image */
-    .main-image {
-      width: 60%;
-      display: block;
-      margin: 50px auto;
-      border-radius: 10px;
-      filter: drop-shadow(0px 5px 20px rgba(255, 182, 193, 0.6));
-      transition: transform 0.5s ease-in-out;
+    @keyframes fall {
+      0% {
+        transform: translateY(-10px);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
     }
-
-    .main-image:hover { transform: scale(1.02); }
 
   </style>
 </head>
@@ -151,19 +182,28 @@
     <marquee behavior="alternate"><h3>The Creative Agency that Understands your Direction</h3></marquee>
   </div>
 
-  <!-- Content -->
-  <div class="content">
-    <h3>Crafted by Passion, Honed with Love for your Brand.</h3>
-    <p>In the marketing world, there’s a lot of overpromising and underdelivering.</p>
-    <p>Write My Socials meets your vision,</p>
-    <p>and works with you to ensure your goals are tangible.</p>
-    <p>We’re realistic with you about your expectations.</p>
-    <p class="italic-text">We work with you to uplift your brand to your desired outcome.</p>
-  </div>
+  <!-- Confetti Container -->
+  <div class="confetti-container"></div>
 
-  <!-- Clients Image -->
-  <img class="main-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Clients%20Featured%20on1.png" alt="Clients Featured On">
+  <script>
+    function createConfetti() {
+      const confettiContainer = document.querySelector('.confetti-container');
+
+      for (let i = 0; i < 15; i++) {
+        let confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        confettiContainer.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 5000);
+      }
+    }
+
+    setInterval(createConfetti, 2000);
+  </script>
 
 </body>
 </html>
-
