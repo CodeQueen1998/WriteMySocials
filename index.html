@@ -56,11 +56,36 @@
       text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
     }
 
+    /* Content Wrapper */
+    .content-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    .glowing-image {
+      width: 40%;
+      max-width: 300px;
+      box-shadow: 0 0 20px hotpink;
+      border-radius: 10px;
+      margin-right: 20px;
+    }
+
+    .text-content {
+      flex: 1;
+      text-align: left;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
     /* Social Media Icons */
     .social-icons {
       display: flex;
       justify-content: center;
-      margin-top: 60px;
+      margin-top: 70px;
       gap: 15px;
     }
     .social-icons img {
@@ -72,59 +97,14 @@
       transform: scale(1.2);
     }
 
-    /* Bubbles */
-    .bubbles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      pointer-events: none;
-    }
-    .bubble {
-      position: absolute;
-      bottom: 0;
-      width: 15px;
-      height: 15px;
-      background: rgba(255, 105, 180, 0.7);
-      border-radius: 50%;
-      animation: floatBubble 6s linear infinite;
-    }
-    @keyframes floatBubble {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-100vh); opacity: 0; }
-    }
-
-    /* Confetti */
-    .confetti {
-      position: fixed;
-      top: 0;
-      width: 5px;
-      height: 5px;
-      background: hotpink;
-      opacity: 0.8;
-      animation: fall 3s linear infinite;
-    }
-    @keyframes fall {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(100vh); opacity: 0; }
-    }
-
-    /* Glowing Image */
-    .glowing-image {
-      width: 45%;
-      float: left;
-      box-shadow: 0 0 20px hotpink;
+    /* Feature Image */
+    .feature-image {
+      width: 90%;
+      max-width: 800px;
+      display: block;
+      margin: 50px auto;
       border-radius: 10px;
-      margin-right: 20px;
-    }
-
-    /* Text Alignment */
-    .text-content {
-      text-align: center;
-      font-family: 'Georgia', serif;
-      font-size: 16px;
-      line-height: 1.6;
+      box-shadow: 0 0 20px hotpink;
     }
 
     /* Mobile Styles */
@@ -132,11 +112,13 @@
       nav {
         font-size: 1rem;
       }
+      .content-wrapper {
+        flex-direction: column;
+        text-align: center;
+      }
       .glowing-image {
-        width: 100%;
-        float: none;
-        margin: 0 auto;
-        display: block;
+        width: 80%;
+        margin: 0 auto 20px auto;
       }
       .text-content {
         text-align: center;
@@ -160,27 +142,6 @@
     <a href="#">Blog</a>
   </nav>
 
-  <!-- Bubbles Container -->
-  <div class="bubbles"></div>
-
-  <!-- Confetti Animation -->
-  <div id="confetti-container"></div>
-
-  <!-- Chandelier -->
-  <div class="chandelier-container">
-    <img class="chandelier" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/chandelier.png" alt="Chandelier">
-  </div>
-
-  <!-- Logo -->
-  <div class="logo-container">
-    <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="Write My Socials Logo">
-  </div>
-
-  <!-- Marquee -->
-  <div class="marquee-container">
-    <marquee behavior="alternate"><h1>The Creative Agency that Understands your Direction</h1></marquee>
-  </div>
-
   <!-- Social Media Icons -->
   <div class="social-icons">
     <a href="https://www.instagram.com/writemysocials">
@@ -193,31 +154,19 @@
 
   <!-- Image + Text -->
   <div class="content-wrapper">
-    <img class="glowing-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Untitled%20design.png" alt="Trulli">
-  
+    <img class="glowing-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Untitled%20design.png" alt="Image">
+
     <div class="text-content">
-        <h3>Crafted by Passion, Honed with Love for your Brand.</h3>
-        <p>In the marketing world, there’s a lot of overpromising and underdelivering.</p>
-        <p>Write My Socials meets your vision and works with you to ensure your goals are tangible.</p>
-        <p>We’re realistic with you about your expectations.</p>
-        <p><i>We work with you to uplift your brand to your desired outcome.</i></p>
+      <h3>Crafted by Passion, Honed with Love for your Brand.</h3>
+      <p>In the marketing world, there’s a lot of overpromising and underdelivering.</p>
+      <p>Write My Socials meets your vision and works with you to ensure your goals are tangible.</p>
+      <p>We’re realistic with you about your expectations.</p>
+      <p><i>We work with you to uplift your brand to your desired outcome.</i></p>
     </div>
   </div>
 
   <!-- Feature Image -->
   <img class="feature-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/success.jpg" alt="Success">
-
-  <script>
-    function createBubble() {
-      const bubble = document.createElement("div");
-      bubble.classList.add("bubble");
-      document.querySelector(".bubbles").appendChild(bubble);
-      bubble.style.left = Math.random() * 100 + "vw";
-      bubble.style.animationDuration = Math.random() * 5 + 3 + "s";
-      setTimeout(() => { bubble.remove(); }, 8000);
-    }
-    setInterval(createBubble, 400);
-  </script>
 
 </body>
 </html>
