@@ -51,14 +51,14 @@
 
 <style>
     body {
-        font-family: 'Vogue', serif;
+        font-family: 'Playfair Display', serif;
         margin: 0;
         padding: 0;
         background: white;
     }
     .hero-background {
         background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/freddie-martyn-0o4vbRF6xco-unsplash.jpg') no-repeat center top;
-        background-size: contain;
+        background-size: cover;
         height: 100vh;
         width: 100%;
     }
@@ -67,21 +67,30 @@
         justify-content: space-between;
         align-items: center;
         padding: 20px;
+        position: absolute;
+        width: 100%;
     }
     .logo {
         font-size: 24px;
         font-weight: bold;
+        color: white;
     }
     nav ul {
         list-style: none;
         display: flex;
         gap: 20px;
+        justify-content: center;
+        width: 100%;
     }
     nav ul li a {
-        color: black;
+        color: white;
         text-decoration: none;
-        font-size: 18px;
+        font-size: 20px;
         font-weight: bold;
+        letter-spacing: 2px;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 5px 15px;
+        border-radius: 5px;
     }
     .hero {
         position: relative;
@@ -91,15 +100,17 @@
         justify-content: center;
         text-align: center;
         color: white;
+        padding: 50px 20px;
     }
     .hero-text {
-        font-size: 24px;
+        font-size: 22px;
         max-width: 600px;
         text-transform: uppercase;
-        margin-top: -100px;
+        position: relative;
+        top: 20px;
     }
     .hero h1 {
-        font-size: 32px;
+        font-size: 28px;
     }
     .circular-marquee {
         width: 100%;
@@ -108,6 +119,7 @@
         font-weight: bold;
         color: black;
         padding: 10px;
+        margin-top: 20px;
     }
     .fade-in {
         animation: fadeIn ease 2s;
@@ -115,7 +127,7 @@
     .cropped {
         object-fit: cover;
         width: 100%;
-        height: auto;
+        max-height: 400px;
     }
     @keyframes fadeIn {
         0% { opacity: 0; }
@@ -133,6 +145,3 @@
         color: black;
     }
 </style>
-</head>
-</body>
-</html>
