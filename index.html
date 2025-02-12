@@ -14,7 +14,9 @@
 
         body {
             font-family: 'Playfair Display', serif;
-            background: white;
+            background: url("https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/7777.jpg") no-repeat center center fixed;
+            background-size: contain; /* Ensures full image is visible */
+            background-color: white;
         }
 
         /* NAVBAR */
@@ -36,26 +38,24 @@
             font-weight: 700;
         }
 
-        .navbar a {
+        .navbar .menu {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .navbar .menu a {
             text-decoration: none;
             color: black;
             font-size: 18px;
             margin: 0 15px;
-            font-weight: 400; /* Not bold */
-        }
-
-        /* BACKGROUND IMAGE */
-        .hero {
-            background: url("https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/7777.jpg") no-repeat center center fixed;
-            background-size: cover; /* Ensures full image is visible */
-            width: 100%;
-            height: 100vh; /* Full screen height */
+            font-weight: 400;
         }
 
         /* WHITE CONTENT AREA */
         .content {
             background: white;
             width: 100%;
+            min-height: 100vh;
             padding: 50px;
             text-align: center;
         }
@@ -69,12 +69,14 @@
             }
 
             .navbar .logo {
+                align-self: flex-start;
                 margin-bottom: 10px;
             }
 
-            .navbar a {
+            .navbar .menu a {
                 font-size: 16px;
-                margin: 5px 10px;
+                display: block;
+                margin: 5px 0;
             }
         }
     </style>
@@ -83,15 +85,13 @@
 
     <div class="navbar">
         <div class="logo">WriteMySocials</div>
-        <div>
+        <div class="menu">
             <a href="#">HOME</a>
             <a href="#">ABOUT</a>
             <a href="#">PROJECTS</a>
             <a href="#">SERVICES</a>
         </div>
     </div>
-
-    <div class="hero"></div> <!-- Background Image Section -->
 
     <div class="content">
         <h1>Welcome to WriteMySocials</h1>
@@ -101,7 +101,4 @@
 </body>
 </html>
 
-
-</body>
-</html>
 
