@@ -12,15 +12,44 @@
             width: 100%;
         }
 
+        /* Navbar Styles */
+        .navbar {
+            position: fixed; /* Sticks to the top */
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9); /* Slight transparency */
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000; /* Ensures it's above everything */
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: black;
+            margin: 0 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Push content down so it doesn't overlap with navbar */
+        .spacer {
+            height: 60px;
+        }
+
         /* Chandelier Background */
         .chandelier-section {
             width: 100%;
-            height: auto; /* Ensures image takes full height */
+            height: auto;
         }
 
         .chandelier-section img {
             width: 100%;
-            display: block; /* Prevents extra space */
+            display: block;
         }
 
         /* White background starts here */
@@ -34,6 +63,17 @@
 </head>
 <body>
 
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <!-- Spacer to prevent overlap -->
+    <div class="spacer"></div>
+
     <!-- Full Chandelier Background -->
     <div class="chandelier-section">
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/7777.jpg" alt="Chandelier">
@@ -44,6 +84,9 @@
         <h1>Welcome to My Page</h1>
         <p>This section starts after the chandelier background.</p>
     </div>
+
+</body>
+</html>
 
 </body>
 </html>
