@@ -3,101 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WriteMySocials</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <title>Chandelier Background</title>
     <style>
-        * {
+        /* Ensure full-page styling */
+        html, body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            height: 100%;
         }
 
+        /* Background Image Styling */
         body {
-            font-family: 'Playfair Display', serif;
-            background: white;
+            background-image: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/7777.jpg');
+            background-size: cover; /* Ensures full coverage */
+            background-position: top center; /* Keeps chandelier at the top */
+            background-repeat: no-repeat;
+            background-attachment: scroll; /* Moves with scrolling */
+            background-color: white; /* Transitions into white */
         }
 
-        .hero {
-            width: 100%;
-            height: 100vh; /* Full viewport height */
-            background: url("https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/7777.jpg") no-repeat center center;
-            background-size: cover;
-        }
-
+        /* Content Styling */
         .content {
-            background: white;
+            min-height: 100vh;
+            background: white; /* Ensures white background below image */
             padding: 50px;
             text-align: center;
-        }
-
-        /* NAVBAR */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 30px;
-            background: rgba(255, 255, 255, 0.8);
-            z-index: 1000;
-        }
-
-        .navbar .logo {
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .navbar .menu {
-            flex-grow: 1;
-            text-align: center;
-        }
-
-        .navbar .menu a {
-            text-decoration: none;
-            color: black;
-            font-size: 18px;
-            margin: 0 15px;
-            font-weight: 400;
-        }
-
-        /* MOBILE RESPONSIVENESS */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .navbar .logo {
-                align-self: flex-start;
-                margin-bottom: 10px;
-            }
-
-            .navbar .menu a {
-                font-size: 16px;
-                display: block;
-                margin: 5px 0;
-            }
+            font-family: Arial, sans-serif;
         }
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="logo">WriteMySocials</div>
-        <div class="menu">
-            <a href="#">HOME</a>
-            <a href="#">ABOUT</a>
-            <a href="#">PROJECTS</a>
-            <a href="#">SERVICES</a>
-        </div>
-    </div>
-
-    <div class="hero"></div>
 
     <div class="content">
-        <p>...</p>
+        <h1>Welcome to My Page</h1>
+        <p>This section starts after the chandelier background.</p>
     </div>
+
 </body>
 </html>
+
