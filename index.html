@@ -8,50 +8,53 @@
         body {
             margin: 0;
             padding: 0;
-            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/pexels-kei-scampa-1201427-3520333.jpg') no-repeat center top;
-            background-size: cover;
-            background-position: center 10%; /* Cropped 10% from the top */
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: white;
+            text-align: center;
         }
         .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
             width: 100%;
             background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 50px;
-            position: fixed;
             top: 0;
-            left: 0;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
         }
-        .logo {
-            font-family: serif;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            font-family: sans-serif;
-            font-size: 16px;
-        }
-        .nav-links a {
+        .navbar a {
             text-decoration: none;
             color: black;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0 15px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'Times New Roman', serif;
+            letter-spacing: 2px;
+        }
+        .hero {
+            margin-top: 80px;
+            background: url('chandelier.jpg') no-repeat center center;
+            background-size: contain;
+            height: 500px;
         }
     </style>
 </head>
 <body>
     <div class="navbar">
+        <a href="#home">HOME</a>
+        <a href="#about">ABOUT</a>
         <div class="logo">WriteMySocials</div>
-        <div class="nav-links">
-            <a href="#">HOME</a>
-            <a href="#">ABOUT</a>
-            <a href="#">PROJECTS</a>
-            <a href="#">SERVICES</a>
-            <a href="#">SHOP</a>
-        </div>
+        <a href="#projects">PROJECTS</a>
+        <a href="#services">SERVICES</a>
     </div>
+    <div class="hero"></div>
 </body>
 </html>
+
 
