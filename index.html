@@ -15,64 +15,73 @@
             font-family: Arial, sans-serif;
         }
 
-        .hero {
-            background: url('your-image-url.jpg') no-repeat center center/cover;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8); /* Slight transparency */
+            padding: 15px 0;
             text-align: center;
+            z-index: 1000;
         }
 
+        .navbar a {
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        /* Background Image Section */
+        .hero {
+            background: url("https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/7777.jpg") no-repeat center top;
+            background-size: contain; /* Ensures the full image is visible */
+            background-color: white;
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+        }
+
+        /* White Background Section */
         .content {
             background: white;
+            width: 100%;
             padding: 50px;
             text-align: center;
         }
 
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px 0;
-            text-align: center;
-        }
-
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
+        /* Mobile Navbar */
         @media (max-width: 768px) {
-            nav {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+            .navbar {
+                font-size: 14px;
+                padding: 10px 0;
             }
-            nav a {
-                display: block;
-                margin: 10px 0;
+
+            .navbar a {
+                font-size: 16px;
+                margin: 0 10px;
             }
         }
     </style>
 </head>
 <body>
-    <nav>
+
+    <div class="navbar">
         <a href="#">HOME</a>
         <a href="#">ABOUT</a>
         <a href="#">PROJECTS</a>
         <a href="#">SERVICES</a>
-    </nav>
-    
-    <div class="hero"></div>
-    
+    </div>
+
+    <div class="hero"></div> <!-- Background Image Section -->
+
     <div class="content">
         <h1>Welcome to WriteMySocials</h1>
-        <p>Your amazing content goes here!</p>
+        <p>Your content here...</p>
     </div>
+
 </body>
 </html>
+
