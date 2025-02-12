@@ -3,63 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WriteMySocials - Vogue Chic</title>
+    <title>WriteMySocials</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;600&display=swap');
-        
         body {
             margin: 0;
-            padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            color: #fff;
-            text-align: center;
-            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/freddie-martyn-0o4vbRF6xco-unsplash.jpg') no-repeat center center/cover;
+            font-family: 'Didot', serif;
+            color: black;
         }
-        .overlay {
-            background: rgba(0, 0, 0, 0.6);
-            width: 100%;
+        .hero {
+            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/a9a862aef2956aa820d962abc95d6743.jpg') no-repeat center;
+            background-size: cover;
             height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
+            text-align: center;
         }
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .hero h1 {
+            color: white;
+            font-size: 3rem;
+            max-width: 70%;
         }
-        p {
-            font-size: 1.2rem;
-            font-weight: 300;
-            max-width: 600px;
+        .navbar {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
         }
-        .cta {
-            margin-top: 20px;
-            padding: 15px 30px;
-            background: #d63384;
-            border: none;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #fff;
-            cursor: pointer;
-            text-transform: uppercase;
-            border-radius: 30px;
-            transition: 0.3s;
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            margin: 0 20px;
         }
-        .cta:hover {
-            background: #ff007f;
+        .content {
+            background: white;
+            text-align: center;
+            padding: 50px;
+        }
+        .featured {
+            width: 60%;
+            margin: 40px auto;
+        }
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            background: black;
+            color: white;
+            padding: 10px 0;
+        }
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 10s linear infinite;
+        }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+        .bottom-content {
+            text-align: center;
+            padding: 50px;
+        }
+        .social-icons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+        .social-icons img {
+            width: 30px;
+            margin: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="overlay">
-        <h1>Rebel With Style</h1>
-        <p>Empowering modern brands with a fusion of elegance and edge. The revolution starts here.</p>
-        <button class="cta">Join the Movement</button>
+    <div class="navbar">
+        <a href="#">Services</a>
+        <a href="#">Work</a>
+        <a href="#">About</a>
+        <a href="#">Blog</a>
+    </div>
+    <div class="hero">
+        <h1>Realization & Rebellion = Revolution. The Future of Marketing is Storytelling.</h1>
+    </div>
+    <div class="marquee">
+        <span>Storytelling is the heart of modern marketing. Branding that speaks, inspires, and transforms.</span>
+    </div>
+    <div class="content">
+        <img class="featured" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Clients%20Featured%20on.png" alt="Clients Featured On">
+    </div>
+    <div class="bottom-content">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Workspace%20Stock%20Image%20%2B%20Video%20_%20Woman%20typing%20on%20laptop%20and%20closing%20it.jpeg" width="60%">
+        <p><small>Marketing today is about emotion, connection, and impact. We blend timeless storytelling with modern strategy.</small></p>
+        <p><strong>Our Story:</strong> With a deep-rooted background in storytelling, we craft marketing that captivates, persuades, and revolutionizes.</p>
+    </div>
+    <div class="social-icons">
+        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/TikTok_logo.png" alt="TikTok"></a>
+        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"></a>
     </div>
 </body>
 </html>
