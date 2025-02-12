@@ -19,46 +19,67 @@
             justify-content: center;
         }
 
-        /* NAVIGATION BAR */
+        /* NAVIGATION BAR - Luxe Editorial Style */
         .navbar {
-            position: absolute;
+            position: fixed;
             top: 0;
             width: 100%;
+            background: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 50px;
-            background: rgba(255, 255, 255, 0.2); /* Slight transparency */
-            backdrop-filter: blur(8px); /* Glass effect */
+            border-bottom: 2px solid #ddd;
+            z-index: 1000;
         }
 
-        /* Brand Name */
+        /* Brand Name - Editorial Serif */
         .navbar .brand {
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
+            color: black;
         }
 
-        /* Nav Links */
+        /* Nav Links - Centered */
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 40px;
         }
 
         .nav-links a {
             font-size: 1rem;
             font-weight: 500;
+            font-family: 'Playfair Display', serif;
             text-decoration: none;
             color: black;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: 0.3s ease;
+            transition: 0.3s ease-in-out;
+            position: relative;
         }
 
+        /* Gold Hover Effect */
         .nav-links a:hover {
-            opacity: 0.7;
+            color: black;
+        }
+
+        .nav-links a::after {
+            content: "";
+            display: block;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(to right, #b29554, #e6c48b); /* Gold shimmer */
+            transition: width 0.3s ease-in-out;
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         /* Mobile Menu (Hidden by default) */
@@ -71,7 +92,7 @@
         /* Full Image Section */
         .image-container {
             width: 100%;
-            height: auto;
+            margin-top: 80px; /* Push down below nav bar */
         }
 
         .image-container img {
@@ -172,7 +193,7 @@
     <!-- White Section Below -->
     <div class="text-container">
         <h1>Write My Socials</h1>
-        <p>Elevate your brand! Your vision, our execution.</p>
+        <p>Elevate your brand with a Parisian-chic touch. Your vision, our execution.</p>
     </div>
 
     <script>
