@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website</title>
+    <title>Paige Studio</title>
     <style>
         /* Global Reset */
         * {
@@ -12,106 +12,111 @@
             box-sizing: border-box;
         }
 
-        /* Fullscreen Background */
-        .hero {
-            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/freddie-martyn-0o4vbRF6xco-unsplash.jpg') no-repeat center center/cover;
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
         }
 
         /* Navbar */
-        nav {
+        .navbar {
             position: fixed;
             top: 0;
             width: 100%;
             background: white;
-            padding: 15px 0;
+            padding: 20px 40px;
             display: flex;
-            justify-content: center;
-            border-top: 4px solid #f8e3e3; /* Soft pink underline */
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e5e5e5;
             z-index: 1000;
         }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 50px;
-            padding: 0;
-            margin: 0;
+        /* Logo */
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'Didot', serif;
         }
 
-        nav ul li {
+        /* Navigation Links */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links li {
             display: inline;
         }
 
-        nav ul li a {
+        .nav-links a {
             text-decoration: none;
-            font-size: 16px;
+            font-size: 14px;
             text-transform: uppercase;
             color: black;
-            font-family: 'Helvetica Neue', sans-serif;
             letter-spacing: 1px;
             transition: color 0.3s ease;
         }
 
-        nav ul li a:hover {
+        .nav-links a:hover {
             color: gray;
         }
 
-        /* Vogue Style Text */
-        .hero-content {
-            text-align: center;
-            width: 90%;
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
         }
 
-        .hero-content h1 {
-            font-family: 'Didot', serif;
-            font-size: 12vw; /* Scales with screen size */
-            color: white;
-            text-transform: uppercase;
-            font-weight: normal;
-            line-height: 1;
-        }
-
-        /* Small Text Bottom Left */
-        .hero-content p {
-            position: absolute;
-            bottom: 30px;
-            left: 30px;
-            font-size: 14px;
-            font-family: 'Helvetica Neue', sans-serif;
-            color: white;
-            max-width: 300px;
-        }
-
-        /* Make it Mobile Friendly */
         @media (max-width: 768px) {
-            nav ul {
-                gap: 20px;
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: white;
+                text-align: center;
+                padding: 20px 0;
+                border-bottom: 1px solid #e5e5e5;
             }
-            nav ul li a {
-                font-size: 14px;
+
+            .nav-links.active {
+                display: flex;
             }
-            .hero-content h1 {
-                font-size: 16vw;
+
+            .menu-toggle {
+                display: block;
             }
-            .hero-content p {
-                font-size: 12px;
-                left: 15px;
-                bottom: 15px;
-            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/freddie-martyn-0o4vbRF6xco-unsplash.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Didot', serif;
+            font-size: 5vw;
+            color: black;
+            font-weight: normal;
+            max-width: 80%;
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav>
-        <ul>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Paige.</div>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links">
             <li><a href="#">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Projects</a></li>
@@ -122,11 +127,14 @@
 
     <!-- Hero Section -->
     <div class="hero">
-        <div class="hero-content">
-            <h1>Your Vogue-Style Title</h1>
-            <p>Branding Studio. Website Design. Social Media Marketing.</p>
-        </div>
+        <h1>A creative studio serving clients worldwide focusing on storytelling content and timeless designs.</h1>
     </div>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+    </script>
 
 </body>
 </html>
