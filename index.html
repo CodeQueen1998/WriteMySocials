@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Révolutionnez votre marque.</title>
+    <title>Centered Navbar with Full Background</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
     <style>
         /* Reset styles */
@@ -11,17 +11,7 @@
             margin: 0;
             padding: 0;
             width: 100%;
-            height: 100vh;
             font-family: 'Playfair Display', serif;
-            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/freddie-martyn-0o4vbRF6xco-unsplash.jpg') no-repeat center center/cover;
-        }
-
-        /* Overlay */
-        .overlay {
-            position: absolute;
-            width: 100%;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.3);
         }
 
         /* Navbar Container */
@@ -116,38 +106,22 @@
             }
         }
 
-        /* Hero Section */
-        .hero {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: white;
+        /* Full Background Image */
+        .background-section {
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/freddie-martyn-0o4vbRF6xco-unsplash.jpg') no-repeat center center/cover;
+        }
+
+        /* White Content Section */
+        .content {
+            background: white;
+            padding: 50px;
             text-align: center;
-            z-index: 2;
         }
-
-        .hero h1 {
-            font-size: 64px;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin: 0;
-        }
-
-        .hero p {
-            font-size: 18px;
-            font-style: italic;
-            max-width: 600px;
-            margin-top: 10px;
-        }
-
     </style>
 </head>
 <body>
-    <div class="overlay"></div>
 
     <!-- Navigation Bar -->
     <div class="navbar">
@@ -169,10 +143,13 @@
         </ul>
     </div>
 
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>Révolutionnez votre marque.</h1>
-        <p>Stratégies audacieuses, branding d'élite, et design disruptif – l'avenir de votre marque commence ici.</p>
+    <!-- Full Background Image Section -->
+    <div class="background-section"></div>
+
+    <!-- White Content Section -->
+    <div class="content">
+        <h1>Vive la Révolution Digitale</h1>
+        <p>Join the rebellion. Transform your brand into a timeless movement.</p>
     </div>
 
     <script>
@@ -183,3 +160,4 @@
 
 </body>
 </html>
+
