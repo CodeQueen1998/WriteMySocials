@@ -33,7 +33,7 @@
     <div class="divider"></div>
 
     <section class="clients-featured">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Clients%20Featured%20on.png" alt="Clients Featured On">
+        <img class="full-width" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Clients%20Featured%20on.png" alt="Clients Featured On">
     </section>
 
     <div class="circular-marquee">Brand Strategy | Digital Revolution | Narrative Power</div>
@@ -41,7 +41,7 @@
     <div class="divider"></div>
 
     <section class="marketing-story">
-        <img class="fade-in" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Workspace%20Stock%20Image%20%2B%20Video%20_%20Woman%20typing%20on%20laptop%20and%20closing%20it.jpeg" alt="Woman typing on laptop">
+        <img class="fade-in full-width" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Workspace%20Stock%20Image%20%2B%20Video%20_%20Woman%20typing%20on%20laptop%20and%20closing%20it.jpeg" alt="Woman typing on laptop">
         <p class="marketing-facts">Modern marketing is about connection, narrative, and impact. We leverage powerful storytelling techniques to elevate brands in the digital age.</p>
         <p class="business-story">Our journey began with a passion for storytelling. From media to branding, we help businesses find their unique voice in a crowded marketplace.</p>
     </section>
@@ -65,12 +65,12 @@
     .hero-background {
         background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/freddie-martyn-0o4vbRF6xco-unsplash.jpg') no-repeat center top;
         background-size: contain;
-        height: 100vh;
+        height: auto;
         width: 100%;
     }
     header {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         padding: 20px;
         position: absolute;
@@ -80,23 +80,21 @@
         font-size: 24px;
         font-weight: bold;
         color: white;
+        position: absolute;
+        left: 20px;
     }
     nav ul {
         list-style: none;
         display: flex;
         gap: 20px;
-        justify-content: center;
-        width: 100%;
     }
     nav ul li a {
         color: white;
         text-decoration: none;
-        font-size: 20px;
+        font-size: 22px;
         font-weight: bold;
         letter-spacing: 2px;
-        background: rgba(0, 0, 0, 0.8);
-        padding: 8px 20px;
-        border-radius: 5px;
+        text-transform: uppercase;
     }
     .hero {
         text-align: center;
@@ -138,6 +136,11 @@
         background: black;
         margin: 40px auto;
     }
+    .full-width {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
     .fade-in {
         animation: fadeIn ease 2s;
     }
@@ -157,3 +160,4 @@
         color: black;
     }
 </style>
+
