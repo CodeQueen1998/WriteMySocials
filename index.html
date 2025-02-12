@@ -14,30 +14,20 @@
 
         body {
             font-family: 'Playfair Display', serif;
-            background: white; /* Fallback color */
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            position: relative;
+            background: white;
         }
 
-        .background-image {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .hero {
             width: 100%;
-            height: 100vh;
-            background: url("https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/7777.jpg") no-repeat center top;
+            height: 100vh; /* Full viewport height */
+            background: url("https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/7777.jpg") no-repeat center center;
             background-size: cover;
-            z-index: -1;
         }
 
         .content {
-            flex-grow: 1;
             background: white;
             padding: 50px;
             text-align: center;
-            position: relative;
         }
 
         /* NAVBAR */
@@ -94,7 +84,6 @@
     </style>
 </head>
 <body>
-    <div class="background-image"></div>
     <div class="navbar">
         <div class="logo">WriteMySocials</div>
         <div class="menu">
@@ -104,6 +93,8 @@
             <a href="#">SERVICES</a>
         </div>
     </div>
+
+    <div class="hero"></div>
 
     <div class="content">
         <p>...</p>
