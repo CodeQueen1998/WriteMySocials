@@ -14,9 +14,18 @@
 
         body {
             font-family: 'Playfair Display', serif;
-            background: url("https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/7777.jpg") no-repeat center center fixed;
-            background-size: cover; /* Ensures the whole image is visible */
-            background-color: white;
+            background: url("https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/7777.jpg") no-repeat center top;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex-grow: 1;
+            background: white;
+            padding: 50px;
+            text-align: center;
         }
 
         /* NAVBAR */
@@ -29,7 +38,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 30px;
-            background: rgba(255, 255, 255, 0.8); /* Transparent white */
+            background: rgba(255, 255, 255, 0.8);
             z-index: 1000;
         }
 
@@ -49,16 +58,6 @@
             font-size: 18px;
             margin: 0 15px;
             font-weight: 400;
-        }
-
-        /* WHITE CONTENT AREA */
-        .content {
-            background: white;
-            width: 100%;
-            min-height: 100vh;
-            padding: 50px;
-            text-align: center;
-            margin-top: 60px; /* Ensures content isn't hidden under navbar */
         }
 
         /* MOBILE RESPONSIVENESS */
@@ -98,4 +97,5 @@
     </div>
 </body>
 </html>
+
 
