@@ -4,52 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WriteMySocials</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            font-family: 'Playfair Display', serif;
-            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/pexels-kei-scampa-1201427-3520333.jpg') no-repeat center center fixed;
-            background-size: cover;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Didot', serif;
+            background-color: white;
+            text-align: center;
         }
         .navbar {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 20px 50px;
-            background: white;
             position: fixed;
             width: 100%;
             top: 0;
             left: 0;
-            z-index: 1000;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-        }
-        .nav-links {
-            display: flex;
-            gap: 30px;
+            background: white;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             font-size: 18px;
         }
-        .nav-links a {
+        .navbar-logo {
+            position: absolute;
+            left: 20px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .navbar-menu {
+            display: flex;
+            gap: 30px;
+        }
+        .navbar-menu a {
             text-decoration: none;
             color: black;
-            font-weight: 400;
+            font-weight: normal;
+        }
+        .hero-section {
+            width: 100%;
+            height: 100vh;
+            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/pexels-kei-scampa-1201427-3520333.jpg') no-repeat center top;
+            background-size: cover;
+        }
+        .content {
+            padding: 100px 20px;
+            max-width: 800px;
+            margin: auto;
+            font-size: 20px;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">WriteMySocials</div>
-        <div class="nav-links">
+        <div class="navbar-logo">WriteMySocials</div>
+        <div class="navbar-menu">
             <a href="#">HOME</a>
             <a href="#">ABOUT</a>
             <a href="#">PROJECTS</a>
             <a href="#">SERVICES</a>
         </div>
     </nav>
+    <div class="hero-section"></div>
+    <div class="content">
+        <h1>Welcome to WriteMySocials</h1>
+        <p>Inspired by the elegance and rebellion of the French Revolution, we craft compelling narratives that ignite change.</p>
+    </div>
 </body>
 </html>
