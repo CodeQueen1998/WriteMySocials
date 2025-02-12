@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paige Studio</title>
+    <title>WriteMySocials</title>
     <style>
         /* Global Reset */
         * {
@@ -14,6 +14,8 @@
 
         body {
             font-family: 'Helvetica Neue', sans-serif;
+            background: #f8f8f8;
+            color: #333;
         }
 
         /* Navbar */
@@ -21,20 +23,22 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
             padding: 20px 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid #e5e5e5;
+            border-bottom: 1px solid #ddd;
+            backdrop-filter: blur(10px);
             z-index: 1000;
         }
 
         /* Logo */
         .logo {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
             font-family: 'Didot', serif;
+            color: black;
         }
 
         /* Navigation Links */
@@ -58,7 +62,7 @@
         }
 
         .nav-links a:hover {
-            color: gray;
+            color: gold;
         }
 
         /* Mobile Menu */
@@ -79,7 +83,7 @@
                 background: white;
                 text-align: center;
                 padding: 20px 0;
-                border-bottom: 1px solid #e5e5e5;
+                border-bottom: 1px solid #ddd;
             }
 
             .nav-links.active {
@@ -99,6 +103,18 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
         }
 
         .hero h1 {
@@ -106,7 +122,15 @@
             font-size: 5vw;
             color: white;
             font-weight: normal;
-            max-width: 80%;
+            max-width: 70%;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -127,7 +151,7 @@
 
     <!-- Hero Section -->
     <div class="hero">
-        <h1>Inspired by the French Revolution, let's rebel to give your brand the edge that revolutionises your niche.</h1>
+        <h1>Inspired by the French Revolution, let’s rebel to give your brand the edge that revolutionizes your niche.</h1>
     </div>
 
     <script>
@@ -138,4 +162,3 @@
 
 </body>
 </html>
-
