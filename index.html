@@ -3,7 +3,6 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Write My Socials</title>
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;500;700&display=swap');
 
@@ -13,82 +12,40 @@
             padding: 0;
             font-family: 'Poppins', sans-serif;
             color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
         }
 
-        /* NAVIGATION BAR */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-            border-bottom: 2px solid #ddd;
-            z-index: 1000;
-        }
-
-        .navbar .brand {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: black;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-        }
-
-        .nav-links a {
-            font-size: 1rem;
-            font-weight: 500;
-            font-family: 'Playfair Display', serif;
-            text-decoration: none;
-            color: black;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s ease-in-out;
-            position: relative;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* HALF BACKGROUND IMAGE */
-        .hero-section {
-            position: relative;
-            width: 100%;
-            height: 50vh; /* Half of the viewport height */
-            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/pexels-kei-scampa-1201427-3520333.jpg') no-repeat center center/cover;
+        /* Hero Section - Half Image, Half White */
+        .hero {
+            height: 50vh;
+            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/pexels-kei-scampa-1201427-3520333.jpg') no-repeat center;
+            background-size: cover;
+            background-position: center top -30%; /* Moves the image up by 30% */
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
+            position: relative;
         }
 
-        .hero-text {
+        /* Overlay for better text contrast */
+        .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero h1 {
+            position: relative;
             font-family: 'Playfair Display', serif;
             font-size: 3rem;
             font-weight: 700;
             color: white;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 5px;
+            z-index: 2;
         }
 
-        /* WHITE SECTION BELOW */
+        /* White Section */
         .text-container {
-            width: 100%;
-            min-height: 50vh;
+            height: 50vh;
             background-color: white;
             display: flex;
             align-items: center;
@@ -98,36 +55,20 @@
             padding: 40px;
         }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        p {
+        .text-container p {
             font-size: 1rem;
             font-weight: 300;
             max-width: 80%;
             line-height: 1.6;
         }
 
-        /* Mobile Responsive */
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
-            .navbar {
-                padding: 15px 30px;
-            }
-
-            .hero-text {
+            .hero h1 {
                 font-size: 2rem;
             }
 
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            p {
+            .text-container p {
                 font-size: 0.9rem;
                 max-width: 90%;
             }
@@ -136,26 +77,16 @@
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="brand">WriteMySocials</div>
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Contact</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section (Half Image Background) -->
-    <div class="hero-section">
-        <div class="hero-text">Write My Socials</div>
+    <!-- Hero Section with Background Image -->
+    <div class="hero">
+        <div class="overlay"></div>
+        <h1>Write My Socials</h1>
     </div>
 
-    <!-- White Section Below -->
+    <!-- White Section -->
     <div class="text-container">
-        <h1>Elevate Your Brand</h1>
-        <p>With a Parisian-chic touch. Your vision, our execution.</p>
+        <p>Elevate your brand with a Parisian-chic touch. Your vision, our execution.</p>
     </div>
+
 </body>
 </html>
