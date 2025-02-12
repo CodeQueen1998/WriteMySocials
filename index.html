@@ -19,7 +19,56 @@
             justify-content: center;
         }
 
-        /* Full Image Section (NO CROPPING) */
+        /* NAVIGATION BAR */
+        .navbar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(255, 255, 255, 0.2); /* Slight transparency */
+            backdrop-filter: blur(8px); /* Glass effect */
+        }
+
+        /* Brand Name */
+        .navbar .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Nav Links */
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: black;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        /* Mobile Menu (Hidden by default) */
+        .menu-icon {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Full Image Section */
         .image-container {
             width: 100%;
             height: auto;
@@ -62,6 +111,30 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 30px;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 30px;
+                background: white;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
             h1 {
                 font-size: 2.5rem;
             }
@@ -79,6 +152,18 @@
 </head>
 <body>
 
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="brand">WriteMySocials</div>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+
     <!-- Full Image (No Crop) -->
     <div class="image-container">
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/pexels-kei-scampa-1201427-3520333.jpg" alt="Parisian Chic Editorial">
@@ -87,8 +172,15 @@
     <!-- White Section Below -->
     <div class="text-container">
         <h1>Write My Socials</h1>
-        <p>Elevate your brand with a Parisian-chic touch. Your vision, our execution.</p>
+        <p>Elevate your brand! Your vision, our execution.</p>
     </div>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('show');
+        }
+    </script>
 
 </body>
 </html>
