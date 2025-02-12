@@ -41,7 +41,7 @@
     <div class="divider"></div>
 
     <section class="marketing-story">
-        <img class="fade-in resized-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Workspace%20Stock%20Image%20%2B%20Video%20_%20Woman%20typing%20on%20laptop%20and%20closing%20it.jpeg" alt="Woman typing on laptop">
+        <img class="fade-in adjusted-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Workspace%20Stock%20Image%20%2B%20Video%20_%20Woman%20typing%20on%20laptop%20and%20closing%20it.jpeg" alt="Woman typing on laptop">
         <p class="marketing-facts">Modern marketing is about connection, narrative, and impact. We leverage powerful storytelling techniques to elevate brands in the digital age.</p>
         <p class="business-story">Our journey began with a passion for storytelling. From media to branding, we help businesses find their unique voice in a crowded marketplace.</p>
     </section>
@@ -75,7 +75,7 @@
         padding: 20px;
         position: fixed;
         width: 100%;
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.4);
         z-index: 1000;
     }
     .logo {
@@ -97,6 +97,7 @@
         font-weight: bold;
         letter-spacing: 2px;
         text-transform: uppercase;
+        font-family: 'Didot', serif;
     }
     .hero {
         text-align: center;
@@ -143,11 +144,12 @@
         height: auto;
         display: block;
     }
-    .resized-image {
-        width: 80%;
-        max-height: 500px;
+    .adjusted-image {
+        width: 90%;
+        max-width: 600px;
         display: block;
-        margin: 0 auto;
+        margin: 20px auto;
+        border-radius: 10px;
     }
     .fade-in {
         animation: fadeIn ease 2s;
@@ -159,7 +161,7 @@
     .social-icons {
         position: fixed;
         bottom: 20px;
-        left: 20px;
+        right: 20px;
         display: flex;
         gap: 15px;
     }
@@ -168,4 +170,3 @@
         color: black;
     }
 </style>
-
