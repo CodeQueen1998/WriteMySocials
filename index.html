@@ -45,13 +45,10 @@
             font-weight: normal;
         }
         .hero-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
             width: 100%;
-            min-height: 60vh; /* Covers at least the first half of the page */
+            height: 100vh; /* Full height to make it prominent */
             background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/7777.jpg') no-repeat center center;
-            background-size: contain; /* Ensures the whole image is visible without cropping */
+            background-size: contain; /* Ensures the full image fits */
             background-color: white;
         }
         .content {
@@ -62,11 +59,10 @@
             line-height: 1.6;
             background-color: white;
         }
-
-        @media (max-width: 768px) { /* Mobile optimization */
+        
+        @media (max-width: 768px) {
             .hero-section {
-                min-height: 70vh; /* Adjust to fit better on mobile */
-                background-size: contain;
+                height: 80vh; /* Adjusts for mobile */
             }
             .navbar-menu {
                 gap: 15px;
@@ -92,5 +88,4 @@
     </div>
 </body>
 </html>
-
 
