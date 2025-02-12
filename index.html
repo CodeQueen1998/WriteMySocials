@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chandelier Background</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
     <style>
         /* Reset styles */
         html, body {
@@ -23,21 +23,23 @@
             background: rgba(255, 255, 255, 0.95); /* Slight transparency */
             padding: 15px 20px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* Centers the nav links */
             align-items: center;
             font-family: 'Playfair Display', serif;
             font-size: 18px;
-            font-weight: 500;
+            font-weight: 400; /* Simplistic, not bold */
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             z-index: 1000; /* Ensures it's above everything */
         }
 
-        /* Logo */
+        /* Logo on the left */
         .logo {
-            font-size: 28px;
-            font-weight: 700;
+            position: absolute;
+            left: 20px;
+            font-size: 24px;
+            font-weight: 400; /* Not bold */
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             color: black;
             text-decoration: none;
         }
@@ -53,7 +55,7 @@
             color: black;
             text-transform: uppercase;
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 400; /* Light, not bold */
         }
 
         /* Push content down so it doesn't overlap with navbar */
@@ -112,5 +114,4 @@
 
 </body>
 </html>
-
 
