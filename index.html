@@ -175,6 +175,60 @@
             document.querySelector(".nav-links").classList.toggle("active");
         }
     </script>
+<!-- Keeping the background image full and clean -->
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* Ensure full coverage */
+    background: url('your-image.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px; /* Adjust this if needed */
+    background: white;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .bottom-left-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 1.2rem;
+    font-style: italic;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 80vh;
+    }
+    .bottom-left-text {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>BRANDING STUDIO. WEBSITE DESIGN. SOCIAL MEDIA MARKETING.</h1>
+    <p><em>Where bespoke branding, exclusive web design, & authentic social media strategies shape high-end, global brands.</em></p>
+  </div>
+  <div class="bottom-left-text">Your additional text here</div>
+</section>
 
 </body>
 </html>
