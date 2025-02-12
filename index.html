@@ -1,24 +1,100 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write My Socials</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500;700&display=swap');
+
+        /* General Page Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Split Layout */
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* Left Side - Image */
+        .left-half {
+            flex: 1;
+            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/pexels-kei-scampa-1201427-3520333.jpg') center/cover no-repeat;
+        }
+
+        /* Right Side - White Background */
+        .right-half {
+            flex: 1;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1rem;
+            font-weight: 300;
+            max-width: 80%;
+            line-height: 1.6;
+        }
+
+        /* Mobile Responsive: Stack Image on Top */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-half {
+                height: 50vh;
+                width: 100%;
+            }
+
+            .right-half {
+                height: 50vh;
+                width: 100%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
 <body>
 
-<h2>Background Image</h2>
+    <div class="container">
+        <!-- Left: Background Image -->
+        <div class="left-half"></div>
 
-<p>A background image for a p element:</p>
-
-<p style="background-image: url('https://github.com/CodeQueen1998/WriteMySocials/blob/main/Images/pexels-kei-scampa-1201427-3520333.jpg');">
-You can specify background images<br>
-for any visible HTML element.<br>
-In this example, the background image<br>
-is specified for a p element.<br>
-By default, the background-image<br>
-will repeat itself in the direction(s)<br>
-where it is smaller than the element<br>
-where it is specified. (Try resizing the<br>
-browser window to see how the<br>
-background image behaves.
-</p>
+        <!-- Right: Content -->
+        <div class="right-half">
+            <h1>Write My Socials</h1>
+            <p>Elevate your brand with a Parisian-chic touch. Your vision, our execution.</p>
+        </div>
+    </div>
 
 </body>
 </html>
