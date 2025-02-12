@@ -28,7 +28,7 @@
         </div>
     </section>
 
-    <marquee class="circular-marquee">The Power of Modern Marketing: Shaping Stories That Resonate.</marquee>
+    <marquee class="circular-marquee">The Power of Modern Marketing: Crafting Narratives That Inspire Change.</marquee>
 
     <section class="clients-featured">
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Clients%20Featured%20on.png" alt="Clients Featured On">
@@ -43,7 +43,7 @@
     <footer>
         <div class="social-icons">
             <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="icon"><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="icon tiktok"><i class="fab fa-tiktok"></i></a>
         </div>
     </footer>
 </body>
@@ -88,8 +88,8 @@
         font-size: 20px;
         font-weight: bold;
         letter-spacing: 2px;
-        background: rgba(0, 0, 0, 0.6);
-        padding: 5px 15px;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 8px 20px;
         border-radius: 5px;
     }
     .hero {
@@ -103,14 +103,14 @@
         padding: 50px 20px;
     }
     .hero-text {
-        font-size: 22px;
+        font-size: 20px;
         max-width: 600px;
         text-transform: uppercase;
         position: relative;
-        top: 20px;
+        top: 30px;
     }
     .hero h1 {
-        font-size: 28px;
+        font-size: 26px;
     }
     .circular-marquee {
         width: 100%;
@@ -120,6 +120,8 @@
         color: black;
         padding: 10px;
         margin-top: 20px;
+        border-radius: 50%;
+        border: 2px solid black;
     }
     .fade-in {
         animation: fadeIn ease 2s;
@@ -130,8 +132,8 @@
         max-height: 400px;
     }
     @keyframes fadeIn {
-        0% { opacity: 0; }
-        100% { opacity: 1; }
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
     }
     .social-icons {
         position: fixed;
@@ -144,4 +146,9 @@
         font-size: 24px;
         color: black;
     }
+    .tiktok i {
+        font-size: 26px;
+        color: black;
+    }
 </style>
+
