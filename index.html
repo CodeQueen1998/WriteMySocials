@@ -28,14 +28,20 @@
         </div>
     </section>
 
-    <marquee class="circular-marquee">The Power of Modern Marketing: Crafting Narratives That Inspire Change.</marquee>
+    <marquee class="scrolling-marquee">Storytelling is the heartbeat of modern marketing—shaping brands, creating revolutions.</marquee>
+
+    <div class="divider"></div>
 
     <section class="clients-featured">
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Clients%20Featured%20on.png" alt="Clients Featured On">
     </section>
 
+    <div class="circular-marquee">Brand Strategy | Digital Revolution | Narrative Power</div>
+
+    <div class="divider"></div>
+
     <section class="marketing-story">
-        <img class="fade-in cropped" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Workspace%20Stock%20Image%20%2B%20Video%20_%20Woman%20typing%20on%20laptop%20and%20closing%20it.jpeg" alt="Woman typing on laptop">
+        <img class="fade-in" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Workspace%20Stock%20Image%20%2B%20Video%20_%20Woman%20typing%20on%20laptop%20and%20closing%20it.jpeg" alt="Woman typing on laptop">
         <p class="marketing-facts">Modern marketing is about connection, narrative, and impact. We leverage powerful storytelling techniques to elevate brands in the digital age.</p>
         <p class="business-story">Our journey began with a passion for storytelling. From media to branding, we help businesses find their unique voice in a crowded marketplace.</p>
     </section>
@@ -43,7 +49,7 @@
     <footer>
         <div class="social-icons">
             <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="icon tiktok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="icon"><i class="fab fa-tiktok"></i></a>
         </div>
     </footer>
 </body>
@@ -58,7 +64,7 @@
     }
     .hero-background {
         background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/freddie-martyn-0o4vbRF6xco-unsplash.jpg') no-repeat center top;
-        background-size: cover;
+        background-size: contain;
         height: 100vh;
         width: 100%;
     }
@@ -93,11 +99,6 @@
         border-radius: 5px;
     }
     .hero {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
         text-align: center;
         color: white;
         padding: 50px 20px;
@@ -106,13 +107,9 @@
         font-size: 20px;
         max-width: 600px;
         text-transform: uppercase;
-        position: relative;
-        top: 30px;
+        margin-top: 20px;
     }
-    .hero h1 {
-        font-size: 26px;
-    }
-    .circular-marquee {
+    .scrolling-marquee {
         width: 100%;
         text-align: center;
         font-size: 18px;
@@ -120,16 +117,29 @@
         color: black;
         padding: 10px;
         margin-top: 20px;
+    }
+    .circular-marquee {
+        width: 200px;
+        height: 200px;
         border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+        color: black;
         border: 2px solid black;
+        margin: 20px auto;
+    }
+    .divider {
+        width: 80%;
+        height: 2px;
+        background: black;
+        margin: 40px auto;
     }
     .fade-in {
         animation: fadeIn ease 2s;
-    }
-    .cropped {
-        object-fit: cover;
-        width: 100%;
-        max-height: 400px;
     }
     @keyframes fadeIn {
         0% { opacity: 0; transform: translateY(20px); }
@@ -146,9 +156,4 @@
         font-size: 24px;
         color: black;
     }
-    .tiktok i {
-        font-size: 26px;
-        color: black;
-    }
 </style>
-
