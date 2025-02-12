@@ -45,10 +45,17 @@
             font-weight: normal;
         }
         .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
             height: 100vh; /* The image takes up the full viewport height */
-            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/7777.jpg') no-repeat center center;
-            background-size: cover;
+            background-color: white;
+        }
+        .hero-section img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Ensures the entire image fits without cropping */
         }
         .content {
             padding: 100px 20px;
@@ -87,12 +94,13 @@
             <a href="#">SERVICES</a>
         </div>
     </nav>
-    <div class="hero-section"></div>
+    <div class="hero-section">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/7777.jpg" alt="Hero Image">
+    </div>
     <div class="content">
         <h1>Welcome to WriteMySocials</h1>
         <p>Inspired by the elegance and rebellion of the French Revolution, we craft compelling narratives that ignite change.</p>
     </div>
 </body>
 </html>
-
 
