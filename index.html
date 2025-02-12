@@ -47,17 +47,9 @@
         .hero-section {
             width: 100%;
             height: 100vh;
-            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/pexels-kei-scampa-1201427-3520333.jpg') no-repeat center center;
-            background-size: contain; /* Ensures full image is visible */
+            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/pexels-kei-scampa-1201427-3520333.jpg') no-repeat center top;
+            background-size: cover;
             background-position: center top;
-            background-color: black; /* Fills gaps if image doesn’t cover fully */
-            position: relative;
-        }
-        .overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.2); /* Soft overlay for better contrast */
         }
         .content {
             padding: 100px 20px;
@@ -65,6 +57,7 @@
             margin: auto;
             font-size: 20px;
             line-height: 1.6;
+            background-color: white;
         }
 
         /* Responsive Adjustments */
@@ -91,9 +84,7 @@
             <a href="#">SERVICES</a>
         </div>
     </nav>
-    <div class="hero-section">
-        <div class="overlay"></div>
-    </div>
+    <div class="hero-section"></div>
     <div class="content">
         <h1>Welcome to WriteMySocials</h1>
         <p>Inspired by the elegance and rebellion of the French Revolution, we craft compelling narratives that ignite change.</p>
