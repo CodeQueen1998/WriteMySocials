@@ -4,14 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Révolutionnez votre marque.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Didot&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
     <style>
         /* Reset styles */
         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
-            font-family: 'Didot', 'Playfair Display', serif;
+            height: 100vh;
+            font-family: 'Playfair Display', serif;
+            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/freddie-martyn-0o4vbRF6xco-unsplash.jpg') no-repeat center center/cover;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.3);
         }
 
         /* Navbar Container */
@@ -21,7 +31,7 @@
             left: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
-            padding: 15px 20px;
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -31,8 +41,8 @@
 
         /* Logo - Left Aligned */
         .logo {
-            font-size: 28px;
-            font-weight: 500;
+            font-size: 24px;
+            font-weight: 400;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: black;
@@ -40,14 +50,10 @@
         }
 
         /* Navigation Links */
-        .nav-container {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-        }
-
         .nav-links {
             display: flex;
+            justify-content: center;
+            flex-grow: 1;
             gap: 40px;
             list-style: none;
             padding: 0;
@@ -58,8 +64,8 @@
             text-decoration: none;
             color: black;
             text-transform: uppercase;
-            font-size: 18px;
-            font-weight: 500;
+            font-size: 16px;
+            font-weight: 400;
         }
 
         /* Mobile Menu Button */
@@ -81,7 +87,7 @@
 
         /* Mobile Navigation */
         @media (max-width: 768px) {
-            .nav-container {
+            .nav-links {
                 display: none;
                 flex-direction: column;
                 position: absolute;
@@ -96,10 +102,6 @@
                 border-radius: 5px;
             }
 
-            .nav-links {
-                flex-direction: column;
-            }
-
             .nav-links a {
                 padding: 10px;
                 display: block;
@@ -109,49 +111,75 @@
                 display: flex;
             }
 
-            .nav-container.active {
+            .nav-links.active {
                 display: flex;
             }
         }
 
-        /* Spacer to prevent overlap */
-        .spacer {
-            height: 80px;
+        /* Hero Section */
+        .hero {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            z-index: 2;
         }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 18px;
+            font-style: italic;
+            max-width: 600px;
+            margin-top: 10px;
+        }
+
     </style>
 </head>
 <body>
+    <div class="overlay"></div>
+
     <!-- Navigation Bar -->
     <div class="navbar">
         <a href="#" class="logo">writemysocials</a>
         
-        <div class="nav-container">
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Blog</a></li>
-            </ul>
-        </div>
-
         <!-- Mobile Menu Button -->
         <div class="menu-toggle" onclick="toggleMenu()">
             <div></div>
             <div></div>
             <div></div>
         </div>
+
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Blog</a></li>
+        </ul>
     </div>
 
-    <!-- Spacer to prevent overlap -->
-    <div class="spacer"></div>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Révolutionnez votre marque.</h1>
+        <p>Stratégies audacieuses, branding d'élite, et design disruptif – l'avenir de votre marque commence ici.</p>
+    </div>
 
     <script>
         function toggleMenu() {
-            document.querySelector(".nav-container").classList.toggle("active");
+            document.querySelector(".nav-links").classList.toggle("active");
         }
     </script>
+
 </body>
 </html>
-
-
