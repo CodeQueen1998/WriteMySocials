@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WriteMySocials</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,19 +13,27 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Playfair Display', serif;
+            background: white;
         }
 
-        /* Navbar */
+        /* NAVBAR */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.8); /* Slight transparency */
-            padding: 15px 0;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.8); /* Transparent white */
             z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: 700;
         }
 
         .navbar a {
@@ -32,19 +41,18 @@
             color: black;
             font-size: 18px;
             margin: 0 15px;
-            font-weight: bold;
+            font-weight: 400; /* Not bold */
         }
 
-        /* Background Image Section */
+        /* BACKGROUND IMAGE */
         .hero {
-            background: url("https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/7777.jpg") no-repeat center top;
-            background-size: contain; /* Ensures the full image is visible */
-            background-color: white;
+            background: url("https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/7777.jpg") no-repeat center center fixed;
+            background-size: cover; /* Ensures full image is visible */
             width: 100%;
-            height: 100vh; /* Full viewport height */
+            height: 100vh; /* Full screen height */
         }
 
-        /* White Background Section */
+        /* WHITE CONTENT AREA */
         .content {
             background: white;
             width: 100%;
@@ -52,16 +60,21 @@
             text-align: center;
         }
 
-        /* Mobile Navbar */
+        /* MOBILE RESPONSIVENESS */
         @media (max-width: 768px) {
             .navbar {
-                font-size: 14px;
-                padding: 10px 0;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .navbar .logo {
+                margin-bottom: 10px;
             }
 
             .navbar a {
                 font-size: 16px;
-                margin: 0 10px;
+                margin: 5px 10px;
             }
         }
     </style>
@@ -69,10 +82,13 @@
 <body>
 
     <div class="navbar">
-        <a href="#">HOME</a>
-        <a href="#">ABOUT</a>
-        <a href="#">PROJECTS</a>
-        <a href="#">SERVICES</a>
+        <div class="logo">WriteMySocials</div>
+        <div>
+            <a href="#">HOME</a>
+            <a href="#">ABOUT</a>
+            <a href="#">PROJECTS</a>
+            <a href="#">SERVICES</a>
+        </div>
     </div>
 
     <div class="hero"></div> <!-- Background Image Section -->
@@ -81,6 +97,10 @@
         <h1>Welcome to WriteMySocials</h1>
         <p>Your content here...</p>
     </div>
+
+</body>
+</html>
+
 
 </body>
 </html>
