@@ -11,7 +11,7 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Didot', serif;
+            font-family: 'Playfair Display', serif;
             background-color: white;
             text-align: center;
         }
@@ -45,17 +45,9 @@
             font-weight: normal;
         }
         .hero-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
             width: 100%;
-            height: 100vh; /* The image takes up the full viewport height */
-            background-color: white;
-        }
-        .hero-section img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain; /* Ensures the entire image fits without cropping */
+            height: 100vh;
+            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/7777.jpg') no-repeat center center/cover;
         }
         .content {
             padding: 100px 20px;
@@ -67,16 +59,7 @@
         }
 
         /* Responsive Adjustments */
-        @media (max-width: 1024px) { /* Covers both tablets & laptops */
-            .hero-section {
-                height: 90vh;
-            }
-        }
-
-        @media (max-width: 768px) { /* Mobile */
-            .hero-section {
-                height: 80vh;
-            }
+        @media (max-width: 768px) {
             .navbar-menu {
                 gap: 15px;
                 font-size: 16px;
@@ -94,9 +77,7 @@
             <a href="#">SERVICES</a>
         </div>
     </nav>
-    <div class="hero-section">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/7777.jpg" alt="Hero Image">
-    </div>
+    <div class="hero-section"></div>
     <div class="content">
         <h1>Welcome to WriteMySocials</h1>
         <p>Inspired by the elegance and rebellion of the French Revolution, we craft compelling narratives that ignite change.</p>
