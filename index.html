@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chandelier Background</title>
     <style>
-        /* Ensure full-page styling */
+        /* Reset margins */
         html, body {
             margin: 0;
             padding: 0;
-            height: 100%;
+            width: 100%;
         }
 
-        /* Background Image Styling */
-        body {
-            background-image: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/7777.jpg');
-            background-size: cover; /* Ensures full coverage */
-            background-position: top center; /* Keeps chandelier at the top */
-            background-repeat: no-repeat;
-            background-attachment: scroll; /* Moves with scrolling */
-            background-color: white; /* Transitions into white */
+        /* Chandelier Background */
+        .chandelier-section {
+            width: 100%;
+            height: auto; /* Ensures image takes full height */
         }
 
-        /* Content Styling */
+        .chandelier-section img {
+            width: 100%;
+            display: block; /* Prevents extra space */
+        }
+
+        /* White background starts here */
         .content {
-            min-height: 100vh;
-            background: white; /* Ensures white background below image */
+            background: white;
             padding: 50px;
             text-align: center;
             font-family: Arial, sans-serif;
@@ -34,10 +34,19 @@
 </head>
 <body>
 
+    <!-- Full Chandelier Background -->
+    <div class="chandelier-section">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/7777.jpg" alt="Chandelier">
+    </div>
+
+    <!-- White Background Section -->
     <div class="content">
         <h1>Welcome to My Page</h1>
         <p>This section starts after the chandelier background.</p>
     </div>
+
+</body>
+</html>
 
 </body>
 </html>
