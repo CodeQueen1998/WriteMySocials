@@ -47,9 +47,18 @@
         .hero-section {
             width: 100%;
             height: 100vh;
-            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/pexels-kei-scampa-1201427-3520333.jpg') no-repeat center -8vh;
-            background-size: contain;
-            background-color: white;
+            position: relative;
+            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/7777.jpg') no-repeat center center;
+            background-size: cover;
+        }
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 100%);
         }
         .content {
             padding: 100px 20px;
@@ -58,22 +67,20 @@
             font-size: 20px;
             line-height: 1.6;
             background-color: white;
+            position: relative;
+            z-index: 2;
         }
 
         /* Responsive Adjustments */
         @media (max-width: 1024px) { /* Covers both tablets & laptops */
             .hero-section {
                 height: 90vh;
-                background-size: contain;
-                background-position: center -8vh;
             }
         }
 
         @media (max-width: 768px) { /* Mobile */
             .hero-section {
                 height: 80vh;
-                background-size: contain;
-                background-position: center -8vh;
             }
             .navbar-menu {
                 gap: 15px;
