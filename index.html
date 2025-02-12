@@ -3,110 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WriteMySocials</title>
+    <title>WriteMySocials - Vogue Chic</title>
     <style>
-        /* General Styling */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;600&display=swap');
+        
         body {
-            font-family: 'Playfair Display', serif;
-            background-color: #222;
-            color: #fff;
             margin: 0;
             padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            text-align: center;
+            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/freddie-martyn-0o4vbRF6xco-unsplash.jpg') no-repeat center center/cover;
         }
-        
-        /* Navigation Bar */
-        .navbar {
-            position: fixed;
-            top: 0;
+        .overlay {
+            background: rgba(0, 0, 0, 0.6);
             width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 18px;
-        }
-        .navbar a {
-            color: #B89C72;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-        
-        /* Logo Styling */
-        .logo {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 26px;
-            font-weight: bold;
-            color: #B89C72;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: url('chandelier-dark.jpg') no-repeat center center/cover;
             height: 100vh;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            text-align: center;
-            padding: 20px;
+            align-items: center;
+            padding: 2rem;
         }
-        .hero h1 {
-            font-size: 50px;
-            line-height: 1.3;
-            font-weight: bold;
-            color: #fff;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            animation: fadeIn 1.5s ease-in-out;
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-        
-        /* Button Styling */
-        .cta-button {
+        p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            max-width: 600px;
+        }
+        .cta {
             margin-top: 20px;
-            display: inline-block;
-            background: #B89C72;
-            color: #222;
             padding: 15px 30px;
-            font-size: 18px;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 5px;
+            background: #d63384;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            text-transform: uppercase;
+            border-radius: 30px;
             transition: 0.3s;
         }
-        .cta-button:hover {
-            background: #4C1212;
-            color: #fff;
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .cta:hover {
+            background: #ff007f;
         }
     </style>
 </head>
 <body>
-    
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">WRITE MY SOCIALS</div>
-        <div>
-            <a href="#">HOME</a>
-            <a href="#">ABOUT</a>
-            <a href="#">PROJECTS</a>
-            <a href="#">SERVICES</a>
-            <a href="#">SHOP</a>
-        </div>
-    </nav>
-    
-    <!-- Hero Section -->
-    <section class="hero">
-        <div>
-            <h1>INSPIRED BY THE FRENCH REVOLUTION, <br>LET’S REBEL TO GIVE <br>YOUR BRAND THE EDGE <br>THAT REVOLUTIONIZES YOUR NICHE.</h1>
-            <a href="#" class="cta-button">Join the Revolution</a>
-        </div>
-    </section>
-    
+    <div class="overlay">
+        <h1>Rebel With Style</h1>
+        <p>Empowering modern brands with a fusion of elegance and edge. The revolution starts here.</p>
+        <button class="cta">Join the Movement</button>
+    </div>
 </body>
 </html>
