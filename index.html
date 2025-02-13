@@ -10,7 +10,6 @@
 <body>
     <header>
         <div class="logo">WriteMySocials</div>
-        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
         <nav>
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
@@ -27,25 +26,23 @@
             <p>Inspired by the French Revolution, we blend storytelling and strategy to craft modern, powerful brands.</p>
         </div>
     </section>
+    
+    <div class="cta-banner" id="cta-banner">
+        <p>Join the revolution: Your brand’s uprising begins now!</p>
+        <button onclick="closeCTA()">✖</button>
+    </div>
 
     <marquee class="scrolling-marquee">Storytelling is the heartbeat of modern marketing—shaping brands, creating revolutions.</marquee>
 
-    <div class="divider"></div>
-
     <section class="clients-featured">
-        <img class="full-width" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Clients%20Featured%20on.png" alt="Clients Featured On">
+        <img class="full-width" src="clients-featured.png" alt="Clients Featured On">
     </section>
-
-    <div class="circular-marquee">Brand Strategy | Digital Revolution | Narrative Power</div>
-
-    <div class="divider"></div>
-
+    
     <section class="marketing-story">
-        <img class="fade-in adjusted-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/widget%CB%9A%20%E0%BC%98%E2%99%A1%20%E2%8B%86%EF%BD%A1%CB%9A%20%E2%9D%80.jpeg" alt="Woman typing on laptop">
-        <p class="marketing-facts">Modern marketing is about connection, narrative, and impact. We leverage powerful storytelling techniques to elevate brands in the digital age.</p>
-        <p class="business-story">Our journey began with a passion for storytelling. From media to branding, we help businesses find their unique voice in a crowded marketplace.</p>
+        <img class="adjusted-image" src="laptop-woman.jpeg" alt="Woman typing on laptop">
+        <p class="marketing-facts">Modern marketing is about connection, narrative, and impact...</p>
     </section>
-
+    
     <footer>
         <div class="social-icons">
             <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
@@ -54,8 +51,8 @@
     </footer>
 
     <script>
-        function toggleMenu() {
-            document.querySelector(".nav-links").classList.toggle("active");
+        function closeCTA() {
+            document.getElementById("cta-banner").style.display = "none";
         }
     </script>
 </body>
@@ -64,114 +61,65 @@
 <style>
     body {
         font-family: 'Playfair Display', serif;
+        background: white;
         margin: 0;
         padding: 0;
-        background: white;
+    }
+    header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .nav-links li a:hover {
+        color: gold;
+        text-shadow: 0 0 5px gold;
     }
     .hero {
-        position: relative;
-        min-height: 100vh;
-        background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Workspace%20Stock%20Image%20%2B%20Video%20_%20Woman%20typing%20on%20laptop%20and%20closing%20it.jpeg') no-repeat center center;
-        background-size: contain;
-        width: 100vw;
+        background: url('workspace-image.jpeg') no-repeat center;
+        background-size: cover;
+        height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        color: white;
+        color: black;
     }
-    .top-text {
-        position: absolute;
-        top: 5%;
+    .cta-banner {
+        position: fixed;
+        top: 10px;
         left: 50%;
         transform: translateX(-50%);
+        background: black;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 10px;
     }
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 20px;
-        position: fixed;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.8);
-        z-index: 1000;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .logo {
-        font-size: 24px;
-        font-weight: bold;
-        color: black;
-    }
-    .menu-toggle {
-        display: none;
-        font-size: 24px;
+    .cta-banner button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 16px;
         cursor: pointer;
-    }
-    nav ul {
-        list-style: none;
-        display: flex;
-        gap: 20px;
-        padding: 0;
-        margin: 0;
-    }
-    nav ul li {
-        display: inline;
-    }
-    nav ul li a {
-        color: black;
-        text-decoration: none;
-        font-size: 18px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        font-family: 'Didot', serif;
-    }
-    .hero-text {
-        font-size: 20px;
-        max-width: 600px;
-        text-transform: uppercase;
-    }
-    .scrolling-marquee {
-        width: 100%;
-        text-align: center;
-        font-size: 18px;
-        font-weight: bold;
-        color: black;
-        padding: 10px;
-        margin-top: 20px;
     }
     .social-icons {
         position: fixed;
         bottom: 20px;
-        right: 20px;
+        left: 20px;
         display: flex;
-        gap: 15px;
+        gap: 10px;
     }
     .icon {
-        font-size: 24px;
+        font-size: 18px;
         color: black;
     }
-    @media (max-width: 768px) {
-        .menu-toggle {
-            display: block;
-        }
-        .nav-links {
-            display: none;
-            flex-direction: column;
-            position: absolute;
-            top: 60px;
-            right: 0;
-            background: white;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .nav-links.active {
-            display: flex;
-        }
-        .nav-links li {
-            padding: 10px;
-        }
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: black;
+        border-radius: 10px;
     }
 </style>
-
