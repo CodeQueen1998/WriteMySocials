@@ -11,7 +11,7 @@
     <header>
         <div class="logo">WriteMySocials</div>
         <nav>
-            <ul class="nav-links">
+            <ul>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#work">Work</a></li>
                 <li><a href="#about">About</a></li>
@@ -21,28 +21,36 @@
     </header>
     
     <section class="hero">
-        <div class="hero-text top-text">
+        <div class="hero-background"></div>
+        <div class="hero-text">
             <h1>Realisation + Rebellion = Revolution</h1>
             <p>Inspired by the French Revolution, we blend storytelling and strategy to craft modern, powerful brands.</p>
         </div>
     </section>
-    
+
     <div class="cta-banner" id="cta-banner">
         <p>Join the revolution: Your brand’s uprising begins now!</p>
         <button onclick="closeCTA()">✖</button>
     </div>
-
+    
     <marquee class="scrolling-marquee">Storytelling is the heartbeat of modern marketing—shaping brands, creating revolutions.</marquee>
 
+    <div class="divider"></div>
+
     <section class="clients-featured">
-        <img class="full-width" src="clients-featured.png" alt="Clients Featured On">
+        <img class="full-width" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Clients%20Featured%20on.png" alt="Clients Featured On">
     </section>
-    
+
+    <div class="circular-marquee">Brand Strategy | Digital Revolution | Narrative Power</div>
+
+    <div class="divider"></div>
+
     <section class="marketing-story">
-        <img class="adjusted-image" src="laptop-woman.jpeg" alt="Woman typing on laptop">
-        <p class="marketing-facts">Modern marketing is about connection, narrative, and impact...</p>
+        <img class="fade-in resized-image" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Workspace%20Stock%20Image%20%2B%20Video%20_%20Woman%20typing%20on%20laptop%20and%20closing%20it.jpeg" alt="Woman typing on laptop">
+        <p class="marketing-facts">Modern marketing is about connection, narrative, and impact. We leverage powerful storytelling techniques to elevate brands in the digital age.</p>
+        <p class="business-story">Our journey began with a passion for storytelling. From media to branding, we help businesses find their unique voice in a crowded marketplace.</p>
     </section>
-    
+
     <footer>
         <div class="social-icons">
             <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
@@ -61,31 +69,44 @@
 <style>
     body {
         font-family: 'Playfair Display', serif;
-        background: white;
         margin: 0;
         padding: 0;
+        background: white;
     }
     header {
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 15px;
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.9);
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
     }
-    .nav-links li a:hover {
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        padding: 0;
+    }
+    nav ul li a {
+        color: black;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    nav ul li a:hover {
         color: gold;
-        text-shadow: 0 0 5px gold;
+        text-shadow: 0 0 10px gold;
     }
-    .hero {
-        background: url('workspace-image.jpeg') no-repeat center;
+    .hero-background {
+        background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/freddie-martyn-0o4vbRF6xco-unsplash.jpg') no-repeat center top;
         background-size: cover;
         height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: black;
+        width: 100%;
     }
     .cta-banner {
         position: fixed;
@@ -116,10 +137,11 @@
         color: black;
     }
     ::-webkit-scrollbar {
-        width: 8px;
+        width: 6px;
     }
     ::-webkit-scrollbar-thumb {
         background: black;
         border-radius: 10px;
     }
 </style>
+
