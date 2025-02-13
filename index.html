@@ -78,13 +78,19 @@
     }
     .hero {
         background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Workspace%20Stock%20Image%20%2B%20Video%20_%20Woman%20typing%20on%20laptop%20and%20closing%20it.jpeg') no-repeat center center;
-        background-size: cover;
+        background-size: contain;
+        background-position: top center;
         height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
         color: white;
+    }
+    .hero-text {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        border-radius: 10px;
     }
     .cta-banner {
         position: fixed;
@@ -113,6 +119,12 @@
     .icon {
         font-size: 18px;
         color: black;
+    }
+    .clients-featured img {
+        max-width: 90%;
+        height: auto;
+        display: block;
+        margin: 20px auto;
     }
     ::-webkit-scrollbar {
         width: 8px;
