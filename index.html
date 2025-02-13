@@ -21,7 +21,7 @@
     </header>
     
     <section class="hero">
-        <div class="hero-text">
+        <div class="hero-text top-text">
             <h1>Realisation + Rebellion = Revolution</h1>
             <p>Inspired by the French Revolution, we blend storytelling and strategy to craft modern, powerful brands.</p>
         </div>
@@ -68,10 +68,17 @@
         background-size: cover;
         width: 100vw;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         text-align: center;
         color: white;
+        padding-top: 50px;
+    }
+    .top-text {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
     }
     header {
         display: flex;
@@ -188,4 +195,3 @@
         }
     }
 </style>
-
