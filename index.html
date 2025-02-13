@@ -10,8 +10,9 @@
 <body>
     <header>
         <div class="logo">WriteMySocials</div>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
         <nav>
-            <ul>
+            <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
                 <li><a href="#work">Work</a></li>
                 <li><a href="#about">About</a></li>
@@ -51,6 +52,12 @@
             <a href="#" class="icon"><i class="fab fa-tiktok"></i></a>
         </div>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector(".nav-links").classList.toggle("active");
+        }
+    </script>
 </body>
 </html>
 
@@ -65,18 +72,18 @@
         position: relative;
         min-height: 100vh;
         background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Workspace%20Stock%20Image%20%2B%20Video%20_%20Woman%20typing%20on%20laptop%20and%20closing%20it.jpeg') no-repeat center center;
-        background-size: cover;
+        background-size: contain;
         width: 100vw;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         text-align: center;
         color: white;
-        padding: 50px 0;
+        padding-top: 120px;
     }
     .top-text {
-        position: absolute;
-        top: 5%;
+        position: relative;
+        top: 0;
         left: 50%;
         transform: translateX(-50%);
     }
@@ -95,6 +102,11 @@
         font-size: 24px;
         font-weight: bold;
         color: black;
+    }
+    .menu-toggle {
+        display: none;
+        font-size: 24px;
+        cursor: pointer;
     }
     nav ul {
         list-style: none;
@@ -129,41 +141,6 @@
         padding: 10px;
         margin-top: 20px;
     }
-    .circular-marquee {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        font-size: 14px;
-        font-weight: bold;
-        color: black;
-        border: 2px solid black;
-        margin: 20px auto;
-    }
-    .divider {
-        width: 80%;
-        height: 2px;
-        background: black;
-        margin: 40px auto;
-    }
-    .full-width, .adjusted-image {
-        width: 90%;
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: auto;
-        border-radius: 10px;
-    }
-    .fade-in {
-        animation: fadeIn ease 2s;
-    }
-    @keyframes fadeIn {
-        0% { opacity: 0; transform: translateY(20px); }
-        100% { opacity: 1; transform: translateY(0); }
-    }
     .social-icons {
         position: fixed;
         bottom: 20px;
@@ -174,5 +151,27 @@
     .icon {
         font-size: 24px;
         color: black;
+    }
+    @media (max-width: 768px) {
+        .menu-toggle {
+            display: block;
+        }
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background: white;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .nav-links.active {
+            display: flex;
+        }
+        .nav-links li {
+            padding: 10px;
+        }
     }
 </style>
