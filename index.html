@@ -63,20 +63,20 @@
     }
     .hero {
         position: relative;
-        height: 100vh;
+        min-height: 100vh;
         background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Workspace%20Stock%20Image%20%2B%20Video%20_%20Woman%20typing%20on%20laptop%20and%20closing%20it.jpeg') no-repeat center center;
         background-size: cover;
         width: 100vw;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
         text-align: center;
         color: white;
-        padding-top: 50px;
+        padding: 50px 0;
     }
     .top-text {
         position: absolute;
-        top: 10%;
+        top: 5%;
         left: 50%;
         transform: translateX(-50%);
     }
@@ -174,24 +174,5 @@
     .icon {
         font-size: 24px;
         color: black;
-    }
-    @media (max-width: 768px) {
-        header {
-            flex-direction: column;
-            text-align: center;
-        }
-        nav ul {
-            flex-direction: column;
-            gap: 10px;
-        }
-        .hero-text {
-            font-size: 16px;
-            padding: 10px;
-        }
-        .circular-marquee {
-            width: 150px;
-            height: 150px;
-            font-size: 12px;
-        }
     }
 </style>
