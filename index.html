@@ -76,6 +76,7 @@
             transform: translate(-50%, -50%);
             display: flex;
             gap: 8px;
+            animation: sparkle 1s infinite alternate;
         }
 
         .fairy-lights span {
@@ -83,24 +84,32 @@
             height: 8px;
             border-radius: 50%;
             background-color: #f1c6c6;
-            animation: light-flash 1s infinite alternate;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
         }
 
-        .fairy-lights span:nth-child(2) {
-            animation-delay: 0.2s;
+        @keyframes sparkle {
+            0% { background-color: #f1c6c6; }
+            100% { background-color: #fff; }
         }
 
-        .fairy-lights span:nth-child(3) {
-            animation-delay: 0.4s;
+        /* Marquee for Image */
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+            background: #f5f5f5;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 30px;
         }
 
-        @keyframes light-flash {
-            0% {
-                background-color: #f1c6c6;
-            }
-            100% {
-                background-color: #fff;
-            }
+        .marquee img {
+            width: 100%;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
         /* Main Sections */
@@ -266,6 +275,11 @@
             <p>Where creativity and structure meet. Elevating your brand through storytelling and design.</p>
         </section>
 
+        <!-- Marquee Section -->
+        <section class="marquee">
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Clients%20Featured%20on.jpg" alt="Clients Featured On">
+        </section>
+
         <!-- About Section -->
         <section id="about">
             <h2>About</h2>
@@ -306,4 +320,5 @@
 
 </body>
 </html>
+
 
