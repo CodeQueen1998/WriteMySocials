@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WriteMySocials - Branding & Creative Direction</title>
+    <title>WriteMySocials</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         /* General Reset */
@@ -20,46 +20,30 @@
             line-height: 1.6;
             font-weight: 400;
             overflow-x: hidden;
-            position: relative;
+            padding-top: 80px;
         }
 
-        /* Layout container for horizontal scroll */
+        /* Layout container */
         .container {
-            display: flex;
-            flex-direction: row;
             width: 100%;
-            overflow-x: scroll;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            min-height: 100vh;
-        }
-
-        .section {
-            width: 100vw;
-            height: 100%;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            scroll-snap-align: start;
-            padding: 30px;
+            padding: 30px 20px;
         }
 
         /* Sidebar */
         .sidebar {
-            background-color: #f5f5dc; /* Beige */
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
+            position: fixed;
+            left: 0;
+            top: 0;
             width: 250px;
             height: 100%;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 2;
+            background-color: #f5f5dc; /* Beige */
+            padding: 40px 20px;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+            z-index: 100;
         }
 
         .sidebar h2 {
@@ -67,17 +51,15 @@
             font-size: 2rem;
             font-weight: 700;
             color: #000;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .sidebar nav ul {
             list-style-type: none;
-            margin: 0;
-            padding: 0;
         }
 
         .sidebar nav ul li {
-            margin: 10px 0;
+            margin: 20px 0;
         }
 
         .sidebar nav ul li a {
@@ -85,80 +67,65 @@
             color: #000;
             font-weight: 500;
             font-size: 1.2rem;
+            letter-spacing: 0.5px;
         }
 
         /* Header */
         header {
-            background-color: #000;
-            color: #fff;
-            padding: 50px 0;
-            width: 100%;
             text-align: center;
-            font-family: 'Playfair Display', serif;
-            position: relative;
-            z-index: 2;
+            margin-bottom: 50px;
         }
 
         header h1 {
-            font-size: 4rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
             font-weight: 700;
-            position: relative;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
         }
 
-        /* Glitter effect */
-        .glitter {
-            background: url('https://cdn.pixabay.com/photo/2015/09/18/19/16/abstract-944310_960_720.jpg') repeat;
-            background-size: 5px 5px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            z-index: -1;
-            animation: glitter 1s linear infinite;
+        /* Content Sections */
+        .section {
+            width: 80%;
+            margin-bottom: 60px;
         }
 
-        @keyframes glitter {
-            0% { background-position: 0 0; }
-            100% { background-position: 100% 100%; }
-        }
-
-        /* Section Styles */
         .section h2 {
             font-family: 'Playfair Display', serif;
             font-size: 3rem;
             font-weight: 700;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .section p {
             font-size: 1.2rem;
             color: #333;
-            max-width: 800px;
             text-align: center;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
             font-family: 'Montserrat', sans-serif;
         }
 
         /* Services Section */
         .service {
-            margin-bottom: 60px;
+            margin-bottom: 50px;
             text-align: center;
         }
 
         .service h3 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            color: #000;
             font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #000;
         }
 
         .service p {
             font-size: 1.2rem;
             color: #333;
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto;
             font-family: 'Montserrat', sans-serif;
         }
@@ -167,10 +134,10 @@
         .marquee {
             width: 100%;
             overflow: hidden;
+            margin-top: 40px;
             background: #f5f5f5;
-            padding: 20px 0;
             text-align: center;
-            margin-top: 30px;
+            padding: 30px 0;
         }
 
         .marquee img {
@@ -186,12 +153,12 @@
         /* Social Media Icons */
         .socials {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 40px;
         }
 
         .socials a {
             color: #000;
-            margin: 0 15px;
+            margin: 0 20px;
             font-size: 2rem;
             text-decoration: none;
             transition: color 0.3s;
@@ -203,41 +170,26 @@
 
         /* Footer */
         footer {
+            text-align: center;
+            padding: 30px 20px;
+            width: 100%;
             background-color: #000;
             color: #fff;
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 80px;
-            width: 100%;
+            margin-top: 60px;
         }
 
         footer p {
             font-size: 1rem;
-            letter-spacing: 1px;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
-                width: 100%;
-                flex-direction: column;
-            }
-
-            .sidebar {
-                width: 100%;
-                margin-bottom: 30px;
-            }
-
             header h1 {
                 font-size: 2.5rem;
             }
 
             .section h2 {
-                font-size: 2.8rem;
-            }
-
-            .section p, .service p {
-                font-size: 1rem;
+                font-size: 2.5rem;
             }
 
             .service h3 {
@@ -269,24 +221,13 @@
         <!-- Header -->
         <header>
             <h1>WriteMySocials</h1>
-            <div class="glitter"></div>
+            <p>Creative Direction & Brand Storytelling</p>
         </header>
-
-        <!-- Hero Section -->
-        <section class="section" id="hero">
-            <h2>Creative Direction for Your Brand Story</h2>
-            <p>Where creativity and structure meet. Elevating your brand through storytelling and design.</p>
-        </section>
-
-        <!-- Marquee Section -->
-        <section class="marquee">
-            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Clients%20Featured%20on.jpg" alt="Clients Featured On">
-        </section>
 
         <!-- About Section -->
         <section class="section" id="about">
             <h2>About</h2>
-            <p>WriteMySocials is the intersection of creativity and strategy. With a background in English Literature, we shape brand narratives and guide creative direction to make brands unforgettable. Our approach blends art with purpose, creating a lasting impression in the marketplace.</p>
+            <p>WriteMySocials merges creativity with strategy to craft unforgettable brands. With an English Literature background and experience in content creation, we bring your brand's story to life through compelling visuals, narrative, and design.</p>
         </section>
 
         <!-- Services Section -->
@@ -295,18 +236,23 @@
 
             <div class="service">
                 <h3>Creative Direction & Branding</h3>
-                <p>We help businesses craft their visual identity, brand voice, and messaging, ensuring a cohesive and impactful brand presence.</p>
+                <p>We create cohesive brand identities, from visual design to brand messaging, ensuring consistency and impact across all touchpoints.</p>
             </div>
 
             <div class="service">
-                <h3>Content Creation & Strategy</h3>
-                <p>Engage your audience with captivating content. From social media posts to blogs, we help you create a content strategy that resonates.</p>
+                <h3>Content Strategy & Creation</h3>
+                <p>We develop and execute tailored content strategies, producing high-quality visuals and copy that resonate with your target audience.</p>
             </div>
 
             <div class="service">
                 <h3>Editorial & Copywriting</h3>
-                <p>Whether it's website copy, product descriptions, or blog posts, we deliver sharp and engaging editorial content that connects with your audience.</p>
+                <p>Our editorial services include writing engaging website copy, social media posts, blogs, and more to help your brand communicate effectively.</p>
             </div>
+        </section>
+
+        <!-- Marquee Section -->
+        <section class="marquee">
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Clients%20Featured%20on.jpg" alt="Clients Featured On">
         </section>
 
         <!-- Social Media Icons -->
