@@ -19,21 +19,67 @@
             color: #000;
             line-height: 1.6;
             font-weight: 400;
+            overflow-x: hidden;
+        }
+
+        /* Container for horizontal scrolling */
+        .container {
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+            width: 300%; /* 3 sections - to be scrollable horizontally */
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .section {
+            width: 100vw;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            padding: 0;
+            justify-content: center;
+            scroll-snap-align: start;
+            padding: 30px;
         }
 
-        /* Grid Layout for Main Content */
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 3fr;
-            gap: 30px;
-            max-width: 1200px;
+        /* Header Section */
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 50px 0;
             width: 100%;
-            padding: 20px;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        /* Glitter effect */
+        .glitter {
+            background: url('https://cdn.pixabay.com/photo/2015/09/18/19/16/abstract-944310_960_720.jpg') repeat;
+            background-size: 5px 5px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+            animation: glitter 1s linear infinite;
+        }
+
+        @keyframes glitter {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
         }
 
         /* Sidebar */
@@ -42,11 +88,15 @@
             padding: 30px;
             display: flex;
             flex-direction: column;
+            align-items: flex-start;
             justify-content: flex-start;
-            text-align: left;
-            border-radius: 10px;
+            width: 250px;
             height: 100%;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 2;
         }
 
         .sidebar h2 {
@@ -59,6 +109,8 @@
 
         .sidebar nav ul {
             list-style-type: none;
+            margin: 0;
+            padding: 0;
         }
 
         .sidebar nav ul li {
@@ -72,44 +124,42 @@
             font-size: 1.2rem;
         }
 
-        /* Header */
-        header {
-            background-color: #000;
-            color: #fff;
-            padding: 50px 0;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-            width: 100%;
-        }
-
-        header h1 {
-            font-size: 4rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-            position: relative;
-            display: inline-block;
+        /* Section Styles */
+        .section h2 {
             font-family: 'Playfair Display', serif;
-            color: #fff;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
         }
 
-        /* Glitter effect */
-        .glitter {
-            background: url('https://cdn.pixabay.com/photo/2015/09/18/19/16/abstract-944310_960_720.jpg') repeat;
-            background-size: 10px 10px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            z-index: -1;
-            animation: glitter 1s linear infinite;
+        .section p {
+            font-size: 1.2rem;
+            color: #333;
+            max-width: 800px;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        @keyframes glitter {
-            0% { background-position: 0 0; }
-            100% { background-position: 100% 100%; }
+        /* Services Section */
+        .service {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .service h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: #000;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .service p {
+            font-size: 1.2rem;
+            color: #333;
+            max-width: 700px;
+            margin: 0 auto;
+            font-family: 'Montserrat', sans-serif;
         }
 
         /* Marquee for Image */
@@ -130,72 +180,6 @@
         @keyframes marquee {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
-        }
-
-        /* Main Sections */
-        #hero, #about, #services {
-            width: 100%;
-            padding: 100px 0;
-            text-align: center;
-        }
-
-        /* Hero Section */
-        #hero {
-            background-color: #f5f5f5;
-        }
-
-        #hero h2 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #333;
-            font-family: 'Playfair Display', serif;
-        }
-
-        #hero p {
-            font-size: 1.5rem;
-            color: #666;
-        }
-
-        /* About Section */
-        #about {
-            background-color: #fff;
-            padding: 100px 0;
-        }
-
-        #about p {
-            max-width: 900px;
-            margin: 0 auto;
-            font-size: 1.2rem;
-            color: #333;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        /* Services Section */
-        #services {
-            background-color: #f5f5f5;
-            padding: 100px 0;
-        }
-
-        .service {
-            margin-bottom: 60px;
-            text-align: center;
-        }
-
-        .service h3 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            color: #000;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .service p {
-            font-size: 1.2rem;
-            color: #333;
-            max-width: 700px;
-            margin: 0 auto;
-            font-family: 'Montserrat', sans-serif;
         }
 
         /* Social Media Icons */
@@ -234,8 +218,8 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
-                grid-template-columns: 1fr;
-                padding: 20px;
+                width: 100%;
+                flex-direction: column;
             }
 
             .sidebar {
@@ -247,11 +231,11 @@
                 font-size: 2.5rem;
             }
 
-            #hero h2 {
+            .section h2 {
                 font-size: 2.8rem;
             }
 
-            #about p, .service p {
+            .section p, .service p {
                 font-size: 1rem;
             }
 
@@ -288,7 +272,7 @@
         </header>
 
         <!-- Hero Section -->
-        <section id="hero">
+        <section class="section" id="hero">
             <h2>Creative Direction for Your Brand Story</h2>
             <p>Where creativity and structure meet. Elevating your brand through storytelling and design.</p>
         </section>
@@ -299,28 +283,28 @@
         </section>
 
         <!-- About Section -->
-        <section id="about">
+        <section class="section" id="about">
             <h2>About</h2>
             <p>WriteMySocials is the intersection of creativity and strategy. With a background in English Literature, we shape brand narratives and guide creative direction to make brands unforgettable. Our approach blends art with purpose, creating a lasting impression in the marketplace.</p>
         </section>
 
         <!-- Services Section -->
-        <section id="services">
-            <h2>Services</h2>
+        <section class="section" id="services">
+            <h2>Our Services</h2>
 
             <div class="service">
                 <h3>Creative Direction & Branding</h3>
-                <p>We help brands define and express their identity through strong creative direction. From visual elements to tone of voice, we ensure your brand resonates with your audience.</p>
+                <p>We help businesses craft their visual identity, brand voice, and messaging, ensuring a cohesive and impactful brand presence.</p>
             </div>
 
             <div class="service">
                 <h3>Content Creation & Strategy</h3>
-                <p>Engage your audience with content that speaks to them. We create tailored strategies that align with your goals and brand voice, boosting engagement across platforms.</p>
+                <p>Engage your audience with captivating content. From social media posts to blogs, we help you create a content strategy that resonates.</p>
             </div>
 
             <div class="service">
                 <h3>Editorial & Copywriting</h3>
-                <p>With a passion for storytelling, we craft impactful copy for websites, blogs, social media, and more, creating authentic connections with your audience through powerful words.</p>
+                <p>Whether it's website copy, product descriptions, or blog posts, we deliver sharp and engaging editorial content that connects with your audience.</p>
             </div>
         </section>
 
@@ -338,3 +322,4 @@
 
 </body>
 </html>
+
