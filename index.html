@@ -20,66 +20,29 @@
             line-height: 1.6;
             font-weight: 400;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Container for horizontal scrolling */
+        /* Layout container for horizontal scroll */
         .container {
             display: flex;
             flex-direction: row;
-            height: 100vh;
-            width: 300%; /* 3 sections - to be scrollable horizontally */
+            width: 100%;
             overflow-x: scroll;
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
+            min-height: 100vh;
         }
 
         .section {
             width: 100vw;
-            height: 100vh;
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             scroll-snap-align: start;
             padding: 30px;
-        }
-
-        /* Header Section */
-        header {
-            background-color: #000;
-            color: #fff;
-            padding: 50px 0;
-            width: 100%;
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            position: relative;
-            z-index: 2;
-        }
-
-        header h1 {
-            font-size: 4rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-            position: relative;
-        }
-
-        /* Glitter effect */
-        .glitter {
-            background: url('https://cdn.pixabay.com/photo/2015/09/18/19/16/abstract-944310_960_720.jpg') repeat;
-            background-size: 5px 5px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            z-index: -1;
-            animation: glitter 1s linear infinite;
-        }
-
-        @keyframes glitter {
-            0% { background-position: 0 0; }
-            100% { background-position: 100% 100%; }
         }
 
         /* Sidebar */
@@ -122,6 +85,44 @@
             color: #000;
             font-weight: 500;
             font-size: 1.2rem;
+        }
+
+        /* Header */
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 50px 0;
+            width: 100%;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        /* Glitter effect */
+        .glitter {
+            background: url('https://cdn.pixabay.com/photo/2015/09/18/19/16/abstract-944310_960_720.jpg') repeat;
+            background-size: 5px 5px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+            animation: glitter 1s linear infinite;
+        }
+
+        @keyframes glitter {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
         }
 
         /* Section Styles */
