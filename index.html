@@ -4,31 +4,39 @@ import { motion } from "framer-motion";
 
 export default function WriteMySocials() {
   return (
-    <div className="bg-white text-black font-sans p-6">
+    <div className="bg-white text-black font-sans p-6 max-w-5xl mx-auto">
       {/* Header */}
-      <header className="text-center py-12">
-        <h1 className="text-5xl font-bold tracking-tight">WriteMySocials</h1>
-        <p className="mt-3 text-lg">High-End Brand Consultancy & Creative Agency</p>
+      <header className="text-center py-12 border-b border-black">
+        <h1 className="text-6xl font-bold tracking-tight uppercase">WriteMySocials</h1>
+        <p className="mt-4 text-lg text-gray-600">High-End Brand Consultancy & Creative Agency</p>
       </header>
 
       {/* Services Section */}
-      <section className="grid md:grid-cols-3 gap-6 py-12">
+      <section className="grid md:grid-cols-3 gap-8 py-16">
         {services.map((service, index) => (
           <motion.div key={index} whileHover={{ scale: 1.05 }}>
-            <Card className="border border-black rounded-2xl shadow-lg p-6">
-              <h2 className="text-2xl font-semibold">{service.title}</h2>
-              <CardContent className="mt-3 text-gray-700">{service.description}</CardContent>
-              <Button className="mt-4 bg-black text-white w-full">Learn More</Button>
+            <Card className="border border-black rounded-xl shadow-xl p-8 bg-gray-50">
+              <h2 className="text-2xl font-semibold uppercase">{service.title}</h2>
+              <CardContent className="mt-4 text-gray-700 text-sm">{service.description}</CardContent>
             </Card>
           </motion.div>
         ))}
       </section>
 
+      {/* About Section */}
+      <section className="text-center py-16 border-t border-black">
+        <h2 className="text-4xl font-bold">About WriteMySocials</h2>
+        <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+          We specialize in brand identity, creative direction, and high-end marketing strategies.
+          Our goal is to transform brands into powerful visual and storytelling experiences.
+        </p>
+      </section>
+
       {/* Contact Section */}
-      <section className="text-center py-12">
+      <section className="text-center py-16">
         <h2 className="text-3xl font-semibold">Ready to Elevate Your Brand?</h2>
-        <p className="mt-2 text-gray-700">Get in touch to craft a premium strategy for your brand.</p>
-        <Button className="mt-4 bg-black text-white px-6 py-3 text-lg">Contact Us</Button>
+        <p className="mt-3 text-gray-700">Let’s craft a premium strategy for your business.</p>
+        <Button className="mt-6 bg-black text-white px-8 py-3 text-lg rounded-full">Contact Us</Button>
       </section>
     </div>
   );
@@ -48,5 +56,4 @@ const services = [
     description: "We develop tailored marketing plans to grow your brand and attract the right audience.",
   },
 ];
-
 
