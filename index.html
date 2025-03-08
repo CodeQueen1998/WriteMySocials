@@ -1,59 +1,307 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { motion } from "framer-motion";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WriteMySocials - Branding & Creative Direction</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-export default function WriteMySocials() {
-  return (
-    <div className="bg-white text-black font-sans p-6 max-w-5xl mx-auto">
-      {/* Header */}
-      <header className="text-center py-12 border-b border-black">
-        <h1 className="text-6xl font-bold tracking-tight uppercase">WriteMySocials</h1>
-        <p className="mt-4 text-lg text-gray-600">High-End Brand Consultancy & Creative Agency</p>
-      </header>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fff;
+            color: #000;
+            line-height: 1.6;
+        }
 
-      {/* Services Section */}
-      <section className="grid md:grid-cols-3 gap-8 py-16">
-        {services.map((service, index) => (
-          <motion.div key={index} whileHover={{ scale: 1.05 }}>
-            <Card className="border border-black rounded-xl shadow-xl p-8 bg-gray-50">
-              <h2 className="text-2xl font-semibold uppercase">{service.title}</h2>
-              <CardContent className="mt-4 text-gray-700 text-sm">{service.description}</CardContent>
-            </Card>
-          </motion.div>
-        ))}
-      </section>
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
 
-      {/* About Section */}
-      <section className="text-center py-16 border-t border-black">
-        <h2 className="text-4xl font-bold">About WriteMySocials</h2>
-        <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-          We specialize in brand identity, creative direction, and high-end marketing strategies.
-          Our goal is to transform brands into powerful visual and storytelling experiences.
-        </p>
-      </section>
+        h1, h2, h3, p {
+            margin-bottom: 1rem;
+        }
 
-      {/* Contact Section */}
-      <section className="text-center py-16">
-        <h2 className="text-3xl font-semibold">Ready to Elevate Your Brand?</h2>
-        <p className="mt-3 text-gray-700">Let’s craft a premium strategy for your business.</p>
-        <Button className="mt-6 bg-black text-white px-8 py-3 text-lg rounded-full">Contact Us</Button>
-      </section>
-    </div>
-  );
-}
+        /* Header */
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 20px 0;
+        }
 
-const services = [
-  {
-    title: "Brand Identity & Strategy",
-    description: "We craft high-end brand identities, messaging, and positioning to make your business stand out.",
-  },
-  {
-    title: "Creative Direction & Content Strategy",
-    description: "We guide your brand's visuals, storytelling, and campaign planning for maximum impact.",
-  },
-  {
-    title: "High-End Marketing Strategy",
-    description: "We develop tailored marketing plans to grow your brand and attract the right audience.",
-  },
-];
+        header h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
+        nav ul {
+            display: flex;
+            justify-content: flex-end;
+            list-style-type: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav ul li a:hover {
+            color: #f1f1f1;
+        }
+
+        /* Hero Section */
+        #hero {
+            background-color: #f9f9f9;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        #hero h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        #hero p {
+            font-size: 1.5rem;
+            color: #666;
+        }
+
+        /* About Section */
+        #about {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        #about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        /* Services Section */
+        #services {
+            background-color: #f9f9f9;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .service {
+            margin-bottom: 40px;
+        }
+
+        .service h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .service p {
+            font-size: 1.1rem;
+            color: #333;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Portfolio Section */
+        #portfolio {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        #portfolio p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: #f9f9f9;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        form label {
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            text-align: left;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        form button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        form button:hover {
+            background-color: #444;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 1rem 0;
+            }
+
+            #hero h2 {
+                font-size: 2.5rem;
+            }
+
+            form {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>WriteMySocials</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <h2>Creative Direction for Your Brand Story</h2>
+            <p>Where creativity and structure meet.</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About</h2>
+            <p>WriteMySocials is where creativity meets structure. With a background in English Literature and five years of teaching experience, we bring a unique perspective to content creation and brand development. Our mission is to help brands tell their stories in a way that connects with their audience and stands out in the market.</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2>Services</h2>
+
+            <div class="service">
+                <h3>Creative Direction & Branding</h3>
+                <p>We guide the creative vision of your brand to ensure it stands out and communicates effectively. From visual identity to tone of voice, we create a cohesive experience for your audience.</p>
+            </div>
+
+            <div class="service">
+                <h3>Content Creation & Strategy</h3>
+                <p>We develop engaging content strategies that resonate with your audience while staying true to your brand’s voice. From social media to blogs, we’ve got you covered.</p>
+            </div>
+
+            <div class="service">
+                <h3>Editorial & Copywriting</h3>
+                <p>With a strong foundation in English Literature, we create high-quality editorial and copywriting content that connects, persuades, and builds brand loyalty.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <h2>Portfolio</h2>
+            <p>We’ve had the privilege of working with several brands to shape their identities and help them tell their stories. Explore some of our recent work below.</p>
+            <!-- Example project thumbnails or images would go here -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <form action="#" method="post">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 WriteMySocials. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
