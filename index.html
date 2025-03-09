@@ -10,22 +10,29 @@
             font-family: 'Times New Roman', serif;
             background-color: white;
             color: black;
-            max-width: 900px;
-            margin: 0 auto;
+            max-width: 100%;
+            margin: 0;
             padding: 20px;
             line-height: 1.8;
             border-left: 5px solid black;
             border-right: 5px solid black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         header {
             text-align: center;
             border-bottom: 3px double black;
             padding-bottom: 10px;
+            width: 100%;
+        }
+        .logo {
+            max-width: 300px;
+            display: block;
+            margin: 0 auto;
         }
         h1 {
-            font-size: 3em;
-            font-weight: bold;
-            text-transform: uppercase;
+            display: none;
         }
         nav {
             margin-top: 10px;
@@ -43,10 +50,12 @@
             border-top: 3px double black;
             border-bottom: 3px double black;
             font-style: italic;
+            width: 100%;
         }
         #services {
             margin-top: 20px;
             padding: 10px;
+            width: 100%;
         }
         article {
             padding: 15px;
@@ -55,12 +64,22 @@
         article h3 {
             text-transform: uppercase;
         }
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .marquee-container img {
+            width: 100%;
+            display: block;
+        }
         footer {
             text-align: center;
             margin-top: 20px;
             font-size: 0.9em;
             border-top: 3px double black;
             padding-top: 10px;
+            width: 100%;
         }
         ::-webkit-scrollbar {
             width: 10px;
@@ -83,7 +102,7 @@
 </head>
 <body>
     <header>
-        <h1>WriteMySocials</h1>
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" class="logo">
         <nav>
             <a href="#services">Services</a>
             <a href="#contact">Contact</a>
@@ -99,6 +118,12 @@
             <h2>Strategic Branding & Marketing for Premium Brands</h2>
             <p>A boutique agency specializing in brand identity, creative direction, and high-end marketing strategy.</p>
         </section>
+
+        <div class="marquee-container">
+            <marquee behavior="scroll" direction="left">
+                <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Clients%20Featured%20on.jpg" alt="Clients Featured On">
+            </marquee>
+        </div>
 
         <section id="services">
             <h2>Our Services</h2>
