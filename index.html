@@ -1,48 +1,98 @@
-<! DOCTYPE html> 
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editorial Title</title>
-
-    <!-- Link to Google Fonts (Merriweather) -->
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
-    
+    <title>WriteMySocials</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            font-family: 'Arial', sans-serif; /* Default font for body */
+            font-family: Georgia, serif;
+            background-color: #f5f5f5;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
         }
-
+        header {
+            text-align: center;
+            border-bottom: 2px solid black;
+            padding-bottom: 10px;
+        }
         h1 {
-            font-family: 'Merriweather', serif; /* Editorial font */
-            font-size: 4rem; /* Adjust size as needed */
-            font-weight: 700; /* Bold style */
-            text-align: center; /* Center the title */
-            color: #000; /* Black color */
-            letter-spacing: 1px; /* Optional: letter spacing for an editorial feel */
-            text-transform: uppercase; /* Optional: capitalizing the title */
-            margin-top: 50px;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        nav {
+            margin-top: 10px;
+        }
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        #hero {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+        }
+        #services {
+            margin-top: 20px;
+        }
+        article {
+            padding: 15px;
+            border-bottom: 1px solid black;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            border-top: 2px solid black;
+            padding-top: 10px;
         }
     </style>
 </head>
 <body>
-    img {
-            width: 80%; /* Adjust image size as needed */
-            max-width: 600px; /* Optional: limits the size of the image */
-            margin-top: 20px; /* Space between the title and image */
-        }
-    </style>
-</head>
-<body>
+    <header>
+        <h1>WriteMySocials</h1>
+        <nav>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+            <a href="https://instagram.com/writemysocials" target="_blank">IG</a> /
+            <a href="https://tiktok.com/@writemysocials" target="_blank">TT</a>
+        </nav>
+    </header>
 
-    <h1>WriteMySocials</h1> <!-- Example Title -->
-    
-    <!-- Centered Image -->
-    <img src="https://github.com/CodeQueen1998/WriteMySocials/blob/main/Images/widget˚%20༘♡%20⋆%EF%BD%A1˚%20❀.jpeg" alt="Centered Image">
+    <main>
+        <section id="hero">
+            <h2>Strategic Branding & Marketing for Premium Brands</h2>
+            <p>A boutique agency specializing in brand identity, creative direction, and high-end marketing strategy.</p>
+        </section>
 
+        <section id="services">
+            <h2>Our Services</h2>
+            <article>
+                <h3>Brand Identity & Strategy</h3>
+                <p>We create powerful brand foundations through strategy, logo design, typography, and competitive analysis.</p>
+            </article>
+            <article>
+                <h3>Creative Direction & Content Strategy</h3>
+                <p>We craft compelling brand narratives and visual storytelling through high-end creative direction.</p>
+            </article>
+            <article>
+                <h3>High-End Marketing Strategy</h3>
+                <p>Advanced marketing plans, influencer collaborations, and high-converting sales funnels.</p>
+            </article>
+        </section>
+    </main>
 
-    <h1>WriteMySocials</h1> <!-- Example Title -->
-
+    <footer>
+        <p>&copy; 2024 WriteMySocials | All Rights Reserved</p>
+    </footer>
 </body>
 </html>
+
