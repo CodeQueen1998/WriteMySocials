@@ -4,31 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WriteMySocials</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         body {
-            font-family: Georgia, serif;
-            background-color: #f5f5f5;
-            color: #333;
-            max-width: 800px;
+            font-family: 'Times New Roman', serif;
+            background-color: white;
+            color: black;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
-            line-height: 1.6;
+            line-height: 1.8;
+            border-left: 5px solid black;
+            border-right: 5px solid black;
         }
         header {
             text-align: center;
-            border-bottom: 2px solid black;
+            border-bottom: 3px double black;
             padding-bottom: 10px;
         }
         h1 {
-            font-size: 2.5em;
+            font-size: 3em;
             font-weight: bold;
+            text-transform: uppercase;
         }
         nav {
             margin-top: 10px;
         }
         nav a {
-            margin: 0 10px;
+            margin: 0 15px;
             text-decoration: none;
             color: black;
             font-weight: bold;
@@ -37,22 +40,44 @@
             text-align: center;
             margin-top: 20px;
             padding: 20px;
-            border-top: 2px solid black;
-            border-bottom: 2px solid black;
+            border-top: 3px double black;
+            border-bottom: 3px double black;
+            font-style: italic;
         }
         #services {
             margin-top: 20px;
+            padding: 10px;
         }
         article {
             padding: 15px;
             border-bottom: 1px solid black;
         }
+        article h3 {
+            text-transform: uppercase;
+        }
         footer {
             text-align: center;
             margin-top: 20px;
             font-size: 0.9em;
-            border-top: 2px solid black;
+            border-top: 3px double black;
             padding-top: 10px;
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #d3d3d3;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: black;
+        }
+        .social-icons {
+            margin-top: 10px;
+        }
+        .social-icons a {
+            color: black;
+            margin: 0 10px;
+            font-size: 1.5em;
         }
     </style>
 </head>
@@ -62,9 +87,11 @@
         <nav>
             <a href="#services">Services</a>
             <a href="#contact">Contact</a>
-            <a href="https://instagram.com/writemysocials" target="_blank">IG</a> /
-            <a href="https://tiktok.com/@writemysocials" target="_blank">TT</a>
         </nav>
+        <div class="social-icons">
+            <a href="https://instagram.com/writemysocials" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://tiktok.com/@writemysocials" target="_blank"><i class="fab fa-tiktok"></i></a>
+        </div>
     </header>
 
     <main>
@@ -95,4 +122,3 @@
     </footer>
 </body>
 </html>
-
