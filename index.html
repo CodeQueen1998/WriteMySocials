@@ -6,113 +6,73 @@
     <title>WriteMySocials</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
+        /* General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Background Setup */
         body {
             font-family: 'Playfair Display', serif;
-            background-image: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Brown%20Modern%20Fashion%20Newspaper%20Blog%20post%20Pinterest%20Pin%20.png');
-            background-size: 100% 100%;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            color: black;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.8;
+            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Brown%20Modern%20Fashion%20Newspaper%20Blog%20post%20Pinterest%20Pin%20.png') no-repeat center center fixed;
+            background-size: cover;
+            width: 100%;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: black;
         }
+
+        /* Header */
         header {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
-            padding-bottom: 10px;
-            position: relative;
+            position: absolute;
+            top: 20px;
         }
+
         .social-icons {
             position: absolute;
-            left: 10px;
+            left: 20px;
             display: flex;
             gap: 15px;
         }
+
         .social-icons a {
             font-size: 24px;
             color: black;
             text-decoration: none;
         }
+
         .logo {
-            max-width: 280px;
-            display: block;
+            max-width: 250px;
         }
-        h1 {
-            display: none;
-        }
-        nav {
-            margin-top: 10px;
-        }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-        }
-        #hero {
-            text-align: center;
-            margin-top: 20px;
-            padding: 20px;
-            font-style: italic;
-            width: 100%;
-            font-size: 1.2em;
-        }
-        #services, #about {
-            margin-top: 20px;
-            padding: 10px;
-            width: 100%;
-        }
-        article {
-            padding: 15px;
-        }
-        article h3 {
-            text-transform: uppercase;
-            font-weight: bold;
-        }
+
+        /* Marquee Section */
         .marquee-container {
-            width: 100%;
+            width: 80%;
+            margin-top: 20px;
             overflow: hidden;
-            margin: 20px 0;
+            position: absolute;
+            bottom: 20px;
         }
+
         .marquee-container marquee img {
             width: 100%;
             display: block;
         }
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.9em;
-            padding-top: 10px;
-            width: 100%;
-        }
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f5c6dc;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #f5c6dc;
-        }
-        .about-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .about-container img {
-            max-width: 200px;
-        }
     </style>
 </head>
 <body>
+
+    <!-- Header with Social Icons -->
     <header>
         <div class="social-icons">
             <a href="https://instagram.com/writemysocials" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -121,57 +81,13 @@
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" class="logo">
     </header>
 
-    <nav>
-        <a href="#services">Services</a>
-        <a href="#about">About Me</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <!-- Marquee Section -->
+    <div class="marquee-container">
+        <marquee behavior="scroll" direction="left" scrollamount="6" loop="infinite">
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image">
+        </marquee>
+    </div>
 
-    <main>
-        <section id="hero">
-            <h2>Realise. Rebel. Revolutionise.</h2>
-            <p>Inspired by the French Revolution, my branding philosophy follows three key steps:<br>
-            1️⃣ **Realise** - Understand your brand’s true essence and audience.<br>
-            2️⃣ **Rebel** - Break free from outdated marketing norms.<br>
-            3️⃣ **Revolutionise** - Transform your brand into an industry leader.</p>
-        </section>
-
-        <div class="marquee-container">
-            <marquee behavior="scroll" direction="left" scrollamount="6" loop="infinite">
-                <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image">
-            </marquee>
-        </div>
-
-        <section id="services">
-            <h2>Our Services</h2>
-            <article>
-                <h3>Brand Identity & Strategy</h3>
-                <p>We create powerful brand foundations through strategy, logo design, typography, and competitive analysis.</p>
-            </article>
-            <article>
-                <h3>Creative Direction & Content Strategy</h3>
-                <p>We craft compelling brand narratives and visual storytelling through high-end creative direction.</p>
-            </article>
-            <article>
-                <h3>High-End Marketing Strategy</h3>
-                <p>Advanced marketing plans, data-driven campaigns, and strategic brand positioning to drive measurable success.</p>
-            </article>
-        </section>
-
-        <section id="about">
-            <h2>About Me</h2>
-            <div class="about-container">
-                <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Untitled%20design.jpg" alt="About Me">
-                <p>With a background in English Literature, I developed a deep understanding of storytelling, persuasion, and communication. Over the years, I transitioned into marketing, where my skills in writing, organisation, and strategy allowed me to craft compelling brand narratives that drive success. From high-level strategy to execution, I bring creativity, precision, and years of experience to help brands stand out and make an impact.</p>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 WriteMySocials | All Rights Reserved</p>
-    </footer>
 </body>
 </html>
-
-
 
