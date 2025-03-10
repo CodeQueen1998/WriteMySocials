@@ -23,63 +23,124 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             text-align: center;
             color: black;
+            padding: 40px 20px;
         }
 
-        /* Header */
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            position: absolute;
-            top: 20px;
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e8d8c3;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #bfa88a;
         }
 
+        /* Social Icons */
         .social-icons {
             position: absolute;
+            top: 20px;
             left: 20px;
             display: flex;
-            gap: 15px;
+            gap: 10px;
         }
 
         .social-icons a {
-            font-size: 24px;
+            font-size: 20px;
             color: black;
             text-decoration: none;
         }
 
+        /* Logo */
         .logo {
-            max-width: 250px;
+            max-width: 300px;
+            margin-top: 10px;
+        }
+
+        /* Services Description */
+        .description {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            max-width: 700px;
+            margin-top: 20px;
+            line-height: 1.8;
         }
 
         /* Marquee Section */
         .marquee-container {
-            width: 80%;
-            margin-top: 20px;
-            overflow: hidden;
             position: absolute;
             bottom: 20px;
+            left: 10px;
+            width: 200px;
+            overflow: hidden;
         }
 
         .marquee-container marquee img {
             width: 100%;
             display: block;
         }
+
+        /* About Section */
+        .about {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            max-width: 900px;
+            margin-top: 40px;
+        }
+
+        .about img {
+            max-width: 180px;
+            margin-right: 20px;
+        }
+
+        .about-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1.8;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Header with Social Icons -->
-    <header>
-        <div class="social-icons">
-            <a href="https://instagram.com/writemysocials" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://tiktok.com/@writemysocials" target="_blank"><i class="fab fa-tiktok"></i></a>
+    <!-- Social Icons -->
+    <div class="social-icons">
+        <a href="https://instagram.com/writemysocials" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://tiktok.com/@writemysocials" target="_blank"><i class="fab fa-tiktok"></i></a>
+    </div>
+
+    <!-- Logo -->
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/ede3e85d-6195-48cc-85dd-df8ccae8b40f.png" alt="WriteMySocials Logo" class="logo">
+
+    <!-- Services Description -->
+    <div class="description">
+        OUR SERVICES <br>
+        BRAND IDENTITY & STRATEGY <br>
+        WE CREATE POWERFUL BRAND FOUNDATIONS THROUGH STRATEGY, LOGO DESIGN, TYPOGRAPHY, AND COMPETITIVE ANALYSIS. <br><br>
+        CREATIVE DIRECTION & CONTENT STRATEGY <br>
+        WE CRAFT COMPELLING BRAND NARRATIVES AND VISUAL STORYTELLING THROUGH HIGH-END CREATIVE DIRECTION. <br><br>
+        HIGH-END MARKETING STRATEGY <br>
+        ADVANCED MARKETING PLANS, DATA-DRIVEN CAMPAIGNS, AND STRATEGIC BRAND POSITIONING TO DRIVE MEASURABLE SUCCESS.
+    </div>
+
+    <!-- About Section -->
+    <div class="about">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Untitled%20design.png" alt="Siyana Deveaux">
+        <div class="about-text">
+            MEET SIYANA DEVEAUX <br><br>
+            WITH A BACKGROUND IN ENGLISH LITERATURE, I DEVELOPED A DEEP UNDERSTANDING OF STORYTELLING, PERSUASION, AND COMMUNICATION. <br><br>
+            OVER THE YEARS, I TRANSITIONED INTO MARKETING, WHERE MY SKILLS IN WRITING, ORGANISATION, AND STRATEGY ALLOWED ME TO CRAFT COMPELLING BRAND NARRATIVES THAT DRIVE SUCCESS. <br><br>
+            FROM HIGH LEVEL STRATEGY TO EXECUTION, I BRING CREATIVITY, PRECISION, AND YEARS OF EXPERIENCE TO HELP BRANDS STAND OUT AND MAKE AN IMPACT.
         </div>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" class="logo">
-    </header>
+    </div>
 
     <!-- Marquee Section -->
     <div class="marquee-container">
@@ -90,4 +151,5 @@
 
 </body>
 </html>
+
 
