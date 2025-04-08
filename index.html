@@ -56,28 +56,10 @@
             margin-top: 10px;
         }
 
-        .description {
-            font-size: 20px;
-            font-weight: bold;
-            text-transform: uppercase;
-            max-width: 700px;
-            margin-top: 20px;
-            line-height: 1.8;
-        }
-
-        .services {
-            font-size: 22px;
-            margin-top: 30px;
-            max-width: 800px;
-            text-transform: uppercase;
-            font-weight: bold;
-            line-height: 1.6;
-        }
-
         .marquee-container {
-            margin-top: 40px;
-            width: 80%;
-            overflow: hidden;
+            position: relative;
+            margin-top: 30px;
+            width: 60%;
         }
 
         .marquee-container marquee img {
@@ -85,45 +67,85 @@
             display: block;
         }
 
-        .about {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: left;
-            max-width: 900px;
+        .services {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
             margin-top: 40px;
+            max-width: 700px;
+            border-radius: 12px;
+            text-align: left;
         }
 
-        .about img {
-            max-width: 180px;
-            margin-right: 20px;
-        }
-
-        .about-text {
-            font-size: 18px;
+        .services h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
             font-weight: bold;
-            line-height: 1.8;
-            text-transform: uppercase;
         }
+
+        .services h3 {
+            font-size: 24px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .services ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .services li {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
     </style>
 </head>
 <body>
+
+    <!-- Social Icons -->
     <div class="social-icons">
         <a href="https://instagram.com/writemysocials" target="_blank"><i class="fab fa-instagram"></i></a>
         <a href="https://tiktok.com/@writemysocials" target="_blank"><i class="fab fa-tiktok"></i></a>
     </div>
 
+    <!-- Logo -->
     <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/ede3e85d-6195-48cc-85dd-df8ccae8b40f.png" alt="WriteMySocials Logo" class="logo">
 
-    <div class="services">
-        Copywriting (Email Marketing, Product Descriptions, etc) • Content Creation • Events Coordination
-    </div>
-
+    <!-- Marquee Section -->
     <div class="marquee-container">
-        <marquee behavior="scroll" direction="left" scrollamount="6" loop="infinite">
+        <marquee behavior="scroll" direction="left" scrollamount="6">
             <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image">
         </marquee>
     </div>
+
+    <!-- Services Section -->
+    <div class="services">
+        <h2>Services:</h2>
+
+        <h3>Copywriting:</h3>
+        <ul>
+            <li>Email Marketing</li>
+            <li>Slogans & Branding</li>
+            <li>Product Descriptions</li>
+            <li>Website Copy</li>
+        </ul>
+
+        <h3>Content Creation:</h3>
+        <ul>
+            <li>User-Generated Content (UGC)</li>
+            <li>Instagram & TikTok Management</li>
+            <li>Content Calendar Planning</li>
+        </ul>
+
+        <h3>Event Coordination:</h3>
+        <ul>
+            <li>Event Planning & Management</li>
+            <li>Brand Activations</li>
+            <li>Creative Logistics & Run-of-Show</li>
+        </ul>
+    </div>
+
 </body>
 </html>
 
