@@ -5,61 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WriteMySocials</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* General Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Body Styling */
         body {
-            font-family: 'Libre Baskerville', serif;
+            font-family: 'Cormorant Garamond', serif;
             background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Browodern%20Fashion%20Newspaper%20Blog%20post%20Pinterest%20Pin%20.png') no-repeat center center fixed;
             background-size: cover;
             color: black;
-            padding: 40px 20px;
+            padding: 20px;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
-            min-height: 100vh;
-        }
-<!-- Playfair Display + Cormorant Garamond -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
-
-<style>
-  /* Headlines: Playfair Display */
-  h1, h2, h3 {
-    font-family: 'Playfair Display', serif;
-  }
-
-  /* Body: Cormorant Garamond */
-  body, p, ul, li, a, span {
-    font-family: 'Cormorant Garamond', serif;
-  }
-</style>
-
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #e8d8c3;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #bfa88a;
         }
 
-        /* Social Icons */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
         .social-icons {
-            position: absolute;
+            position: fixed;
             top: 20px;
             left: 20px;
             display: flex;
             gap: 10px;
+            z-index: 1000;
         }
 
         .social-icons a {
@@ -68,41 +44,33 @@
             text-decoration: none;
         }
 
-        /* Logo */
         .logo {
-            max-width: 300px;
-            margin-top: 10px;
+            width: 180px;
+            margin: 40px auto 20px;
+            display: block;
         }
 
-        /* Marquee Section */
         .marquee-container {
             overflow: hidden;
-            white-space: nowrap;
-            position: relative;
-            width: 100%;
-            margin: 30px 0;
+            width: 90%;
+            margin: 20px auto;
         }
 
         .marquee-content {
             display: inline-block;
-            animation: marquee 10s linear infinite;
+            white-space: nowrap;
+            animation: marquee 15s linear infinite;
         }
 
         .marquee-content img {
-            width: 100%;
-            display: inline-block;
+            height: 100px;
         }
 
         @keyframes marquee {
-            from {
-                transform: translateX(100%);
-            }
-            to {
-                transform: translateX(-100%);
-            }
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
-        /* Services Section */
         .services {
             background: rgba(255, 255, 255, 0.8);
             padding: 30px;
@@ -135,27 +103,35 @@
             margin-bottom: 10px;
         }
 
-<!-- Playfair Display + Cormorant Garamond -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+        .story {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 20px;
+            margin-top: 20px;
+            max-width: 700px;
+            border-radius: 12px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="social-icons">
+        <a href="https://instagram.com/writemysocials" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://tiktok.com/@writemysocials" target="_blank"><i class="fab fa-tiktok"></i></a>
+    </div>
 
-<style>
-  /* Headlines: Playfair Display */
-  h1, h2, h3 {
-    font-family: 'Playfair Display', serif;
-  }
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/ede3e85d-6195-48cc-85dd-df8ccae8b40f.png" alt="WriteMySocials Logo" class="logo">
 
-  /* Body: Cormorant Garamond */
-  body, p, ul, li, a, span {
-    font-family: 'Cormorant Garamond', serif;
-  }
-</style>
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image">
+        </div>
+    </div>
 
+    <div class="story">
+        <h3>My Story in Digital Marketing</h3>
+        <p>When I moved to London the business culture weaved into a modern generation. Yet it whispered the echoes of the 1800s hustlers who didn't stand a chance, and yanked their bread just to be sent away in chains for crimes they could never deem as unfair.</p>
+    </div>
 
-
-
-
-    
-    <!-- Services Section -->
     <div class="services">
         <h2>Services:</h2>
 
@@ -181,34 +157,6 @@
             <li>Creative Logistics & Run-of-Show</li>
         </ul>
     </div>
-
-    </style>
-</head>
-<body>
-
-    <!-- Social Icons -->
-    <div class="social-icons">
-        <a href="https://instagram.com/writemysocials" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://tiktok.com/@writemysocials" target="_blank"><i class="fab fa-tiktok"></i></a>
-    </div>
-
-    <!-- Logo -->
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/ede3e85d-6195-48cc-85dd-df8ccae8b40f.png" alt="WriteMySocials Logo" class="logo">
-
-    <!-- Marquee Section -->
-    <div class="marquee-container">
-        <div class="marquee-content">
-            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image">
-        </div>
-    </div>
-
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg"> 
-<H3> My Story in Digital Marketing </H3>
-<p> When I moved to London the business culture weaved into a modern generation. Yet it whispered the echoes of the 1800s hustlers who didn't stand a chance, and yanked their bread
-just to be sent away in chains for crimes they could never deem as unfair. </p>
-
 </body>
 </html>
-
-
 
