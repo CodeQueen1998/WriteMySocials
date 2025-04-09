@@ -13,6 +13,10 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            overflow-x: hidden;
+        }
+
         body {
             font-family: 'Cormorant Garamond', serif;
             background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Browodern%20Fashion%20Newspaper%20Blog%20post%20Pinterest%20Pin%20.png') no-repeat center center fixed;
@@ -85,21 +89,22 @@
         }
 
         .marquee-container {
-            width: 100vw;
+            width: 100%;
             overflow: hidden;
             white-space: nowrap;
             padding: 0;
             margin-top: 5px;
+            position: relative;
         }
 
         .marquee-content {
-            display: inline-block;
-            animation: marquee 30s linear infinite;
+            display: flex;
+            gap: 50px;
+            animation: marquee 20s linear infinite;
         }
 
         .marquee-content img {
             height: 200px;
-            margin: 0 25px;
             vertical-align: middle;
         }
 
@@ -169,6 +174,7 @@
     <div class="marquee-container">
         <div class="marquee-content">
             <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image">
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image Repeat">
         </div>
     </div>
 
@@ -204,3 +210,4 @@
     </div>
 </body>
 </html>
+
