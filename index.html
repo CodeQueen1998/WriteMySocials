@@ -68,23 +68,22 @@
         }
 
         .marquee-container {
+            width: 100vw;
             overflow: hidden;
-            position: relative;
-            width: 100%;
-            margin: 30px auto;
+            white-space: nowrap;
             background: rgba(255,255,255,0.8);
-            padding: 10px 0;
+            padding: 20px 0;
         }
 
         .marquee-content {
-            display: flex;
-            width: max-content;
-            animation: marquee 20s linear infinite;
+            display: inline-block;
+            animation: marquee 30s linear infinite;
         }
 
         .marquee-content img {
-            height: 150px;
-            margin-right: 50px;
+            height: 200px;
+            margin: 0 25px;
+            vertical-align: middle;
         }
 
         @keyframes marquee {
@@ -132,6 +131,8 @@
 
     <div class="marquee-container">
         <div class="marquee-content">
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image">
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image">
             <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image">
             <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image">
             <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image">
