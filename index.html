@@ -20,19 +20,26 @@
             color: black;
             padding: 40px 20px;
             min-height: 100vh;
-            text-align: center;
         }
 
         h1, h2, h3 {
             font-family: 'Playfair Display', serif;
         }
 
+        .top-bar {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .logo {
+            max-width: 150px;
+        }
+
         .social-icons {
-            position: absolute;
-            top: 20px;
-            left: 20px;
             display: flex;
             gap: 10px;
+            margin-top: 10px;
         }
 
         .social-icons a {
@@ -41,42 +48,29 @@
             text-decoration: none;
         }
 
-        .logo {
-            max-width: 200px;
-            margin: 20px auto;
-            display: block;
+        .main-section {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px auto;
+            max-width: 900px;
         }
 
-        .marquee-container {
-            overflow: hidden;
-            white-space: nowrap;
-            position: relative;
-            width: 90%;
-            margin: 30px auto;
+        .main-section img {
+            width: 100%;
+            max-width: 400px;
         }
 
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 10s linear infinite;
+        .story-section {
+            font-family: 'Cormorant Garamond', serif;
+            max-width: 500px;
         }
 
-        .marquee-content img {
-            height: 100px;
-            display: inline-block;
-        }
-
-        @keyframes marquee {
-            from { transform: translateX(100%); }
-            to { transform: translateX(-100%); }
-        }
-
-        .services, .story-section {
-            background: rgba(255, 255, 255, 0.85);
-            padding: 30px;
-            margin: 30px auto;
-            max-width: 700px;
-            border-radius: 12px;
-            text-align: left;
+        .services {
+            font-family: 'Cormorant Garamond', serif;
+            margin: 40px auto;
+            max-width: 800px;
         }
 
         .services h2, .services h3 {
@@ -95,24 +89,20 @@
     </style>
 </head>
 <body>
-    <div class="social-icons">
-        <a href="https://instagram.com/writemysocials" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://tiktok.com/@writemysocials" target="_blank"><i class="fab fa-tiktok"></i></a>
-    </div>
-
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/ede3e85d-6195-48cc-85dd-df8ccae8b40f.png" alt="WriteMySocials Logo" class="logo">
-
-    <div class="marquee-container">
-        <div class="marquee-content">
-            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image">
+    <div class="top-bar">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/ede3e85d-6195-48cc-85dd-df8ccae8b40f.png" alt="WriteMySocials Logo" class="logo">
+        <div class="social-icons">
+            <a href="https://instagram.com/writemysocials" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://tiktok.com/@writemysocials" target="_blank"><i class="fab fa-tiktok"></i></a>
         </div>
     </div>
 
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg" style="width: 100%; max-width: 700px; margin: 20px auto; display: block;">
-
-    <div class="story-section">
-        <h3>My Story in Digital Marketing</h3>
-        <p>When I moved to London the business culture weaved into a modern generation. Yet it whispered the echoes of the 1800s hustlers who didn't stand a chance, and yanked their bread just to be sent away in chains for crimes they could never deem as unfair.</p>
+    <div class="main-section">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg" alt="Heya Image">
+        <div class="story-section">
+            <h3>My Story in Digital Marketing</h3>
+            <p>When I moved to London the business culture weaved into a modern generation. Yet it whispered the echoes of the 1800s hustlers who didn't stand a chance, and yanked their bread just to be sent away in chains for crimes they could never deem as unfair.</p>
+        </div>
     </div>
 
     <div class="services">
