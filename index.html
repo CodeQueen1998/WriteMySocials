@@ -52,14 +52,14 @@
             display: flex;
             align-items: flex-start;
             justify-content: center;
-            gap: 60px;
+            gap: 80px;
             margin: 40px auto;
-            max-width: 1100px;
+            max-width: 1200px;
         }
 
         .main-section img {
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
         }
 
         .story-section {
@@ -69,25 +69,27 @@
 
         .marquee-container {
             overflow: hidden;
-            white-space: nowrap;
             position: relative;
-            width: 90%;
+            width: 100%;
             margin: 30px auto;
+            background: rgba(255,255,255,0.8);
+            padding: 10px 0;
         }
 
         .marquee-content {
-            display: inline-block;
-            animation: marquee 10s linear infinite;
+            display: flex;
+            width: max-content;
+            animation: marquee 20s linear infinite;
         }
 
         .marquee-content img {
-            height: 100px;
-            display: inline-block;
+            height: 150px;
+            margin-right: 50px;
         }
 
         @keyframes marquee {
-            from { transform: translateX(100%); }
-            to { transform: translateX(-100%); }
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
         .services {
@@ -131,6 +133,9 @@
     <div class="marquee-container">
         <div class="marquee-content">
             <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image">
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image">
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image">
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image">
         </div>
     </div>
 
@@ -161,4 +166,3 @@
     </div>
 </body>
 </html>
-
