@@ -3,31 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Write My Socials</title>
+  <title>Full Image Website</title>
   <style>
-    * {
+    html, body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
       height: 100%;
       width: 100%;
-      overflow: hidden;
-      background-color: black;
     }
-    .full-page-img {
-      width: 100vw;
-      height: 100vh;
-      background-image: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Black%20and%20White%20Vintage%20Newspaper%20Motivational%20Quote%20Poster.png');
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
+
+    body {
+      background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Untitled%20design.png') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="full-page-img"></div>
 </body>
 </html>
 
