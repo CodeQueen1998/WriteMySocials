@@ -1,210 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <h1>I'm Not Just Any Copywriter, I'm an Award Winning Storyteller</h1>
-
-        <br></br>
-
-
-
-    <div class="marquee-container">
-        <div class="marquee-content">
-            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image">
-            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Marquee Image Repeat">
-        </div>
-    </div>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WriteMySocials</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            overflow-x: hidden;
-        }
-
-        body {
-            font-family: 'Cormorant Garamond', serif;
-            background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Browodern%20Fashion%20Newspaper%20Blog%20post%20Pinterest%20Pin%20.png') no-repeat center center fixed;
-            background-size: cover;
-            color: black;
-            padding: 40px 20px;
-            min-height: 100vh;
-        }
-
-        h1, h2, h3, h5 {
-            font-family: 'Playfair Display', serif;
-            text-align: center;
-        }
-
-        .top-bar {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-        }
-
-        .logo {
-            max-width: 150px;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .social-icons a {
-            font-size: 20px;
-            color: black;
-            text-decoration: none;
-        }
-
-        .main-section-inner {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 40px auto;
-            max-width: 1200px;
-            gap: 40px;
-        }
-
-        .main-section-inner img {
-            width: 100%;
-            max-width: 900px;
-        }
-
-        .story-section {
-            max-width: 500px;
-            text-align: left;
-            margin-left: 60px;
-        }
-
-        @media (min-width: 768px) {
-            .main-section-inner {
-                flex-direction: row;
-                align-items: flex-start;
-                text-align: left;
-            }
-        }
-
-        .marquee-title {
-            font-family: 'Playfair Display', serif;
-            text-align: center;
-            margin: 10px auto 0;
-        }
-
-        .marquee-container {
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            padding: 0;
-            margin-top: 5px;
-            position: relative;
-        }
-
-        .marquee-content {
-            display: flex;
-            gap: 50px;
-            animation: marquee 20s linear infinite;
-        }
-
-        .marquee-content img {
-            height: 200px;
-            vertical-align: middle;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        .services {
-            margin: 40px auto;
-            max-width: 800px;
-            text-align: center;
-        }
-
-        .services h3 {
-            margin-top: 30px;
-            margin-bottom: 10px;
-        }
-
-        .services ul {
-            list-style-type: disc;
-            padding-left: 0;
-            margin-bottom: 20px;
-            display: inline-block;
-            text-align: left;
-        }
-
-        .services li {
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-
-        .calendly-section {
-            text-align: center;
-            margin-top: 60px;
-        }
-
-        .calendly-section iframe {
-            width: 100%;
-            height: 700px;
-            max-width: 800px;
-            border: none;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Brand - Copywriting for Feminine Brands</title>
+  <style>
+    /* Embedded CSS */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+      color: #333;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    header {
+      background: #f8cdda; /* soft feminine pink */
+      padding: 20px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 28px;
+      color: #5a2a5a;
+      letter-spacing: 1.2px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    nav {
+      background: #f4e1f4;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px 10px;
+      font-weight: 600;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 72px; /* header height + some */
+      z-index: 999;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    nav a {
+      color: #5a2a5a;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+    }
+    nav a:hover,
+    nav a.active {
+      background-color: #d97ecb;
+      color: white;
+    }
+    .container {
+      max-width: 900px;
+      margin: 80px auto 60px;
+      padding: 0 20px;
+    }
+    h1, h2 {
+      color: #5a2a5a;
+      margin-bottom: 15px;
+    }
+    section {
+      margin-bottom: 60px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    .review {
+      background: #fff0f6;
+      border-left: 4px solid #d97ecb;
+      padding: 15px 20px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      font-style: italic;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #f8cdda;
+      color: #5a2a5a;
+      font-size: 14px;
+      margin-top: 60px;
+    }
+    /* Form styles */
+    form label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #5a2a5a;
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1.8px solid #d97ecb;
+      border-radius: 6px;
+      font-size: 16px;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      border-color: #a653a6;
+      outline: none;
+    }
+    button {
+      padding: 12px 25px;
+      background: #d97ecb;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 16px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background: #a653a6;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      nav {
+        gap: 15px;
+      }
+      header {
+        font-size: 24px;
+      }
+      .container {
+        margin: 60px 15px 40px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="top-bar">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/ede3e85d-6195-48cc-85dd-df8ccae8b40f.png" alt="WriteMySocials Logo" class="logo">
-        <div class="social-icons">
-            <a href="https://instagram.com/writemysocials" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://tiktok.com/@writemysocials" target="_blank"><i class="fab fa-tiktok"></i></a>
-        </div>
-    </div>
 
-    <h3>Transforming Your Brand’s Narrative Into A Best Seller</h3>
+  <header>Your Brand</header>
 
-    <div class="main-section-inner">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg" alt="Heya Image">
-        <div class="story-section">
-            <br><h3>My Story in Digital Marketing</h3></br>
-            <p>When I moved to London to notice, the business culture woven into a modern generation. Yet it whispered the echoes of the 1800s hustlers who didn't stand a chance. They yanked their bread, just to be sent away in chains for crimes they could never deem as unfair.
-                <br>
-                    <br>
-                  
-            That was when I stood alone in Picadilly Circus feeling the wild, young and free whispers of a new revolution. WriteMySocials was born with passion. To tell stories, connect with culture and win hearts.
-                    
-                    <br> We don't just write, we weave our stories into human existence. We hear the bleeding crowds and feed their broken souls with pillars of love. We turn Stories into Strategy. Culture into Content. And Pain into Power. So that they know... They're not bleeding alone. </br>
-            </p>
-        </div>
-    </div>
+  <nav>
+    <a href="#about" class="active">About Us</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact Us</a>
+  </nav>
 
+  <div class="container">
+    <section id="about">
+      <h1>About Us</h1>
+      <p>Welcome to Your Brand! We specialize in helping feminine brands, beauty, skincare, fashion, and fitness businesses connect deeply with their audience through powerful, authentic copywriting.</p>
+      <p>Our mission is to empower women entrepreneurs by crafting compelling messages that convert browsers into loyal customers.</p>
+    </section>
 
-    <div class="services">
-        <h2>Services:</h2>
+    <section id="services">
+      <h2>Our Services</h2>
+      <ul>
+        <li>Sales Pages & Landing Pages</li>
+        <li>Email Marketing Campaigns</li>
+        <li>Product Descriptions</li>
+        <li>Website Copywriting</li>
+        <li>Social Media Content & Captions</li>
+        <li>Brand Voice & Messaging Development</li>
+      </ul>
 
-        <h3>Copywriting:</h3>
-        <ul>
-            <li>Email Marketing</li>
-            <li>Slogans & Branding</li>
-            <li>Product Descriptions</li>
-            <li>Website Copy</li>
-       
+      <h2>What Clients Say</h2>
+      <div class="review">
+        <p>“Your Brand helped us triple our email sales! Their copy nailed our feminine vibe perfectly.” — Sarah L., Skincare Founder</p>
+      </div>
+      <div class="review">
+        <p>“I was struggling with my website copy, and their team transformed it into something truly magnetic.” — Maya T., Fitness Coach</p>
+      </div>
+      <div class="review">
+        <p>“Their product descriptions increased our conversion rate by 25%. Highly recommend!” — Emma R., Makeup Brand Owner</p>
+      </div>
+    </section>
 
-    <div class="calendly-section">
-        <h2>Espresso Crunch Consult (Free Session With Me)</h2>
-        <iframe src="https://calendly.com/siyana-de98/30min" frameborder="0"></iframe>
-    </div>
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>Ready to take your brand's copy to the next level? Reach out!</p>
+
+      <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </div>
+
+  <footer>© 2025 Your Brand. All rights reserved.</footer>
+
+  <script>
+    // Highlight nav links on scroll
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll("nav a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 100;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
-
