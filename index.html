@@ -22,53 +22,62 @@
     text-decoration: none;
   }
   a:hover {
-    color: #ff0050; /* stylish pinkish hover */
+    color: #ff0050;
   }
 
-  /* Loading Screen */
+  /* Loading Screen: full black initially */
   #loading-screen {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: #fff;
+    background: #000;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 1000;
   }
+  #loading-screen img,
+  #loading-text {
+    opacity: 0;
+    color: #fff;
+    font-family: 'Didot', Georgia, serif;
+    font-weight: 500;
+  }
   #loading-screen img {
     width: 200px;
     margin-bottom: 20px;
-    opacity: 0;
-    animation: fadeIn 0.4s ease forwards;
+    transition: opacity 0.6s ease;
   }
   #loading-text {
-    font-family: 'Didot', Georgia, serif;
     font-size: 1.5rem;
-    font-weight: 500;
-    opacity: 0;
-    animation: fadeIn 0.4s ease forwards;
-    animation-delay: 0.4s;
+    transition: opacity 0.6s ease;
   }
 
-  @keyframes fadeIn {
-    to {opacity: 1;}
+  /* Show elements with fade-in */
+  #loading-screen.show-logo img.visible,
+  #loading-screen.show-text #loading-text.visible {
+    opacity: 1;
   }
 
-  /* Hide loading after animation */
+  /* Hide loading screen after all done */
   body.loaded #loading-screen {
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.5s ease;
+    transition: opacity 1s ease;
   }
 
-  /* Layout container */
+  /* Main container hidden initially for fade-in */
   .container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     padding: 20px 40px;
     position: relative;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  body.content-visible .container {
+    opacity: 1;
   }
 
   /* Header with logo left, text right */
@@ -77,6 +86,11 @@
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 10px;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+  }
+  body.content-visible header {
+    opacity: 1;
   }
   .logo-section {
     display: flex;
@@ -107,6 +121,11 @@
     font-weight: 700;
     margin: 10px 0 20px 0;
     color: #222;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+  }
+  body.content-visible marquee {
+    opacity: 1;
   }
 
   /* Services text */
@@ -117,6 +136,11 @@
     max-width: 600px;
     margin: 0 auto 100px auto;
     white-space: pre-line;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+  }
+  body.content-visible .services {
+    opacity: 1;
   }
 
   /* Bottom story section */
@@ -127,6 +151,11 @@
     gap: 30px;
     max-width: 900px;
     margin-left: 0;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+  }
+  body.content-visible .story-section {
+    opacity: 1;
   }
   .story-text {
     max-width: 60%;
@@ -154,6 +183,11 @@
     gap: 25px;
     align-items: center;
     font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+  }
+  body.content-visible footer {
+    opacity: 1;
   }
   .cta-email {
     cursor: pointer;
@@ -232,7 +266,7 @@
   <div id="loading-text">Loading WriteMySocials...</div>
 </div>
 
-<div class="container">
+<div class="container" aria-hidden="true">
   <header>
     <div class="logo-section">
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" />
@@ -243,7 +277,9 @@
     </div>
   </header>
 
-  <marquee behavior="scroll" direction="left" scrollamount="8">Sydney's youngest copywriting agency</marquee>
+  <marquee behavior="scroll" direction="left" scrollamount="8" aria-label="Agency tagline">
+    Sydney's youngest copywriting agency
+  </marquee>
 
   <section class="services" aria-label="Services offered">
     <p>
@@ -282,7 +318,6 @@
         <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.75 2.25a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zm-4.25 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 2a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
       </a>
       <a href="https://tiktok.com/@writemysocials" target="_blank" rel="noopener noreferrer" aria-label="TikTok @writemysocials">
-        <!-- Official TikTok logo SVG -->
         <svg role="img" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg" width="28" height="28" >
           <title>TikTok</title>
           <path d="M12.002 1.001v6.438a4.497 4.497 0 0 1-4.496-4.496H7.506a6.494 6.494 0 0 0 4.496 6.493v6.443a4.49 4.49 0 1 1-4.49-4.49h-.002v-2.5a6.995 6.995 0 1 0 5.992-12.389z"/>
@@ -293,12 +328,38 @@
 </div>
 
 <script>
-  // Hide loading screen after short delay
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      document.body.classList.add('loaded');
-    }, 1200);
-  });
+  const loadingScreen = document.getElementById('loading-screen');
+  const loadingLogo = loadingScreen.querySelector('img');
+  const loadingText = document.getElementById('loading-text');
+  const body = document.body;
+
+  // Start with black screen and no visible elements
+  loadingLogo.classList.remove('visible');
+  loadingText.classList.remove('visible');
+
+  // After 2 seconds, show logo
+  setTimeout(() => {
+    loadingScreen.classList.add('show-logo');
+    loadingLogo.classList.add('visible');
+  }, 2000);
+
+  // After 2.8 seconds, show loading text
+  setTimeout(() => {
+    loadingScreen.classList.add('show-text');
+    loadingText.classList.add('visible');
+  }, 2800);
+
+  // After 3.6 seconds, fade out loading screen and fade in content step by step
+  setTimeout(() => {
+    body.classList.add('loaded');
+  }, 3600);
+
+  // Fade in main content with small stagger
+  setTimeout(() => {
+    body.classList.add('content-visible');
+    // Set aria-hidden false once visible
+    document.querySelector('.container').setAttribute('aria-hidden', 'false');
+  }, 4100);
 </script>
 
 </body>
