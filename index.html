@@ -3,48 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fade In Website</title>
+  <title>Coming Soon - WriteMySocials</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      width: 100%;
       overflow: hidden;
+      background-color: black;
     }
 
-    body {
-      background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Untitled%20design.png') no-repeat center center fixed;
-      background-size: cover;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-      }
-    }
-
-    .overlay {
+    #black-screen {
       position: fixed;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
       background-color: black;
-      animation: fadeOut 2s ease forwards;
       z-index: 10;
+      opacity: 1;
+      transition: opacity 1s ease-in-out;
     }
 
-    @keyframes fadeOut {
-      0% { opacity: 1; }
-      100% { opacity: 0; visibility: hidden; }
+    #main-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    #main-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      #main-content img {
+        object-fit: contain;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="overlay"></div>
+
+  <div id="black-screen"></div>
+
+  <div id="main-content">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/COMING%20SOON%20(1).png" alt="Coming Soon" />
+  </div>
+
+  <script>
+    setTimeout(() => {
+      document.getElementById('black-screen').style.opacity = '0';
+      document.getElementById('main-content').style.opacity = '1';
+      setTimeout(() => {
+        document.getElementById('black-screen').style.display = 'none';
+      }, 1000);
+    }, 2000);
+  </script>
+
 </body>
 </html>
 
