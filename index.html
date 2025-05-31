@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Vogue Style Interactive Letters</title>
+<title>Write My Socials Interactive</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
 
@@ -21,14 +21,17 @@
 
   .logo-text {
     display: flex;
-    font-size: 6rem;
+    font-size: 5rem;
     color: white;
     cursor: pointer;
+    flex-wrap: wrap;
+    max-width: 90vw;
+    justify-content: center;
   }
 
   .logo-text span {
     display: inline-block;
-    margin: 0 4px;
+    margin: 0 5px;
     animation: gentleBounce 1.5s ease-in-out infinite alternate;
     transform-origin: center bottom;
     transition: color 0.3s ease;
@@ -59,27 +62,32 @@
   .active {
     animation: jumpSpin 0.8s ease forwards;
   }
-
 </style>
 </head>
 <body>
 
 <div class="logo-text" id="logoText">
-  <!-- Separate letters wrapped in spans -->
-  <span>V</span><span>O</span><span>G</span><span>U</span><span>E</span>
+  <!-- Each letter separated, including spaces as &nbsp; -->
+  <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span>
+  <span>&nbsp;</span>
+  <span>M</span><span>y</span>
+  <span>&nbsp;</span>
+  <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
 </div>
 
 <script>
   const letters = document.querySelectorAll('#logoText span');
 
   letters.forEach(letter => {
+    // Only add interaction to actual letters, skip spaces
+    if (letter.textContent.trim() === '') return;
+
     letter.addEventListener('click', () => {
       if (letter.classList.contains('active')) return; // ignore if animating
 
       letter.classList.add('active');
       letter.style.animationIterationCount = '1';
 
-      // Remove active after animation ends so it can trigger again
       letter.addEventListener('animationend', () => {
         letter.classList.remove('active');
       }, { once: true });
@@ -89,4 +97,3 @@
 
 </body>
 </html>
-
