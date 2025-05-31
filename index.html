@@ -3,338 +3,355 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>WriteMySocials Animated Intro + Main</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:700&family=Pacifico&display=swap');
+<title>WriteMySocials</title>
 
-  /* Reset & base */
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Pacifico&display=swap" rel="stylesheet" />
+
+<style>
   * {
-    margin: 0; padding: 0; box-sizing: border-box;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
   }
   body, html {
     height: 100%;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Playfair Display', serif;
+    background: #fff;
+    color: #000;
     overflow-x: hidden;
   }
 
-  /* 1. Fullscreen black intro container */
-  #intro-screen {
+  /* Loading Screen */
+  #loading-screen {
     position: fixed;
-    inset: 0;
+    top:0; left:0; right:0; bottom:0;
     background: black;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     z-index: 9999;
+    flex-direction: column;
     user-select: none;
   }
 
-  /* 2. Logo text */
   #logo-text {
     font-family: 'Playfair Display', serif;
-    font-weight: 700;
+    font-weight: 900;
     font-size: 3rem;
     color: white;
-    cursor: pointer;
-    opacity: 0;
-    user-select: none;
-    perspective: 1000px;
+    display: flex;
+    gap: 0.1em;
   }
 
-  /* Spin animation */
-  @keyframes spinUp {
-    0% {
-      opacity: 0;
-      transform: rotateX(90deg) scale(0.7);
-    }
-    50% {
-      opacity: 1;
-      transform: rotateX(-15deg) scale(1.1);
-    }
-    100% {
-      opacity: 1;
-      transform: rotateX(0deg) scale(1);
-    }
+  #logo-text span {
+    display: inline-block;
+    animation-fill-mode: forwards;
   }
 
-  #logo-text.spin {
-    animation: spinUp 2s ease forwards;
+  /* Jump Animation - random delays and heights */
+  @keyframes jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
   }
 
-  /* 3. Neon marquee container */
+  /* Neon marquee container */
   #neon-marquee-container {
     position: fixed;
     top: 50%;
     left: 0;
     width: 100%;
-    height: 50px;
     overflow: hidden;
     background: black;
-    opacity: 0;
-    pointer-events: none;
+    height: 50px;
     user-select: none;
+    pointer-events: none;
     transform: translateY(-50%);
     z-index: 9998;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
 
-  /* Neon marquee text */
   #neon-marquee {
     display: inline-block;
     white-space: nowrap;
     font-size: 1.75rem;
-    font-weight: 600;
-    color: #ff0066;
+    font-weight: 700;
+    color: #ff3399;
     text-shadow:
       0 0 5px #ff3399,
       0 0 10px #ff3399,
       0 0 20px #ff66cc,
-      0 0 30px #ff66cc;
-    animation: marqueeScroll 5s linear forwards;
+      0 0 40px #ff66cc,
+      0 0 60px #ff66cc;
     user-select: none;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  @keyframes marqueeScroll {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
+  /* Marquee scroll left animation */
+  @keyframes marqueeScrollLeft {
+    0% { left: 50%; transform: translateX(-50%); }
+    100% { left: 0; transform: translateX(-100%); }
   }
 
-  /* 4. Main container hidden initially */
-  #main-content {
+  /* MAIN CONTENT container hidden initially */
+
+  .container {
     opacity: 0;
-    background: white;
-    min-height: 100vh;
-    padding: 40px 20px;
     transition: opacity 1s ease;
-    color: black;
-    font-family: Arial, sans-serif;
   }
-
-  #main-content.visible {
+  .container.visible {
     opacity: 1;
   }
 
-  /* Work samples marquee wrapper */
-  #work-samples-wrapper {
-    margin: 40px auto;
-    max-width: 80vw;
-    overflow: hidden;
-    user-select: none;
+  header {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding: 15px 20px;
   }
 
-  /* Work samples marquee scroll container */
+  nav.social-icons-top {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  nav.social-icons-top a svg {
+    fill: black;
+    width: 24px;
+    height: 24px;
+    transition: fill 0.3s ease;
+    cursor: pointer;
+  }
+  nav.social-icons-top a:hover svg {
+    fill: #ff3399;
+  }
+
+  /* Work Samples Marquee */
+  #work-samples-wrapper {
+    max-width: 100vw;
+    overflow: hidden;
+    margin: 40px auto 60px auto;
+  }
   #work-samples-marquee {
     display: flex;
     gap: 20px;
-    animation: scrollLeft 15s linear infinite;
-    will-change: transform;
+    width: max-content;
+    animation: scrollLeftInfinite 20s linear infinite;
+    justify-content: center;
+  }
+  @keyframes scrollLeftInfinite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 
-  @keyframes scrollLeft {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  /* Individual images */
   #work-samples-marquee img {
     width: 200px;
     height: 120px;
-    object-fit: cover;
     border-radius: 8px;
-    cursor: pointer;
+    object-fit: contain;
     transition: transform 0.3s ease;
+    cursor: pointer;
   }
-
   #work-samples-marquee img:hover {
-    transform: scale(1.15);
+    transform: scale(1.2);
     z-index: 10;
   }
 
-  /* Work with us button */
   #work-with-us {
-    display: inline-block;
-    margin: 30px auto;
+    display: block;
+    margin: 20px auto 40px auto;
+    background: black;
+    color: white;
     font-weight: 700;
-    font-size: 2rem;
-    color: #000;
-    border: 3px solid black;
-    padding: 10px 20px;
+    font-size: 1.8rem;
+    padding: 15px 50px;
+    border-radius: 30px;
     cursor: pointer;
     text-align: center;
+    width: fit-content;
     user-select: none;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    transition: color 0.3s ease, background-color 0.3s ease, text-shadow 0.3s ease;
+    border: 2px solid transparent;
     font-family: 'Playfair Display', serif;
   }
-
   #work-with-us:hover {
-    color: #ff0066;
+    color: #ff3399;
+    background: black;
+    border-color: #ff3399;
     text-shadow:
-      0 0 5px #ff3399,
       0 0 10px #ff3399,
       0 0 20px #ff66cc,
       0 0 30px #ff66cc;
-    border-color: #ff0066;
+    text-decoration: none;
   }
 
-  /* Social icons container */
-  #social-icons {
-    position: fixed;
-    top: 20px;
-    right: 20px;
+  footer {
     display: flex;
-    gap: 15px;
-    z-index: 100;
+    justify-content: center;
+    margin-bottom: 30px;
   }
-
-  #social-icons a img {
-    width: 28px;
-    height: 28px;
-    filter: grayscale(100%);
-    transition: filter 0.3s ease;
-  }
-
-  #social-icons a:hover img {
-    filter: none;
-  }
-
-  /* Email at bottom */
   #email-footer {
-    position: fixed;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
     font-family: 'Pacifico', cursive;
     font-size: 1.5rem;
     color: #333;
-    user-select: text;
+    cursor: text;
+  }
+  #email-footer:hover {
+    color: #ff3399;
+    text-decoration: underline;
   }
 
+  @media (max-width: 768px) {
+    #work-samples-marquee img {
+      width: 150px;
+      height: 90px;
+    }
+    #work-with-us {
+      font-size: 1.5rem;
+      padding: 12px 40px;
+    }
+  }
+  @media (max-width: 400px) {
+    #work-samples-marquee img {
+      width: 120px;
+      height: 70px;
+    }
+  }
 </style>
 </head>
 <body>
 
-<!-- 1. Intro black screen -->
-<div id="intro-screen" role="dialog" aria-modal="true" aria-label="Intro animation screen">
-  <!-- 2. Logo text -->
-  <div id="logo-text" aria-label="WriteMySocials logo text">writemysocials</div>
-  <!-- 3. Neon marquee text -->
-  <div id="neon-marquee-container" aria-label="Brand tagline marquee">
-    <div id="neon-marquee">
-      Transforming your brand’s narrative into a best seller
-    </div>
+<!-- LOADING SCREEN -->
+<div id="loading-screen" aria-live="polite" aria-atomic="true" aria-label="Loading animation">
+  <div id="logo-text" aria-hidden="true"></div>
+  <div id="neon-marquee-container" aria-hidden="true">
+    <div id="neon-marquee">Transforming your brand’s narrative into a best seller</div>
   </div>
 </div>
 
-<!-- 5. Main content -->
-<div id="main-content" aria-hidden="true">
-  <!-- Work samples marquee -->
-  <div id="work-samples-wrapper" aria-label="Work samples scrolling marquee">
-    <div id="work-samples-marquee">
-      <!-- Repeat images twice for seamless loop -->
-      <img src="https://picsum.photos/id/1015/400/240" alt="Work sample 1" />
-      <img src="https://picsum.photos/id/1016/400/240" alt="Work sample 2" />
-      <img src="https://picsum.photos/id/1018/400/240" alt="Work sample 3" />
-      <img src="https://picsum.photos/id/1020/400/240" alt="Work sample 4" />
-      <img src="https://picsum.photos/id/1015/400/240" alt="Work sample 1" />
-      <img src="https://picsum.photos/id/1016/400/240" alt="Work sample 2" />
-      <img src="https://picsum.photos/id/1018/400/240" alt="Work sample 3" />
-      <img src="https://picsum.photos/id/1020/400/240" alt="Work sample 4" />
-    </div>
-  </div>
+<!-- MAIN CONTENT -->
+<div class="container" aria-hidden="true">
 
-  <!-- Work with us interactive -->
-  <div id="work-with-us" tabindex="0" role="button" aria-label="Work with us call to action">
-    Work with us
-  </div>
+  <header>
+    <nav class="social-icons-top" aria-label="Social media links">
+      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M4.98 3.5C3.35 3.5 2 4.85 2 6.48c0 1.62 1.35 2.97 2.98 2.97 1.62 0 2.98-1.35 2.98-2.97 0-1.63-1.36-2.98-2.98-2.98zM2 8.84h5.95v12.6H2V8.84zm7.22 0h5.72v1.75h.08c.8-1.51 2.75-3.1 5.65-3.1 6.05 0 7.16 3.98 7.16 9.15v10.8h-6V18.6c0-2.15-.04-4.91-3-4.91-3 0-3.46 2.34-3.46 4.76v7.07h-6V8.84z"/></svg>
+      </a>
+      <a href="https://instagram.com/writemysocials" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.75 2.25a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zm-4.25 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 2a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
+      </a>
+      <a href="https://tiktok.com/@writemysocials" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="24" height="24" role="img"><title>TikTok</title><path d="M224 72.36v41.84a72 72 0 11-72-72v41.88a30.08 30.08 0 0028 30.16v33.72a64.21 64.21 0 11-64-64v-15a88 88 0 0096 88z" fill="currentColor"/></svg>
+      </a>
+    </nav>
+  </header>
 
-  <!-- Social icons top right -->
-  <div id="social-icons" aria-label="Social media links">
-    <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
-      <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Icon" />
-    </a>
-    <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
-      <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram Icon" />
-    </a>
-    <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok">
-      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok Icon" />
-    </a>
-  </div>
+  <main>
+    <section id="work-samples-wrapper" aria-label="Work samples carousel">
+      <div id="work-samples-marquee" aria-live="polite" aria-atomic="false" aria-relevant="additions removals">
+        <!-- Replace these images with your actual work sample images -->
+        <img src="https://picsum.photos/id/1015/400/240" alt="Sample work 1" />
+        <img src="https://picsum.photos/id/1016/400/240" alt="Sample work 2" />
+        <img src="https://picsum.photos/id/1018/400/240" alt="Sample work 3" />
+        <img src="https://picsum.photos/id/1021/400/240" alt="Sample work 4" />
+        <img src="https://picsum.photos/id/1015/400/240" alt="Sample work 1" />
+        <img src="https://picsum.photos/id/1016/400/240" alt="Sample work 2" />
+        <img src="https://picsum.photos/id/1018/400/240" alt="Sample work 3" />
+        <img src="https://picsum.photos/id/1021/400/240" alt="Sample work 4" />
+      </div>
+    </section>
 
-  <!-- Email at bottom -->
-  <footer id="email-footer" aria-label="Contact email">
-    siyana.deveaux@writemysocials.com
+    <button id="work-with-us" tabindex="0">Work with us</button>
+  </main>
+
+  <footer>
+    <div id="email-footer" tabindex="0">siyana.deveaux@writemysocials</div>
   </footer>
 </div>
 
 <script>
-  const introScreen = document.getElementById('intro-screen');
+  const loadingScreen = document.getElementById('loading-screen');
   const logoText = document.getElementById('logo-text');
-  const neonMarqueeContainer = document.getElementById('neon-marquee-container');
-  const mainContent = document.getElementById('main-content');
+  const neonContainer = document.getElementById('neon-marquee-container');
+  const neonText = document.getElementById('neon-marquee');
+  const container = document.querySelector('.container');
 
-  // Sequence timings:
-  // 0.5s black screen
-  // 2s logo spin visible
-  // then disappear logo (0.5s)
-  // then 2s neon marquee scroll
-  // then fade to white and show main content
+  // Create the logo letters individually for jump animation
+  const logoString = 'writemysocials';
+  logoText.innerHTML = '';
+  for(let i=0; i<logoString.length; i++) {
+    const span = document.createElement('span');
+    span.textContent = logoString[i];
+    logoText.appendChild(span);
+  }
+  const letters = logoText.querySelectorAll('span');
 
-  async function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+  function randomJump(letter, delay) {
+    letter.style.animation = `jump 0.6s ease-in-out ${delay}s infinite`;
   }
 
-  async function runIntro() {
-    // Start with black screen - already black by default
-    await delay(500);
+  // Step 1: Black screen 0.5s - handled by default
 
-    // Show and spin logo
-    logoText.style.opacity = '1';
-    logoText.classList.add('spin');
-
-    await delay(2000);
-
-    // Hide logo
-    logoText.style.opacity = '0';
-    logoText.classList.remove('spin');
-
-    await delay(500);
-
-    // Show neon marquee
-    neonMarqueeContainer.style.opacity = '1';
-    neonMarqueeContainer.style.pointerEvents = 'auto';
-
-    // Wait 2 seconds for marquee scroll (animation runs automatically)
-    await delay(2000);
-
-    // Fade out intro screen and fade in main content
-    introScreen.style.transition = 'opacity 1s ease';
-    introScreen.style.opacity = '0';
-
-    mainContent.classList.add('visible');
-    mainContent.setAttribute('aria-hidden', 'false');
-
-    await delay(1000);
-
-    introScreen.style.display = 'none';
+  // Step 2: Letters jump with random delays for 2 seconds
+  function startJumping() {
+    letters.forEach((letter, i) => {
+      // each letter has a slightly different delay and duration
+      const delay = Math.random() * 0.6;
+      randomJump(letter, delay);
+    });
+  }
+  // Stop jumping animation by clearing styles
+  function stopJumping() {
+    letters.forEach(letter => {
+      letter.style.animation = '';
+      letter.style.transform = '';
+    });
   }
 
-  window.addEventListener('load', () => {
-    runIntro();
-  });
+  // Step 3: Neon text appear centered for 2 seconds then scroll left fast
+
+  function neonMarqueeStart() {
+    neonContainer.style.opacity = '1';
+    neonText.style.animation = '';
+    neonText.style.left = '50%';
+    neonText.style.transform = 'translateX(-50%)';
+
+    // After 2 seconds center stay, start marquee scroll left fast for 3.5 seconds
+    setTimeout(() => {
+      neonText.style.animation = 'marqueeScrollLeft 3.5s linear forwards';
+    }, 2000);
+
+    // After total 5.5 seconds hide neon marquee and fade loading screen
+    setTimeout(() => {
+      neonContainer.style.opacity = '0';
+      loadingScreen.style.transition = 'opacity 1s ease';
+      loadingScreen.style.opacity = '0';
+    }, 5500);
+
+    // After fade out, hide loading screen and show main content
+    setTimeout(() => {
+      loadingScreen.style.display = 'none';
+      container.classList.add('visible');
+      container.setAttribute('aria-hidden', 'false');
+    }, 6500);
+  }
+
+  async function runSequence() {
+    await new Promise(r => setTimeout(r, 500)); // black screen pause
+
+    startJumping(); // jump letters
+    await new Promise(r => setTimeout(r, 2000)); // jump for 2 sec
+    stopJumping();
+
+    logoText.style.opacity = '0'; // hide logo text
+
+    neonMarqueeStart();
+  }
+
+  runSequence();
 </script>
 
 </body>
 </html>
-
-
-</body>
-</html>
-
