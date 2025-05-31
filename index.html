@@ -1,188 +1,339 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WriteMySocials - Intro Animation</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WriteMySocials Animated Intro + Main</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:700&family=Pacifico&display=swap');
 
-    /* Reset */
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-    }
-    body, html {
-      height: 100%;
-      font-family: 'Poppins', sans-serif;
-      background: black;
-      overflow-x: hidden;
-      color: black;
-    }
+  /* Reset & base */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body, html {
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+  }
 
-    /* Intro Screen */
-    #intro-screen {
-      position: fixed;
-      inset: 0;
-      background: black;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 10000;
-      user-select: none;
-    }
+  /* 1. Fullscreen black intro container */
+  #intro-screen {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+    user-select: none;
+  }
 
-    /* White text-only logo for intro */
-    #intro-logo {
-      font-weight: 700;
-      font-size: 3rem;
-      color: white;
-      letter-spacing: 2px;
+  /* 2. Logo text */
+  #logo-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
+    opacity: 0;
+    user-select: none;
+    perspective: 1000px;
+  }
+
+  /* Spin animation */
+  @keyframes spinUp {
+    0% {
       opacity: 0;
-      transition: opacity 0.5s ease;
-      user-select: none;
-      font-family: 'Poppins', sans-serif;
-      text-transform: uppercase;
-      /* Simulate logo text only */
+      transform: rotateX(90deg) scale(0.7);
     }
-
-    /* Neon marquee container */
-    #neon-marquee-container {
-      margin-top: 30px;
-      overflow: hidden;
-      max-width: 90vw;
-      height: 50px;
-      opacity: 0;
-      pointer-events: none;
-      user-select: none;
-      cursor: pointer;
-      transition: opacity 0.5s ease;
-      filter:
-        drop-shadow(0 0 5px #ff3399)
-        drop-shadow(0 0 10px #ff3399)
-        drop-shadow(0 0 15px #ff66cc);
-    }
-
-    /* Neon marquee text */
-    #neon-marquee {
-      display: inline-block;
-      white-space: nowrap;
-      font-size: 2rem;
-      font-weight: 600;
-      color: #ff3399;
-      text-shadow:
-        0 0 8px #ff3399,
-        0 0 15px #ff3399,
-        0 0 20px #ff66cc,
-        0 0 30px #ff66cc;
-      animation: scrollRight 12s linear infinite;
-      will-change: transform;
-      user-select: none;
-    }
-
-    /* On hover: expand */
-    #neon-marquee-container:hover #neon-marquee {
-      animation-play-state: paused;
-      transform: scale(1.15);
-      transition: transform 0.3s ease;
-    }
-
-    /* Scroll from left to right continuously */
-    @keyframes scrollRight {
-      0% {
-        transform: translateX(-100%);
-      }
-      100% {
-        transform: translateX(100%);
-      }
-    }
-
-    /* Main container hidden initially */
-    .container {
-      opacity: 0;
-      transition: opacity 1s ease;
-      background: white;
-      min-height: 100vh;
-      color: black;
-      pointer-events: none;
-    }
-    .container.visible {
+    50% {
       opacity: 1;
-      pointer-events: auto;
+      transform: rotateX(-15deg) scale(1.1);
     }
+    100% {
+      opacity: 1;
+      transform: rotateX(0deg) scale(1);
+    }
+  }
 
-    /* Main page styles remain unchanged */
+  #logo-text.spin {
+    animation: spinUp 2s ease forwards;
+  }
 
-  </style>
+  /* 3. Neon marquee container */
+  #neon-marquee-container {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    background: black;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+    transform: translateY(-50%);
+    z-index: 9998;
+  }
+
+  /* Neon marquee text */
+  #neon-marquee {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #ff0066;
+    text-shadow:
+      0 0 5px #ff3399,
+      0 0 10px #ff3399,
+      0 0 20px #ff66cc,
+      0 0 30px #ff66cc;
+    animation: marqueeScroll 5s linear forwards;
+    user-select: none;
+  }
+
+  @keyframes marqueeScroll {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* 4. Main container hidden initially */
+  #main-content {
+    opacity: 0;
+    background: white;
+    min-height: 100vh;
+    padding: 40px 20px;
+    transition: opacity 1s ease;
+    color: black;
+    font-family: Arial, sans-serif;
+  }
+
+  #main-content.visible {
+    opacity: 1;
+  }
+
+  /* Work samples marquee wrapper */
+  #work-samples-wrapper {
+    margin: 40px auto;
+    max-width: 80vw;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  /* Work samples marquee scroll container */
+  #work-samples-marquee {
+    display: flex;
+    gap: 20px;
+    animation: scrollLeft 15s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes scrollLeft {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Individual images */
+  #work-samples-marquee img {
+    width: 200px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  #work-samples-marquee img:hover {
+    transform: scale(1.15);
+    z-index: 10;
+  }
+
+  /* Work with us button */
+  #work-with-us {
+    display: inline-block;
+    margin: 30px auto;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #000;
+    border: 3px solid black;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    font-family: 'Playfair Display', serif;
+  }
+
+  #work-with-us:hover {
+    color: #ff0066;
+    text-shadow:
+      0 0 5px #ff3399,
+      0 0 10px #ff3399,
+      0 0 20px #ff66cc,
+      0 0 30px #ff66cc;
+    border-color: #ff0066;
+  }
+
+  /* Social icons container */
+  #social-icons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+    z-index: 100;
+  }
+
+  #social-icons a img {
+    width: 28px;
+    height: 28px;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+  }
+
+  #social-icons a:hover img {
+    filter: none;
+  }
+
+  /* Email at bottom */
+  #email-footer {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    font-size: 1.5rem;
+    color: #333;
+    user-select: text;
+  }
+
+</style>
 </head>
 <body>
 
-  <!-- Intro black screen with white text logo and neon marquee -->
-  <div id="intro-screen" role="dialog" aria-modal="true" aria-label="Intro Animation">
-    <div id="intro-logo" aria-label="Write My Socials Logo Text">WriteMySocials</div>
-    <div id="neon-marquee-container" tabindex="0" aria-label="Brand tagline marquee interactive">
-      <div id="neon-marquee">
-        Transforming your brand’s narrative into a best seller — Transforming your brand’s narrative into a best seller —
-      </div>
+<!-- 1. Intro black screen -->
+<div id="intro-screen" role="dialog" aria-modal="true" aria-label="Intro animation screen">
+  <!-- 2. Logo text -->
+  <div id="logo-text" aria-label="WriteMySocials logo text">writemysocials</div>
+  <!-- 3. Neon marquee text -->
+  <div id="neon-marquee-container" aria-label="Brand tagline marquee">
+    <div id="neon-marquee">
+      Transforming your brand’s narrative into a best seller
+    </div>
+  </div>
+</div>
+
+<!-- 5. Main content -->
+<div id="main-content" aria-hidden="true">
+  <!-- Work samples marquee -->
+  <div id="work-samples-wrapper" aria-label="Work samples scrolling marquee">
+    <div id="work-samples-marquee">
+      <!-- Repeat images twice for seamless loop -->
+      <img src="https://picsum.photos/id/1015/400/240" alt="Work sample 1" />
+      <img src="https://picsum.photos/id/1016/400/240" alt="Work sample 2" />
+      <img src="https://picsum.photos/id/1018/400/240" alt="Work sample 3" />
+      <img src="https://picsum.photos/id/1020/400/240" alt="Work sample 4" />
+      <img src="https://picsum.photos/id/1015/400/240" alt="Work sample 1" />
+      <img src="https://picsum.photos/id/1016/400/240" alt="Work sample 2" />
+      <img src="https://picsum.photos/id/1018/400/240" alt="Work sample 3" />
+      <img src="https://picsum.photos/id/1020/400/240" alt="Work sample 4" />
     </div>
   </div>
 
-  <!-- Main page content hidden initially -->
-  <div class="container" aria-hidden="true">
-    <!-- Your full original content goes here -->
-    <!-- This snippet is just to demo the intro part -->
-    <p>Main website content here...</p>
+  <!-- Work with us interactive -->
+  <div id="work-with-us" tabindex="0" role="button" aria-label="Work with us call to action">
+    Work with us
   </div>
 
-  <script>
-    const introScreen = document.getElementById('intro-screen');
-    const introLogo = document.getElementById('intro-logo');
-    const neonMarqueeContainer = document.getElementById('neon-marquee-container');
-    const mainContainer = document.querySelector('.container');
+  <!-- Social icons top right -->
+  <div id="social-icons" aria-label="Social media links">
+    <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Icon" />
+    </a>
+    <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+      <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram Icon" />
+    </a>
+    <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok Icon" />
+    </a>
+  </div>
 
-    function delay(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
+  <!-- Email at bottom -->
+  <footer id="email-footer" aria-label="Contact email">
+    siyana.deveaux@writemysocials.com
+  </footer>
+</div>
 
-    async function runIntro() {
-      introLogo.style.opacity = '0';
-      neonMarqueeContainer.style.opacity = '0';
-      neonMarqueeContainer.style.pointerEvents = 'none';
+<script>
+  const introScreen = document.getElementById('intro-screen');
+  const logoText = document.getElementById('logo-text');
+  const neonMarqueeContainer = document.getElementById('neon-marquee-container');
+  const mainContent = document.getElementById('main-content');
 
-      await delay(500);
+  // Sequence timings:
+  // 0.5s black screen
+  // 2s logo spin visible
+  // then disappear logo (0.5s)
+  // then 2s neon marquee scroll
+  // then fade to white and show main content
 
-      introLogo.style.opacity = '1';
+  async function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
-      await delay(1500);
+  async function runIntro() {
+    // Start with black screen - already black by default
+    await delay(500);
 
-      introLogo.style.opacity = '0';
+    // Show and spin logo
+    logoText.style.opacity = '1';
+    logoText.classList.add('spin');
 
-      await delay(500);
+    await delay(2000);
 
-      neonMarqueeContainer.style.opacity = '1';
-      neonMarqueeContainer.style.pointerEvents = 'auto';
+    // Hide logo
+    logoText.style.opacity = '0';
+    logoText.classList.remove('spin');
 
-      await delay(3000);
+    await delay(500);
 
-      neonMarqueeContainer.style.opacity = '0';
-      neonMarqueeContainer.style.pointerEvents = 'none';
+    // Show neon marquee
+    neonMarqueeContainer.style.opacity = '1';
+    neonMarqueeContainer.style.pointerEvents = 'auto';
 
-      introScreen.style.transition = 'opacity 1.5s ease';
-      introScreen.style.opacity = '0';
+    // Wait 2 seconds for marquee scroll (animation runs automatically)
+    await delay(2000);
 
-      mainContainer.style.transition = 'opacity 1.5s ease';
-      mainContainer.classList.add('visible');
-      mainContainer.setAttribute('aria-hidden', 'false');
+    // Fade out intro screen and fade in main content
+    introScreen.style.transition = 'opacity 1s ease';
+    introScreen.style.opacity = '0';
 
-      await delay(1500);
+    mainContent.classList.add('visible');
+    mainContent.setAttribute('aria-hidden', 'false');
 
-      introScreen.style.display = 'none';
-    }
+    await delay(1000);
 
-    window.addEventListener('load', () => {
-      runIntro();
-    });
-  </script>
+    introScreen.style.display = 'none';
+  }
+
+  window.addEventListener('load', () => {
+    runIntro();
+  });
+</script>
+
+</body>
+</html>
+
 
 </body>
 </html>
