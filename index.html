@@ -29,25 +29,30 @@
     pointer-events: none;
   }
 
-  .logo-text {
+  .logo-container {
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    font-size: 9vw;
+    text-align: center;
     color: white;
+    font-size: 9vw;
     opacity: 0;
     transition: opacity 0.5s ease;
     user-select: none;
-    max-width: 90vw;
     z-index: 99;
+    white-space: nowrap;
   }
 
-  .logo-text span {
+  .line {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+
+  .line span {
     display: inline-block;
-    margin: 0 5px;
+    margin: 0 0.5vw;
     transform-origin: center;
   }
 
@@ -93,16 +98,16 @@
     }
   }
 
-  /* Final resting gentle float */
+  /* Final gentle float */
   @keyframes gentleFloat {
     0%   { transform: translateY(0); }
     50%  { transform: translateY(-8px); }
     100% { transform: translateY(0); }
   }
 
-  /* Responsive */
+  /* Responsive font size */
   @media (max-width: 600px) {
-    .logo-text {
+    .logo-container {
       font-size: 14vw;
     }
   }
@@ -113,25 +118,28 @@
 
 <div id="blackOverlay"></div>
 
-<div class="logo-text" id="animatedLogo">
-  <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span>
-  <span>&nbsp;</span>
-  <span>M</span><span>y</span>
-  <span>&nbsp;</span>
-  <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
+<div class="logo-container" id="animatedLogo">
+  <div class="line" id="line1">
+    <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span>
+    <span>&nbsp;</span>
+    <span>M</span><span>y</span>
+  </div>
+  <div class="line" id="line2">
+    <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
+  </div>
 </div>
 
 <script>
   const blackOverlay = document.getElementById('blackOverlay');
   const animatedLogo = document.getElementById('animatedLogo');
+  const lines = animatedLogo.querySelectorAll('.line span');
 
   // 1.5s black screen
   setTimeout(() => {
     blackOverlay.classList.add('hidden');
     animatedLogo.classList.add('visible');
 
-    const letters = animatedLogo.querySelectorAll('span');
-    letters.forEach(letter => {
+    lines.forEach(letter => {
       if (letter.textContent.trim() === '') return;
 
       const animations = ['floatUpDown', 'spin', 'wiggle', 'bounce'];
@@ -141,15 +149,15 @@
       letter.style.animation = `${chosen} ${duration} ease-in-out infinite`;
     });
 
-    // After 2s chaos, animate them settling into place over 1.5s
+    // After 2s chaos, animate into aligned position over 1.5s
     setTimeout(() => {
-      letters.forEach(letter => {
+      lines.forEach(letter => {
         letter.style.animation = `settleIn 1.5s ease forwards`;
       });
 
       // After settling, start gentle float forever
       setTimeout(() => {
-        letters.forEach(letter => {
+        lines.forEach(letter => {
           letter.style.animation = `gentleFloat 3s ease-in-out infinite`;
         });
       }, 1500);
@@ -161,5 +169,4 @@
 
 </body>
 </html>
-
 
