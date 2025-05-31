@@ -112,7 +112,8 @@
   .marquee-images {
     display: flex;
     gap: 15px;
-    animation: marqueeScroll 30s linear infinite;
+    animation: marqueeScroll 15s linear infinite;
+    will-change: transform;
   }
   .marquee-images:hover {
     animation-play-state: paused;
@@ -136,13 +137,9 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-50%);
+      /* Adjust this value roughly to the total width of the images + gaps */
+      transform: translateX(-100%);
     }
-  }
-
-  .marquee-images::after {
-    content: "";
-    display: flex;
   }
 
   footer {
@@ -208,53 +205,13 @@
     </div>
 
     <nav class="social-icons-top" aria-label="Social media links">
-      <!-- same social icons code -->
-      <!-- ... -->
-    </nav>
-  </header>
+      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M4.98 3.5C3.35 3.5 2 4.85 2 6.48c0 1.62 1.35 2.97 2.98 2.97 1.62 0 2.98-1.35 2.98-2.97 0-1.63-1.36-2.98-2.98-2.98zM2 8.84h5.95v12.6H2V8.84zm7.22 0h5.72v1.75h.08c.8-1.51 2.75-3.1 5.65-3.1 6.05 0 7.16 3.98 7.16 9.15v10.8h-6V18.6c0-2.15-.04-4.91-3-4.91-3 0-3.46 2.34-3.46 4.76v7.07h-6V8.84z"/></svg>
+      </a>
+      <a href="https://instagram.com/writemysocials" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.75 2.25a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zm-4.25 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 2a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
+      </a>
+      <a href="https://tiktok.com/@writemysocials" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="24" height="24" role="img"><title>TikTok</title><path d="M224 72.
 
-  <div class="client-info" tabindex="0">
-    Currently taking on clients for <strong>June, 2025</strong>
-  </div>
-
-  <a href="work-with-us.html" class="work-with-us-btn">Work With Us</a>
-
-  <section class="marquee-container" aria-label="Work samples gallery">
-    <div class="marquee-images">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Work sample 1" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Work sample 2" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Work sample 3" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Work sample 4" />
-      <!-- Duplicate images for seamless scroll -->
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Work sample 1" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Work sample 2" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Work sample 3" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Work sample 4" />
-    </div>
-  </section>
-
-  <footer>
-    <a href="mailto:siyana.deveaux@writemysocials.com" class="cta-email">siyana.deveaux@writemysocials.com</a>
-  </footer>
-
-</div>
-
-<script>
-  window.addEventListener('load', () => {
-    const loadingScreen = document.getElementById('loading-screen');
-    const container = document.querySelector('.container');
-    setTimeout(() => {
-      loadingScreen.classList.add('hidden');
-      container.setAttribute('aria-hidden', 'false');
-      container.querySelectorAll('*').forEach(el => el.classList.add('visible'));
-    }, 2000);
-  });
-</script>
-
-</body>
-</html>
-
-
-</body>
-</html>
 
