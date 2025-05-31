@@ -24,6 +24,8 @@
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s ease;
   }
 
   .logo-text {
@@ -34,7 +36,7 @@
 
   .logo-text span {
     display: inline-block;
-    animation: bounce 0.5s infinite alternate;
+    animation: bounce 0.5s cubic-bezier(.28,.84,.42,1) infinite alternate;
   }
 
   @keyframes bounce {
@@ -42,30 +44,57 @@
     100% { transform: translateY(-12px); }
   }
 
-  .fly-top {
-    animation: flyTop 0.8s forwards;
+  /* Jump off top with spring effect */
+  .jump-off {
+    animation: jumpOff 0.8s forwards cubic-bezier(0.68, -0.55, 0.27, 1.55);
   }
 
-  @keyframes flyTop {
-    to { transform: translateY(-150vh); opacity: 0; }
+  @keyframes jumpOff {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    60% {
+      transform: translateY(-60px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-150vh);
+      opacity: 0;
+    }
   }
 
+  /* Spin 180° in place */
   .spin {
-    animation: spinInPlace 0.8s forwards;
+    animation: spin180 0.8s forwards ease-in-out;
+    transform-origin: 50% 50%;
   }
 
-  @keyframes spinInPlace {
-    to { transform: rotate(180deg) translateY(0); opacity: 0; }
+  @keyframes spin180 {
+    from {
+      transform: rotate(0deg);
+      opacity: 1;
+    }
+    to {
+      transform: rotate(180deg);
+      opacity: 0;
+    }
   }
 
+  /* Page content initially hidden */
   .page-content {
-    display: none;
+    opacity: 0;
     background: #fff;
     height: 100%;
     color: #000;
     padding: 50px;
     font-size: 2rem;
     text-align: center;
+    transition: opacity 0.5s ease;
+  }
+
+  .page-content.visible {
+    opacity: 1;
   }
 </style>
 </head>
@@ -80,35 +109,48 @@
 <div class="page-content" id="pageContent">
   <!-- Replace this div with your actual website page content -->
   <h1>Welcome to WriteMySocials!</h1>
+  <p>Your page content appears here.</p>
 </div>
 
 <script>
-  // Wait 2 seconds for bounce effect
+  // Wait 2 seconds for the bounce animation
   setTimeout(() => {
     const letters = document.querySelectorAll('#logoText span');
     letters.forEach((letter, index) => {
-      // Stop bounce animation first
+      // Stop bounce animation
       letter.style.animation = 'none';
       void letter.offsetWidth; // reflow hack
 
       if (index % 2 === 0) {
-        // odd letters fly to top
-        letter.classList.add('fly-top');
+        // 1st, 3rd, 5th... jump off top
+        letter.classList.add('jump-off');
       } else {
-        // even letters spin in place
+        // 2nd, 4th, 6th... spin 180°
         letter.classList.add('spin');
       }
     });
 
-    // After animations, fade out intro and show page content
+    // After 0.8s animation, fade out intro screen and fade in content
     setTimeout(() => {
-      document.getElementById('introScreen').style.display = 'none';
-      document.getElementById('pageContent').style.display = 'block';
-      document.body.style.overflow = 'auto';
-    }, 900); // 0.8s animation + buffer
+      const intro = document.getElementById('introScreen');
+      const content = document.getElementById('pageContent');
+
+      intro.style.opacity = '0';
+
+      // After fade out, hide intro and show content
+      intro.addEventListener('transitionend', () => {
+        intro.style.display = 'none';
+        content.classList.add('visible');
+        document.body.style.overflow = 'auto';
+      }, { once: true });
+    }, 800);
 
   }, 2000);
 </script>
+
+</body>
+</html>
+
 
 </body>
 </html>
