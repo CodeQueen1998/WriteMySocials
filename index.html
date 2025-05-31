@@ -5,31 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>WriteMySocials</title>
 <style>
+  /* Reset */
   * {
-    box-sizing: border-box;
     margin: 0; padding: 0;
+    box-sizing: border-box;
   }
   body, html {
     height: 100%;
     font-family: 'Playfair Display', serif;
-    background-color: #fff;
+    background: #fff;
     color: #000;
     overflow-x: hidden;
   }
-  a {
-    color: #000;
-    text-decoration: none;
-  }
-  a:hover {
-    color: #ff0050;
-  }
 
-  /* Loading Screen */
+  /* Loading screen */
   #loading-screen {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top:0; left:0; right:0; bottom:0;
     background: #000;
-    z-index: 1000;
+    z-index: 9999;
     opacity: 1;
     transition: opacity 1s ease;
   }
@@ -38,108 +32,125 @@
     pointer-events: none;
   }
 
-  /* Header */
+  /* Container */
+  .container > * {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+  }
+  .visible {
+    opacity: 1 !important;
+  }
+
+  /* Header and socials */
   header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 20px;
+    padding: 15px 20px;
+    margin-bottom: 30px;
+  }
+  .logo-section {
+    display: flex;
+    flex-direction: column;
   }
   .logo-section img {
-    width: 160px;
-    height: auto;
+    width: 180px;
+    object-fit: contain;
   }
-  .social-icons {
+  .tagline {
+    font-style: italic;
+    margin-top: 5px;
+    font-size: 1rem;
+    color: #333;
+  }
+  nav.social-icons-top {
     display: flex;
     gap: 20px;
+    align-items: center;
   }
-  .social-icons a svg {
+  nav.social-icons-top a svg {
     fill: black;
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
     transition: fill 0.3s ease;
   }
-  .social-icons a:hover svg {
+  nav.social-icons-top a:hover svg {
     fill: #ff0050;
   }
 
+  /* Client info centered */
   .client-info {
-    text-align: center;
-    margin: 30px 0;
-    font-size: 1.1rem;
     font-weight: 600;
-  }
-
-  /* Marquee */
-  .image-marquee-wrapper {
-    overflow: hidden;
-    width: 100%;
-    background: #fff;
-    padding: 20px 0;
-  }
-  .image-marquee {
-    display: flex;
-    gap: 20px;
-    animation: marquee 30s linear infinite;
-    align-items: center;
-  }
-  .image-marquee img {
-    height: auto;
-    max-height: 400px;
-    width: auto;
-    max-width: 90%;
-    object-fit: contain;
-    flex-shrink: 0;
-    background: #f8f8f8;
-    padding: 6px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-  }
-
-  @keyframes marquee {
-    0% {transform: translateX(0);}
-    100% {transform: translateX(-50%);}
-  }
-
-  /* Services */
-  .services {
+    font-size: 1rem;
     text-align: center;
-    padding: 50px 20px;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-  .services p:first-child {
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 20px;
+    margin: 20px auto;
   }
 
-  /* Story Section */
-  .story-section {
-    padding: 50px 20px;
-    text-align: center;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-  .story-section strong {
-    font-size: 2.2rem;
-    font-weight: 700;
+  /* Work With Us button */
+  .work-with-us-btn {
     display: block;
-    margin-bottom: 20px;
+    margin: 20px auto 40px auto;
+    background: #000;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.8rem;
+    padding: 15px 50px;
+    border-radius: 30px;
+    cursor: pointer;
+    text-align: center;
+    width: fit-content;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  .work-with-us-btn:hover {
+    background: #ff0050;
+    color: white;
+    text-decoration: none;
+  }
+
+  /* Marquee container */
+  .marquee-container {
+    overflow: hidden;
+    max-width: 100vw;
+    margin: 0 auto 60px auto;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  }
+  .marquee-images {
+    display: flex;
+    gap: 15px;
+    animation: marqueeScroll 12s linear infinite;
+  }
+  .marquee-images:hover {
+    animation-play-state: paused;
+  }
+  .marquee-images img {
+    height: 250px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 10px;
+    flex-shrink: 0;
+    cursor: pointer;
+    user-select: none;
+  }
+  @keyframes marqueeScroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-1030px)); /* approx width of 4 images + gaps */
+    }
   }
 
   /* Footer */
   footer {
-    text-align: center;
-    padding: 30px 20px;
-    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
   }
   .cta-email {
-    font-weight: bold;
+    font-weight: 700;
+    cursor: pointer;
     color: #000;
     transition: color 0.3s ease;
   }
@@ -148,99 +159,102 @@
     text-decoration: underline;
   }
 
-  /* Mobile Responsive */
+  /* Responsive */
   @media (max-width: 768px) {
     header {
-      flex-direction: row;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
     }
     .logo-section img {
       width: 140px;
     }
-    .client-info {
-      font-size: 1rem;
-      margin: 20px 0;
+    nav.social-icons-top a svg {
+      width: 24px;
+      height: 24px;
     }
-    .image-marquee img {
-      max-height: 240px;
-      max-width: 80%;
+    .marquee-images img {
+      height: 180px;
     }
-    .services p:first-child, .story-section strong {
-      font-size: 1.7rem;
+    .work-with-us-btn {
+      font-size: 1.5rem;
+      padding: 12px 40px;
+      margin: 15px auto 40px auto;
     }
-    .services, .story-section {
-      font-size: 1rem;
+  }
+  @media (max-width: 400px) {
+    .marquee-images img {
+      height: 140px;
     }
   }
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Google font -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
+<!-- Loading black screen -->
 <div id="loading-screen"></div>
 
-<header>
-  <div class="logo-section">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" />
+<div class="container" aria-hidden="true">
+
+  <header>
+    <div class="logo-section">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" />
+      <div class="tagline">“Transforming your brand’s narrative into a best seller”</div>
+    </div>
+
+    <nav class="social-icons-top" aria-label="Social media links">
+      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M4.98 3.5C3.35 3.5 2 4.85 2 6.48c0 1.62 1.35 2.97 2.98 2.97 1.62 0 2.98-1.35 2.98-2.97 0-1.63-1.36-2.98-2.98-2.98zM2 8.84h5.95v12.6H2V8.84zm7.22 0h5.72v1.75h.08c.8-1.51 2.75-3.1 5.65-3.1 6.05 0 7.16 3.98 7.16 9.15v10.8h-6V18.6c0-2.15-.04-4.91-3-4.91-3 0-3.46 2.34-3.46 4.76v7.07h-6V8.84z"/></svg>
+      </a>
+      <a href="https://instagram.com/writemysocials" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.75 2.25a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zm-4.25 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 2a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
+      </a>
+      <a href="https://tiktok.com/@writemysocials" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="24" height="24" role="img"><title>TikTok</title><path d="M224 72.2c-20.7 0-37.4-16.7-37.4-37.4h-37.4v137.6c0 20.6-16.7 37.4-37.4 37.4s-37.4-16.7-37.4-37.4 16.7-37.4 37.4-37.4c6.4 0 12.4 1.7 17.6 4.6v-40.2c-5.6-1.1-11.3-1.7-17.6-1.7-42.3 0-76.8 34.5-76.8 76.8s34.5 76.8 76.8 76.8 76.8-34.5 76.8-76.8v-80.6c10.4 8.1 23.3 12.9 37.4 12.9z"/></svg>
+      </a>
+    </nav>
+  </header>
+
+  <div class="client-info" tabindex="0">
+    Currently taking on clients for May, 2025
   </div>
-  <nav class="social-icons">
-    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" aria-label="LinkedIn">
-      <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7 0h3.8v2.2h.05c.53-1 1.83-2.2 3.75-2.2 4 0 4.74 2.63 4.74 6v7.8h-4v-6.9c0-1.63-.03-3.72-2.27-3.72-2.27 0-2.62 1.77-2.62 3.6V24h-4V8z"/></svg>
-    </a>
-    <a href="https://instagram.com/writemysocials" target="_blank" aria-label="Instagram">
-      <svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.75 2.25a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zm-4.25 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 2a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
-    </a>
-    <a href="https://tiktok.com/@writemysocials" target="_blank" aria-label="TikTok">
-      <svg viewBox="0 0 256 256"><path d="M224 72.2c-20.7 0-37.4-16.7-37.4-37.4h-37.4v137.6c0 20.6-16.7 37.4-37.4 37.4s-37.4-16.7-37.4-37.4 16.7-37.4 37.4-37.4c6.4 0 12.4 1.7 17.6 4.6v-40.2c-5.6-1.1-11.3-1.7-17.6-1.7-42.3 0-76.8 34.5-76.8 76.8s34.5 76.8 76.8 76.8 76.8-34.5 76.8-76.8v-80.6c10.4 8.1 23.3 12.9 37.4 12.9z"/></svg>
-    </a>
-  </nav>
-</header>
 
-<div class="client-info">
-  Currently taking on clients for May 2025.
+  <a href="work-with-us.html" class="work-with-us-btn" aria-label="Work with us page">Work With Us</a>
+
+  <section class="marquee-container" aria-label="Work samples gallery">
+    <div class="marquee-images" aria-live="polite" aria-atomic="true">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Work sample 1" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Work sample 2" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Work sample 3" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Work sample 4" />
+    </div>
+  </section>
+
+  <footer>
+    <a href="mailto:hello@writemysocials.com" class="cta-email" aria-label="Email hello at Write My Socials">hello@writemysocials.com</a>
+  </footer>
+
 </div>
-
-<div class="image-marquee-wrapper">
-  <div class="image-marquee">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Sample 1">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Sample 2">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Sample 3">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Sample 4">
-  </div>
-</div>
-
-<section class="services">
-  <p><strong>SERVICES:</strong></p>
-  <p>
-    • Brand Messaging &amp; Voice Development<br>
-    • Content Strategy &amp; Editorial Planning<br>
-    • Email Marketing Sequences<br>
-    • Website Copywriting (Conversion-Focused)<br>
-    • Product Launch &amp; Promo Copy<br>
-    • E-commerce Product Descriptions
-  </p>
-</section>
-
-<section class="story-section">
-  <strong>My Story:</strong>
-  Welcome to my agency. I'm Siyana Deveaux.  
-  I was a qualified English teacher in London before falling in love with marketing.  
-  London felt like the hub of digital storytelling — and I realised my background in education could merge seamlessly with the world of digital marketing.  
-  That intersection became copywriting.  
-  And so, WriteMySocials was born.
-</section>
-
-<footer>
-  <a href="mailto:Siyana.Deveaux@writemysocials.com" class="cta-email">Email Siyana: Siyana.Deveaux@writemysocials.com</a>
-</footer>
 
 <script>
-  const loadingScreen = document.getElementById('loading-screen');
-  setTimeout(() => {
-    loadingScreen.classList.add('hidden');
-  }, 1000);
+  // On page load, show loading screen for 2 seconds then fade in content
+  window.addEventListener('load', () => {
+    const loadingScreen = document.getElementById('loading-screen');
+    const container = document.querySelector('.container');
+
+    setTimeout(() => {
+      loadingScreen.classList.add('hidden');
+      container.setAttribute('aria-hidden', 'false');
+      container.querySelectorAll('*').forEach(el => el.classList.add('visible'));
+    }, 2000);
+  });
 </script>
 
 </body>
 </html>
+
