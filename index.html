@@ -3,155 +3,122 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>WriteMySocials</title>
+<title>WriteMySocials - Vogue Style</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
 <style>
-  /* Reset */
-  * {
-    box-sizing: border-box;
-    margin: 0; padding: 0;
-  }
   body, html {
-    height: 100%;
-    font-family: 'Merriweather', Georgia, serif; /* Clean, readable serif */
-    background-color: #fff;
-    color: #111;
-    overflow-x: hidden;
+    margin: 0; padding: 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    background: #fff;
+    color: #222;
     line-height: 1.6;
-    letter-spacing: 0.02em;
   }
   a {
-    color: #111;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: #222;
     text-decoration: none;
     transition: color 0.3s ease;
   }
   a:hover {
-    color: #ff0050;
+    color: #d8004c;
+    text-decoration: underline;
   }
-
-  /* Loading Screen */
-  #loading-screen {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: #000;
-    z-index: 1000;
-    opacity: 1;
-    transition: opacity 1s ease;
+  marquee {
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    color: #111;
+    margin: 25px 0 35px 0;
   }
-  #loading-screen.hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  /* Container */
   .container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 40px 20px 60px;
+    padding: 40px 30px 60px 30px;
   }
-  .container > * {
-    opacity: 0;
-    transition: opacity 0.7s ease;
-  }
-  .visible {
-    opacity: 1 !important;
-  }
-
   header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 40px;
+    gap: 20px;
+    flex-wrap: wrap;
   }
   .logo-section {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex: 1 1 300px;
   }
   .logo-section img {
     width: 160px;
     height: auto;
-    object-fit: contain;
   }
   .tagline {
     font-style: italic;
-    margin-top: 8px;
-    font-size: 1.1rem;
+    font-weight: 400;
+    font-size: 1rem;
     color: #555;
     max-width: 280px;
-    line-height: 1.4;
+    margin-top: 6px;
   }
   .client-info {
-    font-size: 1rem;
     font-weight: 600;
+    font-size: 0.95rem;
+    color: #444;
     text-align: right;
     max-width: 220px;
-    color: #333;
+    flex: 1 1 200px;
   }
-
-  marquee {
-    font-family: 'Merriweather', serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin: 25px 0 40px;
-    color: #222;
-    letter-spacing: 0.04em;
-  }
-
   .services {
     text-align: center;
-    font-size: 1.15rem;
-    line-height: 1.8;
-    max-width: 650px;
-    margin: 0 auto 100px auto;
-    white-space: pre-line;
-    color: #222;
-  }
-  .services p:first-child {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    letter-spacing: 0.05em;
-  }
-
-  /* Centered My Story */
-  .story-section {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin-bottom: 100px;
-  }
-  .story-text {
-    max-width: 720px;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    white-space: pre-wrap;
+    max-width: 600px;
+    margin: 0 auto 90px auto;
+    font-size: 1rem;
     color: #333;
   }
-  .story-text strong {
-    font-size: 2rem;
+  .services p:first-child {
     font-weight: 700;
-    display: block;
-    margin-bottom: 25px;
-    letter-spacing: 0.05em;
+    font-size: 1.7rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
   }
-
+  .story-section {
+    text-align: center;
+    margin-bottom: 80px;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .story-text strong {
+    font-weight: 700;
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 15px;
+  }
+  .story-text {
+    font-size: 1rem;
+    color: #333;
+    letter-spacing: 0.01em;
+    white-space: pre-wrap;
+    line-height: 1.7;
+  }
   footer {
     margin-top: 50px;
     display: flex;
     justify-content: center;
-    gap: 35px;
+    gap: 30px;
     align-items: center;
-    font-size: 1rem;
-    color: #444;
+    font-size: 0.95rem;
+    flex-wrap: wrap;
   }
   .cta-email {
     cursor: pointer;
-    font-weight: 600;
-    color: #111;
+    font-weight: 700;
+    color: #222;
     transition: color 0.3s ease;
   }
   .cta-email:hover {
-    color: #ff0050;
+    color: #d8004c;
     text-decoration: underline;
   }
   .social-icons {
@@ -159,138 +126,112 @@
     gap: 20px;
   }
   .social-icons a svg {
-    fill: #111;
-    width: 28px;
-    height: 28px;
+    fill: #222;
+    width: 24px;
+    height: 24px;
     transition: fill 0.3s ease;
   }
   .social-icons a:hover svg {
-    fill: #ff0050;
+    fill: #d8004c;
   }
-
   /* Responsive */
   @media (max-width: 768px) {
     .container {
-      padding: 30px 15px 50px;
+      padding: 25px 20px 40px 20px;
     }
     header {
       flex-direction: column;
       align-items: flex-start;
-      gap: 15px;
-      margin-bottom: 30px;
+      gap: 12px;
+      margin-bottom: 25px;
     }
     .client-info {
       text-align: left;
       max-width: 100%;
-      font-size: 0.95rem;
-      color: #555;
     }
     marquee {
-      font-size: 1.8rem;
-      margin: 20px 0 30px;
-    }
-    .services {
-      max-width: 100%;
-      font-size: 1rem;
-      margin-bottom: 70px;
+      font-size: 1.3rem;
+      margin: 18px 0 25px 0;
     }
     .services p:first-child {
-      font-size: 1.6rem;
+      font-size: 1.3rem;
       margin-bottom: 15px;
     }
     .story-text strong {
-      font-size: 1.6rem;
-      margin-bottom: 20px;
+      font-size: 1.3rem;
+      margin-bottom: 12px;
     }
     footer {
       flex-direction: column;
-      gap: 20px;
-      font-size: 0.9rem;
-      color: #666;
+      gap: 12px;
+      font-size: 0.85rem;
+    }
+    .social-icons a svg {
+      width: 20px;
+      height: 20px;
     }
   }
 </style>
-
-<!-- Import Merriweather font from Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-
 </head>
 <body>
 
-<div id="loading-screen"></div>
-
-<div class="container" aria-hidden="true">
+<div class="container">
   <header>
     <div class="logo-section">
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" />
       <div class="tagline">“Transforming your brand’s narrative into a best seller”</div>
     </div>
     <div class="client-info">
-      Currently taking on clients for June, 2025
+      Currently taking on clients for May, 2025
     </div>
   </header>
 
-  <marquee behavior="scroll" direction="left" scrollamount="8">
+  <marquee behavior="scroll" direction="left" scrollamount="6">
     Sydney's youngest copywriting agency
   </marquee>
 
-  <section class="services" aria-label="Services offered">
-    <p><strong>SERVICES:</strong></p>
+  <section class="services">
+    <p>SERVICES:</p>
     <p>
-      • Brand Messaging &amp; Voice Development<br>
-      • Content Strategy &amp; Editorial Planning<br>
-      • Email Marketing Sequences<br>
-      • Website Copywriting (With Conversion Focus)<br>
-      • Product Launch &amp; Promo Copy<br>
+      • Brand Messaging &amp; Voice Development<br />
+      • Content Strategy &amp; Editorial Planning<br />
+      • Email Marketing Sequences<br />
+      • Website Copywriting (With Conversion Focus)<br />
+      • Product Launch &amp; Promo Copy<br />
       • E-commerce Product
     </p>
   </section>
 
-  <section class="story-section" aria-label="About Siyana Deveaux and agency story">
+  <section class="story-section">
     <div class="story-text">
-      <strong>My Story:</strong><br><br>
-      Welcome to my agency.<br>
-      I'm Siyana Deveaux. I was a qualified English teacher in London<br>
-      for a year, before I fell in love with marketing. London felt like the hub of digital marketing.<br>
-      And with my background, in education. I felt like I could merge<br>
-      two connecting worlds,<br>
-      English Literature and Digital Marketing<br>
-      = copywriting...<br><br>
+      <strong>My Story:</strong>
+      <br /><br />
+      Welcome to my agency.<br />
+      I'm Siyana Deveaux. I was a qualified English teacher in London<br />
+      for a year, before I fell in love with marketing. London felt like the hub of digital marketing.<br />
+      And with my background, in education, I felt like I could merge<br />
+      two connecting worlds,<br />
+      English Literature and Digital Marketing<br />
+      = copywriting...<br /><br />
       WriteMySocials was born.
     </div>
   </section>
 
   <footer>
-    <a href="mailto:Siyana.Deveaux@writemysocials.com" class="cta-email">Email Siyana at Siyana.Deveaux@writemysocials.com</a>
+    <a href="mailto:Siyana.Deveaux@writemysocials.com" class="cta-email" tabindex="0">
+      Email Siyana at Siyana.Deveaux@writemysocials.com
+    </a>
 
     <nav class="social-icons" aria-label="Social media links">
-      <a href="https://instagram.com/writemysocials" target="_blank" aria-label="Instagram">
-        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.75 2.25a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zm-4.25 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 2a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
+      <a href="https://instagram.com/writemysocials" target="_blank" aria-label="Instagram" tabindex="0">
+        <!-- Instagram SVG here -->
       </a>
-      <a href="https://tiktok.com/@writemysocials" target="_blank" aria-label="TikTok">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><title>TikTok</title><path d="M224 72.2c-20.7 0-37.4-16.7-37.4-37.4h-37.4v137.6c0 20.6-16.7 37.4-37.4 37.4s-37.4-16.7-37.4-37.4 16.7-37.4 37.4-37.4c6.4 0 12.4 1.7 17.6 4.6v-40.2c-5.6-1.1-11.3-1.7-17.6-1.7-42.3 0-76.8 34.5-76.8 76.8s34.5 76.8 76.8 76.8 76.8-34.5 76.8-76.8v-80.6c10.4 8.1 23.3 12.9 37.4 12.9z"/></svg>
+      <a href="https://tiktok.com/@writemysocials" target="_blank" aria-label="TikTok" tabindex="0">
+        <!-- TikTok SVG here -->
       </a>
     </nav>
   </footer>
 </div>
-
-<script>
-  const loadingScreen = document.getElementById('loading-screen');
-  const containerChildren = document.querySelectorAll('.container > *');
-
-  setTimeout(() => {
-    loadingScreen.classList.add('hidden');
-  }, 2000);
-
-  setTimeout(() => {
-    document.querySelector('.container').setAttribute('aria-hidden', 'false');
-    containerChildren.forEach((el, i) => {
-      setTimeout(() => {
-        el.classList.add('visible');
-      }, i * 700);
-    });
-  }, 3000);
-</script>
 
 </body>
 </html>
