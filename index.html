@@ -1,129 +1,216 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Write My Socials Interactive</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Write My Socials Interactive</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
 
-<style>
-  body, html {
-    margin: 0; padding: 0;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #000;
-    font-family: 'Playfair Display', serif;
-    user-select: none;
-  }
-
-  .logo-text {
-    display: flex;
-    font-size: 5rem;
-    color: white;
-    flex-wrap: wrap;
-    max-width: 90vw;
-    justify-content: center;
-  }
-
-  .logo-text span {
-    display: inline-block;
-    margin: 0 5px;
-    animation: gentleBounce 1.5s ease-in-out infinite alternate;
-    transform-origin: center bottom;
-    transition: color 0.3s ease;
-  }
-
-  /* gentle bounce */
-  @keyframes gentleBounce {
-    0%   { transform: translateY(0); }
-    100% { transform: translateY(-15px); }
-  }
-
-  /* jump + spin animation */
-  @keyframes jumpSpin {
-    0% {
-      transform: translateY(0) rotate(0deg);
-      color: white;
+  <style>
+    body, html {
+      margin: 0; padding: 0;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+      font-family: 'Playfair Display', serif;
+      user-select: none;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      position: relative;
     }
-    50% {
-      transform: translateY(-60px) rotate(180deg);
-      color: #ff4081; /* pink highlight */
+
+    /* Fullscreen black overlay that hides everything initially */
+    #blackOverlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: black;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+      pointer-events: all;
     }
-    100% {
-      transform: translateY(0) rotate(0deg);
-      color: white;
+
+    #blackOverlay.hidden {
+      opacity: 0;
+      pointer-events: none;
     }
-  }
 
-  .active {
-    animation: jumpSpin 0.8s ease forwards;
-  }
-
-  /* Hide the interactive version initially */
-  #interactiveLogo {
-    display: none;
-  }
-
-  /* Responsive font sizing for smaller screens */
-  @media (max-width: 600px) {
     .logo-text {
-      font-size: 3rem;  /* smaller font size for phones */
+      display: flex;
+      font-size: 5rem;
+      color: white;
+      flex-wrap: wrap;
+      max-width: 90vw;
+      justify-content: center;
+      position: relative;
+      line-height: 1;
+      user-select: none;
+      height: 6rem;
+      opacity: 0;
+      transition: opacity 1s ease;
     }
-  }
 
-  @media (max-width: 350px) {
-    .logo-text {
-      font-size: 2.2rem; /* even smaller for very small phones */
+    /* Show text by changing opacity */
+    .visible {
+      opacity: 1;
     }
-  }
-</style>
+
+    .logo-text span {
+      display: inline-block;
+      margin: 0 5px;
+      transform-origin: center bottom;
+      transition: color 0.3s ease;
+      position: relative;
+      user-select: none;
+      cursor: default;
+    }
+
+    /* gentle bounce for floatingLogo */
+    @keyframes gentleBounce {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(-15px); }
+    }
+
+    #floatingLogo span {
+      animation: gentleBounce 1.5s ease-in-out infinite alternate;
+    }
+
+    /* jump + spin animation on click */
+    @keyframes jumpSpin {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        color: white;
+      }
+      50% {
+        transform: translateY(-60px) rotate(180deg);
+        color: #ff4081;
+      }
+      100% {
+        transform: translateY(0) rotate(0deg);
+        color: white;
+      }
+    }
+
+    .active {
+      animation: jumpSpin 0.8s ease forwards;
+    }
+
+    /* Hide interactive initially */
+    #interactiveLogo {
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    /* Floating full range vertical animation */
+    @keyframes floatFullRange {
+      0% { transform: translateY(100vh); }
+      50% { transform: translateY(-100vh); }
+      100% { transform: translateY(100vh); }
+    }
+
+    /* Floating + 360 spin animation */
+    @keyframes floatSpinFullRange {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      50% { transform: translateY(-100vh) rotate(180deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    .float {
+      animation-name: floatFullRange;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    .floatSpin {
+      animation-name: floatSpinFullRange;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    /* Responsive font sizing */
+    @media (max-width: 600px) {
+      .logo-text {
+        font-size: 3rem;
+        height: 4rem;
+      }
+    }
+
+    @media (max-width: 350px) {
+      .logo-text {
+        font-size: 2.2rem;
+        height: 3rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- Initial floating bouncing text (no click) -->
-<div class="logo-text" id="floatingLogo">
-  <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span>
-  <span>&nbsp;</span>
-  <span>M</span><span>y</span>
-  <span>&nbsp;</span>
-  <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
-</div>
+  <!-- Black overlay -->
+  <div id="blackOverlay"></div>
 
-<!-- Interactive clickable text, hidden initially -->
-<div class="logo-text" id="interactiveLogo">
-  <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span>
-  <span>&nbsp;</span>
-  <span>M</span><span>y</span>
-  <span>&nbsp;</span>
-  <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
-</div>
+  <!-- Initial floating bouncing text -->
+  <div class="logo-text" id="floatingLogo">
+    <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span>
+    <span>&nbsp;</span>
+    <span>M</span><span>y</span>
+    <span>&nbsp;</span>
+    <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
+  </div>
+
+  <!-- Interactive floating + spin text -->
+  <div class="logo-text" id="interactiveLogo">
+    <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span>
+    <span>&nbsp;</span>
+    <span>M</span><span>y</span>
+    <span>&nbsp;</span>
+    <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
+  </div>
 
 <script>
-  // After 2 seconds black screen delay (text is present but background is black so invisible)
-  // After 5 seconds total (2 + 3), swap to interactive clickable text
+  const blackOverlay = document.getElementById('blackOverlay');
+  const floatingLogo = document.getElementById('floatingLogo');
+  const interactiveLogo = document.getElementById('interactiveLogo');
 
+  // Step 1: After 2 seconds remove black overlay & fade in floating text
   setTimeout(() => {
-    // No changes here; black screen ends, floating text is visible
-    // The background is black but text is already rendered so visible now.
+    blackOverlay.classList.add('hidden');
+    floatingLogo.classList.add('visible');
   }, 2000);
 
+  // Step 2: After 5 seconds total (3s after text visible), switch to interactive text
   setTimeout(() => {
-    // Swap floating text for interactive clickable text
-    const floatingLogo = document.getElementById('floatingLogo');
-    const interactiveLogo = document.getElementById('interactiveLogo');
-
+    floatingLogo.classList.remove('visible');
     floatingLogo.style.display = 'none';
+
     interactiveLogo.style.display = 'flex';
+
+    // Allow fade in
+    setTimeout(() => {
+      interactiveLogo.classList.add('visible');
+    }, 50);
 
     const letters = interactiveLogo.querySelectorAll('span');
 
     letters.forEach(letter => {
       if (letter.textContent.trim() === '') return;
 
-      letter.style.cursor = 'pointer';
+      letter.style.cursor = 'default';
+
+      const duration = (Math.random() * 7 + 5).toFixed(2) + 's';
+
+      if (Math.random() > 0.5) {
+        letter.classList.add('floatSpin');
+        letter.style.animationDuration = duration;
+      } else {
+        letter.classList.add('float');
+        letter.style.animationDuration = duration;
+      }
 
       letter.addEventListener('click', () => {
         if (letter.classList.contains('active')) return;
@@ -131,8 +218,18 @@
         letter.classList.add('active');
         letter.style.animationIterationCount = '1';
 
+        letter.classList.remove('float');
+        letter.classList.remove('floatSpin');
+
         letter.addEventListener('animationend', () => {
           letter.classList.remove('active');
+          const newDuration = (Math.random() * 7 + 5).toFixed(2) + 's';
+          if (Math.random() > 0.5) {
+            letter.classList.add('floatSpin');
+          } else {
+            letter.classList.add('float');
+          }
+          letter.style.animationDuration = newDuration;
         }, { once: true });
       });
     });
@@ -142,7 +239,4 @@
 </body>
 </html>
 
-
-</body>
-</html>
 
