@@ -1,121 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>WriteMySocials</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; overflow: hidden; background: #000; font-family: 'Playfair Display', serif; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vogue Style Interactive Letters</title>
 
-    .intro-screen {
-      position: fixed;
-      inset: 0;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: opacity 0.5s ease;
-      z-index: 9999;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
 
-    .logo-text {
-      display: flex;
-      font-size: 4rem;
-      color: #fff;
-    }
+<style>
+  body, html {
+    margin: 0; padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    font-family: 'Playfair Display', serif;
+    user-select: none;
+  }
 
-    .logo-text span {
-      display: inline-block;
-      animation: bounce 0.5s ease-in-out infinite alternate;
-    }
+  .logo-text {
+    display: flex;
+    font-size: 6rem;
+    color: white;
+    cursor: pointer;
+  }
 
-    @keyframes bounce {
-      from { transform: translateY(0); }
-      to   { transform: translateY(-15px); }
-    }
+  .logo-text span {
+    display: inline-block;
+    margin: 0 4px;
+    animation: gentleBounce 1.5s ease-in-out infinite alternate;
+    transform-origin: center bottom;
+    transition: color 0.3s ease;
+  }
 
-    .jump {
-      animation: jump 0.8s ease forwards;
-    }
+  /* gentle bounce */
+  @keyframes gentleBounce {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(-15px); }
+  }
 
-    @keyframes jump {
-      0%   { transform: translateY(0); opacity: 1; }
-      30%  { transform: translateY(-50px); opacity: 1; }
-      100% { transform: translateY(-150vh); opacity: 0; }
+  /* jump + spin animation */
+  @keyframes jumpSpin {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      color: white;
     }
+    50% {
+      transform: translateY(-60px) rotate(180deg);
+      color: #ff4081; /* pink highlight */
+    }
+    100% {
+      transform: translateY(0) rotate(0deg);
+      color: white;
+    }
+  }
 
-    .spin {
-      animation: spin 0.8s ease forwards;
-    }
+  .active {
+    animation: jumpSpin 0.8s ease forwards;
+  }
 
-    @keyframes spin {
-      from { transform: rotate(0deg); opacity: 1; }
-      to   { transform: rotate(180deg); opacity: 0; }
-    }
-
-    .page-content {
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      background: #fff;
-      height: 100%;
-      padding: 50px;
-      text-align: center;
-      font-size: 2rem;
-      color: #333;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .page-content.visible {
-      opacity: 1;
-    }
-  </style>
+</style>
 </head>
 <body>
 
-<div class="intro-screen" id="intro">
-  <div class="logo-text" id="logo">
-    <span>w</span><span>r</span><span>i</span><span>t</span><span>e</span>
-    <span>m</span><span>y</span><span>s</span><span>o</span><span>c</span>
-    <span>i</span><span>a</span><span>l</span><span>s</span>
-  </div>
-</div>
-
-<div class="page-content" id="content">
-  <h1>Welcome to WriteMySocials!</h1>
-  <p>Your content is live.</p>
+<div class="logo-text" id="logoText">
+  <!-- Separate letters wrapped in spans -->
+  <span>V</span><span>O</span><span>G</span><span>U</span><span>E</span>
 </div>
 
 <script>
-  setTimeout(() => {
-    console.log('Animation triggered'); // confirm it's the right file
+  const letters = document.querySelectorAll('#logoText span');
 
-    const letters = document.querySelectorAll('#logo span');
-    letters.forEach((letter, i) => {
-      letter.style.animation = 'none';
-      void letter.offsetWidth;
-      if (i % 2 === 0) {
-        letter.classList.add('jump');
-      } else {
-        letter.classList.add('spin');
-      }
+  letters.forEach(letter => {
+    letter.addEventListener('click', () => {
+      if (letter.classList.contains('active')) return; // ignore if animating
+
+      letter.classList.add('active');
+      letter.style.animationIterationCount = '1';
+
+      // Remove active after animation ends so it can trigger again
+      letter.addEventListener('animationend', () => {
+        letter.classList.remove('active');
+      }, { once: true });
     });
-
-    setTimeout(() => {
-      const intro = document.getElementById('intro');
-      const content = document.getElementById('content');
-      intro.style.opacity = '0';
-      setTimeout(() => {
-        intro.style.display = 'none';
-        content.classList.add('visible');
-        document.body.style.overflow = 'auto';
-      }, 500);
-    }, 800);
-
-  }, 2000);
+  });
 </script>
 
 </body>
 </html>
-
 
