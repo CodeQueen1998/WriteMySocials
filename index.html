@@ -13,6 +13,7 @@
     background: #000;
     overflow: hidden;
     font-family: 'Playfair Display', serif;
+    transition: background 1s ease;
   }
 
   #blackOverlay {
@@ -61,13 +62,6 @@
     opacity: 1;
   }
 
-  /* Chaos Animations */
-  @keyframes chaosMove {
-    0%   { transform: translate(0, 0) rotate(0deg); }
-    50%  { transform: translate(calc(-50vw + 100px), calc(-50vh + 100px)) rotate(720deg); }
-    100% { transform: translate(0, 0) rotate(0deg); }
-  }
-
   /* Gentle floating in place */
   @keyframes gentleFloat {
     0%   { transform: translateY(0); }
@@ -109,6 +103,7 @@
     blackOverlay.classList.add('hidden');
     animatedLogo.classList.add('visible');
 
+    // Wild chaos for 2s
     lines.forEach(letter => {
       if (letter.textContent.trim() === '') return;
 
@@ -139,12 +134,19 @@
         letter.style.transform = `translate(${spacing}vw, 6vh)`;
       });
 
-      // After alignment, start gentle floating forever
+      // After 1.5s alignment, hold aligned gentle float for 3s
       setTimeout(() => {
         lines.forEach(letter => {
           letter.style.transition = '';
           letter.style.animation = `gentleFloat 3s ease-in-out infinite`;
         });
+
+        // After 3s aligned, fade to white background
+        setTimeout(() => {
+          document.body.style.background = '#fff';
+          animatedLogo.style.opacity = '0';
+        }, 3000);
+
       }, 1500);
 
     }, 2000);
@@ -154,4 +156,3 @@
 
 </body>
 </html>
-
