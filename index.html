@@ -5,12 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>WriteMySocials</title>
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
-  /* Reset */
   * {
     margin: 0; padding: 0;
     box-sizing: border-box;
@@ -18,243 +16,194 @@
   body, html {
     height: 100%;
     font-family: 'Playfair Display', serif;
-    background: white;
-    color: black;
+    background: #fff;
+    color: #000;
     overflow-x: hidden;
   }
 
-  /* LOADING SCREEN (black full screen) */
   #loading-screen {
     position: fixed;
-    inset: 0;
-    background: black;
+    top:0; left:0; right:0; bottom:0;
+    background: #000;
+    z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    z-index: 9999;
-    color: white;
-  }
-
-  /* "writemysocials" logo text on black */
-  #logo-text {
-    font-family: 'Playfair Display', serif;
-    font-weight: 900;
-    font-size: 4rem;
-    color: white;
-    display: flex;
-    gap: 0.1em;
-    cursor: default;
   }
   #logo-text span {
+    color: #fff;
+    font-size: 3rem;
     display: inline-block;
-    user-select: none;
+    animation: jump 1.5s infinite ease-in-out;
   }
-
-  /* Jump animation for letters */
   @keyframes jump {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+    50% { transform: translateY(-10px); }
   }
 
-  /* Neon text container */
   #neon-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: #ff0050;
     font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 2.2rem;
-    color: #ff007f;
-    text-shadow:
-      0 0 5px #ff007f,
-      0 0 10px #ff007f,
-      0 0 20px #ff007f,
-      0 0 40px #ff007f;
+    text-shadow: 0 0 7px #ff0050, 0 0 20px #ff0050, 0 0 30px #ff0050;
+    position: absolute;
     white-space: nowrap;
     opacity: 0;
-    pointer-events: none;
+    transition: opacity 0.5s ease;
   }
-
-  /* Neon marquee animation */
+  .neon-marquee {
+    animation: neonMarqueeLeft 6s linear infinite;
+  }
   @keyframes neonMarqueeLeft {
-    0% {
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    100% {
-      left: -100%;
-      transform: translateX(0);
-    }
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
   }
 
-  /* MAIN container initially hidden */
   .container {
-    opacity: 0;
-    transition: opacity 1s ease;
-    max-width: 90vw;
-    margin: 0 auto;
-  }
-  .container.visible {
-    opacity: 1;
+    display: none;
+    padding: 20px;
   }
 
-  /* HEADER with logo and socials */
   header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 15px 20px;
-    gap: 20px;
-  }
-  header img.logo-main {
-    width: 180px;
-    object-fit: contain;
-    margin-left: auto;
-  }
-  nav.social-icons-top {
-    display: flex;
     gap: 15px;
-    align-items: center;
+    padding: 15px;
   }
-  nav.social-icons-top a svg {
-    fill: black;
-    width: 24px;
-    height: 24px;
+  nav a svg {
+    fill: #000;
+    width: 28px;
+    height: 28px;
     transition: fill 0.3s ease;
   }
-  nav.social-icons-top a:hover svg {
-    fill: #ff007f;
+  nav a:hover svg {
+    fill: #ff0050;
   }
 
-  /* Work samples marquee container */
   .marquee-container {
     overflow: hidden;
+    margin: 40px auto;
     max-width: 100vw;
-    margin: 40px auto 60px auto;
-    position: relative;
   }
   .marquee-images {
     display: flex;
     gap: 15px;
-    animation: marqueeScroll 20s linear infinite;
-    justify-content: center;
-  }
-  .marquee-images:hover {
-    animation-play-state: paused;
+    animation: imageMarquee 18s linear infinite;
   }
   .marquee-images img {
     height: 250px;
-    width: auto;
-    object-fit: contain;
-    border-radius: 10px;
-    flex-shrink: 0;
-    cursor: pointer;
-    user-select: none;
+    object-fit: cover;
+    border-radius: 12px;
     transition: transform 0.3s ease;
   }
   .marquee-images img:hover {
-    transform: scale(1.15);
-    z-index: 10;
+    transform: scale(1.1);
+  }
+  @keyframes imageMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 
-  @keyframes marqueeScroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  /* Work With Us button */
   .work-with-us-btn {
+    background: #000;
+    color: #fff;
+    padding: 15px 40px;
+    margin: 30px auto;
     display: block;
-    margin: 0 auto 40px auto;
-    background: black;
-    color: white;
-    font-weight: 700;
-    font-size: 1.8rem;
-    padding: 15px 50px;
+    font-size: 1.6rem;
+    font-weight: bold;
     border-radius: 30px;
+    width: fit-content;
+    transition: all 0.3s ease;
     cursor: pointer;
     text-align: center;
-    width: fit-content;
-    user-select: none;
-    transition: background-color 0.3s ease, text-shadow 0.3s ease;
-    text-decoration: none;
   }
   .work-with-us-btn:hover {
-    background: transparent;
-    color: #ff007f;
-    text-shadow:
-      0 0 5px #ff007f,
-      0 0 10px #ff007f,
-      0 0 20px #ff007f;
+    background: #ff0050;
   }
 
-  /* Footer with email in cursive */
   footer {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
+    text-align: center;
+    margin: 40px 0;
   }
   .cta-email {
     font-family: 'Pacifico', cursive;
-    font-weight: 400;
-    font-size: 1.3rem;
-    cursor: pointer;
-    color: black;
-    transition: color 0.3s ease, text-decoration 0.3s ease;
+    font-size: 1.5rem;
+    color: #000;
     text-decoration: none;
+    transition: color 0.3s ease;
   }
   .cta-email:hover {
-    color: #ff007f;
-    text-decoration: underline;
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    header {
-      justify-content: center;
-      gap: 15px;
-      padding: 15px 10px;
-    }
-    .marquee-images img {
-      height: 180px;
-    }
-    .work-with-us-btn {
-      font-size: 1.5rem;
-      padding: 12px 40px;
-      margin-bottom: 40px;
-    }
-  }
-  @media (max-width: 400px) {
-    .marquee-images img {
-      height: 140px;
-    }
+    color: #ff0050;
   }
 </style>
 </head>
+
 <body>
 
-<!-- Loading screen -->
-<div id="loading-screen" aria-live="polite" aria-atomic="true" aria-busy="true">
-  <!-- Logo text with each letter as span -->
-  <div id="logo-text" aria-label="Logo writemysocials"></div>
-  <!-- Neon container -->
-  <div id="neon-container" aria-label="Neon marquee text">
-    Transforming your brand’s narrative into a best seller
-  </div>
+<div id="loading-screen">
+  <div id="logo-text"></div>
+  <div id="neon-container">Transforming your brand’s narrative into a best seller</div>
 </div>
 
-<!-- Main site container -->
-<div class="container" aria-hidden="true">
+<div class="container">
   <header>
-    <nav class="social-icons-top" aria-label="Social media links">
-      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener" aria-label="LinkedIn">
-        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M4.98 3.5C3.35 3.5 2 4.85 2 6.48c0 1.62 1.35 2.97 2.98 2.97 1.62 0 2.98-1.35 2.98-2.97 0-1.63-1.36-2.98-2.98-2.98zM2 8.84h5.95v12.6H2V8.84zm7.22 0h5.72v1.75h.08c.8-1.51 2.75-3.1 5.65-3.1 6.05 0 7.16 3.98 7.16 9.15v10.8h-6V18.6c0-2.15-.04-4.91-3-4.91-3 0-3.46 2.34-3.46 4.76v7.07h-6V8.84z"/></svg>
+    <nav>
+      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M4.98 3.5C3.35 3.5 2 4.85 2 6.48..."/></svg>
       </a>
-      <a href="https://instagram.com/writemysocials" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.75 2.25a1.25 1.25
+      <a href="https://instagram.com/writemysocials" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75..."/></svg>
+      </a>
+      <a href="https://tiktok.com/@writemysocials" target="_blank" aria-label="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M9 4v14a5 5 0 005 5 5 5 0 100-10V5h4V1H9v3h1zm1 10..."/></svg>
+      </a>
+    </nav>
+  </header>
+
+  <div class="marquee-container">
+    <div class="marquee-images">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Sample 1">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Sample 2">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Sample 3">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Sample 4">
+    </div>
+  </div>
+
+  <a class="work-with-us-btn" href="work-with-us.html">Work With Us</a>
+
+  <footer>
+    <a class="cta-email" href="mailto:siyana.deveaux@writemysocials.com">siyana.deveaux@writemysocials.com</a>
+  </footer>
+</div>
+
+<script>
+  // Logo jump animation
+  const logoText = "writemysocials";
+  const logoContainer = document.getElementById("logo-text");
+  for (let char of logoText) {
+    const span = document.createElement("span");
+    span.textContent = char;
+    span.style.animationDelay = `${Math.random()}s`;
+    logoContainer.appendChild(span);
+  }
+
+  // Sequence timing
+  setTimeout(() => {
+    document.getElementById("logo-text").style.display = "none";
+    const neon = document.getElementById("neon-container");
+    neon.style.opacity = "1";
+    setTimeout(() => {
+      neon.classList.add("neon-marquee");
+      setTimeout(() => {
+        document.getElementById("loading-screen").style.display = "none";
+        document.querySelector(".container").style.display = "block";
+      }, 4000);
+    }, 2000);
+  }, 2000);
+</script>
+
+</body>
+</html>
