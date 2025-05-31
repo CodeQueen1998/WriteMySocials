@@ -33,7 +33,6 @@
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    text-align: center;
     color: white;
     font-size: 9vw;
     opacity: 0;
@@ -47,13 +46,15 @@
     display: flex;
     justify-content: center;
     flex-wrap: nowrap;
-    white-space: nowrap;
+    margin: 0.5vw 0;
   }
 
   .line span {
     display: inline-block;
     margin: 0 0.5vw;
     transform-origin: center;
+    position: absolute;
+    top: 50%; left: 50%;
   }
 
   .visible {
@@ -61,44 +62,13 @@
   }
 
   /* Chaos Animations */
-  @keyframes floatUpDown {
-    0%   { transform: translateY(0); }
-    50%  { transform: translateY(-50vh); }
-    100% { transform: translateY(0); }
+  @keyframes chaosMove {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    50%  { transform: translate(calc(-50vw + 100px), calc(-50vh + 100px)) rotate(720deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
   }
 
-  @keyframes spin {
-    0%   { transform: rotate(0deg); }
-    100% { transform: rotate(720deg); }
-  }
-
-  @keyframes wiggle {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(20deg); }
-    50% { transform: rotate(-20deg); }
-    75% { transform: rotate(20deg); }
-    100% { transform: rotate(0deg); }
-  }
-
-  @keyframes bounce {
-    0%   { transform: translateY(0); }
-    25%  { transform: translateY(-50px); }
-    50%  { transform: translateY(0); }
-    75%  { transform: translateY(-25px); }
-    100% { transform: translateY(0); }
-  }
-
-  /* Alignment animation */
-  @keyframes settleIn {
-    0% {
-      transform: translateY(100vh) rotate(360deg);
-    }
-    100% {
-      transform: translateY(0) rotate(0deg);
-    }
-  }
-
-  /* Final gentle float */
+  /* Gentle floating in place */
   @keyframes gentleFloat {
     0%   { transform: translateY(0); }
     50%  { transform: translateY(-8px); }
@@ -142,22 +112,37 @@
     lines.forEach(letter => {
       if (letter.textContent.trim() === '') return;
 
-      const animations = ['floatUpDown', 'spin', 'wiggle', 'bounce'];
-      const chosen = animations[Math.floor(Math.random() * animations.length)];
-      const duration = (Math.random() * 1 + 1).toFixed(2) + 's';
+      const x = Math.floor(Math.random() * window.innerWidth) - (window.innerWidth / 2);
+      const y = Math.floor(Math.random() * window.innerHeight) - (window.innerHeight / 2);
+      const r = Math.floor(Math.random() * 720);
 
-      letter.style.animation = `${chosen} ${duration} ease-in-out infinite`;
+      letter.style.transition = 'transform 2s ease';
+      letter.style.transform = `translate(${x}px, ${y}px) rotate(${r}deg)`;
     });
 
-    // After 2s chaos, animate into aligned position over 1.5s
+    // After 2s chaos, move to position but keep animating gently
     setTimeout(() => {
-      lines.forEach(letter => {
-        letter.style.animation = `settleIn 1.5s ease forwards`;
+      const line1 = document.querySelectorAll('#line1 span');
+      const line2 = document.querySelectorAll('#line2 span');
+
+      // Position line 1
+      line1.forEach((letter, i) => {
+        const spacing = (i - (line1.length-1)/2) * 9; // 9vw per letter
+        letter.style.transition = 'transform 1.5s ease';
+        letter.style.transform = `translate(${spacing}vw, -6vh)`;
       });
 
-      // After settling, start gentle float forever
+      // Position line 2
+      line2.forEach((letter, i) => {
+        const spacing = (i - (line2.length-1)/2) * 9;
+        letter.style.transition = 'transform 1.5s ease';
+        letter.style.transform = `translate(${spacing}vw, 6vh)`;
+      });
+
+      // After alignment, start gentle floating forever
       setTimeout(() => {
         lines.forEach(letter => {
+          letter.style.transition = '';
           letter.style.animation = `gentleFloat 3s ease-in-out infinite`;
         });
       }, 1500);
@@ -166,9 +151,6 @@
 
   }, 1500);
 </script>
-
-</body>
-</html>
 
 </body>
 </html>
