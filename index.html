@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>WriteMySocials - Home</title>
+<title>WriteMySocials - Work With Us</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
 <style>
-  /* Reset & base */
+  /* Same base styles */
   * {
     box-sizing: border-box;
     margin: 0; padding: 0;
@@ -16,7 +16,6 @@
     font-family: 'Playfair Display', serif;
     background-color: #fff;
     color: #000;
-    overflow-x: hidden;
   }
   a {
     color: #000;
@@ -25,17 +24,16 @@
   a:hover {
     color: #ff0050;
   }
-  /* Container */
   .container {
-    max-width: 1100px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 30px 20px 60px;
+    padding: 40px 20px 60px;
   }
   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
   }
   .logo-section {
     display: flex;
@@ -52,7 +50,6 @@
     font-size: 1rem;
     color: #333;
   }
-  /* Social icons top-right */
   .social-icons-top {
     display: flex;
     gap: 18px;
@@ -66,78 +63,41 @@
   .social-icons-top a:hover svg {
     fill: #ff0050;
   }
-  /* Centered client info text */
-  .client-info {
-    text-align: center;
-    font-weight: 600;
-    font-size: 1rem;
-    margin: 25px 0 40px;
-  }
-  /* Marquee container */
-  .marquee-container {
-    overflow: hidden;
-    white-space: nowrap;
-    margin-bottom: 50px;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    padding: 12px 0;
-  }
-  /* Marquee images */
-  .marquee-images {
-    display: inline-flex;
-    animation: marquee 18s linear infinite;
-    gap: 24px;
-  }
-  .marquee-images img {
-    max-height: 270px;
-    width: auto;
-    object-fit: contain;
-    user-select: none;
-    pointer-events: none;
-  }
-  @keyframes marquee {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  /* Duplicate marquee for infinite effect */
-  .marquee-images.duplicate {
-    position: absolute;
-    top: 12px;
-    left: 100%;
-    display: inline-flex;
-    gap: 24px;
-    animation: marquee 18s linear infinite;
-  }
-  /* Story section */
-  .story-section {
-    max-width: 700px;
-    margin: 0 auto 60px;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    text-align: center;
-    color: #111;
-  }
-  .story-section strong {
-    font-size: 2.2rem;
-    display: block;
-    margin-bottom: 18px;
+  h1 {
+    font-size: 2.6rem;
     font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
   }
-  /* Footer */
+  ul.services-list {
+    list-style: none;
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 50px;
+    padding-left: 0;
+    line-height: 1.7;
+  }
+  ul.services-list li {
+    margin-bottom: 18px;
+  }
+  .cta-email {
+    display: block;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #000;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: color 0.3s ease;
+  }
+  .cta-email:hover {
+    color: #ff0050;
+  }
   footer {
     text-align: center;
     font-size: 1rem;
-    margin-top: 40px;
-  }
-  .footer-email {
-    font-weight: bold;
-    cursor: pointer;
-    color: #000;
-    transition: color 0.3s ease;
-  }
-  .footer-email:hover {
-    color: #ff0050;
-    text-decoration: underline;
+    margin-top: 60px;
   }
   /* Responsive */
   @media (max-width: 768px) {
@@ -146,24 +106,13 @@
       align-items: center;
       gap: 18px;
     }
-    .social-icons-top {
-      margin-bottom: 12px;
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 24px;
     }
-    .marquee-images, .marquee-images.duplicate {
-      max-height: 160px;
-      gap: 16px;
-    }
-    .marquee-images img {
-      max-height: 160px;
-    }
-    .story-section {
+    ul.services-list {
       font-size: 1rem;
-      margin-bottom: 40px;
       max-width: 90vw;
-    }
-    .story-section strong {
-      font-size: 1.6rem;
-      margin-bottom: 14px;
     }
   }
 </style>
@@ -189,51 +138,26 @@
     </nav>
   </header>
 
-  <div class="client-info" aria-live="polite">Currently taking on clients for May, 2025</div>
-
-  <div class="marquee-container" aria-label="Work samples scrolling images">
-    <div class="marquee-images" aria-hidden="true">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Work sample 1" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Work sample 2" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Work sample 3" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Work sample 4" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Work sample 1 duplicate" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Work sample 2 duplicate" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Work sample 3 duplicate" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Work sample 4 duplicate" />
-    </div>
-  </div>
-
-  <section class="story-section" tabindex="0">
-    <strong>My Story</strong>
-    <p>
-      At WriteMySocials, I craft compelling narratives that elevate brands above the noise. 
-      My passion is to tell your unique story with elegance and authenticity, creating content that resonates and converts.
+  <main>
+    <h1>Work With Us</h1>
+    <ul class="services-list" tabindex="0">
+      <li><strong>Social Media Content Creation</strong> - Captivating posts and stories tailored to your brand voice.</li>
+      <li><strong>Storytelling & Brand Narrative</strong> - Crafting your unique story to resonate with your audience.</li>
+      <li><strong>Content Strategy Consulting</strong> - Helping you plan and execute an effective social media presence.</li>
+      <li><strong>Engagement & Growth Tactics</strong> - Proven methods to grow followers and build meaningful connections.</li>
+      <li><strong>Analytics & Reporting</strong> - Detailed insights to optimize your campaigns.</li>
+    </ul>
+    <p style="text-align:center;">
+      Interested? Email me at <a href="mailto:contact@writemysocials.com" class="cta-email">contact@writemysocials.com</a>
     </p>
-    <p>
-      Let's work together to transform your social presence into an unforgettable journey.
-    </p>
-  </section>
+  </main>
 
   <footer>
-    <p>Contact me: <a href="mailto:contact@writemysocials.com" class="footer-email">contact@writemysocials.com</a></p>
     <p>&copy; 2025 WriteMySocials</p>
-    <p><a href="work-with-us.html">Work With Us</a></p>
+    <p><a href="index.html">Back to Home</a></p>
   </footer>
 </div>
 
-<script>
-  // Pause marquee on hover
-  const marquee = document.querySelector('.marquee-images');
-  marquee.addEventListener('mouseenter', () => {
-    marquee.style.animationPlayState = 'paused';
-  });
-  marquee.addEventListener('mouseleave', () => {
-    marquee.style.animationPlayState = 'running';
-  });
-</script>
-
 </body>
 </html>
-
 
