@@ -338,7 +338,49 @@
       <div class="portfolio-overlay"><p>Work Sample 2</p></div>
       <span id="desc2" class="sr-only">Sample of email marketing sequence</span>
     </div>
-    <div class
+    <div class="portfolio-item" tabindex="0" aria-describedby="desc3">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Work Sample 3" />
+      <div class="portfolio-overlay"><p>Work Sample 3</p></div>
+      <span id="desc3" class="sr-only">Sample of website copywriting</span>
+    </div>
+    <div class="portfolio-item" tabindex="0" aria-describedby="desc4">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Work Sample 4" />
+      <div class="portfolio-overlay"><p>Work Sample 4</p></div>
+      <span id="desc4" class="sr-only">Sample of product launch copy</span>
+    </div>
+  </section>
 
+  <footer>
+    <p>Want to work together? Email <a href="mailto:contact@writemysocials.com" class="cta-email">contact@writemysocials.com</a></p>
+    <nav class="social-icons" aria-label="Social media links">
+      <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+        <svg role="img" viewBox="0 0 128 128"><path d="M23.4 48.3h20v61.2h-20zM33.4 23.8a11.6 11.6 0 1111.6-11.6 11.6 11.6 0 01-11.6 11.6zM53.7 48.3h19.1v8.4h.3a20.9 20.9 0 0118.8-10.4c20.1 0 23.8 13.2 23.8 30.4v35.9h-20v-31.8c0-7.6-.1-17.4-10.6-17.4-10.6 0-12.2 8.2-12.2 16.7v32.5h-20z"/></svg>
+      </a>
+    </nav>
+  </footer>
+</div>
+
+<script>
+  // Fade in container on load
+  window.addEventListener('load', () => {
+    document.querySelector('.container').classList.add('visible');
+  });
+
+  // Typing effect for tagline
+  const taglineText = "Words that turn your brand into a bestseller.";
+  const taglineElem = document.getElementById('tagline');
+  let i = 0;
+  function typeWriter() {
+    if (i < taglineText.length) {
+      taglineElem.textContent += taglineText.charAt(i);
+      i++;
+      setTimeout(typeWriter, 75);
+    }
+  }
+  typeWriter();
+</script>
+
+</body>
+</html>
 
 
