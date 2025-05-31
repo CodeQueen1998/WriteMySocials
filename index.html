@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>WriteMySocials</title>
+<title>WriteMySocials - Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
 <style>
+  /* Reset & base */
   * {
     box-sizing: border-box;
     margin: 0; padding: 0;
@@ -23,223 +25,212 @@
   a:hover {
     color: #ff0050;
   }
-
-  /* Loading Screen */
-  #loading-screen {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: #000;
-    z-index: 1000;
-    opacity: 1;
-    transition: opacity 1s ease;
+  /* Container */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
   }
-  #loading-screen.hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  /* Header */
   header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    padding: 20px;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .logo-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
   .logo-section img {
-    width: 160px;
+    width: 180px;
     height: auto;
+    object-fit: contain;
   }
-  .social-icons {
+  .tagline {
+    font-style: italic;
+    font-size: 1rem;
+    color: #333;
+  }
+  /* Social icons top-right */
+  .social-icons-top {
     display: flex;
-    gap: 20px;
+    gap: 18px;
   }
-  .social-icons a svg {
+  .social-icons-top a svg {
     fill: black;
     width: 26px;
     height: 26px;
     transition: fill 0.3s ease;
   }
-  .social-icons a:hover svg {
+  .social-icons-top a:hover svg {
     fill: #ff0050;
   }
-
+  /* Centered client info text */
   .client-info {
     text-align: center;
-    margin: 30px 0;
-    font-size: 1.1rem;
     font-weight: 600;
+    font-size: 1rem;
+    margin: 25px 0 40px;
   }
-
-  /* Marquee */
-  .image-marquee-wrapper {
+  /* Marquee container */
+  .marquee-container {
     overflow: hidden;
-    width: 100%;
-    background: #fff;
-    padding: 20px 0;
+    white-space: nowrap;
+    margin-bottom: 50px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 12px 0;
   }
-  .image-marquee {
-    display: flex;
-    gap: 20px;
-    animation: marquee 30s linear infinite;
-    align-items: center;
+  /* Marquee images */
+  .marquee-images {
+    display: inline-flex;
+    animation: marquee 18s linear infinite;
+    gap: 24px;
   }
-  .image-marquee img {
-    height: auto;
-    max-height: 400px;
+  .marquee-images img {
+    max-height: 270px;
     width: auto;
-    max-width: 90%;
     object-fit: contain;
-    flex-shrink: 0;
-    background: #f8f8f8;
-    padding: 6px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
+    user-select: none;
+    pointer-events: none;
   }
-
   @keyframes marquee {
-    0% {transform: translateX(0);}
-    100% {transform: translateX(-50%);}
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
-
-  /* Services */
-  .services {
-    text-align: center;
-    padding: 50px 20px;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    max-width: 700px;
-    margin: 0 auto;
+  /* Duplicate marquee for infinite effect */
+  .marquee-images.duplicate {
+    position: absolute;
+    top: 12px;
+    left: 100%;
+    display: inline-flex;
+    gap: 24px;
+    animation: marquee 18s linear infinite;
   }
-  .services p:first-child {
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-  }
-
-  /* Story Section */
+  /* Story section */
   .story-section {
-    padding: 50px 20px;
-    text-align: center;
-    font-size: 1.1rem;
-    line-height: 1.8;
     max-width: 700px;
-    margin: 0 auto;
+    margin: 0 auto 60px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    text-align: center;
+    color: #111;
   }
   .story-section strong {
     font-size: 2.2rem;
-    font-weight: 700;
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
+    font-weight: 700;
   }
-
   /* Footer */
   footer {
     text-align: center;
-    padding: 30px 20px;
     font-size: 1rem;
+    margin-top: 40px;
   }
-  .cta-email {
+  .footer-email {
     font-weight: bold;
+    cursor: pointer;
     color: #000;
     transition: color 0.3s ease;
   }
-  .cta-email:hover {
+  .footer-email:hover {
     color: #ff0050;
     text-decoration: underline;
   }
-
-  /* Mobile Responsive */
+  /* Responsive */
   @media (max-width: 768px) {
     header {
-      flex-direction: row;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
+      gap: 18px;
     }
-    .logo-section img {
-      width: 140px;
+    .social-icons-top {
+      margin-bottom: 12px;
     }
-    .client-info {
+    .marquee-images, .marquee-images.duplicate {
+      max-height: 160px;
+      gap: 16px;
+    }
+    .marquee-images img {
+      max-height: 160px;
+    }
+    .story-section {
       font-size: 1rem;
-      margin: 20px 0;
+      margin-bottom: 40px;
+      max-width: 90vw;
     }
-    .image-marquee img {
-      max-height: 240px;
-      max-width: 80%;
-    }
-    .services p:first-child, .story-section strong {
-      font-size: 1.7rem;
-    }
-    .services, .story-section {
-      font-size: 1rem;
+    .story-section strong {
+      font-size: 1.6rem;
+      margin-bottom: 14px;
     }
   }
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div id="loading-screen"></div>
+<div class="container">
+  <header>
+    <div class="logo-section">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" />
+      <div class="tagline">“Transforming your brand’s narrative into a best seller”</div>
+    </div>
+    <nav class="social-icons-top" aria-label="Social media links">
+      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" aria-label="LinkedIn">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M4.98 3.5C3.35 3.5 2 4.86 2 6.5s1.35 3 2.98 3 2.99-1.35 2.99-3-1.34-3-2.99-3zM2 21h6V9H2v12zM10 9h5.27v1.74h.08c.74-1.4 2.56-2.88 5.27-2.88C23 7.86 24 10 24 14.1V21h-6v-6.18c0-1.47-.03-3.36-2.05-3.36-2.05 0-2.37 1.6-2.37 3.25V21h-6V9z"/></svg>
+      </a>
+      <a href="https://instagram.com/writemysocials" target="_blank" aria-label="Instagram">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.75 2.25a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zm-4.25 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 2a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
+      </a>
+      <a href="https://tiktok.com/@writemysocials" target="_blank" aria-label="TikTok">
+        <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><title>TikTok</title><path d="M224 72.2c-20.7 0-37.4-16.7-37.4-37.4h-37.4v137.6c0 20.6-16.7 37.4-37.4 37.4s-37.4-16.7-37.4-37.4 16.7-37.4 37.4-37.4c6.4 0 12.4 1.7 17.6 4.6v-40.2c-5.6-1.1-11.3-1.7-17.6-1.7-42.3 0-76.8 34.5-76.8 76.8s34.5 76.8 76.8 76.8 76.8-34.5 76.8-76.8v-80.6c10.4 8.1 23.3 12.9 37.4 12.9z"/></svg>
+      </a>
+    </nav>
+  </header>
 
-<header>
-  <div class="logo-section">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" />
+  <div class="client-info" aria-live="polite">Currently taking on clients for May, 2025</div>
+
+  <div class="marquee-container" aria-label="Work samples scrolling images">
+    <div class="marquee-images" aria-hidden="true">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Work sample 1" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Work sample 2" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Work sample 3" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Work sample 4" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Work sample 1 duplicate" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Work sample 2 duplicate" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Work sample 3 duplicate" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Work sample 4 duplicate" />
+    </div>
   </div>
-  <nav class="social-icons">
-    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" aria-label="LinkedIn">
-      <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7 0h3.8v2.2h.05c.53-1 1.83-2.2 3.75-2.2 4 0 4.74 2.63 4.74 6v7.8h-4v-6.9c0-1.63-.03-3.72-2.27-3.72-2.27 0-2.62 1.77-2.62 3.6V24h-4V8z"/></svg>
-    </a>
-    <a href="https://instagram.com/writemysocials" target="_blank" aria-label="Instagram">
-      <svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.75 2.25a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zm-4.25 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 2a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
-    </a>
-    <a href="https://tiktok.com/@writemysocials" target="_blank" aria-label="TikTok">
-      <svg viewBox="0 0 256 256"><path d="M224 72.2c-20.7 0-37.4-16.7-37.4-37.4h-37.4v137.6c0 20.6-16.7 37.4-37.4 37.4s-37.4-16.7-37.4-37.4 16.7-37.4 37.4-37.4c6.4 0 12.4 1.7 17.6 4.6v-40.2c-5.6-1.1-11.3-1.7-17.6-1.7-42.3 0-76.8 34.5-76.8 76.8s34.5 76.8 76.8 76.8 76.8-34.5 76.8-76.8v-80.6c10.4 8.1 23.3 12.9 37.4 12.9z"/></svg>
-    </a>
-  </nav>
-</header>
 
-<div class="client-info">
-  Currently taking on clients for May 2025.
+  <section class="story-section" tabindex="0">
+    <strong>My Story</strong>
+    <p>
+      At WriteMySocials, I craft compelling narratives that elevate brands above the noise. 
+      My passion is to tell your unique story with elegance and authenticity, creating content that resonates and converts.
+    </p>
+    <p>
+      Let's work together to transform your social presence into an unforgettable journey.
+    </p>
+  </section>
+
+  <footer>
+    <p>Contact me: <a href="mailto:contact@writemysocials.com" class="footer-email">contact@writemysocials.com</a></p>
+    <p>&copy; 2025 WriteMySocials</p>
+    <p><a href="work-with-us.html">Work With Us</a></p>
+  </footer>
 </div>
-
-<div class="image-marquee-wrapper">
-  <div class="image-marquee">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Sample 1">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Sample 2">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Sample 3">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Sample 4">
-  </div>
-</div>
-
-<section class="services">
-  <p><strong>SERVICES:</strong></p>
-  <p>
-    • Brand Messaging &amp; Voice Development<br>
-    • Content Strategy &amp; Editorial Planning<br>
-    • Email Marketing Sequences<br>
-    • Website Copywriting (Conversion-Focused)<br>
-    • Product Launch &amp; Promo Copy<br>
-    • E-commerce Product Descriptions
-  </p>
-</section>
-
-<section class="story-section">
-  <strong>My Story:</strong>
-  Welcome to my agency. I'm Siyana Deveaux.  
-  I was a qualified English teacher in London before falling in love with marketing.  
-  London felt like the hub of digital storytelling — and I realised my background in education could merge seamlessly with the world of digital marketing.  
-  That intersection became copywriting.  
-  And so, WriteMySocials was born.
-</section>
-
-<footer>
-  <a href="mailto:Siyana.Deveaux@writemysocials.com" class="cta-email">Email Siyana: Siyana.Deveaux@writemysocials.com</a>
-</footer>
 
 <script>
-  const loadingScreen = document.getElementById('loading-screen');
-  setTimeout(() => {
-    loadingScreen.classList.add('hidden');
-  }, 1000);
+  // Pause marquee on hover
+  const marquee = document.querySelector('.marquee-images');
+  marquee.addEventListener('mouseenter', () => {
+    marquee.style.animationPlayState = 'paused';
+  });
+  marquee.addEventListener('mouseleave', () => {
+    marquee.style.animationPlayState = 'running';
+  });
 </script>
 
 </body>
