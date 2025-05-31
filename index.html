@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Write My Socials Hyper</title>
+<title>Write My Socials Ultimate</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 
 <style>
@@ -82,13 +82,19 @@
     100% { transform: translateY(100vh); }
   }
 
+  /* Final centering state */
+  .centered span {
+    animation: none !important;
+    transform: translateY(0) rotate(0deg) !important;
+    transition: all 0.8s ease;
+  }
+
   /* Responsive text sizing */
   @media (max-width: 600px) {
     .logo-text {
       font-size: 14vw;
     }
   }
-
 </style>
 </head>
 <body>
@@ -107,7 +113,7 @@
   const blackOverlay = document.getElementById('blackOverlay');
   const animatedLogo = document.getElementById('animatedLogo');
 
-  // Show text after 2 seconds
+  // 3s black screen
   setTimeout(() => {
     blackOverlay.classList.add('hidden');
     animatedLogo.classList.add('visible');
@@ -124,11 +130,14 @@
       letter.style.animationDuration = duration;
     });
 
-  }, 2000);
+    // After another 3s, bring everything back to center
+    setTimeout(() => {
+      animatedLogo.classList.add('centered');
+    }, 3000);
+
+  }, 3000);
 </script>
 
 </body>
 </html>
-
-
 
