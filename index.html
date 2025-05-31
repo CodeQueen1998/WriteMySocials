@@ -5,20 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>WriteMySocials</title>
 <style>
+  /* Reset */
   * {
     box-sizing: border-box;
     margin: 0; padding: 0;
   }
   body, html {
     height: 100%;
-    font-family: 'Didot', Georgia, serif;
+    font-family: 'Merriweather', Georgia, serif; /* Clean, readable serif */
     background-color: #fff;
-    color: #000;
+    color: #111;
     overflow-x: hidden;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
   }
   a {
-    color: #000;
+    color: #111;
     text-decoration: none;
+    transition: color 0.3s ease;
   }
   a:hover {
     color: #ff0050;
@@ -39,6 +43,11 @@
   }
 
   /* Container */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+  }
   .container > * {
     opacity: 0;
     transition: opacity 0.7s ease;
@@ -51,7 +60,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
   }
   .logo-section {
     display: flex;
@@ -59,42 +68,49 @@
     align-items: flex-start;
   }
   .logo-section img {
-    width: 180px;
+    width: 160px;
     height: auto;
     object-fit: contain;
   }
   .tagline {
     font-style: italic;
-    margin-top: 5px;
-    font-size: 1rem;
-    color: #333;
+    margin-top: 8px;
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 280px;
+    line-height: 1.4;
   }
   .client-info {
     font-size: 1rem;
     font-weight: 600;
     text-align: right;
     max-width: 220px;
+    color: #333;
   }
 
   marquee {
-    font-size: 3rem;
+    font-family: 'Merriweather', serif;
+    font-size: 2.2rem;
     font-weight: 700;
-    margin: 20px 0 30px 0;
+    margin: 25px 0 40px;
     color: #222;
+    letter-spacing: 0.04em;
   }
 
   .services {
     text-align: center;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    max-width: 600px;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    max-width: 650px;
     margin: 0 auto 100px auto;
     white-space: pre-line;
+    color: #222;
   }
   .services p:first-child {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
   }
 
   /* Centered My Story */
@@ -102,33 +118,36 @@
     display: flex;
     justify-content: center;
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 100px;
   }
   .story-text {
-    max-width: 700px;
-    font-size: 1rem;
-    line-height: 1.6;
+    max-width: 720px;
+    font-size: 1.1rem;
+    line-height: 1.8;
     white-space: pre-wrap;
+    color: #333;
   }
   .story-text strong {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
     display: block;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
+    letter-spacing: 0.05em;
   }
 
   footer {
-    margin-top: 40px;
+    margin-top: 50px;
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 35px;
     align-items: center;
     font-size: 1rem;
+    color: #444;
   }
   .cta-email {
     cursor: pointer;
-    font-weight: bold;
-    color: #000;
+    font-weight: 600;
+    color: #111;
     transition: color 0.3s ease;
   }
   .cta-email:hover {
@@ -137,10 +156,10 @@
   }
   .social-icons {
     display: flex;
-    gap: 15px;
+    gap: 20px;
   }
   .social-icons a svg {
-    fill: black;
+    fill: #111;
     width: 28px;
     height: 28px;
     transition: fill 0.3s ease;
@@ -149,44 +168,52 @@
     fill: #ff0050;
   }
 
+  /* Responsive */
   @media (max-width: 768px) {
     .container {
-      padding: 15px 20px;
+      padding: 30px 15px 50px;
     }
     header {
       flex-direction: column;
       align-items: flex-start;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 15px;
+      margin-bottom: 30px;
     }
     .client-info {
       text-align: left;
       max-width: 100%;
+      font-size: 0.95rem;
+      color: #555;
     }
     marquee {
-      font-size: 2rem;
-      margin: 15px 0 20px 0;
+      font-size: 1.8rem;
+      margin: 20px 0 30px;
     }
     .services {
       max-width: 100%;
       font-size: 1rem;
-      margin-bottom: 60px;
+      margin-bottom: 70px;
     }
     .services p:first-child {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
+      font-size: 1.6rem;
+      margin-bottom: 15px;
     }
     .story-text strong {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
+      font-size: 1.6rem;
+      margin-bottom: 20px;
     }
     footer {
       flex-direction: column;
-      gap: 15px;
+      gap: 20px;
       font-size: 0.9rem;
+      color: #666;
     }
   }
 </style>
+
+<!-- Import Merriweather font from Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
@@ -207,19 +234,19 @@
     Sydney's youngest copywriting agency
   </marquee>
 
-  <section class="services">
+  <section class="services" aria-label="Services offered">
     <p><strong>SERVICES:</strong></p>
     <p>
-      • Brand Messaging &amp; Voice Development
-      <br>• Content Strategy &amp; Editorial Planning
-      <br>• Email Marketing Sequences
-      <br>• Website Copywriting (With Conversion Focus)
-      <br>• Product Launch &amp; Promo Copy
-      <br>• E-commerce Product
+      • Brand Messaging &amp; Voice Development<br>
+      • Content Strategy &amp; Editorial Planning<br>
+      • Email Marketing Sequences<br>
+      • Website Copywriting (With Conversion Focus)<br>
+      • Product Launch &amp; Promo Copy<br>
+      • E-commerce Product
     </p>
   </section>
 
-  <section class="story-section">
+  <section class="story-section" aria-label="About Siyana Deveaux and agency story">
     <div class="story-text">
       <strong>My Story:</strong><br><br>
       Welcome to my agency.<br>
@@ -236,7 +263,7 @@
   <footer>
     <a href="mailto:Siyana.Deveaux@writemysocials.com" class="cta-email">Email Siyana at Siyana.Deveaux@writemysocials.com</a>
 
-    <nav class="social-icons">
+    <nav class="social-icons" aria-label="Social media links">
       <a href="https://instagram.com/writemysocials" target="_blank" aria-label="Instagram">
         <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.75 2.25a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zm-4.25 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 2a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
       </a>
