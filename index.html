@@ -13,21 +13,33 @@
     background: #000;
     overflow: hidden;
     font-family: 'Playfair Display', serif;
-    transition: background 1s ease;
+  }
+
+  #blackOverlay, #whiteOverlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 9999;
+    transition: opacity 1s ease;
   }
 
   #blackOverlay {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
     background: #000;
-    z-index: 9999;
     opacity: 1;
-    transition: opacity 0.5s ease;
   }
 
   #blackOverlay.hidden {
     opacity: 0;
     pointer-events: none;
+  }
+
+  #whiteOverlay {
+    background: #fff;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  #whiteOverlay.visible {
+    opacity: 1;
   }
 
   .logo-container {
@@ -81,6 +93,7 @@
 <body>
 
 <div id="blackOverlay"></div>
+<div id="whiteOverlay"></div>
 
 <div class="logo-container" id="animatedLogo">
   <div class="line" id="line1">
@@ -95,6 +108,7 @@
 
 <script>
   const blackOverlay = document.getElementById('blackOverlay');
+  const whiteOverlay = document.getElementById('whiteOverlay');
   const animatedLogo = document.getElementById('animatedLogo');
   const lines = animatedLogo.querySelectorAll('.line span');
 
@@ -134,16 +148,16 @@
         letter.style.transform = `translate(${spacing}vw, 6vh)`;
       });
 
-      // After 1.5s alignment, hold aligned gentle float for 3s
+      // After 1.5s alignment, hold aligned float for 3s
       setTimeout(() => {
         lines.forEach(letter => {
           letter.style.transition = '';
           letter.style.animation = `gentleFloat 3s ease-in-out infinite`;
         });
 
-        // After 3s aligned, fade to white background
+        // After 3s, fade in white overlay
         setTimeout(() => {
-          document.body.style.background = '#fff';
+          whiteOverlay.classList.add('visible');
           animatedLogo.style.opacity = '0';
         }, 3000);
 
@@ -156,3 +170,4 @@
 
 </body>
 </html>
+
