@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Write My Socials Ultimate</title>
+<title>WriteMySocials Experience</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 
 <style>
@@ -42,6 +42,7 @@
     transition: opacity 1s ease;
     user-select: none;
     max-width: 90vw;
+    z-index: 99;
   }
 
   .logo-text span {
@@ -56,7 +57,7 @@
     opacity: 1;
   }
 
-  /* Animation definitions */
+  /* Animations */
   @keyframes floatUpDown {
     0%   { transform: translateY(0); }
     50%  { transform: translateY(-40px); }
@@ -82,19 +83,48 @@
     100% { transform: translateY(100vh); }
   }
 
-  /* Final centering state */
-  .centered span {
+  /* Falling into place */
+  .falling span {
     animation: none !important;
+    transition: all 1s ease;
     transform: translateY(0) rotate(0deg) !important;
-    transition: all 0.8s ease;
   }
 
-  /* Responsive text sizing */
+  /* Final white site */
+  .whiteSite {
+    background: #fff;
+    color: #000;
+    transition: background 1s ease;
+    overflow: auto;
+  }
+
+  .site-logo {
+    position: fixed;
+    top: 20px;
+    left: 30px;
+    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    color: #000;
+    z-index: 100;
+  }
+
+  .site-content {
+    margin: 100px auto;
+    max-width: 600px;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
   @media (max-width: 600px) {
     .logo-text {
       font-size: 14vw;
     }
+    .site-logo {
+      font-size: 1.5rem;
+    }
   }
+
 </style>
 </head>
 <body>
@@ -109,9 +139,17 @@
   <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
 </div>
 
+<div id="mainSite" style="display:none;">
+  <div class="site-logo">WriteMySocials</div>
+  <div class="site-content">
+    <p>Welcome to the site! Here’s where your content will live.</p>
+  </div>
+</div>
+
 <script>
   const blackOverlay = document.getElementById('blackOverlay');
   const animatedLogo = document.getElementById('animatedLogo');
+  const mainSite = document.getElementById('mainSite');
 
   // 3s black screen
   setTimeout(() => {
@@ -130,14 +168,22 @@
       letter.style.animationDuration = duration;
     });
 
-    // After another 3s, bring everything back to center
+    // After 4s, stop crazy animations, let them fall into place
     setTimeout(() => {
-      animatedLogo.classList.add('centered');
-    }, 3000);
+      animatedLogo.classList.add('falling');
+    }, 4000);
+
+    // After 7s (3 more sec of clean aligned text), show white site
+    setTimeout(() => {
+      document.body.classList.add('whiteSite');
+      animatedLogo.style.display = 'none';
+      mainSite.style.display = 'block';
+    }, 7000);
 
   }, 3000);
 </script>
 
 </body>
 </html>
+
 
