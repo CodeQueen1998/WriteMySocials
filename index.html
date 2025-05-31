@@ -4,12 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>WriteMySocials</title>
-
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
-
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Libre+Baskerville&display=swap" rel="stylesheet" />
 <style>
-  /* Reset */
   * {
     box-sizing: border-box;
     margin: 0; padding: 0;
@@ -18,304 +14,241 @@
     height: 100%;
     font-family: 'Libre Baskerville', serif;
     background-color: #fff;
-    color: #111;
+    color: #000;
     overflow-x: hidden;
-    line-height: 1.7;
-    letter-spacing: 0.03em;
   }
   a {
-    color: #111;
+    color: #000;
     text-decoration: none;
-    cursor: pointer;
-    transition: color 0.3s ease;
   }
   a:hover {
     color: #ff0050;
   }
 
-  /* Container */
-  .container {
-    max-width: 960px;
-    margin: 60px auto 80px;
-    padding: 0 20px;
-    opacity: 0;
+  /* Loading Screen */
+  #loading-screen {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #000;
+    z-index: 10000;
+    opacity: 1;
     transition: opacity 1s ease;
   }
-  .container.visible {
-    opacity: 1;
+  #loading-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
   }
 
-  /* Header */
+  .container > * {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+  }
+  .visible {
+    opacity: 1 !important;
+  }
+
   header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
   }
   .logo-section {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
   }
   .logo-section img {
-    width: 160px;
+    width: 180px;
+    height: auto;
     object-fit: contain;
-    margin-bottom: 8px;
   }
-  .tagline {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
+  #tagline {
     font-style: italic;
-    color: #555;
-    max-width: 320px;
-    letter-spacing: 0.08em;
-    min-height: 38px; /* For typing effect space */
+    margin-top: 5px;
+    font-size: 1rem;
+    color: #000;
+    font-family: 'Playfair Display', serif;
   }
   .client-info {
+    font-size: 1rem;
     font-weight: 600;
-    font-size: 1rem;
-    color: #222;
     text-align: right;
-    max-width: 240px;
-    line-height: 1.4;
-    letter-spacing: 0.05em;
-  }
-
-  /* Marquee Replacement with Smooth Scroll */
-  .marquee-container {
-    overflow: hidden;
-    white-space: nowrap;
-    margin: 40px 0;
-  }
-  .marquee-text {
-    display: inline-block;
-    font-family: 'Playfair Display', serif;
-    font-size: 2.6rem;
-    font-weight: 700;
-    color: #222;
-    animation: marqueeAnim 15s linear infinite;
-    letter-spacing: 0.12em;
-  }
-  @keyframes marqueeAnim {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-  }
-
-  /* Services Section */
-  .services {
-    max-width: 700px;
-    margin: 0 auto 90px;
-    text-align: center;
-    font-size: 1rem;
-    color: #333;
-  }
-  .services strong {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 2.2rem;
-    display: block;
-    margin-bottom: 25px;
-    letter-spacing: 0.12em;
-  }
-  .services p {
-    line-height: 1.75;
-    letter-spacing: 0.04em;
-  }
-
-  /* Story Section */
-  .story-section {
-    max-width: 720px;
-    margin: 0 auto 90px;
-    font-size: 1.05rem;
-    color: #444;
-    line-height: 1.75;
+    max-width: 220px;
     font-family: 'Libre Baskerville', serif;
-  }
-  .story-title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 3rem;
-    margin-bottom: 30px;
-    letter-spacing: 0.15em;
-    text-align: center;
-  }
-  .story-text {
-    white-space: pre-line;
-    max-width: 720px;
-    margin: 0 auto;
-    letter-spacing: 0.04em;
+    color: #000;
   }
 
-  /* Portfolio Images Grid */
-  .portfolio {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-    gap: 28px;
-    max-width: 920px;
-    margin: 0 auto 90px;
-  }
-  .portfolio-item {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    border-radius: 6px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-    transition: transform 0.3s ease;
-  }
-  .portfolio-item:hover {
-    transform: scale(1.04);
-  }
-  .portfolio-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.5s ease;
-  }
-  .portfolio-item:hover img {
-    transform: scale(1.1);
-  }
-  /* Overlay on hover */
-  .portfolio-overlay {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.38);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  /* Social Icons Top Right */
+  .social-topright {
+    position: fixed;
+    top: 15px;
+    right: 20px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    gap: 20px;
+    z-index: 11000;
   }
-  .portfolio-item:hover .portfolio-overlay {
-    opacity: 1;
-  }
-  .portfolio-overlay p {
-    color: #fff;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  /* Footer */
-  footer {
-    max-width: 700px;
-    margin: 0 auto 40px;
-    text-align: center;
-    font-size: 1rem;
-    color: #222;
-    font-family: 'Libre Baskerville', serif;
-  }
-  .cta-email {
-    display: inline-block;
-    font-weight: 700;
-    color: #111;
-    padding-bottom: 3px;
-    border-bottom: 2px solid transparent;
-    transition: border-color 0.3s ease, color 0.3s ease;
-  }
-  .cta-email:hover {
-    color: #ff0050;
-    border-color: #ff0050;
-  }
-  .social-icons {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-  }
-  .social-icons a svg {
-    fill: #111;
+  .social-topright a svg {
+    fill: black;
     width: 28px;
     height: 28px;
     transition: fill 0.3s ease;
   }
-  .social-icons a:hover svg {
+  .social-topright a:hover svg {
     fill: #ff0050;
   }
 
-  /* Responsive */
+  /* Work Samples */
+  .work-samples {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+  }
+  .work-samples img {
+    width: 220px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  }
+
+  /* My Story Section */
+  .story-section {
+    max-width: 720px;
+    margin: 0 auto 80px auto;
+    text-align: center;
+    font-family: 'Libre Baskerville', serif;
+    line-height: 1.6;
+    font-size: 1rem;
+    color: #000;
+    padding: 0 15px;
+  }
+  .story-text strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  /* Services Section */
+  .services {
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 60px auto;
+    white-space: pre-line;
+    font-family: 'Libre Baskerville', serif;
+    color: #000;
+  }
+  .services p:first-child {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+  }
+
+  footer {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    align-items: center;
+    font-size: 1rem;
+    font-family: 'Libre Baskerville', serif;
+    color: #000;
+  }
+  .cta-email {
+    cursor: pointer;
+    font-weight: bold;
+    color: #000;
+    transition: color 0.3s ease;
+  }
+  .cta-email:hover {
+    color: #ff0050;
+    text-decoration: underline;
+  }
+
   @media (max-width: 768px) {
     header {
       flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 40px;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 20px;
     }
     .client-info {
-      text-align: center;
+      text-align: left;
       max-width: 100%;
     }
-    .tagline {
-      text-align: center;
-      max-width: 100%;
+    .work-samples {
+      justify-content: center;
+      gap: 10px;
+    }
+    .work-samples img {
+      width: 45vw;
     }
     .services {
       max-width: 100%;
+      font-size: 1rem;
+      margin-bottom: 40px;
     }
-    .story-section {
-      max-width: 100%;
+    .services p:first-child {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
     }
-    .portfolio {
-      grid-template-columns: 1fr 1fr;
+    .story-text strong {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
     }
-  }
-  @media (max-width: 480px) {
-    .portfolio {
-      grid-template-columns: 1fr;
+    footer {
+      flex-direction: column;
+      gap: 15px;
+      font-size: 0.9rem;
     }
-    .marquee-text {
-      font-size: 1.8rem;
-    }
-    .story-title {
-      font-size: 2.4rem;
-    }
-    .services strong {
-      font-size: 1.8rem;
-    }
-  }
-
-  /* Accessibility: Screen reader only */
-  .sr-only {
-    position: absolute;
-    width: 1px; height: 1px;
-    padding: 0; margin: -1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    border: 0;
   }
 </style>
 </head>
 <body>
 
-<div class="container" aria-live="polite" aria-atomic="true">
+<div id="loading-screen"></div>
+
+<div class="social-topright" aria-label="Social media links">
+  <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" aria-label="LinkedIn">
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.25c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm13.5 11.25h-3v-5c0-1.19-1.21-1.1-1.21 0v5h-3v-10h3v1.35c1.4-2.59 6-2.79 6 2.48v6.17z"/></svg>
+  </a>
+  <a href="https://instagram.com/writemysocials" target="_blank" aria-label="Instagram">
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.75 2.25a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zm-4.25 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 2a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
+  </a>
+  <a href="https://tiktok.com/@writemysocials" target="_blank" aria-label="TikTok">
+    <svg role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><title>TikTok</title><path d="M224 72.2c-20.7 0-37.4-16.7-37.4-37.4h-37.4v137.6c0 20.6-16.7 37.4-37.4 37.4s-37.4-16.7-37.4-37.4 16.7-37.4 37.4-37.4c6.4 0 12.4 1.7 17.6 4.6v-40.2c-5.6-1.1-11.3-1.7-17.6-1.7-42.3 0-76.8 34.5-76.8 76.8s34.5 76.8 76.8 76.8 76.8-34.5 76.8-76.8v-80.6c10.4 8.1 23.3 12.9 37.4 12.9z"/></svg>
+  </a>
+</div>
+
+<div class="container" aria-hidden="true">
   <header>
-    <div class="logo-section" role="banner">
+    <div class="logo-section">
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" />
-      <div class="tagline" id="tagline"></div>
+      <div id="tagline" aria-live="polite"></div>
     </div>
     <div class="client-info">
-      Currently taking on clients for <strong>May, 2025</strong>
+      Currently taking on clients for May, 2025
     </div>
   </header>
 
-  <div class="marquee-container" aria-label="Scrolling marquee text">
-    <div class="marquee-text">Sydney's youngest copywriting agency</div>
-  </div>
-
-  <section class="services" aria-labelledby="services-title">
-    <strong id="services-title">Services</strong>
-    <p>
-      • Brand Messaging &amp; Voice Development<br>
-      • Content Strategy &amp; Editorial Planning<br>
-      • Email Marketing Sequences<br>
-      • Website Copywriting (With Conversion Focus)<br>
-      • Product Launch &amp; Promo Copy<br>
-      • E-commerce Product
-    </p>
+  <section class="work-samples" aria-label="Work samples">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Work sample 1" />
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Work sample 2" />
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Work sample 3" />
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Work sample 4" />
   </section>
 
-  <section class="story-section" aria-labelledby="story-title">
-    <h2 class="story-title" id="story-title">My Story</h2>
-    <div class="story-text" tabindex="0">
+  <section class="story-section" aria-label="My Story">
+    <div class="story-text">
+      <strong>My Story:</strong><br><br>
       Welcome to my agency.<br>
       I'm Siyana Deveaux. I was a qualified English teacher in London<br>
       for a year, before I fell in love with marketing. London felt like the hub of digital marketing.<br>
@@ -327,59 +260,65 @@
     </div>
   </section>
 
-  <section class="portfolio" aria-label="Portfolio of work samples">
-    <div class="portfolio-item" tabindex="0" aria-describedby="desc1">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Work Sample 1" />
-      <div class="portfolio-overlay"><p>Work Sample 1</p></div>
-      <span id="desc1" class="sr-only">Sample of brand messaging work</span>
-    </div>
-    <div class="portfolio-item" tabindex="0" aria-describedby="desc2">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Work Sample 2" />
-      <div class="portfolio-overlay"><p>Work Sample 2</p></div>
-      <span id="desc2" class="sr-only">Sample of email marketing sequence</span>
-    </div>
-    <div class="portfolio-item" tabindex="0" aria-describedby="desc3">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Work Sample 3" />
-      <div class="portfolio-overlay"><p>Work Sample 3</p></div>
-      <span id="desc3" class="sr-only">Sample of website copywriting</span>
-    </div>
-    <div class="portfolio-item" tabindex="0" aria-describedby="desc4">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Work Sample 4" />
-      <div class="portfolio-overlay"><p>Work Sample 4</p></div>
-      <span id="desc4" class="sr-only">Sample of product launch copy</span>
-    </div>
+  <section class="services">
+    <p><strong>SERVICES:</strong></p>
+    <p>
+      • Brand Messaging &amp; Voice Development
+      <br>• Content Strategy &amp; Editorial Planning
+      <br>• Email Marketing Sequences
+      <br>• Website Copywriting (With Conversion Focus)
+      <br>• Product Launch &amp; Promo Copy
+      <br>• E-commerce Product
+    </p>
   </section>
 
   <footer>
-    <p>Want to work together? Email <a href="mailto:contact@writemysocials.com" class="cta-email">contact@writemysocials.com</a></p>
-    <nav class="social-icons" aria-label="Social media links">
-      <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-        <svg role="img" viewBox="0 0 128 128"><path d="M23.4 48.3h20v61.2h-20zM33.4 23.8a11.6 11.6 0 1111.6-11.6 11.6 11.6 0 01-11.6 11.6zM53.7 48.3h19.1v8.4h.3a20.9 20.9 0 0118.8-10.4c20.1 0 23.8 13.2 23.8 30.4v35.9h-20v-31.8c0-7.6-.1-17.4-10.6-17.4-10.6 0-12.2 8.2-12.2 16.7v32.5h-20z"/></svg>
-      </a>
-    </nav>
+    <a href="mailto:Siyana.Deveaux@writemysocials.com" class="cta-email">Email Siyana at Siyana.Deveaux@writemysocials.com</a>
   </footer>
 </div>
 
 <script>
-  // Fade in container on load
-  window.addEventListener('load', () => {
-    document.querySelector('.container').classList.add('visible');
-  });
+  const loadingScreen = document.getElementById('loading-screen');
+  const containerChildren = document.querySelectorAll('.container > *');
+  const taglineElem = document.getElementById('tagline');
+
+  // Tagline text for fade-in
+  const taglineText = "“Transforming brands with words that captivate and convert.”";
 
   // Typing effect for tagline
-  const taglineText = "Words that turn your brand into a bestseller.";
-  const taglineElem = document.getElementById('tagline');
-  let i = 0;
-  function typeWriter() {
-    if (i < taglineText.length) {
-      taglineElem.textContent += taglineText.charAt(i);
-      i++;
-      setTimeout(typeWriter, 75);
-    }
+  function typeTagline(text, elem, delay = 50) {
+    let i = 0;
+    elem.textContent = '';
+    const interval = setInterval(() => {
+      if(i < text.length) {
+        elem.textContent += text.charAt(i);
+        i++;
+      } else {
+        clearInterval(interval);
+      }
+    }, delay);
   }
-  typeWriter();
+
+  window.onload = () => {
+    // Show black screen for 1s
+    setTimeout(() => {
+      loadingScreen.classList.add('hidden');
+
+      // Fade in container children sequentially
+      containerChildren.forEach((el, idx) => {
+        setTimeout(() => {
+          el.classList.add('visible');
+        }, idx * 250);
+      });
+
+      // Type tagline
+      typeTagline(taglineText, taglineElem);
+
+      // Make container aria visible after fade in
+      document.querySelector('.container').setAttribute('aria-hidden', 'false');
+    }, 1000);
+  };
 </script>
 
 </body>
 </html>
-
