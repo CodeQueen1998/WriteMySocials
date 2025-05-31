@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WriteMySocials Intro</title>
+  <meta charset="UTF-8">
+  <title>WriteMySocials</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html { height: 100%; background: #000; overflow: hidden; font-family: sans-serif; }
+    html, body { height: 100%; overflow: hidden; background: #000; font-family: sans-serif; }
 
     .intro-screen {
       position: fixed;
@@ -15,8 +14,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 9999;
       transition: opacity 0.5s ease;
+      z-index: 9999;
     }
 
     .logo-text {
@@ -31,27 +30,27 @@
     }
 
     @keyframes bounce {
-      0%   { transform: translateY(0); }
-      100% { transform: translateY(-15px); }
+      from { transform: translateY(0); }
+      to   { transform: translateY(-15px); }
     }
 
-    .jump-off {
-      animation: jumpUp 0.8s ease forwards;
+    .jump {
+      animation: jump 0.8s ease forwards;
     }
 
-    @keyframes jumpUp {
+    @keyframes jump {
       0%   { transform: translateY(0); opacity: 1; }
       30%  { transform: translateY(-50px); opacity: 1; }
       100% { transform: translateY(-150vh); opacity: 0; }
     }
 
     .spin {
-      animation: spinInPlace 0.8s ease forwards;
+      animation: spin 0.8s ease forwards;
     }
 
-    @keyframes spinInPlace {
-      0%   { transform: rotate(0deg); opacity: 1; }
-      100% { transform: rotate(180deg); opacity: 0; }
+    @keyframes spin {
+      from { transform: rotate(0deg); opacity: 1; }
+      to   { transform: rotate(180deg); opacity: 0; }
     }
 
     .page-content {
@@ -62,7 +61,6 @@
       padding: 50px;
       text-align: center;
       font-size: 2rem;
-      color: #333;
     }
 
     .page-content.visible {
@@ -72,43 +70,45 @@
 </head>
 <body>
 
-<div class="intro-screen" id="introScreen">
-  <div class="logo-text" id="logoText">
-    <span>w</span><span>r</span><span>i</span><span>t</span><span>e</span><span>m</span><span>y</span>
-    <span>s</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
+<div class="intro-screen" id="intro">
+  <div class="logo-text" id="logo">
+    <span>w</span><span>r</span><span>i</span><span>t</span><span>e</span>
+    <span>m</span><span>y</span><span>s</span><span>o</span><span>c</span>
+    <span>i</span><span>a</span><span>l</span><span>s</span>
   </div>
 </div>
 
-<div class="page-content" id="pageContent">
+<div class="page-content" id="content">
   <h1>Welcome to WriteMySocials!</h1>
-  <p>Your awesome content goes here.</p>
+  <p>Your content is live.</p>
 </div>
 
 <script>
-  // Wait 2s for bounce
   setTimeout(() => {
-    const letters = document.querySelectorAll('#logoText span');
-    letters.forEach((letter, index) => {
-      letter.style.animation = 'none'; // stop bounce
-      void letter.offsetWidth; // force reflow
-      if (index % 2 === 0) {
-        letter.classList.add('jump-off');
+    console.log('Animation triggered'); // confirm it's the right file
+
+    const letters = document.querySelectorAll('#logo span');
+    letters.forEach((letter, i) => {
+      letter.style.animation = 'none';
+      void letter.offsetWidth;
+      if (i % 2 === 0) {
+        letter.classList.add('jump');
       } else {
         letter.classList.add('spin');
       }
     });
 
-    // After 0.8s for jump/spin, fade out intro and show content
     setTimeout(() => {
-      const intro = document.getElementById('introScreen');
-      const content = document.getElementById('pageContent');
+      const intro = document.getElementById('intro');
+      const content = document.getElementById('content');
       intro.style.opacity = '0';
       setTimeout(() => {
         intro.style.display = 'none';
         content.classList.add('visible');
         document.body.style.overflow = 'auto';
-      }, 500); // after fade out
+      }, 500);
     }, 800);
+
   }, 2000);
 </script>
 
