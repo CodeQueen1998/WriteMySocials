@@ -3,274 +3,109 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>WriteMySocials</title>
+<title>WriteMySocials Intro</title>
 <style>
-/* Reset */
-* {
-  margin: 0; padding: 0;
-  box-sizing: border-box;
-}
-body, html {
-  height: 100%;
-  font-family: 'Playfair Display', serif;
-  background: #fff;
-  color: #000;
-  overflow-x: hidden;
-}
-
-/* Intro screen */
-#intro-screen {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: #000;
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#brand-name {
-  font-size: 4rem;
-  color: #fff;
-  display: flex;
-  gap: 5px;
-}
-
-#brand-name span {
-  display: inline-block;
-  animation: bounce 1.2s infinite;
-}
-
-#brand-name span:nth-child(odd) {
-  animation-delay: 0.1s;
-}
-#brand-name span:nth-child(even) {
-  animation-delay: 0.3s;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-}
-
-/* Flying off animation */
-.fly-off {
-  animation: flyOff 1.2s forwards;
-}
-
-@keyframes flyOff {
-  0% { opacity: 1; transform: translateY(0) rotate(0); }
-  100% {
-    opacity: 0;
-    transform: translateY(-200px) rotate(360deg);
+  * {
+    margin: 0; padding: 0;
+    box-sizing: border-box;
   }
-}
+  body, html {
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+    font-family: 'Playfair Display', serif;
+  }
 
-/* Container */
-.container {
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-.container.visible {
-  opacity: 1;
-}
+  .intro-screen {
+    position: fixed;
+    top:0; left:0; right:0; bottom:0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
 
-/* Header and socials */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 15px 20px;
-  margin-bottom: 30px;
-}
-.logo-section {
-  display: flex;
-  flex-direction: column;
-}
-.logo-section img {
-  width: 180px;
-  object-fit: contain;
-}
-.tagline {
-  font-style: italic;
-  margin-top: 5px;
-  font-size: 1rem;
-  color: #333;
-}
-nav.social-icons-top {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-nav.social-icons-top a svg {
-  fill: black;
-  width: 28px;
-  height: 28px;
-  transition: fill 0.3s ease;
-}
-nav.social-icons-top a:hover svg {
-  fill: #ff0050;
-}
+  .logo-text {
+    display: flex;
+    font-size: 3rem;
+    color: white;
+  }
 
-/* Client info */
-.client-info {
-  font-weight: 600;
-  font-size: 1rem;
-  text-align: center;
-  margin: 20px auto;
-}
+  .logo-text span {
+    display: inline-block;
+    animation: jump 0.5s infinite alternate;
+  }
 
-/* Work With Us button */
-.work-with-us-btn {
-  display: block;
-  margin: 20px auto 40px auto;
-  background: #000;
-  color: #fff;
-  font-weight: 700;
-  font-size: 1.8rem;
-  padding: 15px 50px;
-  border-radius: 30px;
-  cursor: pointer;
-  text-align: center;
-  width: fit-content;
-  user-select: none;
-  transition: background-color 0.3s ease;
-}
-.work-with-us-btn:hover {
-  background: #ff0050;
-  text-decoration: none;
-}
+  @keyframes jump {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+  }
 
-/* Marquee */
-.marquee-container {
-  overflow: hidden;
-  max-width: 100vw;
-  margin: 0 auto 60px auto;
-}
-.marquee-images {
-  display: flex;
-  gap: 15px;
-  animation: marqueeScroll 15s linear infinite;
-}
-.marquee-images img {
-  height: 250px;
-  width: auto;
-  object-fit: contain;
-  border-radius: 10px;
-  flex-shrink: 0;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-.marquee-images img:hover {
-  transform: scale(1.15);
-}
-@keyframes marqueeScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+  /* After jump phase */
+  .fly-top {
+    animation: flyTop 1s forwards;
+  }
 
-/* Footer email */
-footer {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
-}
-.cta-email {
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.5rem;
-  font-weight: 700;
-  cursor: pointer;
-  color: #000;
-  transition: color 0.3s ease;
-}
-.cta-email:hover {
-  color: #ff0050;
-}
+  @keyframes flyTop {
+    to { transform: translateY(-150vh) rotate(0deg); opacity: 0; }
+  }
 
-/* Responsive tweaks */
-@media (max-width: 768px) {
-  header { flex-direction: column; align-items: center; gap: 10px; margin-bottom: 20px; }
-  .logo-section img { width: 140px; }
-  nav.social-icons-top a svg { width: 24px; height: 24px; }
-  .marquee-images img { height: 180px; }
-  .work-with-us-btn { font-size: 1.5rem; padding: 12px 40px; }
-}
-@media (max-width: 400px) {
-  .marquee-images img { height: 140px; }
-}
+  .spin {
+    animation: spinInPlace 1s forwards;
+  }
+
+  @keyframes spinInPlace {
+    to { transform: rotate(180deg); opacity: 0; }
+  }
+
+  /* Page content hidden initially */
+  .page-content {
+    display: none;
+    background: #fff;
+    height: 100%;
+    color: #000;
+    padding: 50px;
+    font-size: 2rem;
+    text-align: center;
+  }
+
 </style>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Dancing+Script&display=swap" rel="stylesheet">
-
 </head>
 <body>
 
-<!-- Intro screen -->
-<div id="intro-screen">
-  <div id="brand-name">
-    <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span><span>M</span><span>y</span><span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
+<div class="intro-screen" id="introScreen">
+  <div class="logo-text" id="logoText">
+    <span>w</span><span>r</span><span>i</span><span>t</span><span>e</span><span>m</span><span>y</span><span>s</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
   </div>
 </div>
 
-<!-- Main content -->
-<div class="container">
-
-  <header>
-    <div class="logo-section">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" />
-      <div class="tagline">“Transforming your brand’s narrative into a best seller”</div>
-    </div>
-    <nav class="social-icons-top">
-      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" aria-label="LinkedIn">
-        <!-- LinkedIn SVG -->
-        <svg role="img" viewBox="0 0 24 24"><title>LinkedIn</title><path d="M4.98 3.5C3.35 3.5 2 4.85..."/></svg>
-      </a>
-      <!-- Add your other icons here similarly -->
-    </nav>
-  </header>
-
-  <div class="client-info">
-    Currently taking on clients for June, 2025
-  </div>
-
-  <a href="work-with-us.html" class="work-with-us-btn">Work With Us</a>
-
-  <section class="marquee-container">
-    <div class="marquee-images">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" />
-    </div>
-  </section>
-
-  <footer>
-    <a href="mailto:siyana.deveaux@writemysocials.com" class="cta-email">siyana.deveaux@writemysocials.com</a>
-  </footer>
-
+<div class="page-content" id="pageContent">
+  Welcome to the real page content ✨
 </div>
 
 <script>
-// Intro animation
-window.addEventListener('load', () => {
-  const introScreen = document.getElementById('intro-screen');
-  const letters = document.querySelectorAll('#brand-name span');
-
+  // After 2 seconds trigger animation changes
   setTimeout(() => {
-    letters.forEach((letter, i) => {
-      setTimeout(() => {
-        letter.classList.add('fly-off');
-      }, i * 100);
+    const letters = document.querySelectorAll('#logoText span');
+    letters.forEach((letter, index) => {
+      letter.style.animation = 'none'; // stop bounce
+      void letter.offsetWidth; // trigger reflow
+
+      if (index % 2 === 0) {
+        letter.classList.add('fly-top');
+      } else {
+        letter.classList.add('spin');
+      }
     });
-  }, 2000);
 
-  setTimeout(() => {
-    introScreen.style.display = 'none';
-    document.querySelector('.container').classList.add('visible');
-  }, 3800);
-});
+    // Then after animations, hide intro and show page
+    setTimeout(() => {
+      document.getElementById('introScreen').style.display = 'none';
+      document.getElementById('pageContent').style.display = 'block';
+    }, 1000); // after animations
+  }, 2000);
 </script>
 
 </body>
 </html>
-
