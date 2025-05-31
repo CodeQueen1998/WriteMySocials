@@ -367,6 +367,18 @@
   });
 
   // Typing effect for tagline
-  const taglineText = "Words that turn your brand into a bestseller
+  const taglineText = "Words that turn your brand into a bestseller.";
+  const taglineElem = document.getElementById('tagline');
+  let i = 0;
+  function typeWriter() {
+    if (i < taglineText.length) {
+      taglineElem.textContent += taglineText.charAt(i);
+      i++;
+      setTimeout(typeWriter, 75);
+    }
+  }
+  typeWriter();
+</script>
 
-
+</body>
+</html>
