@@ -1,254 +1,388 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>WriteMySocials</title>
-<style>
-  * {
-    margin: 0; padding: 0;
-    box-sizing: border-box;
-  }
-  body, html {
-    height: 100%;
-    font-family: 'Playfair Display', serif;
-    background: #fff;
-    color: #000;
-    overflow-x: hidden;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WriteMySocials - Intro Animation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
-  #loading-screen {
-    position: fixed;
-    top:0; left:0; right:0; bottom:0;
-    background: #000;
-    z-index: 9999;
-    opacity: 1;
-    transition: opacity 1s ease;
-  }
-  #loading-screen.hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .container > * {
-    opacity: 0;
-    transition: opacity 0.7s ease;
-  }
-  .visible {
-    opacity: 1 !important;
-  }
-
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 15px 20px;
-    margin-bottom: 30px;
-  }
-  .logo-section {
-    display: flex;
-    flex-direction: column;
-  }
-  .logo-section img {
-    width: 180px;
-    object-fit: contain;
-  }
-  .tagline {
-    font-style: italic;
-    margin-top: 5px;
-    font-size: 1rem;
-    color: #333;
-  }
-  nav.social-icons-top {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-  }
-  nav.social-icons-top a svg {
-    fill: black;
-    width: 28px;
-    height: 28px;
-    transition: fill 0.3s ease;
-  }
-  nav.social-icons-top a:hover svg {
-    fill: #ff0050;
-  }
-
-  .client-info {
-    font-weight: 600;
-    font-size: 1rem;
-    text-align: center;
-    margin: 20px auto;
-  }
-
-  .work-with-us-btn {
-    display: block;
-    margin: 20px auto 40px auto;
-    background: #000;
-    color: #fff;
-    font-weight: 700;
-    font-size: 1.8rem;
-    padding: 15px 50px;
-    border-radius: 30px;
-    cursor: pointer;
-    text-align: center;
-    width: fit-content;
-    user-select: none;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-  }
-  .work-with-us-btn:hover {
-    background: #ff0050;
-    color: white;
-  }
-
-  .marquee-container {
-    overflow: hidden;
-    max-width: 100vw;
-    margin: 0 auto 60px auto;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-  }
-  .marquee-images {
-    display: flex;
-    gap: 15px;
-    animation: marqueeScroll 15s linear infinite;
-    will-change: transform;
-  }
-  .marquee-images:hover {
-    animation-play-state: paused;
-  }
-  .marquee-images img {
-    height: 250px;
-    width: auto;
-    object-fit: contain;
-    border-radius: 10px;
-    flex-shrink: 0;
-    cursor: pointer;
-    user-select: none;
-    transition: transform 0.4s ease;
-  }
-  .marquee-images img:hover {
-    transform: scale(1.08);
-  }
-
-  @keyframes marqueeScroll {
-    0% {
-      transform: translateX(0);
+    /* Reset and base styles */
+    * {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
     }
-    100% {
-      /* Adjust this value roughly to the total width of the images + gaps */
-      transform: translateX(-100%);
+    body, html {
+      height: 100%;
+      font-family: 'Playfair Display', serif;
+      background: black;
+      overflow-x: hidden;
+      color: black;
     }
-  }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-  footer {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-  }
-  .cta-email {
-    font-weight: 700;
-    cursor: pointer;
-    color: #000;
-    transition: color 0.3s ease;
-    text-decoration: none;
-  }
-  .cta-email:hover {
-    color: #ff0050;
-    text-decoration: underline;
-  }
-
-  @media (max-width: 768px) {
-    header {
-      flex-direction: column;
+    /* Loading full black screen */
+    #intro-screen {
+      position: fixed;
+      inset: 0;
+      background: black;
+      display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
+      flex-direction: column;
+      z-index: 10000;
+      user-select: none;
     }
-    .logo-section img {
-      width: 140px;
+
+    /* Logo center */
+    #intro-logo {
+      width: 220px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
+    /* Neon marquee container */
+    #neon-marquee-container {
+      margin-top: 20px;
+      overflow: hidden;
+      max-width: 100vw;
+      height: 70px;
+      opacity: 0;
+      pointer-events: none;
+      user-select: none;
+      cursor: pointer;
+      transition: opacity 0.5s ease;
+      filter: drop-shadow(0 0 6px #ff0050) drop-shadow(0 0 8px #ff0050);
+    }
+
+    /* Neon marquee text */
+    #neon-marquee {
+      white-space: nowrap;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: #ff0050;
+      text-shadow:
+        0 0 8px #ff0050,
+        0 0 20px #ff0050,
+        0 0 30px #ff3399,
+        0 0 40px #ff3399,
+        0 0 50px #ff3399,
+        0 0 60px #ff3399,
+        0 0 70px #ff3399;
+      animation: scrollText 10s linear infinite;
+      will-change: transform;
+      user-select: none;
+    }
+
+    /* On hover expand neon text */
+    #neon-marquee-container:hover #neon-marquee {
+      animation-play-state: paused;
+      transform: scale(1.15);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    /* Keyframes for marquee scroll */
+    @keyframes scrollText {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* Main page container hidden initially */
+    .container {
+      opacity: 0;
+      transition: opacity 1s ease;
+      background: white;
+      min-height: 100vh;
+      color: black;
+      pointer-events: none;
+    }
+    .container.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 15px 30px;
+      gap: 30px;
+      position: relative;
+      background: white;
+      height: 80px;
+    }
+    header .logo-top-right {
+      position: absolute;
+      left: 30px;
+      top: 12px;
+      width: 180px;
+      user-select: none;
+    }
+
+    nav.social-icons-top {
+      display: flex;
+      gap: 25px;
+      align-items: center;
     }
     nav.social-icons-top a svg {
-      width: 24px;
-      height: 24px;
+      fill: black;
+      width: 28px;
+      height: 28px;
+      transition: fill 0.3s ease;
     }
-    .marquee-images img {
-      height: 180px;
+    nav.social-icons-top a:hover svg {
+      fill: #ff0050;
     }
+
+    /* Client info */
+    .client-info {
+      font-weight: 600;
+      font-size: 1rem;
+      text-align: center;
+      margin: 30px auto 20px auto;
+      max-width: 400px;
+      user-select: text;
+    }
+
+    /* Work With Us button */
     .work-with-us-btn {
-      font-size: 1.5rem;
-      padding: 12px 40px;
-      margin: 15px auto 40px auto;
+      display: block;
+      margin: 10px auto 50px auto;
+      background: #000;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.8rem;
+      padding: 15px 50px;
+      border-radius: 30px;
+      cursor: pointer;
+      text-align: center;
+      width: fit-content;
+      user-select: none;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
     }
-  }
-  @media (max-width: 400px) {
+    .work-with-us-btn:hover {
+      background: #ff0050;
+      color: white;
+    }
+
+    /* Marquee container for work samples */
+    .marquee-container {
+      overflow: hidden;
+      max-width: 100vw;
+      margin: 0 auto 60px auto;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    }
+    .marquee-images {
+      display: flex;
+      gap: 15px;
+      animation: marqueeScroll 15s linear infinite;
+      will-change: transform;
+    }
+    .marquee-images:hover {
+      animation-play-state: paused;
+    }
     .marquee-images img {
-      height: 140px;
+      height: 250px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 10px;
+      flex-shrink: 0;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.4s ease;
     }
-  }
-</style>
+    .marquee-images img:hover {
+      transform: scale(1.08);
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    @keyframes marqueeScroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
 
+    /* Footer email */
+    footer {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    .cta-email {
+      font-weight: 700;
+      cursor: pointer;
+      color: #000;
+      transition: color 0.3s ease;
+      text-decoration: none;
+    }
+    .cta-email:hover {
+      color: #ff0050;
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        height: 60px;
+        padding: 15px 20px;
+      }
+      header .logo-top-right {
+        width: 140px;
+        left: 20px;
+        top: 8px;
+      }
+      nav.social-icons-top a svg {
+        width: 24px;
+        height: 24px;
+      }
+      .marquee-images img {
+        height: 180px;
+      }
+      .work-with-us-btn {
+        font-size: 1.5rem;
+        padding: 12px 40px;
+        margin: 15px auto 40px auto;
+      }
+    }
+    @media (max-width: 400px) {
+      .marquee-images img {
+        height: 140px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div id="loading-screen"></div>
-
-<div class="container" aria-hidden="true">
-
-  <header>
-    <div class="logo-section">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" />
-      <div class="tagline">“Transforming your brand’s narrative into a best seller”</div>
+  <!-- Intro black screen with logo and neon marquee -->
+  <div id="intro-screen" role="dialog" aria-modal="true" aria-label="Intro Animation">
+    <img id="intro-logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" />
+    <div id="neon-marquee-container" tabindex="0" aria-label="Brand tagline marquee interactive">
+      <div id="neon-marquee">
+        Transforming your brand’s narrative into a best seller — Transforming your brand’s narrative into a best seller — 
+      </div>
     </div>
-
-    <nav class="social-icons-top" aria-label="Social media links">
-      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener" aria-label="LinkedIn">
-        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M4.98 3.5C3.35 3.5 2 4.85 2 6.48c0 1.62 1.35 2.97 2.98 2.97 1.62 0 2.98-1.35 2.98-2.97 0-1.63-1.36-2.98-2.98-2.98zM2 8.84h5.95v12.6H2V8.84zm7.22 0h5.72v1.75h.08c.8-1.51 2.75-3.1 5.65-3.1 6.05 0 7.16 3.98 7.16 9.15v10.8h-6V18.6c0-2.15-.04-4.91-3-4.91-3 0-3.46 2.34-3.46 4.76v7.07h-6V8.84z"/></svg>
-      </a>
-      <a href="https://instagram.com/writemysocials" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.75 2.25a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zm-4.25 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 2a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
-      </a>
-      <a href="https://tiktok.com/@writemysocials" target="_blank" rel="noopener" aria-label="TikTok">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="24" height="24" role="img"><title>TikTok</title><path d="M224 72.54a88 88 0 01-120.15-4.44v101.3a40 40 0 11-32.7-39.26v9.6A49.34 49.34 0 0088 192a88.1 88.1 0 0088-88z"/></svg>
-      </a>
-    </nav>
-  </header>
-
-  <div class="client-info" tabindex="0">
-    Currently taking on clients for <strong>June, 2025</strong>
   </div>
 
-  <a href="work-with-us.html" class="work-with-us-btn">Work With Us</a>
+  <!-- Main page content hidden initially -->
+  <div class="container" aria-hidden="true">
+    <header>
+      <img class="logo-top-right" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" />
+      <nav class="social-icons-top" aria-label="Social media links">
+        <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M4.98 3.5C3.35 3.5 2 4.85 2 6.48c0 1.62 1.35 2.97 2.98 2.97 1.62 0 2.98-1.35 2.98-2.97 0-1.63-1.36-2.98-2.98-2.98zM2 8.84h5.95v12.6H2V8.84zm7.22 0h5.72v1.75h.08c.8-1.51 2.75-3.1 5.65-3.1 6.05 0 7.16 3.98 7.16 9.15v10.8h-6V18.6c0-2.15-.04-4.91-3-4.91-3 0-3.46 2.34-3.46 4.76v7.07h-6V8.84z"/></svg>
+        </a>
+        <a href="https://instagram.com/writemysocials" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.75 2.25a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zm-4.25 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 2a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
+        </a>
+        <a href="https://tiktok.com/@writemysocials" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="24" height="24" role="img"><title>TikTok</title><path d="M224 72.54a88 88 0 01-120.15-4.44v101.3a40 40 0 11-32.7-39.26v9.6A49.34 49.34 0 0088 192a88.1 88.1 0 0088-88z"/></svg>
+        </a>
+      </nav>
+    </header>
 
-  <section class="marquee-container" aria-label="Work samples gallery">
-    <div class="marquee-images">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Work sample 1" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Work sample 2" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Work sample 3" />
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Work sample 4" />
+    <div class="client-info" tabindex="0">
+      Currently taking on clients for <strong>June, 2025</strong>
     </div>
-  </section>
 
-  <footer>
-    <a href="mailto:siyana.deveaux@writemysocials.com" class="cta-email">siyana.deveaux@writemysocials.com</a>
-  </footer>
+    <a href="work-with-us.html" class="work-with-us-btn">Work With Us</a>
 
-</div>
+    <section class="marquee-container" aria-label="Work samples gallery">
+      <div class="marquee-images">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Work sample 1" />
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Work sample 2" />
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Work sample 3" />
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Work sample 4" />
+      </div>
+    </section>
 
-<script>
-  window.addEventListener('load', () => {
-    const loadingScreen = document.getElementById('loading-screen');
-    const container = document.querySelector('.container');
-    setTimeout(() => {
-      loadingScreen.classList.add('hidden');
-      container.setAttribute('aria-hidden', 'false');
-      container.querySelectorAll('*').forEach(el => el.classList.add('visible'));
-    }, 2000);
-  });
-</script>
+    <footer>
+      <a href="mailto:siyana.deveaux@writemysocials.com" class="cta-email">siyana.deveaux@writemysocials.com</a>
+    </footer>
+  </div>
+
+  <script>
+    // Sequence of animations:
+    // 0s: black screen shows
+    // 0.5s: logo appears
+    // 2s: logo fades out, neon marquee fades in
+    // neon marquee runs for 3s with scrolling text and hover interactive scale
+    // after neon marquee disappears, black screen fades to white background,
+    // main container fades in with logo top right etc.
+
+    const introScreen = document.getElementById('intro-screen');
+    const introLogo = document.getElementById('intro-logo');
+    const neonMarqueeContainer = document.getElementById('neon-marquee-container');
+    const mainContainer = document.querySelector('.container');
+
+    function delay(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function runIntro() {
+      // Start: black screen already visible, logo hidden
+      introLogo.style.opacity = '0';
+      neonMarqueeContainer.style.opacity = '0';
+      neonMarqueeContainer.style.pointerEvents = 'none';
+
+      await delay(500);
+
+      // Show logo center
+      introLogo.style.opacity = '1';
+
+      await delay(1500);
+
+      // Fade out logo
+      introLogo.style.opacity = '0';
+
+      await delay(500);
+
+      // Show neon marquee
+      neonMarqueeContainer.style.opacity = '1';
+      neonMarqueeContainer.style.pointerEvents = 'auto';
+
+      await delay(3000);
+
+      // Hide neon marquee and fade black screen out
+      neonMarqueeContainer.style.opacity = '0';
+      neonMarqueeContainer.style.pointerEvents = 'none';
+
+      // Fade out intro screen background to transparent (white shows behind)
+      introScreen.style.transition = 'opacity 1.5s ease';
+      introScreen.style.opacity = '0';
+
+      // Reveal main content
+      mainContainer.style.transition = 'opacity 1.5s ease';
+      mainContainer.classList.add('visible');
+      mainContainer.setAttribute('aria-hidden', 'false');
+
+      await delay(1500);
+
+      // Hide intro screen completely after fade
+      introScreen.style.display = 'none';
+    }
+
+    window.addEventListener('load', () => {
+      runIntro();
+    });
+  </script>
+
+</body>
+</html>
+
 
 </body>
 </html>
