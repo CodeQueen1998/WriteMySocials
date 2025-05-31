@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WriteMySocials Experience</title>
+<title>WriteMySocials Animation</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 
 <style>
@@ -36,10 +36,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    font-size: 8vw;
+    font-size: 9vw;
     color: white;
     opacity: 0;
-    transition: opacity 1s ease;
+    transition: opacity 0.5s ease;
     user-select: none;
     max-width: 90vw;
     z-index: 99;
@@ -49,79 +49,61 @@
     display: inline-block;
     margin: 0 5px;
     transform-origin: center;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
   }
 
   .visible {
     opacity: 1;
   }
 
-  /* Animations */
+  /* Chaos Animations */
   @keyframes floatUpDown {
     0%   { transform: translateY(0); }
-    50%  { transform: translateY(-40px); }
+    50%  { transform: translateY(-50vh); }
     100% { transform: translateY(0); }
   }
 
   @keyframes spin {
     0%   { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    100% { transform: rotate(720deg); }
   }
 
   @keyframes wiggle {
     0% { transform: rotate(0deg); }
-    25% { transform: rotate(10deg); }
-    50% { transform: rotate(0deg); }
-    75% { transform: rotate(-10deg); }
+    25% { transform: rotate(20deg); }
+    50% { transform: rotate(-20deg); }
+    75% { transform: rotate(20deg); }
     100% { transform: rotate(0deg); }
   }
 
-  @keyframes floatFull {
-    0%   { transform: translateY(100vh); }
-    50%  { transform: translateY(-100vh); }
-    100% { transform: translateY(100vh); }
+  @keyframes bounce {
+    0%   { transform: translateY(0); }
+    25%  { transform: translateY(-50px); }
+    50%  { transform: translateY(0); }
+    75%  { transform: translateY(-25px); }
+    100% { transform: translateY(0); }
   }
 
-  /* Falling into place */
-  .falling span {
-    animation: none !important;
-    transition: all 1s ease;
-    transform: translateY(0) rotate(0deg) !important;
+  /* Alignment animation */
+  @keyframes settleIn {
+    0% {
+      transform: translateY(100vh) rotate(360deg);
+    }
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
   }
 
-  /* Final white site */
-  .whiteSite {
-    background: #fff;
-    color: #000;
-    transition: background 1s ease;
-    overflow: auto;
+  /* Final resting gentle float */
+  @keyframes gentleFloat {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
   }
 
-  .site-logo {
-    position: fixed;
-    top: 20px;
-    left: 30px;
-    font-size: 2rem;
-    font-family: 'Playfair Display', serif;
-    font-weight: bold;
-    color: #000;
-    z-index: 100;
-  }
-
-  .site-content {
-    margin: 100px auto;
-    max-width: 600px;
-    text-align: center;
-    font-size: 1.2rem;
-  }
-
+  /* Responsive */
   @media (max-width: 600px) {
     .logo-text {
       font-size: 14vw;
-    }
-    .site-logo {
-      font-size: 1.5rem;
     }
   }
 
@@ -139,19 +121,11 @@
   <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
 </div>
 
-<div id="mainSite" style="display:none;">
-  <div class="site-logo">WriteMySocials</div>
-  <div class="site-content">
-    <p>Welcome to the site! Here’s where your content will live.</p>
-  </div>
-</div>
-
 <script>
   const blackOverlay = document.getElementById('blackOverlay');
   const animatedLogo = document.getElementById('animatedLogo');
-  const mainSite = document.getElementById('mainSite');
 
-  // 3s black screen
+  // 1.5s black screen
   setTimeout(() => {
     blackOverlay.classList.add('hidden');
     animatedLogo.classList.add('visible');
@@ -160,27 +134,29 @@
     letters.forEach(letter => {
       if (letter.textContent.trim() === '') return;
 
-      const animations = ['floatUpDown', 'spin', 'wiggle', 'floatFull'];
+      const animations = ['floatUpDown', 'spin', 'wiggle', 'bounce'];
       const chosen = animations[Math.floor(Math.random() * animations.length)];
-      const duration = (Math.random() * 5 + 3).toFixed(2) + 's';
+      const duration = (Math.random() * 1 + 1).toFixed(2) + 's';
 
-      letter.style.animationName = chosen;
-      letter.style.animationDuration = duration;
+      letter.style.animation = `${chosen} ${duration} ease-in-out infinite`;
     });
 
-    // After 4s, stop crazy animations, let them fall into place
+    // After 2s chaos, animate them settling into place over 1.5s
     setTimeout(() => {
-      animatedLogo.classList.add('falling');
-    }, 4000);
+      letters.forEach(letter => {
+        letter.style.animation = `settleIn 1.5s ease forwards`;
+      });
 
-    // After 7s (3 more sec of clean aligned text), show white site
-    setTimeout(() => {
-      document.body.classList.add('whiteSite');
-      animatedLogo.style.display = 'none';
-      mainSite.style.display = 'block';
-    }, 7000);
+      // After settling, start gentle float forever
+      setTimeout(() => {
+        letters.forEach(letter => {
+          letter.style.animation = `gentleFloat 3s ease-in-out infinite`;
+        });
+      }, 1500);
 
-  }, 3000);
+    }, 2000);
+
+  }, 1500);
 </script>
 
 </body>
