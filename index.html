@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>WriteMySocials</title>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Pacifico&display=swap" rel="stylesheet" />
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
 
 <style>
+  /* Reset */
   * {
     margin: 0; padding: 0;
     box-sizing: border-box;
@@ -16,102 +18,101 @@
   body, html {
     height: 100%;
     font-family: 'Playfair Display', serif;
-    background: #fff;
-    color: #000;
+    background: white;
+    color: black;
     overflow-x: hidden;
   }
 
-  /* Loading Screen */
+  /* LOADING SCREEN (black full screen) */
   #loading-screen {
     position: fixed;
-    top:0; left:0; right:0; bottom:0;
+    inset: 0;
     background: black;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
     flex-direction: column;
-    user-select: none;
+    z-index: 9999;
+    color: white;
   }
 
+  /* "writemysocials" logo text on black */
   #logo-text {
     font-family: 'Playfair Display', serif;
     font-weight: 900;
-    font-size: 3rem;
+    font-size: 4rem;
     color: white;
     display: flex;
     gap: 0.1em;
+    cursor: default;
   }
-
   #logo-text span {
     display: inline-block;
-    animation-fill-mode: forwards;
+    user-select: none;
   }
 
-  /* Jump Animation - random delays and heights */
+  /* Jump animation for letters */
   @keyframes jump {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+    50% { transform: translateY(-20px); }
   }
 
-  /* Neon marquee container */
-  #neon-marquee-container {
-    position: fixed;
+  /* Neon text container */
+  #neon-container {
+    position: absolute;
     top: 50%;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    background: black;
-    height: 50px;
-    user-select: none;
-    pointer-events: none;
-    transform: translateY(-50%);
-    z-index: 9998;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  #neon-marquee {
-    display: inline-block;
-    white-space: nowrap;
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #ff3399;
-    text-shadow:
-      0 0 5px #ff3399,
-      0 0 10px #ff3399,
-      0 0 20px #ff66cc,
-      0 0 40px #ff66cc,
-      0 0 60px #ff66cc;
-    user-select: none;
-    position: relative;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: #ff007f;
+    text-shadow:
+      0 0 5px #ff007f,
+      0 0 10px #ff007f,
+      0 0 20px #ff007f,
+      0 0 40px #ff007f;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
   }
 
-  /* Marquee scroll left animation */
-  @keyframes marqueeScrollLeft {
-    0% { left: 50%; transform: translateX(-50%); }
-    100% { left: 0; transform: translateX(-100%); }
+  /* Neon marquee animation */
+  @keyframes neonMarqueeLeft {
+    0% {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    100% {
+      left: -100%;
+      transform: translateX(0);
+    }
   }
 
-  /* MAIN CONTENT container hidden initially */
-
+  /* MAIN container initially hidden */
   .container {
     opacity: 0;
     transition: opacity 1s ease;
+    max-width: 90vw;
+    margin: 0 auto;
   }
   .container.visible {
     opacity: 1;
   }
 
+  /* HEADER with logo and socials */
   header {
     display: flex;
     justify-content: flex-end;
-    gap: 15px;
+    align-items: center;
     padding: 15px 20px;
+    gap: 20px;
   }
-
+  header img.logo-main {
+    width: 180px;
+    object-fit: contain;
+    margin-left: auto;
+  }
   nav.social-icons-top {
     display: flex;
     gap: 15px;
@@ -122,46 +123,55 @@
     width: 24px;
     height: 24px;
     transition: fill 0.3s ease;
-    cursor: pointer;
   }
   nav.social-icons-top a:hover svg {
-    fill: #ff3399;
+    fill: #ff007f;
   }
 
-  /* Work Samples Marquee */
-  #work-samples-wrapper {
-    max-width: 100vw;
+  /* Work samples marquee container */
+  .marquee-container {
     overflow: hidden;
+    max-width: 100vw;
     margin: 40px auto 60px auto;
+    position: relative;
   }
-  #work-samples-marquee {
+  .marquee-images {
     display: flex;
-    gap: 20px;
-    width: max-content;
-    animation: scrollLeftInfinite 20s linear infinite;
+    gap: 15px;
+    animation: marqueeScroll 20s linear infinite;
     justify-content: center;
   }
-  @keyframes scrollLeftInfinite {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+  .marquee-images:hover {
+    animation-play-state: paused;
   }
-
-  #work-samples-marquee img {
-    width: 200px;
-    height: 120px;
-    border-radius: 8px;
+  .marquee-images img {
+    height: 250px;
+    width: auto;
     object-fit: contain;
-    transition: transform 0.3s ease;
+    border-radius: 10px;
+    flex-shrink: 0;
     cursor: pointer;
+    user-select: none;
+    transition: transform 0.3s ease;
   }
-  #work-samples-marquee img:hover {
-    transform: scale(1.2);
+  .marquee-images img:hover {
+    transform: scale(1.15);
     z-index: 10;
   }
 
-  #work-with-us {
+  @keyframes marqueeScroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Work With Us button */
+  .work-with-us-btn {
     display: block;
-    margin: 20px auto 40px auto;
+    margin: 0 auto 40px auto;
     background: black;
     color: white;
     font-weight: 700;
@@ -172,186 +182,79 @@
     text-align: center;
     width: fit-content;
     user-select: none;
-    transition: color 0.3s ease, background-color 0.3s ease, text-shadow 0.3s ease;
-    border: 2px solid transparent;
-    font-family: 'Playfair Display', serif;
-  }
-  #work-with-us:hover {
-    color: #ff3399;
-    background: black;
-    border-color: #ff3399;
-    text-shadow:
-      0 0 10px #ff3399,
-      0 0 20px #ff66cc,
-      0 0 30px #ff66cc;
+    transition: background-color 0.3s ease, text-shadow 0.3s ease;
     text-decoration: none;
   }
+  .work-with-us-btn:hover {
+    background: transparent;
+    color: #ff007f;
+    text-shadow:
+      0 0 5px #ff007f,
+      0 0 10px #ff007f,
+      0 0 20px #ff007f;
+  }
 
+  /* Footer with email in cursive */
   footer {
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
   }
-  #email-footer {
+  .cta-email {
     font-family: 'Pacifico', cursive;
-    font-size: 1.5rem;
-    color: #333;
-    cursor: text;
+    font-weight: 400;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: black;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+    text-decoration: none;
   }
-  #email-footer:hover {
-    color: #ff3399;
+  .cta-email:hover {
+    color: #ff007f;
     text-decoration: underline;
   }
 
+  /* Responsive */
   @media (max-width: 768px) {
-    #work-samples-marquee img {
-      width: 150px;
-      height: 90px;
+    header {
+      justify-content: center;
+      gap: 15px;
+      padding: 15px 10px;
     }
-    #work-with-us {
+    .marquee-images img {
+      height: 180px;
+    }
+    .work-with-us-btn {
       font-size: 1.5rem;
       padding: 12px 40px;
+      margin-bottom: 40px;
     }
   }
   @media (max-width: 400px) {
-    #work-samples-marquee img {
-      width: 120px;
-      height: 70px;
+    .marquee-images img {
+      height: 140px;
     }
   }
 </style>
 </head>
 <body>
 
-<!-- LOADING SCREEN -->
-<div id="loading-screen" aria-live="polite" aria-atomic="true" aria-label="Loading animation">
-  <div id="logo-text" aria-hidden="true"></div>
-  <div id="neon-marquee-container" aria-hidden="true">
-    <div id="neon-marquee">Transforming your brand’s narrative into a best seller</div>
+<!-- Loading screen -->
+<div id="loading-screen" aria-live="polite" aria-atomic="true" aria-busy="true">
+  <!-- Logo text with each letter as span -->
+  <div id="logo-text" aria-label="Logo writemysocials"></div>
+  <!-- Neon container -->
+  <div id="neon-container" aria-label="Neon marquee text">
+    Transforming your brand’s narrative into a best seller
   </div>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- Main site container -->
 <div class="container" aria-hidden="true">
-
   <header>
     <nav class="social-icons-top" aria-label="Social media links">
       <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener" aria-label="LinkedIn">
         <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M4.98 3.5C3.35 3.5 2 4.85 2 6.48c0 1.62 1.35 2.97 2.98 2.97 1.62 0 2.98-1.35 2.98-2.97 0-1.63-1.36-2.98-2.98-2.98zM2 8.84h5.95v12.6H2V8.84zm7.22 0h5.72v1.75h.08c.8-1.51 2.75-3.1 5.65-3.1 6.05 0 7.16 3.98 7.16 9.15v10.8h-6V18.6c0-2.15-.04-4.91-3-4.91-3 0-3.46 2.34-3.46 4.76v7.07h-6V8.84z"/></svg>
       </a>
       <a href="https://instagram.com/writemysocials" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.75 2.25a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zm-4.25 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 2a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
-      </a>
-      <a href="https://tiktok.com/@writemysocials" target="_blank" rel="noopener" aria-label="TikTok">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="24" height="24" role="img"><title>TikTok</title><path d="M224 72.36v41.84a72 72 0 11-72-72v41.88a30.08 30.08 0 0028 30.16v33.72a64.21 64.21 0 11-64-64v-15a88 88 0 0096 88z" fill="currentColor"/></svg>
-      </a>
-    </nav>
-  </header>
-
-  <main>
-    <section id="work-samples-wrapper" aria-label="Work samples carousel">
-      <div id="work-samples-marquee" aria-live="polite" aria-atomic="false" aria-relevant="additions removals">
-        <!-- Replace these images with your actual work sample images -->
-        <img src="https://picsum.photos/id/1015/400/240" alt="Sample work 1" />
-        <img src="https://picsum.photos/id/1016/400/240" alt="Sample work 2" />
-        <img src="https://picsum.photos/id/1018/400/240" alt="Sample work 3" />
-        <img src="https://picsum.photos/id/1021/400/240" alt="Sample work 4" />
-        <img src="https://picsum.photos/id/1015/400/240" alt="Sample work 1" />
-        <img src="https://picsum.photos/id/1016/400/240" alt="Sample work 2" />
-        <img src="https://picsum.photos/id/1018/400/240" alt="Sample work 3" />
-        <img src="https://picsum.photos/id/1021/400/240" alt="Sample work 4" />
-      </div>
-    </section>
-
-    <button id="work-with-us" tabindex="0">Work with us</button>
-  </main>
-
-  <footer>
-    <div id="email-footer" tabindex="0">siyana.deveaux@writemysocials</div>
-  </footer>
-</div>
-
-<script>
-  const loadingScreen = document.getElementById('loading-screen');
-  const logoText = document.getElementById('logo-text');
-  const neonContainer = document.getElementById('neon-marquee-container');
-  const neonText = document.getElementById('neon-marquee');
-  const container = document.querySelector('.container');
-
-  // Create the logo letters individually for jump animation
-  const logoString = 'writemysocials';
-  logoText.innerHTML = '';
-  for(let i=0; i<logoString.length; i++) {
-    const span = document.createElement('span');
-    span.textContent = logoString[i];
-    logoText.appendChild(span);
-  }
-  const letters = logoText.querySelectorAll('span');
-
-  function randomJump(letter, delay) {
-    letter.style.animation = `jump 0.6s ease-in-out ${delay}s infinite`;
-  }
-
-  // Step 1: Black screen 0.5s - handled by default
-
-  // Step 2: Letters jump with random delays for 2 seconds
-  function startJumping() {
-    letters.forEach((letter, i) => {
-      // each letter has a slightly different delay and duration
-      const delay = Math.random() * 0.6;
-      randomJump(letter, delay);
-    });
-  }
-  // Stop jumping animation by clearing styles
-  function stopJumping() {
-    letters.forEach(letter => {
-      letter.style.animation = '';
-      letter.style.transform = '';
-    });
-  }
-
-  // Step 3: Neon text appear centered for 2 seconds then scroll left fast
-
-  function neonMarqueeStart() {
-    neonContainer.style.opacity = '1';
-    neonText.style.animation = '';
-    neonText.style.left = '50%';
-    neonText.style.transform = 'translateX(-50%)';
-
-    // After 2 seconds center stay, start marquee scroll left fast for 3.5 seconds
-    setTimeout(() => {
-      neonText.style.animation = 'marqueeScrollLeft 3.5s linear forwards';
-    }, 2000);
-
-    // After total 5.5 seconds hide neon marquee and fade loading screen
-    setTimeout(() => {
-      neonContainer.style.opacity = '0';
-      loadingScreen.style.transition = 'opacity 1s ease';
-      loadingScreen.style.opacity = '0';
-    }, 5500);
-
-    // After fade out, hide loading screen and show main content
-    setTimeout(() => {
-      loadingScreen.style.display = 'none';
-      container.classList.add('visible');
-      container.setAttribute('aria-hidden', 'false');
-    }, 6500);
-  }
-
-  async function runSequence() {
-    await new Promise(r => setTimeout(r, 500)); // black screen pause
-
-    startJumping(); // jump letters
-    await new Promise(r => setTimeout(r, 2000)); // jump for 2 sec
-    stopJumping();
-
-    logoText.style.opacity = '0'; // hide logo text
-
-    neonMarqueeStart();
-  }
-
-  runSequence();
-</script>
-
-</body>
-</html>
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.75 2.25a1.25 1.25
