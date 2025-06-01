@@ -3,116 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Write My Socials</title>
+<title>WriteMySocials Animation</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
 <style>
   html, body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    height: 100%;
     background: #000;
+    overflow: hidden;
     font-family: 'Playfair Display', serif;
   }
+
   #blackOverlay, #whiteOverlay {
     position: fixed;
     inset: 0;
     z-index: 9999;
-    transition: opacity 1s ease;
+    transition: opacity 0.5s ease;
   }
-  #blackOverlay { background: #000; opacity: 1; }
-  #blackOverlay.hidden { opacity: 0; pointer-events: none; }
-  #whiteOverlay { background: #fff; opacity: 0; pointer-events: none; }
-  #whiteOverlay.visible { opacity: 1; }
+
+  #blackOverlay {
+    background: #000;
+    opacity: 1;
+  }
+
+  #blackOverlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  #whiteOverlay {
+    background: #fff;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
+
+  #whiteOverlay.visible {
+    opacity: 1;
+  }
+
   .logo-container {
     position: absolute;
-    top: 50%; left: 50%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    font-size: 9vw;
+    font-size: 10vw;
     opacity: 0;
     transition: opacity 0.5s ease;
     user-select: none;
-    z-index: 999;
+    z-index: 99;
     text-align: center;
-    line-height: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
   }
+
+  .line {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+
   .line span {
     display: inline-block;
-    margin: 0 0.4vw;
+    margin: 0 0.5vw;
     transform-origin: center;
-    user-select: none;
   }
-  #main-content {
-    opacity: 0;
-    transition: opacity 1s ease;
-    background: #fff;
-    padding: 2rem;
-    overflow: hidden;
-  }
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-  .brand-logo {
-    height: 80px;
-  }
-  .tagline {
-    font-size: 1.4rem;
-    margin-top: 0.5rem;
-    color: #000;
-  }
-  .social-icons {
-    display: flex;
-    gap: 1rem;
-  }
-  .social-icons a img {
-    height: 30px;
-    transition: transform 0.3s ease;
-  }
-  .social-icons a img:hover {
-    transform: scale(1.2);
-  }
-  .work-samples-container {
-    margin: 2rem 0;
-    overflow: hidden;
-    position: relative;
-  }
-  .work-samples-scroll {
-    display: flex;
-    gap: 2rem;
-    animation: marquee 20s linear infinite alternate;
-    align-items: center;
-  }
-  .work-samples-scroll img {
-    height: 300px;
-    transition: transform 0.3s ease;
-    border-radius: 12px;
-  }
-  .work-samples-scroll img:hover {
-    transform: scale(1.15);
-  }
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  .cta {
-    margin: 2rem 0;
-    text-align: center;
-  }
-  .cta button {
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    background: #000;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  .cta button:hover {
-    background: #333;
-  }
+
 </style>
 </head>
 <body>
@@ -122,35 +82,10 @@
 
 <div class="logo-container" id="animatedLogo" aria-label="Write My Socials">
   <div class="line" id="line1">
-    <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span>
-    <span>M</span><span>y</span><span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
+    <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span><span>&nbsp;</span><span>M</span><span>y</span>
   </div>
-</div>
-
-<div id="main-content">
-  <header>
-    <div>
-      <img class="brand-logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials%20copy.jpg" alt="Logo">
-      <div class="tagline">Transforming your brand’s narrative into a best seller</div>
-    </div>
-    <div class="social-icons">
-      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn"></a>
-      <a href="https://instagram.com/writemysocials" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"></a>
-      <a href="https://tiktok.com/@writemysocials" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok"></a>
-    </div>
-  </header>
-
-  <section class="work-samples-container">
-    <div class="work-samples-scroll">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Sample 1">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Sample 2">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Sample 3">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Sample 4">
-    </div>
-  </section>
-
-  <div class="cta">
-    <button onclick="window.location='mailto:siyana.deveaux@writemysocials.com'">Work With Us</button>
+  <div class="line" id="line2">
+    <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
   </div>
 </div>
 
@@ -158,46 +93,48 @@
   const blackOverlay = document.getElementById('blackOverlay');
   const whiteOverlay = document.getElementById('whiteOverlay');
   const animatedLogo = document.getElementById('animatedLogo');
-  const letters = document.querySelectorAll('.line span');
-  const mainContent = document.getElementById('main-content');
+  const line1Letters = document.querySelectorAll('#line1 span');
+  const line2Letters = document.querySelectorAll('#line2 span');
 
-  function randomTransform() {
-    const x = (Math.random() - 0.5) * 800;
-    const y = (Math.random() - 0.5) * 800;
-    const r = (Math.random() - 0.5) * 1440;
+  function randomChaosTransform() {
+    const x = (Math.random() - 0.5) * window.innerWidth * 0.6;
+    const y = (Math.random() - 0.5) * window.innerHeight * 0.6;
+    const r = (Math.random() - 0.5) * 1080;
     return `translate(${x}px, ${y}px) rotate(${r}deg)`;
   }
 
-  function animateScatter() {
+  function scatterLetters(letters) {
     letters.forEach(letter => {
-      letter.style.transition = 'transform 1.5s ease-in-out';
-      letter.style.transform = randomTransform();
+      if (letter.textContent.trim() === '') return;
+      letter.style.transition = 'transform 1.2s ease-in-out';
+      letter.style.transform = randomChaosTransform();
     });
   }
 
-  function settleLetters() {
+  function settleLetters(letters) {
     letters.forEach(letter => {
-      letter.style.transition = 'transform 1s ease-in-out';
-      letter.style.transform = 'translate(0,0) rotate(0)';
+      letter.style.transition = 'transform 0.7s ease-in-out';
+      letter.style.transform = 'none';
     });
   }
 
   setTimeout(() => {
     blackOverlay.classList.add('hidden');
     animatedLogo.style.opacity = '1';
-    animateScatter();
+
+    scatterLetters([...line1Letters, ...line2Letters]);
 
     setTimeout(() => {
-      settleLetters();
+      settleLetters([...line1Letters, ...line2Letters]);
+
       setTimeout(() => {
-        whiteOverlay.classList.add('visible');
-        animatedLogo.style.opacity = '0';
         setTimeout(() => {
-          mainContent.style.opacity = '1';
-        }, 500);
-      }, 1000);
-    }, 1500);
-  }, 400);
+          whiteOverlay.classList.add('visible');
+          animatedLogo.style.opacity = '0';
+        }, 300);
+      }, 700);
+    }, 1200);
+  }, 500);
 </script>
 
 </body>
