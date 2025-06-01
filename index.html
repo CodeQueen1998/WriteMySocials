@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>WriteMySocials Animation</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Vogue&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 <style>
   /* --- Animation Splash Styles --- */
@@ -85,12 +84,12 @@
 
   #mainContent {
     max-width: 1200px;
-    margin: 60px auto 80px;
+    margin: 80px auto 60px;
     padding: 0 20px;
     display: none;
   }
 
-  /* Logo & Social Icons area - fixed top for after fade */
+  /* Header with logo and social icons - fixed top after fade */
   #headerArea {
     position: fixed;
     top: 20px;
@@ -143,41 +142,19 @@
     height: 200px;
     border-radius: 8px;
     vertical-align: middle;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  /* Scale images 2x on hover */
+  .marquee-container:hover .marquee-content img {
+    transform: scale(2);
+    z-index: 100;
   }
 
   @keyframes marquee {
     0% { transform: translateX(100%); }
     100% { transform: translateX(-100%); }
-  }
-
-  /* CTA with Pink Neon Vogue style */
-  .cta {
-    font-family: 'Vogue', serif;
-    font-size: 3rem;
-    color: #ff00cc;
-    text-align: center;
-    text-shadow:
-      0 0 5px #ff00cc,
-      0 0 10px #ff00cc,
-      0 0 20px #ff00cc,
-      0 0 40px #ff0080,
-      0 0 80px #ff0080,
-      0 0 90px #ff0080;
-    margin-bottom: 40px;
-  }
-
-  /* Calendly Embed */
-  .calendly-section {
-    max-width: 800px;
-    margin: 0 auto 60px;
-    text-align: center;
-  }
-
-  .calendly-section iframe {
-    width: 100%;
-    height: 700px;
-    border: none;
-    border-radius: 8px;
   }
 </style>
 </head>
@@ -202,6 +179,7 @@
     <div class="social-icons">
       <a href="https://instagram.com/writemysocials" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
       <a href="https://tiktok.com/@writemysocials" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://linkedin.com/in/writemysocials" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
     </div>
   </div>
 
@@ -216,16 +194,6 @@
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3" />
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4" />
       </div>
-    </div>
-
-    <!-- CTA -->
-    <div class="cta" tabindex="0" role="button" aria-label="Book your free Espresso Crunch Consult">
-      Espresso Crunch Consult (Free Session With Me)
-    </div>
-
-    <!-- Calendly embed -->
-    <div class="calendly-section">
-      <iframe src="https://calendly.com/siyana-de98/30min" title="Schedule a consultation" allowfullscreen></iframe>
     </div>
   </div>
 
