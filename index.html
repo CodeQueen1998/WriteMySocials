@@ -1,249 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>WriteMySocials Animation + Main</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WriteMySocials Intro</title>
 <style>
-  html, body {
-    margin: 0; padding: 0;
-    height: 100%;
-    background: #000;
-    overflow-x: hidden;
-    font-family: 'Playfair Display', serif;
-  }
-
-  #blackOverlay, #whiteOverlay {
+  /* Fullscreen black intro */
+  #intro {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    z-index: 9999;
-    transition: opacity 1s ease;
-  }
-
-  #blackOverlay {
+    inset: 0;
     background: #000;
-    opacity: 1;
-  }
-
-  #blackOverlay.hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  #whiteOverlay {
-    background: #fff;
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  #whiteOverlay.visible {
-    opacity: 1;
-  }
-
-  .logo-container {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 9vw;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    user-select: none;
-    z-index: 99;
-    text-align: center;
+    color: #fff;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.5vw;
-    height: 12vw;
-    line-height: 1;
-    white-space: nowrap;
-  }
-
-  .line {
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
-    margin: 0;
-    position: relative;
-  }
-
-  .line span {
-    display: inline-block;
-    margin: 0 0.5vw;
-    transform-origin: center;
-    cursor: default;
-    user-select: none;
-  }
-
-  /* Responsive */
-  @media (max-width: 600px) {
-    .logo-container {
-      font-size: 14vw;
-      height: 20vw;
-      gap: 1vw;
-    }
-    .line span {
-      margin: 0 0.3vw;
-    }
-  }
-
-  /* Main content styling - initially hidden */
-  #mainContent {
-    opacity: 0;
-    background: white;
-    min-height: 100vh;
-    color: #222;
-    padding: 2rem;
-    box-sizing: border-box;
-    transition: opacity 1s ease;
-    display: flex;
-    flex-direction: column;
     align-items: center;
-  }
-
-  #mainContent.visible {
+    justify-content: center;
+    font-size: 3rem;
+    font-family: Arial, sans-serif;
+    z-index: 10000;
     opacity: 1;
+    transition: opacity 1s ease;
   }
 
-  /* Jump up animation */
-  @keyframes jumpUp {
-    0% {
-      transform: translateY(40px);
-      opacity: 0;
-    }
-    60% {
-      transform: translateY(-10px);
-      opacity: 1;
-    }
-    80% {
-      transform: translateY(5px);
-    }
-    100% {
-      transform: translateY(0);
-    }
+  /* Bounce + twirl animation */
+  @keyframes bounceTwirl {
+    0%   { transform: scale(1) rotate(0deg); }
+    20%  { transform: scale(1.2) rotate(20deg); }
+    40%  { transform: scale(0.9) rotate(-20deg); }
+    60%  { transform: scale(1.1) rotate(10deg); }
+    80%  { transform: scale(0.95) rotate(-10deg); }
+    100% { transform: scale(1) rotate(0deg); }
   }
 
-  .jump-item {
+  #intro h1 {
+    animation: bounceTwirl 1.5s ease-in-out infinite;
+  }
+
+  /* Main page content hidden at first */
+  #main-content {
     opacity: 0;
-    animation-fill-mode: forwards;
+    transition: opacity 1s ease;
   }
 
-  .jump-item:nth-child(1) {
-    animation: jumpUp 0.7s ease forwards;
-    animation-delay: 0.2s;
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
   }
-
-  .jump-item:nth-child(2) {
-    animation: jumpUp 0.7s ease forwards;
-    animation-delay: 0.5s;
-  }
-
-  .jump-item:nth-child(3) {
-    animation: jumpUp 0.7s ease forwards;
-    animation-delay: 0.8s;
-  }
-
 </style>
 </head>
 <body>
 
-<div id="blackOverlay"></div>
-<div id="whiteOverlay"></div>
-
-<div class="logo-container" id="animatedLogo" aria-label="Write My Socials">
-  <div class="line" id="line1">
-    <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span>
-    <span>&nbsp;</span>
-    <span>M</span><span>y</span>
-  </div>
-  <div class="line" id="line2">
-    <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
-  </div>
+<!-- Intro screen -->
+<div id="intro">
+  <h1>WriteMySocials</h1>
 </div>
 
-<!-- Main content to appear after fade to white -->
-<div id="mainContent" aria-live="polite" aria-atomic="true">
-  <h1 class="jump-item">Welcome to WriteMySocials!</h1>
-  <p class="jump-item">Here’s some example text that jumps up smoothly after the intro animation.</p>
-  <img class="jump-item" src="https://via.placeholder.com/300x150?text=Example+Image" alt="Example Image" style="max-width: 80vw; border-radius: 8px;"/>
+<!-- Main page content -->
+<div id="main-content">
+  <h2>Welcome to the site!</h2>
+  <p>Your content goes here.</p>
 </div>
 
 <script>
-  const blackOverlay = document.getElementById('blackOverlay');
-  const whiteOverlay = document.getElementById('whiteOverlay');
-  const animatedLogo = document.getElementById('animatedLogo');
-  const line1Letters = document.querySelectorAll('#line1 span');
-  const line2Letters = document.querySelectorAll('#line2 span');
-  const mainContent = document.getElementById('mainContent');
-
-  function randomChaosTransform() {
-    const x = (Math.random() - 0.5) * window.innerWidth * 0.7;
-    const y = (Math.random() - 0.5) * window.innerHeight * 0.7;
-    const r = (Math.random() - 0.5) * 1440; 
-    return `translate(${x}px, ${y}px) rotate(${r}deg)`;
-  }
-
-  function chaosAnimate(letters) {
-    letters.forEach(letter => {
-      if (letter.textContent.trim() === '') return;
-      letter.style.transition = 'transform 2s ease-in-out';
-      letter.style.transform = randomChaosTransform();
-    });
-  }
-
-  function settleAnimate(letters) {
-    letters.forEach(letter => {
-      letter.style.transition = 'transform 1.5s ease-in-out';
-      letter.style.transform = 'none';
-    });
-  }
-
-  function clearAnimations(letters) {
-    letters.forEach(letter => {
-      letter.style.transition = '';
-      letter.style.animation = '';
-      letter.style.transform = 'none';
-    });
-  }
-
-  setTimeout(() => {
-    blackOverlay.classList.add('hidden');
-    animatedLogo.style.opacity = '1';
-
-    const allLetters = [...line1Letters, ...line2Letters];
-
-    chaosAnimate(allLetters);
+  // Remove intro after 3 seconds
+  window.addEventListener('load', () => {
+    const intro = document.getElementById('intro');
+    const content = document.getElementById('main-content');
 
     setTimeout(() => {
-      settleAnimate(allLetters);
+      intro.style.opacity = '0';
 
+      // After fade out, remove from DOM and show content
       setTimeout(() => {
-        clearAnimations(allLetters);
-
-        setTimeout(() => {
-          whiteOverlay.classList.add('visible');
-          animatedLogo.style.opacity = '0';
-
-          // Show main content after fade to white
-          setTimeout(() => {
-            mainContent.classList.add('visible');
-          }, 1000);
-
-        }, 1000);
-
-      }, 1500);
-
-    }, 2000);
-
-  }, 500);
-</script>
-
-</body>
-</html>
-
+        intro.style.display = 'none';
+        content.style.opacity = '1';
+      }, 1000);
+    }, 3000);
+  });
 </script>
 
 </body>
