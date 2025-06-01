@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WriteMySocials Animation</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
 <style>
-  /* --- Animation Splash Styles --- */
   html, body {
     margin: 0;
     padding: 0;
     height: 100%;
     background: #000;
-    overflow: hidden;
+    overflow-x: hidden;
     font-family: 'Playfair Display', serif;
   }
 
@@ -46,7 +46,7 @@
   }
 
   .logo-container {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -55,7 +55,7 @@
     opacity: 0;
     transition: opacity 0.5s ease;
     user-select: none;
-    z-index: 10000;
+    z-index: 99;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -74,137 +74,110 @@
     transform-origin: center;
   }
 
-  /* --- Main Website Content --- */
-  body.white-bg {
-    background: #fff !important;
-    overflow: auto !important;
-    font-family: 'Cormorant Garamond', serif;
-    color: black;
-  }
-
   #mainContent {
-    max-width: 1200px;
-    margin: 80px auto 60px;
-    padding: 0 20px;
-    display: none;
+    opacity: 0;
+    transition: opacity 1s ease;
+    padding: 20px;
+    text-align: center;
+    background: #fff;
   }
 
-  /* Header with logo and social icons - fixed top after fade */
-  #headerArea {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1001;
-    display: flex;
-    align-items: center;
-    gap: 40px;
+  .social-icons {
+    margin: 20px 0;
+    font-size: 2.5rem;
   }
 
-  #headerArea .logo {
-    max-width: 180px;
-    filter: none;
-  }
-
-  #headerArea .social-icons {
-    display: flex;
-    gap: 20px;
-  }
-
-  #headerArea .social-icons a {
-    font-size: 28px;
-    color: black;
+  .social-icons a {
+    margin: 0 12px;
+    color: #000;
     text-decoration: none;
-    transition: color 0.3s ease;
   }
 
-  #headerArea .social-icons a:hover {
-    color: #ff0080; /* pink neon hover */
-    text-shadow: 0 0 5px #ff0080, 0 0 10px #ff0080;
+  .under-construction {
+    font-size: 8vw;
+    color: black;
+    text-align: center;
+    font-weight: 900;
+    margin: 30px 0;
+    letter-spacing: 2px;
   }
 
-  /* Work samples marquee */
   .marquee-container {
-    width: 100%;
     overflow: hidden;
     white-space: nowrap;
-    margin: 60px 0 40px;
-    position: relative;
+    box-sizing: border-box;
+    margin: 30px 0;
   }
 
   .marquee-content {
-    display: flex;
-    gap: 50px;
+    display: inline-block;
     animation: marquee 20s linear infinite;
   }
 
   .marquee-content img {
-    height: 200px;
-    border-radius: 8px;
-    vertical-align: middle;
-    transition: transform 0.3s ease;
-    cursor: pointer;
+    height: 300px;
+    margin: 0 20px;
+    transition: transform 0.4s ease;
   }
 
-  /* Scale images 2x on hover */
-  .marquee-container:hover .marquee-content img {
-    transform: scale(2);
-    z-index: 100;
+  .marquee-content img:hover {
+    transform: scale(1.2);
   }
 
   @keyframes marquee {
-    0% { transform: translateX(100%); }
+    0% { transform: translateX(0); }
     100% { transform: translateX(-100%); }
   }
 </style>
 </head>
 <body>
 
-  <!-- Animation Splash -->
-  <div id="blackOverlay"></div>
-  <div id="whiteOverlay"></div>
+<div id="blackOverlay"></div>
+<div id="whiteOverlay"></div>
 
-  <div class="logo-container" id="animatedLogo" aria-label="Write My Socials">
-    <div class="line" id="line1">
-      <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span><span>&nbsp;</span><span>M</span><span>y</span>
-    </div>
-    <div class="line" id="line2">
-      <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
+<div class="logo-container" id="animatedLogo">
+  <div class="line" id="line1">
+    <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span><span>&nbsp;</span><span>M</span><span>y</span>
+  </div>
+  <div class="line" id="line2">
+    <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
+  </div>
+</div>
+
+<div id="mainContent">
+  <div class="social-icons">
+    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+  </div>
+
+  <h1 class="under-construction">Under Glamstruction</h1>
+
+  <!-- Optional marquee of any other items if you want -->
+  <div class="marquee-container">
+    <div class="marquee-content">
+      <!-- Can place other images or icons here if needed -->
     </div>
   </div>
 
-  <!-- Header with logo and social icons (hidden until fade completes) -->
-  <div id="headerArea" aria-label="Site header with logo and social icons" style="display:none;">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/ede3e85d-6195-48cc-85dd-df8ccae8b40f.png" alt="WriteMySocials Logo" class="logo" />
-    <div class="social-icons">
-      <a href="https://instagram.com/writemysocials" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://tiktok.com/@writemysocials" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-      <a href="https://linkedin.com/in/writemysocials" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+  <!-- Work samples marquee -->
+  <div class="marquee-container" aria-label="Work Samples">
+    <div class="marquee-content">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4" />
     </div>
   </div>
-
-  <!-- Main Content -->
-  <div id="mainContent" role="main" aria-label="Main website content">
-    <!-- Work samples marquee -->
-    <div class="marquee-container" aria-label="Scrolling work samples">
-      <div class="marquee-content">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Sample Image 1" />
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1" />
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2" />
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3" />
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4" />
-      </div>
-    </div>
-  </div>
+</div>
 
 <script>
   const blackOverlay = document.getElementById('blackOverlay');
   const whiteOverlay = document.getElementById('whiteOverlay');
   const animatedLogo = document.getElementById('animatedLogo');
-  const headerArea = document.getElementById('headerArea');
-  const mainContent = document.getElementById('mainContent');
   const line1Letters = document.querySelectorAll('#line1 span');
   const line2Letters = document.querySelectorAll('#line2 span');
+  const mainContent = document.getElementById('mainContent');
 
   function randomChaosTransform() {
     const x = (Math.random() - 0.5) * window.innerWidth * 0.6;
@@ -228,7 +201,6 @@
     });
   }
 
-  // Animation timeline
   setTimeout(() => {
     blackOverlay.classList.add('hidden');
     animatedLogo.style.opacity = '1';
@@ -242,30 +214,16 @@
         setTimeout(() => {
           whiteOverlay.classList.add('visible');
           animatedLogo.style.opacity = '0';
+
+          setTimeout(() => {
+            whiteOverlay.style.display = 'none';
+            mainContent.style.opacity = '1';
+          }, 500);
         }, 300);
       }, 700);
     }, 1200);
-  }, 800); // increased delay here
-
-  // After white overlay fade completes, show main site content and header
-  whiteOverlay.addEventListener('transitionend', () => {
-    if (whiteOverlay.classList.contains('visible')) {
-      // Hide splash elements
-      blackOverlay.style.display = 'none';
-      whiteOverlay.style.display = 'none';
-      animatedLogo.style.display = 'none';
-
-      // Show main site content & header
-      headerArea.style.display = 'flex';
-      mainContent.style.display = 'block';
-
-      // Change body to white bg & allow scrolling
-      document.body.classList.add('white-bg');
-    }
-  });
+  }, 800); // Extended black screen by 0.3s
 </script>
 
 </body>
 </html>
-
-
