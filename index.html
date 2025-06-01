@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>WriteMySocials Animation</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 <style>
+  /* --- Animation Splash Styles --- */
   html, body {
     margin: 0;
     padding: 0;
@@ -45,7 +46,7 @@
   }
 
   .logo-container {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -54,7 +55,7 @@
     opacity: 0;
     transition: opacity 0.5s ease;
     user-select: none;
-    z-index: 99;
+    z-index: 10000;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -73,26 +74,225 @@
     transform-origin: center;
   }
 
+  /* --- Main Website Content - initially hidden --- */
+  #mainContent {
+    display: none;
+    font-family: 'Cormorant Garamond', serif;
+    background: url('https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Browodern%20Fashion%20Newspaper%20Blog%20post%20Pinterest%20Pin%20.png') no-repeat center center fixed;
+    background-size: cover;
+    color: black;
+    min-height: 100vh;
+    padding: 40px 20px;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h5 {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* Top bar */
+  .top-bar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto 30px;
+    gap: 20px;
+  }
+
+  .logo {
+    max-width: 150px;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .social-icons a {
+    font-size: 24px;
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .social-icons a:hover {
+    color: #555;
+  }
+
+  /* Main section */
+  .main-section-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    gap: 40px;
+  }
+
+  .main-section-inner img {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 8px;
+  }
+
+  .story-section {
+    max-width: 500px;
+    text-align: left;
+    margin-left: 0;
+  }
+
+  @media (min-width: 768px) {
+    .main-section-inner {
+      flex-direction: row;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .story-section {
+      margin-left: 60px;
+    }
+  }
+
+  /* Marquee */
+  .marquee-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 20px 0 40px;
+    position: relative;
+  }
+
+  .marquee-content {
+    display: flex;
+    gap: 50px;
+    animation: marquee 20s linear infinite;
+  }
+
+  .marquee-content img {
+    height: 200px;
+    border-radius: 8px;
+    vertical-align: middle;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* Services */
+  .services {
+    max-width: 800px;
+    margin: 0 auto 60px;
+    text-align: center;
+  }
+
+  .services ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    display: inline-block;
+    text-align: left;
+    font-size: 18px;
+  }
+
+  .services li {
+    margin-bottom: 10px;
+  }
+
+  /* Calendly embed */
+  .calendly-section {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .calendly-section iframe {
+    width: 100%;
+    height: 700px;
+    border: none;
+    border-radius: 8px;
+  }
 </style>
 </head>
 <body>
 
-<div id="blackOverlay"></div>
-<div id="whiteOverlay"></div>
+  <!-- Animation Splash -->
+  <div id="blackOverlay"></div>
+  <div id="whiteOverlay"></div>
 
-<div class="logo-container" id="animatedLogo" aria-label="Write My Socials">
-  <div class="line" id="line1">
-    <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span><span>&nbsp;</span><span>M</span><span>y</span>
+  <div class="logo-container" id="animatedLogo" aria-label="Write My Socials">
+    <div class="line" id="line1">
+      <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span><span>&nbsp;</span><span>M</span><span>y</span>
+    </div>
+    <div class="line" id="line2">
+      <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
+    </div>
   </div>
-  <div class="line" id="line2">
-    <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
+
+  <!-- Main website content (hidden initially) -->
+  <div id="mainContent" role="main" aria-label="Main website content">
+    <div class="top-bar">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/ede3e85d-6195-48cc-85dd-df8ccae8b40f.png" alt="WriteMySocials Logo" class="logo" />
+      <div class="social-icons">
+        <a href="https://instagram.com/writemysocials" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://tiktok.com/@writemysocials" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+
+    <h1>I'm Not Just Any Copywriter, I'm an Award Winning Storyteller</h1>
+    <h3>Transforming Your Brand’s Narrative Into A Best Seller</h3>
+
+    <div class="main-section-inner">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg" alt="Heya Image" />
+      <div class="story-section">
+        <h3>My Story in Digital Marketing</h3>
+        <p>
+          When I moved to London to notice, the business culture woven into a modern generation. Yet it whispered the echoes of the 1800s hustlers who didn't stand a chance. They yanked their bread, just to be sent away in chains for crimes they could never deem as unfair.
+          <br /><br />
+          That was when I stood alone in Picadilly Circus feeling the wild, young and free whispers of a new revolution. WriteMySocials was born with passion. To tell stories, connect with culture and win hearts.
+          <br /><br />
+          We don't just write, we weave our stories into human existence. We hear the bleeding crowds and feed their broken souls with pillars of love. We turn Stories into Strategy. Culture into Content. And Pain into Power. So that they know... They're not bleeding alone.
+        </p>
+      </div>
+    </div>
+
+    <div class="marquee-container" aria-label="Scrolling work samples">
+      <div class="marquee-content">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/0eaeaaa9-b157-4d50-b0b2-b96d7bd33e22.png" alt="Sample Image 1" />
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1" />
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2" />
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3" />
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4" />
+      </div>
+    </div>
+
+    <div class="services">
+      <h2>Services:</h2>
+
+      <h3>Copywriting:</h3>
+      <ul>
+        <li>Email Marketing</li>
+        <li>Slogans & Branding</li>
+        <li>Product Descriptions</li>
+        <li>Website Copy</li>
+      </ul>
+    </div>
+
+    <div class="calendly-section">
+      <h2>Espresso Crunch Consult (Free Session With Me)</h2>
+      <iframe src="https://calendly.com/siyana-de98/30min" title="Schedule a consultation" allowfullscreen></iframe>
+    </div>
   </div>
-</div>
 
 <script>
   const blackOverlay = document.getElementById('blackOverlay');
   const whiteOverlay = document.getElementById('whiteOverlay');
   const animatedLogo = document.getElementById('animatedLogo');
+  const mainContent = document.getElementById('mainContent');
   const line1Letters = document.querySelectorAll('#line1 span');
   const line2Letters = document.querySelectorAll('#line2 span');
 
@@ -118,6 +318,7 @@
     });
   }
 
+  // Animation timeline
   setTimeout(() => {
     blackOverlay.classList.add('hidden');
     animatedLogo.style.opacity = '1';
@@ -135,7 +336,25 @@
       }, 700);
     }, 1200);
   }, 500);
+
+  // After the white overlay is visible, hide splash and show main content
+  whiteOverlay.addEventListener('transitionend', () => {
+    if (whiteOverlay.classList.contains('visible')) {
+      // Hide animation splash elements
+      blackOverlay.style.display = 'none';
+      whiteOverlay.style.display = 'none';
+      animatedLogo.style.display = 'none';
+
+      // Show main content
+      mainContent.style.display = 'block';
+
+      // Reset body background and overflow for main site
+      document.body.style.background = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  });
 </script>
 
 </body>
 </html>
+
