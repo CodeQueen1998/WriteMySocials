@@ -3,30 +3,40 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>WriteMySocials Animation</title>
+<title>WriteMySocials Intro + Page</title>
+
+<!-- Vogue style font -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
 
+<!-- FontAwesome for social icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
 <style>
-  html, body {
+  /* Reset */
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
     margin: 0; padding: 0;
     height: 100%;
-    background: #000;
-    overflow: hidden;
+    overflow-x: hidden;
     font-family: 'Playfair Display', serif;
+    background: #fff;
+    color: #000;
   }
 
+  /* Intro styles */
   #blackOverlay, #whiteOverlay {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    inset: 0;
     z-index: 9999;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.8s ease;
   }
 
   #blackOverlay {
     background: #000;
     opacity: 1;
   }
-
   #blackOverlay.hidden {
     opacity: 0;
     pointer-events: none;
@@ -36,99 +46,285 @@
     background: #fff;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 1s ease;
   }
-
   #whiteOverlay.visible {
     opacity: 1;
   }
 
-  .logo-container {
-    position: absolute;
+  #animatedLogo {
+    position: fixed;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
     font-size: 9vw;
-    opacity: 0;
-    transition: opacity 0.4s ease;
+    color: white;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.4vw;
     user-select: none;
-    z-index: 99;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.5vw;
-    line-height: 1;
+    z-index: 10000;
   }
 
-  .line {
-    display: flex;
-    justify-content: center;
-  }
-
-  .line span {
+  #animatedLogo span {
     display: inline-block;
-    margin: 0 0.3vw;
     transform-origin: center;
-    animation: settleChaos 2s ease forwards;
+    cursor: default;
   }
 
-  @keyframes settleChaos {
-    0% {
-      transform: translate(
-        calc((50vw - 50%) * (random() - 0.5)),
-        calc((50vh - 50%) * (random() - 0.5))
-      ) rotate(720deg);
-    }
-    100% {
-      transform: none;
-    }
+  /* Chaos animation keyframes */
+  @keyframes chaosMove {
+    0%   { transform: translate(0,0) rotate(0deg); }
+    20%  { transform: translate(-30px,20px) rotate(20deg); }
+    40%  { transform: translate(15px,-25px) rotate(-30deg); }
+    60%  { transform: translate(-20px,10px) rotate(15deg); }
+    80%  { transform: translate(10px,-15px) rotate(-10deg); }
+    100% { transform: translate(0,0) rotate(0deg); }
   }
 
+  /* Animations for each letter: chaotic twirl for 2s */
+  #animatedLogo span.chaos {
+    animation: chaosMove 2s linear forwards;
+  }
+  /* After chaos, smooth settle */
+  #animatedLogo.settling span {
+    animation: none !important;
+    transition: transform 1.5s ease;
+    transform: translate(0,0) rotate(0deg);
+  }
+
+  /* Page content (hidden initially) */
+  #pageContent {
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+
+  /* Logo top-left */
+  #topLogo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 200px; /* 2x bigger */
+    height: auto;
+    z-index: 50;
+  }
+
+  /* Tagline under logo */
+  #tagline {
+    position: fixed;
+    top: 230px;
+    left: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #000;
+    font-weight: 400;
+    max-width: 220px;
+    user-select: none;
+    z-index: 50;
+  }
+
+  /* Social icons top-right */
+  #socialIcons {
+    position: fixed;
+    top: 30px;
+    right: 20px;
+    display: flex;
+    gap: 20px;
+    z-index: 50;
+  }
+
+  #socialIcons a {
+    color: #000;
+    font-size: 1.8rem;
+    transition: color 0.3s ease;
+  }
+
+  #socialIcons a:hover {
+    color: #555;
+  }
+
+  /* Marquee container */
+  #workSamplesContainer {
+    margin: 140px auto 40px;
+    width: 90vw;
+    max-width: 1200px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Marquee scroll track */
+  #workSamplesScroll {
+    display: flex;
+    gap: 40px;
+    width: max-content;
+    animation: marqueeLR 15s linear infinite alternate;
+  }
+
+  @keyframes marqueeLR {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50%)); }
+  }
+
+  #workSamplesScroll:hover {
+    animation-play-state: paused;
+  }
+
+  /* Each work sample image */
+  #workSamplesScroll img {
+    width: 300px; /* 2x bigger approx */
+    height: auto;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  #workSamplesScroll img:hover {
+    transform: scale(1.15);
+    z-index: 10;
+  }
+
+  /* CTA Button */
+  #ctaButton {
+    display: block;
+    margin: 0 auto 40px;
+    padding: 14px 36px;
+    background: #000;
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    max-width: 220px;
+    text-align: center;
+    user-select: none;
+    text-decoration: none;
+  }
+  #ctaButton:hover {
+    background: #444;
+  }
+
+  /* Responsive tweaks */
   @media (max-width: 600px) {
-    .logo-container {
+    #animatedLogo {
       font-size: 14vw;
+      gap: 0.2vw;
+    }
+    #topLogo {
+      width: 140px;
+      top: 10px;
+      left: 10px;
+    }
+    #tagline {
+      font-size: 1rem;
+      top: 170px;
+      left: 10px;
+      max-width: 160px;
+    }
+    #workSamplesScroll img {
+      width: 180px;
     }
   }
 </style>
 </head>
 <body>
 
+<!-- Intro overlays -->
 <div id="blackOverlay"></div>
 <div id="whiteOverlay"></div>
 
-<div class="logo-container" id="animatedLogo">
-  <div class="line" id="line1">
-    <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span>
-    <span>&nbsp;</span>
-    <span>M</span><span>y</span>
+<!-- Animated WriteMySocials text -->
+<div id="animatedLogo" aria-label="Write My Socials">
+  <!-- Each letter separated for individual animation -->
+  <span class="chaos">W</span>
+  <span class="chaos">r</span>
+  <span class="chaos">i</span>
+  <span class="chaos">t</span>
+  <span class="chaos">e</span>
+  <span class="chaos">&nbsp;</span>
+  <span class="chaos">M</span>
+  <span class="chaos">y</span>
+  <span class="chaos">&nbsp;</span>
+  <span class="chaos">S</span>
+  <span class="chaos">o</span>
+  <span class="chaos">c</span>
+  <span class="chaos">i</span>
+  <span class="chaos">a</span>
+  <span class="chaos">l</span>
+  <span class="chaos">s</span>
+</div>
+
+<!-- Main page content -->
+<div id="pageContent" role="main" aria-label="Main content" style="display:none;">
+  <img id="topLogo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials%20copy.jpg" alt="Write My Socials Logo" />
+  <div id="tagline">Transforming your brand's narrative into a best seller</div>
+
+  <div id="socialIcons" aria-label="Social media links">
+    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" aria-label="LinkedIn">
+      <i class="fab fa-linkedin"></i>
+    </a>
+    <a href="https://www.tiktok.com/@writemysocials" target="_blank" aria-label="TikTok">
+      <!-- Official TikTok SVG Icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" style="width:24px;height:24px;fill:#000;" viewBox="0 0 24 24"><path d="M9 3a6 6 0 0 0 6 6v5a4 4 0 1 1-4-4V3z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/writemysocials" target="_blank" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
   </div>
-  <div class="line" id="line2">
-    <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
-  </div>
+
+  <section id="workSamplesContainer" aria-label="Work samples gallery">
+    <div id="workSamplesScroll" role="list">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Work Sample 1" role="listitem" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Work Sample 2" role="listitem" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Work Sample 3" role="listitem" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Work Sample 4" role="listitem" />
+    </div>
+  </section>
+
+  <a href="mailto:siyana.deveaux@writemysocials.com" id="ctaButton" role="button" aria-label="Work With Us - Email Siyana Deveaux">
+    Work With Us
+  </a>
 </div>
 
 <script>
   const blackOverlay = document.getElementById('blackOverlay');
   const whiteOverlay = document.getElementById('whiteOverlay');
   const animatedLogo = document.getElementById('animatedLogo');
+  const chaosLetters = animatedLogo.querySelectorAll('span.chaos');
+  const pageContent = document.getElementById('pageContent');
 
+  // 0.4s black screen
   setTimeout(() => {
     blackOverlay.classList.add('hidden');
-    animatedLogo.style.opacity = '1';
 
+    // Chaos animation for 2s (letters twirling etc)
+    // We'll just keep the 'chaos' animation on spans for 2s - after that remove chaos class and settle
     setTimeout(() => {
-      // Hold final aligned state for 0.5s
+      // Remove chaos animation and smoothly settle
+      animatedLogo.classList.add('settling');
+
+      // Remove the chaos class so no conflicting animation
+      chaosLetters.forEach(letter => letter.classList.remove('chaos'));
+
+      // Hold settled for 0.5s, then fade white and show page content
       setTimeout(() => {
         whiteOverlay.classList.add('visible');
         animatedLogo.style.opacity = '0';
+
+        // After fade out, hide intro and show content
+        setTimeout(() => {
+          blackOverlay.style.display = 'none';
+          whiteOverlay.style.display = 'none';
+          animatedLogo.style.display = 'none';
+
+          pageContent.style.display = 'block';
+          // fade in content
+          setTimeout(() => {
+            pageContent.style.opacity = '1';
+          }, 50);
+        }, 900); // matching fade duration
       }, 500);
-
     }, 2000);
-
   }, 400);
 </script>
 
 </body>
 </html>
-
