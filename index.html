@@ -120,16 +120,13 @@
   const line1Letters = document.querySelectorAll('#line1 span');
   const line2Letters = document.querySelectorAll('#line2 span');
 
-  // Generate random float/bounce/rotation values for chaotic animation
   function randomChaosTransform() {
-    // Smaller ranges to keep letters visible and prevent overlap
     const x = (Math.random() - 0.5) * window.innerWidth * 0.7;
     const y = (Math.random() - 0.5) * window.innerHeight * 0.7;
     const r = (Math.random() - 0.5) * 1440; 
     return `translate(${x}px, ${y}px) rotate(${r}deg)`;
   }
 
-  // Animate letters with chaotic bouncing/twirling/spinning/floating
   function chaosAnimate(letters) {
     letters.forEach(letter => {
       if (letter.textContent.trim() === '') return;
@@ -138,7 +135,6 @@
     });
   }
 
-  // Return letters back to natural aligned position with proper spacing
   function settleAnimate(letters) {
     letters.forEach(letter => {
       letter.style.transition = 'transform 1.5s ease-in-out';
@@ -146,7 +142,6 @@
     });
   }
 
-  // Clear animations to hold steady
   function clearAnimations(letters) {
     letters.forEach(letter => {
       letter.style.transition = '';
@@ -155,7 +150,6 @@
     });
   }
 
-  // Main animation timeline
   setTimeout(() => {
     blackOverlay.classList.add('hidden');
     animatedLogo.style.opacity = '1';
@@ -170,6 +164,7 @@
       setTimeout(() => {
         clearAnimations(allLetters);
 
+        // Hold aligned state for 1 second before fadeout
         setTimeout(() => {
           whiteOverlay.classList.add('visible');
           animatedLogo.style.opacity = '0';
