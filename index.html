@@ -90,54 +90,62 @@
   }
 
   /* Logo top-left after intro */
-  #main-logo {
+  #main-logo-container {
     position: fixed;
     top: 1rem;
     left: 1rem;
-    width: 240px; /* 2x approx of original */
-    height: auto;
     z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  /* Tagline below logo */
+  #main-logo {
+    width: 240px; /* 2x approx of original */
+    height: auto;
+  }
+
+  /* Tagline immediately below logo on one line */
   #tagline {
-    position: fixed;
-    top: calc(1rem + 240px + 0.5rem); /* below logo */
-    left: 1rem;
     font-family: 'Playfair Display', serif;
     font-style: italic;
     font-weight: 700;
     font-size: 1.3rem;
     color: #111;
+    margin-top: 0.25rem;
+    white-space: nowrap;
     max-width: 240px;
-    z-index: 1000;
   }
 
   /* Work samples marquee container */
   .work-samples-container {
     position: fixed;
     top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
     overflow: hidden;
-    height: 140px;
+    height: 195px; /* 1.5x bigger than previous 130px */
+    width: 90vw;
+    max-width: 1200px;
     z-index: 900;
   }
 
   .work-samples-scroll {
     display: flex;
-    gap: 1.2rem;
-    animation: scrollBackForth 15s linear infinite alternate;
+    gap: 1.8rem;
+    animation: scrollContinuous 20s linear infinite;
     padding: 0 1rem;
+    /* To enable smooth infinite scroll, double the content width */
+    width: max-content;
   }
 
   .work-samples-scroll img {
-    height: 130px;
+    height: 195px; /* 1.5x bigger */
     width: auto;
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.3s ease;
+    flex-shrink: 0;
   }
 
   .work-samples-scroll img:hover {
@@ -145,9 +153,9 @@
     z-index: 10;
   }
 
-  @keyframes scrollBackForth {
+  @keyframes scrollContinuous {
     0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-100% + 100vw)); }
+    100% { transform: translateX(calc(-50%)); }
   }
 
   /* Social icons top-right */
@@ -185,13 +193,14 @@
     #tagline {
       max-width: 140px;
       font-size: 1rem;
-      top: calc(1rem + 140px + 0.5rem);
+      margin-top: 0.2rem;
     }
     .work-samples-container {
-      height: 90px;
+      height: 120px;
+      width: 95vw;
     }
     .work-samples-scroll img {
-      height: 80px;
+      height: 120px;
     }
     #social-icons a {
       width: 24px;
@@ -220,16 +229,23 @@
 
 <!-- Main content after intro -->
 <div id="main-content" role="main" aria-label="Main Content">
-  <img id="main-logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials%20copy.jpg" alt="WriteMySocials Logo" />
-  <div id="tagline">“Transforming your brand’s narrative into a best seller”</div>
+  <div id="main-logo-container">
+    <img id="main-logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials%20copy.jpg" alt="WriteMySocials Logo" />
+    <div id="tagline">“Transforming your brand’s narrative into a best seller”</div>
+  </div>
 
   <!-- Work samples marquee -->
   <section class="work-samples-container" aria-label="Work samples gallery">
-    <div class="work-samples-scroll" role="list">
+    <div class="work-samples-scroll" role="list" aria-live="polite" aria-atomic="true">
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Work Sample 1" role="listitem" />
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Work Sample 2" role="listitem" />
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Work Sample 3" role="listitem" />
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Work Sample 4" role="listitem" />
+      <!-- Duplicate for smooth scroll -->
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="" aria-hidden="true" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="" aria-hidden="true" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="" aria-hidden="true" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="" aria-hidden="true" />
     </div>
   </section>
 
@@ -242,7 +258,8 @@
       <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram Icon" />
     </a>
     <a href="https://www.tiktok.com/@writemysocials" target="_blank" rel="noopener" aria-label="TikTok">
-      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046123.png" alt="TikTok Icon" />
+      <!-- Updated TikTok Icon -->
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/TikTok_logo.svg" alt="TikTok Icon" style="filter: invert(0); width: 32px; height: 32px;" />
     </a>
   </div>
 </div>
@@ -267,20 +284,20 @@
   function chaosAnimate(letters) {
     letters.forEach(letter => {
       if (letter.textContent.trim() === '') return;
-      letter.style.transition = 'transform 2s ease-in-out';
+      letter.style.transition = 'transform 1s ease-in-out';
       letter.style.transform = randomChaosTransform();
     });
   }
 
-  // Settle letters back to normal position
+  // Letters settle back to original position
   function settleAnimate(letters) {
     letters.forEach(letter => {
-      letter.style.transition = 'transform 1.5s ease-in-out';
+      letter.style.transition = 'transform 0.7s ease-in-out';
       letter.style.transform = 'none';
     });
   }
 
-  // Clear animation styles
+  // Clear all inline transitions and transforms
   function clearAnimations(letters) {
     letters.forEach(letter => {
       letter.style.transition = '';
@@ -289,45 +306,42 @@
     });
   }
 
-  // Run intro animation timeline
+  // Run the intro animation sequence
   setTimeout(() => {
-    blackOverlay.classList.add('hidden');    // Hide black screen after 0.5s
-    animatedLogo.style.opacity = '1';
+    blackOverlay.classList.add('hidden');        // fade black overlay out over 1s
+    animatedLogo.style.opacity = '1';             // fade logo in
 
     const allLetters = [...line1Letters, ...line2Letters];
 
-    chaosAnimate(allLetters);                 // Letters scatter (2s)
+    chaosAnimate(allLetters);                      // scatter/twirl for 1s
 
     setTimeout(() => {
-      settleAnimate(allLetters);              // Letters settle (1.5s)
+      settleAnimate(allLetters);                   // settle letters over 0.7s
 
       setTimeout(() => {
-        clearAnimations(allLetters);
+        clearAnimations(allLetters);               // cleanup
 
-        // Hold settled state 1s then fade to white and show main content
         setTimeout(() => {
-          whiteOverlay.classList.add('visible');
+          whiteOverlay.classList.add('visible');  // fade to white background
           animatedLogo.style.opacity = '0';
 
+          // Show main content after fade
           setTimeout(() => {
-            // Hide intro elements, show main content
             blackOverlay.style.display = 'none';
             whiteOverlay.style.display = 'none';
             animatedLogo.style.display = 'none';
+
             mainContent.style.display = 'block';
-            document.body.style.background = '#fff';
-            document.body.style.overflow = 'auto'; // allow scrolling after intro
-          }, 1000); // fade duration
+          }, 1000);
 
-        }, 1000); // hold duration
+        }, 500);
 
-      }, 1500); // settle duration
+      }, 700);
 
-    }, 2000); // chaos duration
+    }, 1000);
 
-  }, 500); // black screen duration
+  }, 0);
 </script>
-
 </body>
 </html>
 
