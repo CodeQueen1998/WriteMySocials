@@ -54,13 +54,20 @@
     z-index: 99;
     white-space: nowrap;
     text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5vw; /* space between lines */
+    height: 12vw; /* fixed height to prevent collapse */
+    line-height: 1;
   }
 
   .line {
     display: flex;
     justify-content: center;
     flex-wrap: nowrap;
-    margin: 0.5vw 0;
+    margin: 0;
     position: relative;
   }
 
@@ -68,24 +75,31 @@
     display: inline-block;
     margin: 0 0.5vw;
     transform-origin: center;
+    cursor: default;
+    user-select: none;
   }
 
   .visible {
     opacity: 1;
   }
 
+  /* Gentle floating */
   @keyframes gentleFloat {
-    0%   { transform: translateY(0); }
-    50%  { transform: translateY(-8px); }
-    100% { transform: translateY(0); }
+    0%   { transform: translateY(0) rotate(0deg); }
+    50%  { transform: translateY(-8px) rotate(5deg); }
+    100% { transform: translateY(0) rotate(0deg); }
   }
 
   @media (max-width: 600px) {
     .logo-container {
       font-size: 14vw;
+      height: 20vw;
+      gap: 1vw;
+    }
+    .line span {
+      margin: 0 0.3vw;
     }
   }
-
 </style>
 </head>
 <body>
@@ -93,7 +107,7 @@
 <div id="blackOverlay"></div>
 <div id="whiteOverlay"></div>
 
-<div class="logo-container" id="animatedLogo">
+<div class="logo-container" id="animatedLogo" aria-label="Write My Socials">
   <div class="line" id="line1">
     <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span>
     <span>&nbsp;</span>
@@ -111,41 +125,74 @@
   const line1Letters = document.querySelectorAll('#line1 span');
   const line2Letters = document.querySelectorAll('#line2 span');
 
-  function randomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+  // Generate random float/bounce/rotation values for chaotic animation
+  function randomChaosTransform() {
+    // Random x and y translation within viewport bounds but smaller range to keep visible
+    const x = (Math.random() - 0.5) * window.innerWidth * 0.8;
+    const y = (Math.random() - 0.5) * window.innerHeight * 0.8;
+    // Random rotation between -720 and 720 degrees for spins and twirls
+    const r = (Math.random() - 0.5) * 1440; 
+    return `translate(${x}px, ${y}px) rotate(${r}deg)`;
   }
 
-  setTimeout(() => {
-    blackOverlay.classList.add('hidden');
-    animatedLogo.classList.add('visible');
-
-    [...line1Letters, ...line2Letters].forEach(letter => {
+  // Animate letters with chaotic spinning, bouncing, twirling, floating
+  function chaosAnimate(letters) {
+    letters.forEach(letter => {
       if (letter.textContent.trim() === '') return;
-
-      const x = randomInt(-window.innerWidth / 2, window.innerWidth / 2);
-      const y = randomInt(-window.innerHeight / 2, window.innerHeight / 2);
-      const r = randomInt(0, 720);
-
-      letter.style.transition = 'transform 2s ease';
-      letter.style.transform = `translate(${x}px, ${y}px) rotate(${r}deg)`;
+      letter.style.transition = 'transform 2s ease-in-out';
+      letter.style.transform = randomChaosTransform();
     });
+  }
+
+  // Return letters back to natural aligned position
+  function settleAnimate(letters) {
+    letters.forEach(letter => {
+      letter.style.transition = 'transform 1.5s ease-in-out';
+      letter.style.transform = 'none';
+    });
+  }
+
+  // After settled, apply gentle floating animation indefinitely
+  function applyGentleFloat(letters) {
+    letters.forEach(letter => {
+      letter.style.transition = '';
+      letter.style.animation = 'gentleFloat 3s ease-in-out infinite';
+    });
+  }
+
+  // Clear animations (if needed)
+  function clearAnimations(letters) {
+    letters.forEach(letter => {
+      letter.style.transition = '';
+      letter.style.animation = '';
+      letter.style.transform = 'none';
+    });
+  }
+
+  // Main timeline
+  setTimeout(() => {
+    // Hide black screen, show logo container
+    blackOverlay.classList.add('hidden');
+    animatedLogo.style.opacity = '1';
+
+    const allLetters = [...line1Letters, ...line2Letters];
+
+    // 2 seconds of chaotic bouncing/spinning/twirling/floating
+    chaosAnimate(allLetters);
 
     setTimeout(() => {
-      [...line1Letters, ...line2Letters].forEach(letter => {
-        letter.style.transition = 'transform 1.5s ease';
-        letter.style.transform = 'none';
-      });
+      // 1.5 seconds to settle and align naturally
+      settleAnimate(allLetters);
 
       setTimeout(() => {
-        [...line1Letters, ...line2Letters].forEach(letter => {
-          letter.style.transition = '';
-          letter.style.animation = 'gentleFloat 3s ease-in-out infinite';
-        });
+        // 1 second holding aligned with no animation
+        clearAnimations(allLetters);
 
         setTimeout(() => {
+          // Fade to white background and fade out text
           whiteOverlay.classList.add('visible');
           animatedLogo.style.opacity = '0';
-        }, 3000);
+        }, 1000);
 
       }, 1500);
 
@@ -156,4 +203,3 @@
 
 </body>
 </html>
-
