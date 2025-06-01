@@ -1,63 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WriteMySocials Intro</title>
-<style>
-  /* Fullscreen black intro */
-  #intro {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    font-family: Arial, sans-serif;
-    z-index: 10000;
-    opacity: 1;
-    transition: background 0.7s ease, opacity 0.7s ease;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WriteMySocials</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+  <style>
+    /* Intro Screen */
+    #intro {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-family: Arial, sans-serif;
+      z-index: 10000;
+      opacity: 1;
+      transition: background 0.7s ease, opacity 0.7s ease;
+    }
 
-  /* Bounce + twirl animation */
-  @keyframes bounceTwirl {
-    0%   { transform: scale(1) rotate(0deg); }
-    20%  { transform: scale(1.2) rotate(20deg); }
-    40%  { transform: scale(0.9) rotate(-20deg); }
-    60%  { transform: scale(1.1) rotate(10deg); }
-    80%  { transform: scale(0.95) rotate(-10deg); }
-    100% { transform: scale(1) rotate(0deg); }
-  }
+    @keyframes bounceTwirl {
+      0%   { transform: scale(1) rotate(0deg); }
+      20%  { transform: scale(1.2) rotate(20deg); }
+      40%  { transform: scale(0.9) rotate(-20deg); }
+      60%  { transform: scale(1.1) rotate(10deg); }
+      80%  { transform: scale(0.95) rotate(-10deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
 
-  #intro h1 {
-    opacity: 0;
-    transition: all 0.7s ease;
-  }
+    #intro h1 {
+      opacity: 0;
+      transition: all 0.7s ease;
+    }
 
-  .show-text {
-    opacity: 1;
-    animation: bounceTwirl 1.5s ease-in-out;
-  }
+    .show-text {
+      opacity: 1;
+      animation: bounceTwirl 1.5s ease-in-out;
+    }
 
-  .align-center {
-    animation: none;
-    transform: scale(1) rotate(0deg);
-  }
+    .align-center {
+      animation: none;
+      transform: scale(1) rotate(0deg);
+    }
 
-  /* Page content */
-  #main-content {
-    opacity: 0;
-    transition: opacity 1s ease;
-  }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+    }
 
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #fff;
-  }
-</style>
+    #main-content {
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    /* Logo & Tagline */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px;
+    }
+
+    .logo-container img {
+      height: 80px;
+    }
+
+    .tagline {
+      font-family: 'Vollkorn', serif;
+      font-size: 1.3rem;
+      margin-top: 10px;
+      color: #333;
+    }
+
+    /* Social Icons */
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons a img {
+      height: 28px;
+      width: 28px;
+      transition: transform 0.3s ease;
+    }
+
+    .social-icons a:hover img {
+      transform: scale(1.2);
+    }
+
+    /* Marquee */
+    .work-samples-container {
+      overflow: hidden;
+      white-space: nowrap;
+      margin-top: 30px;
+    }
+
+    .work-samples-scroll {
+      display: inline-flex;
+      animation: marquee 18s linear infinite;
+      gap: 20px;
+    }
+
+    .work-samples-scroll img {
+      height: 160px;
+      border-radius: 8px;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+  </style>
 </head>
 <body>
 
@@ -68,8 +126,38 @@
 
 <!-- Main content -->
 <div id="main-content">
-  <h2>Welcome to the site!</h2>
-  <p>Your content goes here.</p>
+  <div class="header">
+    <div class="logo-container">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials%20copy.jpg" alt="WriteMySocials Logo">
+      <div class="tagline">“Transforming your brand’s narrative into a best seller”</div>
+    </div>
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" aria-label="LinkedIn">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Icon">
+      </a>
+      <a href="https://instagram.com/writemysocials" target="_blank" aria-label="Instagram">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram Icon">
+      </a>
+      <a href="https://tiktok.com/writemysocials" target="_blank" aria-label="TikTok">
+        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046120.png" alt="TikTok Icon">
+      </a>
+    </div>
+  </div>
+
+  <!-- Work samples marquee -->
+  <section class="work-samples-container" aria-label="Work samples gallery">
+    <div class="work-samples-scroll" role="list">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Work Sample 1" role="listitem" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Work Sample 2" role="listitem" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Work Sample 3" role="listitem" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Work Sample 4" role="listitem" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Work Sample 1 duplicate" aria-hidden="true" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Work Sample 2 duplicate" aria-hidden="true" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Work Sample 3 duplicate" aria-hidden="true" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Work Sample 4 duplicate" aria-hidden="true" />
+    </div>
+  </section>
+
 </div>
 
 <script>
@@ -93,14 +181,13 @@
         setTimeout(() => {
           intro.style.display = 'none';
           content.style.opacity = '1';
-        }, 700); // fade duration
-      }, 700); // alignment duration
-
-    }, 1500); // dancing duration
-
-  }, 700); // initial black screen duration
+        }, 700);
+      }, 700);
+    }, 1500);
+  }, 700);
 </script>
 
 </body>
 </html>
+
 
