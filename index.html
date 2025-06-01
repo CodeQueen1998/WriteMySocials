@@ -3,38 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>WriteMySocials</title>
-
-<!-- Playfair Display font for classy serif -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
-
+<title>Intro Only</title>
 <style>
-  /* Reset */
-  * {
-    box-sizing: border-box;
-    margin: 0; padding: 0;
-  }
-  body, html {
-    height: 100%;
-    font-family: 'Playfair Display', serif;
-    background-color: #fff;
-    color: #000;
-    overflow-x: hidden;
-  }
-  a {
-    color: #000;
-    text-decoration: none;
-  }
-  a:hover {
-    color: #ff0050;
-  }
-
-  /* Loading Screen */
+  /* Full screen black loading */
   #loading-screen {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    inset: 0;
     background: #000;
-    z-index: 10000;
+    z-index: 9999;
     opacity: 1;
     transition: opacity 1s ease;
   }
@@ -43,330 +19,41 @@
     pointer-events: none;
   }
 
-  /* Sidebar styling */
-  #sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 80px;
-    background-color: #000;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 0;
-    z-index: 10000;
-    box-shadow: 2px 0 15px rgba(0,0,0,0.5);
-    transition: width 0.3s ease;
-    user-select: none;
-  }
-  #sidebar:hover {
-    width: 220px;
-  }
-  #sidebar ul {
-    list-style: none;
-    padding: 0;
+  /* Body white background */
+  body {
     margin: 0;
-    width: 100%;
-  }
-  #sidebar ul li {
-    width: 100%;
-  }
-  #sidebar ul li a {
-    display: block;
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.2rem;
-    padding: 15px 20px;
-    width: 100%;
-    white-space: nowrap;
-    border-left: 4px solid transparent;
-    transition: background-color 0.3s ease, border-left-color 0.3s ease, color 0.3s ease;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  #sidebar ul li a:hover,
-  #sidebar ul li a.active {
-    background-color: #fff;
-    color: #000;
-    border-left-color: #ff0050;
-  }
-  #sidebar ul li a::before {
-    content: "";
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: #ff0050;
-    margin-right: 12px;
-    border-radius: 50%;
-    vertical-align: middle;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  #sidebar ul li a.active::before,
-  #sidebar ul li a:hover::before {
-    opacity: 1;
-  }
-  .sidebar-socials {
+    height: 100vh;
+    background: #fff;
     display: flex;
-    flex-direction: column;
-    gap: 25px;
-    margin-bottom: 20px;
-    width: 100%;
     align-items: center;
-  }
-  .sidebar-socials a svg {
-    fill: #fff;
-    width: 26px;
-    height: 26px;
-    transition: fill 0.3s ease;
-  }
-  .sidebar-socials a:hover svg {
-    fill: #ff0050;
-  }
-  #sidebar:hover ul li a {
-    white-space: normal;
-    padding-left: 20px;
-  }
-
-  /* Main container adjusted for sidebar */
-  .container {
-    margin-left: 80px;
-    padding: 30px 40px;
-    transition: margin-left 0.3s ease;
-  }
-  #sidebar:hover ~ .container {
-    margin-left: 220px;
-  }
-
-  /* Client info center top */
-  .client-info {
-    font-size: 1.3rem;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 60px;
-    max-width: 100%;
-  }
-
-  /* Work With Us button top & center */
-  .work-with-us-btn {
-    display: block;
-    margin: 0 auto 70px auto;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    color: #000;
     font-size: 2rem;
-    font-weight: 700;
-    background: transparent;
-    border: 3px solid #000;
-    padding: 18px 45px;
-    cursor: pointer;
-    color: #000;
-    transition: all 0.4s ease;
-    max-width: 320px;
-    text-align: center;
-    border-radius: 6px;
-  }
-  .work-with-us-btn:hover {
-    background-color: #ff0050;
-    border-color: #ff0050;
-    color: #fff;
-  }
-
-  /* Work Samples marquee container */
-  .work-samples-container {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto 60px auto;
-  }
-
-  /* Scroll animation for marquee effect */
-  .work-samples-scroll {
-    display: flex;
-    gap: 30px;
-    animation: scrollLeft 40s linear infinite;
-  }
-  .work-samples-scroll:hover {
-    animation-play-state: paused;
-  }
-
-  /* Images fully visible, not cropped */
-  .work-samples-scroll img {
-    height: 280px;
-    width: auto;
-    object-fit: contain;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  .work-samples-scroll img:hover {
-    transform: scale(1.05);
-  }
-
-  @keyframes scrollLeft {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  /* Footer */
-  footer {
-    margin-top: 40px;
-    text-align: center;
-    font-size: 1rem;
-  }
-  .cta-email {
-    cursor: pointer;
-    font-weight: bold;
-    color: #000;
-    transition: color 0.3s ease;
-  }
-  .cta-email:hover {
-    color: #ff0050;
-    text-decoration: underline;
-  }
-
-  /* Responsive for mobile */
-  @media (max-width: 768px) {
-    #sidebar {
-      display: none;
-    }
-    .container {
-      margin-left: 0 !important;
-      padding: 20px 15px;
-    }
-    .client-info {
-      font-size: 1.1rem;
-      margin-bottom: 50px;
-    }
-    .work-with-us-btn {
-      font-size: 1.5rem;
-      padding: 14px 30px;
-      max-width: 100%;
-    }
-    .work-samples-scroll {
-      gap: 20px;
-      animation-duration: 25s;
-    }
-    .work-samples-scroll img {
-      height: 180px;
-    }
-  }
-
-  /* Animations for main content after intro fade */
-  @keyframes jumpFadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Container and children animation trigger */
-  .container.animate-in > * {
-    opacity: 0;
-    animation: jumpFadeIn 0.8s ease forwards;
-  }
-
-  /* Stagger animations for child elements */
-  .container.animate-in > *:nth-child(1) {
-    animation-delay: 0.1s;
-  }
-  .container.animate-in > *:nth-child(2) {
-    animation-delay: 0.3s;
-  }
-  .container.animate-in > section {
-    animation-delay: 0.5s;
-  }
-  .container.animate-in > footer {
-    animation-delay: 0.7s;
   }
 </style>
-
 </head>
 <body>
 
-<!-- Loading screen -->
 <div id="loading-screen"></div>
 
-<!-- Sidebar -->
-<nav id="sidebar" aria-label="Main navigation sidebar">
-  <ul>
-    <li><a href="#" aria-current="page" class="active">Home</a></li>
-    <li><a href="work-with-us.html">Work With Us</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="sidebar-socials" aria-label="Social media links">
-    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener" aria-label="LinkedIn">
-      <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1a53.79 53.79 0 1 1 53.78-53.79 53.8 53.8 0 0 1-53.78 53.79zM447.9 448h-92.68V302.4c0-34.7-12.4-58.4-43.3-58.4-23.6 0-37.6 15.9-43.8 31.3-2.3 5.6-2.9 13.4-2.9 21.3V448H172.7s1.2-241.6 0-266.5h92.6v37.7c-0.2 0.3-0.5 0.7-0.7 1h0.7v-1c12.3-19 34.2-46 83.2-46 60.7 0 106.3 39.6 106.3 124.7V448z"/>
-      </svg>
-    </a>
-    <a href="mailto:info@writemysocials.com" aria-label="Email info@writemysocials.com">
-      <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M502.3 190.8L327.4 338.6c-15.3 12.4-38 12.4-53.2 0L9.7 190.8c-12.1-9.8-3.7-30.8 12.6-30.8h467.3c16.3 0 24.7 21 12.7 30.8zM0 230.9v179.7c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V230.9l-177.5 143.9c-27.1 21.9-65.3 21.9-92.4 0L0 230.9z"/>
-      </svg>
-    </a>
-  </div>
-</nav>
-
-<!-- Main content -->
-<div class="container" role="main" aria-label="Main content">
-
-  <p class="client-info" tabindex="0">
-    We write social media posts & videos for startups and entrepreneurs — our clients get increased reach and engagement.
-  </p>
-
-  <button class="work-with-us-btn" aria-label="Work with us button" tabindex="0">
-    Work With Us
-  </button>
-
-  <section class="work-samples-container" aria-label="Work samples">
-    <div class="work-samples-scroll" aria-live="polite" aria-atomic="true">
-      <img src="https://user-images.githubusercontent.com/38568852/251777711-1483c993-8d32-4ae4-9b55-9d3e9f28a6e3.png" alt="Screenshot of social media post 1" />
-      <img src="https://user-images.githubusercontent.com/38568852/251777730-2601581d-82cc-4bf7-86ea-43a20767dddf.png" alt="Screenshot of social media post 2" />
-      <img src="https://user-images.githubusercontent.com/38568852/251777750-0bfe913a-baa1-4d0c-8c9d-83b71dbd67d1.png" alt="Screenshot of social media post 3" />
-      <img src="https://user-images.githubusercontent.com/38568852/251777757-c9ebc287-78b4-406a-a523-fbf50e73fef9.png" alt="Screenshot of social media post 4" />
-      <img src="https://user-images.githubusercontent.com/38568852/251777769-8bfbaf26-9c0b-4447-9c46-3028ab2c1dd3.png" alt="Screenshot of social media post 5" />
-      <img src="https://user-images.githubusercontent.com/38568852/251777711-1483c993-8d32-4ae4-9b55-9d3e9f28a6e3.png" alt="Screenshot of social media post 1 repeated" />
-      <img src="https://user-images.githubusercontent.com/38568852/251777730-2601581d-82cc-4bf7-86ea-43a20767dddf.png" alt="Screenshot of social media post 2 repeated" />
-    </div>
-  </section>
-
-  <footer>
-    <p>Ready to get started? <a href="mailto:info@writemysocials.com" class="cta-email" tabindex="0">Email us</a> anytime!</p>
-  </footer>
-
+<div id="content" style="opacity: 0; transition: opacity 1s ease;">
+  Welcome to WriteMySocials!
 </div>
 
 <script>
   window.addEventListener('load', () => {
     const loading = document.getElementById('loading-screen');
+    const content = document.getElementById('content');
+
     loading.classList.add('hidden');
 
-    // After fade out completes (1s), animate main content
+    // After fade completes, fade content in
     setTimeout(() => {
-      const container = document.querySelector('.container');
-      container.classList.add('animate-in');
+      content.style.opacity = '1';
     }, 1000);
   });
 </script>
 
 </body>
 </html>
-
-
-</body>
-</html>
-
