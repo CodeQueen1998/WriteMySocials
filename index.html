@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WriteMySocials Animation</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Poppins:wght@400&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
 <style>
@@ -74,6 +74,43 @@
     transform-origin: center;
   }
 
+  /* Marquee tagline under logo */
+  .tagline-marquee {
+    position: absolute;
+    bottom: 5%;
+    width: 100%;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5vw;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 99;
+  }
+
+  .tagline-marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: tagline-marquee 15s linear infinite;
+  }
+
+  @keyframes tagline-marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* Logo on white overlay */
+  .logo-on-white {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 300px;
+    width: 50vw;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 10000;
+  }
+
   #mainContent {
     opacity: 0;
     transition: opacity 1s ease;
@@ -130,6 +167,7 @@
   }
 </style>
 </head>
+
 <body>
 
 <div id="blackOverlay"></div>
@@ -144,6 +182,14 @@
   </div>
 </div>
 
+<!-- Marquee tagline -->
+<div class="tagline-marquee">
+  <span>Transforming your brand’s narrative into a best seller</span>
+</div>
+
+<!-- Logo to display on white overlay -->
+<img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" id="whiteLogo" class="logo-on-white">
+
 <div id="mainContent">
   <div class="social-icons">
     <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -153,14 +199,10 @@
 
   <h1 class="under-construction">Under Glamstruction</h1>
 
-  <!-- Optional marquee of any other items if you want -->
   <div class="marquee-container">
-    <div class="marquee-content">
-      <!-- Can place other images or icons here if needed -->
-    </div>
+    <div class="marquee-content"></div>
   </div>
 
-  <!-- Work samples marquee -->
   <div class="marquee-container" aria-label="Work Samples">
     <div class="marquee-content">
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1" />
@@ -178,6 +220,7 @@
   const line1Letters = document.querySelectorAll('#line1 span');
   const line2Letters = document.querySelectorAll('#line2 span');
   const mainContent = document.getElementById('mainContent');
+  const whiteLogo = document.getElementById('whiteLogo');
 
   function randomChaosTransform() {
     const x = (Math.random() - 0.5) * window.innerWidth * 0.6;
@@ -215,6 +258,9 @@
           whiteOverlay.classList.add('visible');
           animatedLogo.style.opacity = '0';
 
+          // Show logo when white screen fades in
+          whiteLogo.style.opacity = '1';
+
           setTimeout(() => {
             whiteOverlay.style.display = 'none';
             mainContent.style.opacity = '1';
@@ -222,7 +268,7 @@
         }, 300);
       }, 700);
     }, 1200);
-  }, 800); // Extended black screen by 0.3s
+  }, 800);
 </script>
 
 </body>
