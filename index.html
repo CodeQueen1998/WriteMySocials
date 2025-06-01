@@ -1,93 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WriteMySocials Animation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
-  <style>
-    html, body {
-      margin: 0; padding: 0;
-      height: 100%;
-      background: #000;
-      overflow: hidden;
-      font-family: 'Playfair Display', serif;
-    }
-
-    #blackOverlay, #whiteOverlay {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      transition: opacity 0.5s ease;
-    }
-
-    #blackOverlay {
-      background: #000;
-      opacity: 1;
-    }
-
-    #blackOverlay.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    #whiteOverlay {
-      background: #fff;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    #whiteOverlay.visible {
-      opacity: 1;
-    }
-
-    .logo-container {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      font-size: 9vw;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      user-select: none;
-      z-index: 99;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 0.5vw;
-      height: 12vw;
-      line-height: 1;
-      white-space: nowrap;
-    }
-
-    .line {
-      display: flex;
-      justify-content: center;
-      flex-wrap: nowrap;
-      margin: 0;
-      position: relative;
-    }
-
-    .line span {
-      display: inline-block;
-      margin: 0 0.5vw;
-      transform-origin: center;
-      cursor: default;
-      user-select: none;
-    }
-
-    @media (max-width: 600px) {
-      .logo-container {
-        font-size: 14vw;
-        height: 20vw;
-        gap: 1vw;
-      }
-      .line span {
-        margin: 0 0.3vw;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Write My Socials</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #000;
+    font-family: 'Playfair Display', serif;
+  }
+  #blackOverlay, #whiteOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    transition: opacity 1s ease;
+  }
+  #blackOverlay { background: #000; opacity: 1; }
+  #blackOverlay.hidden { opacity: 0; pointer-events: none; }
+  #whiteOverlay { background: #fff; opacity: 0; pointer-events: none; }
+  #whiteOverlay.visible { opacity: 1; }
+  .logo-container {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 9vw;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    user-select: none;
+    z-index: 999;
+    text-align: center;
+    line-height: 1;
+  }
+  .line span {
+    display: inline-block;
+    margin: 0 0.4vw;
+    transform-origin: center;
+    user-select: none;
+  }
+  #main-content {
+    opacity: 0;
+    transition: opacity 1s ease;
+    background: #fff;
+    padding: 2rem;
+    overflow: hidden;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .brand-logo {
+    height: 80px;
+  }
+  .tagline {
+    font-size: 1.4rem;
+    margin-top: 0.5rem;
+    color: #000;
+  }
+  .social-icons {
+    display: flex;
+    gap: 1rem;
+  }
+  .social-icons a img {
+    height: 30px;
+    transition: transform 0.3s ease;
+  }
+  .social-icons a img:hover {
+    transform: scale(1.2);
+  }
+  .work-samples-container {
+    margin: 2rem 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .work-samples-scroll {
+    display: flex;
+    gap: 2rem;
+    animation: marquee 20s linear infinite alternate;
+    align-items: center;
+  }
+  .work-samples-scroll img {
+    height: 300px;
+    transition: transform 0.3s ease;
+    border-radius: 12px;
+  }
+  .work-samples-scroll img:hover {
+    transform: scale(1.15);
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .cta {
+    margin: 2rem 0;
+    text-align: center;
+  }
+  .cta button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .cta button:hover {
+    background: #333;
+  }
+</style>
 </head>
 <body>
 
@@ -97,11 +123,34 @@
 <div class="logo-container" id="animatedLogo" aria-label="Write My Socials">
   <div class="line" id="line1">
     <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span>
-    <span>&nbsp;</span>
-    <span>M</span><span>y</span>
+    <span>M</span><span>y</span><span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
   </div>
-  <div class="line" id="line2">
-    <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
+</div>
+
+<div id="main-content">
+  <header>
+    <div>
+      <img class="brand-logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials%20copy.jpg" alt="Logo">
+      <div class="tagline">Transforming your brand’s narrative into a best seller</div>
+    </div>
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn"></a>
+      <a href="https://instagram.com/writemysocials" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"></a>
+      <a href="https://tiktok.com/@writemysocials" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok"></a>
+    </div>
+  </header>
+
+  <section class="work-samples-container">
+    <div class="work-samples-scroll">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg" alt="Sample 1">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg" alt="Sample 2">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg" alt="Sample 3">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Sample 4">
+    </div>
+  </section>
+
+  <div class="cta">
+    <button onclick="window.location='mailto:siyana.deveaux@writemysocials.com'">Work With Us</button>
   </div>
 </div>
 
@@ -109,62 +158,46 @@
   const blackOverlay = document.getElementById('blackOverlay');
   const whiteOverlay = document.getElementById('whiteOverlay');
   const animatedLogo = document.getElementById('animatedLogo');
-  const line1Letters = document.querySelectorAll('#line1 span');
-  const line2Letters = document.querySelectorAll('#line2 span');
+  const letters = document.querySelectorAll('.line span');
+  const mainContent = document.getElementById('main-content');
 
-  function randomChaosTransform() {
-    const x = (Math.random() - 0.5) * window.innerWidth * 0.7;
-    const y = (Math.random() - 0.5) * window.innerHeight * 0.7;
+  function randomTransform() {
+    const x = (Math.random() - 0.5) * 800;
+    const y = (Math.random() - 0.5) * 800;
     const r = (Math.random() - 0.5) * 1440;
     return `translate(${x}px, ${y}px) rotate(${r}deg)`;
   }
 
-  function chaosAnimate(letters) {
+  function animateScatter() {
     letters.forEach(letter => {
-      if (letter.textContent.trim() === '') return;
+      letter.style.transition = 'transform 1.5s ease-in-out';
+      letter.style.transform = randomTransform();
+    });
+  }
+
+  function settleLetters() {
+    letters.forEach(letter => {
       letter.style.transition = 'transform 1s ease-in-out';
-      letter.style.transform = randomChaosTransform();
+      letter.style.transform = 'translate(0,0) rotate(0)';
     });
   }
 
-  function settleAnimate(letters) {
-    letters.forEach(letter => {
-      letter.style.transition = 'transform 0.5s ease-in-out';
-      letter.style.transform = 'none';
-    });
-  }
-
-  function clearAnimations(letters) {
-    letters.forEach(letter => {
-      letter.style.transition = '';
-      letter.style.animation = '';
-      letter.style.transform = 'none';
-    });
-  }
-
-  // Run animation sequence
   setTimeout(() => {
     blackOverlay.classList.add('hidden');
     animatedLogo.style.opacity = '1';
-
-    const allLetters = [...line1Letters, ...line2Letters];
-
-    // Chaos Animation for 1s
-    chaosAnimate(allLetters);
+    animateScatter();
 
     setTimeout(() => {
-      // Settle into place over 0.5s
-      settleAnimate(allLetters);
-
-      // Hold for 0.5s, then fade to white
+      settleLetters();
       setTimeout(() => {
         whiteOverlay.classList.add('visible');
         animatedLogo.style.opacity = '0';
-      }, 500);
-
-    }, 1000);
-
-  }, 200);
+        setTimeout(() => {
+          mainContent.style.opacity = '1';
+        }, 500);
+      }, 1000);
+    }, 1500);
+  }, 400);
 </script>
 
 </body>
