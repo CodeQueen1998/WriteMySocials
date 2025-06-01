@@ -52,15 +52,14 @@
     transition: opacity 0.5s ease;
     user-select: none;
     z-index: 99;
-    white-space: nowrap;
     text-align: center;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 0.5vw; /* space between lines */
-    height: 12vw; /* fixed height to prevent collapse */
+    gap: 0.5vw;
+    height: 12vw;
     line-height: 1;
+    white-space: nowrap;
   }
 
   .line {
@@ -77,10 +76,6 @@
     transform-origin: center;
     cursor: default;
     user-select: none;
-  }
-
-  .visible {
-    opacity: 1;
   }
 
   /* Gentle floating */
@@ -127,15 +122,14 @@
 
   // Generate random float/bounce/rotation values for chaotic animation
   function randomChaosTransform() {
-    // Random x and y translation within viewport bounds but smaller range to keep visible
-    const x = (Math.random() - 0.5) * window.innerWidth * 0.8;
-    const y = (Math.random() - 0.5) * window.innerHeight * 0.8;
-    // Random rotation between -720 and 720 degrees for spins and twirls
+    // Smaller ranges to keep letters visible and prevent overlap
+    const x = (Math.random() - 0.5) * window.innerWidth * 0.7;
+    const y = (Math.random() - 0.5) * window.innerHeight * 0.7;
     const r = (Math.random() - 0.5) * 1440; 
     return `translate(${x}px, ${y}px) rotate(${r}deg)`;
   }
 
-  // Animate letters with chaotic spinning, bouncing, twirling, floating
+  // Animate letters with chaotic bouncing/twirling/spinning/floating
   function chaosAnimate(letters) {
     letters.forEach(letter => {
       if (letter.textContent.trim() === '') return;
@@ -144,7 +138,7 @@
     });
   }
 
-  // Return letters back to natural aligned position
+  // Return letters back to natural aligned position with proper spacing
   function settleAnimate(letters) {
     letters.forEach(letter => {
       letter.style.transition = 'transform 1.5s ease-in-out';
@@ -152,15 +146,7 @@
     });
   }
 
-  // After settled, apply gentle floating animation indefinitely
-  function applyGentleFloat(letters) {
-    letters.forEach(letter => {
-      letter.style.transition = '';
-      letter.style.animation = 'gentleFloat 3s ease-in-out infinite';
-    });
-  }
-
-  // Clear animations (if needed)
+  // Clear animations to hold steady
   function clearAnimations(letters) {
     letters.forEach(letter => {
       letter.style.transition = '';
@@ -169,27 +155,22 @@
     });
   }
 
-  // Main timeline
+  // Main animation timeline
   setTimeout(() => {
-    // Hide black screen, show logo container
     blackOverlay.classList.add('hidden');
     animatedLogo.style.opacity = '1';
 
     const allLetters = [...line1Letters, ...line2Letters];
 
-    // 2 seconds of chaotic bouncing/spinning/twirling/floating
     chaosAnimate(allLetters);
 
     setTimeout(() => {
-      // 1.5 seconds to settle and align naturally
       settleAnimate(allLetters);
 
       setTimeout(() => {
-        // 1 second holding aligned with no animation
         clearAnimations(allLetters);
 
         setTimeout(() => {
-          // Fade to white background and fade out text
           whiteOverlay.classList.add('visible');
           animatedLogo.style.opacity = '0';
         }, 1000);
@@ -198,8 +179,9 @@
 
     }, 2000);
 
-  }, 1500);
+  }, 500);
 </script>
 
 </body>
 </html>
+
