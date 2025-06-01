@@ -3,24 +3,23 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>WriteMySocials</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<title>WriteMySocials Animation</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
+
 <style>
   html, body {
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
     height: 100%;
+    background: #000;
     overflow: hidden;
     font-family: 'Playfair Display', serif;
-    background: #000;
   }
 
   #blackOverlay, #whiteOverlay {
     position: fixed;
-    inset: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     z-index: 9999;
-    transition: opacity 0.7s ease;
+    transition: opacity 0.5s ease;
   }
 
   #blackOverlay {
@@ -37,6 +36,7 @@
     background: #fff;
     opacity: 0;
     pointer-events: none;
+    transition: opacity 1s ease;
   }
 
   #whiteOverlay.visible {
@@ -44,104 +44,51 @@
   }
 
   .logo-container {
-    position: fixed;
+    position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    font-size: 8vw;
+    font-size: 9vw;
     opacity: 0;
+    transition: opacity 0.4s ease;
     user-select: none;
-    z-index: 10000;
+    z-index: 99;
     text-align: center;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 0.5vw;
+    line-height: 1;
+  }
+
+  .line {
+    display: flex;
+    justify-content: center;
   }
 
   .line span {
     display: inline-block;
     margin: 0 0.3vw;
     transform-origin: center;
+    animation: settleChaos 2s ease forwards;
   }
 
-  .main-content {
-    position: relative;
-    background: #fff;
-    color: #000;
-    height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
-    display: none;
+  @keyframes settleChaos {
+    0% {
+      transform: translate(
+        calc((50vw - 50%) * (random() - 0.5)),
+        calc((50vh - 50%) * (random() - 0.5))
+      ) rotate(720deg);
+    }
+    100% {
+      transform: none;
+    }
   }
 
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 20px;
-  }
-
-  .logo {
-    width: 160px;
-  }
-
-  .tagline {
-    font-size: 1.2rem;
-    margin-top: 10px;
-    font-family: 'Playfair Display', serif;
-    color: #333;
-  }
-
-  .social-icons {
-    display: flex;
-    gap: 20px;
-    font-size: 1.5rem;
-    margin-top: 10px;
-  }
-
-  .social-icons a {
-    color: #333;
-    text-decoration: none;
-  }
-
-  .work-samples {
-    margin: 60px 0;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .samples-track {
-    display: flex;
-    gap: 40px;
-    animation: marquee 15s linear infinite alternate;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .samples-track img {
-    height: 300px;
-    transition: transform 0.4s ease;
-  }
-
-  .samples-track img:hover {
-    transform: scale(1.15);
-  }
-
-  @keyframes marquee {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  .cta-button {
-    display: block;
-    margin: 50px auto;
-    padding: 14px 28px;
-    font-size: 1.2rem;
-    background: #000;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 30px;
-    width: fit-content;
+  @media (max-width: 600px) {
+    .logo-container {
+      font-size: 14vw;
+    }
   }
 </style>
 </head>
@@ -153,6 +100,7 @@
 <div class="logo-container" id="animatedLogo">
   <div class="line" id="line1">
     <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span>
+    <span>&nbsp;</span>
     <span>M</span><span>y</span>
   </div>
   <div class="line" id="line2">
@@ -160,83 +108,27 @@
   </div>
 </div>
 
-<div class="main-content" id="mainContent">
-  <div class="header">
-    <div>
-      <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials%20copy.jpg" alt="Logo">
-      <div class="tagline">Transforming your brand’s narrative into a best seller</div>
-    </div>
-    <div class="social-icons">
-      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://www.instagram.com/writemysocials" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.tiktok.com/@writemysocials" target="_blank"><i class="fab fa-tiktok"></i></a>
-    </div>
-  </div>
-
-  <div class="work-samples">
-    <div class="samples-track">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample1.jpg">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample2.jpg">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample3.jpg">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg">
-    </div>
-  </div>
-
-  <a href="mailto:siyana.deveaux@writemysocials.com" class="cta-button">Work With Us</a>
-</div>
-
 <script>
   const blackOverlay = document.getElementById('blackOverlay');
   const whiteOverlay = document.getElementById('whiteOverlay');
   const animatedLogo = document.getElementById('animatedLogo');
-  const line1Letters = document.querySelectorAll('#line1 span');
-  const line2Letters = document.querySelectorAll('#line2 span');
-  const mainContent = document.getElementById('mainContent');
-
-  function randomChaosTransform() {
-    const x = (Math.random() - 0.5) * window.innerWidth * 0.9;
-    const y = (Math.random() - 0.5) * window.innerHeight * 0.9;
-    const r = (Math.random() - 0.5) * 1440;
-    return `translate(${x}px, ${y}px) rotate(${r}deg)`;
-  }
-
-  function chaosAnimate(letters) {
-    letters.forEach(letter => {
-      letter.style.transition = 'transform 1s ease-in-out';
-      letter.style.transform = randomChaosTransform();
-    });
-  }
-
-  function settleAnimate(letters) {
-    letters.forEach(letter => {
-      letter.style.transition = 'transform 0.7s ease-in-out';
-      letter.style.transform = 'none';
-    });
-  }
 
   setTimeout(() => {
     blackOverlay.classList.add('hidden');
     animatedLogo.style.opacity = '1';
-    const allLetters = [...line1Letters, ...line2Letters];
-    chaosAnimate(allLetters);
 
     setTimeout(() => {
-      settleAnimate(allLetters);
-
+      // Hold final aligned state for 0.5s
       setTimeout(() => {
         whiteOverlay.classList.add('visible');
         animatedLogo.style.opacity = '0';
-
-        setTimeout(() => {
-          whiteOverlay.style.display = 'none';
-          mainContent.style.display = 'block';
-        }, 700);
-
-      }, 700);
+      }, 500);
 
     }, 2000);
 
   }, 400);
 </script>
+
 </body>
 </html>
+
