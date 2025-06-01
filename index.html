@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>WriteMySocials Animation</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
 
 <style>
   html, body {
@@ -53,6 +53,7 @@
     user-select: none;
     z-index: 99;
     white-space: nowrap;
+    text-align: center;
   }
 
   .line {
@@ -60,28 +61,25 @@
     justify-content: center;
     flex-wrap: nowrap;
     margin: 0.5vw 0;
+    position: relative;
   }
 
   .line span {
     display: inline-block;
     margin: 0 0.5vw;
     transform-origin: center;
-    position: absolute;
-    top: 50%; left: 50%;
   }
 
   .visible {
     opacity: 1;
   }
 
-  /* Gentle floating in place */
   @keyframes gentleFloat {
     0%   { transform: translateY(0); }
     50%  { transform: translateY(-8px); }
     100% { transform: translateY(0); }
   }
 
-  /* Responsive font size */
   @media (max-width: 600px) {
     .logo-container {
       font-size: 14vw;
@@ -110,52 +108,40 @@
   const blackOverlay = document.getElementById('blackOverlay');
   const whiteOverlay = document.getElementById('whiteOverlay');
   const animatedLogo = document.getElementById('animatedLogo');
-  const lines = animatedLogo.querySelectorAll('.line span');
+  const line1Letters = document.querySelectorAll('#line1 span');
+  const line2Letters = document.querySelectorAll('#line2 span');
 
-  // 1.5s black screen
+  function randomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
   setTimeout(() => {
     blackOverlay.classList.add('hidden');
     animatedLogo.classList.add('visible');
 
-    // Wild chaos for 2s
-    lines.forEach(letter => {
+    [...line1Letters, ...line2Letters].forEach(letter => {
       if (letter.textContent.trim() === '') return;
 
-      const x = Math.floor(Math.random() * window.innerWidth) - (window.innerWidth / 2);
-      const y = Math.floor(Math.random() * window.innerHeight) - (window.innerHeight / 2);
-      const r = Math.floor(Math.random() * 720);
+      const x = randomInt(-window.innerWidth / 2, window.innerWidth / 2);
+      const y = randomInt(-window.innerHeight / 2, window.innerHeight / 2);
+      const r = randomInt(0, 720);
 
       letter.style.transition = 'transform 2s ease';
       letter.style.transform = `translate(${x}px, ${y}px) rotate(${r}deg)`;
     });
 
-    // After 2s chaos, move to position but keep animating gently
     setTimeout(() => {
-      const line1 = document.querySelectorAll('#line1 span');
-      const line2 = document.querySelectorAll('#line2 span');
-
-      // Position line 1
-      line1.forEach((letter, i) => {
-        const spacing = (i - (line1.length-1)/2) * 9; // 9vw per letter
+      [...line1Letters, ...line2Letters].forEach(letter => {
         letter.style.transition = 'transform 1.5s ease';
-        letter.style.transform = `translate(${spacing}vw, -6vh)`;
+        letter.style.transform = 'none';
       });
 
-      // Position line 2
-      line2.forEach((letter, i) => {
-        const spacing = (i - (line2.length-1)/2) * 9;
-        letter.style.transition = 'transform 1.5s ease';
-        letter.style.transform = `translate(${spacing}vw, 6vh)`;
-      });
-
-      // After 1.5s alignment, hold aligned float for 3s
       setTimeout(() => {
-        lines.forEach(letter => {
+        [...line1Letters, ...line2Letters].forEach(letter => {
           letter.style.transition = '';
-          letter.style.animation = `gentleFloat 3s ease-in-out infinite`;
+          letter.style.animation = 'gentleFloat 3s ease-in-out infinite';
         });
 
-        // After 3s, fade in white overlay
         setTimeout(() => {
           whiteOverlay.classList.add('visible');
           animatedLogo.style.opacity = '0';
