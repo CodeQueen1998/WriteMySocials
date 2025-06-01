@@ -3,162 +3,225 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>WriteMySocials Intro</title>
+<title>WriteMySocials Animation</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
 <style>
-  /* Fullscreen black intro */
-  #intro {
-    position: fixed;
-    inset: 0;
+  /* Reset & basics */
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%;
     background: #000;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    font-family: 'Vogue', Arial, sans-serif;
-    z-index: 10000;
-    opacity: 1;
-    transition: background 0.5s ease, opacity 0.5s ease;
+    overflow: hidden;
+    font-family: 'Playfair Display', serif;
   }
 
-  /* Dancing animation */
-  @keyframes bounceTwirl {
-    0%   { transform: scale(1) rotate(0deg) translateX(0); }
-    25%  { transform: scale(1.2) rotate(20deg) translateX(10px); }
-    50%  { transform: scale(0.9) rotate(-20deg) translateX(-10px); }
-    75%  { transform: scale(1.1) rotate(10deg) translateX(5px); }
-    100% { transform: scale(1) rotate(0deg) translateX(0); }
-  }
-
-  #intro h1 {
-    opacity: 0;
-    transition: all 0.5s ease;
-  }
-
-  .show-text {
-    opacity: 1;
-    animation: bounceTwirl 0.5s ease-in-out;
-  }
-
-  .align-center {
-    animation: none;
-    transform: scale(1) rotate(0deg) translateX(0);
-  }
-
-  /* Page content */
-  #main-content {
-    opacity: 0;
+  /* Black & White overlays */
+  #blackOverlay, #whiteOverlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 9999;
     transition: opacity 1s ease;
   }
 
-  body {
-    margin: 0;
-    font-family: 'Vogue', Arial, sans-serif;
-    background: #fff;
+  #blackOverlay {
+    background: #000;
+    opacity: 1;
+  }
+  #blackOverlay.hidden {
+    opacity: 0;
+    pointer-events: none;
   }
 
-  /* Logo and tagline */
-  #header {
+  #whiteOverlay {
+    background: #fff;
+    opacity: 0;
+    pointer-events: none;
+  }
+  #whiteOverlay.visible {
+    opacity: 1;
+  }
+
+  /* Animated Logo container */
+  .logo-container {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 9vw;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    user-select: none;
+    z-index: 10000;
+    text-align: center;
     display: flex;
-    align-items: center;
-    padding: 20px;
-    background: white;
-  }
-
-  #header img {
-    width: 200px; /* 2x original size */
-    height: auto;
-  }
-
-  #tagline {
-    margin-left: 15px;
-    font-family: 'Vogue', serif;
-    font-size: 1.5rem;
-    color: #000;
-  }
-
-  /* Marquee container */
-  .work-samples-container {
-    margin: 20px;
-    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5vw;
+    height: 12vw;
+    line-height: 1;
     white-space: nowrap;
+  }
+
+  .line {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin: 0;
+    position: relative;
+  }
+
+  .line span {
+    display: inline-block;
+    margin: 0 0.5vw;
+    transform-origin: center;
+    cursor: default;
+    user-select: none;
+  }
+
+  /* After intro: main content container */
+  #main-content {
+    display: none; /* hidden initially */
     background: #fff;
+    min-height: 100vh;
+    padding: 1.5rem 3rem;
+    box-sizing: border-box;
+    font-family: 'Playfair Display', serif;
+    color: #222;
+  }
+
+  /* Logo top-left after intro */
+  #main-logo {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    width: 240px; /* 2x approx of original */
+    height: auto;
+    z-index: 1000;
+  }
+
+  /* Tagline below logo */
+  #tagline {
+    position: fixed;
+    top: calc(1rem + 240px + 0.5rem); /* below logo */
+    left: 1rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #111;
+    max-width: 240px;
+    z-index: 1000;
+  }
+
+  /* Work samples marquee container */
+  .work-samples-container {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    overflow: hidden;
+    height: 140px;
+    z-index: 900;
   }
 
   .work-samples-scroll {
-    display: inline-flex;
-    animation: scroll-left-right 8s linear infinite alternate;
+    display: flex;
+    gap: 1.2rem;
+    animation: scrollBackForth 15s linear infinite alternate;
+    padding: 0 1rem;
   }
 
   .work-samples-scroll img {
-    width: 150px;
-    margin-right: 10px;
-    transition: transform 0.3s ease;
+    height: 130px;
+    width: auto;
+    border-radius: 10px;
     cursor: pointer;
+    transition: transform 0.3s ease;
   }
 
   .work-samples-scroll img:hover {
-    transform: scale(1.3);
+    transform: scale(1.15);
     z-index: 10;
   }
 
-  @keyframes scroll-left-right {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
+  @keyframes scrollBackForth {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-100% + 100vw)); }
   }
 
-  /* Social icons top right */
+  /* Social icons top-right */
   #social-icons {
     position: fixed;
-    top: 15px;
-    right: 15px;
+    top: 1rem;
+    right: 1rem;
     display: flex;
-    gap: 15px;
-    z-index: 11000;
+    gap: 1rem;
+    z-index: 1000;
   }
 
-  #social-icons a img {
-    width: 24px;
-    height: 24px;
-    filter: grayscale(100%);
-    transition: filter 0.3s ease;
+  #social-icons a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s ease;
   }
 
-  #social-icons a:hover img {
-    filter: none;
+  #social-icons a:hover {
+    transform: scale(1.3);
+  }
+
+  #social-icons img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    #main-logo {
+      width: 140px;
+    }
+    #tagline {
+      max-width: 140px;
+      font-size: 1rem;
+      top: calc(1rem + 140px + 0.5rem);
+    }
+    .work-samples-container {
+      height: 90px;
+    }
+    .work-samples-scroll img {
+      height: 80px;
+    }
+    #social-icons a {
+      width: 24px;
+      height: 24px;
+    }
   }
 </style>
 </head>
 <body>
 
-<!-- Intro screen -->
-<div id="intro">
-  <h1>WriteMySocials</h1>
+<!-- Black and white overlays for intro fade -->
+<div id="blackOverlay"></div>
+<div id="whiteOverlay"></div>
+
+<!-- Animated Logo intro -->
+<div class="logo-container" id="animatedLogo" aria-label="Write My Socials">
+  <div class="line" id="line1">
+    <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span>
+    <span>&nbsp;</span>
+    <span>M</span><span>y</span>
+  </div>
+  <div class="line" id="line2">
+    <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
+  </div>
 </div>
 
-<!-- Social icons -->
-<div id="social-icons">
-  <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" aria-label="LinkedIn">
-    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Icon" />
-  </a>
-  <a href="https://instagram.com/writemysocials" target="_blank" aria-label="Instagram">
-    <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram Icon" />
-  </a>
-  <a href="https://tiktok.com/@writemysocials" target="_blank" aria-label="TikTok">
-    <img src="https://cdn-icons-png.flaticon.com/512/3046/3046120.png" alt="TikTok Icon" />
-  </a>
-</div>
-
-<!-- Main content -->
-<div id="main-content" style="display:none;">
-  <header id="header">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials%20copy.jpg" alt="WriteMySocials Logo" />
-    <div id="tagline">“Transforming your brand’s narrative into a best seller”</div>
-  </header>
+<!-- Main content after intro -->
+<div id="main-content" role="main" aria-label="Main Content">
+  <img id="main-logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials%20copy.jpg" alt="WriteMySocials Logo" />
+  <div id="tagline">“Transforming your brand’s narrative into a best seller”</div>
 
   <!-- Work samples marquee -->
   <section class="work-samples-container" aria-label="Work samples gallery">
@@ -169,42 +232,105 @@
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Work Sample 4" role="listitem" />
     </div>
   </section>
+
+  <!-- Social media icons top-right -->
+  <div id="social-icons" aria-label="Social Media Links">
+    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Icon" />
+    </a>
+    <a href="https://www.instagram.com/writemysocials" target="_blank" rel="noopener" aria-label="Instagram">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram Icon" />
+    </a>
+    <a href="https://www.tiktok.com/@writemysocials" target="_blank" rel="noopener" aria-label="TikTok">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046123.png" alt="TikTok Icon" />
+    </a>
+  </div>
 </div>
 
 <script>
-  const intro = document.getElementById('intro');
-  const title = intro.querySelector('h1');
-  const content = document.getElementById('main-content');
+  const blackOverlay = document.getElementById('blackOverlay');
+  const whiteOverlay = document.getElementById('whiteOverlay');
+  const animatedLogo = document.getElementById('animatedLogo');
+  const mainContent = document.getElementById('main-content');
+  const line1Letters = document.querySelectorAll('#line1 span');
+  const line2Letters = document.querySelectorAll('#line2 span');
 
-  // Step 1: Black screen 0.5s
+  // Generate a random chaotic transform for each letter
+  function randomChaosTransform() {
+    const x = (Math.random() - 0.5) * window.innerWidth * 0.7;
+    const y = (Math.random() - 0.5) * window.innerHeight * 0.7;
+    const r = (Math.random() - 0.5) * 1440; // degrees rotation
+    return `translate(${x}px, ${y}px) rotate(${r}deg)`;
+  }
+
+  // Apply chaos animation to letters
+  function chaosAnimate(letters) {
+    letters.forEach(letter => {
+      if (letter.textContent.trim() === '') return;
+      letter.style.transition = 'transform 2s ease-in-out';
+      letter.style.transform = randomChaosTransform();
+    });
+  }
+
+  // Settle letters back to normal position
+  function settleAnimate(letters) {
+    letters.forEach(letter => {
+      letter.style.transition = 'transform 1.5s ease-in-out';
+      letter.style.transform = 'none';
+    });
+  }
+
+  // Clear animation styles
+  function clearAnimations(letters) {
+    letters.forEach(letter => {
+      letter.style.transition = '';
+      letter.style.animation = '';
+      letter.style.transform = 'none';
+    });
+  }
+
+  // Run intro animation timeline
   setTimeout(() => {
-    // Step 2: Show dancing text 0.5s
-    title.classList.add('show-text');
+    blackOverlay.classList.add('hidden');    // Hide black screen after 0.5s
+    animatedLogo.style.opacity = '1';
+
+    const allLetters = [...line1Letters, ...line2Letters];
+
+    chaosAnimate(allLetters);                 // Letters scatter (2s)
 
     setTimeout(() => {
-      // Step 3: Center text 0.5s
-      title.classList.add('align-center');
+      settleAnimate(allLetters);              // Letters settle (1.5s)
 
       setTimeout(() => {
-        // Step 4: Fade intro out (to white background) 0.5s
-        intro.style.background = '#fff';
-        intro.style.color = '#000';
-        intro.style.opacity = '0';
+        clearAnimations(allLetters);
 
+        // Hold settled state 1s then fade to white and show main content
         setTimeout(() => {
-          intro.style.display = 'none';
-          content.style.display = 'block';
+          whiteOverlay.classList.add('visible');
+          animatedLogo.style.opacity = '0';
+
           setTimeout(() => {
-            content.style.opacity = '1';
-          }, 50);
-        }, 500);
-      }, 500);
-    }, 500);
-  }, 500);
+            // Hide intro elements, show main content
+            blackOverlay.style.display = 'none';
+            whiteOverlay.style.display = 'none';
+            animatedLogo.style.display = 'none';
+            mainContent.style.display = 'block';
+            document.body.style.background = '#fff';
+            document.body.style.overflow = 'auto'; // allow scrolling after intro
+          }, 1000); // fade duration
+
+        }, 1000); // hold duration
+
+      }, 1500); // settle duration
+
+    }, 2000); // chaos duration
+
+  }, 500); // black screen duration
 </script>
 
 </body>
 </html>
+
 
 
 
