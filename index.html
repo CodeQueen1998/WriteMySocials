@@ -18,7 +18,7 @@
     font-family: Arial, sans-serif;
     z-index: 10000;
     opacity: 1;
-    transition: opacity 1s ease;
+    transition: background 0.7s ease, opacity 0.7s ease;
   }
 
   /* Bounce + twirl animation */
@@ -32,10 +32,21 @@
   }
 
   #intro h1 {
-    animation: bounceTwirl 1.5s ease-in-out infinite;
+    opacity: 0;
+    transition: all 0.7s ease;
   }
 
-  /* Main page content hidden at first */
+  .show-text {
+    opacity: 1;
+    animation: bounceTwirl 1.5s ease-in-out;
+  }
+
+  .align-center {
+    animation: none;
+    transform: scale(1) rotate(0deg);
+  }
+
+  /* Page content */
   #main-content {
     opacity: 0;
     transition: opacity 1s ease;
@@ -44,6 +55,7 @@
   body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background: #fff;
   }
 </style>
 </head>
@@ -54,28 +66,39 @@
   <h1>WriteMySocials</h1>
 </div>
 
-<!-- Main page content -->
+<!-- Main content -->
 <div id="main-content">
   <h2>Welcome to the site!</h2>
   <p>Your content goes here.</p>
 </div>
 
 <script>
-  // Remove intro after 1 second
-  window.addEventListener('load', () => {
-    const intro = document.getElementById('intro');
-    const content = document.getElementById('main-content');
+  const intro = document.getElementById('intro');
+  const title = intro.querySelector('h1');
+  const content = document.getElementById('main-content');
 
+  // 0.7s Black Screen
+  setTimeout(() => {
+    title.classList.add('show-text');
+
+    // 1.5s Dancing Text
     setTimeout(() => {
-      intro.style.opacity = '0';
+      title.classList.add('align-center');
 
-      // After fade out, remove from DOM and show content
+      // 0.7s Smooth alignment
       setTimeout(() => {
-        intro.style.display = 'none';
-        content.style.opacity = '1';
-      }, 1000);
-    }, 1000); // <-- 1 second before fade starts
-  });
+        intro.style.opacity = '0';
+
+        // After fade, remove intro & show main
+        setTimeout(() => {
+          intro.style.display = 'none';
+          content.style.opacity = '1';
+        }, 700); // fade duration
+      }, 700); // alignment duration
+
+    }, 1500); // dancing duration
+
+  }, 700); // initial black screen duration
 </script>
 
 </body>
