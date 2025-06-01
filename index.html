@@ -1,127 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WriteMySocials</title>
-  <link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
-  <style>
-    /* Intro Screen */
-    #intro {
-      position: fixed;
-      inset: 0;
-      background: #000;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      font-family: Arial, sans-serif;
-      z-index: 10000;
-      opacity: 1;
-      transition: background 0.7s ease, opacity 0.7s ease;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WriteMySocials Intro</title>
+<style>
+  /* Fullscreen black intro */
+  #intro {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-family: 'Vogue', Arial, sans-serif;
+    z-index: 10000;
+    opacity: 1;
+    transition: background 0.5s ease, opacity 0.5s ease;
+  }
 
-    @keyframes crazyLetters {
-      0%   { transform: translateY(0) scale(1) rotate(0deg); }
-      20%  { transform: translateY(-20px) scale(1.2) rotate(20deg); }
-      40%  { transform: translateX(20px) scale(0.9) rotate(-20deg); }
-      60%  { transform: translateY(15px) scale(1.1) rotate(10deg); }
-      80%  { transform: translateX(-15px) scale(0.95) rotate(-10deg); }
-      100% { transform: translateY(0) scale(1) rotate(0deg); }
-    }
+  /* Dancing animation */
+  @keyframes bounceTwirl {
+    0%   { transform: scale(1) rotate(0deg) translateX(0); }
+    25%  { transform: scale(1.2) rotate(20deg) translateX(10px); }
+    50%  { transform: scale(0.9) rotate(-20deg) translateX(-10px); }
+    75%  { transform: scale(1.1) rotate(10deg) translateX(5px); }
+    100% { transform: scale(1) rotate(0deg) translateX(0); }
+  }
 
-    #intro h1 {
-      opacity: 0;
-      transition: all 0.7s ease;
-    }
+  #intro h1 {
+    opacity: 0;
+    transition: all 0.5s ease;
+  }
 
-    .show-crazy {
-      opacity: 1;
-      animation: crazyLetters 0.7s ease-in-out;
-    }
+  .show-text {
+    opacity: 1;
+    animation: bounceTwirl 0.5s ease-in-out;
+  }
 
-    .align-center {
-      animation: none;
-      transform: scale(1) rotate(0deg) translate(0, 0);
-    }
+  .align-center {
+    animation: none;
+    transform: scale(1) rotate(0deg) translateX(0);
+  }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff;
-    }
+  /* Page content */
+  #main-content {
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
 
-    #main-content {
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
+  body {
+    margin: 0;
+    font-family: 'Vogue', Arial, sans-serif;
+    background: #fff;
+  }
 
-    /* Logo & Tagline */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 20px;
-    }
+  /* Logo and tagline */
+  #header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: white;
+  }
 
-    .logo-container img {
-      height: 160px;
-    }
+  #header img {
+    width: 200px; /* 2x original size */
+    height: auto;
+  }
 
-    .tagline {
-      font-family: 'Vollkorn', serif;
-      font-size: 1.5rem;
-      margin-top: 10px;
-      color: #333;
-    }
+  #tagline {
+    margin-left: 15px;
+    font-family: 'Vogue', serif;
+    font-size: 1.5rem;
+    color: #000;
+  }
 
-    /* Social Icons */
-    .social-icons {
-      display: flex;
-      gap: 15px;
-      margin-top: 20px;
-    }
+  /* Marquee container */
+  .work-samples-container {
+    margin: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    background: #fff;
+  }
 
-    .social-icons a img {
-      height: 28px;
-      width: 28px;
-      transition: transform 0.3s ease;
-    }
+  .work-samples-scroll {
+    display: inline-flex;
+    animation: scroll-left-right 8s linear infinite alternate;
+  }
 
-    .social-icons a:hover img {
-      transform: scale(1.3);
-    }
+  .work-samples-scroll img {
+    width: 150px;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
 
-    /* Marquee */
-    .work-samples-container {
-      overflow: hidden;
-      white-space: nowrap;
-      margin-top: 30px;
-    }
+  .work-samples-scroll img:hover {
+    transform: scale(1.3);
+    z-index: 10;
+  }
 
-    .work-samples-scroll {
-      display: inline-flex;
-      gap: 20px;
-      animation: scrollLeftRight 12s ease-in-out infinite alternate;
+  @keyframes scroll-left-right {
+    0% {
+      transform: translateX(0);
     }
-
-    .work-samples-scroll img {
-      height: 180px;
-      border-radius: 10px;
-      transition: transform 0.4s ease;
+    100% {
+      transform: translateX(-50%);
     }
+  }
 
-    .work-samples-scroll img:hover {
-      transform: scale(1.2);
-    }
+  /* Social icons top right */
+  #social-icons {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 15px;
+    z-index: 11000;
+  }
 
-    @keyframes scrollLeftRight {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+  #social-icons a img {
+    width: 24px;
+    height: 24px;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+  }
 
-  </style>
+  #social-icons a:hover img {
+    filter: none;
+  }
+</style>
 </head>
 <body>
 
@@ -130,25 +140,25 @@
   <h1>WriteMySocials</h1>
 </div>
 
+<!-- Social icons -->
+<div id="social-icons">
+  <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" aria-label="LinkedIn">
+    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Icon" />
+  </a>
+  <a href="https://instagram.com/writemysocials" target="_blank" aria-label="Instagram">
+    <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram Icon" />
+  </a>
+  <a href="https://tiktok.com/@writemysocials" target="_blank" aria-label="TikTok">
+    <img src="https://cdn-icons-png.flaticon.com/512/3046/3046120.png" alt="TikTok Icon" />
+  </a>
+</div>
+
 <!-- Main content -->
-<div id="main-content">
-  <div class="header">
-    <div class="logo-container">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials%20copy.jpg" alt="WriteMySocials Logo">
-      <div class="tagline">“Transforming your brand’s narrative into a best seller”</div>
-    </div>
-    <div class="social-icons">
-      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" aria-label="LinkedIn">
-        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Icon">
-      </a>
-      <a href="https://instagram.com/writemysocials" target="_blank" aria-label="Instagram">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram Icon">
-      </a>
-      <a href="https://tiktok.com/writemysocials" target="_blank" aria-label="TikTok">
-        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046120.png" alt="TikTok Icon">
-      </a>
-    </div>
-  </div>
+<div id="main-content" style="display:none;">
+  <header id="header">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials%20copy.jpg" alt="WriteMySocials Logo" />
+    <div id="tagline">“Transforming your brand’s narrative into a best seller”</div>
+  </header>
 
   <!-- Work samples marquee -->
   <section class="work-samples-container" aria-label="Work samples gallery">
@@ -159,7 +169,6 @@
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/work%20sample4.jpg" alt="Work Sample 4" role="listitem" />
     </div>
   </section>
-
 </div>
 
 <script>
@@ -167,26 +176,31 @@
   const title = intro.querySelector('h1');
   const content = document.getElementById('main-content');
 
-  // 0.7s Black Screen
+  // Step 1: Black screen 0.5s
   setTimeout(() => {
-    title.classList.add('show-crazy');
+    // Step 2: Show dancing text 0.5s
+    title.classList.add('show-text');
 
-    // 0.7s Dancing Text
     setTimeout(() => {
+      // Step 3: Center text 0.5s
       title.classList.add('align-center');
 
-      // 0.3s Center alignment
       setTimeout(() => {
+        // Step 4: Fade intro out (to white background) 0.5s
+        intro.style.background = '#fff';
+        intro.style.color = '#000';
         intro.style.opacity = '0';
 
-        // After fade, remove intro & show main
         setTimeout(() => {
           intro.style.display = 'none';
-          content.style.opacity = '1';
-        }, 700);
-      }, 300);
-    }, 700);
-  }, 700);
+          content.style.display = 'block';
+          setTimeout(() => {
+            content.style.opacity = '1';
+          }, 50);
+        }, 500);
+      }, 500);
+    }, 500);
+  }, 500);
 </script>
 
 </body>
