@@ -6,7 +6,6 @@
 <title>WriteMySocials</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Poppins:wght@400&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
 <style>
   html, body {
     margin: 0;
@@ -74,38 +73,12 @@
     transform-origin: center;
   }
 
-  /* Marquee tagline under logo */
-  .tagline-marquee {
-    position: absolute;
-    bottom: 5%;
-    width: 100%;
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.5vw;
-    white-space: nowrap;
-    overflow: hidden;
-    z-index: 99;
-  }
-
-  .tagline-marquee span {
-    display: inline-block;
-    padding-left: 100%;
-    animation: tagline-marquee 15s linear infinite;
-  }
-
-  @keyframes tagline-marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-  }
-
-  /* Logo on white overlay */
   .logo-on-white {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 300px;
-    width: 50vw;
+    top: 20px;
+    left: 20px;
+    max-width: 180px;
+    width: auto;
     opacity: 0;
     transition: opacity 0.5s ease;
     z-index: 10000;
@@ -119,24 +92,12 @@
     background: #fff;
   }
 
-  .social-icons {
-    margin: 20px 0;
-    font-size: 2.5rem;
-  }
-
-  .social-icons a {
-    margin: 0 12px;
-    color: #000;
-    text-decoration: none;
-  }
-
-  .under-construction {
-    font-size: 8vw;
+  .intro-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 150px auto 60px;
     color: black;
-    text-align: center;
-    font-weight: 900;
-    margin: 30px 0;
-    letter-spacing: 2px;
   }
 
   .marquee-container {
@@ -165,11 +126,40 @@
     0% { transform: translateX(0); }
     100% { transform: translateX(-100%); }
   }
+
+  .social-icons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    z-index: 10001;
+  }
+
+  .social-icons a {
+    margin: 0 8px;
+    color: #000;
+    text-decoration: none;
+  }
+
+  .cta-button {
+    margin-top: 40px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background-color: #333;
+  }
 </style>
 </head>
 
 <body>
-
 <div id="blackOverlay"></div>
 <div id="whiteOverlay"></div>
 
@@ -182,26 +172,18 @@
   </div>
 </div>
 
-<!-- Marquee tagline -->
-<div class="tagline-marquee">
-  <span>Transforming your brand’s narrative into a best seller</span>
-</div>
-
-<!-- Logo to display on white overlay -->
 <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" id="whiteLogo" class="logo-on-white">
 
+<div class="social-icons">
+  <a href="https://www.instagram.com/writemysocials" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.tiktok.com/@writemysocials" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+  <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+</div>
+
 <div id="mainContent">
-  <div class="social-icons">
-    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-  </div>
-
-  <h1 class="under-construction">Under Glamstruction</h1>
-
-  <div class="marquee-container">
-    <div class="marquee-content"></div>
-  </div>
+  <p class="intro-text">
+    Write My Socials helps modern brands — from startups to established names — craft strategic, personality-driven copy that connects, converts, and stays true to their voice. From brand messaging to packaging and digital campaigns, every word works harder.
+  </p>
 
   <div class="marquee-container" aria-label="Work Samples">
     <div class="marquee-content">
@@ -211,6 +193,8 @@
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4" />
     </div>
   </div>
+
+  <button class="cta-button" onclick="window.location.href='mailto:siyana.deveaux@writemysocials.com'">Enquiry Now</button>
 </div>
 
 <script>
@@ -258,7 +242,6 @@
           whiteOverlay.classList.add('visible');
           animatedLogo.style.opacity = '0';
 
-          // Show logo when white screen fades in
           whiteLogo.style.opacity = '1';
 
           setTimeout(() => {
