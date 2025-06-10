@@ -32,7 +32,7 @@
   .positioning-text {
     font-size: 2vw;
     max-width: 800px;
-    margin: 120px auto 20px;
+    margin: 140px auto 20px;
     color: #000;
   }
   .marquee-container {
@@ -42,6 +42,7 @@
   }
   .marquee-content {
     display: flex;
+    width: max-content;
     animation: marquee 30s linear infinite;
   }
   .marquee-content img {
@@ -53,8 +54,8 @@
     transform: scale(1.2);
   }
   @keyframes marquee {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
   .tagline-marquee {
     position: fixed;
@@ -94,9 +95,10 @@
   .services-section p {
     margin-bottom: 20px;
   }
-  .services-section strong {
-    display: block;
+  .services-section p strong {
     font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
   }
   .social-icons {
     position: fixed;
@@ -127,7 +129,8 @@
   @media (max-width: 768px) {
     .positioning-text {
       font-size: 1rem;
-      padding-top: 120px;
+      margin-top: 180px;
+      padding: 0 10px;
     }
     .tagline-marquee {
       font-size: 3.5vw;
@@ -153,7 +156,7 @@
 <img src="logo.png" alt="Logo" class="logo-on-white">
 <div id="mainContent">
   <div class="positioning-text">
-    WriteMySocials helps modern brands and founders turn their story, strategy, and social copy into real resonance — the kind that converts.
+    Write My Socials helps modern brands — from startups to established names — craft strategic, personality-driven copy that connects, converts, and stays true to their voice. From brand messaging to packaging and digital campaigns, every word works harder.
   </div>
   <div class="marquee-container">
     <div class="marquee-content">
@@ -178,7 +181,7 @@
     <p><strong>5. Email Copywriting & Campaign Messaging</strong>
     Emails your audience actually want to open. I create brand-first welcome sequences, product launch flows, nurture campaigns, and email series that connect, convert, and sound nothing like a template.</p>
   </div>
-  <a href="mailto:inquire@writemysocials.com" class="cta-button">Enquire Now</a>
+  <a href="mailto:siyana.deveaux@writemysocials.com" class="cta-button">Enquire Now</a>
 </div>
 <div class="tagline-marquee">
   <span>Turning your brand's narrative into a bestseller — Turning your brand's narrative into a bestseller — </span>
