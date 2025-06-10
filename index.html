@@ -74,15 +74,18 @@
   }
 
   .tagline-marquee {
-    position: absolute;
-    bottom: 5%;
+    position: fixed;
+    bottom: 0;
     width: 100%;
+    background: black;
     color: white;
     font-family: 'Playfair Display', serif;
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     white-space: nowrap;
     overflow: hidden;
-    z-index: 99;
+    z-index: 10001;
+    padding: 10px 0;
+    box-sizing: border-box;
   }
 
   .tagline-marquee span {
@@ -92,7 +95,7 @@
   }
 
   @keyframes tagline-marquee {
-    0% { transform: translateX(0); }
+    0% { transform: translateX(100%); }
     100% { transform: translateX(-100%); }
   }
 
@@ -111,7 +114,7 @@
   #mainContent {
     opacity: 0;
     transition: opacity 1s ease;
-    padding: 60px 20px 20px 20px;
+    padding: 60px 20px 60px 20px;
     text-align: center;
     background: #fff;
     font-family: 'Playfair Display', serif;
@@ -182,10 +185,8 @@
 </style>
 </head>
 <body>
-
 <div id="blackOverlay"></div>
 <div id="whiteOverlay"></div>
-
 <div class="logo-container" id="animatedLogo">
   <div class="line" id="line1">
     <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span><span>&nbsp;</span><span>M</span><span>y</span>
@@ -194,24 +195,19 @@
     <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
   </div>
 </div>
-
 <div class="tagline-marquee">
   <span>Transforming your brand’s narrative into a best seller</span>
 </div>
-
 <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" id="whiteLogo" class="logo-on-white">
-
 <div class="social-icons">
   <a href="https://www.instagram.com/writemysocials" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
   <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok" target="_blank"><i class="fab fa-tiktok"></i></a>
   <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
 </div>
-
 <div id="mainContent">
   <div class="positioning-text">
     Write My Socials helps modern brands — from startups to established names — craft strategic, personality-driven copy that connects, converts, and stays true to their voice. From brand messaging to packaging and digital campaigns, every word works harder.
   </div>
-
   <div class="marquee-container">
     <div class="marquee-content">
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1" />
@@ -220,10 +216,8 @@
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4" />
     </div>
   </div>
-
   <button class="cta-button" onclick="window.location.href='mailto:siyana.deveaux@writemysocials.com'">Enquiry Now</button>
 </div>
-
 <script>
   const blackOverlay = document.getElementById('blackOverlay');
   const whiteOverlay = document.getElementById('whiteOverlay');
@@ -278,6 +272,5 @@
     }, 1200);
   }, 800);
 </script>
-
 </body>
 </html>
