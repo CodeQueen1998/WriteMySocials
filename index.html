@@ -31,36 +31,6 @@
     #mainContent > *:nth-child(3) { transition-delay: 0.6s; }
     #mainContent > *:nth-child(4) { transition-delay: 0.8s; }
 
-    .intro-screen {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: #fff;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      animation: fadeOut 2.5s ease forwards;
-    }
-
-    .intro-screen span {
-      animation: introMarquee 2s linear forwards;
-      white-space: nowrap;
-    }
-
-    @keyframes fadeOut {
-      0% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { opacity: 0; visibility: hidden; }
-    }
-
-    @keyframes introMarquee {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-
     .social-icons {
       position: absolute;
       top: 20px;
@@ -202,10 +172,6 @@
   </style>
 </head>
 <body>
-  <!-- Intro Screen -->
-  <div class="intro-screen"><span>WriteMySocials</span></div>
-
-  <!-- Social Icons -->
   <div class="social-icons">
     <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
     <a href="https://www.instagram.com/writemysocials" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -248,12 +214,9 @@
 
   <script>
     window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.body.classList.add("loaded");
-      }, 2500); // matches intro duration
+      document.body.classList.add("loaded");
     });
   </script>
 </body>
 </html>
-
 
