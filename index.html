@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WriteMySocials</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Poppins:wght@400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnH2N2E3N8+FRJ+X9Zr6zP0t2LkJkzRpU6A+9bVQzXq5Tx9bXmDzW3+UOvDRc+4kZb9Z7fbkA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
 <style>
   html, body {
     margin: 0;
@@ -16,71 +17,136 @@
     font-family: 'Playfair Display', serif;
   }
 
-  #intro {
+  #blackOverlay, #whiteOverlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100%;
+    inset: 0;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+  }
+
+  #blackOverlay {
     background: #000;
+    opacity: 1;
+  }
+
+  #blackOverlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  #whiteOverlay {
+    background: #fff;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
+
+  #whiteOverlay.visible {
+    opacity: 1;
+  }
+
+  .logo-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 10vw;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    user-select: none;
+    z-index: 99;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+  }
+
+  .line {
     display: flex;
     justify-content: center;
-    align-items: center;
-    z-index: 10003;
+    flex-wrap: nowrap;
   }
 
-  .intro-text {
-    font-size: 4vw;
-    color: transparent;
-    font-family: 'Playfair Display', serif;
-    letter-spacing: 0.1em;
-    background: linear-gradient(to right, #fff, #fff);
-    background-clip: text;
-    -webkit-background-clip: text;
-    opacity: 0;
-    animation: fadeLetters 3s forwards;
+  .line span {
+    display: inline-block;
+    margin: 0 0.5vw;
+    transform-origin: center;
   }
 
-  @keyframes fadeLetters {
-    0% { opacity: 0; }
-    30% { opacity: 1; }
-    100% { color: #fff; }
+  .tagline-marquee {
+    position: absolute;
+    bottom: 5%;
+    width: 100%;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5vw;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 99;
   }
 
-  #mainContent {
-    opacity: 1;
-    padding: 100px 20px 160px 20px;
-    text-align: center;
-    background: #fff;
-    font-family: 'Playfair Display', serif;
+  .tagline-marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: tagline-marquee 15s linear infinite;
+  }
+
+  @keyframes tagline-marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
   }
 
   .logo-on-white {
     position: fixed;
-    top: 20px;
-    left: 20px;
-    max-width: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 300px;
+    width: 50vw;
+    opacity: 0;
+    transition: opacity 0.5s ease;
     z-index: 10000;
   }
 
-  .positioning-text {
-    font-size: 2vw;
-    max-width: 800px;
-    margin: 180px auto 20px;
+  #mainContent {
+    opacity: 0;
+    transition: opacity 1s ease;
+    padding: 20px;
+    text-align: center;
+    background: #fff;
+  }
+
+  .social-icons {
+    margin: 20px 0;
+    font-size: 2.5rem;
+  }
+
+  .social-icons a {
+    margin: 0 12px;
     color: #000;
-    padding: 0 20px;
+    text-decoration: none;
+  }
+
+  .under-construction {
+    font-size: 8vw;
+    color: black;
+    text-align: center;
+    font-weight: 900;
+    margin: 30px 0;
+    letter-spacing: 2px;
   }
 
   .marquee-container {
     overflow: hidden;
+    white-space: nowrap;
     box-sizing: border-box;
-    margin: 60px 0;
+    margin: 30px 0;
   }
 
   .marquee-content {
-    display: flex;
-    width: max-content;
-    animation: marquee 30s linear infinite;
+    display: inline-block;
+    animation: marquee 20s linear infinite;
   }
 
   .marquee-content img {
@@ -95,185 +161,108 @@
 
   @keyframes marquee {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  .tagline-marquee {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: black;
-    color: white;
-    font-size: 1.2vw;
-    white-space: nowrap;
-    overflow: hidden;
-    z-index: 10001;
-    padding: 10px 0;
-  }
-
-  .tagline-marquee span {
-    display: inline-block;
-    padding-left: 100%;
-    animation: tagline-marquee 30s linear infinite;
-  }
-
-  @keyframes tagline-marquee {
-    0% { transform: translateX(100%); }
     100% { transform: translateX(-100%); }
-  }
-
-  .services-section {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: left;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #000;
-    padding: 0 20px;
-  }
-
-  .services-section h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-top: 40px;
-  }
-
-  .services-section p {
-    margin-bottom: 20px;
-  }
-
-  .services-section p strong {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 4px;
-  }
-
-  .social-icons {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 10001;
-    font-size: 1.5rem;
-  }
-
-  .social-icons a {
-    margin-left: 15px;
-    color: #000;
-    text-decoration: none;
-  }
-
-  .cta-button {
-    margin: 40px auto;
-    display: block;
-    padding: 12px 24px;
-    font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    background-color: black;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-
-  .cta-button:hover {
-    background-color: #333;
-  }
-
-  @media (max-width: 768px) {
-    .positioning-text {
-      font-size: 1rem;
-      margin-top: 200px;
-      padding: 0 10px;
-    }
-
-    .tagline-marquee {
-      font-size: 3.5vw;
-    }
-
-    .marquee-content img {
-      height: 200px;
-    }
-
-    .logo-on-white {
-      max-width: 140px;
-    }
-
-    .social-icons {
-      font-size: 1.2rem;
-    }
-
-    .intro-text {
-      font-size: 8vw;
-    }
   }
 </style>
 </head>
 <body>
 
-<div id="intro">
-  <div class="intro-text" id="animatedText">writemysocials</div>
-</div>
+<div id="blackOverlay"></div>
+<div id="whiteOverlay"></div>
 
-<div class="social-icons">
-  <a href="https://www.instagram.com/writemysocials" target="_blank"><i class="fab fa-instagram"></i></a>
-  <a href="https://www.tiktok.com/@writemysocials" target="_blank"><i class="fab fa-tiktok"></i></a>
-  <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank"><i class="fab fa-linkedin"></i></a>
-</div>
-
-<img src="logo.png" alt="Logo" class="logo-on-white">
-
-<div id="mainContent">
-  <div class="positioning-text">
-    Write My Socials helps modern brands — from startups to established names — craft strategic, personality-driven copy that connects, converts, and stays true to their voice. From brand messaging to packaging and digital campaigns, every word works harder.
+<div class="logo-container" id="animatedLogo">
+  <div class="line" id="line1">
+    <span>W</span><span>r</span><span>i</span><span>t</span><span>e</span><span>&nbsp;</span><span>M</span><span>y</span>
   </div>
-
-  <div class="marquee-container">
-    <div class="marquee-content">
-      <img src="sample1.jpg" alt="Work Sample 1">
-      <img src="sample2.jpg" alt="Work Sample 2">
-      <img src="sample3.jpg" alt="Work Sample 3">
-      <img src="sample4.jpg" alt="Work Sample 4">
-      <img src="sample1.jpg" alt="Work Sample 1">
-      <img src="sample2.jpg" alt="Work Sample 2">
-      <img src="sample3.jpg" alt="Work Sample 3">
-      <img src="sample4.jpg" alt="Work Sample 4">
-    </div>
+  <div class="line" id="line2">
+    <span>S</span><span>o</span><span>c</span><span>i</span><span>a</span><span>l</span><span>s</span>
   </div>
-
-  <div class="services-section">
-    <h2>WRITE MYSOCIALS – CURRENT SERVICES</h2>
-    <p><strong>1. Brand & Content Analysis</strong>
-    Let’s clarify your brand presence and refine your impact...</p>
-    <p><strong>2. Brand Voice & Messaging Development</strong>
-    Become unmistakably “you” — across every platform...</p>
-    <p><strong>3. Packaging Copy & Product Messaging</strong>
-    Words that stop shelves, scrolls, and second guesses...</p>
-    <p><strong>4. Website & Landing Page Copy</strong>
-    Words that turn browsers into buyers...</p>
-    <p><strong>5. Email Copywriting & Campaign Messaging</strong>
-    Emails your audience actually want to open...</p>
-  </div>
-
-  <a href="mailto:siyana.deveaux@writemysocials.com" class="cta-button">Enquire Now</a>
 </div>
 
 <div class="tagline-marquee">
-  <span>Transforming your brand’s narrative into a best seller — Transforming your brand’s narrative into a best seller — </span>
+  <span>Transforming your brand’s narrative into a best seller</span>
+</div>
+
+<img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" id="whiteLogo" class="logo-on-white">
+
+<div id="mainContent">
+  <div class="social-icons">
+    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://www.instagram.com/writemysocials" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+  </div>
+
+  <h1 class="under-construction">Under Glamstruction</h1>
+
+  <div class="marquee-container" aria-label="Work Samples">
+    <div class="marquee-content">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3" />
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4" />
+    </div>
+  </div>
 </div>
 
 <script>
-  window.addEventListener('load', () => {
+  const blackOverlay = document.getElementById('blackOverlay');
+  const whiteOverlay = document.getElementById('whiteOverlay');
+  const animatedLogo = document.getElementById('animatedLogo');
+  const line1Letters = document.querySelectorAll('#line1 span');
+  const line2Letters = document.querySelectorAll('#line2 span');
+  const mainContent = document.getElementById('mainContent');
+  const whiteLogo = document.getElementById('whiteLogo');
+
+  function randomChaosTransform() {
+    const x = (Math.random() - 0.5) * window.innerWidth * 0.6;
+    const y = (Math.random() - 0.5) * window.innerHeight * 0.6;
+    const r = (Math.random() - 0.5) * 1080;
+    return `translate(${x}px, ${y}px) rotate(${r}deg)`;
+  }
+
+  function scatterLetters(letters) {
+    letters.forEach(letter => {
+      if (letter.textContent.trim() === '') return;
+      letter.style.transition = 'transform 1.2s ease-in-out';
+      letter.style.transform = randomChaosTransform();
+    });
+  }
+
+  function settleLetters(letters) {
+    letters.forEach(letter => {
+      letter.style.transition = 'transform 0.7s ease-in-out';
+      letter.style.transform = 'none';
+    });
+  }
+
+  setTimeout(() => {
+    blackOverlay.classList.add('hidden');
+    animatedLogo.style.opacity = '1';
+
+    scatterLetters([...line1Letters, ...line2Letters]);
+
     setTimeout(() => {
-      const intro = document.getElementById('intro');
-      if (intro) {
-        intro.style.transition = 'opacity 1s ease';
-        intro.style.opacity = 0;
-        setTimeout(() => intro.style.display = 'none', 1000);
-      }
-    }, 3500);
-  });
+      settleLetters([...line1Letters, ...line2Letters]);
+
+      setTimeout(() => {
+        setTimeout(() => {
+          whiteOverlay.classList.add('visible');
+          animatedLogo.style.opacity = '0';
+
+          whiteLogo.style.opacity = '1';
+
+          setTimeout(() => {
+            whiteOverlay.style.display = 'none';
+            mainContent.style.opacity = '1';
+          }, 500);
+        }, 300);
+      }, 700);
+    }, 1200);
+  }, 800);
 </script>
 
 </body>
 </html>
+
 
 
