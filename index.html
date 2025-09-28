@@ -15,24 +15,13 @@
       background: #fff;
       overflow-x: hidden;
       font-family: 'Playfair Display', serif;
-      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'><path fill='%23000' d='M4.5.79v22.42l6.56-6.57h9.29L4.5.79z'/></svg>") 0 0, auto;
+      cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="%23000" d="M4.5.79v22.42l6.56-6.57h9.29L4.5.79z"></path></svg>'), auto;
     }
 
-    /* Scrollbar Styling */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #fff;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #7d7d7d;
-      border-radius: 0;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #5a5a5a;
-    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 12px; }
+    ::-webkit-scrollbar-track { background: #fff; }
+    ::-webkit-scrollbar-thumb { background: #2f2f2f; border-radius: 0; }
 
     .logo {
       display: block;
@@ -43,21 +32,14 @@
       animation: fadeInUp 1s ease-out 0.3s forwards;
     }
 
-    /* Signature tagline */
     .signature {
-      text-align: center;
       font-family: 'Great Vibes', cursive;
-      font-size: 1.5rem;
-      color: #fff;
-      margin-top: 10px;
+      font-size: 2rem;
+      text-align: center;
+      color: #000;
+      margin-top: 20px;
       opacity: 0;
-      animation: fadeInUp 1s ease-out 0.6s forwards;
-    }
-    .signature-bg {
-      display: inline-block;
-      padding: 2px 8px;
-      background: rgba(0,0,0,0.6);
-      border-radius: 6px;
+      animation: fadeInUp 1s ease-out 0.5s forwards;
     }
 
     .social-icons {
@@ -66,14 +48,10 @@
       right: 20px;
       font-size: 1.5rem;
       opacity: 0;
-      animation: fadeInUp 1s ease-out 0.5s forwards;
+      animation: fadeInUp 1s ease-out 0.7s forwards;
     }
 
-    .social-icons a {
-      margin-left: 15px;
-      color: #000;
-      text-decoration: none;
-    }
+    .social-icons a { margin-left: 15px; color: #000; text-decoration: none; }
 
     .mission-statement {
       font-family: 'Poppins', sans-serif;
@@ -81,22 +59,11 @@
       padding: 60px 20px 20px;
       text-align: center;
       opacity: 0;
-      animation: fadeInUp 1s ease-out 0.8s forwards;
+      animation: fadeInUp 1s ease-out 0.9s forwards;
     }
 
-    .marquee-container {
-      overflow: hidden;
-      white-space: nowrap;
-      box-sizing: border-box;
-      margin: 30px 0;
-      position: relative;
-    }
-
-    .marquee-content {
-      display: inline-flex;
-      animation: scroll-left 30s linear infinite;
-    }
-
+    .marquee-container { overflow: hidden; white-space: nowrap; box-sizing: border-box; margin: 30px 0; position: relative; }
+    .marquee-content { display: inline-flex; animation: scroll-left 30s linear infinite; }
     .marquee-content img {
       height: 300px;
       margin: 0 20px;
@@ -104,7 +71,6 @@
       opacity: 0;
       animation: fadeInUp 0.8s ease forwards;
     }
-
     .marquee-content img:nth-child(1) { animation-delay: 1s; }
     .marquee-content img:nth-child(2) { animation-delay: 1.2s; }
     .marquee-content img:nth-child(3) { animation-delay: 1.4s; }
@@ -114,15 +80,8 @@
     .marquee-content img:nth-child(7) { animation-delay: 2.2s; }
     .marquee-content img:nth-child(8) { animation-delay: 2.4s; }
 
-    @keyframes scroll-left {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    @keyframes fadeInUp {
-      0% { transform: translateY(20px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
+    @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    @keyframes fadeInUp { 0% { transform: translateY(20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
 
     .services-section {
       font-family: 'Poppins', sans-serif;
@@ -133,11 +92,7 @@
       animation: fadeInUp 1s ease-out 2.6s forwards;
     }
 
-    .services-section h2 {
-      font-size: 1.3rem;
-      text-align: center;
-      margin-top: 40px;
-    }
+    .services-section h2 { font-size: 1.3rem; text-align: center; margin-top: 40px; }
 
     .cta-button {
       display: block;
@@ -151,44 +106,6 @@
       border-radius: 5px;
       opacity: 0;
       animation: fadeInUp 1s ease-out 3s forwards;
-    }
-
-    /* Founder Note */
-    .founder-note {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1rem;
-      line-height: 1.7;
-      max-width: 700px;
-      margin: 60px auto;
-      padding: 20px;
-      text-align: center;
-      background: #f9f9f9;
-      border-left: 4px solid #000;
-      border-radius: 6px;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 3.4s forwards;
-    }
-
-    .founder-note h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      margin-bottom: 15px;
-    }
-
-    .founder-photo {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 20px;
-      border: 3px solid #000;
-    }
-
-    .signature-line {
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.6rem;
-      margin-top: 20px;
-      color: #333;
     }
 
     .bottom-tagline {
@@ -211,14 +128,12 @@
       animation: tagline-marquee 20s linear infinite;
     }
 
-    @keyframes tagline-marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
+    @keyframes tagline-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
     @media screen and (max-width: 768px) {
       .social-icons { top: 10px; right: 10px; font-size: 1.2rem; }
       .logo { width: 80vw; }
+      .signature { font-size: 1.5rem; }
       .mission-statement { font-size: 1rem; padding-top: 100px; }
       .marquee-content img { height: 180px; margin: 0 10px; }
       .services-section { font-size: 0.9rem; }
@@ -236,23 +151,11 @@
   </div>
 
   <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" class="logo" />
-
-  <!-- Signature tagline -->
-  <div class="signature">
-    <span class="signature-bg">with love for your brand from Siyana Deveaux</span>
-  </div>
+  <div class="signature">with love for your brand from Siyana Deveaux</div>
 
   <div id="mainContent">
     <div class="mission-statement">
-      Write My Socials helps modern brands — from startups to established names craft strategic, personality-driven copy that connects, converts, and stays true to their voice. From brand messaging to packaging and digital campaigns, every word tells a story.
-    </div>
-
-    <!-- Founder photo & note -->
-    <div class="founder-note">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/7b43c48e-35fc-407e-b052-0f76a4d0a069.jpg" alt="Siyana Deveaux" class="founder-photo">
-      <h2>A Note from Siyana</h2>
-      <p>Every brand has a story, and it deserves to be told with clarity, style, and authenticity. I help brands find their voice and express it boldly across all touchpoints.</p>
-      <div class="signature-line">Siyana Deveaux</div>
+      Helping brands — from scrappy startups to bold names — find their voice and make every word count. From copy to campaigns, we turn your story into impact.
     </div>
 
     <div class="marquee-container">
@@ -271,29 +174,29 @@
     <div class="services-section">
       <h2>WRITE MY SOCIALS – CURRENT SERVICES</h2>
 
-      <p><strong>1. Brand & Content Analysis</strong><br>
-      See what’s working — and where your brand’s falling flat. We audit your brand across visuals, messaging, packaging, and content, then deliver a strategic report with actionable recommendations to sharpen your voice, align your touchpoints, and elevate impact.</p>
+      <p><strong>1. Brand & Content Checkup</strong><br>
+      Spot what works. Fix what doesn’t. Clear insights, sharp results.</p>
 
-      <p><strong>2. Brand & Content Strategy</strong><br>
-      Align your presence. Amplify your impact. We provide strategic insights to refine how your brand shows up across every touchpoint — visuals, messaging, packaging, and digital content included.</p>
+      <p><strong>2. Brand Strategy</strong><br>
+      Know your lane. Stand out everywhere. Strategy that sticks.</p>
 
-      <p><strong>3. Voice & Messaging Development</strong><br>
-      Be unmistakably you. We craft a signature brand voice, core messaging pillars, taglines, positioning lines, and storytelling frameworks to ensure every piece of content sounds cohesive, intentional, and unmistakably yours.</p>
+      <p><strong>3. Voice & Messaging</strong><br>
+      Your vibe. Your words. Always unmistakably you.</p>
 
-      <p><strong>4. Product Messaging & Packaging Copy</strong><br>
-      Copy that turns heads — and moves product. We write punchy, personality-driven product copy for packaging, inserts, labels, and web pages.</p>
+      <p><strong>4. Product Copy & Packaging</strong><br>
+      Copy that pops. Labels that sell. Personality in every word.</p>
 
-      <p><strong>5. Website & Landing Page Copy</strong><br>
-      Conversion-focused, voice-aligned copy for websites and landing pages that build trust and guide action.</p>
+      <p><strong>5. Website & Landing Pages</strong><br>
+      Browsers → believers. Words that guide, convert, and connect.</p>
 
-      <p><strong>6. Email Campaigns & Lifecycle Messaging</strong><br>
-      Engaging, brand-aligned email sequences that connect, nurture, and convert audiences.</p>
+      <p><strong>6. Email & Lifecycle Flow</strong><br>
+      Emails that get opened. Messages that stick. Loyalty that grows.</p>
 
-      <p><strong>7. Social & UGC Content Creation</strong><br>
-      Scroll-stopping posts, Reels, TikToks, and influencer campaigns that resonate with your audience.</p>
+      <p><strong>7. Social & UGC Content</strong><br>
+      Scroll-stopping. Trend-aware. Authentic content that clicks.</p>
 
-      <p><strong>8. Event Curation & Brand Experience</strong><br>
-      Memorable brand experiences — pop-ups, activations, and immersive events, fully curated to reflect your brand.</p>
+      <p><strong>8. Event & Brand Experiences</strong><br>
+      Bring your brand alive. IRL moments, unforgettable impact.</p>
 
       <a class="cta-button" href="mailto:siyana.deveaux@writemysocials.com.au">Enquire Now</a>
     </div>
@@ -304,5 +207,4 @@
   </div>
 </body>
 </html>
-
 
