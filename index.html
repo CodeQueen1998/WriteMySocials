@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>WriteMySocials</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Poppins:wght@400&family=Great+Vibes&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Poppins:wght@400&display=swap" rel="stylesheet"/>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
   <style>
@@ -15,13 +15,7 @@
       background: #fff;
       overflow-x: hidden;
       font-family: 'Playfair Display', serif;
-      cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="%23000" d="M4.5.79v22.42l6.56-6.57h9.29L4.5.79z"></path></svg>'), auto;
     }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 12px; }
-    ::-webkit-scrollbar-track { background: #fff; }
-    ::-webkit-scrollbar-thumb { background: #2f2f2f; border-radius: 0; }
 
     .logo {
       display: block;
@@ -32,26 +26,20 @@
       animation: fadeInUp 1s ease-out 0.3s forwards;
     }
 
-    .signature {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2rem;
-      text-align: center;
-      color: #000;
-      margin-top: 20px;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 0.5s forwards;
-    }
-
     .social-icons {
       position: absolute;
       top: 20px;
       right: 20px;
       font-size: 1.5rem;
       opacity: 0;
-      animation: fadeInUp 1s ease-out 0.7s forwards;
+      animation: fadeInUp 1s ease-out 0.5s forwards;
     }
 
-    .social-icons a { margin-left: 15px; color: #000; text-decoration: none; }
+    .social-icons a {
+      margin-left: 15px;
+      color: #000;
+      text-decoration: none;
+    }
 
     .mission-statement {
       font-family: 'Poppins', sans-serif;
@@ -59,11 +47,22 @@
       padding: 60px 20px 20px;
       text-align: center;
       opacity: 0;
-      animation: fadeInUp 1s ease-out 0.9s forwards;
+      animation: fadeInUp 1s ease-out 0.8s forwards;
     }
 
-    .marquee-container { overflow: hidden; white-space: nowrap; box-sizing: border-box; margin: 30px 0; position: relative; }
-    .marquee-content { display: inline-flex; animation: scroll-left 30s linear infinite; }
+    .marquee-container {
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+      margin: 30px 0;
+      position: relative;
+    }
+
+    .marquee-content {
+      display: inline-flex;
+      animation: scroll-left 30s linear infinite;
+    }
+
     .marquee-content img {
       height: 300px;
       margin: 0 20px;
@@ -71,6 +70,7 @@
       opacity: 0;
       animation: fadeInUp 0.8s ease forwards;
     }
+
     .marquee-content img:nth-child(1) { animation-delay: 1s; }
     .marquee-content img:nth-child(2) { animation-delay: 1.2s; }
     .marquee-content img:nth-child(3) { animation-delay: 1.4s; }
@@ -80,8 +80,21 @@
     .marquee-content img:nth-child(7) { animation-delay: 2.2s; }
     .marquee-content img:nth-child(8) { animation-delay: 2.4s; }
 
-    @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    @keyframes fadeInUp { 0% { transform: translateY(20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
 
     .services-section {
       font-family: 'Poppins', sans-serif;
@@ -92,7 +105,11 @@
       animation: fadeInUp 1s ease-out 2.6s forwards;
     }
 
-    .services-section h2 { font-size: 1.3rem; text-align: center; margin-top: 40px; }
+    .services-section h2 {
+      font-size: 1.3rem;
+      text-align: center;
+      margin-top: 40px;
+    }
 
     .cta-button {
       display: block;
@@ -128,17 +145,44 @@
       animation: tagline-marquee 20s linear infinite;
     }
 
-    @keyframes tagline-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+    @keyframes tagline-marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
 
     @media screen and (max-width: 768px) {
-      .social-icons { top: 10px; right: 10px; font-size: 1.2rem; }
-      .logo { width: 80vw; }
-      .signature { font-size: 1.5rem; }
-      .mission-statement { font-size: 1rem; padding-top: 100px; }
-      .marquee-content img { height: 180px; margin: 0 10px; }
-      .services-section { font-size: 0.9rem; }
-      .services-section h2 { font-size: 1.1rem; }
-      .cta-button { font-size: 0.95rem; padding: 8px 16px; }
+      .social-icons {
+        top: 10px;
+        right: 10px;
+        font-size: 1.2rem;
+      }
+
+      .logo {
+        width: 80vw;
+      }
+
+      .mission-statement {
+        font-size: 1rem;
+        padding-top: 100px;
+      }
+
+      .marquee-content img {
+        height: 180px;
+        margin: 0 10px;
+      }
+
+      .services-section {
+        font-size: 0.9rem;
+      }
+
+      .services-section h2 {
+        font-size: 1.1rem;
+      }
+
+      .cta-button {
+        font-size: 0.95rem;
+        padding: 8px 16px;
+      }
     }
   </style>
 </head>
@@ -151,11 +195,10 @@
   </div>
 
   <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" class="logo" />
-  <div class="signature">with love for your brand from Siyana Deveaux</div>
 
   <div id="mainContent">
     <div class="mission-statement">
-      Helping brands — from scrappy startups to bold names — find their voice and make every word count. From copy to campaigns, we turn your story into impact.
+      Write My Socials helps modern brands — from startups to established names craft strategic, personality-driven copy that connects, converts, and stays true to their voice. From brand messaging to packaging and digital campaigns, every word tells a story
     </div>
 
     <div class="marquee-container">
@@ -174,29 +217,37 @@
     <div class="services-section">
       <h2>WRITE MY SOCIALS – CURRENT SERVICES</h2>
 
-      <p><strong>1. Brand & Content Checkup</strong><br>
-      Spot what works. Fix what doesn’t. Clear insights, sharp results.</p>
+      <p><strong>1. Brand & Content Analysis</strong><br>
+      See what’s working — and where your brand’s falling flat.<br>
+      We audit your current brand presence across visuals, messaging, packaging, and content — then deliver a clear, strategic report with actionable recommendations to sharpen your voice, align your touchpoints, and elevate your impact.</p>
 
-      <p><strong>2. Brand Strategy</strong><br>
-      Know your lane. Stand out everywhere. Strategy that sticks.</p>
+      <p><strong>2. Brand & Content Strategy</strong><br>
+      Align your presence. Amplify your impact.<br>
+      We dive deep into your brand's ecosystem — from visuals and messaging to packaging and digital content — and deliver strategic, actionable insights to refine how your brand shows up across every touchpoint.</p>
 
-      <p><strong>3. Voice & Messaging</strong><br>
-      Your vibe. Your words. Always unmistakably you.</p>
+      <p><strong>3. Voice & Messaging Development</strong><br>
+      Be unmistakably you — everywhere.<br>
+      We craft a signature brand voice, core messaging pillars, taglines, positioning lines, and storytelling frameworks that ensure every piece of content sounds cohesive, intentional, and unmistakably yours.</p>
 
-      <p><strong>4. Product Copy & Packaging</strong><br>
-      Copy that pops. Labels that sell. Personality in every word.</p>
+      <p><strong>4. Product Messaging & Packaging Copy</strong><br>
+      Copy that turns heads — and moves product.<br>
+      We write punchy, personality-driven product copy that captures attention and communicates value fast — ideal for packaging, inserts, labels, and product-focused web copy.</p>
 
-      <p><strong>5. Website & Landing Pages</strong><br>
-      Browsers → believers. Words that guide, convert, and connect.</p>
+      <p><strong>5. Website & Landing Page Copy</strong><br>
+      Turn browsers into believers.<br>
+      From homepages to high-converting sales funnels, we write conversion-focused, voice-aligned web copy that builds trust, guides action, and elevates your brand in the digital space.</p>
 
-      <p><strong>6. Email & Lifecycle Flow</strong><br>
-      Emails that get opened. Messages that stick. Loyalty that grows.</p>
+      <p><strong>6. Email Campaigns & Lifecycle Messaging</strong><br>
+      Emails people actually want to open.<br>
+      We create strategic, brand-led email sequences — from welcome flows to product launches — that connect with your audience, nurture loyalty, and drive measurable results.</p>
 
-      <p><strong>7. Social & UGC Content</strong><br>
-      Scroll-stopping. Trend-aware. Authentic content that clicks.</p>
+      <p><strong>7. Social & UGC Content Creation</strong><br>
+      Relatable. Scroll-stopping. Always on-brand.<br>
+      We concept and produce engaging, trend-aware content for social platforms — including TikToks, Reels, UGC, and influencer-style campaigns — designed to resonate with real people and deliver real results.</p>
 
-      <p><strong>8. Event & Brand Experiences</strong><br>
-      Bring your brand alive. IRL moments, unforgettable impact.</p>
+      <p><strong>8. Event Curation & Brand Experience</strong><br>
+      Bring your brand to life — off the screen.<br>
+      We design and execute unforgettable IRL experiences — from intimate brand pop-ups to large-scale activations. From creative direction and messaging to guest flow and production oversight, we curate every detail to reflect your brand’s world in 360°.</p>
 
       <a class="cta-button" href="mailto:siyana.deveaux@writemysocials.com.au">Enquire Now</a>
     </div>
@@ -207,4 +258,5 @@
   </div>
 </body>
 </html>
+
 
