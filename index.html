@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>WriteMySocials</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Poppins:wght@400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Poppins:wght@400&family=Parisienne&display=swap" rel="stylesheet"/>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
   <style>
@@ -15,6 +15,17 @@
       background: #fff;
       overflow-x: hidden;
       font-family: 'Playfair Display', serif;
+      cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="%23000" d="M4.5.79v22.42l6.56-6.57h9.29L4.5.79z"></path></svg>') 12 0, auto;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 12px;
+      background: #fff;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1a1a1a; /* space grey */
+      border-radius: 0;
     }
 
     .logo {
@@ -24,6 +35,16 @@
       width: 60vw;
       opacity: 0;
       animation: fadeInUp 1s ease-out 0.3s forwards;
+    }
+
+    .signature-text {
+      text-align: center;
+      font-family: 'Parisienne', cursive;
+      font-size: 2rem;
+      color: #000;
+      margin-top: 15px;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.5s forwards;
     }
 
     .social-icons {
@@ -86,14 +107,8 @@
     }
 
     @keyframes fadeInUp {
-      0% {
-        transform: translateY(20px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
+      0% { transform: translateY(20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
     }
 
     .services-section {
@@ -123,6 +138,28 @@
       border-radius: 5px;
       opacity: 0;
       animation: fadeInUp 1s ease-out 3s forwards;
+    }
+
+    .ceo-note {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 40px 20px;
+      text-align: left;
+    }
+
+    .ceo-note img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .ceo-note p {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      margin: 0;
+      line-height: 1.4;
     }
 
     .bottom-tagline {
@@ -161,6 +198,10 @@
         width: 80vw;
       }
 
+      .signature-text {
+        font-size: 1.5rem;
+      }
+
       .mission-statement {
         font-size: 1rem;
         padding-top: 100px;
@@ -183,6 +224,15 @@
         font-size: 0.95rem;
         padding: 8px 16px;
       }
+
+      .ceo-note {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .ceo-note img {
+        margin-bottom: 10px;
+      }
     }
   </style>
 </head>
@@ -195,10 +245,16 @@
   </div>
 
   <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" class="logo" />
+  <div class="signature-text">with love for your brand from Siyana Deveaux</div>
 
   <div id="mainContent">
     <div class="mission-statement">
-      Write My Socials helps modern brands — from startups to established names craft strategic, personality-driven copy that connects, converts, and stays true to their voice. From brand messaging to packaging and digital campaigns, every word tells a story
+      Write My Socials helps modern brands — from startups to established names craft strategic, personality-driven copy that connects, converts, and stays true to their voice. Every word tells a story.
+    </div>
+
+    <div class="ceo-note">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/7b43c48e-35fc-407e-b052-0f76a4d0a069.jpg" alt="Siyana Deveaux CEO"/>
+      <p>Hello! I’m Siyana — crafting words that make brands unforgettable.</p>
     </div>
 
     <div class="marquee-container">
@@ -215,39 +271,31 @@
     </div>
 
     <div class="services-section">
-      <h2>WRITE MY SOCIALS – CURRENT SERVICES</h2>
+      <h2>OUR SERVICES</h2>
 
       <p><strong>1. Brand & Content Analysis</strong><br>
-      See what’s working — and where your brand’s falling flat.<br>
-      We audit your current brand presence across visuals, messaging, packaging, and content — then deliver a clear, strategic report with actionable recommendations to sharpen your voice, align your touchpoints, and elevate your impact.</p>
+      Audit, refine, and sharpen your visuals, messaging, and touchpoints.</p>
 
       <p><strong>2. Brand & Content Strategy</strong><br>
-      Align your presence. Amplify your impact.<br>
-      We dive deep into your brand's ecosystem — from visuals and messaging to packaging and digital content — and deliver strategic, actionable insights to refine how your brand shows up across every touchpoint.</p>
+      Align and amplify your presence across every channel.</p>
 
       <p><strong>3. Voice & Messaging Development</strong><br>
-      Be unmistakably you — everywhere.<br>
-      We craft a signature brand voice, core messaging pillars, taglines, positioning lines, and storytelling frameworks that ensure every piece of content sounds cohesive, intentional, and unmistakably yours.</p>
+      Be unmistakably you with a signature brand voice and story.</p>
 
       <p><strong>4. Product Messaging & Packaging Copy</strong><br>
-      Copy that turns heads — and moves product.<br>
-      We write punchy, personality-driven product copy that captures attention and communicates value fast — ideal for packaging, inserts, labels, and product-focused web copy.</p>
+      Copy that turns heads and moves product — packaging, labels, inserts, web.</p>
 
       <p><strong>5. Website & Landing Page Copy</strong><br>
-      Turn browsers into believers.<br>
-      From homepages to high-converting sales funnels, we write conversion-focused, voice-aligned web copy that builds trust, guides action, and elevates your brand in the digital space.</p>
+      Conversion-focused, voice-aligned copy that builds trust and drives action.</p>
 
       <p><strong>6. Email Campaigns & Lifecycle Messaging</strong><br>
-      Emails people actually want to open.<br>
-      We create strategic, brand-led email sequences — from welcome flows to product launches — that connect with your audience, nurture loyalty, and drive measurable results.</p>
+      Engaging sequences that connect, nurture, and convert audiences.</p>
 
       <p><strong>7. Social & UGC Content Creation</strong><br>
-      Relatable. Scroll-stopping. Always on-brand.<br>
-      We concept and produce engaging, trend-aware content for social platforms — including TikToks, Reels, UGC, and influencer-style campaigns — designed to resonate with real people and deliver real results.</p>
+      Scroll-stopping posts, Reels, TikToks, and campaigns that resonate.</p>
 
       <p><strong>8. Event Curation & Brand Experience</strong><br>
-      Bring your brand to life — off the screen.<br>
-      We design and execute unforgettable IRL experiences — from intimate brand pop-ups to large-scale activations. From creative direction and messaging to guest flow and production oversight, we curate every detail to reflect your brand’s world in 360°.</p>
+      Memorable experiences — pop-ups, activations, immersive events.</p>
 
       <a class="cta-button" href="mailto:siyana.deveaux@writemysocials.com.au">Enquire Now</a>
     </div>
@@ -258,5 +306,6 @@
   </div>
 </body>
 </html>
+
 
 
