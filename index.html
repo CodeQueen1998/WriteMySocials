@@ -13,9 +13,10 @@
       padding: 0;
       height: 100%;
       background: #fff;
+      color: #111;
       overflow-x: hidden;
       font-family: 'Playfair Display', serif;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><circle cx="16" cy="16" r="8" fill="%23b49f91"/></svg>') 16 16, auto;
+      cursor: default; /* classic cursor */
     }
 
     /* Scrollbar styling */
@@ -23,14 +24,14 @@
       width: 12px;
     }
     ::-webkit-scrollbar-track {
-      background: #f5f0e6; 
+      background: #f0f0f0; /* light space grey */
     }
     ::-webkit-scrollbar-thumb {
-      background: #d2bfa1; 
+      background: #555; /* dark space grey */
       border-radius: 6px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #bfa786; 
+      background: #333;
     }
 
     .logo {
@@ -53,7 +54,7 @@
 
     .social-icons a {
       margin-left: 15px;
-      color: #000;
+      color: #111;
       text-decoration: none;
     }
 
@@ -66,6 +67,8 @@
       margin: 0 auto;
       opacity: 0;
       animation: fadeInUp 1s ease-out 0.8s forwards;
+      line-height: 1.6;
+      font-weight: 500;
     }
 
     .marquee-container {
@@ -84,15 +87,15 @@
 
     .marquee-content img {
       height: 280px;
-      border-radius: 15px;
+      border-radius: 10px;
       transition: transform 0.4s ease, box-shadow 0.3s ease;
       opacity: 0;
       animation: fadeInUp 0.8s ease forwards;
     }
 
     .marquee-content img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      transform: scale(1.03);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
     }
 
     .marquee-content img:nth-child(1) { animation-delay: 1s; }
@@ -130,6 +133,7 @@
       text-align: center;
       margin-top: 60px;
       margin-bottom: 40px;
+      font-weight: 600;
     }
 
     .services-section p {
@@ -141,18 +145,19 @@
       width: fit-content;
       margin: 30px auto;
       padding: 12px 24px;
-      background: #000;
+      background: #111;
       color: #fff;
       text-decoration: none;
       font-family: 'Poppins', sans-serif;
-      border-radius: 8px;
+      border-radius: 6px;
       opacity: 0;
       animation: fadeInUp 1s ease-out 3s forwards;
+      font-weight: 500;
       transition: transform 0.3s ease, background 0.3s ease;
     }
 
     .cta-button:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
       background: #333;
     }
 
@@ -160,14 +165,14 @@
       position: fixed;
       bottom: 0;
       width: 100%;
-      background: #000;
+      background: #111;
       color: #fff;
       font-family: 'Poppins', sans-serif;
       font-size: 1rem;
       white-space: nowrap;
       overflow: hidden;
       z-index: 999;
-      border-top: 1px solid #000;
+      border-top: 1px solid #111;
       padding: 10px 0;
     }
 
@@ -205,7 +210,7 @@
 
   <div id="mainContent">
     <div class="mission-statement">
-      We help brands—new or established—speak clearly and stand out. Every word reflects your identity, from social posts to product pages.
+      We empower brands—emerging or established—to communicate with clarity and distinction. Every message reflects your identity, from social media content to product copy.
     </div>
 
     <div class="marquee-container">
@@ -225,28 +230,28 @@
       <h2>Our Services</h2>
 
       <p><strong>1. Brand & Content Analysis</strong><br>
-      See what works, spot gaps, and get clear steps to sharpen your brand.</p>
+      Evaluate existing content, identify opportunities, and receive actionable insights to refine your brand presence.</p>
 
       <p><strong>2. Brand & Content Strategy</strong><br>
-      Align your visuals, messaging, and digital presence for maximum impact.</p>
+      Align messaging, visuals, and digital touchpoints to optimize impact and coherence.</p>
 
       <p><strong>3. Voice & Messaging</strong><br>
-      Craft a unique voice and messaging that makes your brand memorable.</p>
+      Develop a distinct voice and messaging framework that resonates and leaves a lasting impression.</p>
 
       <p><strong>4. Product & Packaging Copy</strong><br>
-      Punchy, clear copy for labels, inserts, and product pages that converts.</p>
+      Clear, persuasive copy for labels, inserts, and product pages designed to convert.</p>
 
       <p><strong>5. Website & Landing Pages</strong><br>
-      Copy that builds trust and guides visitors toward action.</p>
+      Compelling copy that fosters trust and guides visitors toward meaningful action.</p>
 
       <p><strong>6. Email Campaigns</strong><br>
-      Sequences that engage, nurture, and convert your audience.</p>
+      Strategically crafted sequences that engage, nurture, and convert audiences effectively.</p>
 
       <p><strong>7. Social & UGC Content</strong><br>
-      Scroll-stopping posts, Reels, TikToks, and influencer campaigns that resonate.</p>
+      Attention-grabbing posts, Reels, TikToks, and influencer campaigns that align with your brand.</p>
 
       <p><strong>8. Events & Brand Experience</strong><br>
-      Pop-ups, activations, and immersive events handled end-to-end.</p>
+      Comprehensive planning and execution of pop-ups, activations, and immersive brand experiences.</p>
 
       <a class="cta-button" href="mailto:siyana.deveaux@writemysocials.com.au">Enquire Now</a>
     </div>
