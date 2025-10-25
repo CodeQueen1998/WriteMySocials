@@ -8,24 +8,55 @@
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
   <style>
+    :root {
+      --text:#000;
+      --bg:#fff;
+      --ink:#1a1a1a;
+      --accent:#000;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;x
-      background: #fff;
+      height: 100%;
+      background: var(--bg);
       overflow-x: hidden;
       font-family: 'Playfair Display', serif;
-      cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="%23000" d="M4.5.79v22.42l6.56-6.57h9.29L4.5.79z"></path></svg>') 12 0, auto;
+      /* removed custom mouse cursor */
     }
 
     /* Scrollbar */
-    ::-webkit-scrollbar {
-      width: 12px;
-      background: #fff;
+    ::-webkit-scrollbar { width: 12px; background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--ink); border-radius: 0; }
+
+    /* Top toolbar / navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--bg);
+      border-bottom: 1px solid #eaeaea;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
     }
-    ::-webkit-scrollbar-thumb {
-      background: #1a1a1a; /* space grey */
-      border-radius: 0;
+    .navbar .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .navbar .brand img { height: 36px; width: auto; }
+    .navbar nav a {
+      font-family: 'Poppins', sans-serif;
+      text-decoration: none;
+      color: var(--text);
+      margin: 0 12px;
+      position: relative;
+    }
+    .navbar nav a.active::after, .navbar nav a:hover::after {
+      content: "";
+      position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: var(--accent);
     }
 
     .logo {
@@ -41,57 +72,42 @@
       text-align: center;
       font-family: 'Parisienne', cursive;
       font-size: 2rem;
-      color: #000;
+      color: var(--text);
       margin-top: 15px;
       opacity: 0;
       animation: fadeInUp 1s ease-out 0.5s forwards;
     }
 
     .social-icons {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 1.5rem;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 0.5s forwards;
+      display: flex;
+      gap: 15px;
+      font-size: 1.3rem;
+      align-items: center;
     }
+    .social-icons a { color: var(--text); text-decoration: none; }
 
-    .social-icons a {
-      margin-left: 15px;
-      color: #000;
-      text-decoration: none;
+    .page {
+      display: none; /* hidden by default, toggled via JS */
+      padding-bottom: 80px; /* leave room for bottom tagline */
+    }
+    .page.active { display: block; }
+
+    .page .section {
+      max-width: 1100px; margin: 0 auto; padding: 20px;
     }
 
     .mission-statement {
       font-family: 'Poppins', sans-serif;
       font-size: 1.2rem;
-      padding: 60px 20px 20px;
+      padding: 40px 20px 10px;
       text-align: center;
       opacity: 0;
       animation: fadeInUp 1s ease-out 0.8s forwards;
     }
 
-    .marquee-container {
-      overflow: hidden;
-      white-space: nowrap;
-      box-sizing: border-box;
-      margin: 30px 0;
-      position: relative;
-    }
-
-    .marquee-content {
-      display: inline-flex;
-      animation: scroll-left 30s linear infinite;
-    }
-
-    .marquee-content img {
-      height: 300px;
-      margin: 0 20px;
-      transition: transform 0.4s ease;
-      opacity: 0;
-      animation: fadeInUp 0.8s ease forwards;
-    }
-
+    .marquee-container { overflow: hidden; white-space: nowrap; box-sizing: border-box; margin: 30px 0; position: relative; }
+    .marquee-content { display: inline-flex; animation: scroll-left 30s linear infinite; }
+    .marquee-content img { height: 300px; margin: 0 20px; transition: transform 0.4s ease; opacity: 0; animation: fadeInUp 0.8s ease forwards; }
     .marquee-content img:nth-child(1) { animation-delay: 1s; }
     .marquee-content img:nth-child(2) { animation-delay: 1.2s; }
     .marquee-content img:nth-child(3) { animation-delay: 1.4s; }
@@ -101,211 +117,173 @@
     .marquee-content img:nth-child(7) { animation-delay: 2.2s; }
     .marquee-content img:nth-child(8) { animation-delay: 2.4s; }
 
-    @keyframes scroll-left {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+    @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    @keyframes fadeInUp { 0% { transform: translateY(20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
 
-    @keyframes fadeInUp {
-      0% { transform: translateY(20px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-
-    .services-section {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.95rem;
-      padding: 0 20px;
-      line-height: 1.6;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 2.6s forwards;
-    }
-
-    .services-section h2 {
-      font-size: 1.3rem;
-      text-align: center;
-      margin-top: 40px;
-    }
+    /* Services */
+    .services-section { font-family: 'Poppins', sans-serif; font-size: 1rem; line-height: 1.7; }
+    .services-section h2 { font-size: 1.6rem; text-align: center; margin: 30px 0; }
+    .service-item { margin: 14px 0; }
 
     .cta-button {
-      display: block;
-      width: fit-content;
-      margin: 30px auto;
-      padding: 10px 20px;
-      background: #000;
-      color: #fff;
-      text-decoration: none;
-      font-family: 'Poppins', sans-serif;
-      border-radius: 5px;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 3s forwards;
+      display: inline-block; margin: 24px 0; padding: 10px 20px; background: #000; color: #fff; text-decoration: none; font-family: 'Poppins', sans-serif; border-radius: 5px;
     }
 
-    .ceo-note {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 40px 20px;
-      text-align: left;
-    }
+    /* About */
+    .ceo-note { display: flex; align-items: center; gap: 20px; padding: 20px; text-align: left; }
+    .ceo-note img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; }
+    .ceo-note p { font-family: 'Poppins', sans-serif; font-size: 1.1rem; margin: 0; line-height: 1.5; }
 
-    .ceo-note img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .ceo-note p {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.1rem;
-      margin: 0;
-      line-height: 1.4;
-    }
-
+    /* Bottom marquee */
     .bottom-tagline {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background: #000;
-      color: #fff;
-      font-family: 'Poppins', sans-serif;
-      font-size: 1rem;
-      white-space: nowrap;
-      overflow: hidden;
-      z-index: 999;
-      border-top: 1px solid #000;
+      position: fixed; bottom: 0; width: 100%; background: var(--accent); color: #fff; font-family: 'Poppins', sans-serif; font-size: 1rem; white-space: nowrap; overflow: hidden; z-index: 999; border-top: 1px solid var(--accent);
     }
+    .bottom-tagline span { display: inline-block; padding-left: 100%; animation: tagline-marquee 20s linear infinite; }
+    @keyframes tagline-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-    .bottom-tagline span {
-      display: inline-block;
-      padding-left: 100%;
-      animation: tagline-marquee 20s linear infinite;
-    }
-
-    @keyframes tagline-marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-
-    @media screen and (max-width: 768px) {
-      .social-icons {
-        top: 10px;
-        right: 10px;
-        font-size: 1.2rem;
-      }
-
-      .logo {
-        width: 80vw;
-      }
-
-      .signature-text {
-        font-size: 1.5rem;
-      }
-
-      .mission-statement {
-        font-size: 1rem;
-        padding-top: 100px;
-      }
-
-      .marquee-content img {
-        height: 180px;
-        margin: 0 10px;
-      }
-
-      .services-section {
-        font-size: 0.9rem;
-      }
-
-      .services-section h2 {
-        font-size: 1.1rem;
-      }
-
-      .cta-button {
-        font-size: 0.95rem;
-        padding: 8px 16px;
-      }
-
-      .ceo-note {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .ceo-note img {
-        margin-bottom: 10px;
-      }
+    /* Responsive */
+    @media (max-width: 900px){ .marquee-content img{ height: 220px; margin: 0 12px; } }
+    @media (max-width: 768px) {
+      .logo { width: 80vw; }
+      .signature-text { font-size: 1.5rem; }
+      .mission-statement { font-size: 1rem; padding-top: 20px; }
+      .marquee-content img { height: 180px; margin: 0 10px; }
+      .ceo-note { flex-direction: column; text-align: center; }
+      .ceo-note img { margin-bottom: 10px; }
+      .navbar nav a { margin: 0 8px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="social-icons">
-    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-    <a href="https://www.instagram.com/writemysocials" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-  </div>
-
-  <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" class="logo" />
-
-
-  <div id="mainContent">
-    <div class="mission-statement">
-      "Write My Socials helps modern brands—from startups to established names—shape bold, personality-driven creative strategies that connect, convert, and stay true to their voice. Every idea, every word, tells a story."
+  <!-- Navbar / toolbar -->
+  <header class="navbar">
+    <div class="brand">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="WriteMySocials mini logo" />
     </div>
-
-    <div class="ceo-note">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/7b43c48e-35fc-407e-b052-0f76a4d0a069.jpg" alt="Siyana Deveaux CEO"/>
-      <p>Meet our CEO ♡ She works hard to ensure your brand sees results! "With love for your brand from Siyana Deveaux"</p>
+    <nav>
+      <a href="#home" data-link>Home</a>
+      <a href="#about" data-link>About</a>
+      <a href="#services" data-link>Services</a>
+      <a href="mailto:siyana.deveaux@writemysocials.com.au" data-link>Contact</a>
+    </nav>
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/writemysocials" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
     </div>
+  </header>
 
-    <div class="marquee-container">
-      <div class="marquee-content">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1" />
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2" />
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3" />
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4" />
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1 Duplicate" />
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2 Duplicate" />
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3 Duplicate" />
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4 Duplicate" />
+  <!-- HOME PAGE -->
+  <main id="home" class="page active" role="region" aria-labelledby="home-title">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" class="logo" />
+
+    <div class="signature-text" id="home-title">Write My Socials</div>
+
+    <section class="section">
+      <div class="mission-statement">
+        "Write My Socials helps modern brands—from startups to established names—shape bold, personality-driven creative strategies that connect, convert, and stay true to their voice. Every idea, every word, tells a story."
       </div>
+
+      <div class="marquee-container" aria-label="work-samples">
+        <div class="marquee-content">
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1" />
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2" />
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3" />
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4" />
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1 Duplicate" />
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2 Duplicate" />
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3 Duplicate" />
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4 Duplicate" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ABOUT PAGE -->
+  <section id="about" class="page" role="region" aria-labelledby="about-title">
+    <div class="section">
+      <h1 id="about-title" class="signature-text" style="margin-top:20px;">About</h1>
+      <div class="ceo-note">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/7b43c48e-35fc-407e-b052-0f76a4d0a069.jpg" alt="Siyana Deveaux, CEO"/>
+        <p>
+          Meet our CEO ♡ She works hard to ensure your brand sees results!<br>
+          <em>“With love for your brand from Siyana Deveaux.”</em>
+        </p>
+      </div>
+      <p class="section" style="font-family: 'Poppins', sans-serif; max-width: 900px;">
+        At Write My Socials, we turn brand stories into best sellers by shaping bold, personality-driven strategies. From voice and messaging to campaigns and experiences, our work is rooted in authenticity and results.
+      </p>
     </div>
+  </section>
 
-    <div class="services-section">
-      <h2>OUR SERVICES</h2>
+  <!-- SERVICES PAGE -->
+  <section id="services" class="page" role="region" aria-labelledby="services-title">
+    <div class="section services-section">
+      <h2 id="services-title">OUR SERVICES</h2>
 
-      <p><strong>1. Brand & Content Analysis</strong><br>
-      Audit, refine, and sharpen your visuals, messaging, and touchpoints.</p>
+      <div class="service-item"><strong>1. Brand & Content Analysis</strong><br>
+        Audit, refine, and sharpen your visuals, messaging, and touchpoints.</div>
 
-      <p><strong>2. Brand & Content Strategy</strong><br>
-      Align and amplify your presence across every channel.</p>
+      <div class="service-item"><strong>2. Brand & Content Strategy</strong><br>
+        Align and amplify your presence across every channel.</div>
 
-      <p><strong>3. Voice & Messaging Development</strong><br>
-      Be unmistakably you with a signature brand voice and story.</p>
+      <div class="service-item"><strong>3. Voice & Messaging Development</strong><br>
+        Be unmistakably you with a signature brand voice and story.</div>
 
-      <p><strong>4. Product Messaging & Packaging Copy</strong><br>
-      Copy that turns heads and moves product — packaging, labels, inserts, web.</p>
+      <div class="service-item"><strong>4. Product Messaging & Packaging Copy</strong><br>
+        Copy that turns heads and moves product — packaging, labels, inserts, web.</div>
 
-      <p><strong>5. Website & Landing Page Copy</strong><br>
-      Conversion-focused, voice-aligned copy that builds trust and drives action.</p>
+      <div class="service-item"><strong>5. Website & Landing Page Copy</strong><br>
+        Conversion-focused, voice-aligned copy that builds trust and drives action.</div>
 
-      <p><strong>6. Email Campaigns & Lifecycle Messaging</strong><br>
-      Engaging sequences that connect, nurture, and convert audiences.</p>
+      <div class="service-item"><strong>6. Email Campaigns & Lifecycle Messaging</strong><br>
+        Engaging sequences that connect, nurture, and convert audiences.</div>
 
-      <p><strong>7. Social & UGC Content Creation</strong><br>
-      Scroll-stopping posts, Reels, TikToks, and campaigns that resonate.</p>
+      <div class="service-item"><strong>7. Social & UGC Content Creation</strong><br>
+        Scroll-stopping posts, Reels, TikToks, and campaigns that resonate.</div>
 
-      <p><strong>8. Event Curation & Brand Experience</strong><br>
-      Memorable experiences — pop-ups, activations, immersive events.</p>
+      <div class="service-item"><strong>8. Event Curation & Brand Experience</strong><br>
+        Memorable experiences — pop-ups, activations, immersive events.</div>
 
       <a class="cta-button" href="mailto:siyana.deveaux@writemysocials.com.au">Enquire Now</a>
     </div>
-  </div>
+  </section>
 
-  <div class="bottom-tagline">
+  <div class="bottom-tagline" aria-hidden="true">
     <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
   </div>
+
+  <script>
+    // Simple hash-based page switching
+    const links = document.querySelectorAll('a[data-link]');
+    const pages = document.querySelectorAll('.page');
+
+    function setActiveLink(hash){
+      document.querySelectorAll('.navbar nav a').forEach(a=>{
+        a.classList.toggle('active', a.getAttribute('href') === hash);
+      });
+    }
+
+    function showPageFromHash(){
+      const hash = window.location.hash || '#home';
+      pages.forEach(p => p.classList.remove('active'));
+      const target = document.querySelector(hash);
+      if(target){ target.classList.add('active'); }
+      setActiveLink(hash);
+      // scroll to top on navigation for better UX
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('hashchange', showPageFromHash);
+    links.forEach(l => l.addEventListener('click', (e)=>{
+      // allow default; hashchange handler will toggle pages
+    }));
+
+    // Initial load
+    showPageFromHash();
+  </script>
 </body>
 </html>
-
 
 
