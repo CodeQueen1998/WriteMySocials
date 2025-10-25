@@ -4,59 +4,172 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>WriteMySocials — Home</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Poppins:wght@400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-  html,body{margin:0;padding:0;background:#fff;overflow-x:hidden;font-family:'Playfair Display',serif}
+  html,body{
+    margin:0;
+    padding:0;
+    background:#fff;
+    overflow-x:hidden;
+    font-family:'Poppins',sans-serif;
+  }
 
-  /* ===== MENU (white with black text) ===== */
+  /* ===== MENU (white background with black text) ===== */
   .menu-btn{
-    position:fixed;top:18px;left:20px;z-index:1200;
-    background:#fff;border:1px solid #000;color:#000;
-    padding:6px 12px;border-radius:999px;font-family:'Poppins',sans-serif;
-    font-size:.85rem;letter-spacing:.12em;cursor:pointer;
+    position:fixed;
+    top:18px;
+    left:20px;
+    z-index:1200;
+    background:#fff;
+    border:1px solid #000;
+    color:#000;
+    padding:6px 12px;
+    border-radius:999px;
+    font-family:'Poppins',sans-serif;
+    font-size:.85rem;
+    letter-spacing:.12em;
+    cursor:pointer;
     transition:background .2s,color .2s,border-color .2s;
   }
-  .menu-btn:hover{background:#000;color:#fff;border-color:#000}
+  .menu-btn:hover{
+    background:#000;
+    color:#fff;
+    border-color:#000;
+  }
 
   .menu-bar{
-    position:fixed;left:0;right:0;top:0;z-index:1100;
-    background:#fff;color:#000;border-bottom:1px solid rgba(0,0,0,.15);
-    transform:translateY(-100%);transition:transform .35s ease;
+    position:fixed;
+    left:0;
+    right:0;
+    top:0;
+    z-index:1100;
+    background:#fff;
+    color:#000;
+    border-bottom:1px solid rgba(0,0,0,.15);
+    transform:translateY(-100%);
+    transition:transform .35s ease;
   }
-  body.menu-open .menu-bar{transform:translateY(0)}
-  .menu-inner{max-width:1200px;margin:0 auto;padding:16px 18px;display:flex;gap:4vw;align-items:center}
-  .menu-links{display:flex;gap:5vw;align-items:center;flex:1}
+  body.menu-open .menu-bar{transform:translateY(0);}
+  .menu-inner{
+    max-width:1200px;
+    margin:0 auto;
+    padding:22px 18px; /* increased padding for more spacing */
+    display:flex;
+    gap:4vw;
+    align-items:center;
+  }
+  .menu-links{
+    display:flex;
+    gap:5vw;
+    align-items:center;
+    flex:1;
+  }
   .menu-link{
     font-family:'Playfair Display',serif;
-    font-size:clamp(1.4rem,3.8vw,2.4rem);
-    color:#000;text-decoration:none;position:relative;padding:.15rem .25rem;white-space:nowrap;
+    font-weight:500;
+    font-size:clamp(1.2rem,3.5vw,2rem);
+    color:#000;
+    text-decoration:none;
+    position:relative;
+    padding:.15rem .25rem;
+    white-space:nowrap;
+    letter-spacing:0.03em;
   }
   .menu-link::after{
-    content:"";position:absolute;left:.25rem;right:.25rem;bottom:-6px;height:1px;
-    background:rgba(0,0,0,.35);transform:scaleX(0);transform-origin:left;transition:transform .25s ease;
+    content:"";
+    position:absolute;
+    left:.25rem;
+    right:.25rem;
+    bottom:-6px;
+    height:1px;
+    background:rgba(0,0,0,.3);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform .25s ease;
   }
-  .menu-link:hover::after{transform:scaleX(1)}
+  .menu-link:hover::after{transform:scaleX(1);}
   .close-pill{
-    background:#fff;border:1px solid rgba(0,0,0,.45);color:#000;
-    padding:6px 12px;border-radius:999px;font-family:'Poppins',sans-serif;
-    font-size:.8rem;letter-spacing:.1em;cursor:pointer;transition:all .2s;
+    background:#fff;
+    border:1px solid rgba(0,0,0,.45);
+    color:#000;
+    padding:6px 12px;
+    border-radius:999px;
+    font-family:'Poppins',sans-serif;
+    font-size:.8rem;
+    letter-spacing:.1em;
+    cursor:pointer;
+    transition:all .2s;
   }
-  .close-pill:hover{background:#000;color:#fff;border-color:#000}
+  .close-pill:hover{
+    background:#000;
+    color:#fff;
+    border-color:#000;
+  }
 
-  /* ===== Page content ===== */
-  .logo{display:block;margin:60px auto 0;max-width:320px;width:60vw;height:auto}
-  .mission{font-family:'Poppins',sans-serif;font-size:1.15rem;padding:24px 20px;text-align:center;max-width:980px;margin:0 auto}
+  /* ===== Page Content ===== */
+  main{margin-top:100px;} /* extra space below the menu */
+  .logo{
+    display:block;
+    margin:70px auto 0;
+    max-width:320px;
+    width:60vw;
+    height:auto;
+  }
+  .mission{
+    font-family:'Poppins',sans-serif;
+    font-weight:400;
+    font-size:1rem; /* smaller writing */
+    color:#111;
+    padding:24px 20px;
+    text-align:center;
+    max-width:900px;
+    margin:20px auto;
+    letter-spacing:0.02em;
+  }
 
-  /* Work samples marquee (kept) */
-  .marquee{overflow:hidden;white-space:nowrap;margin:30px 0}
-  .track{display:inline-flex;animation:scroll-left 30s linear infinite}
-  @keyframes scroll-left{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-  .work{height:300px;margin:0 18px}
-  @media(max-width:768px){.work{height:180px;margin:0 10px}}
+  /* Work samples marquee */
+  .marquee{overflow:hidden;white-space:nowrap;margin:40px 0;}
+  .track{display:inline-flex;animation:scroll-left 30s linear infinite;}
+  @keyframes scroll-left{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-50%);}
+  }
+  .work{
+    height:280px;
+    margin:0 18px;
+    opacity:0;
+    transform:translateY(20px);
+    animation:fadeInUp 1s ease forwards;
+  }
+  .work:nth-child(1){animation-delay:.2s;}
+  .work:nth-child(2){animation-delay:.4s;}
+  .work:nth-child(3){animation-delay:.6s;}
+  .work:nth-child(4){animation-delay:.8s;}
+  @keyframes fadeInUp{
+    0%{opacity:0;transform:translateY(20px);}
+    100%{opacity:1;transform:translateY(0);}
+  }
+  @media(max-width:768px){.work{height:180px;margin:0 10px;}}
 
-  /* Copy directly under marquee */
-  .copy{max-width:980px;margin:24px auto 80px;padding:0 20px;font-family:'Poppins',sans-serif;line-height:1.8}
-  .copy h2{font-size:clamp(1.6rem,4vw,2.3rem);margin:.2rem 0 10px}
+  /* Copy under marquee */
+  .copy{
+    max-width:900px;
+    margin:30px auto 80px;
+    padding:0 20px;
+    font-family:'Poppins',sans-serif;
+    line-height:1.8;
+    font-size:0.95rem;
+    font-weight:300;
+    color:#222;
+    letter-spacing:0.02em;
+  }
+  .copy h2{
+    font-family:'Playfair Display',serif;
+    font-weight:600;
+    font-size:clamp(1.5rem,3vw,2rem);
+    margin:.2rem 0 12px;
+    color:#000;
+  }
 </style>
 </head>
 <body>
@@ -98,13 +211,13 @@
   <!-- Copy under marquee -->
   <section class="copy">
     <h2>Strategy. Story. Social—Done Seamlessly.</h2>
-    <p>We build brands that feel human. From voice and visuals to launch calendars and creative production, our process blends research, positioning, and world-class copy so every touchpoint aligns.</p>
-    <p>Whether you’re an emerging startup or a household name, we design content systems that scale—messaging matrices, creator briefs, campaign concepts, and performance feedback loops that keep momentum.</p>
+    <p>We build brands that feel human. From your voice and visuals to launch calendars and creative production, our process blends research, positioning, and world-class copy so every touchpoint aligns beautifully.</p>
+    <p>Whether you’re an emerging startup or a household name, we design content systems that scale—clear messaging, campaign concepts, and creative direction that turns ideas into lasting impact.</p>
   </section>
 </main>
 
 <script>
-  // Horizontal menu toggle (no external files needed)
+  // Menu toggle JS
   (function(){
     const body=document.body,
           btn=document.getElementById('menuBtn'),
@@ -117,21 +230,17 @@
     btn.addEventListener('click', ()=> body.classList.contains('menu-open') ? shut() : open());
     close.addEventListener('click', shut);
 
-    // Click outside closes
     document.addEventListener('click', e=>{
       if(!body.classList.contains('menu-open')) return;
       if(e.target.closest('#menuBar') || e.target.closest('#menuBtn')) return;
       shut();
     });
 
-    // Esc closes
     document.addEventListener('keydown', e=>{ if(e.key==='Escape') shut(); });
 
-    // Clicking a link closes
     bar.addEventListener('click', e=>{ if(e.target.closest('.menu-link')) shut(); });
   })();
 </script>
 </body>
 </html>
-
 
