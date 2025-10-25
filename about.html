@@ -7,15 +7,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Poppins:wght@400&family=Parisienne&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
   <style>
-    html,body{margin:0;padding:0;background:#fff;font-family:'Playfair Display',serif;}
-    .navbar{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;border-bottom:1px solid #eaeaea;}
-    .navbar img{height:36px;}
-    nav a{font-family:'Poppins',sans-serif;margin:0 12px;text-decoration:none;color:#000;}
-    nav a.active::after,nav a:hover::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:2px;background:#000;}
-    .ceo-note{display:flex;align-items:center;gap:20px;padding:40px;text-align:left;}
-    .ceo-note img{width:150px;height:150px;border-radius:50%;object-fit:cover;}
-    .signature-text{text-align:center;font-family:'Parisienne',cursive;font-size:2rem;margin-top:24px;}
-    @media(max-width:768px){.ceo-note{flex-direction:column;text-align:center;}}
+    :root { --text:#000; --bg:#fff; --accent:#000; }
+    html, body { margin:0; padding:0; background:var(--bg); font-family:'Playfair Display', serif; }
+    .navbar{ position:sticky; top:0; z-index:1000; background:var(--bg); border-bottom:1px solid #eaeaea; display:flex; align-items:center; justify-content:space-between; padding:10px 20px; }
+    .navbar .brand img{ height:36px; }
+    .navbar nav a{ font-family:'Poppins', sans-serif; text-decoration:none; color:var(--text); margin:0 12px; position:relative; }
+    .navbar nav a.active::after,.navbar nav a:hover::after{ content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px; background:var(--accent); }
+    .section{ max-width:1100px; margin:0 auto; padding:20px; }
+    .signature-text{ text-align:center; font-family:'Parisienne', cursive; font-size:2rem; margin:24px 0; }
+    .ceo-note{ display:flex; align-items:center; gap:20px; padding:20px; text-align:left; }
+    .ceo-note img{ width:160px; height:160px; border-radius:50%; object-fit:cover; }
+    .ceo-note p{ font-family:'Poppins', sans-serif; font-size:1.05rem; margin:0; line-height:1.6; }
+    @media(max-width:768px){ .ceo-note{ flex-direction:column; text-align:center; } .navbar nav a{ margin:0 8px; } }
   </style>
 </head>
 <body>
@@ -27,15 +30,25 @@
       <a href="./services.html">Services</a>
       <a href="mailto:siyana.deveaux@writemysocials.com.au">Contact</a>
     </nav>
+    <div class="social-icons" style="display:flex;gap:15px;font-size:1.2rem;">
+      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/writemysocials"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@writemysocials"><i class="fab fa-tiktok"></i></a>
+    </div>
   </header>
 
-  <main>
+  <main class="section">
     <h1 class="signature-text">About</h1>
+
     <div class="ceo-note">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/7b43c48e-35fc-407e-b052-0f76a4d0a069.jpg" alt="Siyana Deveaux" />
-      <p>Meet our CEO ♡ She works hard to ensure your brand sees results!<br><em>“With love for your brand from Siyana Deveaux.”</em></p>
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/7b43c48e-35fc-407e-b052-0f76a4d0a069.jpg" alt="Siyana Deveaux, CEO"/>
+      <p>
+        Meet our CEO ♡ She works hard to ensure your brand sees results!<br>
+        <em>“With love for your brand from Siyana Deveaux.”</em>
+      </p>
     </div>
-    <p style="font-family:'Poppins',sans-serif;text-align:center;max-width:800px;margin:auto;">
+
+    <p style="font-family:'Poppins', sans-serif; max-width:900px;">
       At Write My Socials, we turn brand stories into best sellers by shaping bold, personality-driven strategies. From voice and messaging to campaigns and experiences, our work is rooted in authenticity and results.
     </p>
   </main>
