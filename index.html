@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>WriteMySocials — Home</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
   html,body{
     margin:0;
@@ -12,6 +12,7 @@
     background:#fff;
     overflow-x:hidden;
     font-family:'Poppins',sans-serif;
+    color:#111;
   }
 
   /* ===== MENU (white background with black text) ===== */
@@ -23,13 +24,14 @@
     background:#fff;
     border:1px solid #000;
     color:#000;
-    padding:6px 12px;
+    padding:8px 16px;
     border-radius:999px;
     font-family:'Poppins',sans-serif;
-    font-size:.85rem;
+    font-size:.9rem;
+    font-weight:500;
     letter-spacing:.12em;
     cursor:pointer;
-    transition:background .2s,color .2s,border-color .2s;
+    transition:background .25s,color .25s,border-color .25s;
   }
   .menu-btn:hover{
     background:#000;
@@ -47,13 +49,13 @@
     color:#000;
     border-bottom:1px solid rgba(0,0,0,.15);
     transform:translateY(-100%);
-    transition:transform .35s ease;
+    transition:transform .4s ease;
   }
   body.menu-open .menu-bar{transform:translateY(0);}
   .menu-inner{
     max-width:1200px;
     margin:0 auto;
-    padding:22px 18px; /* increased padding for more spacing */
+    padding:28px 20px; /* more vertical spacing */
     display:flex;
     gap:4vw;
     align-items:center;
@@ -66,14 +68,14 @@
   }
   .menu-link{
     font-family:'Playfair Display',serif;
-    font-weight:500;
-    font-size:clamp(1.2rem,3.5vw,2rem);
+    font-weight:600;
+    font-size:clamp(1.3rem,3.5vw,2.2rem);
     color:#000;
     text-decoration:none;
     position:relative;
     padding:.15rem .25rem;
     white-space:nowrap;
-    letter-spacing:0.03em;
+    letter-spacing:0.02em;
   }
   .menu-link::after{
     content:"";
@@ -85,7 +87,7 @@
     background:rgba(0,0,0,.3);
     transform:scaleX(0);
     transform-origin:left;
-    transition:transform .25s ease;
+    transition:transform .3s ease;
   }
   .menu-link:hover::after{transform:scaleX(1);}
   .close-pill{
@@ -107,46 +109,47 @@
   }
 
   /* ===== Page Content ===== */
-  main{margin-top:100px;} /* extra space below the menu */
+  main{margin-top:110px;} /* more space below the menu */
   .logo{
     display:block;
-    margin:70px auto 0;
-    max-width:320px;
+    margin:80px auto 0;
+    max-width:340px;
     width:60vw;
     height:auto;
   }
   .mission{
     font-family:'Poppins',sans-serif;
-    font-weight:400;
-    font-size:1rem; /* smaller writing */
+    font-weight:500;
+    font-size:1.1rem; /* slightly larger */
     color:#111;
-    padding:24px 20px;
+    padding:32px 20px;
     text-align:center;
     max-width:900px;
-    margin:20px auto;
+    margin:30px auto;
+    line-height:1.7;
     letter-spacing:0.02em;
   }
 
   /* Work samples marquee */
-  .marquee{overflow:hidden;white-space:nowrap;margin:40px 0;}
+  .marquee{overflow:hidden;white-space:nowrap;margin:50px 0;}
   .track{display:inline-flex;animation:scroll-left 30s linear infinite;}
   @keyframes scroll-left{
     0%{transform:translateX(0);}
     100%{transform:translateX(-50%);}
   }
   .work{
-    height:280px;
+    height:300px;
     margin:0 18px;
     opacity:0;
     transform:translateY(20px);
-    animation:fadeInUp 1s ease forwards;
+    animation:fadeInUp 1.2s ease forwards;
   }
   .work:nth-child(1){animation-delay:.2s;}
   .work:nth-child(2){animation-delay:.4s;}
   .work:nth-child(3){animation-delay:.6s;}
   .work:nth-child(4){animation-delay:.8s;}
   @keyframes fadeInUp{
-    0%{opacity:0;transform:translateY(20px);}
+    0%{opacity:0;transform:translateY(25px);}
     100%{opacity:1;transform:translateY(0);}
   }
   @media(max-width:768px){.work{height:180px;margin:0 10px;}}
@@ -154,20 +157,20 @@
   /* Copy under marquee */
   .copy{
     max-width:900px;
-    margin:30px auto 80px;
+    margin:50px auto 100px;
     padding:0 20px;
     font-family:'Poppins',sans-serif;
-    line-height:1.8;
-    font-size:0.95rem;
-    font-weight:300;
+    line-height:1.9;
+    font-size:1rem;
+    font-weight:400;
     color:#222;
     letter-spacing:0.02em;
   }
   .copy h2{
     font-family:'Playfair Display',serif;
-    font-weight:600;
-    font-size:clamp(1.5rem,3vw,2rem);
-    margin:.2rem 0 12px;
+    font-weight:700;
+    font-size:clamp(1.6rem,3vw,2.2rem);
+    margin:.2rem 0 14px;
     color:#000;
   }
 </style>
@@ -211,8 +214,8 @@
   <!-- Copy under marquee -->
   <section class="copy">
     <h2>Strategy. Story. Social—Done Seamlessly.</h2>
-    <p>We build brands that feel human. From your voice and visuals to launch calendars and creative production, our process blends research, positioning, and world-class copy so every touchpoint aligns beautifully.</p>
-    <p>Whether you’re an emerging startup or a household name, we design content systems that scale—clear messaging, campaign concepts, and creative direction that turns ideas into lasting impact.</p>
+    <p>We craft brands that feel human and memorable. From tone to timing, we combine creative intuition with strategic insight, ensuring every touchpoint looks, sounds, and feels right.</p>
+    <p>Our approach is layered: strategy meets storytelling, copy meets clarity, and design meets conversion. The result is not just presence—but personality, impact, and growth.</p>
   </section>
 </main>
 
@@ -243,4 +246,3 @@
 </script>
 </body>
 </html>
-
