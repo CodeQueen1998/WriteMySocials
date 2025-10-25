@@ -1,129 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>WriteMySocials — Home</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Poppins:wght@400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Poppins:wght@400&display=swap" rel="stylesheet"/>
 <style>
-  html,body{margin:0;padding:0;background:#fff;font-family:'Playfair Display',serif;overflow-x:hidden;}
-  .intro{position:fixed;inset:0;background:#000;z-index:2000;opacity:1;transition:opacity .8s ease .15s;}
-  body.reveal .intro{opacity:0;pointer-events:none;visibility:hidden;}
+  html,body{margin:0;padding:0;background:#fff;overflow-x:hidden;font-family:'Playfair Display',serif}
+  /* Soft black intro so nothing "pops" */
+  .intro{position:fixed;inset:0;background:#000;z-index:2000;opacity:1;transition:opacity .7s ease .15s}
+  body.reveal .intro{opacity:0;pointer-events:none;visibility:hidden}
 
-  /* MENU BUTTON */
+  /* ===== Corner MENU trigger (top-left) ===== */
   .menu-btn{
-    position:fixed;top:18px;right:22px;z-index:1200;
-    background:transparent;border:1px solid rgba(255,255,255,.55);
-    color:#fff;padding:6px 12px;border-radius:999px;
-    font-family:'Poppins',sans-serif;font-size:.85rem;letter-spacing:.12em;
-    cursor:pointer;mix-blend:difference;transition:background .2s,color .2s,border-color .2s;
-  }
-  .menu-btn:hover{background:#fff;color:#000;border-color:#fff;}
-
-  /* MENU OVERLAY */
-  .menu{
-    position:fixed;inset:0;z-index:1199;display:none;opacity:0;pointer-events:none;
-    background:rgba(0,0,0,.85);backdrop-filter:blur(8px) saturate(130%);
-    transition:opacity .35s ease;
-  }
-  .menu.open{display:block;opacity:1;pointer-events:auto;}
-  .menu-inner{max-width:1200px;margin:0 auto;padding:28px 24px 60px;height:100%;display:flex;flex-direction:column;}
-  .menu-top{display:flex;justify-content:flex-end;}
-  .close-btn{
-    background:transparent;border:1px solid rgba(255,255,255,.45);
-    color:#fff;padding:6px 12px;border-radius:999px;
+    position:fixed;top:18px;left:20px;z-index:1200;
+    background:transparent;border:1px solid rgba(0,0,0,.35);
+    color:#000;padding:6px 12px;border-radius:999px;
     font-family:'Poppins',sans-serif;font-size:.85rem;letter-spacing:.12em;cursor:pointer;
+    transition:background .2s,color .2s,border-color .2s;
   }
-  .menu-links{margin:auto 0;display:flex;gap:7vw;flex-wrap:wrap;align-items:center;justify-content:center;}
+  .menu-btn:hover{background:#000;color:#fff;border-color:#000}
+
+  /* ===== Horizontal drop-down menu bar ===== */
+  .menu-bar{
+    position:fixed;left:0;right:0;top:0;z-index:1100;
+    background:#000;color:#fff;border-bottom:1px solid rgba(255,255,255,.15);
+    transform:translateY(-100%);transition:transform .35s ease;
+  }
+  body.menu-open .menu-bar{transform:translateY(0)}
+  .menu-inner{max-width:1200px;margin:0 auto;padding:16px 18px;display:flex;gap:4vw;align-items:center}
+  .menu-links{display:flex;gap:5vw;align-items:center;flex:1}
   .menu-link{
-    font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3.4rem);
-    color:#fff;text-decoration:none;position:relative;padding:.15em .25em;
+    font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3.8vw,2.4rem);
+    color:#fff;text-decoration:none;position:relative;padding:.15rem .25rem;white-space:nowrap;
   }
   .menu-link::after{
-    content:"";position:absolute;left:.25em;right:.25em;bottom:-6px;height:1px;
-    background:rgba(255,255,255,.35);transform:scaleX(0);transform-origin:left;transition:transform .25s;
+    content:"";position:absolute;left:.25rem;right:.25rem;bottom:-6px;height:1px;background:rgba(255,255,255,.4);
+    transform:scaleX(0);transform-origin:left;transition:transform .25s ease;
   }
-  .menu-link:hover::after{transform:scaleX(1);}
-  .menu-sub{text-align:center;color:#bbb;font-family:'Poppins',sans-serif;font-size:.95rem;letter-spacing:.05em;margin-top:30px;}
-  body.lock{overflow:hidden;}
+  .menu-link:hover::after{transform:scaleX(1)}
+  .menu-right{display:flex;gap:12px;align-items:center}
+  .close-pill{
+    background:transparent;border:1px solid rgba(255,255,255,.45);color:#fff;padding:6px 12px;border-radius:999px;
+    font-family:'Poppins',sans-serif;font-size:.8rem;letter-spacing:.1em;cursor:pointer;
+  }
 
-  /* CONTENT */
-  .logo{display:block;margin:50px auto 0;max-width:320px;width:60vw;height:auto;}
-  .mission{font-family:'Poppins',sans-serif;font-size:1.15rem;padding:24px 20px;text-align:center;max-width:980px;margin:0 auto;}
+  /* Content */
+  .logo{display:block;margin:60px auto 0;max-width:320px;width:60vw;height:auto}
+  .mission{font-family:'Poppins',sans-serif;font-size:1.15rem;padding:24px 20px;text-align:center;max-width:980px;margin:0 auto}
 
-  .marquee{overflow:hidden;white-space:nowrap;margin:30px 0;}
-  .marquee-track{display:inline-flex;animation:scroll-left 30s linear infinite;}
+  /* Marquee 1 */
+  .marquee{overflow:hidden;white-space:nowrap;margin:30px 0}
+  .track{display:inline-flex;animation:scroll-left 30s linear infinite}
   @keyframes scroll-left{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-  .work{height:300px;margin:0 18px;}
+  .work{height:300px;margin:0 18px;opacity:0;transform:translateY(10px)}
+  body.reveal .work{transition:opacity .6s ease,transform .6s ease}
+  body.reveal .work.w1{opacity:1;transform:none;transition-delay:.35s}
+  body.reveal .work.w2{opacity:1;transform:none;transition-delay:.55s}
+  body.reveal .work.w3{opacity:1;transform:none;transition-delay:.75s}
+  body.reveal .work.w4{opacity:1;transform:none;transition-delay:.95s}
 
-  .copy{max-width:980px;margin:40px auto;padding:0 20px 10px;font-family:'Poppins',sans-serif;line-height:1.8;}
-  .copy h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.3rem);}
-  .marquee2 .work{height:260px;}
+  /* Long copy & Marquee 2 */
+  .copy{max-width:980px;margin:40px auto;padding:0 20px 10px;font-family:'Poppins',sans-serif;line-height:1.8}
+  .copy h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.3rem);margin:0 0 10px}
+  .marquee2 .work{height:260px;margin:0 14px}
 
-  .ticker{position:fixed;bottom:0;width:100%;background:#000;color:#fff;font-family:'Poppins',sans-serif;font-size:1rem;white-space:nowrap;overflow:hidden;z-index:999;border-top:1px solid #000;}
-  .ticker span{display:inline-block;padding-left:100%;animation:tag 20s linear infinite;}
+  /* Bottom ticker */
+  .ticker{position:fixed;bottom:0;width:100%;background:#000;color:#fff;font-family:'Poppins',sans-serif;font-size:1rem;white-space:nowrap;overflow:hidden;z-index:999;border-top:1px solid #000}
+  .ticker span{display:inline-block;padding-left:100%;animation:tag 20s linear infinite}
   @keyframes tag{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+
+  @media(max-width:768px){
+    .work{height:180px;margin:0 10px}
+    .marquee2 .work{height:180px}
+  }
 </style>
 </head>
 <body>
 
 <div class="intro"></div>
 
-<button class="menu-btn" id="menuBtn">MENU</button>
-<nav class="menu" id="menu">
+<!-- MENU trigger & bar -->
+<button class="menu-btn" id="menuBtn" aria-controls="menuBar" aria-expanded="false">MENU</button>
+<nav class="menu-bar" id="menuBar" aria-hidden="true">
   <div class="menu-inner">
-    <div class="menu-top"><button class="close-btn" id="closeBtn">CLOSE</button></div>
-    <div class="menu-links">
-      <a class="menu-link" href="./">HOME</a>
-      <a class="menu-link" href="./about.html">ABOUT</a>
-      <a class="menu-link" href="./services.html">SERVICES</a>
-      <a class="menu-link" href="mailto:siyana.deveaux@writemysocials.com.au">CONTACT</a>
+    <div class="menu-links" role="menubar">
+      <a class="menu-link" href="./" role="menuitem">HOME</a>
+      <a class="menu-link" href="./about.html" role="menuitem">ABOUT</a>
+      <a class="menu-link" href="./services.html" role="menuitem">SERVICES</a>
+      <a class="menu-link" href="mailto:siyana.deveaux@writemysocials.com.au" role="menuitem">CONTACT</a>
     </div>
-    <div class="menu-sub">Write My Socials — Strategy • Story • Social</div>
+    <div class="menu-right">
+      <button class="close-pill" id="closeBtn">CLOSE</button>
+    </div>
   </div>
 </nav>
 
 <main>
-  <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" class="logo" alt="Logo">
+  <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" class="logo" alt="Logo"/>
   <p class="mission">“Write My Socials helps modern brands—from startups to established names—shape bold, personality-driven creative strategies that connect, convert, and stay true to their voice.”</p>
 
   <section class="marquee">
-    <div class="marquee-track">
-      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg">
-      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg">
-      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg">
-      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg">
+    <div class="track">
+      <img class="work w1" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Sample 1" loading="eager" decoding="async"/>
+      <img class="work w2" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Sample 2" loading="eager" decoding="async"/>
+      <img class="work w3" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Sample 3" loading="lazy" decoding="async"/>
+      <img class="work w4" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Sample 4" loading="lazy" decoding="async"/>
+      <!-- duplicate for seamless loop -->
+      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="" loading="lazy" decoding="async"/>
+      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="" loading="lazy" decoding="async"/>
+      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="" loading="lazy" decoding="async"/>
+      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="" loading="lazy" decoding="async"/>
     </div>
   </section>
 
   <section class="copy">
     <h2>Strategy. Story. Social—Done Seamlessly.</h2>
-    <p>We build brands that feel human. From your voice and visuals to launch calendars and creative production, our process blends research, positioning, and world-class copy so every touchpoint aligns.</p>
-    <p>Whether you’re an emerging startup or a household name, we design content systems that scale.</p>
+    <p>We build brands that feel human. From voice and visuals to launch calendars and creative production, our process blends research, positioning, and world-class copy so every touchpoint aligns.</p>
+    <p>Whether you’re an emerging startup or a household name, we design content systems that scale—messaging matrices, creator briefs, campaign concepts, and performance feedback loops that keep momentum.</p>
   </section>
 
   <section class="marquee marquee2">
-    <div class="marquee-track">
-      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/success.jpg">
-      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/success.jpg">
-      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/success.jpg">
+    <div class="track">
+      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/success.jpg" alt="Success 1" loading="lazy" decoding="async"/>
+      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/success.jpg" alt="Success 2" loading="lazy" decoding="async"/>
+      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/success.jpg" alt="Success 3" loading="lazy" decoding="async"/>
+      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/success.jpg" alt="Success 4" loading="lazy" decoding="async"/>
     </div>
   </section>
 </main>
 
-<div class="ticker"><span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — </span></div>
+<div class="ticker"><span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span></div>
 
 <script>
-  setTimeout(()=>document.body.classList.add('reveal'),900);
-  const btn=document.getElementById('menuBtn');
-  const close=document.getElementById('closeBtn');
-  const menu=document.getElementById('menu');
-  btn.addEventListener('click',()=>{document.body.classList.add('lock');menu.classList.add('open');});
-  close.addEventListener('click',()=>{document.body.classList.remove('lock');menu.classList.remove('open');});
-  menu.addEventListener('click',e=>{if(!e.target.closest('.menu-inner')){document.body.classList.remove('lock');menu.classList.remove('open');}});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.body.classList.remove('lock');menu.classList.remove('open');}});
+  // Smooth reveal (prevents "bonk" pop-in)
+  (function(){
+    const MIN=400, MAX=1300, start=performance.now(), first=document.querySelector('.work.w1');
+    let ready=false; function show(){document.body.classList.add('reveal')}
+    function maybe(){ if(ready && performance.now()-start>=MIN) show(); }
+    if(first && first.complete){ ready=true; maybe(); } else if(first){ first.addEventListener('load',()=>{ready=true; maybe();},{once:true}); }
+    setTimeout(show, MAX);
+  })();
+
+  // Menu logic (horizontal bar)
+  (function(){
+    const body=document.body, btn=document.getElementById('menuBtn'), bar=document.getElementById('menuBar'), close=document.getElementById('closeBtn');
+    const open=()=>{ body.classList.add('menu-open'); btn.setAttribute('aria-expanded','true'); bar.setAttribute('aria-hidden','false'); };
+    const shut=()=>{ body.classList.remove('menu-open'); btn.setAttribute('aria-expanded','false'); bar.setAttribute('aria-hidden','true'); };
+    btn.addEventListener('click', ()=> body.classList.contains('menu-open') ? shut() : open());
+    close.addEventListener('click', shut);
+    document.addEventListener('click', e=>{ if(!body.classList.contains('menu-open')) return;
+      if(e.target.closest('#menuBar') || e.target.closest('#menuBtn')) return; shut(); });
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') shut(); });
+    // close when clicking a link
+    bar.addEventListener('click', e=>{ if(e.target.closest('.menu-link')) shut(); });
+  })();
 </script>
 </body>
 </html>
+
 
 
