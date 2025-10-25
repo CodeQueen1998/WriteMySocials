@@ -1,48 +1,137 @@
-/* === MENU: white bar with black text === */
-.menu-btn{
-  position:fixed;top:18px;left:20px;z-index:1200;
-  background:#fff;              /* white button */
-  border:1px solid #000;        /* black border */
-  color:#000;                   /* black text */
-  padding:6px 12px;border-radius:999px;
-  font-family:'Poppins',sans-serif;font-size:.85rem;letter-spacing:.12em;
-  cursor:pointer;transition:background .2s,color .2s,border-color .2s;
-}
-.menu-btn:hover{ background:#000; color:#fff; border-color:#000; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>WriteMySocials — Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Poppins:wght@400&display=swap" rel="stylesheet"/>
+<style>
+  html,body{margin:0;padding:0;background:#fff;overflow-x:hidden;font-family:'Playfair Display',serif}
 
-/* Horizontal dropdown bar */
-.menu-bar{
-  position:fixed;left:0;right:0;top:0;z-index:1100;
-  background:#fff;              /* white bar */
-  color:#000;                   /* black text as default */
-  border-bottom:1px solid rgba(0,0,0,.15);
-  transform:translateY(-100%);transition:transform .35s ease;
-}
-body.menu-open .menu-bar{ transform:translateY(0); }
+  /* ===== MENU (white with black text) ===== */
+  .menu-btn{
+    position:fixed;top:18px;left:20px;z-index:1200;
+    background:#fff;border:1px solid #000;color:#000;
+    padding:6px 12px;border-radius:999px;font-family:'Poppins',sans-serif;
+    font-size:.85rem;letter-spacing:.12em;cursor:pointer;
+    transition:background .2s,color .2s,border-color .2s;
+  }
+  .menu-btn:hover{background:#000;color:#fff;border-color:#000}
 
-.menu-inner{ max-width:1200px;margin:0 auto;padding:16px 18px;display:flex;gap:4vw;align-items:center; }
-.menu-links{ display:flex;gap:5vw;align-items:center;flex:1; }
+  .menu-bar{
+    position:fixed;left:0;right:0;top:0;z-index:1100;
+    background:#fff;color:#000;border-bottom:1px solid rgba(0,0,0,.15);
+    transform:translateY(-100%);transition:transform .35s ease;
+  }
+  body.menu-open .menu-bar{transform:translateY(0)}
+  .menu-inner{max-width:1200px;margin:0 auto;padding:16px 18px;display:flex;gap:4vw;align-items:center}
+  .menu-links{display:flex;gap:5vw;align-items:center;flex:1}
+  .menu-link{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(1.4rem,3.8vw,2.4rem);
+    color:#000;text-decoration:none;position:relative;padding:.15rem .25rem;white-space:nowrap;
+  }
+  .menu-link::after{
+    content:"";position:absolute;left:.25rem;right:.25rem;bottom:-6px;height:1px;
+    background:rgba(0,0,0,.35);transform:scaleX(0);transform-origin:left;transition:transform .25s ease;
+  }
+  .menu-link:hover::after{transform:scaleX(1)}
+  .close-pill{
+    background:#fff;border:1px solid rgba(0,0,0,.45);color:#000;
+    padding:6px 12px;border-radius:999px;font-family:'Poppins',sans-serif;
+    font-size:.8rem;letter-spacing:.1em;cursor:pointer;transition:all .2s;
+  }
+  .close-pill:hover{background:#000;color:#fff;border-color:#000}
 
-.menu-link{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(1.4rem,3.8vw,2.4rem);
-  color:#000;                   /* black links */
-  text-decoration:none;position:relative;padding:.15rem .25rem;white-space:nowrap;
-}
-.menu-link::after{
-  content:"";position:absolute;left:.25rem;right:.25rem;bottom:-6px;height:1px;
-  background:rgba(0,0,0,.35);   /* black-ish underline */
-  transform:scaleX(0);transform-origin:left;transition:transform .25s ease;
-}
-.menu-link:hover::after{ transform:scaleX(1); }
+  /* ===== Page content ===== */
+  .logo{display:block;margin:60px auto 0;max-width:320px;width:60vw;height:auto}
+  .mission{font-family:'Poppins',sans-serif;font-size:1.15rem;padding:24px 20px;text-align:center;max-width:980px;margin:0 auto}
 
-.close-pill{
-  background:#fff;              /* white pill */
-  border:1px solid rgba(0,0,0,.45);
-  color:#000;                   /* black text */
-  padding:6px 12px;border-radius:999px;
-  font-family:'Poppins',sans-serif;font-size:.8rem;letter-spacing:.1em;cursor:pointer;
-}
-.close-pill:hover{ background:#000; color:#fff; border-color:#000; }
+  /* Work samples marquee (kept) */
+  .marquee{overflow:hidden;white-space:nowrap;margin:30px 0}
+  .track{display:inline-flex;animation:scroll-left 30s linear infinite}
+  @keyframes scroll-left{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .work{height:300px;margin:0 18px}
+  @media(max-width:768px){.work{height:180px;margin:0 10px}}
+
+  /* Copy directly under marquee */
+  .copy{max-width:980px;margin:24px auto 80px;padding:0 20px;font-family:'Poppins',sans-serif;line-height:1.8}
+  .copy h2{font-size:clamp(1.6rem,4vw,2.3rem);margin:.2rem 0 10px}
+</style>
+</head>
+<body>
+
+<!-- MENU -->
+<button class="menu-btn" id="menuBtn" aria-expanded="false">MENU</button>
+<nav class="menu-bar" id="menuBar" aria-hidden="true">
+  <div class="menu-inner">
+    <div class="menu-links" role="menubar">
+      <a class="menu-link" href="./" role="menuitem">HOME</a>
+      <a class="menu-link" href="./about.html" role="menuitem">ABOUT</a>
+      <a class="menu-link" href="./services.html" role="menuitem">SERVICES</a>
+      <a class="menu-link" href="mailto:siyana.deveaux@writemysocials.com.au" role="menuitem">CONTACT</a>
+    </div>
+    <button class="close-pill" id="closeBtn">CLOSE</button>
+  </div>
+</nav>
+
+<main>
+  <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" class="logo" alt="WriteMySocials logo"/>
+
+  <p class="mission">“Write My Socials helps modern brands—from startups to established names—shape bold, personality-driven creative strategies that connect, convert, and stay true to their voice.”</p>
+
+  <!-- Work samples marquee -->
+  <section class="marquee" aria-label="work samples">
+    <div class="track">
+      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work sample 1" loading="eager" decoding="async"/>
+      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work sample 2" loading="eager" decoding="async"/>
+      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work sample 3" loading="lazy" decoding="async"/>
+      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work sample 4" loading="lazy" decoding="async"/>
+      <!-- duplicate for seamless loop -->
+      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="" loading="lazy" decoding="async"/>
+      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="" loading="lazy" decoding="async"/>
+      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="" loading="lazy" decoding="async"/>
+      <img class="work" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="" loading="lazy" decoding="async"/>
+    </div>
+  </section>
+
+  <!-- Copy under marquee -->
+  <section class="copy">
+    <h2>Strategy. Story. Social—Done Seamlessly.</h2>
+    <p>We build brands that feel human. From voice and visuals to launch calendars and creative production, our process blends research, positioning, and world-class copy so every touchpoint aligns.</p>
+    <p>Whether you’re an emerging startup or a household name, we design content systems that scale—messaging matrices, creator briefs, campaign concepts, and performance feedback loops that keep momentum.</p>
+  </section>
+</main>
+
+<script>
+  // Horizontal menu toggle (no external files needed)
+  (function(){
+    const body=document.body,
+          btn=document.getElementById('menuBtn'),
+          bar=document.getElementById('menuBar'),
+          close=document.getElementById('closeBtn');
+
+    const open=()=>{body.classList.add('menu-open');btn.setAttribute('aria-expanded','true');bar.setAttribute('aria-hidden','false');};
+    const shut =()=>{body.classList.remove('menu-open');btn.setAttribute('aria-expanded','false');bar.setAttribute('aria-hidden','true');};
+
+    btn.addEventListener('click', ()=> body.classList.contains('menu-open') ? shut() : open());
+    close.addEventListener('click', shut);
+
+    // Click outside closes
+    document.addEventListener('click', e=>{
+      if(!body.classList.contains('menu-open')) return;
+      if(e.target.closest('#menuBar') || e.target.closest('#menuBtn')) return;
+      shut();
+    });
+
+    // Esc closes
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') shut(); });
+
+    // Clicking a link closes
+    bar.addEventListener('click', e=>{ if(e.target.closest('.menu-link')) shut(); });
+  })();
+</script>
+</body>
+</html>
 
 
