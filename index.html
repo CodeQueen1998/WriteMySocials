@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WriteMySocials</title>
+  <title>WriteMySocials — Home</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Poppins:wght@400&family=Parisienne&display=swap" rel="stylesheet"/>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
   <style>
     html, body {
       margin: 0;
@@ -17,8 +16,8 @@
       font-family: 'Playfair Display', serif;
     }
 
-    /* === NAVBAR === */
-    .navbar{
+    /* ===== NAVBAR ===== */
+    .navbar {
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -29,25 +28,26 @@
       justify-content: space-between;
       padding: 10px 20px;
     }
-    .navbar .brand img{ height:36px; width:auto; }
-    .navbar nav a{
-      font-family:'Poppins', sans-serif;
-      text-decoration:none;
-      color:#000;
-      margin:0 12px;
-      position:relative;
+    .navbar .brand img { height: 36px; width: auto; }
+    .navbar nav a {
+      font-family: 'Poppins', sans-serif;
+      text-decoration: none;
+      color: #000;
+      margin: 0 12px;
+      position: relative;
     }
     .navbar nav a.active::after,
-    .navbar nav a:hover::after{
-      content:"";
-      position:absolute;
-      left:0; right:0; bottom:-6px;
-      height:2px; background:#000;
+    .navbar nav a:hover::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -6px;
+      height: 2px;
+      background: #000;
     }
-    .social-icons{ display:flex; gap:15px; font-size:1.3rem; }
-    .social-icons a{ color:#000; text-decoration:none; }
+    .social-icons { display: flex; gap: 15px; font-size: 1.3rem; }
+    .social-icons a { color: #000; text-decoration: none; }
 
-    /* === CONTENT STYLING === */
+    /* ===== MAIN CONTENT ===== */
     .logo {
       display: block;
       margin: 40px auto 0;
@@ -61,34 +61,12 @@
       color: #000;
       margin-top: 15px;
     }
-
     .mission-statement {
       font-family: 'Poppins', sans-serif;
       font-size: 1.2rem;
       padding: 60px 20px 20px;
       text-align: center;
     }
-
-    .ceo-note {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 40px 20px;
-      text-align: left;
-    }
-    .ceo-note img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    .ceo-note p {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.1rem;
-      margin: 0;
-      line-height: 1.4;
-    }
-
     .marquee-container {
       overflow: hidden;
       white-space: nowrap;
@@ -103,33 +81,9 @@
       margin: 0 20px;
       transition: transform 0.4s ease;
     }
-
     @keyframes scroll-left {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
-    }
-
-    .services-section {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.95rem;
-      padding: 0 20px 40px;
-      line-height: 1.6;
-    }
-    .services-section h2 {
-      font-size: 1.3rem;
-      text-align: center;
-      margin-top: 40px;
-    }
-    .cta-button {
-      display: block;
-      width: fit-content;
-      margin: 30px auto;
-      padding: 10px 20px;
-      background: #000;
-      color: #fff;
-      text-decoration: none;
-      font-family: 'Poppins', sans-serif;
-      border-radius: 5px;
     }
 
     .bottom-tagline {
@@ -154,66 +108,51 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(-100%); }
     }
-
     @media (max-width: 768px) {
-      .navbar nav a{ margin:0 8px; }
-      .logo{ width:80vw; }
-      .signature-text{ font-size:1.5rem; }
-      .mission-statement{ font-size:1rem; padding-top:100px; }
-      .marquee-content img{ height:180px; margin:0 10px; }
-      .ceo-note{ flex-direction:column; text-align:center; }
-      .ceo-note img{ margin-bottom:10px; }
-      .services-section{ font-size:0.9rem; }
+      .navbar nav a { margin: 0 8px; }
+      .logo { width: 80vw; }
+      .signature-text { font-size: 1.5rem; }
+      .mission-statement { font-size: 1rem; padding-top: 100px; }
+      .marquee-content img { height: 180px; margin: 0 10px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
+  <!-- ===== NAVBAR ===== -->
   <header class="navbar">
     <div class="brand">
-      <a href="./">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="WriteMySocials mini logo">
-      </a>
+      <a href="./"><img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="WriteMySocials mini logo"></a>
     </div>
-
     <nav>
       <a href="./" class="active">Home</a>
       <a href="./about.html">About</a>
       <a href="./services.html">Services</a>
       <a href="mailto:siyana.deveaux@writemysocials.com.au">Contact</a>
     </nav>
-
     <div class="social-icons">
-      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-      <a href="https://www.instagram.com/writemysocials" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/writemysocials"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@writemysocials"><i class="fab fa-tiktok"></i></a>
     </div>
   </header>
 
-  <!-- PAGE CONTENT START -->
-  <main>
+  <!-- ===== PAGE CONTENT ===== -->
+  <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" class="logo" alt="WriteMySocials Logo">
+  <div class="signature-text">Write My Socials</div>
 
-    <!-- ✅ For index.html -->
-    <!-- Replace this section per page -->
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" class="logo" />
-    <div class="signature-text">Write My Socials</div>
+  <div class="mission-statement">
+    "Write My Socials helps modern brands—from startups to established names—shape bold, personality-driven creative strategies that connect, convert, and stay true to their voice. Every idea, every word, tells a story."
+  </div>
 
-    <div class="mission-statement">
-      "Write My Socials helps modern brands—from startups to established names—shape bold, personality-driven creative strategies that connect, convert, and stay true to their voice. Every idea, every word, tells a story."
+  <div class="marquee-container">
+    <div class="marquee-content">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4">
     </div>
-
-    <div class="marquee-container">
-      <div class="marquee-content">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1" />
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2" />
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3" />
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4" />
-      </div>
-    </div>
-
-  </main>
-  <!-- PAGE CONTENT END -->
+  </div>
 
   <div class="bottom-tagline">
     <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
@@ -221,4 +160,5 @@
 
 </body>
 </html>
+
 
