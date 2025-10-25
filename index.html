@@ -54,20 +54,11 @@
     .marquee-container { overflow: hidden; white-space: nowrap; margin: 30px 0; }
     .marquee-content { display: inline-flex; animation: scroll-left 30s linear infinite; }
     .marquee-content img { height: 300px; margin: 0 20px; transition: transform 0.4s ease; }
-    @keyframes scroll-left { 0% {transform: translateX(0);} 100% {transform: translateX(-50%);} }
+    @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
     .bottom-tagline {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background: #000;
-      color: #fff;
-      font-family: 'Poppins', sans-serif;
-      font-size: 1rem;
-      white-space: nowrap;
-      overflow: hidden;
-      z-index: 999;
-      border-top: 1px solid #000;
+      position: fixed; bottom: 0; width: 100%; background: #000; color: #fff;
+      font-family: 'Poppins', sans-serif; font-size: 1rem; white-space: nowrap; overflow: hidden; z-index: 999; border-top: 1px solid #000;
     }
     .bottom-tagline span { display: inline-block; padding-left: 100%; animation: tagline-marquee 20s linear infinite; }
     @keyframes tagline-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
@@ -84,9 +75,9 @@
 <body>
 
   <div class="social-icons">
-    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/"><i class="fab fa-linkedin"></i></a>
-    <a href="https://www.instagram.com/writemysocials"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.tiktok.com/@writemysocials"><i class="fab fa-tiktok"></i></a>
+    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://www.instagram.com/writemysocials" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
   </div>
 
   <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="WriteMySocials Logo" class="logo" />
