@@ -255,35 +255,53 @@
   </div>
 
   <script>
-    // Simple hash-based page switching
-    const links = document.querySelectorAll('a[data-link]');
-    const pages = document.querySelectorAll('.page');
+    // Robust hash-based router with safe defaults
+    document.addEventListener('DOMContentLoaded', () => {
+      const pages = document.querySelectorAll('.page');
+      const navLinks = document.querySelectorAll('.navbar nav a[href^="#"]');
 
-    function setActiveLink(hash){
-      document.querySelectorAll('.navbar nav a').forEach(a=>{
-        a.classList.toggle('active', a.getAttribute('href') === hash);
+      function setActiveLink(hash){
+        document.querySelectorAll('.navbar nav a').forEach(a => {
+          const isHashLink = a.getAttribute('href')?.startsWith('#');
+          a.classList.toggle('active', isHashLink && a.getAttribute('href') === hash);
+        });
+      }
+
+      function show(hash){
+        // fallback to #home if target not found
+        const target = document.querySelector(hash) || document.querySelector('#home');
+        pages.forEach(p => p.classList.remove('active'));
+        if (target) target.classList.add('active');
+        setActiveLink(target ? ('#' + target.id) : '#home');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+
+      function showFromLocation(){
+        const hash = location.hash && document.querySelector(location.hash) ? location.hash : '#home';
+        if (!location.hash || hash !== location.hash) {
+          // Normalise the hash so reloads always land on a valid section
+          history.replaceState(null, '', hash);
+        }
+        show(hash);
+      }
+
+      // wire up in-page links
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          // allow default hash change behaviour; this handler is just for robustness on some browsers
+          const hash = link.getAttribute('href');
+          if (hash && hash.startsWith('#')) {
+            e.preventDefault();
+            history.pushState(null, '', hash);
+            show(hash);
+          }
+        });
       });
-    }
 
-    function showPageFromHash(){
-      const hash = window.location.hash || '#home';
-      pages.forEach(p => p.classList.remove('active'));
-      const target = document.querySelector(hash);
-      if(target){ target.classList.add('active'); }
-      setActiveLink(hash);
-      // scroll to top on navigation for better UX
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    window.addEventListener('hashchange', showPageFromHash);
-    links.forEach(l => l.addEventListener('click', (e)=>{
-      // allow default; hashchange handler will toggle pages
-    }));
-
-    // Initial load
-    showPageFromHash();
+      window.addEventListener('hashchange', showFromLocation);
+      showFromLocation();
+    });
   </script>
 </body>
 </html>
-
 
