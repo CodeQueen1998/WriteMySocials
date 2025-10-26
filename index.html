@@ -41,11 +41,16 @@
 
   /* ===== Layout & spacing ===== */
   .section{max-width:1100px;margin:0 auto;padding:0 20px}
-  .spacer-xl{height:120px}.spacer-lg{height:80px}.spacer-md{height:60px}
+  .spacer-xl{height:120px}
   .spacer-7cm{height:7cm;}
 
   /* ===== Logo ===== */
-  .logo{display:block;margin:120px auto 40px;max-width:350px;width:70vw}
+  .logo{
+    display:block;
+    margin:150px auto 50px; /* moved slightly lower */
+    max-width:350px;
+    width:70vw;
+  }
 
   /* ===== Quote image under the logo ===== */
   .hero-image{display:flex;justify-content:center;margin:0 auto}
@@ -55,11 +60,11 @@
   .circle-text{
     position:absolute;
     left:8vw;
-    top:calc(60vh - 9cm);
+    top:calc(60vh - 7cm); /* lowered slightly for better fit under logo */
     z-index:200;
     width:220px;height:220px;
     display:flex;align-items:center;justify-content:center;
-    overflow:visible; /* ensure nothing gets clipped */
+    overflow:visible;
   }
   .circle-text svg{width:100%;height:100%}
   .circle-text text{
@@ -74,15 +79,19 @@
     to{transform:rotate(360deg)}
   }
 
-  /* ===== Work marquee (full-bleed, slow & steady) ===== */
+  /* ===== Work marquee (smaller + slightly faster) ===== */
   .marquee-wrap{max-width:none;width:100vw;padding:0;margin:0}
   .marquee-container{overflow:hidden;white-space:nowrap}
   .marquee-content{
     display:inline-flex;
-    animation:scroll-left 35s linear infinite;
+    animation:scroll-left 25s linear infinite; /* faster (was 35s) */
   }
   .marquee-content img{
-    height:70vh;width:auto;margin:0 2vw;border-radius:8px;display:block;
+    height:55vh; /* smaller than before (was 70vh) */
+    width:auto;
+    margin:0 2vw;
+    border-radius:8px;
+    display:block;
   }
   @keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
@@ -108,9 +117,19 @@
 
   /* ===== Responsive adjustments ===== */
   @media(max-width:768px){
-    .circle-text{left:4vw;top:calc(100vw * 0.4 - 5cm);width:150px;height:150px}
-    .marquee-content img{height:60vh;margin:0 3vw}
-    .note-banner{top:-1.6cm;right:.5rem;width:min(95%,520px);height:3.2cm}
+    .logo{margin:130px auto 45px;} /* lower logo for mobile */
+    .circle-text{
+      left:4vw;
+      top:calc(100vw * 0.6); /* pushed lower on mobile to avoid clash */
+      width:150px;height:150px;
+    }
+    .marquee-content img{
+      height:45vh; /* smaller on mobile */
+      margin:0 3vw;
+    }
+    .note-banner{
+      top:-1.6cm;right:.5rem;width:min(95%,520px);height:3.2cm;
+    }
   }
 </style>
 </head>
@@ -167,10 +186,10 @@
   <div class="section marquee-wrap">
     <div class="marquee-container">
       <div class="marquee-content">
-        <img class="reveal-item" data-order="3.1" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1"/>
-        <img class="reveal-item" data-order="3.2" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2"/>
-        <img class="reveal-item" data-order="3.3" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3"/>
-        <img class="reveal-item" data-order="3.4" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4"/>
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1"/>
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2"/>
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3"/>
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4"/>
       </div>
     </div>
   </div>
