@@ -55,7 +55,7 @@
   .menu-inner{
     max-width:1200px;
     margin:0 auto;
-    padding:28px 20px; /* more vertical spacing */
+    padding:28px 20px;
     display:flex;
     gap:4vw;
     align-items:center;
@@ -109,23 +109,34 @@
   }
 
   /* ===== Page Content ===== */
-  main{margin-top:110px;} /* more space below the menu */
+  main{margin-top:110px;}
   .logo{
     display:block;
-    margin:80px auto 0;
+    margin:80px auto 20px;
     max-width:340px;
     width:60vw;
     height:auto;
   }
+
+  .feature-image{
+    display:block;
+    margin:20px auto 40px;
+    max-width:900px;
+    width:90%;
+    height:auto;
+    border-radius:12px;
+    object-fit:cover;
+  }
+
   .mission{
     font-family:'Poppins',sans-serif;
     font-weight:500;
-    font-size:1.1rem; /* slightly larger */
+    font-size:1.1rem;
     color:#111;
-    padding:32px 20px;
+    padding:0 20px 20px;
     text-align:center;
     max-width:900px;
-    margin:30px auto;
+    margin:0 auto;
     line-height:1.7;
     letter-spacing:0.02em;
   }
@@ -194,6 +205,9 @@
 <main>
   <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" class="logo" alt="WriteMySocials logo"/>
 
+  <!-- NEW FEATURE IMAGE -->
+  <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2013.37.56.png" class="feature-image" alt="WriteMySocials feature banner"/>
+
   <p class="mission">“Write My Socials helps modern brands—from startups to established names—shape bold, personality-driven creative strategies that connect, convert, and stay true to their voice.”</p>
 
   <!-- Work samples marquee -->
@@ -246,3 +260,4 @@
 </script>
 </body>
 </html>
+
