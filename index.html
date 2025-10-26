@@ -49,10 +49,7 @@
   /* ===== 95% quote image (DOUBLED SIZE) ===== */
   .hero-image{display:flex;justify-content:center;margin:0 auto}
   .hero-image img{
-    max-width:1800px;   /* doubled */
-    width:170%;         /* doubled */
-    height:auto;
-    display:block;
+    max-width:1800px; width:170%; height:auto; display:block;
   }
 
   /* ===== Marquee ===== */
@@ -79,28 +76,37 @@
   /* ===== Reveal base ===== */
   .reveal-item{opacity:0;visibility:hidden;transform:translateY(18px) scale(.96);will-change:opacity,transform}
 
-  /* ===== Circular motion marquee ===== */
-  .circle-marquee{
-    position:absolute; left:5vw; top:42vh; z-index:200; width:220px; height:220px;
-    display:flex; align-items:center; justify-content:center;
+  /* ===== Circular text marquee ===== */
+  .circle-text{
+    position:absolute; left:5vw; top:42vh; z-index:200;
+    width:220px; height:220px; display:flex; align-items:center; justify-content:center;
   }
-  .circle-marquee img{width:100%; height:auto; display:block; animation:spin 18s linear infinite}
-  @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  .circle-text svg{width:100%; height:100%}
+  .circle-text text{
+    font-family:'Poppins',sans-serif;
+    font-size:12px; letter-spacing:2px; text-transform:uppercase; fill:#000;
+  }
 
-  /* ===== Bottom-right image + banner ===== */
+  /* ===== Bottom showcase (square, not fixed) ===== */
   .corner-showcase{
-    position:fixed; right:20px; bottom:90px; width:320px; max-width:38vw; z-index:850;
+    position:relative;
+    width:min(360px, 70vw);
+    margin:40px auto 140px;
+    z-index:1;
     filter:drop-shadow(0 8px 20px rgba(0,0,0,.2));
   }
-  .corner-showcase img{width:100%; height:auto; display:block; border-radius:8px}
+  .corner-showcase img{
+    width:100%; height:auto; display:block; border-radius:12px;
+    aspect-ratio:1 / 1; object-fit:cover;
+  }
   .note-banner{
-    position:absolute; left:10px; right:auto; top:-18px; z-index:860; width:68%;
+    position:absolute; left:10px; top:-18px; width:68%; z-index:2;
     pointer-events:none; transform:rotate(-2deg);
   }
   .note-banner img{width:100%; height:auto; display:block; border-radius:6px; opacity:.95}
 
   @media(max-width:768px){
-    .hero-image img{width:190%;max-width:2000px} /* bigger for mobile too */
+    .hero-image img{width:190%;max-width:2000px}
   }
 </style>
 </head>
@@ -133,8 +139,19 @@
     <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2015.22.30.png" alt="95% Quote Image">
   </div>
 
-  <div class="circle-marquee reveal-item" data-order="2.5">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.24.37.png" alt="Circular Text Marquee">
+  <!-- === Circular text marquee === -->
+  <div class="circle-text reveal-item" data-order="2.5" aria-label="Circular marquee">
+    <svg viewBox="0 0 220 220" role="img" aria-label="Scrolling circular text">
+      <defs>
+        <path id="circlePath" d="M110,110 m-90,0 a90,90 0 1,1 180,0 a90,90 0 1,1 -180,0" />
+      </defs>
+      <text>
+        <textPath href="#circlePath" startOffset="0%">
+          <tspan>WRITE MY SOCIALS • STORIES THAT SELL • BRANDING • CONTENT • </tspan>
+          <animate attributeName="startOffset" from="0%" to="100%" dur="18s" repeatCount="indefinite"/>
+        </textPath>
+      </text>
+    </svg>
   </div>
 
   <div class="spacer-xl"></div>
@@ -146,10 +163,6 @@
         <img class="reveal-item" data-order="3.2" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2"/>
         <img class="reveal-item" data-order="3.3" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3"/>
         <img class="reveal-item" data-order="3.4" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4"/>
-        <img class="reveal-item" data-order="3.5" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1 Duplicate"/>
-        <img class="reveal-item" data-order="3.6" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2 Duplicate"/>
-        <img class="reveal-item" data-order="3.7" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3 Duplicate"/>
-        <img class="reveal-item" data-order="3.8" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4 Duplicate"/>
       </div>
     </div>
   </div>
@@ -190,4 +203,5 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classL
 </script>
 </body>
 </html>
+
 
