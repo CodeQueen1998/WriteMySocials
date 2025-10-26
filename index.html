@@ -55,28 +55,34 @@
       margin: 0 auto;
       padding: 16px 18px;
       display: flex;
-      gap: 4vw;
+      flex-direction: column;
       align-items: center;
+      gap: 20px;
     }
-    .menu-links {
-      display: flex;
-      gap: 5vw;
-      align-items: center;
-      flex: 1;
-      justify-content: center;
+
+    /* IMAGE MENU */
+    .image-menu{
+      position:relative;
+      max-width:1000px;
+      width:90%;
     }
-    .menu-link {
-      font-family: 'Playfair Display', serif;
-      font-weight: 500;
-      font-size: clamp(1.3rem, 3vw, 2rem);
-      color: #000;
-      text-decoration: none;
-      position: relative;
-      padding: .15rem .25rem;
-      white-space: nowrap;
-      transition: color .25s ease;
+    .image-menu img{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:8px;
+      box-shadow:0 6px 16px rgba(0,0,0,.08);
     }
-    .menu-link:hover { color: #555; }
+    .image-menu .hot{
+      position:absolute;
+      top:0; bottom:0;
+    }
+    .image-menu .hot.home{ left:0; right:66.67%; }
+    .image-menu .hot.about{ left:33.33%; right:33.34%; }
+    .image-menu .hot.services{ left:66.66%; right:0; }
+    .image-menu .hot:focus-visible{
+      outline:2px solid #000; outline-offset:4px; border-radius:4px;
+    }
 
     .close-pill {
       background: #fff;
@@ -91,6 +97,22 @@
       transition: background .2s, color .2s, border-color .2s;
     }
     .close-pill:hover { background:#000; color:#fff; border-color:#000; }
+
+    /* SOCIAL ICONS (TOP RIGHT) */
+    .social-icons {
+      position: fixed;
+      top: 18px;
+      right: 25px;
+      z-index: 1200;
+      display: flex;
+      gap: 18px;
+    }
+    .social-icons a {
+      color: #000;
+      font-size: 1.2rem;
+      transition: color .2s ease;
+    }
+    .social-icons a:hover { color: #ff1493; }
 
     /* HEADER / LOGO */
     .logo {
@@ -124,7 +146,7 @@
     /* MISSION */
     .mission-statement {
       font-family: 'Poppins', sans-serif;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       padding: 0 20px;
       text-align: center;
       opacity: 0;
@@ -168,7 +190,6 @@
       100% { transform: translateX(-50%); }
     }
 
-    /* ANIMATIONS */
     @keyframes fadeInUp {
       0% { transform: translateY(20px); opacity: 0; }
       100% { transform: translateY(0); opacity: 1; }
@@ -177,8 +198,9 @@
     @media(max-width:768px){
       .logo { width:80vw; margin-top:90px; }
       .hero-image { width:95%; margin:30px auto 40px; }
-      .mission-statement { font-size:1rem; margin:0 10px 30px; }
+      .mission-statement { font-size:0.95rem; margin:0 10px 30px; }
       .marquee-content img { height:180px; margin:0 10px; }
+      .social-icons { top:14px; right:18px; }
     }
   </style>
 </head>
@@ -187,14 +209,22 @@
   <!-- MENU BUTTON -->
   <button class="menu-btn" onclick="toggleMenu()">MENU</button>
 
+  <!-- SOCIAL ICONS -->
+  <div class="social-icons">
+    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://www.instagram.com/writemysocials" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+  </div>
+
   <!-- MENU BAR -->
   <div class="menu-bar">
     <div class="menu-inner">
-      <div class="menu-links">
-        <a href="./" class="menu-link">HOME</a>
-        <a href="./about.html" class="menu-link">ABOUT</a>
-        <a href="./services.html" class="menu-link">SERVICES</a>
-        <a href="mailto:siyana.deveaux@writemysocials.com.au" class="menu-link">CONTACT</a>
+      <div class="image-menu" role="menubar" aria-label="Primary">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2015.38.13.png"
+          alt="Menu — Home • About • Services" />
+        <a class="hot home" href="./" aria-label="Home"></a>
+        <a class="hot about" href="./about.html" aria-label="About"></a>
+        <a class="hot services" href="./services.html" aria-label="Services"></a>
       </div>
       <button class="close-pill" onclick="toggleMenu()">CLOSE</button>
     </div>
@@ -203,12 +233,12 @@
   <!-- LOGO -->
   <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="Write My Socials Logo" class="logo" />
 
-  <!-- FEATURE IMAGE -->
+  <!-- HERO IMAGE -->
   <div class="hero-image">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2014.48.46.png" alt="Studio Showcase">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2015.22.30.png" alt="Studio Showcase">
   </div>
 
-  <!-- MISSION STATEMENT -->
+  <!-- MISSION -->
   <div class="mission-statement">
     “Write My Socials helps modern brands—from startups to established names—shape bold, personality-driven creative strategies that connect, convert, and stay true to their voice. Every idea, every word, tells a story.”
   </div>
@@ -225,13 +255,6 @@
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3 Duplicate" />
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4 Duplicate" />
     </div>
-  </div>
-
-  <!-- SOCIAL ICONS -->
-  <div style="text-align:center; margin:50px 0;">
-    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn" style="color:#000; margin:0 15px;"><i class="fab fa-linkedin fa-lg"></i></a>
-    <a href="https://www.instagram.com/writemysocials" aria-label="Instagram" style="color:#000; margin:0 15px;"><i class="fab fa-instagram fa-lg"></i></a>
-    <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok" style="color:#000; margin:0 15px;"><i class="fab fa-tiktok fa-lg"></i></a>
   </div>
 
   <script>
