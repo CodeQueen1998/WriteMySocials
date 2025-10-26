@@ -10,10 +10,10 @@
 <style>
   html,body{margin:0;padding:0;background:#fff;font-family:'Playfair Display',serif;overflow-x:hidden}
 
-  /* ===== 0.3s Black Intro Overlay ===== */
+  /* ===== 0.2s Black Intro Overlay ===== */
   .reveal-overlay{
     position:fixed;inset:0;background:#000;z-index:2000;pointer-events:none;
-    opacity:1;visibility:visible;transition:opacity .3s ease,visibility 0s linear .3s
+    opacity:1;visibility:visible;transition:opacity .2s ease,visibility 0s linear .2s
   }
   .reveal-overlay.hide{opacity:0;visibility:hidden}
 
@@ -46,16 +46,20 @@
   /* ===== Logo ===== */
   .logo{display:block;margin:120px auto 40px;max-width:350px;width:70vw}
 
-  /* ===== 95% quote image ===== */
+  /* ===== 95% quote image (DOUBLED SIZE) ===== */
   .hero-image{display:flex;justify-content:center;margin:0 auto}
-  .hero-image img{max-width:900px;width:85%;height:auto;display:block}
+  .hero-image img{
+    max-width:1800px;   /* doubled */
+    width:170%;         /* doubled */
+    height:auto;
+    display:block;
+  }
 
   /* ===== Marquee ===== */
   .marquee-wrap{margin:0 auto}
   .marquee-container{overflow:hidden;white-space:nowrap}
   .marquee-content{display:inline-flex;animation:scroll-left 20s linear infinite}
   .marquee-content img{height:280px;margin:0 20px}
-
   @keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
   /* ===== Mission ===== */
@@ -75,19 +79,28 @@
   /* ===== Reveal base ===== */
   .reveal-item{opacity:0;visibility:hidden;transform:translateY(18px) scale(.96);will-change:opacity,transform}
 
-  @media (prefers-reduced-motion:reduce){
-    .reveal-overlay{transition:none!important;opacity:0!important;visibility:hidden!important}
-    .reveal-item{opacity:1!important;visibility:visible!important;transform:none!important}
+  /* ===== Circular motion marquee ===== */
+  .circle-marquee{
+    position:absolute; left:5vw; top:42vh; z-index:200; width:220px; height:220px;
+    display:flex; align-items:center; justify-content:center;
   }
+  .circle-marquee img{width:100%; height:auto; display:block; animation:spin 18s linear infinite}
+  @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
-  /* ===== Responsive ===== */
+  /* ===== Bottom-right image + banner ===== */
+  .corner-showcase{
+    position:fixed; right:20px; bottom:90px; width:320px; max-width:38vw; z-index:850;
+    filter:drop-shadow(0 8px 20px rgba(0,0,0,.2));
+  }
+  .corner-showcase img{width:100%; height:auto; display:block; border-radius:8px}
+  .note-banner{
+    position:absolute; left:10px; right:auto; top:-18px; z-index:860; width:68%;
+    pointer-events:none; transform:rotate(-2deg);
+  }
+  .note-banner img{width:100%; height:auto; display:block; border-radius:6px; opacity:.95}
+
   @media(max-width:768px){
-    .logo{width:80vw;margin-top:100px;margin-bottom:30px}
-    .hero-image img{width:95%}
-    .mission-statement{font-size:.98rem}
-    .marquee-content img{height:180px;margin:0 10px}
-    .social-icons{top:14px;right:14px}
-    .spacer-xl{height:90px}.spacer-lg{height:70px}.spacer-md{height:50px}
+    .hero-image img{width:190%;max-width:2000px} /* bigger for mobile too */
   }
 </style>
 </head>
@@ -120,6 +133,10 @@
     <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2015.22.30.png" alt="95% Quote Image">
   </div>
 
+  <div class="circle-marquee reveal-item" data-order="2.5">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.24.37.png" alt="Circular Text Marquee">
+  </div>
+
   <div class="spacer-xl"></div>
 
   <div class="section marquee-wrap">
@@ -145,63 +162,32 @@
 
   <div class="spacer-xl"></div>
 
+  <div class="corner-showcase reveal-item" data-order="5">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="Corner Showcase Image">
+    <div class="note-banner reveal-item" data-order="5.1">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.58.png" alt="Decorative Note Banner">
+    </div>
+  </div>
+
   <div class="bottom-tagline">
     <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
   </div>
 
 <script>
-const KF=[
-  {opacity:0,transform:'translateY(18px) scale(0.96)'},
-  {opacity:1,transform:'translateY(-2px) scale(1.02)',offset:0.7},
-  {opacity:1,transform:'translateY(0) scale(1)'}
-];
+const KF=[{opacity:0,transform:'translateY(18px) scale(0.96)'},{opacity:1,transform:'translateY(-2px) scale(1.02)',offset:0.7},{opacity:1,transform:'translateY(0) scale(1)'}];
 const OPTS={duration:700,easing:'cubic-bezier(.2,.7,.2,1)',fill:'forwards'};
-
-function revealOne(el){
-  el.style.visibility='visible';
-  el.animate(KF,OPTS);
-}
-
+function revealOne(el){el.style.visibility='visible';el.animate(KF,OPTS);}
 function sequenceReveal(){
   const items=[...document.querySelectorAll('.reveal-item')].sort((a,b)=>parseFloat(a.dataset.order)-parseFloat(b.dataset.order));
-  let t=0;
-  const STEP=100; // 0.1s spacing
-  items.forEach(el=>{
-    setTimeout(()=>revealOne(el),t);
-    t+=STEP;
-  });
+  let t=0;const STEP=100;
+  items.forEach(el=>{setTimeout(()=>revealOne(el),t);t+=STEP;});
 }
-
-function startIntroAndReveal(){
-  const overlay=document.getElementById('introOverlay');
-  overlay.classList.add('hide');
-  overlay.addEventListener('transitionend',()=>sequenceReveal(),{once:true});
-}
-
+function startIntroAndReveal(){const overlay=document.getElementById('introOverlay');overlay.classList.add('hide');overlay.addEventListener('transitionend',()=>sequenceReveal(),{once:true});}
 window.addEventListener('load',startIntroAndReveal);
-
-window.addEventListener('pageshow',e=>{
-  if(e.persisted){
-    const overlay=document.getElementById('introOverlay');
-    overlay.classList.remove('hide');
-    void overlay.offsetWidth;
-    startIntroAndReveal();
-    document.querySelectorAll('.reveal-item').forEach(el=>{
-      el.style.opacity='0';
-      el.style.visibility='hidden';
-      el.style.transform='translateY(18px) scale(0.96)';
-    });
-  }
-});
-
-document.addEventListener('click',e=>{
-  if(e.target.matches('.hot'))document.body.classList.remove('menu-open');
-});
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape')document.body.classList.remove('menu-open');
-});
+window.addEventListener('pageshow',e=>{if(e.persisted){const overlay=document.getElementById('introOverlay');overlay.classList.remove('hide');void overlay.offsetWidth;document.querySelectorAll('.reveal-item').forEach(el=>{el.style.opacity='0';el.style.visibility='hidden';el.style.transform='translateY(18px) scale(0.96)';});startIntroAndReveal();}});
+document.addEventListener('click',e=>{if(e.target.matches('.hot'))document.body.classList.remove('menu-open');});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classList.remove('menu-open');});
 </script>
 </body>
 </html>
-
 
