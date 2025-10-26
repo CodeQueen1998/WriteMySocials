@@ -2,121 +2,156 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Write My Socials — Home</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
 <style>
-html,body{margin:0;padding:0;background:#fff;font-family:'Playfair Display',serif;overflow-x:hidden}
+  html,body{margin:0;padding:0;background:#fff;color:#000;overflow-x:hidden;font-family:'Playfair Display',serif}
+  /* Black pre-intro */
+  .reveal{position:fixed;inset:0;background:#000;z-index:2000;opacity:1;visibility:visible;transition:opacity .75s ease .15s,visibility 0s linear 1s}
+  body.loaded .reveal{opacity:0;visibility:hidden}
 
-/* ===== Black → content reveal ===== */
-.reveal-overlay{position:fixed;inset:0;background:#000;z-index:2000;pointer-events:none;opacity:1;transition:opacity 900ms ease 150ms,visibility 0s linear 1050ms;visibility:visible}
-body.loaded .reveal-overlay{opacity:0;visibility:hidden}
+  /* Menu (white background, black text) */
+  .menu-btn{position:fixed;top:18px;left:20px;z-index:1200;background:#fff;border:1px solid #000;color:#000;padding:6px 14px;border-radius:999px;font:600 .85rem/1 'Poppins',sans-serif;letter-spacing:.1em;cursor:pointer;transition:.2s}
+  .menu-btn:hover{background:#000;color:#fff}
+  .menu-bar{position:fixed;top:0;left:0;right:0;z-index:1100;background:#fff;border-bottom:1px solid rgba(0,0,0,.12);transform:translateY(-100%);transition:transform .35s ease}
+  body.menu-open .menu-bar{transform:translateY(0)}
+  .menu-inner{display:flex;justify-content:center;padding:20px 0}
+  .image-menu{position:relative;width:50%;min-width:320px}
+  .image-menu img{width:100%;display:block}
+  .image-menu .hot{position:absolute;top:0;bottom:0}
+  .image-menu .hot.home{left:0;right:66.67%}
+  .image-menu .hot.about{left:33.33%;right:33.34%}
+  .image-menu .hot.services{left:66.66%;right:0}
 
-/* ===== Menu button ===== */
-.menu-btn{position:fixed;top:18px;left:20px;z-index:1200;background:#fff;border:1px solid #000;color:#000;padding:6px 12px;border-radius:999px;font-family:'Poppins',sans-serif;font-size:.85rem;letter-spacing:.12em;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
-.menu-btn:hover{background:#000;color:#fff;border-color:#000}
+  /* Social icons (top-right) */
+  .social{position:fixed;top:18px;right:24px;z-index:1200;display:flex;gap:18px}
+  .social a{color:#000;font-size:1.2rem;transition:color .2s}
+  .social a:hover{color:#ff1493}
 
-/* ===== Menu (no box) ===== */
-.menu-bar{position:fixed;left:0;right:0;top:0;z-index:1100;background:#fff;border-bottom:1px solid rgba(0,0,0,.15);transform:translateY(-100%);transition:transform .35s ease}
-body.menu-open .menu-bar{transform:translateY(0)}
-.menu-inner{max-width:1000px;margin:0 auto;padding:20px;display:flex;justify-content:center;background:transparent;box-shadow:none;border-radius:0}
-.image-menu{position:relative;width:50%;min-width:320px;background:transparent}
-.image-menu img{width:100%;display:block;border-radius:0;box-shadow:none;background:transparent}
-.image-menu .hot{position:absolute;top:0;bottom:0}
-.image-menu .hot.home{left:0;right:66.67%}
-.image-menu .hot.about{left:33.33%;right:33.34%}
-.image-menu .hot.services{left:66.66%;right:0}
+  /* Bounce-in like your original fadeInUp, but controlled to start AFTER the black overlay */
+  .pop{opacity:0;transform:translateY(20px);animation:popin .7s cubic-bezier(.18,.9,.18,1) forwards;animation-play-state:paused}
+  @keyframes popin{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+  body.loaded .pop{animation-play-state:running}
+  .d0{animation-delay:.20s}.d1{animation-delay:.45s}.d2{animation-delay:.75s}.d3{animation-delay:1.05s}.d4{animation-delay:1.35s}
+  .d5{animation-delay:1.65s}.d6{animation-delay:1.95s}.d7{animation-delay:2.25s}.d8{animation-delay:2.55s}
 
-/* ===== Social icons ===== */
-.social-icons{position:fixed;top:18px;right:25px;z-index:1200;display:flex;gap:18px}
-.social-icons a{color:#000;font-size:1.2rem;transition:color .2s ease}
-.social-icons a:hover{color:#ff1493}
+  /* Layout */
+  main{max-width:1100px;margin:0 auto;padding:0 20px;text-align:center}
+  /* Logo: no big gap by default; extra top space ONLY when menu is open */
+  .logo{display:block;margin:70px auto 16px;max-width:350px;width:70vw;height:auto;image-rendering:auto}
+  body.menu-open .logo{margin-top:240px}
 
-/* ===== Stagger animations ===== */
-.stagger{opacity:0;transform:translateY(18px)}
-body.loaded .stagger{animation:rise .8s ease forwards}
-body.loaded .stagger-1{animation-delay:.45s}
-body.loaded .stagger-2{animation-delay:.7s}
-body.loaded .stagger-3{animation-delay:.95s}
-body.loaded .stagger-4{animation-delay:1.2s}
-@keyframes rise{to{opacity:1;transform:translateY(0)}}
+  /* Slogan image (add @2x for crispness) */
+  .slogan{max-width:1100px;margin:10px auto}
+  .slogan img{width:min(92%,1100px);height:auto;display:block;margin:0 auto;image-rendering:auto}
 
-/* ===== Logo & hero ===== */
-.logo{display:block;margin:260px auto 20px;max-width:350px;width:70vw}
-.hero-image{display:flex;justify-content:center;align-items:center;margin:40px auto 50px;max-width:1000px;width:90%}
-.hero-image img{width:100%;border-radius:0;box-shadow:none;background:transparent}
+  /* Hero under slogan */
+  .under-slogan{max-width:900px;width:90%;margin:26px auto 34px}
+  .under-slogan img{width:100%;height:auto;display:block}
 
-/* ===== Mission text ===== */
-.mission-statement{font-family:'Poppins',sans-serif;font-size:1.05rem;text-align:center;max-width:900px;margin:0 auto 40px;color:#111;line-height:1.8;font-weight:400;padding:0 20px}
+  /* Mission text */
+  .mission{font-family:'Poppins',sans-serif;font-size:1.05rem;color:#111;line-height:1.8;max-width:850px;margin:0 auto 28px}
 
-/* ===== Marquee ===== */
-.marquee-container{overflow:hidden;white-space:nowrap;margin:40px 0;position:relative}
-.marquee-content{display:inline-flex;animation:scroll-left 30s linear infinite}
-.marquee-content img{height:300px;margin:0 20px;opacity:0}
-body.loaded .marquee-content img{animation:imgPop .7s ease forwards}
-.marquee-content img:nth-child(1){animation-delay:1.2s}
-.marquee-content img:nth-child(2){animation-delay:1.35s}
-.marquee-content img:nth-child(3){animation-delay:1.5s}
-.marquee-content img:nth-child(4){animation-delay:1.65s}
-@keyframes scroll-left{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-@keyframes imgPop{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:translateY(0)}}
-
-@media(max-width:768px){
-.logo{width:80vw;margin-top:200px}
-.hero-image{width:95%;margin:30px auto 40px}
-.mission-statement{font-size:.95rem;margin:0 10px 30px}
-.marquee-content img{height:180px;margin:0 10px}
-.social-icons{top:14px;right:18px}
-.image-menu{width:75%}
-}
+  /* Marquee — slightly faster; each image also bounces in with a stagger */
+  .marquee{overflow:hidden;white-space:nowrap;margin:28px 0}
+  .marquee-track{display:inline-flex;animation:scroll 18s linear infinite}
+  @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .marquee img{height:280px;margin:0 20px;border-radius:10px;opacity:0;transform:translateY(20px)}
+  /* start their bounce AFTER overlay using the pop class + delays */
+  .marquee img.pop{animation-duration:.6s}
+  @media(max-width:768px){
+    .logo{margin-top:52px;width:80vw}
+    body.menu-open .logo{margin-top:200px}
+    .marquee img{height:180px;margin:0 10px}
+  }
 </style>
 </head>
 <body>
-<div class="reveal-overlay"></div>
+<div class="reveal"></div>
+
 <button class="menu-btn" onclick="document.body.classList.toggle('menu-open')">MENU</button>
 
-<div class="social-icons">
-<a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/"><i class="fab fa-linkedin"></i></a>
-<a href="https://www.instagram.com/writemysocials"><i class="fab fa-instagram"></i></a>
-<a href="https://www.tiktok.com/@writemysocials"><i class="fab fa-tiktok"></i></a>
+<div class="social">
+  <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+  <a href="https://www.instagram.com/writemysocials" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
 </div>
 
 <div class="menu-bar">
-<div class="menu-inner">
-<div class="image-menu">
-<img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2016.16.00.png" alt="Menu — Home • About • Services"/>
-<a class="hot home" href="./"></a>
-<a class="hot about" href="./about.html"></a>
-<a class="hot services" href="./services.html"></a>
-</div>
-</div>
-</div>
-
-<img class="logo stagger stagger-1" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="Write My Socials Logo"/>
-
-<div class="hero-image stagger stagger-2">
-<img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2016.14.37.png" alt="Studio Showcase">
+  <div class="menu-inner">
+    <div class="image-menu" aria-label="Primary navigation image">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2016.16.00.png" alt="Home • About • Services"/>
+      <a class="hot home" href="./index.html" aria-label="Home"></a>
+      <a class="hot about" href="./about.html" aria-label="About"></a>
+      <a class="hot services" href="./services.html" aria-label="Services"></a>
+    </div>
+  </div>
 </div>
 
-<div class="mission-statement stagger stagger-3">
-“Write My Socials helps modern brands—from startups to established names—shape bold, personality-driven creative strategies that connect, convert, and stay true to their voice. Every idea, every word, tells a story.”
-</div>
+<main>
+  <!-- 1) Logo -->
+  <img class="logo pop d0"
+       src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png"
+       srcset="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png 1x,
+               https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials@2x.png 2x"
+       sizes="(max-width:768px) 80vw, 350px"
+       alt="Write My Socials" />
 
-<div class="marquee-container stagger stagger-4">
-<div class="marquee-content">
-<img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg"/>
-<img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg"/>
-<img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg"/>
-<img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg"/>
-</div>
-</div>
+  <!-- 2) Slogan image -->
+  <div class="slogan pop d1">
+    <img
+      alt="95% of purchase decisions…"
+      src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2014.48.46.png"
+      srcset="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2014.48.46.png 1x,
+              https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2014.48.46@2x.png 2x"
+      sizes="(max-width:1100px) 92vw, 1100px" />
+  </div>
+
+  <!-- 3) Under-slogan photo (you can replace with any) -->
+  <div class="under-slogan pop d2">
+    <img
+      src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2016.14.37.png"
+      srcset="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2016.14.37.png 1x,
+              https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2016.14.37@2x.png 2x"
+      sizes="(max-width:900px) 90vw, 900px"
+      alt="Studio" />
+  </div>
+
+  <!-- 4) Mission -->
+  <p class="mission pop d3">“Write My Socials helps modern brands—from startups to established names—shape bold, personality-driven creative strategies that connect, convert, and stay true to their voice. Every idea, every word, tells a story.”</p>
+
+  <!-- 5) Marquee (staggered bounce on each image) -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <img class="pop d4" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg"
+           srcset="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg 1x,
+                   https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1@2x.jpg 2x"
+           alt="Work 1"/>
+      <img class="pop d5" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg"
+           srcset="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg 1x,
+                   https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2@2x.jpg 2x"
+           alt="Work 2"/>
+      <img class="pop d6" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg"
+           srcset="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg 1x,
+                   https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3@2x.jpg 2x"
+           alt="Work 3"/>
+      <img class="pop d7" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg"
+           srcset="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg 1x,
+                   https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4@2x.jpg 2x"
+           alt="Work 4"/>
+    </div>
+  </div>
+</main>
 
 <script>
-window.addEventListener('DOMContentLoaded',()=>setTimeout(()=>document.body.classList.add('loaded'),100));
-document.addEventListener('click',e=>{if(e.target.matches('.image-menu .hot'))document.body.classList.remove('menu-open')});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classList.remove('menu-open')});
+  // After DOM is ready, let the black screen fade and then start all the staggered pops
+  window.addEventListener('DOMContentLoaded',()=>setTimeout(()=>document.body.classList.add('loaded'),180));
+  // Close menu when a zone is clicked; Esc to close
+  document.addEventListener('click',e=>{if(e.target.matches('.image-menu .hot'))document.body.classList.remove('menu-open')});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classList.remove('menu-open')});
 </script>
 </body>
 </html>
