@@ -6,10 +6,11 @@
 <title>Write My Socials — About</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
+
 <style>
   html,body{margin:0;padding:0;background:#fff;font-family:'Playfair Display',serif;overflow-x:hidden}
 
-  /* Header controls (same as index) */
+  /* ===== Header controls (same as index) ===== */
   .menu-btn{position:fixed;top:18px;left:20px;z-index:1200;background:#fff;border:1px solid #000;color:#000;padding:6px 12px;border-radius:999px;font-family:'Poppins',sans-serif;font-size:.85rem;letter-spacing:.1em;cursor:pointer;transition:.3s}
   .menu-btn:hover{background:#000;color:#fff}
   .social-icons{position:fixed;top:18px;right:25px;z-index:1200;display:flex;gap:18px}
@@ -23,26 +24,40 @@
   .hot{position:absolute;top:0;bottom:0}
   .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
 
+  /* ===== Layout ===== */
   .section{max-width:1100px;margin:0 auto;padding:0 20px}
   .spacer-xl{height:120px}
 
-  /* Top hero image */
+  /* ===== Top hero image ===== */
   .about-hero{margin:140px auto 20px;max-width:1100px}
   .about-hero img{width:100%;height:auto;display:block;border-radius:14px}
 
-  /* London heading */
+  /* ===== London heading ===== */
   .london-heading{font-family:'Poppins',sans-serif;text-align:center;margin:30px 0 10px;font-size:1.3rem;letter-spacing:.04em}
 
-  /* Marquee (seamless) */
+  /* ===== Marquee (seamless scrolling) ===== */
   .marquee-viewport{overflow:hidden;width:100%;margin:0 auto}
-  .marquee-track{display:flex;width:max-content;gap:2vw;padding:0 2vw;animation:scroll-loop 24s linear infinite;will-change:transform}
+  .marquee-track{
+    display:flex;width:max-content;gap:2vw;padding:0 2vw;
+    animation:scroll-loop 24s linear infinite;will-change:transform;
+  }
   .marquee-strip{display:flex;gap:2vw}
-  .marquee-strip img{height:60vh;width:auto;display:block;border-radius:14px;box-shadow:0 10px 24px rgba(0,0,0,.12)}
-  @keyframes scroll-loop{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .marquee-strip img{
+    height:70vh;width:auto;display:block;border-radius:14px;
+    box-shadow:0 10px 24px rgba(0,0,0,.12);
+  }
+  @keyframes scroll-loop{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+  }
 
-  @media(max-width:768px){.marquee-strip img{height:48vh}}
+  /* ===== Mobile adjustments ===== */
+  @media(max-width:768px){
+    .marquee-strip img{height:50vh}
+  }
 </style>
 </head>
+
 <body>
   <button class="menu-btn" onclick="document.body.classList.toggle('menu-open')">MENU</button>
   <div class="social-icons">
@@ -62,36 +77,49 @@
     </div>
   </div>
 
-  <div class="section">
-    <!-- Top hero image -->
-    <div class="about-hero">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Screenshot%202025-10-26%20at%2017.07.27.png" alt="About hero">
-    </div>
+  <!-- ===== Top hero image ===== -->
+  <div class="about-hero">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2003.06.11.png" alt="About Hero Image">
+  </div>
 
-    <div class="london-heading">London, where WriteMySocials was born</div>
+  <div class="london-heading">London, where WriteMySocials was born</div>
 
-    <!-- Seamless marquee of photos -->
-    <div class="marquee-viewport">
-      <div class="marquee-track">
-        <!-- Strip A -->
-        <div class="marquee-strip">
-          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/20422FCC-BF52-4245-90E3-DBE4E9AF6489.JPG" alt="London 1">
-          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/CAE6E2E6-A981-4FA8-AFD0-DCA4C24EA5B7.JPG" alt="London 2">
-          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/B71D6276-BCC1-479B-B56F-B349FB164F3C.JPG" alt="London 3">
-          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/FC567743-0261-4A9B-8FC5-07CA94A48E56.JPG" alt="London 4">
-        </div>
-        <!-- Strip B (duplicate) -->
-        <div class="marquee-strip" aria-hidden="true">
-          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/20422FCC-BF52-4245-90E3-DBE4E9AF6489.JPG" alt="">
-          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/CAE6E2E6-A981-4FA8-AFD0-DCA4C24EA5B7.JPG" alt="">
-          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/B71D6276-BCC1-479B-B56F-B349FB164F3C.JPG" alt="">
-          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/FC567743-0261-4A9B-8FC5-07CA94A48E56.JPG" alt="">
-        </div>
+  <!-- ===== Seamless marquee ===== -->
+  <div class="marquee-viewport">
+    <div class="marquee-track">
+      <div class="marquee-strip">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.52.41.png" alt="London 1">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.53.32.png" alt="London 2">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.53.58.png" alt="London 3">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.54.15.png" alt="London 4">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.54.29.png" alt="London 5">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.54.42.png" alt="London 6">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.54.58.png" alt="London 7">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.59.40.png" alt="London 8">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.59.53.png" alt="London 9">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2006.00.04.png" alt="London 10">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2006.00.15.png" alt="London 11">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2006.00.27.png" alt="London 12">
+      </div>
+      <!-- Duplicate strip for seamless loop -->
+      <div class="marquee-strip" aria-hidden="true">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.52.41.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.53.32.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.53.58.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.54.15.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.54.29.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.54.42.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.54.58.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.59.40.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.59.53.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2006.00.04.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2006.00.15.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2006.00.27.png" alt="">
       </div>
     </div>
-
-    <div class="spacer-xl"></div>
   </div>
+
+  <div class="spacer-xl"></div>
 
   <script>
     document.addEventListener('click',e=>{if(e.target.matches('.hot'))document.body.classList.remove('menu-open')});
@@ -99,4 +127,5 @@
   </script>
 </body>
 </html>
+
 
