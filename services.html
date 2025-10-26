@@ -30,7 +30,7 @@
   .social-icons a{color:#000;font-size:1.2rem;transition:color .3s ease}
   .social-icons a:hover{color:#ff1493}
 
-  /* ===== Menu bar ===== */
+  /* ===== Slide-down header (image only, no prices here) ===== */
   .menu-bar{position:fixed;top:0;left:0;right:0;z-index:1100;background:#fff;border-bottom:1px solid rgba(0,0,0,.15);transform:translateY(-100%);transition:transform .35s ease}
   body.menu-open .menu-bar{transform:translateY(0)}
   .menu-inner{max-width:900px;margin:0 auto;padding:20px;display:flex;justify-content:center}
@@ -40,14 +40,37 @@
   .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
 
   /* ===== Page layout ===== */
-  .section{max-width:1000px;margin:0 auto;padding:0 20px}
-  .spacer-xl{height:100px}
-  .page-title{text-align:center;font-size:2.2rem;margin-top:160px;letter-spacing:.05em}
+  .section{max-width:1100px;margin:0 auto;padding:0 20px}
+  .spacer-xl{height:110px}
+  .spacer-lg{height:70px}
+  .page-kicker{margin-top:160px;text-align:center;font-family:'Poppins',sans-serif;letter-spacing:.15em;font-size:.85rem}
+  .page-title{margin:8px 0 0;text-align:center;font-size:2.2rem;letter-spacing:.03em}
+  .page-sub{max-width:820px;margin:14px auto 0;text-align:center;font-family:'Poppins',sans-serif;color:#111;line-height:1.8}
 
-  /* ===== Services styling ===== */
-  .service{margin:50px 0;text-align:center}
-  .service h2{font-size:1.4rem;font-weight:600;margin-bottom:12px}
-  .service p{font-family:'Poppins',sans-serif;font-size:1rem;color:#111;line-height:1.8;max-width:700px;margin:0 auto}
+  /* ===== Cards ===== */
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:22px;margin-top:34px}
+  .card{
+    grid-column:span 12;background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:14px;
+    padding:22px 22px 18px;box-shadow:0 6px 24px rgba(0,0,0,.06)
+  }
+  .card h3{margin:0 0 6px;font-size:1.35rem}
+  .price{font-family:'Poppins',sans-serif;font-weight:500;margin:0 0 10px}
+  .meta{font-family:'Poppins',sans-serif;color:#333;margin:6px 0 12px}
+  .card h4{margin:18px 0 8px;font-size:1.05rem}
+  .bullets{font-family:'Poppins',sans-serif;color:#111;line-height:1.8;margin:0 0 6px;padding-left:18px}
+  .bullets li{margin:2px 0}
+  .result{font-family:'Poppins',sans-serif;background:#fafafa;border:1px dashed rgba(0,0,0,.15);padding:12px;border-radius:10px;margin-top:14px}
+
+  /* ===== One-time services table ===== */
+  .table{width:100%;border-collapse:collapse;margin-top:12px;font-family:'Poppins',sans-serif}
+  .table th,.table td{border:1px solid rgba(0,0,0,.12);padding:10px 12px;vertical-align:top}
+  .table th{background:#fafafa;text-align:left;font-weight:600}
+  .table small{opacity:.8}
+
+  /* ===== Contact block ===== */
+  .contact{margin:40px auto 160px;text-align:center}
+  .contact h3{margin:0 0 8px}
+  .contact p{font-family:'Poppins',sans-serif;color:#111;margin:6px 0}
 
   /* ===== Bottom tagline ===== */
   .bottom-tagline{
@@ -58,12 +81,14 @@
   @keyframes tagline-marquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
   /* ===== Reveal ===== */
-  .reveal-item{opacity:0;visibility:hidden;transform:translateY(18px) scale(.96)}
+  .reveal-item{opacity:0;visibility:hidden;transform:translateY(18px) scale(.96);will-change:opacity,transform}
 
+  @media(min-width:860px){
+    .card{grid-column:span 12}
+  }
   @media(max-width:768px){
-    .page-title{font-size:1.6rem;margin-top:120px}
-    .service h2{font-size:1.2rem}
-    .service p{font-size:.95rem}
+    .page-title{font-size:1.65rem}
+    .page-kicker{margin-top:130px}
   }
 </style>
 </head>
@@ -79,6 +104,7 @@
     <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
   </div>
 
+  <!-- Slide-down image menu (no prices here) -->
   <div class="menu-bar">
     <div class="menu-inner">
       <div class="image-menu">
@@ -91,46 +117,199 @@
   </div>
 
   <div class="section">
-    <h1 class="page-title reveal-item" data-order="1">Our Services</h1>
+    <p class="page-kicker reveal-item" data-order="1">WRITE MY SOCIALS — 2025 UNIVERSAL BRAND</p>
+    <h1 class="page-title reveal-item" data-order="2">SERVICE MENU</h1>
+    <p class="page-sub reveal-item" data-order="3">
+      Transforming influence, strategy, and story into unstoppable brands — of every size and stage.
+    </p>
 
-    <div class="service reveal-item" data-order="2">
-      <h2>Brand & Content Analysis</h2>
-      <p>Audit, refine, and sharpen your visuals, messaging, and touchpoints to ensure your brand communicates clearly and consistently.</p>
+    <div class="grid">
+
+      <!-- 1 -->
+      <article class="card reveal-item" data-order="4">
+        <h3>1. PRE-LAUNCH & STARTUP STRATEGY SUITE™</h3>
+        <p class="price">$950 USD / $1,450 AUD <small>(One-Time)</small></p>
+        <p class="meta"><strong>For:</strong> Founders, creators, or startups in early brand development.</p>
+        <p class="meta"><strong>Purpose:</strong> Turn your concept into a validated, market-ready brand with strategic clarity and content direction.</p>
+
+        <h4>Deliverables</h4>
+        <ul class="bullets">
+          <li>Pre-Launch Audit — evaluation of concept, niche fit, and audience potential</li>
+          <li>Brand concept &amp; tone strategy</li>
+          <li>10 content ideas for pre-launch or waitlist campaigns</li>
+          <li>45-minute strategy session</li>
+          <li>Personalized 90-day action plan</li>
+        </ul>
+
+        <h4>Optional Add-Ons</h4>
+        <ul class="bullets">
+          <li>Visual moodboard &amp; color guide (+$250)</li>
+          <li>Pre-launch ad copy set (+$200)</li>
+        </ul>
+
+        <p class="result"><strong>Result:</strong> A confident, data-backed brand ready to launch with direction and momentum.</p>
+      </article>
+
+      <!-- 2 -->
+      <article class="card reveal-item" data-order="5">
+        <h3>2. CREATOR & MICRO-BRAND FOUNDATIONS™</h3>
+        <p class="price">$1,500 USD / $2,300 AUD <small>(One-Time)</small></p>
+        <p class="meta"><strong>For:</strong> Boutique, personal, or niche brands building a credible, consistent identity.</p>
+
+        <h4>Deliverables</h4>
+        <ul class="bullets">
+          <li>Mini Brand Audit — review of visuals, messaging, and positioning</li>
+          <li>Brand Voice &amp; Messaging Guide (10+ pages)</li>
+          <li>10 caption templates + content ideas</li>
+          <li>1-hour creative direction call</li>
+          <li>Basic SEO keyword setup</li>
+          <li>Launch or welcome email template</li>
+        </ul>
+
+        <h4>Optional Add-Ons</h4>
+        <ul class="bullets">
+          <li>Brand tagline &amp; slogan development (+$150)</li>
+          <li>Short-form video content strategy (+$300)</li>
+        </ul>
+
+        <p class="result"><strong>Result:</strong> A cohesive, conversion-ready brand foundation.</p>
+      </article>
+
+      <!-- 3 -->
+      <article class="card reveal-item" data-order="6">
+        <h3>3. SMALL BUSINESS GROWTH CATALYST™</h3>
+        <p class="price">$2,500 USD / $3,800 AUD <small>(Monthly Retainer)</small></p>
+        <p class="meta"><strong>For:</strong> Small-to-mid-size brands growing sales, traffic, and engagement.</p>
+
+        <h4>Deliverables</h4>
+        <ul class="bullets">
+          <li>Full Growth Audit (web, content, funnel)</li>
+          <li>Conversion copywriting (website &amp; landing pages)</li>
+          <li>3-part automated email sequence (welcome / nurture / sales)</li>
+          <li>Monthly content roadmap + captions</li>
+          <li>Conversion optimization + analytics report</li>
+        </ul>
+
+        <h4>Optional Add-Ons</h4>
+        <ul class="bullets">
+          <li>Product launch funnel setup (+$400)</li>
+          <li>Influencer outreach strategy (+$350)</li>
+        </ul>
+
+        <p class="result"><strong>Result:</strong> A predictable marketing engine that scales results and retention.</p>
+      </article>
+
+      <!-- 4 -->
+      <article class="card reveal-item" data-order="7">
+        <h3>4. BRAND MOMENTUM & EXPANSION PROGRAM™</h3>
+        <p class="price">$4,500 USD / $6,800 AUD <small>(Monthly Retainer)</small></p>
+        <p class="meta"><strong>For:</strong> Established or scaling brands refining storytelling, SEO, and retention.</p>
+
+        <h4>Deliverables</h4>
+        <ul class="bullets">
+          <li>Performance Audit (SEO, retention, engagement)</li>
+          <li>Website &amp; communication optimization</li>
+          <li>Long-form content or thought leadership strategy</li>
+          <li>Email &amp; loyalty campaigns</li>
+          <li>PR and partnership outreach</li>
+          <li>Bi-monthly performance review</li>
+        </ul>
+
+        <h4>Optional Add-Ons</h4>
+        <ul class="bullets">
+          <li>Team content training session (+$500)</li>
+          <li>Community management or ambassador setup (+$600)</li>
+        </ul>
+
+        <p class="result"><strong>Result:</strong> Streamlined systems and stronger storytelling that drive measurable growth.</p>
+      </article>
+
+      <!-- 5 -->
+      <article class="card reveal-item" data-order="8">
+        <h3>5. GLOBAL BRAND VISIBILITY SUITE™ (FLAGSHIP)</h3>
+        <p class="price">$20,000 USD / $30,000 AUD <small>(Premium Retainer)</small></p>
+        <p class="meta"><strong>For:</strong> Enterprise, eCommerce, or influencer-led brands scaling global impact.</p>
+
+        <h4>Deliverables</h4>
+        <ul class="bullets">
+          <li>Comprehensive Brand Audit (performance, PR, SEO, authority)</li>
+          <li>Global brand &amp; campaign strategy</li>
+          <li>Multi-channel content system (SEO, PR, influencer, email)</li>
+          <li>Ongoing PR, media, and influencer management</li>
+          <li>Executive creative direction</li>
+          <li>Monthly analytics dashboard + quarterly strategy session</li>
+          <li>Dedicated strategy lead &amp; creative team</li>
+        </ul>
+
+        <h4>Optional Add-Ons</h4>
+        <ul class="bullets">
+          <li>International brand adaptation (+$1,000 per region)</li>
+          <li>Product collaboration or licensing strategy (+$1,200)</li>
+        </ul>
+
+        <p class="result"><strong>Result:</strong> An elite, full-service brand ecosystem that scales authority and revenue globally.</p>
+      </article>
+
+      <!-- One-time Services -->
+      <article class="card reveal-item" data-order="9">
+        <h3>ONE-TIME STRATEGY &amp; SUPPORT SERVICES</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>USD</th>
+              <th>AUD</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Launch Strategy Blueprint</td>
+              <td>$1,200</td>
+              <td>$1,850</td>
+              <td>End-to-end launch roadmap for pre-launch and new brands</td>
+            </tr>
+            <tr>
+              <td>Brand Voice Workshop (2 hrs)</td>
+              <td>$1,500</td>
+              <td>$2,300</td>
+              <td>Deep dive into tone, personality, and messaging</td>
+            </tr>
+            <tr>
+              <td>Press Release &amp; Distribution</td>
+              <td>$800</td>
+              <td>$1,250</td>
+              <td>Professional press release writing and syndication</td>
+            </tr>
+            <tr>
+              <td>Content &amp; SEO Audit</td>
+              <td>$1,000</td>
+              <td>$1,550</td>
+              <td>Audit + optimization recommendations</td>
+            </tr>
+            <tr>
+              <td>Campaign Concept Deck</td>
+              <td>$2,000</td>
+              <td>$3,100</td>
+              <td>Visual and written creative campaign presentation</td>
+            </tr>
+            <tr>
+              <td>Creative Team Training Add-On</td>
+              <td>$600</td>
+              <td>$950</td>
+              <td>Team education on brand tone and content standards</td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
     </div>
 
-    <div class="service reveal-item" data-order="3">
-      <h2>Brand & Content Strategy</h2>
-      <p>Align and amplify your voice across every channel with cohesive storytelling that supports both short-term and long-term goals.</p>
-    </div>
-
-    <div class="service reveal-item" data-order="4">
-      <h2>Voice & Messaging Development</h2>
-      <p>Be unmistakably you — define the tone, language, and emotion that make your brand’s words instantly recognizable.</p>
-    </div>
-
-    <div class="service reveal-item" data-order="5">
-      <h2>Product Messaging & Packaging Copy</h2>
-      <p>From packaging to inserts, create words that turn heads, build loyalty, and make your product shelves tell your story.</p>
-    </div>
-
-    <div class="service reveal-item" data-order="6">
-      <h2>Website & Landing Page Copy</h2>
-      <p>Conversion-focused, voice-aligned copy that builds trust and drives action without losing your brand’s character.</p>
-    </div>
-
-    <div class="service reveal-item" data-order="7">
-      <h2>Email Campaigns & Lifecycle Messaging</h2>
-      <p>Crafted journeys that connect, nurture, and convert — every send tells a chapter of your brand’s story.</p>
-    </div>
-
-    <div class="service reveal-item" data-order="8">
-      <h2>Social & UGC Content Creation</h2>
-      <p>Scroll-stopping visuals and storytelling content that resonates with your audience and drives engagement organically.</p>
-    </div>
-
-    <div class="service reveal-item" data-order="9">
-      <h2>Event Curation & Brand Experience</h2>
-      <p>Immersive pop-ups, activations, and brand moments that make your audience feel like part of your narrative.</p>
+    <div class="contact reveal-item" data-order="10">
+      <h3>YOUR BRAND, REIMAGINED</h3>
+      <p>From startups to global enterprises, Write My Socials crafts strategy, story, and soul into every project — empowering brands to connect deeply and scale confidently.</p>
+      <p>Email: <a href="mailto:siyana.deveaux@writemysocials.com.au">siyana.deveaux@writemysocials.com.au</a></p>
+      <p>Website: <a href="https://www.writemysocials.com.au" target="_blank" rel="noopener">www.writemysocials.com.au</a></p>
+      <p>London • Sydney • Los Angeles • Coming soon: Copenhagen</p>
     </div>
   </div>
 
@@ -163,4 +342,5 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classL
 </script>
 </body>
 </html>
+
 
