@@ -32,19 +32,18 @@
     visibility: hidden;
   }
 
-  /* ===== Global reveal animation (load + back-navigation safe) ===== */
+  /* ===== Global reveal animation ===== */
   .reveal {
     opacity: 0;
     transform: translateY(18px) scale(0.985);
     will-change: opacity, transform;
     animation: popIn 0.8s ease forwards;
-    animation-delay: var(--d, 0s);  /* per-element delay */
+    animation-delay: var(--d, 0s);
   }
   @keyframes popIn {
     to { opacity: 1; transform: translateY(0) scale(1); }
   }
 
-  /* Reduced motion respect */
   @media (prefers-reduced-motion: reduce) {
     .reveal, .marquee-content { animation: none !important; opacity: 1 !important; transform: none !important; }
     .reveal-overlay { transition: none !important; opacity: 0 !important; visibility: hidden !important; }
@@ -54,7 +53,7 @@
   .menu-btn {
     position: fixed;
     top: 18px;
-    left: 20px;      /* moved left */
+    left: 20px;
     z-index: 1200;
     background: #fff;
     border: 1px solid #000;
@@ -76,7 +75,7 @@
   .social-icons {
     position: fixed;
     top: 18px;
-    right: 25px;     /* moved right */
+    right: 25px;
     z-index: 1200;
     display: flex;
     gap: 18px;
@@ -123,16 +122,16 @@
   .hot.about { left: 33.33%; right: 33.34%; }
   .hot.services { left: 66.66%; right: 0; }
 
-  /* ===== Layout & spacing ===== */
+  /* ===== Spacing utilities ===== */
   .section { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-  .spacer-xl { height: 140px; }
-  .spacer-lg { height: 110px; }
-  .spacer-md { height: 80px; }
+  .spacer-xl { height: 120px; }
+  .spacer-lg { height: 80px; }
+  .spacer-md { height: 60px; }
 
   /* ===== Logo ===== */
   .logo {
     display: block;
-    margin: 140px auto 80px;
+    margin: 120px auto 40px; /* tightened bottom gap */
     max-width: 350px;
     width: 70vw;
   }
@@ -217,14 +216,14 @@
 
   /* ===== Responsive ===== */
   @media(max-width:768px){
-    .logo { width: 80vw; margin-top: 110px; }
+    .logo { width: 80vw; margin-top: 100px; margin-bottom: 30px; }
     .hero-image img { width: 95%; }
     .mission-statement { font-size: .98rem; }
     .marquee-content img { height: 180px; margin: 0 10px; }
     .social-icons { top: 14px; right: 14px; }
-    .spacer-xl { height: 110px; }
-    .spacer-lg { height: 90px; }
-    .spacer-md { height: 60px; }
+    .spacer-xl { height: 90px; }
+    .spacer-lg { height: 70px; }
+    .spacer-md { height: 50px; }
   }
 </style>
 </head>
@@ -257,8 +256,6 @@
   <!-- LOGO -->
   <img class="logo reveal" style="--d:.25s" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="Write My Socials Logo"/>
 
-  <div class="spacer-lg"></div>
-
   <!-- QUOTE IMAGE -->
   <div class="section hero-image reveal" style="--d:.45s">
     <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2015.22.30.png" alt="95% Quote Image">
@@ -266,7 +263,7 @@
 
   <div class="spacer-xl"></div>
 
-  <!-- MARQUEE (moved here between quote and mission) -->
+  <!-- MARQUEE -->
   <div class="section marquee-wrap reveal" style="--d:.6s">
     <div class="marquee-container">
       <div class="marquee-content">
@@ -297,32 +294,24 @@
   </div>
 
 <script>
-  // Helper: restart reveal animations (including when coming back via BFCache)
   function startReveals() {
-    // Force a reflow to reliably restart CSS animations
     document.querySelectorAll('.reveal').forEach(el => {
       el.style.animation = 'none';
-      // Trigger reflow
       void el.offsetWidth;
       el.style.animation = '';
     });
-    // Trigger staged "loaded" effects (e.g., marquee image pop)
     requestAnimationFrame(() => document.body.classList.add('loaded'));
   }
 
-  // Initial load
   window.addEventListener('load', () => {
     setTimeout(startReveals, 250);
   });
 
-  // Handle browser back/forward cache restores
   window.addEventListener('pageshow', (e) => {
-    // Always re-run to ensure the pop-in happens even when navigating back
     document.body.classList.remove('loaded');
     setTimeout(startReveals, 100);
   });
 
-  // Close menu when clicking hotspot or pressing Escape
   document.addEventListener('click', e => {
     if (e.target.matches('.hot')) document.body.classList.remove('menu-open');
   });
@@ -332,3 +321,4 @@
 </script>
 </body>
 </html>
+
