@@ -35,17 +35,34 @@
   /* ===== London heading ===== */
   .london-heading{font-family:'Poppins',sans-serif;text-align:center;margin:30px 0 10px;font-size:1.3rem;letter-spacing:.04em}
 
-  /* ===== Marquee (seamless scrolling) ===== */
+  /* ===== Marquee (slow + pause on hover) ===== */
   .marquee-viewport{overflow:hidden;width:100%;margin:0 auto}
   .marquee-track{
-    display:flex;width:max-content;gap:2vw;padding:0 2vw;
-    animation:scroll-loop 24s linear infinite;will-change:transform;
+    display:flex;
+    width:max-content;
+    gap:2vw;
+    padding:0 2vw;
+    animation:scroll-loop 48s linear infinite; /* 2x slower (was 24s) */
+    will-change:transform;
   }
   .marquee-strip{display:flex;gap:2vw}
   .marquee-strip img{
-    height:70vh;width:auto;display:block;border-radius:14px;
+    height:70vh;
+    width:auto;
+    display:block;
+    border-radius:14px;
     box-shadow:0 10px 24px rgba(0,0,0,.12);
+    transition:transform .4s ease;
   }
+  .marquee-strip img:hover{
+    transform:scale(1.05);
+    cursor:pointer;
+  }
+  /* Pause animation on hover */
+  .marquee-viewport:hover .marquee-track{
+    animation-play-state:paused;
+  }
+
   @keyframes scroll-loop{
     from{transform:translateX(0)}
     to{transform:translateX(-50%)}
@@ -84,24 +101,25 @@
 
   <div class="london-heading">London, where WriteMySocials was born</div>
 
-  <!-- ===== Seamless marquee ===== -->
+  <!-- ===== Seamless marquee (slow + hover pause) ===== -->
   <div class="marquee-viewport">
     <div class="marquee-track">
       <div class="marquee-strip">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.52.41.png" alt="London 1">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.53.32.png" alt="London 2">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.53.58.png" alt="London 3">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.54.15.png" alt="London 4">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.54.29.png" alt="London 5">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.54.42.png" alt="London 6">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.54.58.png" alt="London 7">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.59.40.png" alt="London 8">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.59.53.png" alt="London 9">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2006.00.04.png" alt="London 10">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2006.00.15.png" alt="London 11">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2006.00.27.png" alt="London 12">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.52.41.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.53.32.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.53.58.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.54.15.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.54.29.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.54.42.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.54.58.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.59.40.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.59.53.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2006.00.04.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2006.00.15.png" alt="">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2006.00.27.png" alt="">
       </div>
-      <!-- Duplicate strip for seamless loop -->
+
+      <!-- Duplicate for seamless loop -->
       <div class="marquee-strip" aria-hidden="true">
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.52.41.png" alt="">
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Screenshot%202025-10-27%20at%2005.53.32.png" alt="">
@@ -127,5 +145,4 @@
   </script>
 </body>
 </html>
-
 
