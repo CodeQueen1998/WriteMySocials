@@ -51,18 +51,27 @@
   .hero-image{display:flex;justify-content:center;margin:0 auto}
   .hero-image img{max-width:1600px;width:100%;height:auto;display:block}
 
-  /* ===== Circular text marquee ===== */
+  /* ===== Circular text marquee (seamless rotation, no clipping) ===== */
   .circle-text{
     position:absolute;
     left:8vw;
-    /* moved 5cm higher than before, keeping same x-position */
-    top:calc(60vh - 9cm);   /* previous approx = 60vh - 4cm -> now -9cm */
+    top:calc(60vh - 9cm);
     z-index:200;
-    width:220px;height:220px;display:flex;align-items:center;justify-content:center;
+    width:220px;height:220px;
+    display:flex;align-items:center;justify-content:center;
+    overflow:visible; /* ensure nothing gets clipped */
   }
   .circle-text svg{width:100%;height:100%}
   .circle-text text{
     font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;fill:#000;
+  }
+  .circle-spin{
+    transform-origin:110px 110px;
+    animation:spin-circle 18s linear infinite;
+  }
+  @keyframes spin-circle{
+    from{transform:rotate(0deg)}
+    to{transform:rotate(360deg)}
   }
 
   /* ===== Work marquee (full-bleed, slow & steady) ===== */
@@ -70,14 +79,10 @@
   .marquee-container{overflow:hidden;white-space:nowrap}
   .marquee-content{
     display:inline-flex;
-    animation:scroll-left 35s linear infinite; /* steady slow left */
+    animation:scroll-left 35s linear infinite;
   }
   .marquee-content img{
-    height:70vh;           /* fill most of the screen height */
-    width:auto;
-    margin:0 2vw;
-    border-radius:8px;
-    display:block;
+    height:70vh;width:auto;margin:0 2vw;border-radius:8px;display:block;
   }
   @keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
@@ -95,53 +100,17 @@
   .bottom-tagline span{display:inline-block;padding-left:100%;animation:tagline-marquee 20s linear infinite}
   @keyframes tagline-marquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
-  /* ===== Reveal base ===== */
-  .reveal-item{opacity:0;visibility:hidden;transform:translateY(18px) scale(.96);will-change:opacity,transform}
-
-  /* ===== Bottom showcase & overlay (2x bigger, slight 2cm overlap, right side) ===== */
-  .corner-showcase{
-    position:relative;
-    width:min(360px,70vw);
-    margin:40px auto 140px;
-    z-index:1;
-    filter:drop-shadow(0 8px 20px rgba(0,0,0,.2));
-    overflow:visible;
-  }
-  .corner-showcase img{
-    width:100%;height:auto;object-fit:cover;border-radius:12px;
-  }
-  .note-banner{
-    position:absolute;
-    right:1rem;           /* keep to the right so it avoids the head/hair */
-    left:auto;
-    top:-2cm;             /* hover above, with exactly 2cm overlay into the image */
-    width:min(85%,520px);
-    height:4cm;           /* 2× bigger than the earlier 2cm strip */
-    z-index:3;
-    pointer-events:none;
-    display:flex;align-items:center;justify-content:flex-end;
-  }
-  .note-banner img{
-    width:100%;height:100%;object-fit:contain;opacity:.98;
-  }
+  /* ===== Bottom showcase & overlay ===== */
+  .corner-showcase{position:relative;width:min(360px,70vw);margin:40px auto 140px;z-index:1;filter:drop-shadow(0 8px 20px rgba(0,0,0,.2));overflow:visible}
+  .corner-showcase img{width:100%;height:auto;object-fit:cover;border-radius:12px}
+  .note-banner{position:absolute;right:1rem;top:-2cm;width:min(85%,520px);height:4cm;z-index:3;pointer-events:none;display:flex;align-items:center;justify-content:flex-end}
+  .note-banner img{width:100%;height:100%;object-fit:contain;opacity:.98}
 
   /* ===== Responsive adjustments ===== */
   @media(max-width:768px){
-    .hero-image img{width:100%;max-width:100%}
-    .circle-text{
-      left:4vw;
-      /* same position but 5cm higher than the previous mobile spot */
-      top:calc(100vw * 0.4 - 5cm);
-      transform:none;
-      width:150px;height:150px;
-    }
+    .circle-text{left:4vw;top:calc(100vw * 0.4 - 5cm);width:150px;height:150px}
     .marquee-content img{height:60vh;margin:0 3vw}
-    .note-banner{
-      top:-1.6cm;         /* gentler overlap on small screens */
-      right:0.5rem;
-      width:min(95%,520px);
-      height:3.2cm;       /* scale down a touch for phones */
-    }
+    .note-banner{top:-1.6cm;right:.5rem;width:min(95%,520px);height:3.2cm}
   }
 </style>
 </head>
@@ -176,24 +145,25 @@
     <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2000.30.29.png" alt="Quote Image">
   </div>
 
-  <!-- === Circular text marquee === -->
+  <!-- ===== Fixed circular marquee (seamless rotation) ===== -->
   <div class="circle-text reveal-item" data-order="2.5" aria-label="Circular marquee">
     <svg viewBox="0 0 220 220" role="img" aria-label="Scrolling circular text">
       <defs>
         <path id="circlePath" d="M110,110 m-90,0 a90,90 0 1,1 180,0 a90,90 0 1,1 -180,0" />
       </defs>
-      <text>
-        <textPath href="#circlePath" startOffset="0%">
-          <tspan>WRITE MY SOCIALS • STORIES THAT SELL • BRANDING • CONTENT • </tspan>
-          <animate attributeName="startOffset" from="0%" to="100%" dur="18s" repeatCount="indefinite"/>
-        </textPath>
-      </text>
+      <g class="circle-spin">
+        <text>
+          <textPath href="#circlePath" startOffset="0%">
+            WRITE MY SOCIALS • STORIES THAT SELL • BRANDING • CONTENT •
+          </textPath>
+        </text>
+      </g>
     </svg>
   </div>
 
   <div class="spacer-xl"></div>
 
-  <!-- ===== Work marquee (full-bleed) ===== -->
+  <!-- ===== Work marquee ===== -->
   <div class="section marquee-wrap">
     <div class="marquee-container">
       <div class="marquee-content">
@@ -213,7 +183,7 @@
 
   <div class="spacer-7cm"></div>
 
-  <!-- ===== Bottom image with adjusted overlay ===== -->
+  <!-- ===== Bottom image ===== -->
   <div class="corner-showcase reveal-item" data-order="5">
     <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="Corner Showcase Image">
     <div class="note-banner reveal-item" data-order="5.1">
@@ -255,6 +225,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classL
 </script>
 </body>
 </html>
+
 
 
 
