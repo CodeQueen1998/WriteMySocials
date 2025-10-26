@@ -51,9 +51,9 @@
     body.menu-open .menu-bar { transform: translateY(0); }
 
     .menu-inner {
-      max-width: 1200px;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 16px 18px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -63,15 +63,16 @@
     /* IMAGE MENU */
     .image-menu{
       position:relative;
-      max-width:1000px;
-      width:90%;
+      width:25%; /* smaller (2x smaller than before) */
+      min-width:280px;
+      margin:10px auto;
     }
     .image-menu img{
       width:100%;
       height:auto;
       display:block;
       border-radius:8px;
-      box-shadow:0 6px 16px rgba(0,0,0,.08);
+      box-shadow:0 4px 14px rgba(0,0,0,.1);
     }
     .image-menu .hot{
       position:absolute;
@@ -117,7 +118,7 @@
     /* HEADER / LOGO */
     .logo {
       display: block;
-      margin: 120px auto 20px;
+      margin: 160px auto 20px; /* more space above */
       max-width: 350px;
       width: 70vw;
       opacity: 0;
@@ -196,11 +197,12 @@
     }
 
     @media(max-width:768px){
-      .logo { width:80vw; margin-top:90px; }
+      .logo { width:80vw; margin-top:120px; }
       .hero-image { width:95%; margin:30px auto 40px; }
       .mission-statement { font-size:0.95rem; margin:0 10px 30px; }
       .marquee-content img { height:180px; margin:0 10px; }
       .social-icons { top:14px; right:18px; }
+      .image-menu{ width:60%; }
     }
   </style>
 </head>
@@ -220,7 +222,7 @@
   <div class="menu-bar">
     <div class="menu-inner">
       <div class="image-menu" role="menubar" aria-label="Primary">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2015.38.13.png"
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2016.16.00.png"
           alt="Menu — Home • About • Services" />
         <a class="hot home" href="./" aria-label="Home"></a>
         <a class="hot about" href="./about.html" aria-label="About"></a>
@@ -235,7 +237,7 @@
 
   <!-- HERO IMAGE -->
   <div class="hero-image">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2015.22.30.png" alt="Studio Showcase">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2016.14.37.png" alt="Studio Showcase">
   </div>
 
   <!-- MISSION -->
@@ -264,4 +266,5 @@
   </script>
 </body>
 </html>
+
 
