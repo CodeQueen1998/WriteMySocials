@@ -10,7 +10,7 @@
 <style>
   html,body{margin:0;padding:0;background:#fff;font-family:'Playfair Display',serif;overflow-x:hidden}
 
-  /* ===== 0.2s Black Intro Overlay ===== */
+  /* ===== Intro Overlay ===== */
   .reveal-overlay{
     position:fixed;inset:0;background:#000;z-index:2000;pointer-events:none;
     opacity:1;visibility:visible;transition:opacity .2s ease,visibility 0s linear .2s
@@ -42,15 +42,29 @@
   /* ===== Layout & spacing ===== */
   .section{max-width:1100px;margin:0 auto;padding:0 20px}
   .spacer-xl{height:120px}.spacer-lg{height:80px}.spacer-md{height:60px}
-  .spacer-7cm{height:7cm;} /* new spacer for 7cm break */
+  .spacer-7cm{height:7cm;}
 
   /* ===== Logo ===== */
   .logo{display:block;margin:120px auto 40px;max-width:350px;width:70vw}
 
-  /* ===== Quote image (new one) ===== */
+  /* ===== Quote image ===== */
   .hero-image{display:flex;justify-content:center;margin:0 auto}
   .hero-image img{
     max-width:1600px; width:100%; height:auto; display:block;
+  }
+
+  /* ===== Circular text marquee ===== */
+  .circle-text{
+    position:absolute;
+    left:8vw;
+    top:calc(60vh - 4cm); /* default desktop offset */
+    z-index:200;
+    width:220px; height:220px; display:flex; align-items:center; justify-content:center;
+  }
+  .circle-text svg{width:100%; height:100%}
+  .circle-text text{
+    font-family:'Poppins',sans-serif;
+    font-size:12px; letter-spacing:2px; text-transform:uppercase; fill:#000;
   }
 
   /* ===== Marquee ===== */
@@ -77,57 +91,56 @@
   /* ===== Reveal base ===== */
   .reveal-item{opacity:0;visibility:hidden;transform:translateY(18px) scale(.96);will-change:opacity,transform}
 
-  /* ===== Circular text marquee (lifted up 7cm) ===== */
-  .circle-text{
-    position:absolute;
-    left:5vw;
-    top:calc(42vh - 7cm);
-    z-index:200;
-    width:220px; height:220px; display:flex; align-items:center; justify-content:center;
-  }
-  .circle-text svg{width:100%; height:100%}
-  .circle-text text{
-    font-family:'Poppins',sans-serif;
-    font-size:12px; letter-spacing:2px; text-transform:uppercase; fill:#000;
-  }
-
-  /* ===== Corner showcase image & note banner ===== */
+  /* ===== Corner showcase (bottom) ===== */
   .corner-showcase{
     position:relative;
     width:min(360px, 70vw);
     margin:40px auto 140px;
     z-index:1;
     filter:drop-shadow(0 8px 20px rgba(0,0,0,.2));
+    overflow:visible;
   }
   .corner-showcase img{
-    width:100%; height:auto; display:block; border-radius:12px;
-    aspect-ratio:1 / 1; object-fit:cover;
+    width:100%;
+    height:auto;
+    object-fit:cover;
+    border-radius:12px;
   }
 
+  /* ===== Writing overlay (70% above, 30% overlap; only ~10% covers image) ===== */
   .note-banner{
     position:absolute;
-    left:0;
-    top:0;
-    width:100%;
-    height:2cm;
-    z-index:2;
+    left:50%;
+    transform:translateX(-50%);
+    top:-5cm;                     /* sits mostly above the image */
+    width:90%;
+    height:auto;
+    z-index:3;
     pointer-events:none;
-    transform:none;
     display:flex;
-    align-items:center;
+    align-items:end;
     justify-content:center;
   }
   .note-banner img{
     width:100%;
-    height:100%;
+    height:auto;
     object-fit:contain;
-    border-radius:0;
     opacity:.98;
   }
 
+  /* ===== Responsive adjustments ===== */
   @media(max-width:768px){
     .hero-image img{width:100%;max-width:100%}
-    .circle-text{top:calc(35vh - 7cm);}
+    .circle-text{
+      left:4vw;
+      top:calc(100vw * 0.4); /* move slightly below logo */
+      transform:translateY(20px);
+      width:150px; height:150px;
+    }
+    .note-banner{
+      top:-3cm;           /* less lift on smaller screens */
+      width:100%;
+    }
   }
 </style>
 </head>
@@ -157,7 +170,7 @@
   <!-- ===== Logo ===== -->
   <img class="logo reveal-item" data-order="1" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="Write My Socials Logo"/>
 
-  <!-- ===== New quote image directly under logo ===== -->
+  <!-- ===== Quote image under logo ===== -->
   <div class="section hero-image reveal-item" data-order="2">
     <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2000.30.29.png" alt="Quote Image">
   </div>
@@ -198,6 +211,7 @@
 
   <div class="spacer-7cm"></div>
 
+  <!-- ===== Bottom image with adjusted overlay ===== -->
   <div class="corner-showcase reveal-item" data-order="5">
     <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="Corner Showcase Image">
     <div class="note-banner reveal-item" data-order="5.1">
@@ -226,6 +240,5 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classL
 </script>
 </body>
 </html>
->
 
 
