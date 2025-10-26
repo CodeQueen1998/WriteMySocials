@@ -32,22 +32,21 @@
     visibility: hidden;
   }
 
-  /* ===== Animations ===== */
-  .stagger { opacity: 0; transform: translateY(20px); }
-  body.loaded .stagger { animation: rise 0.8s ease forwards; }
-  .stagger-1 { animation-delay: 0.5s; }
-  .stagger-2 { animation-delay: 0.9s; }
-  .stagger-3 { animation-delay: 1.3s; }
-  .stagger-4 { animation-delay: 1.7s; }
-  @keyframes rise {
-    to { opacity: 1; transform: translateY(0); }
-  }
+  /* ===== Global stagger reveal ===== */
+  .stagger { opacity: 0; transform: translateY(22px); will-change: transform, opacity; }
+  body.loaded .stagger { animation: rise .8s ease forwards; }
+  .stagger-1 { animation-delay: .45s; }
+  .stagger-2 { animation-delay: .75s; }
+  .stagger-3 { animation-delay: 1.05s; }
+  .stagger-4 { animation-delay: 1.35s; }
+  .stagger-5 { animation-delay: 1.65s; }
+  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
 
-  /* ===== Menu button (right) ===== */
+  /* ===== Menu button (LEFT) ===== */
   .menu-btn {
     position: fixed;
     top: 18px;
-    right: 20px;
+    left: 20px;                /* moved left */
     z-index: 1200;
     background: #fff;
     border: 1px solid #000;
@@ -60,16 +59,13 @@
     cursor: pointer;
     transition: all 0.3s ease;
   }
-  .menu-btn:hover {
-    background: #000;
-    color: #fff;
-  }
+  .menu-btn:hover { background:#000; color:#fff; }
 
-  /* ===== Social icons (left) ===== */
+  /* ===== Social icons (RIGHT) ===== */
   .social-icons {
     position: fixed;
     top: 18px;
-    left: 25px;
+    right: 25px;               /* moved right */
     z-index: 1200;
     display: flex;
     gap: 18px;
@@ -77,11 +73,9 @@
   .social-icons a {
     color: #000;
     font-size: 1.2rem;
-    transition: color 0.3s ease;
+    transition: color .3s ease, transform .2s ease;
   }
-  .social-icons a:hover {
-    color: #ff1493;
-  }
+  .social-icons a:hover { color:#ff1493; transform: translateY(-2px); }
 
   /* ===== Slide-down menu ===== */
   .menu-bar {
@@ -95,91 +89,80 @@
   }
   body.menu-open .menu-bar { transform: translateY(0); }
   .menu-inner {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 24px;
     display: flex;
     justify-content: center;
   }
-  .image-menu {
-    position: relative;
-    width: 50%;
-    min-width: 320px;
-  }
-  .image-menu img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
+  .image-menu { position: relative; width: 60%; min-width: 320px; }
+  .image-menu img { width: 100%; height: auto; display: block; }
   .hot { position: absolute; top: 0; bottom: 0; }
   .hot.home { left: 0; right: 66.67%; }
   .hot.about { left: 33.33%; right: 33.34%; }
   .hot.services { left: 66.66%; right: 0; }
 
+  /* ===== Layout spacing helpers ===== */
+  .section { padding: 80px 0; }          /* global breathing room */
+  .section-large { padding: 110px 0; }   /* extra space between hero & marquee */
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 22px; }
+
   /* ===== Logo ===== */
+  .logo-wrap { text-align: center; }
   .logo {
-    display: block;
-    margin: 100px auto 60px;
-    max-width: 350px;
+    display: inline-block;
+    max-width: 360px;
     width: 70vw;
   }
 
   /* ===== 95% quote image ===== */
-  .hero-image {
-    display: flex;
-    justify-content: center;
-    margin: 100px 0;
-  }
-  .hero-image img {
-    max-width: 900px;
-    width: 85%;
-    height: auto;
-  }
-
-  /* ===== Mission ===== */
-  .mission-statement {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.05rem;
-    text-align: center;
-    max-width: 900px;
-    margin: 120px auto;
-    color: #111;
-    line-height: 1.8;
-    font-weight: 400;
-    padding: 0 20px;
-  }
+  .hero-image { display:flex; justify-content:center; }
+  .hero-image img { max-width: 900px; width: 86%; height: auto; }
 
   /* ===== Marquee ===== */
   .marquee-container {
     overflow: hidden;
     white-space: nowrap;
-    margin: 120px 0 160px;
   }
   .marquee-content {
     display: inline-flex;
-    animation: scroll-left 20s linear infinite;
+    gap: 22px;
+    animation: scroll-left 22s linear infinite;
   }
   .marquee-content img {
     height: 280px;
-    margin: 0 20px;
     opacity: 0;
+    transform: translateY(18px);
   }
+  /* make each marquee image pop the first time it scrolls into view (on load) */
   body.loaded .marquee-content img {
     animation: imgPop .8s ease forwards;
   }
-  .marquee-content img:nth-child(1) { animation-delay: 2s; }
-  .marquee-content img:nth-child(2) { animation-delay: 2.2s; }
-  .marquee-content img:nth-child(3) { animation-delay: 2.4s; }
-  .marquee-content img:nth-child(4) { animation-delay: 2.6s; }
-  .marquee-content img:nth-child(5) { animation-delay: 2.8s; }
-  .marquee-content img:nth-child(6) { animation-delay: 3s; }
-  .marquee-content img:nth-child(7) { animation-delay: 3.2s; }
-  .marquee-content img:nth-child(8) { animation-delay: 3.4s; }
+  .marquee-content img:nth-child(1){animation-delay: 1.9s;}
+  .marquee-content img:nth-child(2){animation-delay: 2.1s;}
+  .marquee-content img:nth-child(3){animation-delay: 2.3s;}
+  .marquee-content img:nth-child(4){animation-delay: 2.5s;}
+  .marquee-content img:nth-child(5){animation-delay: 2.7s;}
+  .marquee-content img:nth-child(6){animation-delay: 2.9s;}
+  .marquee-content img:nth-child(7){animation-delay: 3.1s;}
+  .marquee-content img:nth-child(8){animation-delay: 3.3s;}
 
-  @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-  @keyframes imgPop { 0% { opacity: 0; transform: translateY(18px); } 100% { opacity: 1; transform: translateY(0); } }
+  @keyframes scroll-left { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  @keyframes imgPop { to { opacity:1; transform:translateY(0); } }
 
-  /* ===== Tagline ===== */
+  /* ===== Mission ===== */
+  .mission-statement {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.08rem;
+    text-align: center;
+    max-width: 940px;
+    margin: 0 auto;
+    color: #111;
+    line-height: 1.9;
+    font-weight: 400;
+  }
+
+  /* ===== Bottom tagline ===== */
   .bottom-tagline {
     position: fixed;
     bottom: 0;
@@ -191,6 +174,7 @@
     white-space: nowrap;
     overflow: hidden;
     z-index: 900;
+    padding: 8px 0;
   }
   .bottom-tagline span {
     display: inline-block;
@@ -203,90 +187,12 @@
   }
 
   /* ===== Responsive ===== */
-  @media(max-width:768px){
-    .logo { width: 80vw; margin-top: 80px; }
-    .hero-image img { width: 95%; }
-    .mission-statement { font-size: .95rem; margin: 100px auto; }
-    .marquee-content img { height: 180px; margin: 0 10px; }
-    .social-icons { top: 14px; left: 14px; }
-  }
-</style>
-</head>
-
-<body>
-  <div class="reveal-overlay"></div>
-
-  <!-- MENU -->
-  <button class="menu-btn" onclick="document.body.classList.toggle('menu-open')">MENU</button>
-
-  <!-- SOCIAL ICONS -->
-  <div class="social-icons">
-    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-    <a href="https://www.instagram.com/writemysocials" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-  </div>
-
-  <!-- MENU IMAGE -->
-  <div class="menu-bar">
-    <div class="menu-inner">
-      <div class="image-menu">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2016.16.00.png" alt="Menu — Home • About • Services"/>
-        <a class="hot home" href="./"></a>
-        <a class="hot about" href="./about.html"></a>
-        <a class="hot services" href="./services.html"></a>
-      </div>
-    </div>
-  </div>
-
-  <!-- LOGO -->
-  <img class="logo stagger stagger-1" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="Write My Socials Logo"/>
-
-  <!-- QUOTE IMAGE -->
-  <div class="hero-image stagger stagger-2">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2015.22.30.png" alt="95% Quote Image">
-  </div>
-
-  <!-- MISSION -->
-  <div class="mission-statement stagger stagger-3">
-    “Write My Socials helps modern brands—from startups to established names—shape bold, personality-driven creative strategies that connect, convert, and stay true to their voice. Every idea, every word, tells a story.”
-  </div>
-
-  <!-- MARQUEE -->
-  <div class="marquee-container stagger stagger-4">
-    <div class="marquee-content">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1"/>
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2"/>
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3"/>
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4"/>
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1 Duplicate"/>
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2 Duplicate"/>
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3 Duplicate"/>
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4 Duplicate"/>
-    </div>
-  </div>
-
-  <!-- TAGLINE -->
-  <div class="bottom-tagline">
-    <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
-  </div>
-
-<script>
-  // Load animation trigger
-  window.addEventListener('load', () => {
-    setTimeout(() => document.body.classList.add('loaded'), 300);
-  });
-
-  // Close menu when clicking or pressing escape
-  document.addEventListener('click', e => {
-    if (e.target.matches('.hot')) document.body.classList.remove('menu-open');
-  });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') document.body.classList.remove('menu-open');
-  });
-</script>
-</body>
-</html>
-
-
-
+  @media(max-width: 768px){
+    .menu-btn { left: 14px; }
+    .social-icons { right: 14px; top: 14px; }
+    .logo { width: 80vw; }
+    .section { padding: 64px 0; }
+    .section-large { padding: 90px 0; }
+    .hero-image img { width: 94%; }
+    .marquee-content img { height: 180px;
 
