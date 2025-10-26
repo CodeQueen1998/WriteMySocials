@@ -47,31 +47,38 @@
   /* ===== Logo ===== */
   .logo{display:block;margin:120px auto 40px;max-width:350px;width:70vw}
 
-  /* ===== Quote image ===== */
+  /* ===== Quote image under the logo ===== */
   .hero-image{display:flex;justify-content:center;margin:0 auto}
-  .hero-image img{
-    max-width:1600px; width:100%; height:auto; display:block;
-  }
+  .hero-image img{max-width:1600px;width:100%;height:auto;display:block}
 
   /* ===== Circular text marquee ===== */
   .circle-text{
     position:absolute;
     left:8vw;
-    top:calc(60vh - 4cm); /* default desktop offset */
+    /* moved 5cm higher than before, keeping same x-position */
+    top:calc(60vh - 9cm);   /* previous approx = 60vh - 4cm -> now -9cm */
     z-index:200;
-    width:220px; height:220px; display:flex; align-items:center; justify-content:center;
+    width:220px;height:220px;display:flex;align-items:center;justify-content:center;
   }
-  .circle-text svg{width:100%; height:100%}
+  .circle-text svg{width:100%;height:100%}
   .circle-text text{
-    font-family:'Poppins',sans-serif;
-    font-size:12px; letter-spacing:2px; text-transform:uppercase; fill:#000;
+    font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;fill:#000;
   }
 
-  /* ===== Marquee ===== */
-  .marquee-wrap{margin:0 auto}
+  /* ===== Work marquee (full-bleed, slow & steady) ===== */
+  .marquee-wrap{max-width:none;width:100vw;padding:0;margin:0}
   .marquee-container{overflow:hidden;white-space:nowrap}
-  .marquee-content{display:inline-flex;animation:scroll-left 20s linear infinite}
-  .marquee-content img{height:280px;margin:0 20px}
+  .marquee-content{
+    display:inline-flex;
+    animation:scroll-left 35s linear infinite; /* steady slow left */
+  }
+  .marquee-content img{
+    height:70vh;           /* fill most of the screen height */
+    width:auto;
+    margin:0 2vw;
+    border-radius:8px;
+    display:block;
+  }
   @keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
   /* ===== Mission ===== */
@@ -91,41 +98,31 @@
   /* ===== Reveal base ===== */
   .reveal-item{opacity:0;visibility:hidden;transform:translateY(18px) scale(.96);will-change:opacity,transform}
 
-  /* ===== Corner showcase (bottom) ===== */
+  /* ===== Bottom showcase & overlay (2x bigger, slight 2cm overlap, right side) ===== */
   .corner-showcase{
     position:relative;
-    width:min(360px, 70vw);
+    width:min(360px,70vw);
     margin:40px auto 140px;
     z-index:1;
     filter:drop-shadow(0 8px 20px rgba(0,0,0,.2));
     overflow:visible;
   }
   .corner-showcase img{
-    width:100%;
-    height:auto;
-    object-fit:cover;
-    border-radius:12px;
+    width:100%;height:auto;object-fit:cover;border-radius:12px;
   }
-
-  /* ===== Writing overlay (70% above, 30% overlap; only ~10% covers image) ===== */
   .note-banner{
     position:absolute;
-    left:50%;
-    transform:translateX(-50%);
-    top:-5cm;                     /* sits mostly above the image */
-    width:90%;
-    height:auto;
+    right:1rem;           /* keep to the right so it avoids the head/hair */
+    left:auto;
+    top:-2cm;             /* hover above, with exactly 2cm overlay into the image */
+    width:min(85%,520px);
+    height:4cm;           /* 2× bigger than the earlier 2cm strip */
     z-index:3;
     pointer-events:none;
-    display:flex;
-    align-items:end;
-    justify-content:center;
+    display:flex;align-items:center;justify-content:flex-end;
   }
   .note-banner img{
-    width:100%;
-    height:auto;
-    object-fit:contain;
-    opacity:.98;
+    width:100%;height:100%;object-fit:contain;opacity:.98;
   }
 
   /* ===== Responsive adjustments ===== */
@@ -133,13 +130,17 @@
     .hero-image img{width:100%;max-width:100%}
     .circle-text{
       left:4vw;
-      top:calc(100vw * 0.4); /* move slightly below logo */
-      transform:translateY(20px);
-      width:150px; height:150px;
+      /* same position but 5cm higher than the previous mobile spot */
+      top:calc(100vw * 0.4 - 5cm);
+      transform:none;
+      width:150px;height:150px;
     }
+    .marquee-content img{height:60vh;margin:0 3vw}
     .note-banner{
-      top:-3cm;           /* less lift on smaller screens */
-      width:100%;
+      top:-1.6cm;         /* gentler overlap on small screens */
+      right:0.5rem;
+      width:min(95%,520px);
+      height:3.2cm;       /* scale down a touch for phones */
     }
   }
 </style>
@@ -192,6 +193,7 @@
 
   <div class="spacer-xl"></div>
 
+  <!-- ===== Work marquee (full-bleed) ===== -->
   <div class="section marquee-wrap">
     <div class="marquee-container">
       <div class="marquee-content">
@@ -232,14 +234,28 @@ function sequenceReveal(){
   let t=0;const STEP=100;
   items.forEach(el=>{setTimeout(()=>revealOne(el),t);t+=STEP;});
 }
-function startIntroAndReveal(){const overlay=document.getElementById('introOverlay');overlay.classList.add('hide');overlay.addEventListener('transitionend',()=>sequenceReveal(),{once:true});}
+function startIntroAndReveal(){
+  const overlay=document.getElementById('introOverlay');
+  overlay.classList.add('hide');
+  overlay.addEventListener('transitionend',()=>sequenceReveal(),{once:true});
+}
 window.addEventListener('load',startIntroAndReveal);
-window.addEventListener('pageshow',e=>{if(e.persisted){const overlay=document.getElementById('introOverlay');overlay.classList.remove('hide');void overlay.offsetWidth;document.querySelectorAll('.reveal-item').forEach(el=>{el.style.opacity='0';el.style.visibility='hidden';el.style.transform='translateY(18px) scale(0.96)';});startIntroAndReveal();}});
+window.addEventListener('pageshow',e=>{
+  if(e.persisted){
+    const overlay=document.getElementById('introOverlay');
+    overlay.classList.remove('hide');void overlay.offsetWidth;
+    document.querySelectorAll('.reveal-item').forEach(el=>{
+      el.style.opacity='0';el.style.visibility='hidden';el.style.transform='translateY(18px) scale(0.96)';
+    });
+    startIntroAndReveal();
+  }
+});
 document.addEventListener('click',e=>{if(e.target.matches('.hot'))document.body.classList.remove('menu-open');});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classList.remove('menu-open');});
 </script>
 </body>
 </html>
+
 
 
 
