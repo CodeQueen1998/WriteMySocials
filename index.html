@@ -43,14 +43,14 @@
   .section{max-width:1100px;margin:0 auto;padding:0 20px}
   .spacer-xl{height:120px}.spacer-lg{height:80px}.spacer-md{height:60px}
 
-  /* ===== Logo (gap tightened) ===== */
+  /* ===== Logo ===== */
   .logo{display:block;margin:120px auto 40px;max-width:350px;width:70vw}
 
   /* ===== 95% quote image ===== */
   .hero-image{display:flex;justify-content:center;margin:0 auto}
   .hero-image img{max-width:900px;width:85%;height:auto;display:block}
 
-  /* ===== Marquee between quote & mission ===== */
+  /* ===== Marquee ===== */
   .marquee-wrap{margin:0 auto}
   .marquee-container{overflow:hidden;white-space:nowrap}
   .marquee-content{display:inline-flex;animation:scroll-left 20s linear infinite}
@@ -72,13 +72,9 @@
   .bottom-tagline span{display:inline-block;padding-left:100%;animation:tagline-marquee 20s linear infinite}
   @keyframes tagline-marquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
-  /* ===== Strict one-by-one reveal base ===== */
-  .reveal-item{
-    opacity:0;visibility:hidden;transform:translateY(18px) scale(.96);
-    will-change:opacity,transform
-  }
+  /* ===== Reveal base ===== */
+  .reveal-item{opacity:0;visibility:hidden;transform:translateY(18px) scale(.96);will-change:opacity,transform}
 
-  /* Reduced motion */
   @media (prefers-reduced-motion:reduce){
     .reveal-overlay{transition:none!important;opacity:0!important;visibility:hidden!important}
     .reveal-item{opacity:1!important;visibility:visible!important;transform:none!important}
@@ -97,20 +93,16 @@
 </head>
 
 <body>
-  <!-- 0.3s black intro -->
   <div class="reveal-overlay" id="introOverlay"></div>
 
-  <!-- MENU (left) -->
   <button class="menu-btn" onclick="document.body.classList.toggle('menu-open')">MENU</button>
 
-  <!-- SOCIAL ICONS (right) -->
   <div class="social-icons">
     <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
     <a href="https://www.instagram.com/writemysocials" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
   </div>
 
-  <!-- MENU IMAGE -->
   <div class="menu-bar">
     <div class="menu-inner">
       <div class="image-menu">
@@ -122,20 +114,14 @@
     </div>
   </div>
 
-  <!-- CONTENT -->
-  <!-- order 1 -->
-  <img class="logo reveal-item" data-order="1"
-       src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png"
-       alt="Write My Socials Logo"/>
+  <img class="logo reveal-item" data-order="1" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="Write My Socials Logo"/>
 
-  <!-- order 2 -->
   <div class="section hero-image reveal-item" data-order="2">
     <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2015.22.30.png" alt="95% Quote Image">
   </div>
 
   <div class="spacer-xl"></div>
 
-  <!-- order 3.x (each image sequentially) -->
   <div class="section marquee-wrap">
     <div class="marquee-container">
       <div class="marquee-content">
@@ -153,84 +139,69 @@
 
   <div class="spacer-xl"></div>
 
-  <!-- order 4 -->
   <div class="section mission-statement reveal-item" data-order="4">
     “Write My Socials helps modern brands—from startups to established names—shape bold, personality-driven creative strategies that connect, convert, and stay true to their voice. Every idea, every word, tells a story.”
   </div>
 
   <div class="spacer-xl"></div>
 
-  <!-- TAGLINE -->
   <div class="bottom-tagline">
     <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
   </div>
 
 <script>
-  // Smooth "pop / ponk" with a tiny overshoot
-  const KF = [
-    { opacity: 0, transform: 'translateY(18px) scale(0.96)' },
-    { opacity: 1, transform: 'translateY(-2px) scale(1.02)', offset: 0.7 },
-    { opacity: 1, transform: 'translateY(0) scale(1)' }
-  ];
-  const OPTS = { duration: 700, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'forwards' };
+const KF=[
+  {opacity:0,transform:'translateY(18px) scale(0.96)'},
+  {opacity:1,transform:'translateY(-2px) scale(1.02)',offset:0.7},
+  {opacity:1,transform:'translateY(0) scale(1)'}
+];
+const OPTS={duration:700,easing:'cubic-bezier(.2,.7,.2,1)',fill:'forwards'};
 
-  function revealOne(el){
-    el.style.visibility = 'visible';
-    el.animate(KF, OPTS);
-  }
+function revealOne(el){
+  el.style.visibility='visible';
+  el.animate(KF,OPTS);
+}
 
-  function sequenceReveal(){
-    const items = Array.from(document.querySelectorAll('.reveal-item'))
-      .sort((a,b)=>parseFloat(a.dataset.order||0)-parseFloat(b.dataset.order||0));
+function sequenceReveal(){
+  const items=[...document.querySelectorAll('.reveal-item')].sort((a,b)=>parseFloat(a.dataset.order)-parseFloat(b.dataset.order));
+  let t=0;
+  const STEP=100; // 0.1s spacing
+  items.forEach(el=>{
+    setTimeout(()=>revealOne(el),t);
+    t+=STEP;
+  });
+}
 
-    // strictly one-by-one timing
-    let t = 0;
-    const STEP = 120; // ms between items
-    items.forEach((el)=>{
-      setTimeout(()=>revealOne(el), t);
-      t += STEP;
-      // add a slightly longer pause after major blocks (integers like 1,2,4)
-      const isMajor = !String(el.dataset.order||'').includes('.');
-      if(isMajor) t += 140;
+function startIntroAndReveal(){
+  const overlay=document.getElementById('introOverlay');
+  overlay.classList.add('hide');
+  overlay.addEventListener('transitionend',()=>sequenceReveal(),{once:true});
+}
+
+window.addEventListener('load',startIntroAndReveal);
+
+window.addEventListener('pageshow',e=>{
+  if(e.persisted){
+    const overlay=document.getElementById('introOverlay');
+    overlay.classList.remove('hide');
+    void overlay.offsetWidth;
+    startIntroAndReveal();
+    document.querySelectorAll('.reveal-item').forEach(el=>{
+      el.style.opacity='0';
+      el.style.visibility='hidden';
+      el.style.transform='translateY(18px) scale(0.96)';
     });
   }
+});
 
-  function startIntroAndReveal(){
-    const overlay = document.getElementById('introOverlay');
-    // start 0.3s fade immediately
-    overlay.classList.add('hide');
-
-    // begin sequence when overlay fully hidden
-    const onEnd = ()=>{ overlay.removeEventListener('transitionend', onEnd); sequenceReveal(); };
-    overlay.addEventListener('transitionend', onEnd);
-  }
-
-  // Initial load
-  window.addEventListener('load', startIntroAndReveal);
-
-  // Back/Forward cache: replay overlay & sequence
-  window.addEventListener('pageshow', (e)=>{
-    if(e.persisted){
-      const overlay = document.getElementById('introOverlay');
-      overlay.classList.remove('hide'); // show black again
-      // force reflow so transition replays
-      void overlay.offsetWidth;
-      startIntroAndReveal();
-      // also reset all reveal items to hidden state
-      document.querySelectorAll('.reveal-item').forEach(el=>{
-        el.style.opacity='0'; el.style.visibility='hidden'; el.style.transform='translateY(18px) scale(0.96)';
-      });
-    }
-  });
-
-  // Close menu on click or Escape
-  document.addEventListener('click', e=>{
-    if(e.target.matches('.hot')) document.body.classList.remove('menu-open');
-  });
-  document.addEventListener('keydown', e=>{
-    if(e.key==='Escape') document.body.classList.remove('menu-open');
-  });
+document.addEventListener('click',e=>{
+  if(e.target.matches('.hot'))document.body.classList.remove('menu-open');
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')document.body.classList.remove('menu-open');
+});
 </script>
 </body>
 </html>
+
 
