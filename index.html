@@ -44,12 +44,13 @@
   .spacer-xl{height:120px}
   .spacer-7cm{height:7cm;}
 
-  /* ===== Logo ===== */
+  /* ===== Logo (3× larger restored) ===== */
   .logo{
     display:block;
-    margin:160px auto 50px; /* generous space for desktop */
-    max-width:350px;
-    width:70vw;
+    margin:140px auto 60px; 
+    max-width:900px;   /* increased from 350px */
+    width:85vw;        /* more screen width */
+    height:auto;
   }
 
   /* ===== Quote image under the logo ===== */
@@ -60,7 +61,7 @@
   .circle-text{
     position:absolute;
     left:8vw;
-    top:calc(60vh - 7cm); /* previous desktop spot */
+    top:calc(60vh - 7cm);
     z-index:200;
     width:220px;height:220px;
     display:flex;align-items:center;justify-content:center;
@@ -73,7 +74,7 @@
   .circle-spin{transform-origin:110px 110px;animation:spin-circle 18s linear infinite}
   @keyframes spin-circle{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 
-  /* ===== Work samples marquee (stable + smooth) ===== */
+  /* ===== Work samples marquee ===== */
   .marquee-wrap{max-width:none;width:100vw;padding:0;margin:60px 0}
   .marquee-container{overflow:hidden}
   .marquee-track{
@@ -81,12 +82,12 @@
     width:max-content;
     gap:2vw;
     padding:0 2vw;
-    animation:scroll-left 22s linear infinite; /* desktop smooth speed */
+    animation:scroll-left 22s linear infinite;
     will-change:transform;
   }
   .marquee-strip{display:flex;gap:2vw}
   .marquee-strip img{
-    height:50vh; /* tidy size on desktop */
+    height:50vh;
     width:auto;
     border-radius:8px;
     display:block;
@@ -100,7 +101,7 @@
     max-width:900px;margin:0 auto;color:#111;line-height:1.9;font-weight:400
   }
 
-  /* ===== Bottom showcase & overlay ===== */
+  /* ===== Bottom showcase ===== */
   .corner-showcase{position:relative;width:min(360px,70vw);margin:40px auto 140px;z-index:1;filter:drop-shadow(0 8px 20px rgba(0,0,0,.2));overflow:visible}
   .corner-showcase img{width:100%;height:auto;object-fit:cover;border-radius:12px}
   .note-banner{position:absolute;right:1rem;top:-2cm;width:min(85%,520px);height:4cm;z-index:3;pointer-events:none;display:flex;align-items:center;justify-content:flex-end}
@@ -116,28 +117,19 @@
 
   /* ===== Mobile overrides ===== */
   @media(max-width:768px){
-    /* More space under logo on phones */
-    .logo{margin:150px auto 95px;}
-
-    /* Circular marquee: CENTERED between logo and quote (no absolute on phone) */
+    .logo{
+      margin:130px auto 80px;
+      max-width:95vw; /* fills most of screen width */
+    }
     .circle-text{
       position:static;
-      margin:0 auto 30px;          /* centered */
+      margin:0 auto 30px;
       width:160px;height:160px;
       display:flex;justify-content:center;align-items:center;
     }
-
-    /* Quote gets extra breathing room below the circle */
-    .hero-image{margin:10px auto 0}
     .hero-image img{max-width:100%}
-
-    /* Work samples marquee: smaller + faster + seamless */
-    .marquee-track{
-      animation:scroll-left 14s linear infinite; /* faster on phone */
-    }
-    .marquee-strip img{
-      height:34vh;                  /* smaller on phone */
-    }
+    .marquee-track{animation:scroll-left 14s linear infinite}
+    .marquee-strip img{height:34vh}
   }
 </style>
 </head>
@@ -164,14 +156,14 @@
     </div>
   </div>
 
-  <!-- ===== Logo (updated image, same size & spacing) ===== -->
+  <!-- ===== Updated large logo ===== -->
   <img class="logo reveal-item" data-order="1"
     src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2011.45.04.png"
     alt="Write My Socials Logo"/>
 
-  <!-- ===== Circular marquee (desktop absolute; mobile centered) ===== -->
+  <!-- ===== Circular marquee ===== -->
   <div class="circle-text reveal-item" data-order="2.5">
-    <svg viewBox="0 0 220 220" role="img" aria-label="Scrolling circular text">
+    <svg viewBox="0 0 220 220">
       <defs>
         <path id="circlePath" d="M110,110 m-90,0 a90,90 0 1,1 180,0 a90,90 0 1,1 -180,0" />
       </defs>
@@ -185,25 +177,23 @@
     </svg>
   </div>
 
-  <!-- ===== Quote image under the logo ===== -->
+  <!-- ===== Quote image ===== -->
   <div class="section hero-image reveal-item" data-order="3">
     <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2000.30.29.png" alt="Quote Image">
   </div>
 
   <div class="spacer-xl"></div>
 
-  <!-- ===== Work samples marquee (seamless, stable) ===== -->
+  <!-- ===== Work samples marquee ===== -->
   <div class="section marquee-wrap">
     <div class="marquee-container">
       <div class="marquee-track">
-        <!-- Strip A -->
         <div class="marquee-strip">
           <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1"/>
           <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2"/>
           <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3"/>
           <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4"/>
         </div>
-        <!-- Strip B (duplicate for seamless loop) -->
         <div class="marquee-strip" aria-hidden="true">
           <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt=""/>
           <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt=""/>
@@ -222,7 +212,6 @@
 
   <div class="spacer-7cm"></div>
 
-  <!-- ===== Bottom image ===== -->
   <div class="corner-showcase reveal-item" data-order="5">
     <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="Corner Showcase Image">
     <div class="note-banner reveal-item" data-order="5.1">
@@ -251,4 +240,5 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classL
 </script>
 </body>
 </html>
+
 
