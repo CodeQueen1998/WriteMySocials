@@ -42,60 +42,55 @@
   /* ===== Layout & spacing ===== */
   .section{max-width:1100px;margin:0 auto;padding:0 20px}
   .spacer-xl{height:120px}
-  .spacer-lg{height:80px}
-  .spacer-7cm{height:7cm}
+  .spacer-7cm{height:7cm;}
 
   /* ===== Logo ===== */
   .logo{
     display:block;
-    margin:160px auto 70px; /* more vertical space under logo */
+    margin:160px auto 50px; /* generous space for desktop */
     max-width:350px;
     width:70vw;
   }
 
-  /* ===== Circular text marquee ===== */
+  /* ===== Quote image under the logo ===== */
+  .hero-image{display:flex;justify-content:center;margin:0 auto}
+  .hero-image img{max-width:1600px;width:100%;height:auto;display:block}
+
+  /* ===== Circular text marquee (DESKTOP placement restored) ===== */
   .circle-text{
-    display:flex;
-    justify-content:center;
-    margin:40px auto; /* centers it and adds space between logo + quote */
+    position:absolute;
+    left:8vw;
+    top:calc(60vh - 7cm); /* previous desktop spot */
+    z-index:200;
     width:220px;height:220px;
+    display:flex;align-items:center;justify-content:center;
+    overflow:visible;
   }
   .circle-text svg{width:100%;height:100%}
   .circle-text text{
     font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;fill:#000;
   }
-  .circle-spin{
-    transform-origin:110px 110px;
-    animation:spin-circle 18s linear infinite;
-  }
-  @keyframes spin-circle{
-    from{transform:rotate(0deg)}
-    to{transform:rotate(360deg)}
-  }
+  .circle-spin{transform-origin:110px 110px;animation:spin-circle 18s linear infinite}
+  @keyframes spin-circle{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 
-  /* ===== Quote image under logo ===== */
-  .hero-image{display:flex;justify-content:center;margin:20px auto 0}
-  .hero-image img{max-width:1600px;width:100%;height:auto;display:block}
-
-  /* ===== Work samples marquee (structured + smooth + faster) ===== */
+  /* ===== Work samples marquee (stable + smooth) ===== */
   .marquee-wrap{max-width:none;width:100vw;padding:0;margin:60px 0}
-  .marquee-container{overflow:hidden;white-space:nowrap}
-  .marquee-content{
+  .marquee-container{overflow:hidden}
+  .marquee-track{
     display:flex;
+    width:max-content;
     gap:2vw;
-    animation:scroll-left 22s linear infinite; /* smoother + faster */
+    padding:0 2vw;
+    animation:scroll-left 22s linear infinite; /* desktop smooth speed */
     will-change:transform;
   }
-  .marquee-content img{
-    height:50vh; /* consistent smaller size */
+  .marquee-strip{display:flex;gap:2vw}
+  .marquee-strip img{
+    height:50vh; /* tidy size on desktop */
     width:auto;
     border-radius:8px;
     display:block;
     object-fit:cover;
-    transition:transform .3s ease;
-  }
-  .marquee-content img:hover{
-    transform:scale(1.03);
   }
   @keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
@@ -105,7 +100,7 @@
     max-width:900px;margin:0 auto;color:#111;line-height:1.9;font-weight:400
   }
 
-  /* ===== Bottom showcase ===== */
+  /* ===== Bottom showcase & overlay ===== */
   .corner-showcase{position:relative;width:min(360px,70vw);margin:40px auto 140px;z-index:1;filter:drop-shadow(0 8px 20px rgba(0,0,0,.2));overflow:visible}
   .corner-showcase img{width:100%;height:auto;object-fit:cover;border-radius:12px}
   .note-banner{position:absolute;right:1rem;top:-2cm;width:min(85%,520px);height:4cm;z-index:3;pointer-events:none;display:flex;align-items:center;justify-content:flex-end}
@@ -119,13 +114,29 @@
   .bottom-tagline span{display:inline-block;padding-left:100%;animation:tagline-marquee 20s linear infinite}
   @keyframes tagline-marquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
-  /* ===== Mobile adjustments ===== */
+  /* ===== Mobile overrides ===== */
   @media(max-width:768px){
-    .logo{margin:140px auto 80px;} /* more room for mobile */
-    .circle-text{width:160px;height:160px;margin:50px auto 40px;} /* centered and spaced */
-    .marquee-content img{
-      height:42vh; /* consistent small size, no flashing */
-      margin:0 2vw;
+    /* More space under logo on phones */
+    .logo{margin:150px auto 95px;}
+
+    /* Circular marquee: CENTERED between logo and quote (no absolute on phone) */
+    .circle-text{
+      position:static;
+      margin:0 auto 30px;          /* centered */
+      width:160px;height:160px;
+      display:flex;justify-content:center;align-items:center;
+    }
+
+    /* Quote gets extra breathing room below the circle */
+    .hero-image{margin:10px auto 0}
+    .hero-image img{max-width:100%}
+
+    /* Work samples marquee: smaller + faster + seamless */
+    .marquee-track{
+      animation:scroll-left 14s linear infinite; /* faster on phone */
+    }
+    .marquee-strip img{
+      height:34vh;                  /* smaller on phone */
     }
   }
 </style>
@@ -156,7 +167,7 @@
   <!-- ===== Logo ===== -->
   <img class="logo reveal-item" data-order="1" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="Write My Socials Logo"/>
 
-  <!-- ===== Circular marquee (now centered below logo) ===== -->
+  <!-- ===== Circular marquee (desktop absolute; mobile centered) ===== -->
   <div class="circle-text reveal-item" data-order="2.5">
     <svg viewBox="0 0 220 220" role="img" aria-label="Scrolling circular text">
       <defs>
@@ -172,21 +183,31 @@
     </svg>
   </div>
 
-  <!-- ===== Quote image under logo ===== -->
+  <!-- ===== Quote image under the logo ===== -->
   <div class="section hero-image reveal-item" data-order="3">
     <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2000.30.29.png" alt="Quote Image">
   </div>
 
   <div class="spacer-xl"></div>
 
-  <!-- ===== Work marquee (stable + fast + clean) ===== -->
+  <!-- ===== Work samples marquee (seamless, stable) ===== -->
   <div class="section marquee-wrap">
     <div class="marquee-container">
-      <div class="marquee-content">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4"/>
+      <div class="marquee-track">
+        <!-- Strip A -->
+        <div class="marquee-strip">
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work Sample 1"/>
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work Sample 2"/>
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work Sample 3"/>
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work Sample 4"/>
+        </div>
+        <!-- Strip B (duplicate for seamless loop) -->
+        <div class="marquee-strip" aria-hidden="true">
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt=""/>
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt=""/>
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt=""/>
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt=""/>
+        </div>
       </div>
     </div>
   </div>
@@ -220,27 +241,12 @@ function sequenceReveal(){
   let t=0;const STEP=100;
   items.forEach(el=>{setTimeout(()=>revealOne(el),t);t+=STEP;});
 }
-function startIntroAndReveal(){
-  const overlay=document.getElementById('introOverlay');
-  overlay.classList.add('hide');
-  overlay.addEventListener('transitionend',()=>sequenceReveal(),{once:true});
-}
+function startIntroAndReveal(){const overlay=document.getElementById('introOverlay');overlay.classList.add('hide');overlay.addEventListener('transitionend',()=>sequenceReveal(),{once:true});}
 window.addEventListener('load',startIntroAndReveal);
-window.addEventListener('pageshow',e=>{
-  if(e.persisted){
-    const overlay=document.getElementById('introOverlay');
-    overlay.classList.remove('hide');void overlay.offsetWidth;
-    document.querySelectorAll('.reveal-item').forEach(el=>{
-      el.style.opacity='0';el.style.visibility='hidden';el.style.transform='translateY(18px) scale(0.96)';
-    });
-    startIntroAndReveal();
-  }
-});
+window.addEventListener('pageshow',e=>{if(e.persisted){const overlay=document.getElementById('introOverlay');overlay.classList.remove('hide');void overlay.offsetWidth;document.querySelectorAll('.reveal-item').forEach(el=>{el.style.opacity='0';el.style.visibility='hidden';el.style.transform='translateY(18px) scale(0.96)';});startIntroAndReveal();}});
 document.addEventListener('click',e=>{if(e.target.matches('.hot'))document.body.classList.remove('menu-open');});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classList.remove('menu-open');});
 </script>
 </body>
 </html>
-
-
 
