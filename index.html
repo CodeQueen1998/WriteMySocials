@@ -42,29 +42,23 @@
   /* ===== Layout & spacing ===== */
   .section{max-width:1100px;margin:0 auto;padding:0 20px}
   .spacer-xl{height:120px}
-  .spacer-7cm{height:7cm;}
+  .spacer-lg{height:80px}
+  .spacer-7cm{height:7cm}
 
   /* ===== Logo ===== */
   .logo{
     display:block;
-    margin:150px auto 50px; /* moved slightly lower */
+    margin:160px auto 70px; /* more vertical space under logo */
     max-width:350px;
     width:70vw;
   }
 
-  /* ===== Quote image under the logo ===== */
-  .hero-image{display:flex;justify-content:center;margin:0 auto}
-  .hero-image img{max-width:1600px;width:100%;height:auto;display:block}
-
-  /* ===== Circular text marquee (seamless rotation, no clipping) ===== */
+  /* ===== Circular text marquee ===== */
   .circle-text{
-    position:absolute;
-    left:8vw;
-    top:calc(60vh - 7cm); /* lowered slightly for better fit under logo */
-    z-index:200;
+    display:flex;
+    justify-content:center;
+    margin:40px auto; /* centers it and adds space between logo + quote */
     width:220px;height:220px;
-    display:flex;align-items:center;justify-content:center;
-    overflow:visible;
   }
   .circle-text svg{width:100%;height:100%}
   .circle-text text{
@@ -79,19 +73,29 @@
     to{transform:rotate(360deg)}
   }
 
-  /* ===== Work marquee (smaller + slightly faster) ===== */
-  .marquee-wrap{max-width:none;width:100vw;padding:0;margin:0}
+  /* ===== Quote image under logo ===== */
+  .hero-image{display:flex;justify-content:center;margin:20px auto 0}
+  .hero-image img{max-width:1600px;width:100%;height:auto;display:block}
+
+  /* ===== Work samples marquee (structured + smooth + faster) ===== */
+  .marquee-wrap{max-width:none;width:100vw;padding:0;margin:60px 0}
   .marquee-container{overflow:hidden;white-space:nowrap}
   .marquee-content{
-    display:inline-flex;
-    animation:scroll-left 25s linear infinite; /* faster (was 35s) */
+    display:flex;
+    gap:2vw;
+    animation:scroll-left 22s linear infinite; /* smoother + faster */
+    will-change:transform;
   }
   .marquee-content img{
-    height:55vh; /* smaller than before (was 70vh) */
+    height:50vh; /* consistent smaller size */
     width:auto;
-    margin:0 2vw;
     border-radius:8px;
     display:block;
+    object-fit:cover;
+    transition:transform .3s ease;
+  }
+  .marquee-content img:hover{
+    transform:scale(1.03);
   }
   @keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
@@ -101,7 +105,13 @@
     max-width:900px;margin:0 auto;color:#111;line-height:1.9;font-weight:400
   }
 
-  /* ===== Bottom Tagline ===== */
+  /* ===== Bottom showcase ===== */
+  .corner-showcase{position:relative;width:min(360px,70vw);margin:40px auto 140px;z-index:1;filter:drop-shadow(0 8px 20px rgba(0,0,0,.2));overflow:visible}
+  .corner-showcase img{width:100%;height:auto;object-fit:cover;border-radius:12px}
+  .note-banner{position:absolute;right:1rem;top:-2cm;width:min(85%,520px);height:4cm;z-index:3;pointer-events:none;display:flex;align-items:center;justify-content:flex-end}
+  .note-banner img{width:100%;height:100%;object-fit:contain;opacity:.98}
+
+  /* ===== Bottom tagline ===== */
   .bottom-tagline{
     position:fixed;bottom:0;width:100%;background:#000;color:#fff;font-family:'Poppins',sans-serif;
     font-size:1rem;white-space:nowrap;overflow:hidden;z-index:900
@@ -109,26 +119,13 @@
   .bottom-tagline span{display:inline-block;padding-left:100%;animation:tagline-marquee 20s linear infinite}
   @keyframes tagline-marquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
-  /* ===== Bottom showcase & overlay ===== */
-  .corner-showcase{position:relative;width:min(360px,70vw);margin:40px auto 140px;z-index:1;filter:drop-shadow(0 8px 20px rgba(0,0,0,.2));overflow:visible}
-  .corner-showcase img{width:100%;height:auto;object-fit:cover;border-radius:12px}
-  .note-banner{position:absolute;right:1rem;top:-2cm;width:min(85%,520px);height:4cm;z-index:3;pointer-events:none;display:flex;align-items:center;justify-content:flex-end}
-  .note-banner img{width:100%;height:100%;object-fit:contain;opacity:.98}
-
-  /* ===== Responsive adjustments ===== */
+  /* ===== Mobile adjustments ===== */
   @media(max-width:768px){
-    .logo{margin:130px auto 45px;} /* lower logo for mobile */
-    .circle-text{
-      left:4vw;
-      top:calc(100vw * 0.6); /* pushed lower on mobile to avoid clash */
-      width:150px;height:150px;
-    }
+    .logo{margin:140px auto 80px;} /* more room for mobile */
+    .circle-text{width:160px;height:160px;margin:50px auto 40px;} /* centered and spaced */
     .marquee-content img{
-      height:45vh; /* smaller on mobile */
-      margin:0 3vw;
-    }
-    .note-banner{
-      top:-1.6cm;right:.5rem;width:min(95%,520px);height:3.2cm;
+      height:42vh; /* consistent small size, no flashing */
+      margin:0 2vw;
     }
   }
 </style>
@@ -159,13 +156,8 @@
   <!-- ===== Logo ===== -->
   <img class="logo reveal-item" data-order="1" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/WriteMySocials.png" alt="Write My Socials Logo"/>
 
-  <!-- ===== Quote image under logo ===== -->
-  <div class="section hero-image reveal-item" data-order="2">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2000.30.29.png" alt="Quote Image">
-  </div>
-
-  <!-- ===== Fixed circular marquee (seamless rotation) ===== -->
-  <div class="circle-text reveal-item" data-order="2.5" aria-label="Circular marquee">
+  <!-- ===== Circular marquee (now centered below logo) ===== -->
+  <div class="circle-text reveal-item" data-order="2.5">
     <svg viewBox="0 0 220 220" role="img" aria-label="Scrolling circular text">
       <defs>
         <path id="circlePath" d="M110,110 m-90,0 a90,90 0 1,1 180,0 a90,90 0 1,1 -180,0" />
@@ -180,9 +172,14 @@
     </svg>
   </div>
 
+  <!-- ===== Quote image under logo ===== -->
+  <div class="section hero-image reveal-item" data-order="3">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2000.30.29.png" alt="Quote Image">
+  </div>
+
   <div class="spacer-xl"></div>
 
-  <!-- ===== Work marquee ===== -->
+  <!-- ===== Work marquee (stable + fast + clean) ===== -->
   <div class="section marquee-wrap">
     <div class="marquee-container">
       <div class="marquee-content">
@@ -244,7 +241,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classL
 </script>
 </body>
 </html>
-
 
 
 
