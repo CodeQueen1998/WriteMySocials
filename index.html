@@ -74,6 +74,12 @@
   .hero-image{display:flex;justify-content:center;margin:0 auto}
   .hero-image img{max-width:1600px;width:100%;height:auto;display:block}
 
+  /* ===== NEW: Banner blocks above/below marquee ===== */
+  .banner-block{display:flex;justify-content:center;margin:40px auto}
+  .banner-block img{
+    max-width:1600px;width:100%;height:auto;display:block;border-radius:12px
+  }
+
   /* ===== Work samples marquee ===== */
   .marquee-wrap{max-width:none;width:100vw;padding:0;margin:60px 0}
   .marquee-container{overflow:hidden}
@@ -128,6 +134,7 @@
       display:flex;justify-content:center;align-items:center;
     }
     .hero-image img{max-width:100%}
+    .banner-block{margin:24px auto}
     .marquee-track{animation:scroll-left 14s linear infinite}
     .marquee-strip img{height:34vh}
   }
@@ -184,6 +191,14 @@
 
   <div class="spacer-xl"></div>
 
+  <!-- ===== NEW: Banner ABOVE the work samples marquee ===== -->
+  <div class="banner-block reveal-item" data-order="3.05">
+    <img
+      src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-28%20at%2020.35.29.png"
+      alt="Promotional banner above work samples"
+      loading="lazy">
+  </div>
+
   <!-- ===== Work samples marquee ===== -->
   <div class="section marquee-wrap">
     <div class="marquee-container">
@@ -202,6 +217,14 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- ===== NEW: Banner BELOW the work samples marquee ===== -->
+  <div class="banner-block reveal-item" data-order="3.15">
+    <img
+      src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-28%20at%2020.35.43.png"
+      alt="Promotional banner below work samples"
+      loading="lazy">
   </div>
 
   <div class="spacer-xl"></div>
@@ -241,5 +264,4 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classL
 </script>
 </body>
 </html>
-
 
