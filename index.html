@@ -39,7 +39,7 @@
   .hot{position:absolute;top:0;bottom:0}
   .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
 
-  /* ===== Layout & spacing ===== */
+  /* ===== Layout ===== */
   .section{max-width:1100px;margin:0 auto;padding:0 20px}
   .spacer-xl{height:120px}
   .spacer-7cm{height:7cm;}
@@ -47,45 +47,34 @@
   /* ===== Logo ===== */
   .logo{
     display:block;
-    margin:140px auto 60px;
+    margin:140px auto 40px;
     max-width:600px;
     width:70vw;
     height:auto;
   }
 
-  /* ===== Right-side image near logo (no border/background) ===== */
+  /* ===== Right-side image near logo (lowered 7cm, no background) ===== */
   .logo-side-image{
     position:absolute;
     right:8vw;
-    top:calc(60vh - 2cm);
+    top:calc(60vh + 5cm); /* lowered 7cm total */
     z-index:150;
     width:min(26vw, 340px);
     max-width:340px;
     height:auto;
     display:block;
     border:none;
-    outline:none;
-    background:transparent;   /* ensure no background */
-    box-shadow:none;          /* no shadow/border */
-    filter:none;              /* remove drop-shadow */
+    background:transparent;
+    box-shadow:none;
+    filter:none;
     pointer-events:none;
-  }
-
-  @media(min-width:1024px){
-    .logo{
-      margin-top:140px;
-      margin-bottom:60px;
-    }
   }
 
   @media(max-width:768px){
     .logo-side-image{
       position:static;
-      margin:0 auto 24px auto;
-      width:min(68vw, 380px);
-      background:transparent;
-      box-shadow:none;
-      filter:none;
+      margin:0 auto 24px;
+      width:min(68vw,380px);
     }
   }
 
@@ -97,7 +86,6 @@
     z-index:200;
     width:220px;height:220px;
     display:flex;align-items:center;justify-content:center;
-    overflow:visible;
   }
   .circle-text svg{width:100%;height:100%}
   .circle-text text{
@@ -106,42 +94,20 @@
   .circle-spin{transform-origin:110px 110px;animation:spin-circle 18s linear infinite}
   @keyframes spin-circle{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 
-  /* ===== Quote image under the logo (pushed 10cm down) ===== */
-  .hero-image{display:flex;justify-content:center;margin:0 auto; margin-top:10cm;}
-  .hero-image img{max-width:1600px;width:100%;height:auto;display:block}
-  /* gentler offset on small screens */
-  @media(max-width:768px){
-    .hero-image{margin-top:3cm;}
+  /* ===== Quote text under logo ===== */
+  .quote-text{
+    font-family:"Didot","Playfair Display",serif;
+    font-size:2.8rem;
+    color:#000;
+    text-align:center;
+    line-height:1.4;
+    max-width:900px;
+    margin:0 auto;
+    transform:translateY(-4cm);
+    padding:0 20px;
   }
 
-  /* ===== Banner blocks ===== */
-  .banner-block{display:flex;justify-content:center;margin:40px auto}
-  .banner-block img{
-    max-width:1600px;width:100%;height:auto;display:block;border-radius:12px
-  }
-
-  /* ===== Work samples marquee ===== */
-  .marquee-wrap{max-width:none;width:100vw;padding:0;margin:60px 0}
-  .marquee-container{overflow:hidden}
-  .marquee-track{
-    display:flex;
-    width:max-content;
-    gap:2vw;
-    padding:0 2vw;
-    animation:scroll-left 22s linear infinite;
-    will-change:transform;
-  }
-  .marquee-strip{display:flex;gap:2vw}
-  .marquee-strip img{
-    height:50vh;
-    width:auto;
-    border-radius:8px;
-    display:block;
-    object-fit:cover;
-  }
-  @keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-  /* ===== Testimonials Slider (arrow style) ===== */
+  /* ===== Testimonials Slider ===== */
   .reviews-section{
     background:#fff;
     padding:100px 20px;
@@ -190,16 +156,6 @@
   }
   .bottom-tagline span{display:inline-block;padding-left:100%;animation:tagline-marquee 20s linear infinite}
   @keyframes tagline-marquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
-
-  /* ===== Mobile overrides ===== */
-  @media(max-width:768px){
-    .logo{margin:130px auto 80px;max-width:80vw;}
-    .circle-text{position:static;margin:10px auto 40px;width:160px;height:160px;display:flex;justify-content:center;align-items:center;}
-    .hero-image img{max-width:100%}
-    .banner-block{margin:24px auto}
-    .marquee-track{animation:scroll-left 14s linear infinite}
-    .marquee-strip img{height:34vh}
-  }
 </style>
 </head>
 
@@ -230,7 +186,7 @@
     src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2011.45.04.png"
     alt="Write My Socials Logo"/>
 
-  <!-- ===== Right-side image (decor, no bg/border) ===== -->
+  <!-- ===== Right-side decorative image ===== -->
   <img
     class="logo-side-image reveal-item"
     data-order="2.8"
@@ -254,19 +210,10 @@
     </svg>
   </div>
 
-  <!-- ===== Quote image under logo (now 10cm lower) ===== -->
-  <div class="section hero-image reveal-item" data-order="3">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.11.48.png" alt="Quote Image">
-  </div>
-
-  <div class="spacer-xl"></div>
-
-  <!-- ===== Banner ABOVE the work samples marquee (FaceDunk) ===== -->
-  <div class="banner-block reveal-item" data-order="3.05">
-    <img
-      src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-28%20at%2020.35.43.png"
-      alt="Promotional banner above work samples (FaceDunk)"
-      loading="lazy">
+  <!-- ===== Quote text under logo (Didot, lifted) ===== -->
+  <div class="quote-text reveal-item" data-order="3">
+    “Already have had several business owners reach out on LinkedIn inquiring about UGC services from their clients...<br>
+    10000% thanks to regular posting by SARA!”
   </div>
 
   <!-- ===== Work samples marquee ===== -->
@@ -289,20 +236,11 @@
     </div>
   </div>
 
-  <!-- ===== Banner BELOW the work samples marquee (Movavi) ===== -->
-  <div class="banner-block reveal-item" data-order="3.15">
-    <img
-      src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-28%20at%2020.35.29.png"
-      alt="Promotional banner below work samples (Movavi)"
-      loading="lazy">
-  </div>
-
-  <!-- ===== Testimonials Slider (with arrows) ===== -->
+  <!-- ===== Testimonials Slider ===== -->
   <section class="reviews-section reveal-item" data-order="3.3">
     <div class="review-container">
       <button class="arrow left" onclick="prevReview()">&#8592;</button>
 
-      <!-- Review 1 -->
       <div class="review-slide active">
         <p class="review-text">
           "The quality is great; the structure is correct as well. Thank you for following my brief closely!"
@@ -310,7 +248,6 @@
         <p class="review-meta">MARIA — MOVAVI SOFTWARE</p>
       </div>
 
-      <!-- Review 2 -->
       <div class="review-slide">
         <p class="review-text">
           "Siyana was very professional and was able to edit my copy in a very professional manner that spoke to my audience.
@@ -324,32 +261,6 @@
   </section>
 
   <div class="spacer-xl"></div>
-
-  <!-- ===== Mission section ===== -->
-  <div class="section mission-statement reveal-item" data-order="4">
-    “WriteMySocials brings brands to life through creating quality, personality driven strategies that connect, convert and stay true to their voice. We don’t sell virality… 
-    We sell stories!
-    <br><br>
-    Your brand deserves more than filler captions and recycled trends. We don’t copy trends. We create them. First, we listen to your goals, we learn your market and your personality. So that we can craft stories that feel distinctively yours. 
-    <br><br>
-    Whether you're launching a new product, refreshing your brand identity, or scaling your digital presence, we build creatively that speaks directly to your audience’s emotions and drives measurable impact.
-    <br><br>
-    From voice development and storytelling frameworks to campaign copy and social strategy, we make sure every touchpoint aligns with your purpose. Every sentence, every visual, every campaign is crafted to elevate your brand narrative and spark genuine connection. We don’t just “do” content; we build brands that resonate.
-    <br><br>
-    Real marketing doesn’t chase virality; it creates belonging. We turn casual scrollers into loyal fans and curious followers into customers who remember your name.
-    <br><br>
-    At Write My Socials, strategy meets creativity in perfect harmony. Your story isn’t just told, it’s performed, polished, and positioned to thrive across every platform.”
-  </div>
-
-  <div class="spacer-7cm"></div>
-
-  <!-- ===== Bottom image ===== -->
-  <div class="corner-showcase reveal-item" data-order="5">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="Corner Showcase Image">
-    <div class="note-banner reveal-item" data-order="5.1">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.58.png" alt="Decorative Note Banner">
-    </div>
-  </div>
 
   <div class="bottom-tagline">
     <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
@@ -366,27 +277,13 @@ function sequenceReveal(){
 }
 function startIntroAndReveal(){const overlay=document.getElementById('introOverlay');overlay.classList.add('hide');overlay.addEventListener('transitionend',()=>sequenceReveal(),{once:true});}
 window.addEventListener('load',startIntroAndReveal);
-window.addEventListener('pageshow',e=>{if(e.persisted){const overlay=document.getElementById('introOverlay');overlay.classList.remove('hide');void overlay.offsetWidth;document.querySelectorAll('.reveal-item').forEach(el=>{el.style.opacity='0';el.style.visibility='hidden';el.style.transform='translateY(18px) scale(0.96)';});startIntroAndReveal();}});
-document.addEventListener('click',e=>{if(e.target.matches('.hot'))document.body.classList.remove('menu-open');});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classList.remove('menu-open');});
 
-/* ===== Testimonials slider logic ===== */
+/* Testimonials slider */
 let currentReview=0;
 const slides=()=>Array.from(document.querySelectorAll('.review-slide'));
-function showReview(i){
-  slides().forEach(s=>s.classList.remove('active'));
-  slides()[i].classList.add('active');
-}
-function nextReview(){
-  currentReview=(currentReview+1)%slides().length;
-  showReview(currentReview);
-}
-function prevReview(){
-  currentReview=(currentReview-1+slides().length)%slides().length;
-  showReview(currentReview);
-}
+function showReview(i){slides().forEach(s=>s.classList.remove('active'));slides()[i].classList.add('active');}
+function nextReview(){currentReview=(currentReview+1)%slides().length;showReview(currentReview);}
+function prevReview(){currentReview=(currentReview-1+slides().length)%slides().length;showReview(currentReview);}
 </script>
 </body>
 </html>
-
-
