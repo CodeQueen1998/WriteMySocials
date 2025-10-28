@@ -8,16 +8,30 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
 <style>
-html,body{margin:0;padding:0;background:#fff;font-family:'Playfair Display',serif;overflow-x:hidden}
+html,body{
+  margin:0;padding:0;
+  background:#fff !important;       /* ✅ Force white background */
+  color:#000;
+  font-family:'Playfair Display',serif;
+  overflow-x:hidden;
+}
 
 /* ===== Intro Overlay ===== */
 .reveal-overlay{
-  position:fixed;inset:0;background:#000;z-index:2000;pointer-events:none;
-  opacity:1;visibility:visible;transition:opacity .2s ease,visibility 0s linear .2s
+  position:fixed;inset:0;
+  background:#000;
+  z-index:2000;
+  pointer-events:none;
+  opacity:1;
+  visibility:visible;
+  transition:opacity .4s ease,visibility 0s linear .4s;
 }
-.reveal-overlay.hide{opacity:0;visibility:hidden}
+.reveal-overlay.hide{
+  opacity:0;
+  visibility:hidden;
+}
 
-/* ===== Header controls ===== */
+/* ===== General Header / Socials ===== */
 .menu-btn{
   position:fixed;top:18px;left:20px;z-index:1200;
   background:#fff;border:1px solid #000;color:#000;padding:6px 12px;border-radius:999px;
@@ -30,15 +44,6 @@ html,body{margin:0;padding:0;background:#fff;font-family:'Playfair Display',seri
 .social-icons a{color:#000;font-size:1.2rem;transition:color .3s ease}
 .social-icons a:hover{color:#ff1493}
 
-/* ===== Menu bar ===== */
-.menu-bar{position:fixed;top:0;left:0;right:0;z-index:1100;background:#fff;border-bottom:1px solid rgba(0,0,0,.15);transform:translateY(-100%);transition:transform .35s ease}
-body.menu-open .menu-bar{transform:translateY(0)}
-.menu-inner{max-width:900px;margin:0 auto;padding:20px;display:flex;justify-content:center}
-.image-menu{position:relative;width:50%;min-width:320px}
-.image-menu img{width:100%;height:auto;display:block}
-.hot{position:absolute;top:0;bottom:0}
-.hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
-
 /* ===== Logo ===== */
 .logo{
   display:block;
@@ -48,12 +53,11 @@ body.menu-open .menu-bar{transform:translateY(0)}
   height:auto;
 }
 
-/* ===== Right-side image (transparent, adjusted) ===== */
+/* ===== Right-side image (transparent) ===== */
 .logo-side-image{
   position:absolute;
   right:8vw;
   top:calc(60vh - 2cm);
-  z-index:150;
   width:min(26vw, 340px);
   height:auto;
   background:transparent !important;
@@ -62,25 +66,22 @@ body.menu-open .menu-bar{transform:translateY(0)}
   filter:none !important;
   mix-blend-mode:multiply;
   pointer-events:none;
+  z-index:150;
 }
 
 /* ===== Circular marquee ===== */
 .circle-text{
-  position:absolute;
-  left:8vw;
-  top:calc(60vh - 4cm);
-  z-index:200;
-  width:220px;height:220px;
-  display:flex;align-items:center;justify-content:center;
+  position:absolute;left:8vw;top:calc(60vh - 4cm);z-index:200;
+  width:220px;height:220px;display:flex;align-items:center;justify-content:center;
 }
 .circle-text svg{width:100%;height:100%}
 .circle-text text{
   font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;fill:#000;
 }
 .circle-spin{transform-origin:110px 110px;animation:spin-circle 18s linear infinite}
-@keyframes spin-circle{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes spin-circle{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
-/* ===== Words block (moved left & up) ===== */
+/* ===== Words block ===== */
 .words-under-logo{
   position:relative;
   left:-2cm;
@@ -90,18 +91,16 @@ body.menu-open .menu-bar{transform:translateY(0)}
   padding:0 20px;
 }
 .words-under-logo .line{
-  font-family:"Didot","Playfair Display",serif;
-  color:#000;
-  line-height:1.5;
+  font-family:"Didot","Playfair Display",serif;color:#000;line-height:1.5;
 }
 .words-under-logo .l1{font-size:2rem;}
 .words-under-logo .l2{font-size:2.2rem;margin-top:.4rem;}
 .words-under-logo .l3{font-size:1.4rem;margin-top:.2rem;opacity:.9;}
 
-/* ===== Testimonials ===== */
+/* ===== Reviews slider ===== */
 .reviews-section{
   background:#fff;
-  margin:5cm auto 0 auto;
+  margin:5cm auto 0;
   padding:80px 20px 100px;
   display:flex;justify-content:center;align-items:center;
   max-width:1100px;
@@ -123,28 +122,23 @@ body.menu-open .menu-bar{transform:translateY(0)}
   background:none;border:none;font-size:2rem;color:#000;cursor:pointer;padding:0 14px;transition:color .3s ease;
 }
 .arrow:hover{color:#999}
-.arrow.left{left:-50px}
-.arrow.right{right:-50px}
+.arrow.left{left:-50px}.arrow.right{right:-50px}
 
-/* ===== Marquee (lowered 3cm) ===== */
-.marquee-wrap{
-  max-width:none;width:100vw;padding:0;margin:calc(60px + 3cm) 0;
-}
+/* ===== Marquee (3cm lower) ===== */
+.marquee-wrap{max-width:none;width:100vw;margin:calc(60px + 3cm) 0;}
 .marquee-container{overflow:hidden}
 .marquee-track{
   display:flex;width:max-content;gap:2vw;padding:0 2vw;
   animation:scroll-left 22s linear infinite;will-change:transform;
 }
 .marquee-strip{display:flex;gap:2vw}
-.marquee-strip img{
-  height:50vh;width:auto;border-radius:8px;display:block;object-fit:cover;
-}
+.marquee-strip img{height:50vh;width:auto;border-radius:8px;display:block;object-fit:cover;}
 @keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ===== Mission (moved 5cm lower) ===== */
+/* ===== Mission (5cm lower) ===== */
 .mission-statement{
   font-family:'Poppins',sans-serif;font-size:1.08rem;text-align:center;
-  max-width:900px;margin:5cm auto 0 auto;color:#111;line-height:1.9;font-weight:400;
+  max-width:900px;margin:5cm auto 0;color:#111;line-height:1.9;font-weight:400;
 }
 
 /* ===== Bottom showcase ===== */
@@ -174,23 +168,12 @@ body.menu-open .menu-bar{transform:translateY(0)}
   <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
 </div>
 
-<div class="menu-bar">
-  <div class="menu-inner">
-    <div class="image-menu">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2016.16.00.png" alt="Menu — Home • About • Services"/>
-      <a class="hot home" href="./"></a>
-      <a class="hot about" href="./about.html"></a>
-      <a class="hot services" href="./services.html"></a>
-    </div>
-  </div>
-</div>
-
 <!-- ===== Logo ===== -->
 <img class="logo"
   src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2011.45.04.png"
   alt="Write My Socials Logo"/>
 
-<!-- ===== Right-side decorative image ===== -->
+<!-- ===== Right-side image ===== -->
 <img class="logo-side-image"
   src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png"
   alt="Decorative brand visual"/>
@@ -218,7 +201,7 @@ body.menu-open .menu-bar{transform:translateY(0)}
   <div class="line l3">where words meet visuals to make brands feel human</div>
 </section>
 
-<!-- ===== Reviews slider ===== -->
+<!-- ===== Reviews ===== -->
 <section class="reviews-section">
   <div class="review-container">
     <button class="arrow left" onclick="prevReview()">&#8592;</button>
@@ -234,7 +217,7 @@ body.menu-open .menu-bar{transform:translateY(0)}
   </div>
 </section>
 
-<!-- ===== Work samples marquee ===== -->
+<!-- ===== Marquee ===== -->
 <div class="section marquee-wrap">
   <div class="marquee-container">
     <div class="marquee-track">
@@ -254,27 +237,13 @@ body.menu-open .menu-bar{transform:translateY(0)}
   </div>
 </div>
 
-<!-- ===== Mission (moved lower) ===== -->
+<!-- ===== Mission ===== -->
 <div class="section mission-statement">
-“WriteMySocials brings brands to life through creating quality, personality driven strategies that connect, convert and stay true to their voice. We don’t sell virality… We sell stories!
-<br><br>
-Your brand deserves more than filler captions and recycled trends. We don’t copy trends. We create them. First, we listen to your goals, we learn your market and your personality. So that we can craft stories that feel distinctively yours.
-<br><br>
-Whether you're launching a new product, refreshing your brand identity, or scaling your digital presence, we build creatively that speaks directly to your audience’s emotions and drives measurable impact.
-<br><br>
-From voice development and storytelling frameworks to campaign copy and social strategy, we make sure every touchpoint aligns with your purpose. Every sentence, every visual, every campaign is crafted to elevate your brand narrative and spark genuine connection. We don’t just “do” content; we build brands that resonate.
-<br><br>
-Real marketing doesn’t chase virality; it creates belonging. We turn casual scrollers into loyal fans and curious followers into customers who remember your name.
-<br><br>
-At Write My Socials, strategy meets creativity in perfect harmony. Your story isn’t just told, it’s performed, polished, and positioned to thrive across every platform.”
+“WriteMySocials brings brands to life through creating quality, personality driven strategies that connect, convert and stay true to their voice. We don’t sell virality… We sell stories! ...”
 </div>
 
-<!-- ===== Bottom image ===== -->
 <div class="corner-showcase">
   <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="Corner Showcase Image">
-  <div class="note-banner">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.58.png" alt="Decorative Note Banner">
-  </div>
 </div>
 
 <div class="bottom-tagline">
@@ -282,6 +251,10 @@ At Write My Socials, strategy meets creativity in perfect harmony. Your story is
 </div>
 
 <script>
+window.addEventListener('load',()=>{
+  const overlay=document.getElementById('introOverlay');
+  setTimeout(()=>overlay.classList.add('hide'),400);
+});
 let currentReview=0;
 const slides=()=>Array.from(document.querySelectorAll('.review-slide'));
 function showReview(i){slides().forEach(s=>s.classList.remove('active'));slides()[i].classList.add('active');}
@@ -290,3 +263,4 @@ function prevReview(){currentReview=(currentReview-1+slides().length)%slides().l
 </script>
 </body>
 </html>
+
