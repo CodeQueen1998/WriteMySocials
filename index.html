@@ -12,13 +12,12 @@
   --maxw:1100px;
   --pad: clamp(16px, 3vw, 28px);
   --gap-lg: clamp(28px, 4vw, 50px);
-  --gap-xl: clamp(44px, 6vw, 90px);
   --rhythm: clamp(28px, 6vw, 80px); /* vertical rhythm */
 }
 
 html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
 
-/* ===== Header / Socials / Image Menu (matches Services) ===== */
+/* ===== Header / Socials / Image Menu (same SMALL menu as Services) ===== */
 .menu-btn{
   position:fixed;top:18px;left:20px;z-index:3100;background:#fff;border:1px solid #000;color:#000;
   padding:6px 12px;border-radius:999px;font-family:'Poppins',sans-serif;font-size:.85rem;letter-spacing:.1em;cursor:pointer;transition:.3s
@@ -34,7 +33,7 @@ html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Di
 }
 body.menu-open .menu-bar{transform:translateY(0)}
 .menu-inner{max-width:var(--maxw);margin:0 auto;padding:10px var(--pad);display:flex;justify-content:center}
-.image-menu{position:relative;width:min(900px,92vw)}
+.image-menu{position:relative;width:min(900px,92vw)}       /* ← same size as Services */
 .image-menu img{width:100%;height:auto;display:block}
 .hot{position:absolute;top:0;bottom:0}
 .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
@@ -62,27 +61,28 @@ body.menu-open .menu-bar{transform:translateY(0)}
 @media(max-width:960px){ .circle-wrap{justify-self:center} .circle-wrap svg{width:150px} }
 
 /* Logo centered */
-.logo{
-  display:block; margin:0 auto; width:min(70vw, 680px); max-width:680px; height:auto;
-}
+.logo-wrap{position:relative; display:grid; place-items:center}
+.logo{display:block; margin:0 auto; width:min(70vw, 680px); max-width:680px; height:auto}
 
-/* Signature BELOW the logo (closing line) */
+/* Signature to the LEFT & slightly under the logo (overlap) */
 .signature{
-  display:block;
-  margin: 6px auto 0;
-  width:min(42vw, 360px);
-  max-width:360px;
+  position:absolute;
+  left: -8%;          /* pushes to the left of logo */
+  top: 88%;           /* slightly under the logo */
+  width:min(42vw, 340px);
+  max-width:340px;
   height:auto;
-  opacity:.85;
+  opacity:.9;
+  pointer-events:none;
 }
-@media(max-width:960px){
-  .signature{ width:min(70vw, 320px); }
-}
+@media(max-width:1100px){ .signature{ left:-10%; top:90%; width:min(46vw, 320px);} }
+@media(max-width:800px){  .signature{ left:-14%; top:92%; width:min(56vw, 300px);} }
+@media(max-width:600px){  .signature{ position:static; margin-top:10px; width:min(70vw, 300px);} } /* on small phones, tuck under logo centered */
 
-/* ===== Words block under hero ===== */
+/* ===== Words block under hero — move 3cm HIGHER ===== */
 .words{
   max-width:var(--maxw);
-  margin: var(--rhythm) auto 0;
+  margin: calc(var(--rhythm) - 3cm) auto 0;   /* ← 3cm higher */
   padding:0 var(--pad);
   text-align:center;
 }
@@ -90,10 +90,10 @@ body.menu-open .menu-bar{transform:translateY(0)}
 .words .l2{font-size: clamp(1.4rem, 3.2vw, 2.2rem); margin-top:.4rem}
 .words .l3{font-size: clamp(1rem, 2.4vw, 1.4rem); margin-top:.2rem; opacity:.9}
 
-/* ===== Reviews slider (mobile tidy) ===== */
+/* ===== Reviews — move 2cm LOWER ===== */
 .reviews{
   max-width:var(--maxw);
-  margin: var(--rhythm) auto 0;
+  margin: calc(var(--rhythm) + 2cm) auto 0;   /* ← 2cm lower */
   padding:0 var(--pad);
 }
 .review-container{position:relative;max-width:min(900px, 92vw);margin:0 auto;text-align:center}
@@ -108,7 +108,7 @@ body.menu-open .menu-bar{transform:translateY(0)}
 .arrow.left{left:-10px}.arrow.right{right:-10px}
 @media(min-width:700px){ .arrow.left{left:-40px}.arrow.right{right:-40px} }
 
-/* ===== Marquee (kept, with saner mobile height) ===== */
+/* ===== Marquee ===== */
 .marquee-wrap{max-width:none;width:100vw;margin: var(--rhythm) 0}
 .marquee-container{overflow:hidden}
 .marquee-track{display:flex;width:max-content;gap:2vw;padding:0 2vw;animation:marq 22s linear infinite}
@@ -124,8 +124,8 @@ body.menu-open .menu-bar{transform:translateY(0)}
   text-align:center;line-height:1.9;color:#111
 }
 
-/* ===== Bottom showcase ===== */
-.corner-showcase{position:relative;width:min(360px,70vw);margin: var(--gap-lg) auto calc(var(--rhythm) + 60px)}
+/* ===== Bottom showcase — move 8cm LOWER ===== */
+.corner-showcase{position:relative;width:min(360px,70vw);margin: calc(var(--rhythm) + 8cm) auto calc(var(--rhythm) + 60px)} /* ← 8cm lower */
 .corner-showcase img{width:100%;height:auto;border-radius:12px}
 .note-banner{position:absolute;right:1rem;top:-2cm;width:min(85%,520px);height:4cm;display:flex;align-items:center;justify-content:flex-end;pointer-events:none}
 .note-banner img{width:100%;height:100%;object-fit:contain;opacity:.98}
@@ -139,11 +139,7 @@ body{padding-bottom:64px}
 /* ===== Reveal (gentle) ===== */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease, transform .5s ease;will-change:opacity,transform}
 .reveal.in{opacity:1;transform:none}
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce){
-  .reveal{opacity:1;transform:none;transition:none}
-}
+@media (prefers-reduced-motion: reduce){ .reveal{opacity:1;transform:none;transition:none} }
 </style>
 </head>
 
@@ -155,7 +151,7 @@ body{padding-bottom:64px}
   <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
 </div>
 
-<!-- Image menu (same as Services) -->
+<!-- SMALL image menu (identical to Services) -->
 <nav class="menu-bar" id="siteMenu" aria-label="Primary">
   <div class="menu-inner">
     <div class="image-menu">
@@ -179,25 +175,24 @@ body{padding-bottom:64px}
     </svg>
   </div>
 
-  <!-- Center: logo + signature -->
-  <div class="logo-wrap reveal" style="text-align:center">
+  <!-- Center: logo with signature sitting to the left & under -->
+  <div class="logo-wrap reveal">
     <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2011.45.04.png" alt="Write My Socials logo"/>
-    <!-- Closing signature under logo -->
     <img class="signature" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png" alt="with love for your brand"/>
   </div>
 
-  <!-- Right: (empty to balance grid on desktop) -->
+  <!-- Right spacer for balance on desktop -->
   <div class="spacer" aria-hidden="true"></div>
 </header>
 
-<!-- ===== Words ===== -->
+<!-- ===== Words (moved up) ===== -->
 <section class="words reveal">
   <div class="l1">95% of purchase decisions are driven by emotion.</div>
   <div class="l2">We are The Storytelling Marketing Studio</div>
   <div class="l3">where words meet visuals to make brands feel human</div>
 </section>
 
-<!-- ===== Reviews ===== -->
+<!-- ===== Reviews (moved down) ===== -->
 <section class="reviews reveal">
   <div class="review-container">
     <button class="arrow left" onclick="prevReview()" aria-label="Previous review">&#8592;</button>
@@ -238,7 +233,7 @@ body{padding-bottom:64px}
   “WriteMySocials brings brands to life through creating quality, personality driven strategies that connect, convert and stay true to their voice. We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.”
 </section>
 
-<!-- ===== Bottom showcase ===== -->
+<!-- ===== Bottom showcase (pushed 8cm lower) ===== -->
 <div class="corner-showcase reveal">
   <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="Corner showcase">
   <div class="note-banner">
@@ -281,6 +276,7 @@ function prevReview(){currentReview=(currentReview-1+slides().length)%slides().l
 
 </body>
 </html>
+
 
 
 
