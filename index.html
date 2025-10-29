@@ -16,12 +16,8 @@
 /* Base */
 html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
 
-/* ===== Intro Black Overlay (half duration) ===== */
-.reveal-overlay{
-  position:fixed;inset:0;background:#000;z-index:4000;
-  opacity:1;visibility:visible;
-  transition:opacity .25s ease, visibility 0s linear .25s; /* was .5s */
-}
+/* ===== Intro Black Overlay ===== */
+.reveal-overlay{position:fixed;inset:0;background:#000;z-index:4000;opacity:1;visibility:visible;transition:opacity .5s ease,visibility 0s linear .5s}
 .reveal-overlay.hide{opacity:0;visibility:hidden}
 
 /* ===== Header & Menu ===== */
@@ -31,7 +27,7 @@ html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Di
 .social-icons a{color:#000;font-size:1.2rem;transition:color .3s}
 .social-icons a:hover{color:#ff1493}
 
-/* ===== Slide-down Menu ===== */
+/* Slide-down Menu */
 .menu-bar{position:fixed;top:0;left:0;right:0;z-index:3000;background:#fff;border-bottom:1px solid rgba(0,0,0,.15);transform:translateY(-100%);transition:transform .35s ease}
 body.menu-open .menu-bar{transform:translateY(0)}
 .menu-inner{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;justify-content:center}
@@ -42,7 +38,7 @@ body.menu-open .menu-bar{transform:translateY(0)}
 .hot{position:absolute;top:0;bottom:0}
 .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
 
-/* ===== Hero (logo + circular spinner unchanged positionally) ===== */
+/* ===== Hero ===== */
 .hero{max-width:1100px;margin:120px auto 0;padding:0 20px;display:grid;grid-template-columns:1fr minmax(300px,680px) 1fr;align-items:center;gap:40px}
 @media(max-width:960px){.hero{grid-template-columns:1fr;margin-top:110px}}
 .circle-wrap{justify-self:start}
@@ -55,7 +51,7 @@ body.menu-open .menu-bar{transform:translateY(0)}
 .signature{position:absolute;right:-8%;top:88%;width:min(42vw,340px);max-width:340px;height:auto;opacity:.9;pointer-events:none}
 @media(max-width:600px){.signature{position:static;margin-top:10px;width:min(70vw,300px)}}
 
-/* ===== Section spacing (7 cm between every block in .after-hero) ===== */
+/* ===== Section spacing ===== */
 .after-hero > *{margin-top:var(--gap) !important; margin-bottom:var(--gap) !important}
 
 /* ===== Words ===== */
@@ -75,15 +71,28 @@ body.menu-open .menu-bar{transform:translateY(0)}
 .arrow.left{left:-30px}.arrow.right{right:-30px}
 @keyframes bounceIn{0%{opacity:0;transform:translateY(30px) scale(0.95)}60%{opacity:1;transform:translateY(-10px) scale(1.02)}100%{transform:translateY(0) scale(1)}}
 
-/* ===== Marquee (work samples) ===== */
+/* ===== Marquee ===== */
 .marquee-wrap{width:100vw;overflow:hidden}
 .marquee-track{display:flex;gap:2vw;padding:0 2vw;animation:scroll 22s linear infinite}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .marquee-track img{height:50vh;width:auto;border-radius:8px;display:block;object-fit:cover;opacity:0;animation:bounceImg .9s ease forwards;animation-delay:calc(var(--i)*.2s)}
 @keyframes bounceImg{0%{opacity:0;transform:translateY(40px) scale(0.9)}60%{opacity:1;transform:translateY(-12px) scale(1.05)}100%{opacity:1;transform:translateY(0) scale(1)}}
 
-/* ===== Mission (quote) — lifted 2 cm) ===== */
-.mission{max-width:900px;margin:0 auto;padding:0 20px;text-align:center;font-family:'Poppins',sans-serif;line-height:1.9;color:#111;font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;transform:translateY(-2cm)}
+/* ===== Mission (quote) — lifted 2 cm but transparent background ===== */
+.mission{
+  max-width:900px;
+  margin:0 auto;
+  margin-top:calc(var(--gap) - 2cm);
+  margin-bottom:var(--gap);
+  padding:0 20px;
+  text-align:center;
+  font-family:'Poppins',sans-serif;
+  line-height:1.9;
+  color:#111;
+  font-size:clamp(1.05rem,2.3vw,1.15rem);
+  font-weight:400;
+  background:transparent;
+}
 
 /* ===== Bottom Showcase ===== */
 .corner-showcase{position:relative;width:min(360px,70vw);margin:0 auto}
@@ -96,20 +105,9 @@ body.menu-open .menu-bar{transform:translateY(0)}
 .bottom-tagline span{display:inline-block;padding-left:100%;animation:tick 20s linear infinite}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
-/* ===== Staggered "pop-in" reveal (one-by-one) ===== */
-.reveal{
-  opacity:0;
-  transform:translateY(30px) scale(.96);
-  will-change:transform,opacity;
-}
-.reveal.in{
-  animation:pop .6s cubic-bezier(.22,.68,0,1.02) both;
-}
-@keyframes pop{
-  0%{opacity:0;transform:translateY(30px) scale(.96)}
-  60%{opacity:1;transform:translateY(-8px) scale(1.02)}
-  100%{opacity:1;transform:translateY(0) scale(1)}
-}
+/* ===== Reveal ===== */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .6s ease,transform .6s ease;will-change:transform,opacity}
+.reveal.in{opacity:1;transform:translateY(0)}
 </style>
 </head>
 
@@ -173,10 +171,10 @@ body.menu-open .menu-bar{transform:translateY(0)}
 
 <div class="marquee-wrap reveal">
   <div class="marquee-track">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" style="--i:0" alt="">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" style="--i:1" alt="">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" style="--i:2" alt="">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" style="--i:3" alt="">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" style="--i:0">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" style="--i:1">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" style="--i:2">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" style="--i:3">
   </div>
 </div>
 
@@ -195,48 +193,10 @@ body.menu-open .menu-bar{transform:translateY(0)}
 <div class="bottom-tagline"><span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span></div>
 
 <script>
-/* Black intro then reveal (half duration) */
-window.addEventListener('load', ()=>{
-  const overlay = document.getElementById('introOverlay');
-
-  // Hide the overlay sooner
-  setTimeout(()=> overlay.classList.add('hide'), 250); // was 500ms
-
-  // After the fade completes, start staggered reveals
-  overlay.addEventListener('transitionend', startStagger, { once:true });
-
-  function startStagger(){
-    const all = Array.from(document.querySelectorAll('.reveal'));
-    const vh = window.innerHeight || document.documentElement.clientHeight;
-
-    // In-view elements at start (DOM order)
-    const inView = all.filter(el=>{
-      const r = el.getBoundingClientRect();
-      return r.top < vh && r.bottom > 0;
-    });
-
-    // Stagger those immediately visible
-    let delay = 0;
-    const step = 200; // ms between pops
-    inView.forEach(el=>{
-      setTimeout(()=> el.classList.add('in'), delay);
-      delay += step;
-    });
-
-    // For elements not in view yet, reveal when they scroll in, also staggered
-    let queued = 0;
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting && !e.target.classList.contains('in')){
-          setTimeout(()=> e.target.classList.add('in'), queued * 150);
-          queued++;
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    all.forEach(el=>{ if(!inView.includes(el)) io.observe(el); });
-  }
+/* Black intro then reveal */
+window.addEventListener('load',()=>{
+  const overlay=document.getElementById('introOverlay');
+  setTimeout(()=>overlay.classList.add('hide'),500);
 });
 
 /* Menu toggle */
@@ -254,6 +214,17 @@ const slides=()=>Array.from(document.querySelectorAll('.review-slide'));
 function showReview(i){slides().forEach(s=>s.classList.remove('active'));slides()[i].classList.add('active');}
 function nextReview(){currentReview=(currentReview+1)%slides().length;showReview(currentReview);}
 function prevReview(){currentReview=(currentReview-1+slides().length)%slides().length;showReview(currentReview);}
+
+/* Reveal observer */
+(function(){
+  const els=document.querySelectorAll('.reveal');
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+    });
+  },{threshold:0.15});
+  els.forEach(el=>io.observe(el));
+})();
 </script>
 </body>
 </html>
