@@ -11,13 +11,16 @@
 :root{
   --gap: 7cm;           /* global vertical rhythm */
   --menu-scale: 1.5;    /* 1.5× menu image */
+  /* NEW – crop the menu image (trim a little from L/R). Increase % to crop more */
+  --menu-crop-left: 3%;
+  --menu-crop-right: 3%;
 }
 
 /* Base */
 html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
 
-/* ===== Intro Black Overlay ===== */
-.reveal-overlay{position:fixed;inset:0;background:#000;z-index:4000;opacity:1;visibility:visible;transition:opacity .5s ease,visibility 0s linear .5s}
+/* ===== Intro Black Overlay (faster) ===== */
+.reveal-overlay{position:fixed;inset:0;background:#000;z-index:4000;opacity:1;visibility:visible;transition:opacity .2s ease,visibility 0s linear .2s}
 .reveal-overlay.hide{opacity:0;visibility:hidden}
 
 /* ===== Header & Menu ===== */
@@ -32,8 +35,17 @@ html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Di
 body.menu-open .menu-bar{transform:translateY(0)}
 .menu-inner{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;justify-content:center}
 
-/* Bigger image menu (scales clickable areas too) */
-.image-menu{position:relative; width:min(300px,60vw); transform:scale(var(--menu-scale)) translateZ(0); transform-origin: top center}
+/* Bigger image menu + CROPPED */
+.image-menu{
+  position:relative;
+  width:min(300px,60vw);
+  transform:scale(var(--menu-scale)) translateZ(0);
+  transform-origin: top center;
+  overflow:hidden;
+  /* crop with clip-path so the edges end near the line marks */
+  -webkit-clip-path: inset(0 var(--menu-crop-right) 0 var(--menu-crop-left));
+          clip-path: inset(0 var(--menu-crop-right) 0 var(--menu-crop-left));
+}
 .image-menu img{width:100%;height:auto;display:block}
 .hot{position:absolute;top:0;bottom:0}
 .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
@@ -48,7 +60,17 @@ body.menu-open .menu-bar{transform:translateY(0)}
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 .logo-wrap{position:relative;display:grid;place-items:center}
 .logo{display:block;margin:0 auto;width:min(70vw,680px);max-width:680px;height:auto}
-.signature{position:absolute;right:-8%;top:88%;width:min(42vw,340px);max-width:340px;height:auto;opacity:.9;pointer-events:none}
+
+/* ===== Signature (quote) – remove white bg without editing the asset ===== */
+/* mix-blend-mode:multiply makes white areas “disappear” over white pages */
+.signature{
+  position:absolute;right:-8%;top:88%;
+  width:min(42vw,340px);max-width:340px;height:auto;opacity:.95;pointer-events:none;
+  mix-blend-mode:multiply;        /* key line */
+}
+/* Optional extra safety: a soft mask to clip any stray white margins. Tweak if needed. */
+.signature{ -webkit-clip-path: inset(3% 0 0 0 round 2px); clip-path: inset(3% 0 0 0 round 2px); }
+
 @media(max-width:600px){.signature{position:static;margin-top:10px;width:min(70vw,300px)}}
 
 /* ===== Section spacing ===== */
@@ -69,45 +91,52 @@ body.menu-open .menu-bar{transform:translateY(0)}
 .review-meta{font-family:'Poppins',sans-serif;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase}
 .arrow{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;font-size:1.8rem;color:#000;cursor:pointer}
 .arrow.left{left:-30px}.arrow.right{right:-30px}
-@keyframes bounceIn{0%{opacity:0;transform:translateY(30px) scale(0.95)}60%{opacity:1;transform:translateY(-10px) scale(1.02)}100%{transform:translateY(0) scale(1)}}
 
 /* ===== Marquee ===== */
 .marquee-wrap{width:100vw;overflow:hidden}
-.marquee-track{display:flex;gap:2vw;padding:0 2vw;animation:scroll 22s linear infinite}
+.marquee-track{display:flex;gap:2vw;padding:0 2vw;}
+/* animate items one-by-one (already staggered by --i) */
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.marquee-track img{height:50vh;width:auto;border-radius:8px;display:block;object-fit:cover;opacity:0;animation:bounceImg .9s ease forwards;animation-delay:calc(var(--i)*.2s)}
-@keyframes bounceImg{0%{opacity:0;transform:translateY(40px) scale(0.9)}60%{opacity:1;transform:translateY(-12px) scale(1.05)}100%{opacity:1;transform:translateY(0) scale(1)}}
+.marquee-track img{
+  height:50vh;width:auto;border-radius:8px;display:block;object-fit:cover;opacity:0;
+  animation: bounceImg .9s ease forwards;      /* pop in first... */
+  animation-delay: calc(.2s + var(--i)*.25s);  /* ...staggered one-by-one */
+}
+@keyframes bounceImg{
+  0%{opacity:0;transform:translateY(40px) scale(0.9)}
+  60%{opacity:1;transform:translateY(-12px) scale(1.05)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
 
-/* ===== Mission (quote) — lifted 2 cm but transparent background ===== */
+/* ===== Mission (quote) — transparent background ===== */
 .mission{
-  max-width:900px;
-  margin:0 auto;
-  margin-top:calc(var(--gap) - 2cm);
-  margin-bottom:var(--gap);
-  padding:0 20px;
-  text-align:center;
-  font-family:'Poppins',sans-serif;
-  line-height:1.9;
-  color:#111;
-  font-size:clamp(1.05rem,2.3vw,1.15rem);
-  font-weight:400;
-  background:transparent;
+  max-width:900px;margin:0 auto;margin-top:calc(var(--gap) - 2cm);margin-bottom:var(--gap);
+  padding:0 20px;text-align:center;font-family:'Poppins',sans-serif;line-height:1.9;color:#111;
+  font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;background:transparent;
 }
 
 /* ===== Bottom Showcase ===== */
 .corner-showcase{position:relative;width:min(360px,70vw);margin:0 auto}
 .corner-showcase img{width:100%;height:auto;border-radius:12px}
 .note-banner{position:absolute;right:1rem;top:-2cm;width:min(85%,520px);height:4cm;display:flex;align-items:center;justify-content:flex-end;pointer-events:none}
-.note-banner img{width:100%;height:100%;object-fit:contain;opacity:.98}
+.note-banner img{
+  width:100%;height:100%;object-fit:contain;opacity:.98;
+  mix-blend-mode:multiply; /* if that banner has any white backdrop */
+}
 
 /* ===== Bottom Ticker ===== */
 .bottom-tagline{position:fixed;bottom:0;width:100%;background:#000;color:#fff;font-family:'Poppins',sans-serif;font-size:1rem;white-space:nowrap;overflow:hidden;z-index:900}
 .bottom-tagline span{display:inline-block;padding-left:100%;animation:tick 20s linear infinite}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
-/* ===== Reveal ===== */
-.reveal{opacity:0;transform:translateY(40px);transition:opacity .6s ease,transform .6s ease;will-change:transform,opacity}
-.reveal.in{opacity:1;transform:translateY(0)}
+/* ===== Bounce-in Reveal (everything pops in) ===== */
+.reveal{opacity:0;transform:translateY(40px);will-change:transform,opacity}
+.reveal.in{opacity:1;transform:none;animation:bounceIn .7s ease both}
+@keyframes bounceIn{
+  0%{opacity:0;transform:translateY(40px) scale(0.98)}
+  60%{opacity:1;transform:translateY(-12px) scale(1.02)}
+  100%{transform:translateY(0) scale(1)}
+}
 </style>
 </head>
 
@@ -193,10 +222,10 @@ body.menu-open .menu-bar{transform:translateY(0)}
 <div class="bottom-tagline"><span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span></div>
 
 <script>
-/* Black intro then reveal */
+/* Faster black intro then bounce-in reveals */
 window.addEventListener('load',()=>{
   const overlay=document.getElementById('introOverlay');
-  setTimeout(()=>overlay.classList.add('hide'),500);
+  setTimeout(()=>overlay.classList.add('hide'),200); // 0.2s
 });
 
 /* Menu toggle */
@@ -215,7 +244,7 @@ function showReview(i){slides().forEach(s=>s.classList.remove('active'));slides(
 function nextReview(){currentReview=(currentReview+1)%slides().length;showReview(currentReview);}
 function prevReview(){currentReview=(currentReview-1+slides().length)%slides().length;showReview(currentReview);}
 
-/* Reveal observer */
+/* Reveal observer – triggers bounce for all .reveal elements */
 (function(){
   const els=document.querySelectorAll('.reveal');
   const io=new IntersectionObserver((entries)=>{
@@ -225,7 +254,14 @@ function prevReview(){currentReview=(currentReview-1+slides().length)%slides().l
   },{threshold:0.15});
   els.forEach(el=>io.observe(el));
 })();
+
+/* Optional: start marquee scroll AFTER images bounce in (nice rhythm) */
+setTimeout(()=>{
+  const track=document.querySelector('.marquee-track');
+  if(track) track.style.animation='scroll 22s linear infinite';
+}, 1200); // after most bounce-ins are done
 </script>
 </body>
 </html>
+
 
