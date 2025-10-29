@@ -9,11 +9,14 @@
 
 <style>
 html,body{
-  margin:0;padding:0;background:#fff;color:#000;
-  font-family:'Playfair Display',serif;overflow-x:hidden;
+  margin:0;padding:0;
+  background:#fff !important;
+  color:#000;
+  font-family:'Playfair Display',serif;
+  overflow-x:hidden;
 }
 
-/* ===== Intro Overlay (from new site) ===== */
+/* ===== Intro Overlay (new site) ===== */
 .reveal-overlay{
   position:fixed;inset:0;background:#000;z-index:2000;pointer-events:none;
   opacity:1;visibility:visible;transition:opacity .4s ease,visibility 0s linear .4s;
@@ -35,7 +38,11 @@ html,body{
 
 /* ===== Logo ===== */
 .logo{
-  display:block;margin:140px auto 60px;max-width:600px;width:70vw;height:auto;
+  display:block;
+  margin:140px auto 60px;
+  max-width:600px;
+  width:70vw;
+  height:auto;
 }
 
 /* ===== Circular marquee ===== */
@@ -44,16 +51,23 @@ html,body{
   width:220px;height:220px;display:flex;align-items:center;justify-content:center;
 }
 .circle-text svg{width:100%;height:100%}
-.circle-text text{font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;fill:#000}
+.circle-text text{
+  font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;fill:#000;
+}
 .circle-spin{transform-origin:110px 110px;animation:spin-circle 18s linear infinite}
 @keyframes spin-circle{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
-/* ===== Right-side image (NOW CLICKABLE) ===== */
+/* ===== Right-side image (clickable to open Services/About) ===== */
 .logo-side-image{
-  position:absolute; right:8vw; top:calc(60vh - 2cm);
-  width:min(26vw,340px); height:auto; mix-blend-mode:multiply;
-  pointer-events:auto !important;   /* <-- fixes the “not clickable” issue */
-  cursor:pointer; z-index:2300;     /* above socials/menu */
+  position:absolute;
+  right:8vw;
+  top:calc(60vh - 2cm);
+  width:min(26vw, 340px);
+  height:auto;
+  mix-blend-mode:multiply;
+  pointer-events:auto !important; /* make it clickable */
+  cursor:pointer;
+  z-index:2300;
 }
 
 /* ===== Tiny chooser (Services / About) ===== */
@@ -71,31 +85,50 @@ html,body{
 .image-chooser .choice:hover{ background:#fff; color:#000; }
 .image-chooser.show{ opacity:1; visibility:visible; transform:none; }
 
-/* ===== Words block (new site style) ===== */
+/* ===== Words block (new site) ===== */
 .words-under-logo{
-  position:relative; left:-2cm; margin-top:calc(5cm - 3cm);
-  text-align:center; max-width:900px; padding:0 20px;
+  position:relative;
+  left:-2cm;
+  margin-top:calc(5cm - 3cm);
+  text-align:center;
+  max-width:900px;
+  padding:0 20px;
 }
-.words-under-logo .line{font-family:"Didot","Playfair Display",serif;color:#000;line-height:1.5}
-.words-under-logo .l1{font-size:2rem}
-.words-under-logo .l2{font-size:2.2rem;margin-top:.4rem}
-.words-under-logo .l3{font-size:1.4rem;margin-top:.2rem;opacity:.9}
+.words-under-logo .line{
+  font-family:"Didot","Playfair Display",serif;color:#000;line-height:1.5;
+}
+.words-under-logo .l1{font-size:2rem;}
+.words-under-logo .l2{font-size:2.2rem;margin-top:.4rem;}
+.words-under-logo .l3{font-size:1.4rem;margin-top:.2rem;opacity:.9;}
 
 /* ===== Reviews slider ===== */
 .reviews-section{
-  background:#fff; margin:5cm auto 0; padding:80px 20px 100px;
-  display:flex; justify-content:center; align-items:center; max-width:1100px;
+  background:#fff;
+  margin:5cm auto 0;
+  padding:80px 20px 100px;
+  display:flex;justify-content:center;align-items:center;
+  max-width:1100px;
 }
-.review-container{position:relative; max-width:900px; text-align:center;}
-.review-slide{display:none; transition:opacity .6s ease;}
-.review-slide.active{display:block; opacity:1;}
-.review-text{font-family:"Didot","Playfair Display",serif; font-size:1.7rem; line-height:1.8; color:#000; margin:0 auto 18px; max-width:800px}
-.review-meta{font-family:'Poppins',sans-serif; font-size:.9rem; color:#000; letter-spacing:.1em; text-transform:uppercase}
-.arrow{position:absolute; top:50%; transform:translateY(-50%); background:none; border:none; font-size:2rem; color:#000; cursor:pointer; padding:0 14px; transition:color .3s ease}
+.review-container{position:relative;max-width:900px;text-align:center;}
+.review-slide{display:none;transition:opacity .6s ease;}
+.review-slide.active{display:block;opacity:1;}
+.review-text{
+  font-family:"Didot","Playfair Display",serif;
+  font-size:1.7rem;line-height:1.8;color:#000;
+  margin:0 auto 18px;max-width:800px;
+}
+.review-meta{
+  font-family:'Poppins',sans-serif;font-size:.9rem;color:#000;
+  letter-spacing:.1em;text-transform:uppercase;
+}
+.arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:none;border:none;font-size:2rem;color:#000;cursor:pointer;padding:0 14px;transition:color .3s ease;
+}
 .arrow:hover{color:#999}
-.arrow.left{left:-50px} .arrow.right{right:-50px}
+.arrow.left{left:-50px}.arrow.right{right:-50px}
 
-/* ===== Samples marquee (stays on page) ===== */
+/* ===== Samples marquee ===== */
 .marquee-wrap{max-width:none;width:100vw;margin:calc(60px + 3cm) 0;}
 .marquee-container{overflow:hidden}
 .marquee-track{
@@ -103,23 +136,26 @@ html,body{
   animation:scroll-left 22s linear infinite;will-change:transform;
 }
 .marquee-strip{display:flex;gap:2vw}
-.marquee-strip img{height:50vh;width:auto;border-radius:8px;display:block;object-fit:cover}
+.marquee-strip img{height:50vh;width:auto;border-radius:8px;display:block;object-fit:cover;}
 @keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ===== Mission ===== */
 .mission-statement{
   font-family:'Poppins',sans-serif;font-size:1.08rem;text-align:center;
-  max-width:900px;margin:5cm auto 0;color:#111;line-height:1.9;font-weight:400
+  max-width:900px;margin:5cm auto 0;color:#111;line-height:1.9;font-weight:400;
 }
 
-/* ===== Bottom showcase + NOTE BANNER from old doc ===== */
+/* ===== Bottom showcase + note banner ===== */
 .corner-showcase{position:relative;width:min(360px,70vw);margin:40px auto 140px;z-index:1;overflow:visible}
 .corner-showcase img{width:100%;height:auto;object-fit:cover;border-radius:12px}
 .note-banner{position:absolute;right:1rem;top:-2cm;width:min(85%,520px);height:4cm;z-index:3;pointer-events:none;display:flex;align-items:center;justify-content:flex-end}
 .note-banner img{width:100%;height:100%;object-fit:contain;opacity:.98}
 
 /* ===== Bottom tagline ===== */
-.bottom-tagline{position:fixed;bottom:0;width:100%;background:#000;color:#fff;font-family:'Poppins',sans-serif;font-size:1rem;white-space:nowrap;overflow:hidden;z-index:1200}
+.bottom-tagline{
+  position:fixed;bottom:0;width:100%;background:#000;color:#fff;font-family:'Poppins',sans-serif;
+  font-size:1rem;white-space:nowrap;overflow:hidden;z-index:1200
+}
 .bottom-tagline span{display:inline-block;padding-left:100%;animation:tagline-marquee 20s linear infinite}
 @keyframes tagline-marquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 </style>
@@ -146,7 +182,7 @@ html,body{
   src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png"
   alt="Decorative brand visual"/>
 
-<!-- ===== Tiny Services / About chooser (links go to pages) ===== -->
+<!-- ===== Tiny Services / About chooser (links to pages) ===== -->
 <div class="image-chooser" id="imageChooser" aria-hidden="true">
   <a href="/services.html" class="choice">Services</a>
   <a href="/about.html" class="choice">About</a>
@@ -155,9 +191,11 @@ html,body{
 <!-- ===== Circular marquee ===== -->
 <div class="circle-text">
   <svg viewBox="0 0 220 220">
-    <defs><path id="circlePath" d="M110,110 m-90,0 a90,90 0 1,1 180,0 a90,90 0 1,1 -180,0"/></defs>
+    <defs><path id="circlePath" d="M110,110 m-90,0 a90,90 0 1,1 180,0 a90,90 0 1,1 -180,0" /></defs>
     <g class="circle-spin">
-      <text><textPath href="#circlePath" startOffset="0%">WRITE MY SOCIALS • STORIES THAT SELL • BRANDING • CONTENT •</textPath></text>
+      <text><textPath href="#circlePath" startOffset="0%">
+        WRITE MY SOCIALS • STORIES THAT SELL • BRANDING • CONTENT •
+      </textPath></text>
     </g>
   </svg>
 </div>
@@ -185,7 +223,7 @@ html,body{
   </div>
 </section>
 
-<!-- ===== Samples marquee (stays put) ===== -->
+<!-- ===== Samples marquee ===== -->
 <div class="section marquee-wrap">
   <div class="marquee-container">
     <div class="marquee-track">
@@ -210,7 +248,7 @@ html,body{
 “WriteMySocials brings brands to life through creating quality, personality driven strategies that connect, convert and stay true to their voice. We don’t sell virality… We sell stories! ...”
 </div>
 
-<!-- ===== Bottom showcase + note banner (from old doc) ===== -->
+<!-- ===== Bottom showcase + note banner ===== -->
 <div class="corner-showcase">
   <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="Corner Showcase Image">
   <div class="note-banner">
@@ -224,7 +262,7 @@ html,body{
 </div>
 
 <script>
-/* Intro hide */
+/* Intro hide (new site behavior) */
 window.addEventListener('load',()=>{
   const overlay=document.getElementById('introOverlay');
   if(overlay) setTimeout(()=>overlay.classList.add('hide'),400);
@@ -237,7 +275,7 @@ function showReview(i){slides().forEach(s=>s.classList.remove('active'));slides(
 function nextReview(){currentReview=(currentReview+1)%slides().length;showReview(currentReview);}
 function prevReview(){currentReview=(currentReview-1+slides().length)%slides().length;showReview(currentReview);}
 
-/* Right image → Services/About chooser */
+/* Right image → Services/About chooser (from old site behavior) */
 const sideImg=document.querySelector('.logo-side-image');
 const chooser=document.getElementById('imageChooser');
 function toggleChooser(show){
@@ -251,6 +289,7 @@ if(sideImg){
     toggleChooser(!chooser.classList.contains('show'));
   });
 }
+/* Close chooser on outside click / ESC */
 document.addEventListener('click',e=>{
   if(chooser && !chooser.contains(e.target) && !sideImg.contains(e.target)){
     toggleChooser(false);
