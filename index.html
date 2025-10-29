@@ -12,13 +12,13 @@
   --gap:7cm;
   --menu-scale:1.5;
   --stagger-step:200ms;
-  --marquee-step:220ms;
+  --marquee-step:240ms;
 }
 
 /* ===== Base ===== */
 html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
 
-/* ===== Black Intro Overlay ===== */
+/* ===== Black Intro Overlay (0.3s) ===== */
 .reveal-overlay{
   position:fixed;inset:0;background:#000;z-index:4000;
   opacity:1;visibility:visible;
@@ -33,12 +33,14 @@ html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Di
 .social-icons a{color:#000;font-size:1.2rem;transition:color .3s}
 .social-icons a:hover{color:#ff1493}
 
-/* ===== Menu Bar ===== */
+/* ===== Slide-down Menu ===== */
 .menu-bar{position:fixed;top:0;left:0;right:0;z-index:3000;background:#fff;border-bottom:1px solid rgba(0,0,0,.15);transform:translateY(-100%);transition:transform .35s ease}
 body.menu-open .menu-bar{transform:translateY(0)}
 .menu-inner{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;justify-content:center}
-.image-menu{position:relative;width:min(300px,60vw);transform:scale(var(--menu-scale)) translateZ(0);transform-origin:top center}
-.image-menu img{width:100%;height:auto;display:block;object-fit:contain;margin-bottom:-2cm;} /* trims 2cm bottom gap */
+
+/* ===== Menu image (2cm cropped from bottom) ===== */
+.image-menu{position:relative;width:min(300px,60vw);transform:scale(var(--menu-scale)) translateZ(0);transform-origin:top center;overflow:hidden}
+.image-menu img{width:100%;height:auto;display:block;clip-path:inset(0 0 2cm 0)} /* trims bottom 2cm */
 .hot{position:absolute;top:0;bottom:0}
 .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
 
@@ -52,7 +54,7 @@ body.menu-open .menu-bar{transform:translateY(0)}
 .logo-wrap{position:relative;display:grid;place-items:center}
 .logo{display:block;margin:0 auto;width:min(70vw,680px);max-width:680px;height:auto}
 
-/* ===== Signature (quote image) fixed ===== */
+/* ===== Quote (signature) ===== */
 .signature{
   position:absolute;
   right:calc(4% - 2cm);
@@ -86,7 +88,7 @@ body.menu-open .menu-bar{transform:translateY(0)}
 .arrow.left{left:-30px}.arrow.right{right:-30px}
 @keyframes bounceIn{0%{opacity:0;transform:translateY(30px) scale(0.95)}60%{opacity:1;transform:translateY(-10px) scale(1.02)}100%{transform:translateY(0) scale(1)}}
 
-/* ===== Marquee (samples) ===== */
+/* ===== Marquee (samples bounce) ===== */
 .marquee-wrap{width:100vw;overflow:hidden}
 .marquee-track{display:flex;gap:2vw;padding:0 2vw;animation:scroll 22s linear infinite}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -106,18 +108,7 @@ body.go .marquee-track img{animation-play-state:running}
 
 /* ===== Mission ===== */
 .mission{
-  max-width:900px;
-  margin:9cm auto var(--gap)!important;
-  padding:0 20px;
-  text-align:center;
-  font-family:'Poppins',sans-serif;
-  line-height:1.9;
-  color:#111;
-  font-size:clamp(1.05rem,2.3vw,1.15rem);
-  font-weight:400;
-  background:transparent!important;
-  position:relative;
-  z-index:1;
+  max-width:900px;margin:9cm auto var(--gap)!important;padding:0 20px;text-align:center;font-family:'Poppins',sans-serif;line-height:1.9;color:#111;font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;background:transparent!important;position:relative;z-index:1
 }
 
 /* ===== Bottom Showcase ===== */
@@ -132,7 +123,7 @@ body.go .marquee-track img{animation-play-state:running}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
 /* ===== Reveal animation ===== */
-.reveal{opacity:0;transform:translateY(30px) scale(.96);will-change:transform,opacity}
+.reveal{opacity:0;transform:translateY(30px) scale(.96)}
 .reveal.in{animation:pop .6s cubic-bezier(.22,.68,0,1.02) both}
 @keyframes pop{
   0%{opacity:0;transform:translateY(30px) scale(.96)}
@@ -140,19 +131,14 @@ body.go .marquee-track img{animation-play-state:running}
   100%{opacity:1;transform:translateY(0) scale(1)}
 }
 
-/* ===== MOBILE ===== */
+/* ===== Mobile ===== */
 @media(max-width:640px){
  :root{--gap:3.6rem;--stagger-step:140ms;--marquee-step:180ms}
- .menu-btn{top:14px;left:14px}
- .social-icons{top:14px;right:16px}
  .hero{grid-template-columns:1fr;margin:88px auto 0;gap:16px;padding:0 16px 172px;position:relative}
  .logo{width:min(90vw,520px)}
  .circle-wrap{position:absolute;left:12px;bottom:20px;z-index:1}
  .circle-wrap svg{width:110px}
  .signature{position:absolute!important;right:calc(12px - 2cm);bottom:20px;top:auto;width:min(44vw,160px);max-width:160px;opacity:.95;background:transparent!important}
- .mission{margin:3.8rem auto var(--gap)!important;font-size:clamp(1rem,4vw,1.1rem);padding:0 14px}
- .marquee-track img{height:42vh}
- .arrow.left{left:-10px}.arrow.right{right:-10px}
 }
 </style>
 </head>
@@ -182,7 +168,9 @@ body.go .marquee-track img{animation-play-state:running}
   <div class="circle-wrap reveal">
     <svg viewBox="0 0 220 220">
       <defs><path id="circlePath" d="M110,110 m-90,0 a90,90 0 1,1 180,0 a90,90 0 1,1 -180,0"/></defs>
-      <g class="circle-spin"><text><textPath href="#circlePath">WRITE MY SOCIALS • STORIES THAT SELL • BRANDING • CONTENT •</textPath></text></g>
+      <g class="circle-spin">
+        <text><textPath href="#circlePath">WRITE MY SOCIALS • STORIES THAT SELL • BRANDING • CONTENT •</textPath></text>
+      </g>
     </svg>
   </div>
   <div class="logo-wrap reveal">
@@ -237,6 +225,7 @@ body.go .marquee-track img{animation-play-state:running}
 <div class="bottom-tagline"><span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span></div>
 
 <script>
+/* Overlay fade 0.3s */
 window.addEventListener('load',()=>{
  const overlay=document.getElementById('introOverlay');
  setTimeout(()=>overlay.classList.add('hide'),300);
@@ -246,13 +235,23 @@ window.addEventListener('load',()=>{
    const all=[...document.querySelectorAll('.reveal')];
    const vh=window.innerHeight;
    const inView=all.filter(el=>{const r=el.getBoundingClientRect();return r.top<vh&&r.bottom>0;});
-   let delay=0;const step=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--stagger-step'))||200;
+   let delay=0;
+   const step=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--stagger-step'))||200;
    inView.forEach(el=>{setTimeout(()=>el.classList.add('in'),delay);delay+=step;});
    let queued=0;
-   const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting&&!e.target.classList.contains('in')){setTimeout(()=>e.target.classList.add('in'),queued*150);queued++;io.unobserve(e.target);}});},{threshold:0.15});
+   const io=new IntersectionObserver((entries)=>{
+     entries.forEach(e=>{
+       if(e.isIntersecting&&!e.target.classList.contains('in')){
+         setTimeout(()=>e.target.classList.add('in'),queued*150);
+         queued++;io.unobserve(e.target);
+       }
+     });
+   },{threshold:0.15});
    all.forEach(el=>{if(!inView.includes(el))io.observe(el);});
  }
 });
+
+/* Menu toggle */
 (function(){
  const btn=document.querySelector('.menu-btn');const root=document.body;
  function setOpen(o){root.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',String(o));}
@@ -260,8 +259,10 @@ window.addEventListener('load',()=>{
  document.addEventListener('click',e=>{if(e.target.matches('.hot'))setOpen(false)});
  document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
 })();
+
+/* Reviews slider */
 let currentReview=0;
-const slides=()=>[...document.querySelectorAll('.review-slide')];
+const slides=()=>Array.from(document.querySelectorAll('.review-slide'));
 function showReview(i){slides().forEach(s=>s.classList.remove('active'));slides()[i].classList.add('active');}
 function nextReview(){currentReview=(currentReview+1)%slides().length;showReview(currentReview);}
 function prevReview(){currentReview=(currentReview-1+slides().length)%slides().length;showReview(currentReview);}
