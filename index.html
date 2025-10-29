@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
 <style>
-/* v6 — keep layout; crop menu image bottom 2cm; overlay 0.3s; quote +2cm up/right & transparent */
+/* v6 — 0.3s overlay, stronger one-by-one bounce for samples, no overlaps */
 :root{
   --gap: 7cm;                 /* desktop section spacing */
   --menu-scale: 1.5;          /* 1.5× menu image */
@@ -34,14 +34,12 @@ html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Di
 .social-icons a{color:#000;font-size:1.2rem;transition:color .3s}
 .social-icons a:hover{color:#ff1493}
 
-/* Slide-down Menu (unchanged behavior) */
+/* Slide-down Menu */
 .menu-bar{position:fixed;top:0;left:0;right:0;z-index:3000;background:#fff;border-bottom:1px solid rgba(0,0,0,.15);transform:translateY(-100%);transition:transform .35s ease}
 body.menu-open .menu-bar{transform:translateY(0)}
 .menu-inner{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;justify-content:center}
-
-/* ===== Menu image: crop bottom 2cm (text + hotspots preserved) ===== */
-.image-menu{position:relative;width:min(300px,60vw);transform:scale(var(--menu-scale)) translateZ(0);transform-origin:top center;overflow:hidden}
-.image-menu img{width:100%;height:auto;display:block;clip-path:inset(0 0 2cm 0)} /* trims bottom 2cm only */
+.image-menu{position:relative;width:min(300px,60vw);transform:scale(var(--menu-scale)) translateZ(0);transform-origin:top center}
+.image-menu img{width:100%;height:auto;display:block}
 .hot{position:absolute;top:0;bottom:0}
 .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
 
@@ -55,18 +53,19 @@ body.menu-open .menu-bar{transform:translateY(0)}
 .logo-wrap{position:relative;display:grid;place-items:center}
 .logo{display:block;margin:0 auto;width:min(70vw,680px);max-width:680px;height:auto}
 
-/* ===== Signature (quote image) — transparent, +2cm up/right, no overlap ===== */
+/* ===== Signature (quote image) — no background, no overlap ===== */
 .signature{
   position:absolute;
-  right:calc(4% - 2cm); /* move 2cm to the right */
-  top:calc(100% - 2cm); /* lift 2cm higher relative to bottom of logo */
+  right:4%;
+  top:100%;              /* sits below the logo */
+  margin-top:1.4rem;     /* clear gap from logo */
   width:min(42vw,340px);
   max-width:340px;
   height:auto;
   opacity:.9;
+  background:transparent !important;
+  filter:none !important;
   pointer-events:none;
-  background:transparent !important; /* ensure no bg */
-  filter:none !important;           /* ensure no drop-shadow */
 }
 
 /* ===== Section spacing ===== */
@@ -87,12 +86,14 @@ body.menu-open .menu-bar{transform:translateY(0)}
 .review-meta{font-family:'Poppins',sans-serif;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase}
 .arrow{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;font-size:1.8rem;color:#000;cursor:pointer}
 .arrow.left{left:-30px}.arrow.right{right:-30px}
-@keyframes bounceIn{0%{opacity:0;transform:translateY(30px) scale(0.95)}60%{opacity:1;transform:translateY(-10px) scale(1.02)}100%{transform:translateY(0) scale(1)}
+@keyframes bounceIn{0%{opacity:0;transform:translateY(30px) scale(0.95)}60%{opacity:1;transform:translateY(-10px) scale(1.02)}100%{transform:translateY(0) scale(1)}}
 
-/* ===== Marquee (work samples) — stronger one-by-one bounce ===== */
+/* ===== Marquee (work samples) ===== */
 .marquee-wrap{width:100vw;overflow:hidden}
 .marquee-track{display:flex;gap:2vw;padding:0 2vw;animation:scroll 22s linear infinite}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* Samples: stronger one-by-one bounce after overlay */
 .marquee-track img{
   height:50vh;width:auto;border-radius:8px;display:block;object-fit:cover;
   opacity:0;transform:translateY(46px) scale(.88);
@@ -107,10 +108,10 @@ body.go .marquee-track img{animation-play-state:running}
   100%{opacity:1;transform:translateY(0) scale(1)}
 }
 
-/* ===== Mission ===== */
+/* ===== Mission (text quote paragraph) ===== */
 .mission{
   max-width:900px;
-  margin:9cm auto var(--gap)!important;
+  margin:9cm auto var(--gap)!important;   /* plenty of breathing room under hero */
   padding:0 20px;
   text-align:center;
   font-family:'Poppins',sans-serif;
@@ -118,7 +119,7 @@ body.go .marquee-track img{animation-play-state:running}
   color:#111;
   font-size:clamp(1.05rem,2.3vw,1.15rem);
   font-weight:400;
-  background:transparent!important;
+  background:transparent !important;
   position:relative; z-index:1;
 }
 
@@ -142,24 +143,58 @@ body.go .marquee-track img{animation-play-state:running}
   100%{opacity:1;transform:translateY(0) scale(1)}
 }
 
-/* ===== MOBILE (≤640px) — same look, safe spacing ===== */
+/* ===== MOBILE (≤640px) — tidy spacing & safe positions ===== */
 @media (max-width:640px){
-  :root{--gap:3.6rem;--stagger-step:140ms;--marquee-step:180ms}
-  .hero{grid-template-columns:1fr;margin:88px auto 0;gap:16px;padding:0 16px 172px;position:relative}
+  :root{
+    --gap: 3.6rem;             /* generous but not huge on phones */
+    --stagger-step: 140ms;
+    --marquee-step: 180ms;
+  }
+
+  .menu-btn{top:14px;left:14px}
+  .social-icons{top:14px;right:16px}
+
+  /* Phone hero: logo top, circle bottom-left, signature bottom-right */
+  .hero{
+    grid-template-columns:1fr;
+    margin:88px auto 0;
+    gap:16px;
+    padding:0 16px 172px;       /* bottom padding so corner items never overlap */
+    position:relative;
+  }
   .logo{width:min(90vw,520px)}
-  .circle-wrap{position:absolute;left:12px;bottom:20px;z-index:1}
+  .logo-wrap{order:1;z-index:2}
+
+  .circle-wrap{
+    order:2;
+    position:absolute; left:12px; bottom:20px;
+    z-index:1;
+  }
   .circle-wrap svg{width:110px}
+
   .signature{
     position:absolute !important;
-    right:calc(12px - 2cm); /* 2cm more to right on phone too */
-    bottom:20px;
-    top:auto;margin-top:0;
-    width:min(44vw,160px);max-width:160px;
-    opacity:.95;background:transparent !important;
+    right:12px; bottom:20px;
+    top:auto; margin-top:0;
+    width:min(44vw,160px); max-width:160px;
+    opacity:.95;
+    background:transparent !important;
   }
-  .mission{margin:3.8rem auto var(--gap)!important;font-size:clamp(1rem,4vw,1.1rem);padding:0 14px}
+
+  /* Quote paragraph closer on mobile */
+  .mission{
+    margin:3.8rem auto var(--gap) !important;
+    font-size:clamp(1rem,4vw,1.1rem);
+    padding:0 14px;
+  }
+
+  /* Menu image a touch smaller so it fits */
   .image-menu{transform:scale(1.25) translateZ(0)}
+
+  /* Samples a bit shorter to avoid cramping */
   .marquee-track img{height:42vh}
+
+  /* Navigation arrows tighter */
   .arrow.left{left:-10px}.arrow.right{right:-10px}
 }
 </style>
@@ -202,46 +237,46 @@ body.go .marquee-track img{animation-play-state:running}
 </header>
 
 <div class="after-hero">
-<section class="words reveal">
-  <div class="l1">95% of purchase decisions are driven by emotion.</div>
-  <div class="l2">We are The Storytelling Marketing Studio</div>
-  <div class="l3">where words meet visuals to make brands feel human</div>
-</section>
+  <section class="words reveal">
+    <div class="l1">95% of purchase decisions are driven by emotion.</div>
+    <div class="l2">We are The Storytelling Marketing Studio</div>
+    <div class="l3">where words meet visuals to make brands feel human</div>
+  </section>
 
-<section class="reviews reveal">
-  <div class="review-container">
-    <button class="arrow left" onclick="prevReview()">&#8592;</button>
-    <div class="review-slide active">
-      <p class="review-text">"The quality is great; the structure is correct as well. Thank you for following my brief closely!"</p>
-      <p class="review-meta">MARIA — MOVAVI SOFTWARE</p>
+  <section class="reviews reveal">
+    <div class="review-container">
+      <button class="arrow left" onclick="prevReview()">&#8592;</button>
+      <div class="review-slide active">
+        <p class="review-text">"The quality is great; the structure is correct as well. Thank you for following my brief closely!"</p>
+        <p class="review-meta">MARIA — MOVAVI SOFTWARE</p>
+      </div>
+      <div class="review-slide">
+        <p class="review-text">"Siyana was very professional and was able to edit my copy in a very professional manner that spoke to my audience. Pleasure dealing with her."</p>
+        <p class="review-meta">IAN — FACEDUNK</p>
+      </div>
+      <button class="arrow right" onclick="nextReview()">&#8594;</button>
     </div>
-    <div class="review-slide">
-      <p class="review-text">"Siyana was very professional and was able to edit my copy in a very professional manner that spoke to my audience. Pleasure dealing with her."</p>
-      <p class="review-meta">IAN — FACEDUNK</p>
+  </section>
+
+  <div class="marquee-wrap reveal">
+    <div class="marquee-track">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" style="--i:0" alt="">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" style="--i:1" alt="">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" style="--i:2" alt="">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" style="--i:3" alt="">
     </div>
-    <button class="arrow right" onclick="nextReview()">&#8594;</button>
   </div>
-</section>
 
-<div class="marquee-wrap reveal">
-  <div class="marquee-track">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" style="--i:0" alt="">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" style="--i:1" alt="">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" style="--i:2" alt="">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" style="--i:3" alt="">
+  <section class="mission reveal">
+    “WriteMySocials brings brands to life through creating quality, personality driven strategies that connect, convert and stay true to their voice. We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.”
+  </section>
+
+  <div class="corner-showcase reveal">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="">
+    <div class="note-banner">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.58.png" alt="">
+    </div>
   </div>
-</div>
-
-<section class="mission reveal">
-  “WriteMySocials brings brands to life through creating quality, personality driven strategies that connect, convert and stay true to their voice. We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.”
-</section>
-
-<div class="corner-showcase reveal">
-  <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="">
-  <div class="note-banner">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.58.png" alt="">
-  </div>
-</div>
 </div>
 
 <div class="bottom-tagline"><span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span></div>
@@ -307,3 +342,4 @@ function prevReview(){currentReview=(currentReview-1+slides().length)%slides().l
 </script>
 </body>
 </html>
+
