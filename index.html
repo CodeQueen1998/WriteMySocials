@@ -1,98 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Write My Socials — Home</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
-
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
 <style>
-:root{
-  --maxw:1100px;
-  --pad: clamp(16px, 3vw, 28px);
-  --gap-lg: clamp(28px, 4vw, 50px);
-  --rhythm: clamp(28px, 6vw, 80px);
-}
-
 html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
-
-/* ===== Header / Socials ===== */
-.menu-btn{
-  position:fixed;top:18px;left:20px;z-index:3100;background:#fff;border:1px solid #000;color:#000;
-  padding:6px 12px;border-radius:999px;font-family:'Poppins',sans-serif;font-size:.85rem;letter-spacing:.1em;cursor:pointer;transition:.3s
-}
+.menu-btn{position:fixed;top:18px;left:20px;z-index:3100;background:#fff;border:1px solid #000;color:#000;padding:6px 12px;border-radius:999px;font-family:'Poppins',sans-serif;font-size:.85rem;letter-spacing:.1em;cursor:pointer;transition:.3s}
 .menu-btn:hover{background:#000;color:#fff}
 .social-icons{position:fixed;top:18px;right:25px;z-index:3100;display:flex;gap:18px}
 .social-icons a{color:#000;font-size:1.2rem;transition:color .3s}
 .social-icons a:hover{color:#ff1493}
-
-/* ===== Smaller Slide-down Image Menu ===== */
-.menu-bar{
-  position:fixed;top:0;left:0;right:0;z-index:3000;background:#fff;border-bottom:1px solid rgba(0,0,0,.15);
-  transform:translateY(-100%);transition:transform .35s ease;will-change:transform
-}
+.menu-bar{position:fixed;top:0;left:0;right:0;z-index:3000;background:#fff;border-bottom:1px solid rgba(0,0,0,.15);transform:translateY(-100%);transition:transform .35s ease}
 body.menu-open .menu-bar{transform:translateY(0)}
-.menu-inner{max-width:var(--maxw);margin:0 auto;padding:10px var(--pad);display:flex;justify-content:center}
-.image-menu{position:relative;width:min(300px,60vw)} /* ~3× smaller */
+.menu-inner{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;justify-content:center}
+.image-menu{position:relative;width:min(300px,60vw)}
 .image-menu img{width:100%;height:auto;display:block}
 .hot{position:absolute;top:0;bottom:0}
 .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
-
-/* ===== HERO ===== */
-.hero{
-  max-width:var(--maxw);
-  margin:120px auto 0;
-  padding:0 var(--pad);
-  display:grid;
-  grid-template-columns: 1fr minmax(300px,680px) 1fr;
-  align-items:center;
-  gap: var(--gap-lg);
-}
-@media(max-width:960px){
-  .hero{grid-template-columns:1fr; gap: var(--gap-lg); margin-top:110px}
-}
-
-/* Circle */
+.hero{max-width:1100px;margin:120px auto 0;padding:0 20px;display:grid;grid-template-columns:1fr minmax(300px,680px) 1fr;align-items:center;gap:40px}
+@media(max-width:960px){.hero{grid-template-columns:1fr;gap:40px;margin-top:110px}}
 .circle-wrap{justify-self:start}
 .circle-wrap svg{width:200px;height:auto;display:block}
 .circle-wrap text{font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;fill:#000}
 .circle-spin{transform-origin:50% 50%;animation:spin 18s linear infinite}
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-@media(max-width:960px){.circle-wrap{justify-self:center}.circle-wrap svg{width:150px}}
-
-/* Logo & Quote (signature) */
 .logo-wrap{position:relative;display:grid;place-items:center}
 .logo{display:block;margin:0 auto;width:min(70vw,680px);max-width:680px;height:auto}
-.signature{
-  position:absolute;
-  right:-8%;
-  top:88%;
-  width:min(42vw,340px);
-  max-width:340px;
-  height:auto;
-  opacity:.9;
-  pointer-events:none;
-}
-@media(max-width:1100px){.signature{right:-10%;top:90%;width:min(46vw,320px);}}
-@media(max-width:800px){.signature{right:-14%;top:92%;width:min(56vw,300px);}}
-@media(max-width:600px){.signature{position:static;margin-top:10px;width:min(70vw,300px);}}
-
-/* ===== Everything below hero spaced out ===== */
+.signature{position:absolute;right:-8%;top:88%;width:min(42vw,340px);max-width:340px;height:auto;opacity:.9;pointer-events:none}
+@media(max-width:600px){.signature{position:static;margin-top:10px;width:min(70vw,300px)}}
 .after-hero{padding-top:4cm}
-.after-hero > * + *{margin-top:2.5cm;}  /* extra breathing room */
-
-/* ===== Words ===== */
-.words{max-width:var(--maxw);margin:var(--rhythm) auto 0;padding:0 var(--pad);text-align:center}
+.after-hero>*+*{margin-top:2.5cm}
+.words{max-width:1100px;margin:0 auto;padding:0 20px;text-align:center}
 .words .l1{font-size:clamp(1.2rem,2.8vw,2rem);line-height:1.5}
 .words .l2{font-size:clamp(1.4rem,3.2vw,2.2rem);margin-top:.4rem}
 .words .l3{font-size:clamp(1rem,2.4vw,1.4rem);margin-top:.2rem;opacity:.9}
-
-/* ===== Reviews ===== */
-.reviews{max-width:var(--maxw);margin:var(--rhythm) auto 0;padding:0 var(--pad)}
-.review-container{position:relative;ma
-
-
+.reviews{max-width:1100px;margin:0 auto;padding:0 20px}
+.review-container{position:relative;max-width:min(900px,92vw);margin:0 auto;text-align:center}
+.review-slide{display:none;transition:opacity .4s ease}
+.review-slide.active{display:block;opacity:1}
+.review-text{font-family:"Didot","Playfair Display",serif;font-size:clamp(1.05rem,2.6vw,1.6rem);line-height:1.7;margin:0 auto 14px;max-width:48ch}
+.review-meta{font-family:'Poppins',sans-serif;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;font-size:1.8rem;color:#000;cursor:pointer;padding:0 10px}
+.arrow.left{left:-10px}.arrow.right{right:-10px}
+.marquee-wrap{width:100vw;margin:0 auto}
+.marquee-container{overflow:hidden}
+.marquee-track{display:flex;width:max-content;gap:2vw;padding:0 2vw;animation:marq 22s linear infinite}
+.marquee-strip{display:flex;gap:2vw}
+.marquee-strip img{height:50vh;width:auto;border-radius:8px;display:block;object-fit:cover}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mission{max-width:900px;margin:0 auto;padding:0 20px;font-family:'Poppins',sans-serif;font-size:clamp(1rem,2.2vw,1.08rem);text-align:center;line-height:1.9;color:#111}
+.corner-showcase{position:relative;width:min(360px,70vw);margin:0 auto calc(80px + 4cm)}
+.corner-showcase img{width:100%;height:auto;border-radius:12px}
+.note-banner{position:absolute;right:1rem;top:-2cm;width:min(85%,520px);height:4cm;display:flex;align-items:center;justify-content:flex-end;pointer-events:none}
+.note-banner img{width:100%;height:100%;object-fit:contain;opacity:.98}
+.bottom-tagline{position:fixed;bottom:0;width:100%;background:#000;color:#fff;font-family:'Poppins',sans-serif;font-size:1rem;white-space:nowrap;overflow:hidden;z-index:900}
+.bottom-tagline span{display:inline-block;padding-left:100%;animation:tick 20s linear infinite}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<button class="menu-btn" aria-expanded="false" aria-controls="siteMenu">MENU</button>
+<div class="social-icons">
+  <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+  <a href="https://www.instagram.com/writemysocials" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+</div>
+<nav class="menu-bar" id="siteMenu">
+  <div class="menu-inner">
+    <div class="image-menu">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/menu.jpg" alt="Menu" />
+      <a class="hot home" href="./"></a>
+      <a class="hot about" href="./about.html"></a>
+      <a class="hot services" href="./services.html"></a>
+    </div>
+  </div>
+</nav>
+<header class="hero">
+  <div class="circle-wrap reveal">
+    <svg viewBox="0 0 220 220">
+      <defs><path id="circlePath" d="M110,110 m-90,0 a90,90 0 1,1 180,0 a90,90 0 1,1 -180,0"/></defs>
+      <g class="circle-spin">
+        <text><textPath href="#circlePath">WRITE MY SOCIALS • STORIES THAT SELL • BRANDING • CONTENT •</textPath></text>
+      </g>
+    </svg>
+  </div>
+  <div class="logo-wrap reveal">
+    <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2011.45.04.png" alt="Write My Socials" />
+    <img class="signature" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png" alt="with love for your brand" />
+  </div>
+</header>
+<div class="after-hero">
+  <section class="words reveal">
+    <div class="l1">95% of purchase decisions are driven by emotion.</div>
+    <div class="l2">We are The Storytelling Marketing Studio</div>
+    <div class="l3">where words meet visuals to make brands feel human</div>
+  </section>
+  <section class="reviews reveal">
+    <div class="review-container">
+      <button class="arrow left" onclick="prevReview()">&#8592;</button>
+      <div class="review-slide active">
+        <p class="review-text">"The quality is great; the structure is correct as well. Thank you for following my brief closely!"</p>
+        <p class="review-meta">MARIA — MOVAVI SOFTWARE</p>
+      </div>
+      <div class="review-slide">
+        <p class="review-text">"Siyana was very professional and was able to edit my copy in a very professional manner that spoke to my audience. Pleasure dealing with her."</p>
+        <p class="review-meta">IAN — FACEDUNK</p>
+      </div>
+      <button class="arrow right" onclick="nextReview()">&#8594;</button>
+    </div>
+  </section>
+  <div class="marquee-wrap reveal">
+    <div class="marquee-container">
+      <div class="marquee-track">
+        <div class="marquee-strip">
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="" />
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="" />
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="" />
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="mission reveal">
+    “WriteMySocials brings brands to life through creating quality, personality driven strategies that connect, convert and stay true to their voice. We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.”
+  </section>
+  <div class="corner-showcase reveal">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="" />
+    <div class="note-banner">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.58.png" alt="" />
+    </div>
+  </div>
+</div>
+<div class="bottom-tagline"><span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span></div>
+<script>
+(function(){
+ const b=document.querySelector('.menu-btn');const r=document.body;
+ function s(o){r.classList.toggle('menu-open',o);b.setAttribute('aria-expanded',String(o))}
+ b.addEventListener('click',()=>s(!r.classList.contains('menu-open')));
+ document.addEventListener('click',e=>{if(e.target.matches('.hot'))s(false)});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')s(false)});
+})();
+let currentReview=0;
+const slides=()=>Array.from(document.querySelectorAll('.review-slide'));
+function showReview(i){slides().forEach(s=>s.classList.remove('active'));slides()[i].classList.add('active');}
+function nextReview(){currentReview=(currentReview+1)%slides().length;showReview(currentReview);}
+function prevReview(){currentReview=(currentReview-1+slides().length)%slides().length;showReview(currentReview);}
+(function(){
+ const els=document.querySelectorAll('.reveal');
+ if(!('IntersectionObserver'in window)||!els.length){els.forEach(el=>el.classList.add('in'));return;}
+ const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+ },{rootMargin:'0px 0px -10% 0px',threshold:0.1});
+ els.forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>
 
 
 
