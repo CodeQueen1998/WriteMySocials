@@ -8,9 +8,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
 <style>
+/* v5 — mobile hero: logo top, circle bottom-left, picture-quote bottom-right */
 :root{
-  --gap: 7cm;           /* section spacing */
-  --menu-scale: 1.5;    /* 1.5× menu image */
+  --gap: 7cm;             /* desktop section spacing */
+  --menu-scale: 1.5;      /* 1.5× menu image */
   --stagger-step: 200ms;
   --marquee-step: 220ms;
 }
@@ -42,18 +43,16 @@ body.menu-open .menu-bar{transform:translateY(0)}
 .hot{position:absolute;top:0;bottom:0}
 .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
 
-/* ===== Hero ===== */
-.hero{max-width:1100px;margin:120px auto 0;padding:0 20px;display:grid;grid-template-columns:1fr minmax(300px,680px) 1fr;align-items:center;gap:40px}
-@media(max-width:960px){.hero{grid-template-columns:1fr;margin-top:110px}}
+/* ===== Hero (desktop/tablet) ===== */
+.hero{max-width:1100px;margin:120px auto 0;padding:0 20px;display:grid;grid-template-columns:1fr minmax(300px,680px) 1fr;align-items:center;gap:40px;position:relative}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 .circle-wrap{justify-self:start}
 .circle-wrap svg{width:200px;height:auto;display:block}
 .circle-wrap text{font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;fill:#000}
 .circle-spin{transform-origin:50% 50%;animation:spin 18s linear infinite}
-@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 .logo-wrap{position:relative;display:grid;place-items:center}
 .logo{display:block;margin:0 auto;width:min(70vw,680px);max-width:680px;height:auto}
 .signature{position:absolute;right:-8%;top:88%;width:min(42vw,340px);max-width:340px;height:auto;opacity:.9;pointer-events:none}
-@media(max-width:600px){.signature{position:static;margin-top:10px;width:min(70vw,300px)}}
 
 /* ===== Section spacing ===== */
 .after-hero > *{margin-top:var(--gap)!important;margin-bottom:var(--gap)!important}
@@ -99,7 +98,7 @@ body.go .marquee-track img{animation-play-state:running}
 /* ===== Mission (quote) — fully separated ===== */
 .mission{
  max-width:900px;
- margin:9cm auto var(--gap)!important; /* pushes it far below logo */
+ margin:9cm auto var(--gap)!important; /* desktop keeps big breathing room */
  padding:0 20px;
  text-align:center;
  font-family:'Poppins',sans-serif;
@@ -130,6 +129,58 @@ body.go .marquee-track img{animation-play-state:running}
  0%{opacity:0;transform:translateY(30px) scale(.96)}
  60%{opacity:1;transform:translateY(-8px) scale(1.02)}
  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* ===== MOBILE (phones ≤ 640px) ===== */
+@media (max-width: 640px){
+  :root{
+    --gap: 3.2rem;                /* saner spacing on phones */
+    --stagger-step: 140ms;
+    --marquee-step: 160ms;
+  }
+
+  .menu-btn{top:14px;left:14px}
+  .social-icons{top:14px;right:16px}
+
+  /* Phone hero: logo top, circle bottom-left, picture-quote bottom-right */
+  .hero{
+    grid-template-columns:1fr;
+    margin:88px auto 0;
+    gap:16px;
+    padding:0 16px 160px;        /* bottom padding so corner items fit */
+  }
+  .logo{width:min(88vw,520px)}
+  .logo-wrap{order:1;z-index:2}
+
+  .circle-wrap{
+    order:2;
+    position:absolute; left:12px; bottom:16px;
+    z-index:1;
+  }
+  .circle-wrap svg{width:120px}
+
+  .signature{
+    position:absolute !important;
+    right:12px; bottom:16px;
+    top:auto; left:auto;
+    width:min(44vw,180px); max-width:180px;
+    opacity:.95;
+    z-index:1;
+  }
+
+  /* Keep quote readable and not too far from hero on phones */
+  .mission{
+    margin:3.6rem auto var(--gap) !important;  /* closer than desktop */
+    font-size:clamp(1rem,4vw,1.1rem);
+    padding:0 14px;
+  }
+
+  /* Image menu: scale down slightly on very small screens so it fits */
+  .image-menu{transform:scale(1.25) translateZ(0)}
+  .marquee-track img{height:42vh}
+
+  /* Tighten arrow hit area on small screens */
+  .arrow.left{left:-10px}.arrow.right{right:-10px}
 }
 </style>
 </head>
@@ -216,52 +267,70 @@ body.go .marquee-track img{animation-play-state:running}
 <div class="bottom-tagline"><span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span></div>
 
 <script>
+/* Overlay: half duration + start stagger & marquee only AFTER it fades */
 window.addEventListener('load', ()=>{
- const overlay=document.getElementById('introOverlay');
- setTimeout(()=>overlay.classList.add('hide'),250); // half duration
- overlay.addEventListener('transitionend',startStagger,{once:true});
- function startStagger(){
-   document.body.classList.add('go'); // trigger marquee pops
-   const all=[...document.querySelectorAll('.reveal')];
-   const vh=window.innerHeight;
-   const inView=all.filter(el=>{
-     const r=el.getBoundingClientRect();
-     return r.top<vh&&r.bottom>0;
-   });
-   let delay=0;
-   const step=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--stagger-step'))||200;
-   inView.forEach(el=>{setTimeout(()=>el.classList.add('in'),delay);delay+=step;});
-   let queued=0;
-   const io=new IntersectionObserver((entries)=>{
-     entries.forEach(e=>{
-       if(e.isIntersecting&&!e.target.classList.contains('in')){
-         setTimeout(()=>e.target.classList.add('in'),queued*150);
-         queued++;
-         io.unobserve(e.target);
-       }
-     });
-   },{threshold:0.15});
-   all.forEach(el=>{if(!inView.includes(el))io.observe(el);});
- }
+  const overlay = document.getElementById('introOverlay');
+
+  // Hide the overlay sooner (half-time)
+  setTimeout(()=> overlay.classList.add('hide'), 250);
+
+  // After fade completes, start stagger and enable marquee animations
+  overlay.addEventListener('transitionend', startStagger, { once:true });
+
+  function startStagger(){
+    document.body.classList.add('go'); // lets marquee imgs start animating
+
+    // Stagger already-visible .reveal elements (DOM order)
+    const all = Array.from(document.querySelectorAll('.reveal'));
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+
+    const inView = all.filter(el=>{
+      const r = el.getBoundingClientRect();
+      return r.top < vh && r.bottom > 0;
+    });
+
+    let delay = 0;
+    const step = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--stagger-step')) || 200;
+
+    inView.forEach(el=>{
+      setTimeout(()=> el.classList.add('in'), delay);
+      delay += step;
+    });
+
+    // Reveal the rest on scroll with a gentle queue
+    let queued = 0;
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting && !e.target.classList.contains('in')){
+          setTimeout(()=> e.target.classList.add('in'), queued * 150);
+          queued++;
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    all.forEach(el=>{ if(!inView.includes(el)) io.observe(el); });
+  }
 });
 
 /* Menu toggle */
 (function(){
- const btn=document.querySelector('.menu-btn');const root=document.body;
- function setOpen(o){root.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',String(o));}
- btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
- document.addEventListener('click',e=>{if(e.target.matches('.hot'))setOpen(false)});
- document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
+  const btn=document.querySelector('.menu-btn');const root=document.body;
+  function setOpen(o){root.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',String(o));}
+  btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
+  document.addEventListener('click',e=>{if(e.target.matches('.hot'))setOpen(false)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
 })();
 
 /* Reviews slider */
 let currentReview=0;
-const slides=()=>[...document.querySelectorAll('.review-slide')];
+const slides=()=>Array.from(document.querySelectorAll('.review-slide'));
 function showReview(i){slides().forEach(s=>s.classList.remove('active'));slides()[i].classList.add('active');}
 function nextReview(){currentReview=(currentReview+1)%slides().length;showReview(currentReview);}
 function prevReview(){currentReview=(currentReview-1+slides().length)%slides().length;showReview(currentReview);}
 </script>
 </body>
 </html>
+
 
 
