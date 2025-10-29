@@ -8,11 +8,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
 <style>
+/* v6 — keep layout; crop menu image bottom 2cm; overlay 0.3s; quote +2cm up/right & transparent */
 :root{
-  --gap:7cm;
-  --menu-scale:1.5;
-  --stagger-step:200ms;
-  --marquee-step:240ms;
+  --gap: 7cm;                 /* desktop section spacing */
+  --menu-scale: 1.5;          /* 1.5× menu image */
+  --stagger-step: 200ms;      /* section reveal stagger */
+  --marquee-step: 240ms;      /* per-sample stagger */
 }
 
 /* ===== Base ===== */
@@ -22,7 +23,7 @@ html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Di
 .reveal-overlay{
   position:fixed;inset:0;background:#000;z-index:4000;
   opacity:1;visibility:visible;
-  transition:opacity .3s ease,visibility 0s linear .3s;
+  transition:opacity .3s ease, visibility 0s linear .3s;
 }
 .reveal-overlay.hide{opacity:0;visibility:hidden}
 
@@ -33,14 +34,14 @@ html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Di
 .social-icons a{color:#000;font-size:1.2rem;transition:color .3s}
 .social-icons a:hover{color:#ff1493}
 
-/* ===== Slide-down Menu ===== */
+/* Slide-down Menu (unchanged behavior) */
 .menu-bar{position:fixed;top:0;left:0;right:0;z-index:3000;background:#fff;border-bottom:1px solid rgba(0,0,0,.15);transform:translateY(-100%);transition:transform .35s ease}
 body.menu-open .menu-bar{transform:translateY(0)}
 .menu-inner{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;justify-content:center}
 
-/* ===== Menu image (2cm cropped from bottom) ===== */
+/* ===== Menu image: crop bottom 2cm (text + hotspots preserved) ===== */
 .image-menu{position:relative;width:min(300px,60vw);transform:scale(var(--menu-scale)) translateZ(0);transform-origin:top center;overflow:hidden}
-.image-menu img{width:100%;height:auto;display:block;clip-path:inset(0 0 2cm 0)} /* trims bottom 2cm */
+.image-menu img{width:100%;height:auto;display:block;clip-path:inset(0 0 2cm 0)} /* trims bottom 2cm only */
 .hot{position:absolute;top:0;bottom:0}
 .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
 
@@ -54,18 +55,18 @@ body.menu-open .menu-bar{transform:translateY(0)}
 .logo-wrap{position:relative;display:grid;place-items:center}
 .logo{display:block;margin:0 auto;width:min(70vw,680px);max-width:680px;height:auto}
 
-/* ===== Quote (signature) ===== */
+/* ===== Signature (quote image) — transparent, +2cm up/right, no overlap ===== */
 .signature{
   position:absolute;
-  right:calc(4% - 2cm);
-  top:calc(100% - 2cm);
+  right:calc(4% - 2cm); /* move 2cm to the right */
+  top:calc(100% - 2cm); /* lift 2cm higher relative to bottom of logo */
   width:min(42vw,340px);
   max-width:340px;
   height:auto;
   opacity:.9;
   pointer-events:none;
-  background:transparent!important;
-  filter:none!important;
+  background:transparent !important; /* ensure no bg */
+  filter:none !important;           /* ensure no drop-shadow */
 }
 
 /* ===== Section spacing ===== */
@@ -86,9 +87,9 @@ body.menu-open .menu-bar{transform:translateY(0)}
 .review-meta{font-family:'Poppins',sans-serif;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase}
 .arrow{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;font-size:1.8rem;color:#000;cursor:pointer}
 .arrow.left{left:-30px}.arrow.right{right:-30px}
-@keyframes bounceIn{0%{opacity:0;transform:translateY(30px) scale(0.95)}60%{opacity:1;transform:translateY(-10px) scale(1.02)}100%{transform:translateY(0) scale(1)}}
+@keyframes bounceIn{0%{opacity:0;transform:translateY(30px) scale(0.95)}60%{opacity:1;transform:translateY(-10px) scale(1.02)}100%{transform:translateY(0) scale(1)}
 
-/* ===== Marquee (samples bounce) ===== */
+/* ===== Marquee (work samples) — stronger one-by-one bounce ===== */
 .marquee-wrap{width:100vw;overflow:hidden}
 .marquee-track{display:flex;gap:2vw;padding:0 2vw;animation:scroll 22s linear infinite}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -97,7 +98,7 @@ body.menu-open .menu-bar{transform:translateY(0)}
   opacity:0;transform:translateY(46px) scale(.88);
   animation:marqueePop .9s cubic-bezier(.2,.9,.2,1.05) forwards;
   animation-delay:calc(var(--i)*var(--marquee-step));
-  animation-play-state:paused;
+  animation-play-state:paused; /* start after overlay */
 }
 body.go .marquee-track img{animation-play-state:running}
 @keyframes marqueePop{
@@ -108,7 +109,17 @@ body.go .marquee-track img{animation-play-state:running}
 
 /* ===== Mission ===== */
 .mission{
-  max-width:900px;margin:9cm auto var(--gap)!important;padding:0 20px;text-align:center;font-family:'Poppins',sans-serif;line-height:1.9;color:#111;font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;background:transparent!important;position:relative;z-index:1
+  max-width:900px;
+  margin:9cm auto var(--gap)!important;
+  padding:0 20px;
+  text-align:center;
+  font-family:'Poppins',sans-serif;
+  line-height:1.9;
+  color:#111;
+  font-size:clamp(1.05rem,2.3vw,1.15rem);
+  font-weight:400;
+  background:transparent!important;
+  position:relative; z-index:1;
 }
 
 /* ===== Bottom Showcase ===== */
@@ -122,8 +133,8 @@ body.go .marquee-track img{animation-play-state:running}
 .bottom-tagline span{display:inline-block;padding-left:100%;animation:tick 20s linear infinite}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
-/* ===== Reveal animation ===== */
-.reveal{opacity:0;transform:translateY(30px) scale(.96)}
+/* ===== Global "pop-in" for sections ===== */
+.reveal{opacity:0;transform:translateY(30px) scale(.96);will-change:transform,opacity}
 .reveal.in{animation:pop .6s cubic-bezier(.22,.68,0,1.02) both}
 @keyframes pop{
   0%{opacity:0;transform:translateY(30px) scale(.96)}
@@ -131,14 +142,25 @@ body.go .marquee-track img{animation-play-state:running}
   100%{opacity:1;transform:translateY(0) scale(1)}
 }
 
-/* ===== Mobile ===== */
-@media(max-width:640px){
- :root{--gap:3.6rem;--stagger-step:140ms;--marquee-step:180ms}
- .hero{grid-template-columns:1fr;margin:88px auto 0;gap:16px;padding:0 16px 172px;position:relative}
- .logo{width:min(90vw,520px)}
- .circle-wrap{position:absolute;left:12px;bottom:20px;z-index:1}
- .circle-wrap svg{width:110px}
- .signature{position:absolute!important;right:calc(12px - 2cm);bottom:20px;top:auto;width:min(44vw,160px);max-width:160px;opacity:.95;background:transparent!important}
+/* ===== MOBILE (≤640px) — same look, safe spacing ===== */
+@media (max-width:640px){
+  :root{--gap:3.6rem;--stagger-step:140ms;--marquee-step:180ms}
+  .hero{grid-template-columns:1fr;margin:88px auto 0;gap:16px;padding:0 16px 172px;position:relative}
+  .logo{width:min(90vw,520px)}
+  .circle-wrap{position:absolute;left:12px;bottom:20px;z-index:1}
+  .circle-wrap svg{width:110px}
+  .signature{
+    position:absolute !important;
+    right:calc(12px - 2cm); /* 2cm more to right on phone too */
+    bottom:20px;
+    top:auto;margin-top:0;
+    width:min(44vw,160px);max-width:160px;
+    opacity:.95;background:transparent !important;
+  }
+  .mission{margin:3.8rem auto var(--gap)!important;font-size:clamp(1rem,4vw,1.1rem);padding:0 14px}
+  .image-menu{transform:scale(1.25) translateZ(0)}
+  .marquee-track img{height:42vh}
+  .arrow.left{left:-10px}.arrow.right{right:-10px}
 }
 </style>
 </head>
@@ -180,84 +202,100 @@ body.go .marquee-track img{animation-play-state:running}
 </header>
 
 <div class="after-hero">
-  <section class="words reveal">
-    <div class="l1">95% of purchase decisions are driven by emotion.</div>
-    <div class="l2">We are The Storytelling Marketing Studio</div>
-    <div class="l3">where words meet visuals to make brands feel human</div>
-  </section>
+<section class="words reveal">
+  <div class="l1">95% of purchase decisions are driven by emotion.</div>
+  <div class="l2">We are The Storytelling Marketing Studio</div>
+  <div class="l3">where words meet visuals to make brands feel human</div>
+</section>
 
-  <section class="reviews reveal">
-    <div class="review-container">
-      <button class="arrow left" onclick="prevReview()">&#8592;</button>
-      <div class="review-slide active">
-        <p class="review-text">"The quality is great; the structure is correct as well. Thank you for following my brief closely!"</p>
-        <p class="review-meta">MARIA — MOVAVI SOFTWARE</p>
-      </div>
-      <div class="review-slide">
-        <p class="review-text">"Siyana was very professional and was able to edit my copy in a very professional manner that spoke to my audience. Pleasure dealing with her."</p>
-        <p class="review-meta">IAN — FACEDUNK</p>
-      </div>
-      <button class="arrow right" onclick="nextReview()">&#8594;</button>
+<section class="reviews reveal">
+  <div class="review-container">
+    <button class="arrow left" onclick="prevReview()">&#8592;</button>
+    <div class="review-slide active">
+      <p class="review-text">"The quality is great; the structure is correct as well. Thank you for following my brief closely!"</p>
+      <p class="review-meta">MARIA — MOVAVI SOFTWARE</p>
     </div>
-  </section>
-
-  <div class="marquee-wrap reveal">
-    <div class="marquee-track">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" style="--i:0" alt="">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" style="--i:1" alt="">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" style="--i:2" alt="">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" style="--i:3" alt="">
+    <div class="review-slide">
+      <p class="review-text">"Siyana was very professional and was able to edit my copy in a very professional manner that spoke to my audience. Pleasure dealing with her."</p>
+      <p class="review-meta">IAN — FACEDUNK</p>
     </div>
+    <button class="arrow right" onclick="nextReview()">&#8594;</button>
   </div>
+</section>
 
-  <section class="mission reveal">
-    “WriteMySocials brings brands to life through creating quality, personality driven strategies that connect, convert and stay true to their voice. We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.”
-  </section>
-
-  <div class="corner-showcase reveal">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="">
-    <div class="note-banner">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.58.png" alt="">
-    </div>
+<div class="marquee-wrap reveal">
+  <div class="marquee-track">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" style="--i:0" alt="">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" style="--i:1" alt="">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" style="--i:2" alt="">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" style="--i:3" alt="">
   </div>
+</div>
+
+<section class="mission reveal">
+  “WriteMySocials brings brands to life through creating quality, personality driven strategies that connect, convert and stay true to their voice. We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.”
+</section>
+
+<div class="corner-showcase reveal">
+  <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="">
+  <div class="note-banner">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.58.png" alt="">
+  </div>
+</div>
 </div>
 
 <div class="bottom-tagline"><span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span></div>
 
 <script>
-/* Overlay fade 0.3s */
-window.addEventListener('load',()=>{
- const overlay=document.getElementById('introOverlay');
- setTimeout(()=>overlay.classList.add('hide'),300);
- overlay.addEventListener('transitionend',startStagger,{once:true});
- function startStagger(){
-   document.body.classList.add('go');
-   const all=[...document.querySelectorAll('.reveal')];
-   const vh=window.innerHeight;
-   const inView=all.filter(el=>{const r=el.getBoundingClientRect();return r.top<vh&&r.bottom>0;});
-   let delay=0;
-   const step=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--stagger-step'))||200;
-   inView.forEach(el=>{setTimeout(()=>el.classList.add('in'),delay);delay+=step;});
-   let queued=0;
-   const io=new IntersectionObserver((entries)=>{
-     entries.forEach(e=>{
-       if(e.isIntersecting&&!e.target.classList.contains('in')){
-         setTimeout(()=>e.target.classList.add('in'),queued*150);
-         queued++;io.unobserve(e.target);
-       }
-     });
-   },{threshold:0.15});
-   all.forEach(el=>{if(!inView.includes(el))io.observe(el);});
- }
+/* Overlay: 0.3s; start reveals + samples only AFTER it fades */
+window.addEventListener('load', ()=>{
+  const overlay = document.getElementById('introOverlay');
+  setTimeout(()=> overlay.classList.add('hide'), 300);  // 0.3s
+  overlay.addEventListener('transitionend', startStagger, { once:true });
+
+  function startStagger(){
+    document.body.classList.add('go'); // let the marquee images animate
+
+    // Stagger in-view .reveal elements (DOM order) for a clean cascade
+    const all = Array.from(document.querySelectorAll('.reveal'));
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+
+    const inView = all.filter(el=>{
+      const r = el.getBoundingClientRect();
+      return r.top < vh && r.bottom > 0;
+    });
+
+    let delay = 0;
+    const step = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--stagger-step')) || 200;
+
+    inView.forEach(el=>{
+      setTimeout(()=> el.classList.add('in'), delay);
+      delay += step;
+    });
+
+    // For the rest, reveal when they scroll in, with a gentle queue
+    let queued = 0;
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting && !e.target.classList.contains('in')){
+          setTimeout(()=> e.target.classList.add('in'), queued * 150);
+          queued++;
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    all.forEach(el=>{ if(!inView.includes(el)) io.observe(el); });
+  }
 });
 
 /* Menu toggle */
 (function(){
- const btn=document.querySelector('.menu-btn');const root=document.body;
- function setOpen(o){root.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',String(o));}
- btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
- document.addEventListener('click',e=>{if(e.target.matches('.hot'))setOpen(false)});
- document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
+  const btn=document.querySelector('.menu-btn');const root=document.body;
+  function setOpen(o){root.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',String(o));}
+  btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
+  document.addEventListener('click',e=>{if(e.target.matches('.hot'))setOpen(false)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
 })();
 
 /* Reviews slider */
@@ -269,5 +307,3 @@ function prevReview(){currentReview=(currentReview-1+slides().length)%slides().l
 </script>
 </body>
 </html>
-
-
