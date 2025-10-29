@@ -8,22 +8,21 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
 <style>
-/* v4 — overlay half-time + global stagger + marquee super-pop */
 :root{
-  --gap: 7cm;           /* global vertical rhythm */
+  --gap: 7cm;           /* section spacing */
   --menu-scale: 1.5;    /* 1.5× menu image */
-  --stagger-step: 200ms; /* base stagger for reveals */
-  --marquee-step: 220ms; /* stagger between sample images */
+  --stagger-step: 200ms;
+  --marquee-step: 220ms;
 }
 
-/* Base */
+/* ===== Base ===== */
 html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
 
-/* ===== Intro Black Overlay (HALF duration) ===== */
+/* ===== Black Intro Overlay (half time) ===== */
 .reveal-overlay{
-  position:fixed;inset:0;background:#000;z-index:4000;
-  opacity:1;visibility:visible;
-  transition:opacity .25s ease, visibility 0s linear .25s; /* half of .5s */
+ position:fixed;inset:0;background:#000;z-index:4000;
+ opacity:1;visibility:visible;
+ transition:opacity .25s ease,visibility 0s linear .25s;
 }
 .reveal-overlay.hide{opacity:0;visibility:hidden}
 
@@ -34,13 +33,11 @@ html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Di
 .social-icons a{color:#000;font-size:1.2rem;transition:color .3s}
 .social-icons a:hover{color:#ff1493}
 
-/* Slide-down Menu */
+/* ===== Slide-down Menu ===== */
 .menu-bar{position:fixed;top:0;left:0;right:0;z-index:3000;background:#fff;border-bottom:1px solid rgba(0,0,0,.15);transform:translateY(-100%);transition:transform .35s ease}
 body.menu-open .menu-bar{transform:translateY(0)}
 .menu-inner{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;justify-content:center}
-
-/* Bigger image menu (scales clickable areas too) */
-.image-menu{position:relative; width:min(300px,60vw); transform:scale(var(--menu-scale)) translateZ(0); transform-origin: top center}
+.image-menu{position:relative;width:min(300px,60vw);transform:scale(var(--menu-scale)) translateZ(0);transform-origin:top center}
 .image-menu img{width:100%;height:auto;display:block}
 .hot{position:absolute;top:0;bottom:0}
 .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
@@ -59,7 +56,7 @@ body.menu-open .menu-bar{transform:translateY(0)}
 @media(max-width:600px){.signature{position:static;margin-top:10px;width:min(70vw,300px)}}
 
 /* ===== Section spacing ===== */
-.after-hero > *{margin-top:var(--gap) !important; margin-bottom:var(--gap) !important}
+.after-hero > *{margin-top:var(--gap)!important;margin-bottom:var(--gap)!important}
 
 /* ===== Words ===== */
 .words{text-align:center;max-width:900px;margin:0 auto;padding:0 20px}
@@ -76,50 +73,43 @@ body.menu-open .menu-bar{transform:translateY(0)}
 .review-meta{font-family:'Poppins',sans-serif;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase}
 .arrow{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;font-size:1.8rem;color:#000;cursor:pointer}
 .arrow.left{left:-30px}.arrow.right{right:-30px}
-@keyframes bounceIn{0%{opacity:0;transform:translateY(30px) scale(0.95)}60%{opacity:1;transform:translateY(-10px) scale(1.02)}100%{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes bounceIn{0%{opacity:0;transform:translateY(30px) scale(0.95)}60%{opacity:1;transform:translateY(-10px) scale(1.02)}100%{transform:translateY(0) scale(1)}}
 
 /* ===== Marquee ===== */
 .marquee-wrap{width:100vw;overflow:hidden}
 .marquee-track{display:flex;gap:2vw;padding:0 2vw;animation:scroll 22s linear infinite}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* Sample images start paused, then pop-in with extra punch after overlay */
+/* Sample images pop one-by-one after overlay */
 .marquee-track img{
-  height:50vh;width:auto;border-radius:8px;display:block;object-fit:cover;
-  opacity:0; transform:translateY(42px) scale(.9);
-  animation:marqueePop .85s cubic-bezier(.2,.8,.2,1) forwards, /* pop in */
-           bounceImgHold .01s linear forwards;                 /* ensures final state */
-  animation-delay: calc(var(--i) * var(--marquee-step));       /* stagger by index */
-  animation-play-state: paused;                                 /* wait for overlay */
-  filter:none;
+ height:50vh;width:auto;border-radius:8px;display:block;object-fit:cover;
+ opacity:0;transform:translateY(42px) scale(.9);
+ animation:marqueePop .85s cubic-bezier(.2,.8,.2,1) forwards;
+ animation-delay:calc(var(--i)*var(--marquee-step));
+ animation-play-state:paused;
+ filter:none;
 }
+body.go .marquee-track img{animation-play-state:running}
 @keyframes marqueePop{
-  0%{opacity:0;transform:translateY(42px) scale(.9);filter:none}
-  55%{opacity:1;transform:translateY(-10px) scale(1.08);filter:drop-shadow(0 10px 18px rgba(0,0,0,.18))}
-  100%{opacity:1;transform:translateY(0) scale(1);filter:drop-shadow(0 6px 12px rgba(0,0,0,.12))}
+ 0%{opacity:0;transform:translateY(42px) scale(.9)}
+ 55%{opacity:1;transform:translateY(-10px) scale(1.08);filter:drop-shadow(0 10px 18px rgba(0,0,0,.18))}
+ 100%{opacity:1;transform:translateY(0) scale(1);filter:drop-shadow(0 6px 12px rgba(0,0,0,.12))}
 }
-/* tiny holder to keep last keyframe snapshot */
-@keyframes bounceImgHold{from{opacity:1}to{opacity:1}}
 
-/* When body gets .go (after overlay), let the marquee animations run */
-body.go .marquee-track img{ animation-play-state: running; }
-
-/* ===== Mission (quote) — lifted 2 cm, NO overlay, transparent ===== */
+/* ===== Mission (quote) — fully separated ===== */
 .mission{
-  max-width:900px;
-  margin:0 auto;
-  margin-top:calc(var(--gap) - 2cm) !important; /* layout lift instead of transform */
-  margin-bottom:var(--gap) !important;
-  padding:0 20px;
-  text-align:center;
-  font-family:'Poppins',sans-serif;
-  line-height:1.9;
-  color:#111;
-  font-size:clamp(1.05rem,2.3vw,1.15rem);
-  font-weight:400;
-  background:transparent !important;
-  transform:none !important;
-  position:relative; z-index:1;
+ max-width:900px;
+ margin:9cm auto var(--gap)!important; /* pushes it far below logo */
+ padding:0 20px;
+ text-align:center;
+ font-family:'Poppins',sans-serif;
+ line-height:1.9;
+ color:#111;
+ font-size:clamp(1.05rem,2.3vw,1.15rem);
+ font-weight:400;
+ background:transparent!important;
+ transform:none!important;
+ position:relative;z-index:1;
 }
 
 /* ===== Bottom Showcase ===== */
@@ -133,13 +123,13 @@ body.go .marquee-track img{ animation-play-state: running; }
 .bottom-tagline span{display:inline-block;padding-left:100%;animation:tick 20s linear infinite}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
-/* ===== Global "pop-in" reveal for sections ===== */
+/* ===== Staggered reveal for sections ===== */
 .reveal{opacity:0;transform:translateY(30px) scale(.96);will-change:transform,opacity}
 .reveal.in{animation:pop .6s cubic-bezier(.22,.68,0,1.02) both}
 @keyframes pop{
-  0%{opacity:0;transform:translateY(30px) scale(.96)}
-  60%{opacity:1;transform:translateY(-8px) scale(1.02)}
-  100%{opacity:1;transform:translateY(0) scale(1)}
+ 0%{opacity:0;transform:translateY(30px) scale(.96)}
+ 60%{opacity:1;transform:translateY(-8px) scale(1.02)}
+ 100%{opacity:1;transform:translateY(0) scale(1)}
 }
 </style>
 </head>
@@ -226,70 +216,52 @@ body.go .marquee-track img{ animation-play-state: running; }
 <div class="bottom-tagline"><span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span></div>
 
 <script>
-/* Overlay: half duration + start stagger & marquee only AFTER it fades */
 window.addEventListener('load', ()=>{
-  const overlay = document.getElementById('introOverlay');
-
-  // Hide the overlay sooner (half-time)
-  setTimeout(()=> overlay.classList.add('hide'), 250);
-
-  // After fade completes, start stagger and enable marquee animations
-  overlay.addEventListener('transitionend', startStagger, { once:true });
-
-  function startStagger(){
-    document.body.classList.add('go'); // lets marquee imgs start animating
-
-    // Stagger already-visible .reveal elements (DOM order)
-    const all = Array.from(document.querySelectorAll('.reveal'));
-    const vh = window.innerHeight || document.documentElement.clientHeight;
-
-    const inView = all.filter(el=>{
-      const r = el.getBoundingClientRect();
-      return r.top < vh && r.bottom > 0;
-    });
-
-    let delay = 0;
-    const step = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--stagger-step')) || 200;
-
-    inView.forEach(el=>{
-      setTimeout(()=> el.classList.add('in'), delay);
-      delay += step;
-    });
-
-    // Reveal the rest on scroll with a gentle queue
-    let queued = 0;
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting && !e.target.classList.contains('in')){
-          setTimeout(()=> e.target.classList.add('in'), queued * 150);
-          queued++;
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    all.forEach(el=>{ if(!inView.includes(el)) io.observe(el); });
-  }
+ const overlay=document.getElementById('introOverlay');
+ setTimeout(()=>overlay.classList.add('hide'),250); // half duration
+ overlay.addEventListener('transitionend',startStagger,{once:true});
+ function startStagger(){
+   document.body.classList.add('go'); // trigger marquee pops
+   const all=[...document.querySelectorAll('.reveal')];
+   const vh=window.innerHeight;
+   const inView=all.filter(el=>{
+     const r=el.getBoundingClientRect();
+     return r.top<vh&&r.bottom>0;
+   });
+   let delay=0;
+   const step=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--stagger-step'))||200;
+   inView.forEach(el=>{setTimeout(()=>el.classList.add('in'),delay);delay+=step;});
+   let queued=0;
+   const io=new IntersectionObserver((entries)=>{
+     entries.forEach(e=>{
+       if(e.isIntersecting&&!e.target.classList.contains('in')){
+         setTimeout(()=>e.target.classList.add('in'),queued*150);
+         queued++;
+         io.unobserve(e.target);
+       }
+     });
+   },{threshold:0.15});
+   all.forEach(el=>{if(!inView.includes(el))io.observe(el);});
+ }
 });
 
 /* Menu toggle */
 (function(){
-  const btn=document.querySelector('.menu-btn');const root=document.body;
-  function setOpen(o){root.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',String(o));}
-  btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
-  document.addEventListener('click',e=>{if(e.target.matches('.hot'))setOpen(false)});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
+ const btn=document.querySelector('.menu-btn');const root=document.body;
+ function setOpen(o){root.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',String(o));}
+ btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
+ document.addEventListener('click',e=>{if(e.target.matches('.hot'))setOpen(false)});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
 })();
 
 /* Reviews slider */
 let currentReview=0;
-const slides=()=>Array.from(document.querySelectorAll('.review-slide'));
+const slides=()=>[...document.querySelectorAll('.review-slide')];
 function showReview(i){slides().forEach(s=>s.classList.remove('active'));slides()[i].classList.add('active');}
 function nextReview(){currentReview=(currentReview+1)%slides().length;showReview(currentReview);}
 function prevReview(){currentReview=(currentReview-1+slides().length)%slides().length;showReview(currentReview);}
 </script>
 </body>
 </html>
-
 
 
