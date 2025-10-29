@@ -12,12 +12,13 @@
   --maxw:1100px;
   --pad: clamp(16px, 3vw, 28px);
   --gap-lg: clamp(28px, 4vw, 50px);
-  --rhythm: clamp(28px, 6vw, 80px); /* vertical rhythm */
+  --rhythm: clamp(28px, 6vw, 80px);
 }
 
+/* base */
 html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
 
-/* ===== Header / Socials / Image Menu (same SMALL menu as Services) ===== */
+/* ===== Header / Socials ===== */
 .menu-btn{
   position:fixed;top:18px;left:20px;z-index:3100;background:#fff;border:1px solid #000;color:#000;
   padding:6px 12px;border-radius:999px;font-family:'Poppins',sans-serif;font-size:.85rem;letter-spacing:.1em;cursor:pointer;transition:.3s
@@ -27,13 +28,14 @@ html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Di
 .social-icons a{color:#000;font-size:1.2rem;transition:color .3s}
 .social-icons a:hover{color:#ff1493}
 
+/* ===== Slide-down IMAGE MENU (3× smaller) ===== */
 .menu-bar{
   position:fixed;top:0;left:0;right:0;z-index:3000;background:#fff;border-bottom:1px solid rgba(0,0,0,.15);
   transform:translateY(-100%);transition:transform .35s ease;will-change:transform
 }
 body.menu-open .menu-bar{transform:translateY(0)}
 .menu-inner{max-width:var(--maxw);margin:0 auto;padding:10px var(--pad);display:flex;justify-content:center}
-.image-menu{position:relative;width:min(900px,92vw)}       /* ← same size as Services */
+.image-menu{position:relative;width:min(300px, 60vw)} /* was 900px → now ~3× smaller */
 .image-menu img{width:100%;height:auto;display:block}
 .hot{position:absolute;top:0;bottom:0}
 .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
@@ -64,10 +66,10 @@ body.menu-open .menu-bar{transform:translateY(0)}
 .logo-wrap{position:relative; display:grid; place-items:center}
 .logo{display:block; margin:0 auto; width:min(70vw, 680px); max-width:680px; height:auto}
 
-/* Signature to the LEFT & slightly under the logo (overlap) */
+/* Signature moved to the RIGHT & slightly under the logo (overlap) */
 .signature{
   position:absolute;
-  left: -8%;          /* pushes to the left of logo */
+  right: -8%;         /* push to right of logo */
   top: 88%;           /* slightly under the logo */
   width:min(42vw, 340px);
   max-width:340px;
@@ -75,14 +77,17 @@ body.menu-open .menu-bar{transform:translateY(0)}
   opacity:.9;
   pointer-events:none;
 }
-@media(max-width:1100px){ .signature{ left:-10%; top:90%; width:min(46vw, 320px);} }
-@media(max-width:800px){  .signature{ left:-14%; top:92%; width:min(56vw, 300px);} }
-@media(max-width:600px){  .signature{ position:static; margin-top:10px; width:min(70vw, 300px);} } /* on small phones, tuck under logo centered */
+@media(max-width:1100px){ .signature{ right:-10%; top:90%; width:min(46vw,320px);} }
+@media(max-width:800px){  .signature{ right:-14%; top:92%; width:min(56vw,300px);} }
+@media(max-width:600px){  .signature{ position:static; margin-top:10px; width:min(70vw,300px);} } /* phone: tuck under, centered */
 
-/* ===== Words block under hero — move 3cm HIGHER ===== */
+/* ===== Everything AFTER HERO pushed 4cm down ===== */
+.after-hero{padding-top:4cm}  /* ← moves everything below hero by 4cm */
+
+/* ===== Words block ===== */
 .words{
   max-width:var(--maxw);
-  margin: calc(var(--rhythm) - 3cm) auto 0;   /* ← 3cm higher */
+  margin: var(--rhythm) auto 0;
   padding:0 var(--pad);
   text-align:center;
 }
@@ -90,10 +95,10 @@ body.menu-open .menu-bar{transform:translateY(0)}
 .words .l2{font-size: clamp(1.4rem, 3.2vw, 2.2rem); margin-top:.4rem}
 .words .l3{font-size: clamp(1rem, 2.4vw, 1.4rem); margin-top:.2rem; opacity:.9}
 
-/* ===== Reviews — move 2cm LOWER ===== */
+/* ===== Reviews ===== */
 .reviews{
   max-width:var(--maxw);
-  margin: calc(var(--rhythm) + 2cm) auto 0;   /* ← 2cm lower */
+  margin: var(--rhythm) auto 0;
   padding:0 var(--pad);
 }
 .review-container{position:relative;max-width:min(900px, 92vw);margin:0 auto;text-align:center}
@@ -124,8 +129,8 @@ body.menu-open .menu-bar{transform:translateY(0)}
   text-align:center;line-height:1.9;color:#111
 }
 
-/* ===== Bottom showcase — move 8cm LOWER ===== */
-.corner-showcase{position:relative;width:min(360px,70vw);margin: calc(var(--rhythm) + 8cm) auto calc(var(--rhythm) + 60px)} /* ← 8cm lower */
+/* ===== Bottom showcase (unchanged from previous unless you want offsets here too) ===== */
+.corner-showcase{position:relative;width:min(360px,70vw);margin: var(--rhythm) auto calc(var(--rhythm) + 60px)}
 .corner-showcase img{width:100%;height:auto;border-radius:12px}
 .note-banner{position:absolute;right:1rem;top:-2cm;width:min(85%,520px);height:4cm;display:flex;align-items:center;justify-content:flex-end;pointer-events:none}
 .note-banner img{width:100%;height:100%;object-fit:contain;opacity:.98}
@@ -151,7 +156,7 @@ body{padding-bottom:64px}
   <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
 </div>
 
-<!-- SMALL image menu (identical to Services) -->
+<!-- Smaller image menu (identical hotspots) -->
 <nav class="menu-bar" id="siteMenu" aria-label="Primary">
   <div class="menu-inner">
     <div class="image-menu">
@@ -163,9 +168,8 @@ body{padding-bottom:64px}
   </div>
 </nav>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO (logo + circle + signature) — unaffected by the 4cm push ===== -->
 <header class="hero">
-  <!-- Left: circle -->
   <div class="circle-wrap reveal">
     <svg viewBox="0 0 220 220" role="img" aria-label="Write My Socials — Stories that sell">
       <defs><path id="circlePath" d="M110,110 m-90,0 a90,90 0 1,1 180,0 a90,90 0 1,1 -180,0"/></defs>
@@ -175,71 +179,70 @@ body{padding-bottom:64px}
     </svg>
   </div>
 
-  <!-- Center: logo with signature sitting to the left & under -->
   <div class="logo-wrap reveal">
     <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2011.45.04.png" alt="Write My Socials logo"/>
+    <!-- quote/signature to the RIGHT, slightly under -->
     <img class="signature" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png" alt="with love for your brand"/>
   </div>
 
-  <!-- Right spacer for balance on desktop -->
   <div class="spacer" aria-hidden="true"></div>
 </header>
 
-<!-- ===== Words (moved up) ===== -->
-<section class="words reveal">
-  <div class="l1">95% of purchase decisions are driven by emotion.</div>
-  <div class="l2">We are The Storytelling Marketing Studio</div>
-  <div class="l3">where words meet visuals to make brands feel human</div>
-</section>
+<!-- ===== EVERYTHING BELOW HERO gets 4cm push ===== -->
+<div class="after-hero">
 
-<!-- ===== Reviews (moved down) ===== -->
-<section class="reviews reveal">
-  <div class="review-container">
-    <button class="arrow left" onclick="prevReview()" aria-label="Previous review">&#8592;</button>
-    <div class="review-slide active">
-      <p class="review-text">"The quality is great; the structure is correct as well. Thank you for following my brief closely!"</p>
-      <p class="review-meta">MARIA — MOVAVI SOFTWARE</p>
-    </div>
-    <div class="review-slide">
-      <p class="review-text">"Siyana was very professional and was able to edit my copy in a very professional manner that spoke to my audience. Pleasure dealing with her."</p>
-      <p class="review-meta">IAN — FACE</p>
-    </div>
-    <button class="arrow right" onclick="nextReview()" aria-label="Next review">&#8594;</button>
-  </div>
-</section>
+  <section class="words reveal">
+    <div class="l1">95% of purchase decisions are driven by emotion.</div>
+    <div class="l2">We are The Storytelling Marketing Studio</div>
+    <div class="l3">where words meet visuals to make brands feel human</div>
+  </section>
 
-<!-- ===== Work samples marquee ===== -->
-<div class="marquee-wrap reveal">
-  <div class="marquee-container">
-    <div class="marquee-track">
-      <div class="marquee-strip">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work sample 1"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work sample 2"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work sample 3"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work sample 4"/>
+  <section class="reviews reveal">
+    <div class="review-container">
+      <button class="arrow left" onclick="prevReview()" aria-label="Previous review">&#8592;</button>
+      <div class="review-slide active">
+        <p class="review-text">"The quality is great; the structure is correct as well. Thank you for following my brief closely!"</p>
+        <p class="review-meta">MARIA — MOVAVI SOFTWARE</p>
       </div>
-      <div class="marquee-strip" aria-hidden="true">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="">
+      <div class="review-slide">
+        <p class="review-text">"Siyana was very professional and was able to edit my copy in a very professional manner that spoke to my audience. Pleasure dealing with her."</p>
+        <p class="review-meta">IAN — FACE</p>
+      </div>
+      <button class="arrow right" onclick="nextReview()" aria-label="Next review">&#8594;</button>
+    </div>
+  </section>
+
+  <div class="marquee-wrap reveal">
+    <div class="marquee-container">
+      <div class="marquee-track">
+        <div class="marquee-strip">
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work sample 1"/>
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work sample 2"/>
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work sample 3"/>
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work sample 4"/>
+        </div>
+        <div class="marquee-strip" aria-hidden="true">
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="">
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="">
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="">
+          <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="">
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ===== Mission ===== -->
-<section class="mission reveal">
-  “WriteMySocials brings brands to life through creating quality, personality driven strategies that connect, convert and stay true to their voice. We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.”
-</section>
+  <section class="mission reveal">
+    “WriteMySocials brings brands to life through creating quality, personality driven strategies that connect, convert and stay true to their voice. We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.”
+  </section>
 
-<!-- ===== Bottom showcase (pushed 8cm lower) ===== -->
-<div class="corner-showcase reveal">
-  <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="Corner showcase">
-  <div class="note-banner">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.58.png" alt="Decorative note">
+  <div class="corner-showcase reveal">
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="Corner showcase">
+    <div class="note-banner">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.58.png" alt="Decorative note">
+    </div>
   </div>
-</div>
+
+</div><!-- /.after-hero -->
 
 <!-- Bottom ticker -->
 <div class="bottom-tagline" aria-hidden="true">
@@ -247,7 +250,7 @@ body{padding-bottom:64px}
 </div>
 
 <script>
-/* Menu toggle (same as Services) */
+/* Menu toggle */
 (function(){
   const btn=document.querySelector('.menu-btn'); const root=document.body;
   function setOpen(open){ root.classList.toggle('menu-open',open); if(btn) btn.setAttribute('aria-expanded', String(open)); }
@@ -276,7 +279,6 @@ function prevReview(){currentReview=(currentReview-1+slides().length)%slides().l
 
 </body>
 </html>
-
 
 
 
