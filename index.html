@@ -95,6 +95,15 @@ html,body{
 @keyframes tagline-marquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 body{padding-bottom:64px} /* ensures content isn’t hidden behind the fixed bar */
 
+/* ===== FADE-IN ON SCROLL ===== */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;will-change:opacity, transform}
+.reveal.in{opacity:1;transform:none}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+}
+
 /* ===== Mobile tweaks ===== */
 @media(max-width:768px){
   .main-content > * + *{margin-top:2.2cm !important;}
@@ -134,21 +143,21 @@ body{padding-bottom:64px} /* ensures content isn’t hidden behind the fixed bar
 <div class="main-content">
 
   <!-- Centered words -->
-  <section class="words-under-logo">
+  <section class="words-under-logo reveal">
     <div class="line l1">95% of purchase decisions are driven by emotion.</div>
     <div class="line l2">We are The Storytelling Marketing Studio</div>
     <div class="line l3">where words meet visuals to make brands feel human</div>
   </section>
 
   <!-- Centered single review with left arrow -->
-  <section class="review-block">
+  <section class="review-block reveal">
     <div class="review-arrow">←</div>
     <p class="review-text">"The quality is great; the structure is correct as well. Thank you for following my brief closely!"</p>
     <p class="review-meta">MARIA — MOVAVI SOFTWARE</p>
   </section>
 
   <!-- Work samples marquee -->
-  <div class="section marquee-wrap">
+  <div class="section marquee-wrap reveal">
     <div class="marquee-container">
       <div class="marquee-track">
         <div class="marquee-strip">
@@ -168,7 +177,7 @@ body{padding-bottom:64px} /* ensures content isn’t hidden behind the fixed bar
   </div>
 
   <!-- Mission -->
-  <div class="section mission-statement">
+  <div class="section mission-statement reveal">
     “WriteMySocials brings brands to life through creating quality, personality driven strategies that connect, convert and stay true to their voice. We don’t sell virality… We sell stories!
     <br><br>
     Your brand deserves more than filler captions and recycled trends. We don’t copy trends. We create them. First, we listen to your goals, we learn your market and your personality. So that we can craft stories that feel distinctively yours.
@@ -183,7 +192,7 @@ body{padding-bottom:64px} /* ensures content isn’t hidden behind the fixed bar
   </div>
 
   <!-- Bottom showcase image -->
-  <div class="corner-showcase">
+  <div class="corner-showcase reveal">
     <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="Corner Showcase Image">
     <div class="note-banner">
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.58.png" alt="Decorative Note Banner">
@@ -195,6 +204,25 @@ body{padding-bottom:64px} /* ensures content isn’t hidden behind the fixed bar
 <div class="bottom-tagline">
   <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
 </div>
+
+<script>
+/* Fade-in on scroll using IntersectionObserver */
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) || !els.length) {
+    els.forEach(el => el.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+  els.forEach(el=>io.observe(el));
+})();
+</script>
 </body>
 </html>
-
