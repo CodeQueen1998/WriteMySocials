@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Write My Socials — Home</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&family=DotGothic16&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
   <style>
@@ -18,7 +19,7 @@
 
     html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
 
-    /* Black overlay: will be removed by JS after 0.25s (hard cap) */
+    /* Black overlay */
     .reveal-overlay{
       position:fixed;inset:0;background:#000;z-index:4000;
       opacity:1;visibility:visible;
@@ -41,7 +42,7 @@
     .hot{position:absolute;top:0;bottom:0}
     .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
 
-    /* HERO: circular marquee 4cm to the right */
+    /* HERO */
     .hero{
       max-width:1100px;margin:120px auto 0;padding:0 20px;
       display:grid;grid-template-columns:1fr minmax(300px,680px) 1fr;align-items:center;
@@ -49,20 +50,29 @@
     }
     @media(max-width:960px){.hero{grid-template-columns:1fr;margin-top:110px}}
 
-    .circle-wrap{justify-self:start; position:relative; top:2px; left:4cm;}
+    /* Circular marquee moved 2cm left */
+    .circle-wrap{justify-self:start; position:relative; top:2px; left:2cm;}
     .circle-wrap svg{width:200px;height:auto;display:block}
     .circle-wrap text{font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;fill:#000}
     .circle-spin{transform-origin:50% 50%;animation:spin 18s linear infinite}
     @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
+    /* Logo */
     .logo-wrap{position:relative;display:grid;place-items:center}
-    .logo{display:block;margin:0 auto;width:min(70vw,680px);max-width:680px;height:auto}
-    .signature{ position:absolute;right:-8%;top:88%; width:min(42vw,340px);max-width:340px;height:auto; opacity:.95;pointer-events:none; mix-blend-mode:multiply; -webkit-clip-path:inset(3% 0 0 0 round 2px); clip-path:inset(3% 0 0 0 round 2px); }
+    .logo{
+      display:block;margin:0 auto;width:min(70vw,680px);max-width:680px;height:auto;
+      background:transparent;mix-blend-mode:multiply;
+    }
+    .signature{
+      position:absolute;right:-8%;top:88%;
+      width:min(42vw,340px);max-width:340px;height:auto;opacity:.95;
+      pointer-events:none;mix-blend-mode:multiply;
+      -webkit-clip-path:inset(3% 0 0 0 round 2px);clip-path:inset(3% 0 0 0 round 2px);
+    }
     @media(max-width:600px){.signature{position:static;margin-top:10px;width:min(70vw,300px)}}
 
     .after-hero > *{margin-top:var(--gap)!important;margin-bottom:var(--gap)!important}
 
-    /* Smooth, natural scroll reveals (no bounce) */
     .reveal{opacity:0;transform:translateY(20px);will-change:transform,opacity}
     .reveal.in{opacity:1;transform:none;transition:opacity .6s ease, transform .6s ease}
 
@@ -96,20 +106,28 @@
       color:#111;font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;background:transparent;
     }
 
-    /* Born in Chelsea text ON the image, 2cm up from bottom */
+    /* Corner showcase caption moved above image, Playdot font */
     .corner-showcase{position:relative;width:min(360px,70vw);margin:0 auto}
     .corner-showcase img{width:100%;height:auto;border-radius:12px;display:block}
     .born-note{
-      position:absolute;left:50%;bottom:2cm;transform:translateX(-50%);
-      font-family:'Poppins',sans-serif;font-size:clamp(1rem,2.2vw,1.15rem);letter-spacing:.04em;
-      color:#fff;background:rgba(0,0,0,.4);padding:6px 12px;border-radius:6px
+      position:static;
+      transform:none;
+      margin:0 auto 10px;
+      display:block;
+      text-align:center;
+      font-family:'DotGothic16', sans-serif;
+      font-size:clamp(1rem,2.2vw,1.15rem);
+      letter-spacing:.04em;
+      color:#000;
+      background:transparent;
+      padding:0;
+      border-radius:0;
     }
 
     .bottom-tagline{position:fixed;bottom:0;width:100%;background:#000;color:#fff;font-family:'Poppins',sans-serif;font-size:1rem;white-space:nowrap;overflow:hidden;z-index:900}
     .bottom-tagline span{display:inline-block;padding-left:100%;animation:tick 20s linear infinite}
     @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
-    /* Keep hidden until we drop .preload (which we do ASAP via DOMContentLoaded) */
     body.preload .reveal,
     body.preload .marquee-track img,
     body.preload .words .l1,
@@ -150,7 +168,7 @@
       </svg>
     </div>
     <div class="logo-wrap reveal">
-      <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2011.45.04.png" alt="Write My Socials logo"/>
+      <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/transparent-logo.png" alt="Write My Socials logo"/>
       <img class="signature" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png" alt="with love for your brand"/>
     </div>
   </header>
@@ -201,26 +219,16 @@
   </div>
 
   <script>
-    /* ===== OVERLAY: hard-stop after 250ms, no waiting for slow images ===== */
     (function(){
       const overlay = document.getElementById('introOverlay');
-
-      // 1) Drop preload ASAP (DOM ready)
       document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('preload');
       });
-
-      // 2) Guaranteed hide after exactly 250ms
       setTimeout(() => overlay && overlay.classList.add('hide'), 250);
-
-      // 3) Also hide once everything finishes loading (harmless if already hidden)
       window.addEventListener('load', () => overlay && overlay.classList.add('hide'));
-
-      // 4) Extra failsafe (in case DOMContentLoaded is delayed)
       setTimeout(() => document.body.classList.remove('preload'), 400);
     })();
 
-    /* ===== MENU TOGGLE ===== */
     (function(){
       const btn=document.querySelector('.menu-btn');const root=document.body;
       function setOpen(o){root.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',String(o));}
@@ -229,14 +237,12 @@
       document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
     })();
 
-    /* ===== REVIEWS NAV ===== */
     let currentReview=0; const slides=()=>Array.from(document.querySelectorAll('.review-slide'));
     function showReview(i){slides().forEach(s=>s.classList.remove('active'));slides()[i].classList.add('active');}
     function nextReview(){currentReview=(currentReview+1)%slides().length;showReview(currentReview);}
     function prevReview(){currentReview=(currentReview-1+slides().length)%slides().length;showReview(currentReview);}
     window.nextReview = nextReview; window.prevReview = prevReview;
 
-    /* ===== SCROLL REVEAL (natural, no bounce) ===== */
     (function(){
       const els=document.querySelectorAll('.reveal');
       const io=new IntersectionObserver((entries)=>{
@@ -250,13 +256,11 @@
       els.forEach(el=>io.observe(el));
     })();
 
-    /* ===== MARQUEE IMAGES: natural one-by-one, then gentle scroll ===== */
     (function(){
       const marqueeWrap = document.querySelector('.marquee-wrap');
       if(!marqueeWrap) return;
       const imgs = Array.from(marqueeWrap.querySelectorAll('.marquee-track img'));
       let started=false;
-
       const startSequence = () => {
         if(started) return; started=true;
         const perDelay = 380;
@@ -267,7 +271,6 @@
           if (track) track.style.animation = 'scroll 22s linear infinite';
         }, total);
       };
-
       const io2 = new IntersectionObserver((entries)=>{
         entries.forEach(e=>{
           if(e.isIntersecting) { startSequence(); io2.unobserve(e.target); }
@@ -278,4 +281,5 @@
   </script>
 </body>
 </html>
+
 
