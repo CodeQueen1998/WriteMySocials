@@ -18,12 +18,8 @@
 
     html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
 
-    /* Full black overlay for first 0.25s, then quick fade */
-    .reveal-overlay{
-      position:fixed;inset:0;background:#000;z-index:4000;
-      opacity:1;visibility:visible;
-      transition:opacity .25s ease,visibility 0s linear .25s;
-    }
+    /* Black overlay for first 0.25s, then fade */
+    .reveal-overlay{position:fixed;inset:0;background:#000;z-index:4000;opacity:1;visibility:visible;transition:opacity .25s ease,visibility 0s linear .25s}
     .reveal-overlay.hide{opacity:0;visibility:hidden}
 
     .menu-btn{position:fixed;top:18px;left:20px;z-index:3100;background:#fff;border:1px solid #000;color:#000;padding:6px 12px;border-radius:999px;font-family:'Poppins',sans-serif;font-size:.85rem;letter-spacing:.1em;cursor:pointer;transition:.3s}
@@ -41,15 +37,11 @@
     .hot{position:absolute;top:0;bottom:0}
     .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
 
-    /* HERO: bring circle a bit closer to the logo */
-    .hero{
-      max-width:1100px;margin:120px auto 0;padding:0 20px;
-      display:grid;grid-template-columns:1fr minmax(300px,680px) 1fr;align-items:center;
-      gap:18px; /* slightly tighter */
-    }
+    /* HERO: move circular marquee exactly 2cm left, closer to logo */
+    .hero{max-width:1100px;margin:120px auto 0;padding:0 20px;display:grid;grid-template-columns:1fr minmax(300px,680px) 1fr;align-items:center;gap:18px}
     @media(max-width:960px){.hero{grid-template-columns:1fr;margin-top:110px}}
 
-    .circle-wrap{justify-self:start; position:relative; top:2px; left:-18px;} /* closer to logo */
+    .circle-wrap{justify-self:start; position:relative; top:2px; left:-2cm;} /* 2cm to the left */
     .circle-wrap svg{width:200px;height:auto;display:block}
     .circle-wrap text{font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;fill:#000}
     .circle-spin{transform-origin:50% 50%;animation:spin 18s linear infinite}
@@ -60,90 +52,64 @@
     .signature{ position:absolute;right:-8%;top:88%; width:min(42vw,340px);max-width:340px;height:auto; opacity:.95;pointer-events:none; mix-blend-mode:multiply; -webkit-clip-path:inset(3% 0 0 0 round 2px); clip-path:inset(3% 0 0 0 round 2px); }
     @media(max-width:600px){.signature{position:static;margin-top:10px;width:min(70vw,300px)}}
 
+    /* Default big vertical rhythm */
     .after-hero > *{margin-top:var(--gap)!important;margin-bottom:var(--gap)!important}
 
     .words{text-align:center;max-width:900px;margin:0 auto;padding:0 20px}
-    .words .l1,.words .l2,.words .l3{opacity:0;transform:translateY(30px) scale(.98);}
-    .words .l1.reveal{font-size:clamp(1.3rem,3.2vw,2rem);font-weight:600;letter-spacing:.02em}
-    .words .l2.reveal{font-size:clamp(1.6rem,3.8vw,2.4rem);margin-top:.5rem;color:#111}
-    .words .l3.reveal{font-family:'Poppins',sans-serif;font-size:clamp(1rem,2.2vw,1.4rem);margin-top:.3rem;opacity:.85}
+
+    /* === NATURAL FADE/SLIDE REVEALS (no bounce) === */
+    .reveal{opacity:0;transform:translateY(20px);will-change:transform,opacity}
+    .reveal.in{opacity:1;transform:none;transition:opacity .6s ease, transform .6s ease}
+
+    .words .l1{font-size:clamp(1.3rem,3.2vw,2rem);font-weight:600;letter-spacing:.02em}
+    .words .l2{font-size:clamp(1.6rem,3.8vw,2.4rem);margin-top:.5rem;color:#111}
+    .words .l3{font-family:'Poppins',sans-serif;font-size:clamp(1rem,2.2vw,1.4rem);margin-top:.3rem;opacity:.85}
 
     .reviews{max-width:900px;margin:0 auto;padding:0 20px;text-align:center}
     .review-container{position:relative}
     .review-slide{display:none}
-    .review-slide.active{display:block;animation:bounceIn .8s ease}
+    .review-slide.active{display:block}
     .review-text{font-family:"Didot","Playfair Display",serif;font-size:clamp(1.1rem,2.6vw,1.7rem);line-height:1.8;margin:0 auto 14px;max-width:48ch}
     .review-meta{font-family:'Poppins',sans-serif;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase}
     .arrow{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;font-size:1.8rem;color:#000;cursor:pointer}
     .arrow.left{left:-30px}.arrow.right{right:-30px}
 
     .marquee-wrap{width:100vw;overflow:hidden}
-    .marquee-track{display:flex;gap:2vw;padding:0 2vw;}
+    .marquee-track{display:flex;gap:2vw;padding:0 2vw}
     @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-    .marquee-track img{
-      height:50vh;width:auto;border-radius:8px;display:block;object-fit:cover;
-      opacity:0;transform:translateY(40px) scale(.9);
-    }
-    .marquee-track img.pop-in{animation:bounceImg .9s ease forwards}
-    @keyframes bounceImg{
-      0%{opacity:0;transform:translateY(40px) scale(0.9)}
-      60%{opacity:1;transform:translateY(-12px) scale(1.05)}
-      100%{opacity:1;transform:translateY(0) scale(1)}
-    }
 
-    .mission{
-      max-width:900px;margin:0 auto;margin-top:calc(var(--gap) - 2cm);margin-bottom:var(--gap);
-      padding:0 20px;text-align:center;font-family:'Poppins',sans-serif;line-height:1.9;
-      color:#111;font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;background:transparent;
-      opacity:0;transform:translateY(30px) scale(.98);
-    }
+    .marquee-track img{height:50vh;width:auto;border-radius:8px;display:block;object-fit:cover;opacity:0;transform:translateY(20px)}
+    /* Natural pop-in (no bounce) */
+    .marquee-track img.pop-in{opacity:1;transform:none;transition:opacity .6s ease, transform .6s ease}
 
-    .born-note{
-      max-width:900px;margin:0 auto -2rem; /* sits tight above the image */
-      padding:0 20px;text-align:center;font-family:'Poppins',sans-serif;
-      font-size:clamp(1rem,2.2vw,1.15rem);letter-spacing:.04em;color:#111;
-      opacity:0;transform:translateY(30px); 
-    }
+    .mission{max-width:900px;margin:0 auto;margin-top:calc(var(--gap) - 2cm);margin-bottom:var(--gap);padding:0 20px;text-align:center;font-family:'Poppins',sans-serif;line-height:1.9;color:#111;font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;background:transparent}
 
-    .corner-showcase{position:relative;width:min(360px,70vw);margin:0 auto}
+    /* NEW: "Born in Chelsea, London" exactly 2cm above the final photo */
+    .born-note{max-width:900px;margin:0 auto 2cm !important; /* exact 2cm gap below text */
+      padding:0 20px;text-align:center;font-family:'Poppins',sans-serif;font-size:clamp(1rem,2.2vw,1.15rem);letter-spacing:.04em;color:#111}
+
+    .corner-showcase{position:relative;width:min(360px,70vw);margin:0 auto 0 !important}
     .corner-showcase img{width:100%;height:auto;border-radius:12px}
 
     .bottom-tagline{position:fixed;bottom:0;width:100%;background:#000;color:#fff;font-family:'Poppins',sans-serif;font-size:1rem;white-space:nowrap;overflow:hidden;z-index:900}
     .bottom-tagline span{display:inline-block;padding-left:100%;animation:tick 20s linear infinite}
     @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
-    /* Generic reveal baseline (scroll-triggered) */
-    .reveal{opacity:0;transform:translateY(40px);will-change:transform,opacity}
-    .reveal.in{opacity:1;transform:none;animation:bounceIn .7s ease both}
-    @keyframes bounceIn{
-      0%{opacity:0;transform:translateY(40px) scale(0.98)}
-      60%{opacity:1;transform:translateY(-12px) scale(1.02)}
-      100%{transform:translateY(0) scale(1)}
-    }
-
-    /* Mobile layout tweaks */
+    /* Mobile layout */
     @media(max-width:600px){
-      .hero{
-        grid-template-columns:110px 1fr;
-        grid-template-areas:'circle logo';
-        align-items:center;gap:12px;margin-top:96px
-      }
-      .circle-wrap{grid-area:circle;justify-self:start; top:0; left:-10px;}
+      .hero{grid-template-columns:110px 1fr;grid-template-areas:'circle logo';align-items:center;gap:12px;margin-top:96px}
+      .circle-wrap{grid-area:circle;justify-self:start; top:0; left:-2cm;} /* also 2cm left on mobile */
       .circle-wrap svg{width:110px}
       .logo-wrap{grid-area:logo;justify-self:start}
-      .words{
-        max-width:520px;margin:24px auto 0;text-align:right;padding-right:24px;
-      }
+      .words{max-width:520px;margin:24px auto 0;text-align:right;padding-right:24px}
     }
 
-    /* Keep everything hidden until overlay clears so first reveal feels smooth */
+    /* Keep hidden until overlay clears for first reveal */
     body.preload .reveal,
     body.preload .marquee-track img,
     body.preload .words .l1,
     body.preload .words .l2,
-    body.preload .words .l3,
-    body.preload .mission,
-    body.preload .born-note { opacity:0; transform:translateY(40px) scale(.9); }
+    body.preload .words .l3 { opacity:0; transform:translateY(20px) }
   </style>
 </head>
 
@@ -218,7 +184,7 @@
       “WriteMySocials brings brands to life through creating quality, personality driven strategies that connect, convert and stay true to their voice. We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.”
     </section>
 
-    <!-- NEW: caption above the final image -->
+    <!-- Caption exactly 2cm above the final image -->
     <p class="born-note reveal" aria-label="origin">Born in Chelsea, London</p>
 
     <div class="corner-showcase reveal">
@@ -231,14 +197,14 @@
   </div>
 
   <script>
-    /* ===== ENTRY OVERLAY (0.25s) ===== */
+    /* ENTRY OVERLAY (0.25s) */
     window.addEventListener('load', () => {
       const overlay = document.getElementById('introOverlay');
-      setTimeout(() => overlay.classList.add('hide'), 250); // keep solid black for 250ms
+      setTimeout(() => overlay.classList.add('hide'), 250);
       setTimeout(() => document.body.classList.remove('preload'), 300);
     });
 
-    /* ===== MENU TOGGLE ===== */
+    /* MENU TOGGLE */
     (function(){
       const btn=document.querySelector('.menu-btn');const root=document.body;
       function setOpen(o){root.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',String(o));}
@@ -247,28 +213,25 @@
       document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
     })();
 
-    /* ===== REVIEWS NAV ===== */
+    /* REVIEWS NAV */
     let currentReview=0; const slides=()=>Array.from(document.querySelectorAll('.review-slide'));
     function showReview(i){slides().forEach(s=>s.classList.remove('active'));slides()[i].classList.add('active');}
-    function nextReview(){currentReview=(currentReview+1)%slides().length;showReview(currentReview);}
-    function prevReview(){currentReview=(currentReview-1+slides().length)%slides().length;showReview(currentReview);}
+    function nextReview(){currentReview=(currentReview+1)%slides().length;showReview(currentReview);} 
+    function prevReview(){currentReview=(currentReview-1+slides().length)%slides().length;showReview(currentReview);} 
     window.nextReview = nextReview; window.prevReview = prevReview;
 
-    /* ===== SCROLL-REVEAL (generic) ===== */
+    /* SCROLL-REVEAL (simple fade/slide, no bounce) */
     (function(){
       const els=document.querySelectorAll('.reveal');
       const io=new IntersectionObserver((entries)=>{
         entries.forEach(e=>{
-          if(e.isIntersecting){
-            e.target.classList.add('in');
-            io.unobserve(e.target);
-          }
+          if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} 
         });
       },{threshold:0.15, rootMargin:'0px 0px -5% 0px'});
       els.forEach(el=>io.observe(el));
     })();
 
-    /* ===== MARQUEE: stagger images on first viewport entry, then start scrolling ===== */
+    /* MARQUEE: natural one-by-one appearance on first viewport entry (no bounce) */
     (function(){
       const marqueeWrap = document.querySelector('.marquee-wrap');
       if(!marqueeWrap) return;
@@ -277,9 +240,9 @@
 
       const startSequence = () => {
         if(started) return; started=true;
-        const perDelay = 420; // nice visible stagger
+        const perDelay = 380; // subtle stagger
         imgs.forEach((img,i)=> setTimeout(()=> img.classList.add('pop-in'), i*perDelay));
-        const total = (imgs.length-1)*perDelay + 900; // include last img animation time
+        const total = (imgs.length-1)*perDelay + 650; // after last fade-in
         setTimeout(() => {
           const track = marqueeWrap.querySelector('.marquee-track');
           if (track) track.style.animation = 'scroll 22s linear infinite';
@@ -287,16 +250,12 @@
       };
 
       const io2 = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting) { startSequence(); io2.unobserve(e.target); }
-        });
+        entries.forEach(e=>{ if(e.isIntersecting){ startSequence(); io2.unobserve(e.target); } });
       },{threshold:0.2});
       io2.observe(marqueeWrap);
     })();
   </script>
 </body>
 </html>
-
-
 
 
