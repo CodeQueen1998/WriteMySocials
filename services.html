@@ -1,425 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Write My Socials — Home</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Write My Socials — Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&family=DotGothic16&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
+<style>
+  html,body{margin:0;padding:0;background:#fff;font-family:'Playfair Display',serif;overflow-x:hidden}
 
-  <style>
-    :root{
-      --gap:7cm;
-      --menu-scale:1.5;
-      --menu-crop-left:3%;
-      --menu-crop-right:3%;
-    }
+  /* ===== 0.2s Black Intro Overlay ===== */
+  .reveal-overlay{
+    position:fixed;inset:0;background:#000;z-index:2000;pointer-events:none;
+    opacity:1;visibility:visible;transition:opacity .2s ease,visibility 0s linear .2s
+  }
+  .reveal-overlay.hide{opacity:0;visibility:hidden}
 
-    html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
+  /* ===== Header controls ===== */
+  .menu-btn{
+    position:fixed;top:18px;left:20px;z-index:1200;
+    background:#fff;border:1px solid #000;color:#000;padding:6px 12px;border-radius:999px;
+    font-family:'Poppins',sans-serif;font-size:.85rem;letter-spacing:.1em;cursor:pointer;transition:all .3s ease
+  }
+  .menu-btn:hover{background:#000;color:#fff}
+  .social-icons{
+    position:fixed;top:18px;right:25px;z-index:1200;display:flex;gap:18px
+  }
+  .social-icons a{color:#000;font-size:1.2rem;transition:color .3s ease}
+  .social-icons a:hover{color:#ff1493}
 
-    /* Intro overlay */
-    .reveal-overlay{
-      position:fixed;inset:0;background:#000;z-index:4000;
-      opacity:1;visibility:visible;
-      transition:opacity .25s ease,visibility 0s linear .25s;
-    }
-    .reveal-overlay.hide{opacity:0;visibility:hidden}
+  /* ===== Slide-down header (image only, no prices here) ===== */
+  /* ===== Slide-down header (image only) ===== */
+  .menu-bar{position:fixed;top:0;left:0;right:0;z-index:1100;background:#fff;border-bottom:1px solid rgba(0,0,0,.15);transform:translateY(-100%);transition:transform .35s ease}
+  body.menu-open .menu-bar{transform:translateY(0)}
+  .menu-inner{max-width:900px;margin:0 auto;padding:20px;display:flex;justify-content:center}
+@@ -54,18 +54,17 @@
+    padding:22px 22px 18px;box-shadow:0 6px 24px rgba(0,0,0,.06)
+  }
+  .card h3{margin:0 0 6px;font-size:1.35rem}
+  .price{font-family:'Poppins',sans-serif;font-weight:500;margin:0 0 10px}
+  .engagement{font-family:'Poppins',sans-serif;margin:0 0 10px;color:#333}
+  .meta{font-family:'Poppins',sans-serif;color:#333;margin:6px 0 12px}
+  .card h4{margin:18px 0 8px;font-size:1.05rem}
+  .bullets{font-family:'Poppins',sans-serif;color:#111;line-height:1.8;margin:0 0 6px;padding-left:18px}
+  .bullets li{margin:2px 0}
+  .result{font-family:'Poppins',sans-serif;background:#fafafa;border:1px dashed rgba(0,0,0,.15);padding:12px;border-radius:10px;margin-top:14px}
 
-    .menu-btn{position:fixed;top:18px;left:20px;z-index:3100;background:#fff;border:1px solid #000;color:#000;padding:6px 12px;border-radius:999px;font-family:'Poppins',sans-serif;font-size:.85rem;letter-spacing:.1em;cursor:pointer;transition:.3s}
-    .menu-btn:hover{background:#000;color:#fff}
-    .social-icons{position:fixed;top:18px;right:25px;z-index:3100;display:flex;gap:18px}
-    .social-icons a{color:#000;font-size:1.2rem;transition:color .3s}
-    .social-icons a:hover{color:#ff1493}
+  /* ===== One-time services table ===== */
+  /* ===== One-time services table (no price columns) ===== */
+  .table{width:100%;border-collapse:collapse;margin-top:12px;font-family:'Poppins',sans-serif}
+  .table th,.table td{border:1px solid rgba(0,0,0,.12);padding:10px 12px;vertical-align:top}
+  .table th{background:#fafafa;text-align:left;font-weight:600}
+  .table small{opacity:.8}
 
-    .menu-bar{position:fixed;top:0;left:0;right:0;z-index:3000;background:#fff;border-bottom:1px solid rgba(0,0,0,.15);transform:translateY(-100%);transition:transform .35s ease}
-    body.menu-open .menu-bar{transform:translateY(0)}
-    .menu-inner{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;justify-content:center}
+  /* ===== Contact block ===== */
+  .contact{margin:40px auto 160px;text-align:center}
+@@ -83,9 +82,6 @@
+  /* ===== Reveal ===== */
+  .reveal-item{opacity:0;visibility:hidden;transform:translateY(18px) scale(.96);will-change:opacity,transform}
 
-    .image-menu{ position:relative;width:min(300px,60vw); transform:scale(var(--menu-scale)) translateZ(0); transform-origin:top center; overflow:hidden; -webkit-clip-path:inset(0 var(--menu-crop-right) 0 var(--menu-crop-left)); clip-path:inset(0 var(--menu-crop-right) 0 var(--menu-crop-left)); }
-    .image-menu img{width:100%;height:auto;display:block}
-    .hot{position:absolute;top:0;bottom:0}
-    .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
-
-    /* HERO (desktop) — unchanged */
-    .hero{
-      max-width:1100px;margin:120px auto 0;padding:0 20px;
-      display:grid;grid-template-columns:1fr minmax(300px,680px) 1fr;align-items:center;
-      gap:18px;
-      position: relative; z-index: 1;
-    }
-    @media(max-width:960px){.hero{grid-template-columns:1fr;margin-top:110px}}
-
-    .circle-wrap{justify-self:start; position:relative; top:2px; left:2cm;}
-    .circle-wrap svg{width:200px;height:auto;display:block}
-    .circle-wrap text{font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;fill:#000}
-    .circle-spin{transform-origin:50% 50%;animation:spin 18s linear infinite}
-    @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-
-    .logo-wrap{position:relative;display:grid;place-items:center}
-    .logo{display:block;margin:0 auto;width:min(70vw,680px);max-width:680px;height:auto;background:transparent;mix-blend-mode:multiply}
-    .signature{
-      position:absolute;right:-8%;top:88%;
-      width:min(42vw,340px);max-width:340px;height:auto;opacity:.95;
-      pointer-events:none;mix-blend-mode:multiply;
-      -webkit-clip-path:inset(3% 0 0 0 round 2px);clip-path:inset(3% 0 0 0 round 2px);
-      z-index:1;
-    }
-    @media(max-width:600px){.signature{position:static;margin-top:10px;width:min(70vw,300px)}}
-
-    .after-hero > *{margin-top:var(--gap)!important;margin-bottom:var(--gap)!important}
-    .after-hero{ position: relative; z-index: 2; }
-
-    /* Scroll reveal (shared) */
-    .reveal{opacity:0;transform:translateY(20px);will-change:transform,opacity}
-    .reveal.in{opacity:1;transform:none;transition:opacity .6s ease, transform .6s ease}
-
-    .words{text-align:center;max-width:900px;margin:0 auto;padding:0 20px}
-    .words .l1{font-size:clamp(1.3rem,3.2vw,2rem);font-weight:600;letter-spacing:.02em}
-    .words .l2{font-size:clamp(1.6rem,3.8vw,2.4rem);margin-top:.5rem;color:#111}
-    .words .l3{font-family:'Poppins',sans-serif;font-size:clamp(1rem,2.2vw,1.4rem);margin-top:.3rem;opacity:.85}
-
-    .reviews{max-width:900px;margin:0 auto;padding:0 20px;text-align:center}
-    .review-container{position:relative}
-    .review-slide{display:none}
-    .review-slide.active{display:block}
-    .review-text{font-family:"Didot","Playfair Display",serif;font-size:clamp(1.1rem,2.6vw,1.7rem);line-height:1.8;margin:0 auto 14px;max-width:48ch}
-    .review-meta{font-family:'Poppins',sans-serif;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase}
-    .arrow{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;font-size:1.8rem;color:#000;cursor:pointer}
-    .arrow.left{left:-30px}.arrow.right{right:-30px}
-
-    .marquee-wrap{width:100vw;overflow:hidden}
-    .marquee-track{display:flex;gap:2vw;padding:0 2vw;}
-    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-    .marquee-track img{
-      height:50vh;width:auto;border-radius:8px;display:block;object-fit:cover;
-      opacity:0;transform:translateY(20px);
-    }
-    .marquee-track img.pop-in{opacity:1;transform:none;transition:opacity .6s ease, transform .6s ease}
-
-    .mission{
-      max-width:900px;margin:0 auto;margin-top:calc(var(--gap) - 2cm);margin-bottom:var(--gap);
-      padding:0 20px;text-align:center;font-family:'Poppins',sans-serif;line-height:1.9;
-      color:#111;font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;background:transparent;
-    }
-
-    /* Caption above the image (Playdot-style) */
-    .corner-showcase{position:relative;width:min(360px,70vw);margin:0 auto}
-    .corner-showcase img{width:100%;height:auto;border-radius:12px;display:block}
-    .born-note{
-      position:static;
-      transform:none;
-      margin:0 auto 10px;
-      display:block;
-      text-align:center;
-      font-family:'DotGothic16', sans-serif;
-      font-size:clamp(1rem,2.2vw,1.15rem);
-      letter-spacing:.04em;
-      color:#000;
-      background:transparent;
-      padding:0;
-      border-radius:0;
-    }
-
-    .bottom-tagline{position:fixed;bottom:0;width:100%;background:#000;color:#fff;font-family:'Poppins',sans-serif;font-size:1rem;white-space:nowrap;overflow:hidden;z-index:900}
-    .bottom-tagline span{display:inline-block;padding-left:100%;animation:tick 20s linear infinite}
-    @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-100%)}}
-
-    /* Keep hidden until preload dropped */
-    body.preload .reveal,
-    body.preload .marquee-track img,
-    body.preload .words .l1,
-    body.preload .words .l2,
-    body.preload .words .l3,
-    body.preload .mission { opacity:0; transform:translateY(20px) }
-
-    /* ===================== MOBILE-ONLY (≤600px) ===================== */
-    @media (max-width: 600px){
-
-      :root{ --gap: 2.6cm; }
-
-      /* Make logo section a 2-row grid:
-         Row 1 = logo full width
-         Row 2 = circle (left) + signature (right) for depth & breathing room */
-      .logo-wrap{
-        order: 1;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto;
-        align-items: start;
-        justify-items: center;
-        row-gap: 12px;
-        column-gap: 10px;
-        padding-bottom: 18px; /* breathing room before next content */
-      }
-
-      .logo{
-        grid-column: 1 / -1;  /* full width top row */
-        grid-row: 1;
-        width: min(88vw, 560px);
-      }
-
-      .circle-wrap{
-        order: 2;
-        grid-column: 1;
-        grid-row: 2;
-        justify-self: start;
-        left: 0; top: 0;
-        transform: none;         /* rely on grid instead of translate */
-        margin-top: 0;
-      }
-      .circle-wrap svg{ width: 110px; }  /* a touch smaller for balance */
-
-      /* “Small quote” (signature): 2× smaller, on the right, under logo */
-      .signature{
-        grid-column: 2;
-        grid-row: 2;
-        position: static;
-        width: min(38vw, 160px);  /* smaller than before */
-        opacity: .98;
-        filter: drop-shadow(0 4px 10px rgba(0,0,0,.08));
-        transform: translateY(2px);
-        pointer-events: none;
-      }
-
-      /* Reviews: keep arrows tappable */
-      .review-container{ padding: 0 28px; }
-      .arrow.left{ left: 8px; }
-      .arrow.right{ right: 8px; }
-      .review-text{ font-size: clamp(1rem, 4.6vw, 1.2rem); }
-
-      /* Work-samples marquee:
-         - smaller (less chunky)
-         - faster (about 2× your last speed)
-         - rightward motion (natural reading flow) */
-      .marquee-track{
-        gap: 3vw;
-        animation-duration: 8s !important;       /* was ~16s → much faster */
-        animation-direction: reverse !important;  /* rightwards */
-      }
-      .marquee-track img{
-        height: 22vh;               /* smaller so it doesn’t dominate */
-        border-radius: 6px;
-        box-shadow: 0 6px 16px rgba(0,0,0,.08);
-      }
-
-      /* Keep the caption neat */
-      .corner-showcase{ width: min(92vw, 420px); }
-      .born-note{
-        margin-bottom: 8px;
-        font-size: clamp(.95rem, 3.6vw, 1.05rem);
-        letter-spacing: .03em;
-      }
-
-      /* Ticker + spacing */
-      .bottom-tagline{ font-size: .85rem; }
-      .after-hero{ padding-bottom: 64px; }
-
-      /* Top chrome spacing */
-      .menu-btn{ top: 14px; left: 14px; }
-      .social-icons{ top: 14px; right: 16px; gap: 14px; }
-    }
-
-    /* Ultra-narrow phones */
-    @media (max-width: 380px){
-      .marquee-track img{ height: 20vh; }
-      .review-container{ padding: 0 22px; }
-      .arrow{ font-size: 1.6rem; }
-    }
-  </style>
-</head>
-
-<body class="preload">
-  <div class="reveal-overlay" id="introOverlay" aria-hidden="true"></div>
-
-  <button class="menu-btn" aria-expanded="false" aria-controls="menuBar">MENU</button>
-  <div class="social-icons" aria-label="social links">
-    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
-    <a href="https://www.instagram.com/writemysocials" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-    <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+  @media(min-width:860px){
+    .card{grid-column:span 12}
+  }
+  @media(max-width:768px){
+    .page-title{font-size:1.65rem}
+    .page-kicker{margin-top:130px}
+@@ -104,7 +100,7 @@
+    <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
   </div>
 
-  <nav class="menu-bar" id="menuBar">
+  <!-- Slide-down image menu (no prices here) -->
+  <!-- Slide-down image menu (no prices shown anywhere) -->
+  <div class="menu-bar">
     <div class="menu-inner">
       <div class="image-menu">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/menu.jpg" alt="Menu navigation"/>
-        <a class="hot home" href="./" aria-label="Home"></a>
-        <a class="hot about" href="./about.html" aria-label="About"></a>
-        <a class="hot services" href="./services.html" aria-label="Services"></a>
-      </div>
-    </div>
-  </nav>
+@@ -128,7 +124,7 @@
+      <!-- 1 -->
+      <article class="card reveal-item" data-order="4">
+        <h3>1. PRE-LAUNCH & STARTUP STRATEGY SUITE™</h3>
+        <p class="price">$950 USD / $1,450 AUD <small>(One-Time)</small></p>
+        <p class="engagement"><strong>Engagement:</strong> One-Time</p>
+        <p class="meta"><strong>For:</strong> Founders, creators, or startups in early brand development.</p>
+        <p class="meta"><strong>Purpose:</strong> Turn your concept into a validated, market-ready brand with strategic clarity and content direction.</p>
 
-  <header class="hero">
-    <div class="circle-wrap reveal">
-      <svg viewBox="0 0 220 220" aria-hidden="true">
-        <defs><path id="circlePath" d="M110,110 m-90,0 a90,90 0 1,1 180,0 a90,90 0 1,1 -180,0"/></defs>
-        <g class="circle-spin">
-          <text><textPath href="#circlePath">WRITE MY SOCIALS • STORIES THAT SELL • BRANDING • CONTENT •</textPath></text>
-        </g>
-      </svg>
-    </div>
-    <div class="logo-wrap reveal">
-      <img class="logo" id="brandLogo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%201.45.04.png" alt="Write My Socials logo"/>
-      <img class="signature" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png" alt="with love for your brand"/>
-    </div>
-  </header>
+@@ -143,8 +139,8 @@
 
-  <div class="after-hero">
-    <section class="words" aria-label="intro quote">
-      <div class="l1 reveal">95% of purchase decisions are driven by emotion.</div>
-      <div class="l2 reveal">We are The Storytelling Marketing Studio</div>
-      <div class="l3 reveal">where words meet visuals to make brands feel human</div>
-    </section>
+        <h4>Optional Add-Ons</h4>
+        <ul class="bullets">
+          <li>Visual moodboard &amp; color guide (+$250)</li>
+          <li>Pre-launch ad copy set (+$200)</li>
+          <li>Visual moodboard &amp; color guide</li>
+          <li>Pre-launch ad copy set</li>
+        </ul>
 
-    <section class="reviews reveal" aria-label="client reviews">
-      <div class="review-container">
-        <button class="arrow left" onclick="prevReview()" aria-label="Previous review">&#8592;</button>
-        <div class="review-slide active">
-          <p class="review-text">"The quality is great; the structure is correct as well. Thank you for following my brief closely!"</p>
-          <p class="review-meta">MARIA — MOVAVI SOFTWARE</p>
-        </div>
-        <div class="review-slide">
-          <p class="review-text">"Siyana was very professional and was able to edit my copy in a very professional manner that spoke to my audience. Pleasure dealing with her."</p>
-          <p class="review-meta">IAN — FACEDUNK</p>
-        </div>
-        <button class="arrow right" onclick="nextReview()" aria-label="Next review">&#8594;</button>
-      </div>
-    </section>
+        <p class="result"><strong>Result:</strong> A confident, data-backed brand ready to launch with direction and momentum.</p>
+@@ -153,7 +149,7 @@
+      <!-- 2 -->
+      <article class="card reveal-item" data-order="5">
+        <h3>2. CREATOR & MICRO-BRAND FOUNDATIONS™</h3>
+        <p class="price">$1,500 USD / $2,300 AUD <small>(One-Time)</small></p>
+        <p class="engagement"><strong>Engagement:</strong> One-Time</p>
+        <p class="meta"><strong>For:</strong> Boutique, personal, or niche brands building a credible, consistent identity.</p>
 
-    <div class="marquee-wrap reveal" aria-label="work samples">
-      <div class="marquee-track">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work sample 1">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work sample 2">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work sample 3">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work sample 4">
-      </div>
-    </div>
+        <h4>Deliverables</h4>
+@@ -168,8 +164,8 @@
 
-    <section class="mission reveal">
-      “WriteMySocials brings brands to life through creating quality, personality driven strategies that connect, convert and stay true to their voice. We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.”
-    </section>
+        <h4>Optional Add-Ons</h4>
+        <ul class="bullets">
+          <li>Brand tagline &amp; slogan development (+$150)</li>
+          <li>Short-form video content strategy (+$300)</li>
+          <li>Brand tagline &amp; slogan development</li>
+          <li>Short-form video content strategy</li>
+        </ul>
 
-    <div class="corner-showcase reveal">
-      <p class="born-note" aria-label="origin">Born in Chelsea, London</p>
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="Project showcase">
-    </div>
-  </div>
+        <p class="result"><strong>Result:</strong> A cohesive, conversion-ready brand foundation.</p>
+@@ -178,7 +174,7 @@
+      <!-- 3 -->
+      <article class="card reveal-item" data-order="6">
+        <h3>3. SMALL BUSINESS GROWTH CATALYST™</h3>
+        <p class="price">$2,500 USD / $3,800 AUD <small>(Monthly Retainer)</small></p>
+        <p class="engagement"><strong>Engagement:</strong> Monthly Retainer</p>
+        <p class="meta"><strong>For:</strong> Small-to-mid-size brands growing sales, traffic, and engagement.</p>
 
-  <div class="bottom-tagline" aria-hidden="true">
-    <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
-  </div>
+        <h4>Deliverables</h4>
+@@ -192,8 +188,8 @@
 
-  <script>
-    /* Overlay timing */
-    (function(){
-      const overlay = document.getElementById('introOverlay');
-      document.addEventListener('DOMContentLoaded', () => { document.body.classList.remove('preload'); });
-      setTimeout(() => overlay && overlay.classList.add('hide'), 250);
-      window.addEventListener('load', () => overlay && overlay.classList.add('hide'));
-      setTimeout(() => document.body.classList.remove('preload'), 400);
-    })();
+        <h4>Optional Add-Ons</h4>
+        <ul class="bullets">
+          <li>Product launch funnel setup (+$400)</li>
+          <li>Influencer outreach strategy (+$350)</li>
+          <li>Product launch funnel setup</li>
+          <li>Influencer outreach strategy</li>
+        </ul>
 
-    /* Menu */
-    (function(){
-      const btn=document.querySelector('.menu-btn');const root=document.body;
-      function setOpen(o){root.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',String(o));}
-      btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
-      document.addEventListener('click',e=>{if(e.target.matches('.hot'))setOpen(false)});
-      document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
-    })();
+        <p class="result"><strong>Result:</strong> A predictable marketing engine that scales results and retention.</p>
+@@ -202,7 +198,7 @@
+      <!-- 4 -->
+      <article class="card reveal-item" data-order="7">
+        <h3>4. BRAND MOMENTUM & EXPANSION PROGRAM™</h3>
+        <p class="price">$4,500 USD / $6,800 AUD <small>(Monthly Retainer)</small></p>
+        <p class="engagement"><strong>Engagement:</strong> Monthly Retainer</p>
+        <p class="meta"><strong>For:</strong> Established or scaling brands refining storytelling, SEO, and retention.</p>
 
-    /* Reviews nav */
-    let currentReview=0; const slides=()=>Array.from(document.querySelectorAll('.review-slide'));
-    function showReview(i){slides().forEach(s=>s.classList.remove('active'));slides()[i].classList.add('active');}
-    function nextReview(){currentReview=(currentReview+1)%slides().length;showReview(currentReview);}
-    function prevReview(){currentReview=(currentReview-1+slides().length)%slides().length;showReview(currentReview);}
-    window.nextReview = nextReview; window.prevReview = prevReview;
+        <h4>Deliverables</h4>
+@@ -217,8 +213,8 @@
 
-    /* Scroll reveal for .reveal elements (shared) */
-    (function(){
-      const els=document.querySelectorAll('.reveal');
-      const io=new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting){
-            e.target.classList.add('in');
-            io.unobserve(e.target);
-          }
-        });
-      },{threshold:0.15, rootMargin:'0px 0px -5% 0px'});
-      els.forEach(el=>io.observe(el));
-    })();
+        <h4>Optional Add-Ons</h4>
+        <ul class="bullets">
+          <li>Team content training session (+$500)</li>
+          <li>Community management or ambassador setup (+$600)</li>
+          <li>Team content training session</li>
+          <li>Community management or ambassador setup</li>
+        </ul>
 
-    /* Marquee: pop-in then start scrolling */
-    (function(){
-      const marqueeWrap = document.querySelector('.marquee-wrap');
-      if(!marqueeWrap) return;
-      const imgs = Array.from(marqueeWrap.querySelectorAll('.marquee-track img'));
-      let started=false;
+        <p class="result"><strong>Result:</strong> Streamlined systems and stronger storytelling that drive measurable growth.</p>
+@@ -227,7 +223,7 @@
+      <!-- 5 -->
+      <article class="card reveal-item" data-order="8">
+        <h3>5. GLOBAL BRAND VISIBILITY SUITE™ (FLAGSHIP)</h3>
+        <p class="price">$20,000 USD / $30,000 AUD <small>(Premium Retainer)</small></p>
+        <p class="engagement"><strong>Engagement:</strong> Premium Retainer</p>
+        <p class="meta"><strong>For:</strong> Enterprise, eCommerce, or influencer-led brands scaling global impact.</p>
 
-      const startSequence = () => {
-        if(started) return; started=true;
-        const perDelay = 320; /* slightly snappier pop sequence */
-        imgs.forEach((img,i)=> setTimeout(()=> img.classList.add('pop-in'), i*perDelay));
-        const total = (imgs.length-1)*perDelay + 600;
-        setTimeout(() => {
-          const track = marqueeWrap.querySelector('.marquee-track');
-          if (track) track.style.animation = 'scroll 22s linear infinite';
-        }, total);
-      };
+        <h4>Deliverables</h4>
+@@ -243,60 +239,46 @@
 
-      const io2 = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting) { startSequence(); io2.unobserve(e.target); }
-        });
-      },{threshold:0.2});
-      io2.observe(marqueeWrap);
-    })();
+        <h4>Optional Add-Ons</h4>
+        <ul class="bullets">
+          <li>International brand adaptation (+$1,000 per region)</li>
+          <li>Product collaboration or licensing strategy (+$1,200)</li>
+          <li>International brand adaptation</li>
+          <li>Product collaboration or licensing strategy</li>
+        </ul>
 
-    /* Mobile-only: add pop-in to the signature too, and keep the logo bg knockout */
-    (function(){
-      if(!window.matchMedia('(max-width: 600px)').matches) return;
+        <p class="result"><strong>Result:</strong> An elite, full-service brand ecosystem that scales authority and revenue globally.</p>
+      </article>
 
-      /* Make the signature pop in independently on mobile */
-      const sig = document.querySelector('.signature');
-      if(sig && !sig.classList.contains('reveal')) sig.classList.add('reveal');
-
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-        });
-      },{threshold:0.15, rootMargin:'0px 0px -5% 0px'});
-      if(sig) io.observe(sig);
-
-      /* Optional: remove the logo’s white background (keeps same logo) */
-      const img = document.getElementById('brandLogo');
-      if(!img) return;
-      function removeWhite(){
-        const w = img.naturalWidth, h = img.naturalHeight;
-        if(!w || !h) return;
-        const c = document.createElement('canvas');
-        const ctx = c.getContext('2d', { willReadFrequently: true });
-        c.width = w; c.height = h;
-        ctx.drawImage(img, 0, 0);
-        try{
-          const T = 245;
-          const id = ctx.getImageData(0, 0, w, h);
-          const d = id.data;
-          for(let i=0;i<d.length;i+=4){
-            const r=d[i], g=d[i+1], b=d[i+2];
-            if(r>=T && g>=T && b>=T) d[i+3]=0;
-          }
-          ctx.putImageData(id, 0, 0);
-          img.style.mixBlendMode = 'normal';
-          img.src = c.toDataURL('image/png');
-        }catch(e){/* CORS fallback: keep blend-mode */ }
-      }
-      img.crossOrigin = 'anonymous';
-      if (img.complete) removeWhite(); else img.addEventListener('load', removeWhite);
-    })();
-  </script>
-</body>
-</html>
-
-
+      <!-- One-time Services -->
+      <!-- One-time Services (no prices) -->
+      <article class="card reveal-item" data-order="9">
+        <h3>ONE-TIME STRATEGY &amp; SUPPORT SERVICES</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>USD</th>
+              <th>AUD</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Launch Strategy Blueprint</td>
+              <td>$1,200</td>
+              <td>$1,850</td>
+              <td>End-to-end launch roadmap for pre-launch and new brands</td>
+            </tr>
+            <tr>
+              <td>Brand Voice Workshop (2 hrs)</td>
+              <td>$1,500</td>
+              <td>$2,300</td>
+              <td>Deep dive into tone, personality, and messaging</td>
+            </tr>
+            <tr>
+              <td>Press Release &amp; Distribution</td>
+              <td>$800</td>
+              <td>$1,250</td>
+              <td>Professional press release writing and syndication</td>
+            </tr>
+            <tr>
+              <td>Content &amp; SEO Audit</td>
+              <td>$1,000</td>
+              <td>$1,550</td>
+              <td>Audit + optimization recommendations</td>
+            </tr>
+            <tr>
+              <td>Campaign Concept Deck</td>
+              <td>$2,000</td>
+              <td>$3,100</td>
+              <td>Visual and written creative campaign presentation</td>
+            </tr>
+            <tr>
+              <td>Creative Team Training Add-On</td>
+              <td>$600</td>
+              <td>$950</td>
+              <td>Team education on brand tone and content standards</td>
+            </tr>
+          </tbody>
+    </html>
+  </head>
