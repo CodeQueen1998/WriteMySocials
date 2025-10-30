@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Write My Socials — Home</title>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&family=DotGothic16&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
@@ -42,7 +41,7 @@
     .hot{position:absolute;top:0;bottom:0}
     .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
 
-    /* HERO */
+    /* HERO: circular marquee 2cm to the right (desktop) */
     .hero{
       max-width:1100px;margin:120px auto 0;padding:0 20px;
       display:grid;grid-template-columns:1fr minmax(300px,680px) 1fr;align-items:center;
@@ -50,27 +49,15 @@
     }
     @media(max-width:960px){.hero{grid-template-columns:1fr;margin-top:110px}}
 
-    /* Circular marquee moved 2cm left */
     .circle-wrap{justify-self:start; position:relative; top:2px; left:2cm;}
     .circle-wrap svg{width:200px;height:auto;display:block}
     .circle-wrap text{font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;fill:#000}
     .circle-spin{transform-origin:50% 50%;animation:spin 18s linear infinite}
     @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
-    /* Logo */
     .logo-wrap{position:relative;display:grid;place-items:center}
-    .logo{
-      display:block;margin:0 auto;width:min(70vw,680px);max-width:680px;height:auto;
-      background:transparent;
-      /* fallback visual trick if pixel processing isn’t allowed by the browser/CORS */
-      mix-blend-mode:multiply;
-    }
-    .signature{
-      position:absolute;right:-8%;top:88%;
-      width:min(42vw,340px);max-width:340px;height:auto;opacity:.95;
-      pointer-events:none;mix-blend-mode:multiply;
-      -webkit-clip-path:inset(3% 0 0 0 round 2px);clip-path:inset(3% 0 0 0 round 2px);
-    }
+    .logo{display:block;margin:0 auto;width:min(70vw,680px);max-width:680px;height:auto;background:transparent;mix-blend-mode:multiply}
+    .signature{ position:absolute;right:-8%;top:88%; width:min(42vw,340px);max-width:340px;height:auto; opacity:.95;pointer-events:none; mix-blend-mode:multiply; -webkit-clip-path:inset(3% 0 0 0 round 2px); clip-path:inset(3% 0 0 0 round 2px); }
     @media(max-width:600px){.signature{position:static;margin-top:10px;width:min(70vw,300px)}}
 
     .after-hero > *{margin-top:var(--gap)!important;margin-bottom:var(--gap)!important}
@@ -109,7 +96,7 @@
       color:#111;font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;background:transparent;
     }
 
-    /* Caption moved above image, Playdot-style font */
+    /* Caption above the image in Playdot-style font */
     .corner-showcase{position:relative;width:min(360px,70vw);margin:0 auto}
     .corner-showcase img{width:100%;height:auto;border-radius:12px;display:block}
     .born-note{
@@ -138,6 +125,68 @@
     body.preload .words .l2,
     body.preload .words .l3,
     body.preload .mission { opacity:0; transform:translateY(20px) }
+
+    /* === MOBILE-ONLY TUNE-UPS (≤600px) — desktop untouched === */
+    @media (max-width: 600px){
+
+      /* Global rhythm a bit tighter */
+      :root{ --gap: 2.6cm; }
+
+      /* HERO: logo first; smaller circle UNDER the logo, nudged left */
+      .logo-wrap{ order: 1; }
+      .circle-wrap{
+        order: 2;
+        left: 0; top: 0;
+        justify-self: start;
+        margin-top: 12px;
+        transform: translateX(-6vw);
+      }
+      .circle-wrap svg{ width: 120px; }
+
+      /* Logo remains dominant on phones */
+      .logo{ width: min(88vw, 560px); }
+
+      /* Reviews: arrows tappable inside */
+      .review-container{ padding: 0 28px; }
+      .arrow.left{ left: 8px; }
+      .arrow.right{ right: 8px; }
+      .review-text{ font-size: clamp(1rem, 4.6vw, 1.2rem); }
+
+      /* Work-samples marquee: less chunky, more noticeable, moves rightward */
+      .marquee-track{
+        gap: 3.5vw;
+        animation-duration: 16s !important;     /* a touch quicker */
+        animation-direction: reverse !important; /* rightwards (L→R reading) */
+      }
+      .marquee-track img{
+        height: 28vh;
+        border-radius: 6px;
+        box-shadow: 0 6px 16px rgba(0,0,0,.08);
+      }
+
+      /* Mission / caption polish */
+      .corner-showcase{ width: min(92vw, 420px); }
+      .born-note{
+        margin-bottom: 8px;
+        font-size: clamp(.95rem, 3.6vw, 1.05rem);
+        letter-spacing: .03em;
+      }
+
+      /* Fixed ticker: avoid overlap */
+      .bottom-tagline{ font-size: .85rem; }
+      .after-hero{ padding-bottom: 64px; }
+
+      /* Top chrome spacing */
+      .menu-btn{ top: 14px; left: 14px; }
+      .social-icons{ top: 14px; right: 16px; gap: 14px; }
+    }
+
+    /* Optional: ultra-narrow phones */
+    @media (max-width: 380px){
+      .marquee-track img{ height: 26vh; }
+      .review-container{ padding: 0 22px; }
+      .arrow{ font-size: 1.6rem; }
+    }
   </style>
 </head>
 
@@ -172,7 +221,6 @@
       </svg>
     </div>
     <div class="logo-wrap reveal">
-      <!-- Your original logo stays; bg is removed by the script below -->
       <img class="logo" id="brandLogo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2011.45.04.png" alt="Write My Socials logo"/>
       <img class="signature" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png" alt="with love for your brand"/>
     </div>
@@ -228,12 +276,18 @@
     (function(){
       const overlay = document.getElementById('introOverlay');
 
+      // 1) Drop preload ASAP (DOM ready)
       document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('preload');
       });
 
+      // 2) Guaranteed hide after exactly 250ms
       setTimeout(() => overlay && overlay.classList.add('hide'), 250);
+
+      // 3) Also hide once everything finishes loading (harmless if already hidden)
       window.addEventListener('load', () => overlay && overlay.classList.add('hide'));
+
+      // 4) Extra failsafe (in case DOMContentLoaded is delayed)
       setTimeout(() => document.body.classList.remove('preload'), 400);
     })();
 
@@ -291,52 +345,6 @@
         });
       },{threshold:0.2});
       io2.observe(marqueeWrap);
-    })();
-
-    /* ===== LOGO: remove white background client-side, keep the logo intact ===== */
-    (function(){
-      const img = document.getElementById('brandLogo');
-      if(!img) return;
-
-      // Try to process pixels; if cross-origin blocks it, we gracefully keep the blend fallback.
-      const process = () => {
-        const c = document.createElement('canvas');
-        const ctx = c.getContext('2d', { willReadFrequently: true });
-        const w = img.naturalWidth, h = img.naturalHeight;
-        if(!w || !h) return;
-
-        c.width = w; c.height = h;
-        ctx.drawImage(img, 0, 0);
-
-        try {
-          const imageData = ctx.getImageData(0, 0, w, h);
-          const d = imageData.data;
-
-          // Threshold for "near-white" pixels; tweak if needed
-          const T = 245; // 0..255; higher = more transparent area
-
-          for (let i = 0; i < d.length; i += 4) {
-            const r = d[i], g = d[i+1], b = d[i+2];
-            if (r >= T && g >= T && b >= T) {
-              d[i+3] = 0; // make transparent
-            }
-          }
-
-          ctx.putImageData(imageData, 0, 0);
-          // Swap the <img> to the transparent version
-          img.style.mixBlendMode = 'normal';
-          img.src = c.toDataURL('image/png');
-          img.classList.add('logo-processed');
-        } catch (e) {
-          // If CORS taints the canvas, we just keep mix-blend-mode fallback
-          // console.warn('Logo background removal fell back to blend mode:', e);
-        }
-      };
-
-      // Ensure CORS-friendly loading where possible
-      img.crossOrigin = 'anonymous';
-      if (img.complete) process();
-      else img.addEventListener('load', process);
     })();
   </script>
 </body>
