@@ -19,7 +19,7 @@
 
     html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
 
-    /* Black overlay */
+    /* Black overlay: will be removed by JS after 0.25s (hard cap) */
     .reveal-overlay{
       position:fixed;inset:0;background:#000;z-index:4000;
       opacity:1;visibility:visible;
@@ -61,7 +61,9 @@
     .logo-wrap{position:relative;display:grid;place-items:center}
     .logo{
       display:block;margin:0 auto;width:min(70vw,680px);max-width:680px;height:auto;
-      background:transparent;mix-blend-mode:multiply;
+      background:transparent;
+      /* fallback visual trick if pixel processing isn’t allowed by the browser/CORS */
+      mix-blend-mode:multiply;
     }
     .signature{
       position:absolute;right:-8%;top:88%;
@@ -73,6 +75,7 @@
 
     .after-hero > *{margin-top:var(--gap)!important;margin-bottom:var(--gap)!important}
 
+    /* Smooth, natural scroll reveals (no bounce) */
     .reveal{opacity:0;transform:translateY(20px);will-change:transform,opacity}
     .reveal.in{opacity:1;transform:none;transition:opacity .6s ease, transform .6s ease}
 
@@ -106,7 +109,7 @@
       color:#111;font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;background:transparent;
     }
 
-    /* Corner showcase caption moved above image, Playdot font */
+    /* Caption moved above image, Playdot-style font */
     .corner-showcase{position:relative;width:min(360px,70vw);margin:0 auto}
     .corner-showcase img{width:100%;height:auto;border-radius:12px;display:block}
     .born-note{
@@ -128,6 +131,7 @@
     .bottom-tagline span{display:inline-block;padding-left:100%;animation:tick 20s linear infinite}
     @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
+    /* Keep hidden until we drop .preload (which we do ASAP via DOMContentLoaded) */
     body.preload .reveal,
     body.preload .marquee-track img,
     body.preload .words .l1,
@@ -168,7 +172,8 @@
       </svg>
     </div>
     <div class="logo-wrap reveal">
-      <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/transparent-logo.png" alt="Write My Socials logo"/>
+      <!-- Your original logo stays; bg is removed by the script below -->
+      <img class="logo" id="brandLogo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2011.45.04.png" alt="Write My Socials logo"/>
       <img class="signature" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png" alt="with love for your brand"/>
     </div>
   </header>
@@ -219,16 +224,20 @@
   </div>
 
   <script>
+    /* ===== OVERLAY: hard-stop after 250ms, no waiting for slow images ===== */
     (function(){
       const overlay = document.getElementById('introOverlay');
+
       document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('preload');
       });
+
       setTimeout(() => overlay && overlay.classList.add('hide'), 250);
       window.addEventListener('load', () => overlay && overlay.classList.add('hide'));
       setTimeout(() => document.body.classList.remove('preload'), 400);
     })();
 
+    /* ===== MENU TOGGLE ===== */
     (function(){
       const btn=document.querySelector('.menu-btn');const root=document.body;
       function setOpen(o){root.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',String(o));}
@@ -237,12 +246,14 @@
       document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
     })();
 
+    /* ===== REVIEWS NAV ===== */
     let currentReview=0; const slides=()=>Array.from(document.querySelectorAll('.review-slide'));
     function showReview(i){slides().forEach(s=>s.classList.remove('active'));slides()[i].classList.add('active');}
     function nextReview(){currentReview=(currentReview+1)%slides().length;showReview(currentReview);}
     function prevReview(){currentReview=(currentReview-1+slides().length)%slides().length;showReview(currentReview);}
     window.nextReview = nextReview; window.prevReview = prevReview;
 
+    /* ===== SCROLL REVEAL (natural, no bounce) ===== */
     (function(){
       const els=document.querySelectorAll('.reveal');
       const io=new IntersectionObserver((entries)=>{
@@ -256,11 +267,13 @@
       els.forEach(el=>io.observe(el));
     })();
 
+    /* ===== MARQUEE IMAGES: natural one-by-one, then gentle scroll ===== */
     (function(){
       const marqueeWrap = document.querySelector('.marquee-wrap');
       if(!marqueeWrap) return;
       const imgs = Array.from(marqueeWrap.querySelectorAll('.marquee-track img'));
       let started=false;
+
       const startSequence = () => {
         if(started) return; started=true;
         const perDelay = 380;
@@ -271,12 +284,59 @@
           if (track) track.style.animation = 'scroll 22s linear infinite';
         }, total);
       };
+
       const io2 = new IntersectionObserver((entries)=>{
         entries.forEach(e=>{
           if(e.isIntersecting) { startSequence(); io2.unobserve(e.target); }
         });
       },{threshold:0.2});
       io2.observe(marqueeWrap);
+    })();
+
+    /* ===== LOGO: remove white background client-side, keep the logo intact ===== */
+    (function(){
+      const img = document.getElementById('brandLogo');
+      if(!img) return;
+
+      // Try to process pixels; if cross-origin blocks it, we gracefully keep the blend fallback.
+      const process = () => {
+        const c = document.createElement('canvas');
+        const ctx = c.getContext('2d', { willReadFrequently: true });
+        const w = img.naturalWidth, h = img.naturalHeight;
+        if(!w || !h) return;
+
+        c.width = w; c.height = h;
+        ctx.drawImage(img, 0, 0);
+
+        try {
+          const imageData = ctx.getImageData(0, 0, w, h);
+          const d = imageData.data;
+
+          // Threshold for "near-white" pixels; tweak if needed
+          const T = 245; // 0..255; higher = more transparent area
+
+          for (let i = 0; i < d.length; i += 4) {
+            const r = d[i], g = d[i+1], b = d[i+2];
+            if (r >= T && g >= T && b >= T) {
+              d[i+3] = 0; // make transparent
+            }
+          }
+
+          ctx.putImageData(imageData, 0, 0);
+          // Swap the <img> to the transparent version
+          img.style.mixBlendMode = 'normal';
+          img.src = c.toDataURL('image/png');
+          img.classList.add('logo-processed');
+        } catch (e) {
+          // If CORS taints the canvas, we just keep mix-blend-mode fallback
+          // console.warn('Logo background removal fell back to blend mode:', e);
+        }
+      };
+
+      // Ensure CORS-friendly loading where possible
+      img.crossOrigin = 'anonymous';
+      if (img.complete) process();
+      else img.addEventListener('load', process);
     })();
   </script>
 </body>
