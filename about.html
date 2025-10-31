@@ -1,10 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Write My Socials — Services</title>
 
-})();
-</script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
+
+  <style>
+    html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
+
+    .menu-btn{
+      position:fixed;top:18px;left:20px;z-index:3100;
+      background:#fff;border:1px solid #000;color:#000;
+      padding:6px 12px;border-radius:999px;
+      font-family:'Poppins',sans-serif;font-size:.85rem;
+      letter-spacing:.1em;cursor:pointer;transition:.3s;
+    }
+    .menu-btn:hover{background:#000;color:#fff}
+
+    .social-icons{
+      position:fixed;top:18px;right:25px;z-index:3100;
+      display:flex;gap:18px;
+    }
+    .social-icons a{color:#000;font-size:1.2rem;transition:color .3s}
+    .social-icons a:hover{color:#ff1493}
+
+    .menu-bar{
+      position:fixed;top:0;left:0;right:0;z-index:3000;
+      background:#fff;border-bottom:1px solid rgba(0,0,0,.15);
+      transform:translateY(-100%);transition:transform .35s ease;
+    }
+    body.menu-open .menu-bar{transform:translateY(0)}
+
+    .menu-inner{
+      max-width:1100px;margin:0 auto;padding:10px 20px;
+      display:flex;justify-content:center;
+    }
+
+    .image-menu{
+      position:relative;width:min(300px,60vw);
+      transform:scale(1.5) translateZ(0);
+      transform-origin:top center;overflow:hidden;
+      -webkit-clip-path:inset(0 3% 0 3%);
+      clip-path:inset(0 3% 0 3%);
+    }
+    .image-menu img{width:100%;height:auto;display:block}
+    .hot{position:absolute;top:0;bottom:0}
+    .hot.home{left:0;right:66.67%}
+    .hot.about{left:33.33%;right:33.34%}
+    .hot.services{left:66.66%;right:0}
+
+    @media(max-width:600px){
+      .menu-btn{top:14px;left:14px;}
+      .social-icons{top:14px;right:16px;gap:14px;}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Menu button -->
+  <button class="menu-btn" aria-expanded="false" aria-controls="menuBar">MENU</button>
+
+  <!-- Social icons -->
+  <div class="social-icons" aria-label="social links">
+    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+    <a href="https://www.instagram.com/writemysocials" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+    <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+  </div>
+
+  <!-- Image-based navigation menu -->
+  <nav class="menu-bar" id="menuBar">
+    <div class="menu-inner">
+      <div class="image-menu">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/menu.jpg" alt="Menu navigation"/>
+        <a class="hot home" href="./" aria-label="Home"></a>
+        <a class="hot about" href="./about.html" aria-label="About"></a>
+        <a class="hot services" href="./services.html" aria-label="Services"></a>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    /* Menu open/close logic */
+    (function(){
+      const btn=document.querySelector('.menu-btn');
+      const root=document.body;
+      function setOpen(o){
+        root.classList.toggle('menu-open',o);
+        btn.setAttribute('aria-expanded',String(o));
+      }
+      btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
+      document.addEventListener('click',e=>{if(e.target.matches('.hot'))setOpen(false)});
+      document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
+    })();
+  </script>
 </body>
 </html>
-
-
-
