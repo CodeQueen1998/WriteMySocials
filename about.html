@@ -60,17 +60,74 @@
     .hot.about{left:33.33%;right:33.34%}
     .hot.services{left:66.66%;right:0}
 
-    /* === PAGE TAGLINE === */
+    /* === HERO IMAGE SECTION === */
+    .hover-hero{
+      position:relative;
+      margin-top:84px;
+      width:100%;
+      overflow:hidden;
+      display:block;
+    }
+    .hover-hero .media-wrap{
+      position:relative;
+      max-width:1100px;
+      margin:0 auto;
+      overflow:hidden;
+      border-radius:14px;
+      transition:transform 0.6s cubic-bezier(.22,.61,.36,1), filter 0.6s ease;
+      transform:translateY(0) scale(1);
+      will-change:transform, filter;
+    }
+    .hover-hero img{
+      width:100%;
+      height:auto;
+      display:block;
+      transition:transform 0.6s cubic-bezier(.22,.61,.36,1);
+    }
+
+    /* Overlay marketing text */
+    .overlay{
+      position:absolute;inset:0;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(0,0,0,0);
+      color:#fff;text-align:center;
+      opacity:0;
+      transition:opacity .6s ease, background .6s ease;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.4rem,3vw,2rem);
+      letter-spacing:.03em;
+      padding:1rem;
+      z-index:2;
+    }
+    .overlay p{
+      max-width:600px;
+      line-height:1.5;
+      text-shadow:0 2px 12px rgba(0,0,0,.3);
+    }
+
+    /* Hover effect */
+    @media (hover:hover) and (pointer:fine){
+      .hover-hero:hover .media-wrap{
+        transform:translateY(-10px) scale(.96);
+        filter:brightness(0.9);
+      }
+      .hover-hero:hover .overlay{
+        opacity:1;
+        background:rgba(0,0,0,0.45);
+      }
+    }
+
+    /* === TAGLINE === */
     .tagline{
-      text-align:center;margin-top:40vh;
+      text-align:center;margin:40px auto 0;
       font-family:'Playfair Display',serif;
       font-size:clamp(1.6rem,4vw,2.4rem);
       font-weight:600;letter-spacing:.02em;
+      max-width:1100px;padding:0 20px;
     }
 
-    /* === EMAIL CONTACT === */
     .contact-email{
-      text-align:center;margin-top:1.5rem;
+      text-align:center;margin-top:12px;
       font-family:'Poppins',sans-serif;
       font-size:1rem;letter-spacing:.03em;
     }
@@ -79,39 +136,40 @@
       transition:.3s;
     }
     .contact-email a:hover{color:#ff1493;border-color:#ff1493;}
-
-    @media(max-width:600px){
-      .menu-btn{top:14px;left:14px;}
-      .social-icons{top:14px;right:16px;gap:14px;}
-      .tagline{margin-top:35vh;font-size:clamp(1.3rem,5vw,2rem);}
-    }
   </style>
 </head>
 
 <body>
-  <!-- Menu button -->
+  <!-- Menu -->
   <button class="menu-btn" aria-expanded="false" aria-controls="menuBar">MENU</button>
-
-  <!-- Social icons -->
-  <div class="social-icons" aria-label="social links">
-    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
-    <a href="https://www.instagram.com/writemysocials" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-    <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+  <div class="social-icons">
+    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/"><i class="fab fa-linkedin"></i></a>
+    <a href="https://www.instagram.com/writemysocials"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.tiktok.com/@writemysocials"><i class="fab fa-tiktok"></i></a>
   </div>
 
-  <!-- Image-based navigation -->
   <nav class="menu-bar" id="menuBar">
     <div class="menu-inner">
       <div class="image-menu">
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/menu.jpg" alt="Menu navigation"/>
-        <a class="hot home" href="./" aria-label="Home"></a>
-        <a class="hot about" href="./about.html" aria-label="About"></a>
-        <a class="hot services" href="./services.html" aria-label="Services"></a>
+        <a class="hot home" href="./"></a>
+        <a class="hot about" href="./about.html"></a>
+        <a class="hot services" href="./services.html"></a>
       </div>
     </div>
   </nav>
 
-  <!-- Minimal hero tagline -->
+  <!-- === INTERACTIVE HERO === -->
+  <section class="hover-hero">
+    <figure class="media-wrap" id="interactiveHero">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Marketing brand event setup">
+      <figcaption class="overlay">
+        <p>Crafting campaigns that turn stories into sales — where brand strategy meets emotional connection.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- Text below -->
   <h1 class="tagline">Soulful brands, built with strategy.</h1>
   <p class="contact-email">
     <a href="mailto:siyana.deveaux@writemysocials.com.au">siyana.deveaux@writemysocials.com.au</a>
@@ -122,15 +180,37 @@
     (function(){
       const btn=document.querySelector('.menu-btn');
       const root=document.body;
-      function setOpen(o){
-        root.classList.toggle('menu-open',o);
-        btn.setAttribute('aria-expanded',String(o));
-      }
+      function setOpen(o){root.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',String(o));}
       btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
       document.addEventListener('click',e=>{if(e.target.matches('.hot'))setOpen(false)});
       document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
     })();
+
+    /* Subtle interactive lift on mouse move */
+    (function(){
+      const hero=document.getElementById('interactiveHero');
+      if(!hero) return;
+      let targetY=0,currentY=0,raf=null;
+      function move(e){
+        const rect=hero.getBoundingClientRect();
+        const yNorm=(e.clientY-rect.top)/rect.height;
+        targetY=(0.5-yNorm)*14;
+        if(!raf)raf=requestAnimationFrame(tick);
+      }
+      function leave(){targetY=0;if(!raf)raf=requestAnimationFrame(tick);}
+      function tick(){
+        currentY+=(targetY-currentY)*0.1;
+        hero.style.transform=`translateY(${currentY}px)`;
+        if(Math.abs(targetY-currentY)>0.3)raf=requestAnimationFrame(tick);else raf=null;
+      }
+      const mql=window.matchMedia('(hover:hover) and (pointer:fine)');
+      if(mql.matches){
+        hero.addEventListener('mousemove',move);
+        hero.addEventListener('mouseleave',leave);
+      }
+    })();
   </script>
 </body>
 </html>
+
 
