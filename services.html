@@ -11,6 +11,7 @@
   <style>
     html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
 
+    /* === NAV (unchanged from your snippet) === */
     .menu-btn{
       position:fixed;top:18px;left:20px;z-index:3100;
       background:#fff;border:1px solid #000;color:#000;
@@ -56,6 +57,116 @@
       .menu-btn{top:14px;left:14px;}
       .social-icons{top:14px;right:16px;gap:14px;}
     }
+
+    /* === PAGE CONTENT (added so screen isn't blank) === */
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:110px 20px 80px; /* leaves space for fixed nav & gives breathing room */
+    }
+
+    .hero-title{
+      text-align:center;
+      font-size:clamp(1.6rem,4vw,2.4rem);
+      font-weight:600;
+      letter-spacing:.02em;
+      margin:0 0 18px;
+    }
+    .hero-sub{
+      text-align:center;
+      font-family:'Poppins',sans-serif;
+      font-size:clamp(1rem,2.2vw,1.1rem);
+      color:#111; opacity:.9;
+      margin:0 0 36px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:18px;
+    }
+    .card{
+      grid-column:span 12;
+      border:1px solid rgba(0,0,0,.12);
+      border-radius:14px;
+      padding:20px;
+      background:#fff;
+      box-shadow:0 8px 24px rgba(0,0,0,.04);
+    }
+    @media(min-width:860px){
+      .card{grid-column:span 6}
+      .card.flagship{grid-column:span 12}
+    }
+
+    .card h3{
+      margin:.2rem 0 .6rem;
+      font-size:clamp(1.1rem,2.2vw,1.4rem);
+      font-weight:600;
+      letter-spacing:.01em;
+    }
+    .badge{
+      display:inline-block;
+      font-family:'Poppins',sans-serif;
+      font-size:.8rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      border:1px solid #000;
+      padding:4px 8px;
+      border-radius:999px;
+      margin-bottom:8px;
+    }
+    .for{
+      font-family:'Poppins',sans-serif;
+      font-size:.95rem;
+      margin:.3rem 0 .4rem;
+      opacity:.9;
+    }
+    .deliverables,
+    .addons,
+    .result{
+      font-family:'Poppins',sans-serif;
+      font-size:.95rem;
+      line-height:1.7;
+      margin:.35rem 0;
+    }
+    .deliverables ul,
+    .addons ul{
+      margin:.2rem 0 .2rem 1rem;
+      padding-left:1rem;
+    }
+    .deliverables li,
+    .addons li{margin:.2rem 0}
+
+    .section-title{
+      margin:46px 0 12px;
+      font-size:clamp(1.2rem,2.6vw,1.6rem);
+      text-align:center;
+    }
+
+    .list{
+      display:grid;
+      gap:10px;
+      margin-top:10px;
+    }
+    .list-item{
+      border:1px dashed rgba(0,0,0,.18);
+      border-radius:12px;
+      padding:14px 16px;
+      font-family:'Poppins',sans-serif;
+      font-size:.95rem;
+    }
+
+    /* Contact */
+    .contact{
+      margin-top:46px;
+      text-align:center;
+      font-family:'Poppins',sans-serif;
+    }
+    .contact a{
+      color:#000;text-decoration:none;border-bottom:1px solid #000;
+      transition:.3s;
+    }
+    .contact a:hover{color:#ff1493;border-color:#ff1493;}
   </style>
 </head>
 
@@ -82,8 +193,160 @@
     </div>
   </nav>
 
+  <!-- ===== Visible Services Content (no prices) ===== -->
+  <main>
+    <h1 class="hero-title">Services</h1>
+    <p class="hero-sub">Signature programs and support — curated for founders, creators, and scaling brands.</p>
+
+    <section class="grid">
+      <!-- 1 -->
+      <article class="card">
+        <span class="badge">Pre-Launch & Startup Strategy Suite™</span>
+        <h3>Validate, clarify, and launch with confidence</h3>
+        <p class="for"><strong>For:</strong> Founders, creators, or startups in early brand development.</p>
+        <div class="deliverables">
+          <strong>Deliverables:</strong>
+          <ul>
+            <li>Pre-Launch Audit (concept, niche fit, audience)</li>
+            <li>Brand concept &amp; tone strategy</li>
+            <li>10 content ideas for pre-launch or waitlist</li>
+            <li>45-minute strategy session</li>
+            <li>Personalised 90-day action plan</li>
+          </ul>
+        </div>
+        <div class="addons">
+          <strong>Optional add-ons:</strong>
+          <ul>
+            <li>Visual moodboard &amp; colour guide</li>
+            <li>Pre-launch ad copy set</li>
+          </ul>
+        </div>
+        <p class="result"><strong>Result:</strong> A confident, data-backed brand ready to launch with direction and momentum.</p>
+      </article>
+
+      <!-- 2 -->
+      <article class="card">
+        <span class="badge">Creator & Micro-Brand Foundations™</span>
+        <h3>Build a cohesive identity that converts</h3>
+        <p class="for"><strong>For:</strong> Boutique, personal, or niche brands seeking consistency.</p>
+        <div class="deliverables">
+          <strong>Deliverables:</strong>
+          <ul>
+            <li>Mini Brand Audit (visuals, messaging, positioning)</li>
+            <li>Brand Voice &amp; Messaging Guide</li>
+            <li>10 caption templates + content ideas</li>
+            <li>1-hour creative direction call</li>
+            <li>Basic SEO keyword setup</li>
+            <li>Launch or welcome email template</li>
+          </ul>
+        </div>
+        <div class="addons">
+          <strong>Optional add-ons:</strong>
+          <ul>
+            <li>Brand tagline &amp; slogan development</li>
+            <li>Short-form video content strategy</li>
+          </ul>
+        </div>
+        <p class="result"><strong>Result:</strong> A conversion-ready brand foundation.</p>
+      </article>
+
+      <!-- 3 -->
+      <article class="card">
+        <span class="badge">Small Business Growth Catalyst™</span>
+        <h3>Scale sales, traffic, and engagement</h3>
+        <p class="for"><strong>For:</strong> Small-to-mid-size brands growing sustainably.</p>
+        <div class="deliverables">
+          <strong>Deliverables:</strong>
+          <ul>
+            <li>Full Growth Audit (web, content, funnel)</li>
+            <li>Conversion copywriting (website &amp; landing)</li>
+            <li>3-part automated email sequence</li>
+            <li>Monthly content roadmap + captions</li>
+            <li>Conversion optimisation + analytics report</li>
+          </ul>
+        </div>
+        <div class="addons">
+          <strong>Optional add-ons:</strong>
+          <ul>
+            <li>Product launch funnel setup</li>
+            <li>Influencer outreach strategy</li>
+          </ul>
+        </div>
+        <p class="result"><strong>Result:</strong> A predictable marketing engine that scales results and retention.</p>
+      </article>
+
+      <!-- 4 -->
+      <article class="card">
+        <span class="badge">Brand Momentum & Expansion Program™</span>
+        <h3>Refine storytelling, SEO, and retention</h3>
+        <p class="for"><strong>For:</strong> Established or scaling brands.</p>
+        <div class="deliverables">
+          <strong>Deliverables:</strong>
+          <ul>
+            <li>Performance Audit (SEO, retention, engagement)</li>
+            <li>Website &amp; communication optimisation</li>
+            <li>Long-form content / thought leadership strategy</li>
+            <li>Email &amp; loyalty campaigns</li>
+            <li>PR and partnership outreach</li>
+            <li>Bi-monthly performance review</li>
+          </ul>
+        </div>
+        <div class="addons">
+          <strong>Optional add-ons:</strong>
+          <ul>
+            <li>Team content training session</li>
+            <li>Community management / ambassador setup</li>
+          </ul>
+        </div>
+        <p class="result"><strong>Result:</strong> Streamlined systems and stronger storytelling that drive measurable growth.</p>
+      </article>
+
+      <!-- 5 (flagship) -->
+      <article class="card flagship">
+        <span class="badge">Global Brand Visibility Suite™ (Flagship)</span>
+        <h3>Scale authority and impact globally</h3>
+        <p class="for"><strong>For:</strong> Enterprise, eCommerce, or influencer-led brands.</p>
+        <div class="deliverables">
+          <strong>Deliverables:</strong>
+          <ul>
+            <li>Comprehensive Brand Audit (performance, PR, SEO, authority)</li>
+            <li>Global brand &amp; campaign strategy</li>
+            <li>Multi-channel content system (SEO, PR, influencer, email)</li>
+            <li>Ongoing PR, media, and influencer management</li>
+            <li>Executive creative direction</li>
+            <li>Monthly analytics dashboard + quarterly strategy session</li>
+            <li>Dedicated strategy lead &amp; creative team</li>
+          </ul>
+        </div>
+        <div class="addons">
+          <strong>Optional add-ons:</strong>
+          <ul>
+            <li>International brand adaptation</li>
+            <li>Product collaboration or licensing strategy</li>
+          </ul>
+        </div>
+        <p class="result"><strong>Result:</strong> An elite, full-service brand ecosystem that scales authority and revenue.</p>
+      </article>
+    </section>
+
+    <h2 class="section-title">One-Time Strategy &amp; Support</h2>
+    <div class="list">
+      <div class="list-item"><strong>Launch Strategy Blueprint:</strong> End-to-end launch roadmap for pre-launch and new brands.</div>
+      <div class="list-item"><strong>Brand Voice Workshop (2 hrs):</strong> Deep dive into tone, personality, and messaging.</div>
+      <div class="list-item"><strong>Press Release &amp; Distribution:</strong> Professional press release writing and syndication.</div>
+      <div class="list-item"><strong>Content &amp; SEO Audit:</strong> Audit + optimisation recommendations.</div>
+      <div class="list-item"><strong>Campaign Concept Deck:</strong> Visual and written creative campaign presentation.</div>
+      <div class="list-item"><strong>Creative Team Training Add-On:</strong> Team education on brand tone and content standards.</div>
+    </div>
+
+    <div class="contact">
+      <p>Questions or ready to start?</p>
+      <p><a href="mailto:siyana.deveaux@writemysocials.com.au">siyana.deveaux@writemysocials.com.au</a></p>
+    </div>
+  </main>
+
   <script>
-    /* Menu open/close logic */
+    /* Menu open/close logic (unchanged) */
     (function(){
       const btn=document.querySelector('.menu-btn');
       const root=document.body;
@@ -98,3 +361,4 @@
   </script>
 </body>
 </html>
+
