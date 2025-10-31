@@ -1,232 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Write My Socials — Services</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Write My Socials — Services</title>
 
-<style>
-  html,body{margin:0;padding:0;background:#fff;font-family:'Playfair Display',serif;overflow-x:hidden}
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
-  /* ===== 0.2s Black Intro Overlay ===== */
-  .reveal-overlay{
-    position:fixed;inset:0;background:#000;z-index:2000;pointer-events:none;
-    opacity:1;visibility:visible;transition:opacity .2s ease,visibility 0s linear .2s
-  }
-  .reveal-overlay.hide{opacity:0;visibility:hidden}
+  <style>
+    html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
 
-  /* ===== Header controls ===== */
-  .menu-btn{
-    position:fixed;top:18px;left:20px;z-index:1200;
-    background:#fff;border:1px solid #000;color:#000;padding:6px 12px;border-radius:999px;
-    font-family:'Poppins',sans-serif;font-size:.85rem;letter-spacing:.1em;cursor:pointer;transition:all .3s ease
-  }
-  .menu-btn:hover{background:#000;color:#fff}
-  .social-icons{
-    position:fixed;top:18px;right:25px;z-index:1200;display:flex;gap:18px
-  }
-  .social-icons a{color:#000;font-size:1.2rem;transition:color .3s ease}
-  .social-icons a:hover{color:#ff1493}
+    .menu-btn{
+      position:fixed;top:18px;left:20px;z-index:3100;
+      background:#fff;border:1px solid #000;color:#000;
+      padding:6px 12px;border-radius:999px;
+      font-family:'Poppins',sans-serif;font-size:.85rem;
+      letter-spacing:.1em;cursor:pointer;transition:.3s;
+    }
+    .menu-btn:hover{background:#000;color:#fff}
 
-  /* ===== Slide-down header (image only, no prices here) ===== */
-  /* ===== Slide-down header (image only) ===== */
-  .menu-bar{position:fixed;top:0;left:0;right:0;z-index:1100;background:#fff;border-bottom:1px solid rgba(0,0,0,.15);transform:translateY(-100%);transition:transform .35s ease}
-  body.menu-open .menu-bar{transform:translateY(0)}
-  .menu-inner{max-width:900px;margin:0 auto;padding:20px;display:flex;justify-content:center}
-@@ -54,18 +54,17 @@
-    padding:22px 22px 18px;box-shadow:0 6px 24px rgba(0,0,0,.06)
-  }
-  .card h3{margin:0 0 6px;font-size:1.35rem}
-  .price{font-family:'Poppins',sans-serif;font-weight:500;margin:0 0 10px}
-  .engagement{font-family:'Poppins',sans-serif;margin:0 0 10px;color:#333}
-  .meta{font-family:'Poppins',sans-serif;color:#333;margin:6px 0 12px}
-  .card h4{margin:18px 0 8px;font-size:1.05rem}
-  .bullets{font-family:'Poppins',sans-serif;color:#111;line-height:1.8;margin:0 0 6px;padding-left:18px}
-  .bullets li{margin:2px 0}
-  .result{font-family:'Poppins',sans-serif;background:#fafafa;border:1px dashed rgba(0,0,0,.15);padding:12px;border-radius:10px;margin-top:14px}
+    .social-icons{
+      position:fixed;top:18px;right:25px;z-index:3100;
+      display:flex;gap:18px;
+    }
+    .social-icons a{color:#000;font-size:1.2rem;transition:color .3s}
+    .social-icons a:hover{color:#ff1493}
 
-  /* ===== One-time services table ===== */
-  /* ===== One-time services table (no price columns) ===== */
-  .table{width:100%;border-collapse:collapse;margin-top:12px;font-family:'Poppins',sans-serif}
-  .table th,.table td{border:1px solid rgba(0,0,0,.12);padding:10px 12px;vertical-align:top}
-  .table th{background:#fafafa;text-align:left;font-weight:600}
-  .table small{opacity:.8}
+    .menu-bar{
+      position:fixed;top:0;left:0;right:0;z-index:3000;
+      background:#fff;border-bottom:1px solid rgba(0,0,0,.15);
+      transform:translateY(-100%);transition:transform .35s ease;
+    }
+    body.menu-open .menu-bar{transform:translateY(0)}
 
-  /* ===== Contact block ===== */
-  .contact{margin:40px auto 160px;text-align:center}
-@@ -83,9 +82,6 @@
-  /* ===== Reveal ===== */
-  .reveal-item{opacity:0;visibility:hidden;transform:translateY(18px) scale(.96);will-change:opacity,transform}
+    .menu-inner{
+      max-width:1100px;margin:0 auto;padding:10px 20px;
+      display:flex;justify-content:center;
+    }
 
-  @media(min-width:860px){
-    .card{grid-column:span 12}
-  }
-  @media(max-width:768px){
-    .page-title{font-size:1.65rem}
-    .page-kicker{margin-top:130px}
-@@ -104,7 +100,7 @@
-    <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    .image-menu{
+      position:relative;width:min(300px,60vw);
+      transform:scale(1.5) translateZ(0);
+      transform-origin:top center;overflow:hidden;
+      -webkit-clip-path:inset(0 3% 0 3%);
+      clip-path:inset(0 3% 0 3%);
+    }
+    .image-menu img{width:100%;height:auto;display:block}
+    .hot{position:absolute;top:0;bottom:0}
+    .hot.home{left:0;right:66.67%}
+    .hot.about{left:33.33%;right:33.34%}
+    .hot.services{left:66.66%;right:0}
+
+    @media(max-width:600px){
+      .menu-btn{top:14px;left:14px;}
+      .social-icons{top:14px;right:16px;gap:14px;}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Menu button -->
+  <button class="menu-btn" aria-expanded="false" aria-controls="menuBar">MENU</button>
+
+  <!-- Social icons -->
+  <div class="social-icons" aria-label="social links">
+    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+    <a href="https://www.instagram.com/writemysocials" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+    <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
   </div>
 
-  <!-- Slide-down image menu (no prices here) -->
-  <!-- Slide-down image menu (no prices shown anywhere) -->
-  <div class="menu-bar">
+  <!-- Image-based navigation menu -->
+  <nav class="menu-bar" id="menuBar">
     <div class="menu-inner">
       <div class="image-menu">
-@@ -128,7 +124,7 @@
-      <!-- 1 -->
-      <article class="card reveal-item" data-order="4">
-        <h3>1. PRE-LAUNCH & STARTUP STRATEGY SUITE™</h3>
-        <p class="price">$950 USD / $1,450 AUD <small>(One-Time)</small></p>
-        <p class="engagement"><strong>Engagement:</strong> One-Time</p>
-        <p class="meta"><strong>For:</strong> Founders, creators, or startups in early brand development.</p>
-        <p class="meta"><strong>Purpose:</strong> Turn your concept into a validated, market-ready brand with strategic clarity and content direction.</p>
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/menu.jpg" alt="Menu navigation"/>
+        <a class="hot home" href="./" aria-label="Home"></a>
+        <a class="hot about" href="./about.html" aria-label="About"></a>
+        <a class="hot services" href="./services.html" aria-label="Services"></a>
+      </div>
+    </div>
+  </nav>
 
-@@ -143,8 +139,8 @@
+  <script>
+    /* Menu open/close logic */
+    (function(){
+      const btn=document.querySelector('.menu-btn');
+      const root=document.body;
+      function setOpen(o){
+        root.classList.toggle('menu-open',o);
+        btn.setAttribute('aria-expanded',String(o));
+      }
+      btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
+      document.addEventListener('click',e=>{if(e.target.matches('.hot'))setOpen(false)});
+      document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
+    })();
+  </script>
+</body>
+</html>
 
-        <h4>Optional Add-Ons</h4>
-        <ul class="bullets">
-          <li>Visual moodboard &amp; color guide (+$250)</li>
-          <li>Pre-launch ad copy set (+$200)</li>
-          <li>Visual moodboard &amp; color guide</li>
-          <li>Pre-launch ad copy set</li>
-        </ul>
-
-        <p class="result"><strong>Result:</strong> A confident, data-backed brand ready to launch with direction and momentum.</p>
-@@ -153,7 +149,7 @@
-      <!-- 2 -->
-      <article class="card reveal-item" data-order="5">
-        <h3>2. CREATOR & MICRO-BRAND FOUNDATIONS™</h3>
-        <p class="price">$1,500 USD / $2,300 AUD <small>(One-Time)</small></p>
-        <p class="engagement"><strong>Engagement:</strong> One-Time</p>
-        <p class="meta"><strong>For:</strong> Boutique, personal, or niche brands building a credible, consistent identity.</p>
-
-        <h4>Deliverables</h4>
-@@ -168,8 +164,8 @@
-
-        <h4>Optional Add-Ons</h4>
-        <ul class="bullets">
-          <li>Brand tagline &amp; slogan development (+$150)</li>
-          <li>Short-form video content strategy (+$300)</li>
-          <li>Brand tagline &amp; slogan development</li>
-          <li>Short-form video content strategy</li>
-        </ul>
-
-        <p class="result"><strong>Result:</strong> A cohesive, conversion-ready brand foundation.</p>
-@@ -178,7 +174,7 @@
-      <!-- 3 -->
-      <article class="card reveal-item" data-order="6">
-        <h3>3. SMALL BUSINESS GROWTH CATALYST™</h3>
-        <p class="price">$2,500 USD / $3,800 AUD <small>(Monthly Retainer)</small></p>
-        <p class="engagement"><strong>Engagement:</strong> Monthly Retainer</p>
-        <p class="meta"><strong>For:</strong> Small-to-mid-size brands growing sales, traffic, and engagement.</p>
-
-        <h4>Deliverables</h4>
-@@ -192,8 +188,8 @@
-
-        <h4>Optional Add-Ons</h4>
-        <ul class="bullets">
-          <li>Product launch funnel setup (+$400)</li>
-          <li>Influencer outreach strategy (+$350)</li>
-          <li>Product launch funnel setup</li>
-          <li>Influencer outreach strategy</li>
-        </ul>
-
-        <p class="result"><strong>Result:</strong> A predictable marketing engine that scales results and retention.</p>
-@@ -202,7 +198,7 @@
-      <!-- 4 -->
-      <article class="card reveal-item" data-order="7">
-        <h3>4. BRAND MOMENTUM & EXPANSION PROGRAM™</h3>
-        <p class="price">$4,500 USD / $6,800 AUD <small>(Monthly Retainer)</small></p>
-        <p class="engagement"><strong>Engagement:</strong> Monthly Retainer</p>
-        <p class="meta"><strong>For:</strong> Established or scaling brands refining storytelling, SEO, and retention.</p>
-
-        <h4>Deliverables</h4>
-@@ -217,8 +213,8 @@
-
-        <h4>Optional Add-Ons</h4>
-        <ul class="bullets">
-          <li>Team content training session (+$500)</li>
-          <li>Community management or ambassador setup (+$600)</li>
-          <li>Team content training session</li>
-          <li>Community management or ambassador setup</li>
-        </ul>
-
-        <p class="result"><strong>Result:</strong> Streamlined systems and stronger storytelling that drive measurable growth.</p>
-@@ -227,7 +223,7 @@
-      <!-- 5 -->
-      <article class="card reveal-item" data-order="8">
-        <h3>5. GLOBAL BRAND VISIBILITY SUITE™ (FLAGSHIP)</h3>
-        <p class="price">$20,000 USD / $30,000 AUD <small>(Premium Retainer)</small></p>
-        <p class="engagement"><strong>Engagement:</strong> Premium Retainer</p>
-        <p class="meta"><strong>For:</strong> Enterprise, eCommerce, or influencer-led brands scaling global impact.</p>
-
-        <h4>Deliverables</h4>
-@@ -243,60 +239,46 @@
-
-        <h4>Optional Add-Ons</h4>
-        <ul class="bullets">
-          <li>International brand adaptation (+$1,000 per region)</li>
-          <li>Product collaboration or licensing strategy (+$1,200)</li>
-          <li>International brand adaptation</li>
-          <li>Product collaboration or licensing strategy</li>
-        </ul>
-
-        <p class="result"><strong>Result:</strong> An elite, full-service brand ecosystem that scales authority and revenue globally.</p>
-      </article>
-
-      <!-- One-time Services -->
-      <!-- One-time Services (no prices) -->
-      <article class="card reveal-item" data-order="9">
-        <h3>ONE-TIME STRATEGY &amp; SUPPORT SERVICES</h3>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Service</th>
-              <th>USD</th>
-              <th>AUD</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Launch Strategy Blueprint</td>
-              <td>$1,200</td>
-              <td>$1,850</td>
-              <td>End-to-end launch roadmap for pre-launch and new brands</td>
-            </tr>
-            <tr>
-              <td>Brand Voice Workshop (2 hrs)</td>
-              <td>$1,500</td>
-              <td>$2,300</td>
-              <td>Deep dive into tone, personality, and messaging</td>
-            </tr>
-            <tr>
-              <td>Press Release &amp; Distribution</td>
-              <td>$800</td>
-              <td>$1,250</td>
-              <td>Professional press release writing and syndication</td>
-            </tr>
-            <tr>
-              <td>Content &amp; SEO Audit</td>
-              <td>$1,000</td>
-              <td>$1,550</td>
-              <td>Audit + optimization recommendations</td>
-            </tr>
-            <tr>
-              <td>Campaign Concept Deck</td>
-              <td>$2,000</td>
-              <td>$3,100</td>
-              <td>Visual and written creative campaign presentation</td>
-            </tr>
-            <tr>
-              <td>Creative Team Training Add-On</td>
-              <td>$600</td>
-              <td>$950</td>
-              <td>Team education on brand tone and content standards</td>
-            </tr>
-          </tbody>
-    </html>
-  </head>
