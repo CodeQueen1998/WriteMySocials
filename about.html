@@ -60,61 +60,54 @@
     .hot.about{left:33.33%;right:33.34%}
     .hot.services{left:66.66%;right:0}
 
-    /* === HERO IMAGE SECTION === */
-    .hover-hero{
-      position:relative;
-      margin-top:84px;
-      width:100%;
-      overflow:hidden;
-      display:block;
-    }
-    .hover-hero .media-wrap{
-      position:relative;
-      max-width:1100px;
-      margin:0 auto;
-      overflow:hidden;
-      border-radius:14px;
-      transition:transform 0.6s cubic-bezier(.22,.61,.36,1), filter 0.6s ease;
-      transform:translateY(0) scale(1);
-      will-change:transform, filter;
-    }
-    .hover-hero img{
-      width:100%;
-      height:auto;
-      display:block;
-      transition:transform 0.6s cubic-bezier(.22,.61,.36,1);
+    /* === INTERACTIVE IMAGE SCROLL SECTION === */
+    .hover-image-section {
+      position: relative;
+      margin-top: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    /* Overlay marketing text */
-    .overlay{
-      position:absolute;inset:0;
-      display:flex;align-items:center;justify-content:center;
-      background:rgba(0,0,0,0);
-      color:#fff;text-align:center;
-      opacity:0;
-      transition:opacity .6s ease, background .6s ease;
-      font-family:'Playfair Display',serif;
-      font-size:clamp(1.4rem,3vw,2rem);
-      letter-spacing:.03em;
-      padding:1rem;
-      z-index:2;
-    }
-    .overlay p{
-      max-width:600px;
-      line-height:1.5;
-      text-shadow:0 2px 12px rgba(0,0,0,.3);
+    .image-hover-container {
+      position: relative;
+      width: min(90%, 1100px);
+      height: 550px;
+      overflow: hidden;
+      border-radius: 14px;
     }
 
-    /* Hover effect */
-    @media (hover:hover) and (pointer:fine){
-      .hover-hero:hover .media-wrap{
-        transform:translateY(-10px) scale(.96);
-        filter:brightness(0.9);
-      }
-      .hover-hero:hover .overlay{
-        opacity:1;
-        background:rgba(0,0,0,0.45);
-      }
+    .image-hover-container img {
+      width: 100%;
+      height: auto;
+      position: absolute;
+      bottom: 0;
+      transition: transform 2s ease;
+    }
+
+    .image-hover-container:hover img {
+      transform: translateY(-45%);
+    }
+
+    .hover-text {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 40px 20px;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      color: #fff;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1.2s ease, transform 1.2s ease;
+      background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+    }
+
+    .image-hover-container:hover .hover-text {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* === TAGLINE === */
@@ -159,14 +152,14 @@
     </div>
   </nav>
 
-  <!-- === INTERACTIVE HERO === -->
-  <section class="hover-hero">
-    <figure class="media-wrap" id="interactiveHero">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Marketing brand event setup">
-      <figcaption class="overlay">
+  <!-- === INTERACTIVE IMAGE SCROLL === -->
+  <section class="hover-image-section">
+    <div class="image-hover-container">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Harrods marketing setup">
+      <div class="hover-text">
         <p>Crafting campaigns that turn stories into sales — where brand strategy meets emotional connection.</p>
-      </figcaption>
-    </figure>
+      </div>
+    </div>
   </section>
 
   <!-- Text below -->
@@ -185,33 +178,7 @@
       document.addEventListener('click',e=>{if(e.target.matches('.hot'))setOpen(false)});
       document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
     })();
-
-    /* Subtle interactive lift on mouse move */
-    (function(){
-      const hero=document.getElementById('interactiveHero');
-      if(!hero) return;
-      let targetY=0,currentY=0,raf=null;
-      function move(e){
-        const rect=hero.getBoundingClientRect();
-        const yNorm=(e.clientY-rect.top)/rect.height;
-        targetY=(0.5-yNorm)*14;
-        if(!raf)raf=requestAnimationFrame(tick);
-      }
-      function leave(){targetY=0;if(!raf)raf=requestAnimationFrame(tick);}
-      function tick(){
-        currentY+=(targetY-currentY)*0.1;
-        hero.style.transform=`translateY(${currentY}px)`;
-        if(Math.abs(targetY-currentY)>0.3)raf=requestAnimationFrame(tick);else raf=null;
-      }
-      const mql=window.matchMedia('(hover:hover) and (pointer:fine)');
-      if(mql.matches){
-        hero.addEventListener('mousemove',move);
-        hero.addEventListener('mouseleave',leave);
-      }
-    })();
   </script>
 </body>
 </html>
-
-
 
