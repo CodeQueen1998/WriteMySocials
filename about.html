@@ -3,95 +3,95 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Square Case Tile — Reduce Image + Reveal Text</title>
+<title>Square Case Tile — Reduce Image + Reveal Text (Refined Type)</title>
 
-<!-- Elegant serif fallback if Didot isn’t installed -->
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600&display=swap" rel="stylesheet"/>
+<!-- Clean sans-serif similar to reference -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
 
 <style>
   :root{
     /* How much of the image is hidden (from the bottom) on hover */
-    --cut-target: 34%;          /* try 26–38% to taste */
-    /* Small upward drift so it feels like the image scrolls up as it reduces */
-    --lift: 6%;                 /* try 4–8% */
+    --cut-target: 34%;          /* try 28–36% to taste */
+    /* Small upward drift so it feels like the image scrolls up */
+    --lift: 6%;
     /* Motion feel */
     --speed: 520ms;
     --ease: cubic-bezier(.25,.46,.45,.94);
   }
 
-  html,body{margin:0;background:#fff;color:#000}
+  html,body{
+    margin:0; background:#fff; color:#000;
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  }
   .wrap{max-width:900px;margin:80px auto;padding:0 20px;display:flex;justify-content:center}
 
-  /* Square card frame */
+  /* Square frame */
   .card{
     position:relative;
     width:100%;
-    aspect-ratio:1 / 1;          /* always square */
+    aspect-ratio:1 / 1;
     overflow:hidden;
-    background:#fff;             /* white reveal area for the text */
+    background:#fff;            /* white panel that appears as image reduces */
     border-radius:12px;
   }
 
-  /* IMAGE LAYER
-     - Slightly taller so we can drift it upward
-     - Clipped from the BOTTOM to “reduce” the visible image on hover
-  */
+  /* IMAGE LAYER: clipped from bottom as we hover (reduces visible image) */
   .media{
     position:absolute; inset:0;
-    /* start: show full image (no cut) */
     --cut: 0%;
     clip-path: inset(0 0 var(--cut) 0);
     transition: clip-path var(--speed) var(--ease);
     will-change: clip-path;
   }
-
   .media img{
-    position:absolute; inset:auto 0 0 0;      /* anchor to bottom */
+    position:absolute; inset:auto 0 0 0;   /* anchor to bottom */
     width:100%; height:118%; object-fit:cover;
-    transform: translateY(0);                  /* small drift on hover */
+    transform: translateY(0);               /* subtle scroll up */
     transition: transform var(--speed) var(--ease);
     backface-visibility:hidden;
     user-select:none; -webkit-user-drag:none;
   }
 
-  /* TEXT that’s revealed in the white area as image reduces.
-     - Black serif, no gradient, no shadow.
-     - Hidden until hover.
-  */
-  .in-image-text{
-    position:absolute; left:28px; right:28px; bottom:24px;
-    font-family: Didot, "Bodoni Moda", serif;
-    font-weight:600;
-    font-size:clamp(1rem,1.35vw,1.2rem);
-    line-height:1.55;
-    color:#000;                           /* pure black */
-    opacity:0; transform: translateY(10px);
+  /* REVEALED TEXT (reference-like typography) */
+  .caption{
+    position:absolute; left:0; right:0; bottom:0;
+    padding: 22px clamp(20px, 4vw, 28px);
+    opacity:0; transform: translateY(14px);
     transition: opacity 320ms ease, transform 320ms ease;
-    pointer-events:none;
-    text-align:center;
   }
 
-  /* HOVER BEHAVIOR:
-     - Increase bottom cut (reduce image)
-     - Drift image up a touch so it feels like it scrolls up
-     - Fade in the black serif paragraph
-  */
+  .caption h3{
+    margin:0 0 10px 0;
+    font-size: 1rem;            /* matches the ref heading scale */
+    font-weight: 600;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    color:#000;
+  }
+  .caption p{
+    margin:0;
+    font-size: 0.95rem;         /* compact body like the ref */
+    line-height: 1.6;
+    color:#000;
+  }
+
+  /* HOVER BEHAVIOUR */
   @media (hover:hover) and (pointer:fine){
     .card:hover .media{ --cut: var(--cut-target); }
     .card:hover .media img{ transform: translateY(calc(-1 * var(--lift))); }
-    .card:hover .in-image-text{ opacity:1; transform: translateY(0); }
+    .card:hover .caption{ opacity:1; transform: translateY(0); }
   }
 
   /* Touch fallback: tap to toggle */
   @media (hover:none){
     .card[aria-pressed="true"] .media{ --cut: var(--cut-target); }
     .card[aria-pressed="true"] .media img{ transform: translateY(calc(-1 * var(--lift))); }
-    .card[aria-pressed="true"] .in-image-text{ opacity:1; transform: none; }
+    .card[aria-pressed="true"] .caption{ opacity:1; transform:none; }
   }
 
-  /* Accessibility: reduce motion */
+  /* Reduced motion */
   @media (prefers-reduced-motion:reduce){
-    .media, .media img, .in-image-text{ transition:none !important; }
+    .media, .media img, .caption{ transition:none !important; }
   }
 </style>
 </head>
@@ -99,12 +99,17 @@
   <main class="wrap">
     <figure class="card" id="caseCard" aria-pressed="false">
       <div class="media">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Case image">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Creative campaign workspace">
       </div>
 
-      <!-- Black serif paragraph appears as image reduces -->
-      <figcaption class="in-image-text">
-        We shape considered marketing — aligning strategy, creative and production so brands grow with clarity, consistency, and measurable momentum.
+      <!-- Reference-style heading + paragraph; no brand names -->
+      <figcaption class="caption">
+        <h3>User Generated Content</h3>
+        <p>
+          We planned and produced a creator-led shoot to drive social proof at scale.
+          The approach combined content strategy, direction and agile production,
+          resulting in highly shareable assets that strengthened awareness and conversion.
+        </p>
       </figcaption>
     </figure>
   </main>
@@ -123,4 +128,3 @@
   </script>
 </body>
 </html>
-
