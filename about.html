@@ -1,154 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Soulful brands, built with strategy.</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naked Sole Case Study Style</title>
 
-  <!-- Typography -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
-
+  <link href="https://fonts.googleapis.com/css2?family=Didot&family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-    :root{
-      --shift: 10%;          /* how far the image glides up on hover */
-      --square-max: 980px;   /* maximum square size on very large screens */
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #000;
+      font-family: "Poppins", sans-serif;
     }
 
-    html,body{
-      margin:0;padding:0;background:#fff;color:#000;
-      font-family:'Playfair Display',serif;overflow-x:hidden;
-      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    /* Container */
+    .case-container {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 0 20px;
     }
 
-    /* === MENU BUTTON / SOCIAL (unchanged) === */
-    .menu-btn{
-      position:fixed;top:18px;left:20px;z-index:3100;
-      background:#fff;border:1px solid #000;color:#000;
-      padding:6px 12px;border-radius:999px;
-      font-family:'Poppins',sans-serif;font-size:.85rem;
-      letter-spacing:.1em;cursor:pointer;transition:.3s;
-    }
-    .menu-btn:hover{background:#000;color:#fff}
-    .social-icons{position:fixed;top:18px;right:25px;z-index:3100;display:flex;gap:18px;}
-    .social-icons a{color:#000;font-size:1.2rem;transition:color .3s;}
-    .social-icons a:hover{color:#ff1493}
-    .menu-bar{position:fixed;top:0;left:0;right:0;z-index:3000;background:#fff;border-bottom:1px solid rgba(0,0,0,.15);transform:translateY(-100%);transition:transform .35s ease;}
-    body.menu-open .menu-bar{transform:translateY(0)}
-    .menu-inner{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;justify-content:center;}
-    .image-menu{position:relative;width:min(300px,60vw);transform:scale(1.5) translateZ(0);transform-origin:top center;overflow:hidden;clip-path:inset(0 3% 0 3%);}
-    .image-menu img{width:100%;display:block}
-    .hot{position:absolute;top:0;bottom:0}
-    .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
-
-    /* === PREMIUM, SMOOTH GLIDE CARD === */
-    .case-wrap{margin:110px auto 0;max-width:var(--square-max);padding:0 20px;}
-    .case-card{
-      position:relative;margin:0 auto;width:100%;
-      aspect-ratio:1/1;overflow:hidden;background:#fff;border-radius:16px;
-      box-shadow:0 10px 30px rgba(0,0,0,.06);
+    /* Case image wrapper */
+    .case-image {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5; /* same tall rectangle */
+      overflow: hidden;
+      border-radius: 0;
+      background: #fff;
     }
 
-    .case-media{position:absolute;inset:0;will-change:transform;}
-    .case-media img{
-      position:absolute;left:0;right:0;bottom:0;top:auto;
-      width:100%;height:115%;object-fit:cover; /* extra height so we never expose blank */
-      transform:translate3d(0,0,0);
-      transition:transform 800ms cubic-bezier(.22,.61,.36,1);
-      backface-visibility:hidden;
+    .case-image img {
+      width: 100%;
+      height: 120%;
+      object-fit: cover;
+      transition: transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: translateY(0);
     }
 
-    /* Glide up on hover (no bounce), glide back on leave */
-    @media (hover:hover) and (pointer:fine){
-      .case-card:hover .case-media img{
-        transform:translate3d(0, calc(-1 * var(--shift)), 0);
+    /* Hover: glide upward a bit more than before */
+    @media (hover:hover) and (pointer:fine) {
+      .case-image:hover img {
+        transform: translateY(-20%);
       }
     }
 
-    /* Bottom caption: pure white, Didot black, fades in/out */
-    .caption{
-      position:absolute;left:0;right:0;bottom:0;
-      background:#fff;color:#000;border-top:1px solid rgba(0,0,0,.08);
-      padding:22px 24px;text-align:center;
-      font-family: Didot, "Bodoni Moda", serif;
-      font-size:clamp(1rem,1.4vw,1.25rem);line-height:1.45;
-      opacity:0;transform:translateY(16px);
-      transition:opacity 450ms ease, transform 450ms ease;
-    }
-    @media (hover:hover) and (pointer:fine){
-      .case-card:hover .caption{opacity:1;transform:translateY(0);}
-    }
-
-    /* Reduced motion: no animation */
-    @media (prefers-reduced-motion:reduce){
-      .case-media img, .caption{transition:none!important}
-      .case-card:hover .case-media img{transform:none}
-      .case-card:hover .caption{opacity:1;transform:none}
+    /* Logo text overlay (bottom-left) */
+    .logo-text {
+      position: absolute;
+      left: 40px;
+      bottom: 40px;
+      font-family: "Didot", "Bodoni Moda", serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: 0.02em;
+      color: #fff;
+      text-transform: uppercase;
+      pointer-events: none;
     }
 
-    /* Tagline + contact */
-    .tagline{
-      text-align:center;margin:40px auto 0;
-      font-family:'Playfair Display',serif;
-      font-size:clamp(1.6rem,4vw,2.4rem);font-weight:600;letter-spacing:.02em;
-      max-width:1100px;padding:0 20px;
+    /* Optional subtle icon bottom-right */
+    .arrow-icon {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      font-size: 1rem;
+      color: #fff;
+      border: 1px solid #fff;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
     }
-    .contact-email{text-align:center;margin-top:12px;font-family:'Poppins',sans-serif}
-    .contact-email a{color:#000;text-decoration:none;border-bottom:1px solid #000;transition:.3s;}
-    .contact-email a:hover{color:#ff1493;border-color:#ff1493;}
+    .case-image:hover .arrow-icon {
+      background: #fff;
+      color: #000;
+    }
+
+    /* Caption area below image */
+    .caption-block {
+      margin-top: 18px;
+    }
+    .caption-block h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .caption-block p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #000;
+      margin: 0;
+      max-width: 95%;
+    }
   </style>
 </head>
 <body>
-  <!-- Menu -->
-  <button class="menu-btn" aria-expanded="false" aria-controls="menuBar">MENU</button>
-  <div class="social-icons">
-    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/"><i class="fab fa-linkedin"></i></a>
-    <a href="https://www.instagram.com/writemysocials"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.tiktok.com/@writemysocials"><i class="fab fa-tiktok"></i></a>
-  </div>
-
-  <nav class="menu-bar" id="menuBar">
-    <div class="menu-inner">
-      <div class="image-menu">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/menu.jpg" alt="Menu navigation"/>
-        <a class="hot home" href="./"></a>
-        <a class="hot about" href="./about.html"></a>
-        <a class="hot services" href="./services.html"></a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- === SMOOTH GLIDE CASE CARD === -->
-  <main class="case-wrap">
-    <figure class="case-card" aria-label="Case Study">
-      <div class="case-media">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Creative team reviewing campaign on screen">
-      </div>
-      <figcaption class="caption">
-        Crafting campaigns that turn stories into sales — where brand strategy meets emotional connection.
-      </figcaption>
+  <div class="case-container">
+    <figure class="case-image">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Naked Sole launch setup" />
+      <div class="logo-text">NAKED SOLE</div>
+      <div class="arrow-icon">&#8593;</div>
     </figure>
-  </main>
 
-  <!-- Text below -->
-  <h1 class="tagline">Soulful brands, built with strategy.</h1>
-  <p class="contact-email">
-    <a href="mailto:siyana.deveaux@writemysocials.com.au">siyana.deveaux@writemysocials.com.au</a>
-  </p>
-
-  <script>
-    /* Menu toggle */
-    (function(){
-      const btn=document.querySelector('.menu-btn');
-      const root=document.body;
-      function setOpen(o){root.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',String(o));}
-      btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
-      document.addEventListener('click',e=>{if(e.target.matches('.hot'))setOpen(false)});
-      document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
-    })();
-  </script>
+    <div class="caption-block">
+      <h3>'LAUNCH' SOCIAL MEDIA MANAGEMENT</h3>
+      <p>
+        Be Seen Socials successfully launched Naked Sole, a brand new shoe brand, from concept to a successful influencer event. The launch included meticulous planning, creative direction, and flawless execution. Be Seen Socials has since continued to drive the brand's visibility through monthly shoots and strategic TikTok campaigns, establishing Naked Sole as a prominent name in the footwear industry.
+      </p>
+    </div>
+  </div>
 </body>
 </html>
-
-
 
