@@ -3,28 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Case Study Tile – Smooth Glide</title>
+  <title>Case Study Tile – Refined Hover</title>
 
   <!-- Luxury serif fallback if Didot isn't installed -->
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
 
   <style>
     :root{
-      --shift: 22%;                  /* how far the image slides up on hover (like the ref) */
-      --speed: 520ms;                /* slightly faster glide */
-      --easing: cubic-bezier(.25,.46,.45,.94);  /* smooth, no bounce */
+      --shift: 20%;                       /* how high the image slides on hover (like the ref) */
+      --speed: 520ms;                     /* slightly quick, still calm */
+      --ease: cubic-bezier(.25,.46,.45,.94);
     }
 
-    html,body{margin:0;background:#fff;color:#000;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    html,body{margin:0;background:#fff;color:#000;font-family:"Poppins",system-ui,Arial,sans-serif}
 
-    .wrap{
+    .case-wrap{
       max-width: 900px;
-      margin: 64px auto;
+      margin: 80px auto;
       padding: 0 20px;
     }
 
-    /* Tall rectangle like the reference */
-    .case{
+    /* Tall rectangle like the reference (4:5) */
+    .hero-card{
       position: relative;
       width: 100%;
       aspect-ratio: 4 / 5;
@@ -32,59 +32,84 @@
       background:#fff;
     }
 
-    .case img{
+    .hero-card img{
       position:absolute; left:0; right:0; bottom:0;
       width:100%; height:120%; object-fit:cover;
-      transform:translateY(0);
-      transition: transform var(--speed) var(--easing);
+      transform: translateY(0);
+      transition: transform var(--speed) var(--ease);
       will-change: transform;
-      backface-visibility:hidden;
+      backface-visibility: hidden;
     }
 
-    /* Text INSIDE the image */
-    .case .overlay-text{
+    /* In-image title (hidden until hover) */
+    .inimage-title{
       position:absolute; left:40px; bottom:34px;
       font-family: Didot, "Bodoni Moda", serif;
-      font-weight: 500;
-      font-size: clamp(1.8rem, 4.6vw, 3rem);
-      line-height: 1.05;
+      font-weight: 600;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.02;
       letter-spacing: .02em;
       text-transform: uppercase;
-      color:#ffffff;
+      color:#fff;
       pointer-events:none;
 
-      /* appear/disappear with hover */
       opacity:0; transform: translateY(10px);
       transition: opacity 360ms ease, transform 360ms ease;
-      text-shadow: 0 2px 18px rgba(0,0,0,.35); /* subtle for readability */
+      text-shadow: 0 2px 18px rgba(0,0,0,.35);
+      white-space: nowrap;
     }
 
-    /* Hover interactions (no bounce) */
+    /* Hover behaviour: image glides up a touch; title fades in */
     @media (hover:hover) and (pointer:fine){
-      .case:hover img{
-        transform: translateY(calc(-1 * var(--shift)));
-      }
-      .case:hover .overlay-text{
-        opacity:1; transform: translateY(0);
-      }
+      .hero-card:hover img{ transform: translateY(calc(-1 * var(--shift))); }
+      .hero-card:hover .inimage-title{ opacity:1; transform: translateY(0); }
     }
 
-    /* Reduced motion accessibility */
+    /* Reduced motion: no animation */
     @media (prefers-reduced-motion:reduce){
-      .case img, .case .overlay-text{transition:none !important}
-      .case:hover img{transform:none}
-      .case:hover .overlay-text{opacity:1; transform:none}
+      .hero-card img, .inimage-title{transition:none!important}
+      .hero-card:hover img{transform:none}
+      .hero-card:hover .inimage-title{opacity:1;transform:none}
+    }
+
+    /* Below-image content (style matches ref) */
+    .caption{
+      margin-top: 18px;
+    }
+    .caption h3{
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      margin: 0 0 10px 0;
+    }
+    .caption p{
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0;
+      max-width: 95%;
+      color:#000;
     }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <figure class="case">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Campaign showcase">
-      <!-- Your text INSIDE the image -->
-      <div class="overlay-text">LAUNCH · SOCIAL MEDIA<br/>MANAGEMENT</div>
+  <main class="case-wrap">
+    <!-- IMAGE TILE -->
+    <figure class="hero-card">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Event table styling with florals and glassware">
+      <!-- NEW title inside image (no brand names) -->
+      <div class="inimage-title">SIGNATURE SERIES</div>
     </figure>
+
+    <!-- BELOW-IMAGE COPY (same style + length vibe, rewritten) -->
+    <div class="caption">
+      <h3>'LAUNCH' SOCIAL MEDIA MANAGEMENT</h3>
+      <p>
+        Our team led a concept-to-execution launch for a new product line, culminating in a high-impact creator event. The rollout blended meticulous planning, creative direction, and seamless production. Following the debut, we continued momentum through monthly content shoots and strategic TikTok campaigns, sustaining awareness and growth with thoughtful, high-quality storytelling across channels.
+      </p>
+    </div>
   </main>
 </body>
 </html>
+
 
