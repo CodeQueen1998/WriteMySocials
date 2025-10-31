@@ -3,14 +3,18 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Write My Socials — Services</title>
+  <title>Soulful brands, built with strategy.</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
   <style>
-    html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
+    html,body{
+      margin:0;padding:0;background:#fff;color:#000;
+      font-family:'Playfair Display',serif;overflow-x:hidden;
+    }
 
+    /* === MENU BUTTON === */
     .menu-btn{
       position:fixed;top:18px;left:20px;z-index:3100;
       background:#fff;border:1px solid #000;color:#000;
@@ -20,13 +24,17 @@
     }
     .menu-btn:hover{background:#000;color:#fff}
 
+    /* === SOCIAL ICONS === */
     .social-icons{
       position:fixed;top:18px;right:25px;z-index:3100;
       display:flex;gap:18px;
     }
-    .social-icons a{color:#000;font-size:1.2rem;transition:color .3s}
+    .social-icons a{
+      color:#000;font-size:1.2rem;transition:color .3s;
+    }
     .social-icons a:hover{color:#ff1493}
 
+    /* === MENU BAR === */
     .menu-bar{
       position:fixed;top:0;left:0;right:0;z-index:3000;
       background:#fff;border-bottom:1px solid rgba(0,0,0,.15);
@@ -52,9 +60,30 @@
     .hot.about{left:33.33%;right:33.34%}
     .hot.services{left:66.66%;right:0}
 
+    /* === PAGE TAGLINE === */
+    .tagline{
+      text-align:center;margin-top:40vh;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.6rem,4vw,2.4rem);
+      font-weight:600;letter-spacing:.02em;
+    }
+
+    /* === EMAIL CONTACT === */
+    .contact-email{
+      text-align:center;margin-top:1.5rem;
+      font-family:'Poppins',sans-serif;
+      font-size:1rem;letter-spacing:.03em;
+    }
+    .contact-email a{
+      color:#000;text-decoration:none;border-bottom:1px solid #000;
+      transition:.3s;
+    }
+    .contact-email a:hover{color:#ff1493;border-color:#ff1493;}
+
     @media(max-width:600px){
       .menu-btn{top:14px;left:14px;}
       .social-icons{top:14px;right:16px;gap:14px;}
+      .tagline{margin-top:35vh;font-size:clamp(1.3rem,5vw,2rem);}
     }
   </style>
 </head>
@@ -70,7 +99,7 @@
     <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
   </div>
 
-  <!-- Image-based navigation menu -->
+  <!-- Image-based navigation -->
   <nav class="menu-bar" id="menuBar">
     <div class="menu-inner">
       <div class="image-menu">
@@ -82,8 +111,14 @@
     </div>
   </nav>
 
+  <!-- Minimal hero tagline -->
+  <h1 class="tagline">Soulful brands, built with strategy.</h1>
+  <p class="contact-email">
+    <a href="mailto:siyana.deveaux@writemysocials.com.au">siyana.deveaux@writemysocials.com.au</a>
+  </p>
+
   <script>
-    /* Menu open/close logic */
+    /* Menu toggle */
     (function(){
       const btn=document.querySelector('.menu-btn');
       const root=document.body;
@@ -98,3 +133,4 @@
   </script>
 </body>
 </html>
+
