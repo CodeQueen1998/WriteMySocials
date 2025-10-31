@@ -3,97 +3,125 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>In-Image Hover Text with Image Reduction</title>
+<title>Square Up-Reveal Card</title>
 
-<!-- Elegant serif font -->
+<!-- Elegant serif (fallback if Didot isn’t installed) -->
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600&display=swap" rel="stylesheet"/>
 
 <style>
   :root{
-    --shift: 25%; /* how much of the image reduces on hover */
-    --speed: 520ms;
+    /* How much of the image gets replaced by the text on hover */
+    --reveal: 28%;            /* try 22%–34% */
+    --speed: 520ms;           /* motion speed */
     --ease: cubic-bezier(.25,.46,.45,.94);
   }
 
-  html,body{
-    margin:0;
-    background:#fff;
-    color:#000;
-    font-family:"Bodoni Moda",serif;
-  }
+  html,body{margin:0;background:#fff;color:#000}
+  .wrap{max-width:900px;margin:80px auto;padding:0 20px}
 
-  .wrap{
-    max-width:900px;
-    margin:80px auto;
-    padding:0 20px;
-  }
-
-  /* container */
-  .tile{
+  /* Square card */
+  .card{
     position:relative;
     width:100%;
-    aspect-ratio:4/5;
+    aspect-ratio:1/1;       /* always square */
     overflow:hidden;
     background:#fff;
+    border-radius:12px;
   }
 
-  /* image covers more initially, moves up + reduces coverage on hover */
-  .tile img{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:120%;
-    object-fit:cover;
-    object-position:center;
-    transform:translateY(0) scale(1.02);
-    transition:transform var(--speed) var(--ease), clip-path var(--speed) var(--ease);
-    will-change:transform, clip-path;
-    clip-path: inset(0 0 0 0); /* initially full image */
+  /* IMAGE LAYER
+     - Anchored to bottom
+     - Slightly taller so it can glide UP without exposing empty space on top
+  */
+  .media{
+    position:absolute; inset:0;
+    overflow:hidden;
+  }
+  .media img{
+    position:absolute; left:0; right:0; bottom:0;
+    width:100%; height:115%; object-fit:cover;
+    transform: translateY(0);
+    transition: transform var(--speed) var(--ease);
+    will-change: transform;
   }
 
-  /* text inside image */
-  .tile .in-image{
-    position:absolute;
-    left:40px;
-    right:40px;
-    bottom:34px;
-    font-family:"Bodoni Moda",serif;
+  /* TEXT PANEL (white, serif, black) that replaces the bottom portion */
+  .caption{
+    position:absolute; left:0; right:0; bottom:0;
+    height: var(--reveal);              /* exact height we reveal */
+    background:#fff;                    /* no gradient */
+    color:#000;                         /* pure black text */
+    display:flex; align-items:center; justify-content:center;
+    padding: 22px clamp(20px, 4vw, 28px);
+    transform: translateY(100%);        /* hidden below the card */
+    transition: transform var(--speed) var(--ease), opacity 240ms ease;
+    opacity: 0;
+    border-top: 1px solid rgba(0,0,0,.08);
+  }
+  .caption p{
+    margin:0;
+    font-family: Didot, "Bodoni Moda", serif;
     font-weight:600;
-    font-size:clamp(1rem,1.3vw,1.2rem);
-    line-height:1.55;
-    color:#000; /* pure black text */
-    opacity:0;
-    transform:translateY(20px);
-    transition:opacity 360ms ease, transform 360ms ease;
-    pointer-events:none;
+    font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+    line-height: 1.55;
+    text-align:center;
   }
 
-  /* hover: image moves up, shows less; text appears */
+  /* HOVER STATE:
+     - Image glides UP (so less of it is shown)
+     - White caption slides UP into view
+  */
   @media (hover:hover) and (pointer:fine){
-    .tile:hover img{
-      transform:translateY(calc(-1 * var(--shift))) scale(1);
-      clip-path: inset(var(--shift) 0 0 0); /* crop from top down */
+    .card:hover .media img{
+      transform: translateY(calc(-1 * var(--reveal)));
     }
-    .tile:hover .in-image{
-      opacity:1;
-      transform:translateY(0);
+    .card:hover .caption{
+      transform: translateY(0);
+      opacity: 1;
     }
   }
 
-  /* accessibility + reduced motion */
+  /* Touch + reduced-motion fallbacks */
+  @media (hover:none){
+    .card[aria-pressed="true"] .media img{
+      transform: translateY(calc(-1 * var(--reveal)));
+    }
+    .card[aria-pressed="true"] .caption{
+      transform: translateY(0); opacity:1;
+    }
+  }
   @media (prefers-reduced-motion:reduce){
-    .tile img,.tile .in-image{transition:none!important}
+    .media img, .caption{ transition:none !important; }
   }
 </style>
 </head>
 <body>
   <main class="wrap">
-    <figure class="tile">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Marketing campaign setting">
-      <div class="in-image">
-        We create brand moments that balance purpose and precision — guiding ideas from concept to execution through strategy, creativity, and craft.
+    <figure class="card" id="caseCard" aria-pressed="false">
+      <div class="media">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Campaign styling">
       </div>
+
+      <!-- Serif black paragraph; appears as the image reduces -->
+      <figcaption class="caption">
+        <p>
+          We design calm, strategic marketing that blends creative direction, precise production, and clear distribution—elevating brands with measurable momentum.
+        </p>
+      </figcaption>
     </figure>
   </main>
+
+  <!-- Tap-to-toggle for phones -->
+  <script>
+    (function(){
+      const c = document.getElementById('caseCard');
+      if(!c) return;
+      if (matchMedia('(hover:none)').matches){
+        c.addEventListener('click', () => {
+          c.setAttribute('aria-pressed', c.getAttribute('aria-pressed')==='true' ? 'false' : 'true');
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
