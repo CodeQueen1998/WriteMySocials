@@ -3,122 +3,124 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Case Study Tile – In-Image Hover Reveal</title>
+<title>Square Case Tile — Reduce Image + Reveal Text</title>
 
-<!-- Elegant serif font -->
+<!-- Elegant serif fallback if Didot isn’t installed -->
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600&display=swap" rel="stylesheet"/>
 
 <style>
   :root{
-    --shift: 22%;                     /* how much the image scrolls up (less image shown) */
-    --speed: 480ms;                   /* smooth motion speed */
-    --ease: cubic-bezier(.25,.46,.45,.94); /* calm easing */
+    /* How much of the image is hidden (from the bottom) on hover */
+    --cut-target: 34%;          /* try 26–38% to taste */
+    /* Small upward drift so it feels like the image scrolls up as it reduces */
+    --lift: 6%;                 /* try 4–8% */
+    /* Motion feel */
+    --speed: 520ms;
+    --ease: cubic-bezier(.25,.46,.45,.94);
   }
 
-  html,body{
-    margin:0;
-    background:#fff;
-    color:#000;
-    font-family:"Bodoni Moda",serif;
-  }
+  html,body{margin:0;background:#fff;color:#000}
+  .wrap{max-width:900px;margin:80px auto;padding:0 20px;display:flex;justify-content:center}
 
-  .wrap{
-    max-width:900px;
-    margin:80px auto;
-    padding:0 20px;
-    display:flex;
-    justify-content:center;
-  }
-
-  /* === Square case tile === */
+  /* Square card frame */
   .card{
     position:relative;
     width:100%;
-    aspect-ratio:1/1;
+    aspect-ratio:1 / 1;          /* always square */
     overflow:hidden;
-    background:#fff;
-    border-radius:10px;
+    background:#fff;             /* white reveal area for the text */
+    border-radius:12px;
   }
 
-  /* Image: anchored bottom, glides upward smoothly */
-  .card img{
-    position:absolute;
-    left:0; right:0; bottom:0;
-    width:100%;
-    height:115%;
-    object-fit:cover;
-    transform:translateY(0);
-    transition:transform var(--speed) var(--ease);
-    will-change:transform;
+  /* IMAGE LAYER
+     - Slightly taller so we can drift it upward
+     - Clipped from the BOTTOM to “reduce” the visible image on hover
+  */
+  .media{
+    position:absolute; inset:0;
+    /* start: show full image (no cut) */
+    --cut: 0%;
+    clip-path: inset(0 0 var(--cut) 0);
+    transition: clip-path var(--speed) var(--ease);
+    will-change: clip-path;
   }
 
-  /* Text overlay inside image */
-  .card .in-image-text{
-    position:absolute;
-    left:28px;
-    right:28px;
-    bottom:24px;
-    font-family:Didot,"Bodoni Moda",serif;
+  .media img{
+    position:absolute; inset:auto 0 0 0;      /* anchor to bottom */
+    width:100%; height:118%; object-fit:cover;
+    transform: translateY(0);                  /* small drift on hover */
+    transition: transform var(--speed) var(--ease);
+    backface-visibility:hidden;
+    user-select:none; -webkit-user-drag:none;
+  }
+
+  /* TEXT that’s revealed in the white area as image reduces.
+     - Black serif, no gradient, no shadow.
+     - Hidden until hover.
+  */
+  .in-image-text{
+    position:absolute; left:28px; right:28px; bottom:24px;
+    font-family: Didot, "Bodoni Moda", serif;
     font-weight:600;
-    font-size:clamp(1rem,1.3vw,1.15rem);
+    font-size:clamp(1rem,1.35vw,1.2rem);
     line-height:1.55;
-    color:#000;          /* black text */
-    opacity:0;
-    transform:translateY(10px);
-    transition:opacity 300ms ease, transform 300ms ease;
+    color:#000;                           /* pure black */
+    opacity:0; transform: translateY(10px);
+    transition: opacity 320ms ease, transform 320ms ease;
     pointer-events:none;
+    text-align:center;
   }
 
-  /* Hover: image scrolls up, text appears */
+  /* HOVER BEHAVIOR:
+     - Increase bottom cut (reduce image)
+     - Drift image up a touch so it feels like it scrolls up
+     - Fade in the black serif paragraph
+  */
   @media (hover:hover) and (pointer:fine){
-    .card:hover img{
-      transform:translateY(calc(-1 * var(--shift)));
-    }
-    .card:hover .in-image-text{
-      opacity:1;
-      transform:translateY(0);
-    }
+    .card:hover .media{ --cut: var(--cut-target); }
+    .card:hover .media img{ transform: translateY(calc(-1 * var(--lift))); }
+    .card:hover .in-image-text{ opacity:1; transform: translateY(0); }
   }
 
-  /* Touch fallback */
+  /* Touch fallback: tap to toggle */
   @media (hover:none){
-    .card[aria-pressed="true"] img{
-      transform:translateY(calc(-1 * var(--shift)));
-    }
-    .card[aria-pressed="true"] .in-image-text{
-      opacity:1;
-      transform:translateY(0);
-    }
+    .card[aria-pressed="true"] .media{ --cut: var(--cut-target); }
+    .card[aria-pressed="true"] .media img{ transform: translateY(calc(-1 * var(--lift))); }
+    .card[aria-pressed="true"] .in-image-text{ opacity:1; transform: none; }
   }
 
-  /* Accessibility: no animation for reduced motion users */
+  /* Accessibility: reduce motion */
   @media (prefers-reduced-motion:reduce){
-    .card img,.card .in-image-text{transition:none!important;}
+    .media, .media img, .in-image-text{ transition:none !important; }
   }
 </style>
 </head>
-
 <body>
   <main class="wrap">
     <figure class="card" id="caseCard" aria-pressed="false">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Marketing visuals setup">
+      <div class="media">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Case image">
+      </div>
+
+      <!-- Black serif paragraph appears as image reduces -->
       <figcaption class="in-image-text">
-        We craft strategic content that pairs creativity with precision — transforming stories into consistent, meaningful growth.
+        We shape considered marketing — aligning strategy, creative and production so brands grow with clarity, consistency, and measurable momentum.
       </figcaption>
     </figure>
   </main>
 
-  <!-- Tap-to-toggle for touch devices -->
+  <!-- Tap-to-toggle for phones -->
   <script>
     (function(){
-      const c = document.getElementById('caseCard');
-      if(!c) return;
+      const el = document.getElementById('caseCard');
+      if(!el) return;
       if (matchMedia('(hover:none)').matches){
-        c.addEventListener('click', () => {
-          c.setAttribute('aria-pressed', c.getAttribute('aria-pressed')==='true' ? 'false' : 'true');
+        el.addEventListener('click', () => {
+          el.setAttribute('aria-pressed', el.getAttribute('aria-pressed')==='true' ? 'false' : 'true');
         });
       }
     })();
   </script>
 </body>
 </html>
+
