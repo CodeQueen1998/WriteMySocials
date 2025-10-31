@@ -5,27 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Soulful brands, built with strategy.</title>
 
-  <!-- Typography: Playfair for headings, Poppins for UI, Didot primary (system) with Bodoni Moda fallback -->
+  <!-- Typography -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
   <style>
     :root{
-      --ui-text:#000;
-      --bg:#fff;
-      --caption-bg:#fff;
-      --caption-text:#000;
-      --square-max: 980px; /* clamp the square for big screens */
-      --img-shift: 10; /* % image moves up at peak hover */
+      --shift: 10%;          /* how far the image glides up on hover */
+      --square-max: 980px;   /* maximum square size on very large screens */
     }
 
     html,body{
-      margin:0;padding:0;background:var(--bg);color:var(--ui-text);
+      margin:0;padding:0;background:#fff;color:#000;
       font-family:'Playfair Display',serif;overflow-x:hidden;
-      text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;
+      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
     }
 
-    /* === MENU BUTTON === */
+    /* === MENU BUTTON / SOCIAL (unchanged) === */
     .menu-btn{
       position:fixed;top:18px;left:20px;z-index:3100;
       background:#fff;border:1px solid #000;color:#000;
@@ -34,105 +30,72 @@
       letter-spacing:.1em;cursor:pointer;transition:.3s;
     }
     .menu-btn:hover{background:#000;color:#fff}
-
-    /* === SOCIAL ICONS === */
-    .social-icons{
-      position:fixed;top:18px;right:25px;z-index:3100;
-      display:flex;gap:18px;
-    }
+    .social-icons{position:fixed;top:18px;right:25px;z-index:3100;display:flex;gap:18px;}
     .social-icons a{color:#000;font-size:1.2rem;transition:color .3s;}
     .social-icons a:hover{color:#ff1493}
-
-    /* === MENU BAR === */
-    .menu-bar{
-      position:fixed;top:0;left:0;right:0;z-index:3000;
-      background:#fff;border-bottom:1px solid rgba(0,0,0,.15);
-      transform:translateY(-100%);transition:transform .35s ease;
-    }
+    .menu-bar{position:fixed;top:0;left:0;right:0;z-index:3000;background:#fff;border-bottom:1px solid rgba(0,0,0,.15);transform:translateY(-100%);transition:transform .35s ease;}
     body.menu-open .menu-bar{transform:translateY(0)}
     .menu-inner{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;justify-content:center;}
     .image-menu{position:relative;width:min(300px,60vw);transform:scale(1.5) translateZ(0);transform-origin:top center;overflow:hidden;clip-path:inset(0 3% 0 3%);}
     .image-menu img{width:100%;display:block}
     .hot{position:absolute;top:0;bottom:0}
-    .hot.home{left:0;right:66.67%}
-    .hot.about{left:33.33%;right:33.34%}
-    .hot.services{left:66.66%;right:0}
+    .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
 
-    /* === PREMIUM HOVER CASE STUDY CARD === */
-    .case-wrap{
-      margin:110px auto 0;
-      max-width:var(--square-max);
-      padding:0 20px;
-    }
-
+    /* === PREMIUM, SMOOTH GLIDE CARD === */
+    .case-wrap{margin:110px auto 0;max-width:var(--square-max);padding:0 20px;}
     .case-card{
-      position:relative;
-      margin:0 auto;
-      width:100%;
-      aspect-ratio:1 / 1;           /* keeps it perfectly square */
-      overflow:hidden;
-      background:var(--bg);
-      border-radius:16px;
+      position:relative;margin:0 auto;width:100%;
+      aspect-ratio:1/1;overflow:hidden;background:#fff;border-radius:16px;
       box-shadow:0 10px 30px rgba(0,0,0,.06);
     }
 
-    .case-media{
-      position:absolute;inset:0;
-      will-change:transform;
-      transform:translate3d(0,0,0);
-      contain:layout style paint; /* performance hint */
-    }
-
+    .case-media{position:absolute;inset:0;will-change:transform;}
     .case-media img{
       position:absolute;left:0;right:0;bottom:0;top:auto;
-      width:100%;height:120%;            /* a bit taller so we can slide without exposing blank space */
-      object-fit:cover;
+      width:100%;height:115%;object-fit:cover; /* extra height so we never expose blank */
       transform:translate3d(0,0,0);
+      transition:transform 800ms cubic-bezier(.22,.61,.36,1);
       backface-visibility:hidden;
-      -webkit-user-drag:none; user-select:none;
-      image-rendering:optimizeQuality;
     }
 
-    /* Bottom caption panel (pure white, Didot in black) */
-    .caption{
-      position:absolute;left:0;right:0;bottom:0;
-      background:var(--caption-bg);
-      color:var(--caption-text);
-      padding:22px 24px;
-      font-family: Didot, "Bodoni Moda", serif;
-      font-size:clamp(1rem,1.4vw,1.25rem);
-      line-height:1.45;
-      text-align:center;
-      opacity:0;
-      transform:translateY(18px);
-      transition:opacity .5s ease, transform .5s ease;
-      border-top:1px solid rgba(0,0,0,.08);
-    }
-
-    /* show caption only on hover-capable devices */
+    /* Glide up on hover (no bounce), glide back on leave */
     @media (hover:hover) and (pointer:fine){
-      .case-card:hover .caption{
-        opacity:1; transform:translateY(0);
+      .case-card:hover .case-media img{
+        transform:translate3d(0, calc(-1 * var(--shift)), 0);
       }
     }
 
-    /* Reduced motion: no animation, just show caption on hover and keep image static */
-    @media (prefers-reduced-motion: reduce){
-      .case-media, .caption{transition:none !important}
+    /* Bottom caption: pure white, Didot black, fades in/out */
+    .caption{
+      position:absolute;left:0;right:0;bottom:0;
+      background:#fff;color:#000;border-top:1px solid rgba(0,0,0,.08);
+      padding:22px 24px;text-align:center;
+      font-family: Didot, "Bodoni Moda", serif;
+      font-size:clamp(1rem,1.4vw,1.25rem);line-height:1.45;
+      opacity:0;transform:translateY(16px);
+      transition:opacity 450ms ease, transform 450ms ease;
+    }
+    @media (hover:hover) and (pointer:fine){
+      .case-card:hover .caption{opacity:1;transform:translateY(0);}
+    }
+
+    /* Reduced motion: no animation */
+    @media (prefers-reduced-motion:reduce){
+      .case-media img, .caption{transition:none!important}
+      .case-card:hover .case-media img{transform:none}
       .case-card:hover .caption{opacity:1;transform:none}
     }
 
-    /* Tagline + contact (unchanged) */
+    /* Tagline + contact */
     .tagline{
       text-align:center;margin:40px auto 0;
       font-family:'Playfair Display',serif;
-      font-size:clamp(1.6rem,4vw,2.4rem);
-      font-weight:600;letter-spacing:.02em;
+      font-size:clamp(1.6rem,4vw,2.4rem);font-weight:600;letter-spacing:.02em;
       max-width:1100px;padding:0 20px;
     }
-    .contact-email{ text-align:center;margin-top:12px; font-family:'Poppins',sans-serif; }
-    .contact-email a{ color:#000;text-decoration:none;border-bottom:1px solid #000; transition:.3s; }
-    .contact-email a:hover{ color:#ff1493;border-color:#ff1493; }
+    .contact-email{text-align:center;margin-top:12px;font-family:'Poppins',sans-serif}
+    .contact-email a{color:#000;text-decoration:none;border-bottom:1px solid #000;transition:.3s;}
+    .contact-email a:hover{color:#ff1493;border-color:#ff1493;}
   </style>
 </head>
 <body>
@@ -155,15 +118,12 @@
     </div>
   </nav>
 
-  <!-- === PREMIUM INTERACTIVE CASE CARD === -->
+  <!-- === SMOOTH GLIDE CASE CARD === -->
   <main class="case-wrap">
-    <figure class="case-card" id="meshkiCard" aria-label="Case Study: Meshki">
+    <figure class="case-card" aria-label="Case Study">
       <div class="case-media">
-        <img
-          src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg"
-          alt="Creative team reviewing campaign on screen">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Creative team reviewing campaign on screen">
       </div>
-
       <figcaption class="caption">
         Crafting campaigns that turn stories into sales — where brand strategy meets emotional connection.
       </figcaption>
@@ -185,56 +145,6 @@
       btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
       document.addEventListener('click',e=>{if(e.target.matches('.hot'))setOpen(false)});
       document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
-    })();
-
-    /* === Premium springy hover for image ===
-       - Subtle, calm upward drift on hover (~10%).
-       - Smooth “settle” back with a spring when leaving.
-       - Works only on hover-capable, fine pointers. */
-    (function(){
-      const card = document.getElementById('meshkiCard');
-      if(!card) return;
-
-      const media = card.querySelector('.case-media');
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const hoverOk = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-      if(prefersReduced || !hoverOk) return;
-
-      let target = 0;       // 0 .. 1 (0 = rest, 1 = full hover)
-      let value = 0;        // current normalized position
-      let velocity = 0;
-      const stiffness = 0.14; // spring stiffness
-      const damping   = 0.10; // friction
-      const maxShiftPct = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--img-shift')) || 10;
-
-      let raf = null;
-
-      function animate(){
-        const force = (target - value) * stiffness;
-        velocity = (velocity + force) * (1 - damping);
-        value += velocity;
-
-        // Clamp tiny oscillations
-        if(Math.abs(target - value) < 0.001 && Math.abs(velocity) < 0.001){
-          value = target; velocity = 0; raf = null;
-        }else{
-          raf = requestAnimationFrame(animate);
-        }
-
-        // Map normalized value (0..1) to percentage shift
-        const y = - (maxShiftPct * value);
-        media.style.transform = `translate3d(0, ${y}%, 0)`;
-      }
-
-      card.addEventListener('mouseenter', ()=>{
-        target = 1;
-        if(!raf) raf = requestAnimationFrame(animate);
-      });
-
-      card.addEventListener('mouseleave', ()=>{
-        target = 0;
-        if(!raf) raf = requestAnimationFrame(animate);
-      });
     })();
   </script>
 </body>
