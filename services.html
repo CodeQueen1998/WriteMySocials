@@ -3,14 +3,18 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Write My Socials — Services</title>
+  <title>Soulful brands, built with strategy.</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
   <style>
-    html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
+    html,body{
+      margin:0;padding:0;background:#fff;color:#000;
+      font-family:'Playfair Display',serif;overflow-x:hidden;
+    }
 
+    /* === MENU BUTTON === */
     .menu-btn{
       position:fixed;top:18px;left:20px;z-index:3100;
       background:#fff;border:1px solid #000;color:#000;
@@ -20,13 +24,17 @@
     }
     .menu-btn:hover{background:#000;color:#fff}
 
+    /* === SOCIAL ICONS === */
     .social-icons{
       position:fixed;top:18px;right:25px;z-index:3100;
       display:flex;gap:18px;
     }
-    .social-icons a{color:#000;font-size:1.2rem;transition:color .3s}
+    .social-icons a{
+      color:#000;font-size:1.2rem;transition:color .3s;
+    }
     .social-icons a:hover{color:#ff1493}
 
+    /* === MENU BAR === */
     .menu-bar{
       position:fixed;top:0;left:0;right:0;z-index:3000;
       background:#fff;border-bottom:1px solid rgba(0,0,0,.15);
@@ -52,85 +60,31 @@
     .hot.about{left:33.33%;right:33.34%}
     .hot.services{left:66.66%;right:0}
 
+    /* === PAGE TAGLINE === */
+    .tagline{
+      text-align:center;margin-top:40vh;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.6rem,4vw,2.4rem);
+      font-weight:600;letter-spacing:.02em;
+    }
+
+    /* === EMAIL CONTACT === */
+    .contact-email{
+      text-align:center;margin-top:1.5rem;
+      font-family:'Poppins',sans-serif;
+      font-size:1rem;letter-spacing:.03em;
+    }
+    .contact-email a{
+      color:#000;text-decoration:none;border-bottom:1px solid #000;
+      transition:.3s;
+    }
+    .contact-email a:hover{color:#ff1493;border-color:#ff1493;}
+
     @media(max-width:600px){
       .menu-btn{top:14px;left:14px;}
       .social-icons{top:14px;right:16px;gap:14px;}
+      .tagline{margin-top:35vh;font-size:clamp(1.3rem,5vw,2rem);}
     }
-
-    /* ===== Page-specific styles (Services) ===== */
-    .hero{
-      padding:120px 24px 48px;
-      text-align:center;
-      background:
-        radial-gradient(800px 300px at 50% -50%, rgba(0,0,0,.06), transparent 60%);
-    }
-    .eyebrow{
-      font-family:'Poppins',sans-serif;
-      font-size:.8rem;letter-spacing:.25em;
-      display:inline-block;margin-bottom:10px;
-    }
-    h1{
-      font-weight:600;margin:0 0 10px;font-size:clamp(28px,5vw,46px);
-      line-height:1.1;
-    }
-    .sub{
-      font-family:'Poppins',sans-serif;
-      color:#333;max-width:760px;margin:0 auto;
-      font-size:clamp(14px,2.2vw,16px);
-    }
-
-    .wrap{max-width:1100px;margin:0 auto;padding:0 20px 96px}
-
-    .grid{
-      display:grid;gap:22px;margin-top:28px;
-      grid-template-columns:repeat(12,1fr);
-    }
-    .card{
-      grid-column:span 12;background:#fff;border:1px solid #000;
-      border-radius:18px;padding:22px 22px 18px;position:relative;
-      box-shadow:6px 6px 0 #000;transition:transform .2s ease, box-shadow .2s ease;
-    }
-    .card:hover{transform:translateY(-2px);box-shadow:8px 8px 0 #000}
-    @media(min-width:860px){ .card--half{grid-column:span 6} }
-
-    .card h2{
-      margin:2px 0 4px;font-size:clamp(20px,3.2vw,26px);
-    }
-    .tagline{
-      font-family:'Poppins',sans-serif;color:#444;margin:0 0 12px;
-      font-size:.95rem;
-    }
-    .meta{
-      font-family:'Poppins',sans-serif;font-size:.8rem;letter-spacing:.12em;
-      display:inline-block;background:#000;color:#fff;border-radius:999px;
-      padding:6px 10px;margin-bottom:12px;
-    }
-    .list{
-      font-family:'Poppins',sans-serif;color:#141414;
-      padding-left:18px;margin:10px 0 0;
-    }
-    .list li{margin:6px 0}
-    .foot{
-      margin-top:12px;font-family:'Poppins',sans-serif;font-size:.85rem;color:#333;
-    }
-
-    .note{
-      margin-top:26px;border:1px dashed #000;border-radius:14px;padding:14px 16px;
-      font-family:'Poppins',sans-serif;background:#fff;
-    }
-    .note i{margin-right:8px}
-
-    .cta{
-      margin-top:30px;display:flex;flex-wrap:wrap;gap:12px
-    }
-    .btn{
-      display:inline-flex;align-items:center;gap:10px;
-      font-family:'Poppins',sans-serif;font-size:.9rem;
-      border:1px solid #000;border-radius:999px;padding:10px 14px;
-      background:#fff;color:#000;text-decoration:none;transition:.25s;
-      box-shadow:4px 4px 0 #000;
-    }
-    .btn:hover{transform:translate(-1px,-1px);box-shadow:6px 6px 0 #000}
   </style>
 </head>
 
@@ -145,7 +99,7 @@
     <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
   </div>
 
-  <!-- Image-based navigation menu -->
+  <!-- Image-based navigation -->
   <nav class="menu-bar" id="menuBar">
     <div class="menu-inner">
       <div class="image-menu">
@@ -157,154 +111,14 @@
     </div>
   </nav>
 
-  <!-- ===== Page content ===== -->
-  <header class="hero" role="banner">
-    <span class="eyebrow">SERVICE MENU</span>
-    <h1>Transforming strategy + story into brands with soul</h1>
-    <p class="sub">No hype. No empty trends. We craft personality-driven strategy, content systems, and reputation work that feel distinctly yours and convert with integrity.</p>
-  </header>
-
-  <main class="wrap" id="content" role="main" aria-label="Services">
-    <!-- One-time strategy tiers -->
-    <section class="grid" aria-labelledby="oneTime">
-      <h2 id="oneTime" class="sr-only" style="position:absolute;left:-9999px">One-time Strategy Suites</h2>
-
-      <article class="card card--half">
-        <span class="meta">ONE-TIME</span>
-        <h2>Pre-Launch & Startup Strategy Suite™</h2>
-        <p class="tagline">Turn a concept into a market-ready brand with clarity and direction.</p>
-        <ul class="list">
-          <li>Pre-launch audit (concept, niche fit, audience)</li>
-          <li>Brand concept &amp; tone strategy</li>
-          <li>10 content ideas for pre-launch/waitlist</li>
-          <li>45-minute strategy session</li>
-          <li>Personalized 90-day action plan</li>
-        </ul>
-        <p class="foot">Optional add-ons: visual moodboard &amp; color guide; pre-launch ad copy set.</p>
-      </article>
-
-      <article class="card card--half">
-        <span class="meta">ONE-TIME</span>
-        <h2>Creator & Micro-Brand Foundations™</h2>
-        <p class="tagline">Build a credible identity and a consistent brand voice.</p>
-        <ul class="list">
-          <li>Mini brand audit (visuals, messaging, positioning)</li>
-          <li>Brand Voice &amp; Messaging Guide (10+ pages)</li>
-          <li>10 caption templates + content ideas</li>
-          <li>1-hour creative direction call</li>
-          <li>Basic SEO keyword setup &amp; a launch/welcome email template</li>
-        </ul>
-        <p class="foot">Optional add-ons: tagline &amp; slogan development; short-form video content strategy.</p>
-      </article>
-    </section>
-
-    <!-- Retainer tiers -->
-    <section class="grid" aria-labelledby="retainers" style="margin-top:8px">
-      <h2 id="retainers" class="sr-only" style="position:absolute;left:-9999px">Retainer Programs</h2>
-
-      <article class="card">
-        <span class="meta">MONTHLY</span>
-        <h2>Small Business Growth Catalyst™</h2>
-        <p class="tagline">Install a predictable growth engine across web, content, and funnel.</p>
-        <ul class="list">
-          <li>Full growth audit (web, content, funnel)</li>
-          <li>Conversion copywriting (website &amp; landing pages)</li>
-          <li>Automated email sequence (welcome / nurture / sales)</li>
-          <li>Monthly content roadmap + captions</li>
-          <li>Conversion optimization &amp; analytics report</li>
-        </ul>
-        <p class="foot">Optional add-ons: product launch funnel setup; influencer outreach strategy.</p>
-      </article>
-
-      <article class="card">
-        <span class="meta">MONTHLY</span>
-        <h2>Brand Momentum & Expansion Program™</h2>
-        <p class="tagline">Refine storytelling, strengthen SEO, and deepen retention.</p>
-        <ul class="list">
-          <li>Performance audit (SEO, retention, engagement)</li>
-          <li>Website &amp; communication optimization</li>
-          <li>Long-form content / thought leadership strategy</li>
-          <li>Email &amp; loyalty campaigns</li>
-          <li>PR and partnership outreach + bi-monthly performance reviews</li>
-        </ul>
-        <p class="foot">Optional add-ons: team content training; community/ambassador setup.</p>
-      </article>
-
-      <article class="card">
-        <span class="meta">PREMIUM RETAINER</span>
-        <h2>Global Brand Visibility Suite™ (Flagship)</h2>
-        <p class="tagline">Enterprise-level, multi-channel brand leadership and authority building.</p>
-        <ul class="list">
-          <li>Comprehensive brand audit (performance, PR, SEO, authority)</li>
-          <li>Global brand &amp; campaign strategy</li>
-          <li>Multi-channel content system (SEO, PR, influencer, email)</li>
-          <li>Ongoing PR, media, and influencer management</li>
-          <li>Executive creative direction, dashboards, and dedicated strategy lead</li>
-        </ul>
-        <p class="foot">Optional add-ons: international brand adaptation; product collaboration/licensing strategy.</p>
-      </article>
-    </section>
-
-    <!-- One-time support services -->
-    <section class="grid" aria-labelledby="support" style="margin-top:8px">
-      <h2 id="support" class="sr-only" style="position:absolute;left:-9999px">One-Time Support Services</h2>
-
-      <article class="card card--half">
-        <span class="meta">WORKSHOP</span>
-        <h2>Brand Voice Workshop (2 hrs)</h2>
-        <p class="tagline">Clarify tone, personality, and language so every touchpoint feels distinctly you.</p>
-      </article>
-
-      <article class="card card--half">
-        <span class="meta">BLUEPRINT</span>
-        <h2>Launch Strategy Blueprint</h2>
-        <p class="tagline">An end-to-end go-to-market roadmap for pre-launch or new brand rollouts.</p>
-      </article>
-
-      <article class="card card--half">
-        <span class="meta">PR</span>
-        <h2>Press Release &amp; Distribution</h2>
-        <p class="tagline">Professional press release drafting and targeted syndication.</p>
-      </article>
-
-      <article class="card card--half">
-        <span class="meta">AUDIT</span>
-        <h2>Content &amp; SEO Audit</h2>
-        <p class="tagline">Holistic content + search review with prioritized optimization recommendations.</p>
-      </article>
-
-      <article class="card card--half">
-        <span class="meta">CREATIVE</span>
-        <h2>Campaign Concept Deck</h2>
-        <p class="tagline">A visual + written creative deck to align teams and accelerate production.</p>
-      </article>
-
-      <article class="card card--half">
-        <span class="meta">TEAM</span>
-        <h2>Creative Team Training Add-On</h2>
-        <p class="tagline">Hands-on training to standardize brand tone and content quality across your crew.</p>
-      </article>
-    </section>
-
-    <!-- Note + CTA -->
-    <div class="note" role="note" aria-label="Pricing note">
-      <p><i class="fa-regular fa-circle-check" aria-hidden="true"></i>
-        Prices intentionally omitted on this page. Request a tailored quote based on scope, content volume, and markets.</p>
-      <div class="cta">
-        <a class="btn" href="mailto:siyana.deveaux@writemysocials.com.au?subject=Service%20Inquiry%20—%20Write%20My%20Socials">
-          <i class="fa-regular fa-envelope" aria-hidden="true"></i>
-          Enquire via Email
-        </a>
-        <a class="btn" href="https://www.instagram.com/writemysocials" target="_blank" rel="noopener">
-          <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-          Follow on Instagram
-        </a>
-      </div>
-    </div>
-  </main>
+  <!-- Minimal hero tagline -->
+  <h1 class="tagline">Soulful brands, built with strategy.</h1>
+  <p class="contact-email">
+    <a href="mailto:siyana.deveaux@writemysocials.com.au">siyana.deveaux@writemysocials.com.au</a>
+  </p>
 
   <script>
-    /* Menu open/close logic */
+    /* Menu toggle */
     (function(){
       const btn=document.querySelector('.menu-btn');
       const root=document.body;
@@ -319,5 +133,6 @@
   </script>
 </body>
 </html>
+
 
 
