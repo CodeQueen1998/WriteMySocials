@@ -3,115 +3,112 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Square Up-Reveal Card</title>
+<title>Case Study Tile – In-Image Hover Reveal</title>
 
-<!-- Elegant serif (fallback if Didot isn’t installed) -->
+<!-- Elegant serif font -->
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600&display=swap" rel="stylesheet"/>
 
 <style>
   :root{
-    /* How much of the image gets replaced by the text on hover */
-    --reveal: 28%;            /* try 22%–34% */
-    --speed: 520ms;           /* motion speed */
-    --ease: cubic-bezier(.25,.46,.45,.94);
+    --shift: 22%;                     /* how much the image scrolls up (less image shown) */
+    --speed: 480ms;                   /* smooth motion speed */
+    --ease: cubic-bezier(.25,.46,.45,.94); /* calm easing */
   }
 
-  html,body{margin:0;background:#fff;color:#000}
-  .wrap{max-width:900px;margin:80px auto;padding:0 20px}
+  html,body{
+    margin:0;
+    background:#fff;
+    color:#000;
+    font-family:"Bodoni Moda",serif;
+  }
 
-  /* Square card */
+  .wrap{
+    max-width:900px;
+    margin:80px auto;
+    padding:0 20px;
+    display:flex;
+    justify-content:center;
+  }
+
+  /* === Square case tile === */
   .card{
     position:relative;
     width:100%;
-    aspect-ratio:1/1;       /* always square */
+    aspect-ratio:1/1;
     overflow:hidden;
     background:#fff;
-    border-radius:12px;
+    border-radius:10px;
   }
 
-  /* IMAGE LAYER
-     - Anchored to bottom
-     - Slightly taller so it can glide UP without exposing empty space on top
-  */
-  .media{
-    position:absolute; inset:0;
-    overflow:hidden;
-  }
-  .media img{
-    position:absolute; left:0; right:0; bottom:0;
-    width:100%; height:115%; object-fit:cover;
-    transform: translateY(0);
-    transition: transform var(--speed) var(--ease);
-    will-change: transform;
+  /* Image: anchored bottom, glides upward smoothly */
+  .card img{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    width:100%;
+    height:115%;
+    object-fit:cover;
+    transform:translateY(0);
+    transition:transform var(--speed) var(--ease);
+    will-change:transform;
   }
 
-  /* TEXT PANEL (white, serif, black) that replaces the bottom portion */
-  .caption{
-    position:absolute; left:0; right:0; bottom:0;
-    height: var(--reveal);              /* exact height we reveal */
-    background:#fff;                    /* no gradient */
-    color:#000;                         /* pure black text */
-    display:flex; align-items:center; justify-content:center;
-    padding: 22px clamp(20px, 4vw, 28px);
-    transform: translateY(100%);        /* hidden below the card */
-    transition: transform var(--speed) var(--ease), opacity 240ms ease;
-    opacity: 0;
-    border-top: 1px solid rgba(0,0,0,.08);
-  }
-  .caption p{
-    margin:0;
-    font-family: Didot, "Bodoni Moda", serif;
+  /* Text overlay inside image */
+  .card .in-image-text{
+    position:absolute;
+    left:28px;
+    right:28px;
+    bottom:24px;
+    font-family:Didot,"Bodoni Moda",serif;
     font-weight:600;
-    font-size: clamp(0.95rem, 1.3vw, 1.15rem);
-    line-height: 1.55;
-    text-align:center;
+    font-size:clamp(1rem,1.3vw,1.15rem);
+    line-height:1.55;
+    color:#000;          /* black text */
+    opacity:0;
+    transform:translateY(10px);
+    transition:opacity 300ms ease, transform 300ms ease;
+    pointer-events:none;
   }
 
-  /* HOVER STATE:
-     - Image glides UP (so less of it is shown)
-     - White caption slides UP into view
-  */
+  /* Hover: image scrolls up, text appears */
   @media (hover:hover) and (pointer:fine){
-    .card:hover .media img{
-      transform: translateY(calc(-1 * var(--reveal)));
+    .card:hover img{
+      transform:translateY(calc(-1 * var(--shift)));
     }
-    .card:hover .caption{
-      transform: translateY(0);
-      opacity: 1;
+    .card:hover .in-image-text{
+      opacity:1;
+      transform:translateY(0);
     }
   }
 
-  /* Touch + reduced-motion fallbacks */
+  /* Touch fallback */
   @media (hover:none){
-    .card[aria-pressed="true"] .media img{
-      transform: translateY(calc(-1 * var(--reveal)));
+    .card[aria-pressed="true"] img{
+      transform:translateY(calc(-1 * var(--shift)));
     }
-    .card[aria-pressed="true"] .caption{
-      transform: translateY(0); opacity:1;
+    .card[aria-pressed="true"] .in-image-text{
+      opacity:1;
+      transform:translateY(0);
     }
   }
+
+  /* Accessibility: no animation for reduced motion users */
   @media (prefers-reduced-motion:reduce){
-    .media img, .caption{ transition:none !important; }
+    .card img,.card .in-image-text{transition:none!important;}
   }
 </style>
 </head>
+
 <body>
   <main class="wrap">
     <figure class="card" id="caseCard" aria-pressed="false">
-      <div class="media">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Campaign styling">
-      </div>
-
-      <!-- Serif black paragraph; appears as the image reduces -->
-      <figcaption class="caption">
-        <p>
-          We design calm, strategic marketing that blends creative direction, precise production, and clear distribution—elevating brands with measurable momentum.
-        </p>
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Marketing visuals setup">
+      <figcaption class="in-image-text">
+        We craft strategic content that pairs creativity with precision — transforming stories into consistent, meaningful growth.
       </figcaption>
     </figure>
   </main>
 
-  <!-- Tap-to-toggle for phones -->
+  <!-- Tap-to-toggle for touch devices -->
   <script>
     (function(){
       const c = document.getElementById('caseCard');
@@ -121,7 +118,4 @@
           c.setAttribute('aria-pressed', c.getAttribute('aria-pressed')==='true' ? 'false' : 'true');
         });
       }
-    })();
-  </script>
-</body>
-</html>
+    })
