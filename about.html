@@ -3,128 +3,156 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Square Case Tile — Reduce Image + Reveal Text (Refined Type)</title>
+<title>About — Write My Socials</title>
 
-<!-- Clean sans-serif similar to reference -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+<!-- Type: elegant serif for headings + crisp sans for body -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
 
 <style>
   :root{
-    /* How much of the image is hidden (from the bottom) on hover */
-    --cut-target: 34%;          /* try 28–36% to taste */
-    /* Small upward drift so it feels like the image scrolls up */
-    --lift: 6%;
-    /* Motion feel */
-    --speed: 520ms;
-    --ease: cubic-bezier(.25,.46,.45,.94);
+    --ink:#1b1b1b;
+    --soft:#f1ece7;      /* subtle warm panel tone (like the ref) */
+    --line:#2b2b2b;
+    --max: 1200px;
   }
 
-  html,body{
-    margin:0; background:#fff; color:#000;
-    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  }
-  .wrap{max-width:900px;margin:80px auto;padding:0 20px;display:flex;justify-content:center}
+  html,body{margin:0;background:#fff;color:var(--ink)}
+  body{font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
 
-  /* Square frame */
-  .card{
-    position:relative;
-    width:100%;
-    aspect-ratio:1 / 1;
-    overflow:hidden;
-    background:#fff;            /* white panel that appears as image reduces */
-    border-radius:12px;
+  /* Top strip like a refined banner */
+  .top-rule{
+    border-top: 4px solid var(--line);
+    background:#fff;
   }
 
-  /* IMAGE LAYER: clipped from bottom as we hover (reduces visible image) */
+  /* Main framed canvas */
+  .frame{
+    max-width:var(--max);
+    margin:24px auto 48px;
+    border:1px solid var(--line);
+    display:grid;
+    grid-template-columns: 1.1fr 1fr; /* image : text */
+    min-height: 72vh;
+  }
+
+  /* Left: full-bleed portrait */
   .media{
-    position:absolute; inset:0;
-    --cut: 0%;
-    clip-path: inset(0 0 var(--cut) 0);
-    transition: clip-path var(--speed) var(--ease);
-    will-change: clip-path;
+    position:relative;
+    overflow:hidden;
+    background:#ddd;
   }
   .media img{
-    position:absolute; inset:auto 0 0 0;   /* anchor to bottom */
-    width:100%; height:118%; object-fit:cover;
-    transform: translateY(0);               /* subtle scroll up */
-    transition: transform var(--speed) var(--ease);
-    backface-visibility:hidden;
-    user-select:none; -webkit-user-drag:none;
+    position:absolute; inset:0;
+    width:100%; height:100%; object-fit:cover;
   }
 
-  /* REVEALED TEXT (reference-like typography) */
-  .caption{
-    position:absolute; left:0; right:0; bottom:0;
-    padding: 22px clamp(20px, 4vw, 28px);
-    opacity:0; transform: translateY(14px);
-    transition: opacity 320ms ease, transform 320ms ease;
+  /* Right: text panel */
+  .panel{
+    background:var(--soft);
+    padding: clamp(24px,4vw,44px) clamp(22px,4vw,56px);
+    border-left:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
   }
 
-  .caption h3{
-    margin:0 0 10px 0;
-    font-size: 1rem;            /* matches the ref heading scale */
-    font-weight: 600;
-    letter-spacing: .03em;
-    text-transform: uppercase;
-    color:#000;
+  /* Copy */
+  h1{
+    font-family:"Playfair Display",serif;
+    font-weight:600;
+    font-size:clamp(1.8rem,4.5vw,3rem);
+    letter-spacing:.02em;
+    margin:.2em 0 .6em;
   }
-  .caption p{
-    margin:0;
-    font-size: 0.95rem;         /* compact body like the ref */
-    line-height: 1.6;
-    color:#000;
+  .role{
+    font-size:.95rem;
+    letter-spacing:.02em;
+    margin-bottom:1.1rem;
+    color:#222;
+  }
+  .copy{
+    line-height:1.8;
+    font-size:clamp(0.98rem,1.2vw,1.05rem);
+  }
+  .copy p{margin:0 0 1.1rem}
+
+  /* Signature */
+  .sign{
+    align-self:flex-end;
+    margin-top:clamp(24px,4vw,40px);
+    font-family:"Playfair Display",serif;
+    font-size: clamp(1.2rem,2.2vw,1.6rem);
+    font-style: italic;
+    letter-spacing:.02em;
   }
 
-  /* HOVER BEHAVIOUR */
-  @media (hover:hover) and (pointer:fine){
-    .card:hover .media{ --cut: var(--cut-target); }
-    .card:hover .media img{ transform: translateY(calc(-1 * var(--lift))); }
-    .card:hover .caption{ opacity:1; transform: translateY(0); }
+  /* Footer note (optional) */
+  .mini{
+    text-align:center;
+    font-size:.9rem;
+    opacity:.75;
+    margin: 8px 0 32px;
   }
 
-  /* Touch fallback: tap to toggle */
-  @media (hover:none){
-    .card[aria-pressed="true"] .media{ --cut: var(--cut-target); }
-    .card[aria-pressed="true"] .media img{ transform: translateY(calc(-1 * var(--lift))); }
-    .card[aria-pressed="true"] .caption{ opacity:1; transform:none; }
+  /* Responsive stack */
+  @media (max-width: 960px){
+    .frame{ grid-template-columns:1fr; }
+    .panel{ border-left:none; border-top:1px solid var(--line); }
+    .media{ height: 56vh; }
   }
-
-  /* Reduced motion */
-  @media (prefers-reduced-motion:reduce){
-    .media, .media img, .caption{ transition:none !important; }
+  @media (max-width: 600px){
+    .media{ height: 48vh; }
   }
 </style>
 </head>
 <body>
-  <main class="wrap">
-    <figure class="card" id="caseCard" aria-pressed="false">
-      <div class="media">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Creative campaign workspace">
+  <div class="top-rule"></div>
+
+  <main class="frame" role="main">
+    <!-- Left: your image -->
+    <figure class="media" aria-label="Portrait of Siyana">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-01%20at%2015.24.45.png" alt="Siyana — Write My Socials" />
+    </figure>
+
+    <!-- Right: copy -->
+    <section class="panel">
+      <div>
+        <h1>SIYANA</h1>
+        <div class="role">Founder & Director</div>
+
+        <div class="copy">
+          <p>
+            I’ve always believed the strongest brands are built where strategy meets story.
+            What began as a passion for thoughtful creative has grown into Write My Socials—an agile studio
+            helping founders turn personality and positioning into performance.
+          </p>
+
+          <p>
+            Today, I partner with startups, creators and scaling teams to build clarity,
+            consistency and conversion across their digital footprint—without losing the soul that makes them distinct.
+            Whether you’re validating an idea or optimizing a mature ecosystem, we architect the system and the story.
+          </p>
+
+          <p>
+            Our work spans pre-launch roadmaps and voice systems for emerging brands,
+            growth programs for small businesses, retention and SEO refinement for established teams,
+            and a flagship visibility suite for brands ready to scale authority across channels.
+            We also offer focused one-time strategy—launch blueprints, press and distribution, content & SEO audits,
+            and creative campaign decks—so you get exactly the leverage you need, when you need it.
+          </p>
+
+          <p>
+            The through-line is simple: rigorous audits, clear messaging, conversion-ready copy, and a content engine
+            you can sustain. The result? Brands that connect deeply and scale confidently. <!-- Services sourced from your 2025 Service Menu PDF. -->
+          </p>
+        </div>
       </div>
 
-      <!-- Reference-style heading + paragraph; no brand names -->
-      <figcaption class="caption">
-        <h3>User Generated Content</h3>
-        <p>
-          We planned and produced a creator-led shoot to drive social proof at scale.
-          The approach combined content strategy, direction and agile production,
-          resulting in highly shareable assets that strengthened awareness and conversion.
-        </p>
-      </figcaption>
-    </figure>
+      <div class="sign">xo, Siyana</div>
+    </section>
   </main>
 
-  <!-- Tap-to-toggle for phones -->
-  <script>
-    (function(){
-      const el = document.getElementById('caseCard');
-      if(!el) return;
-      if (matchMedia('(hover:none)').matches){
-        el.addEventListener('click', () => {
-          el.setAttribute('aria-pressed', el.getAttribute('aria-pressed')==='true' ? 'false' : 'true');
-        });
-      }
-    })();
-  </script>
+  <p class="mini">Write My Socials — Strategy • Story • Conversion</p>
 </body>
 </html>
+
