@@ -239,13 +239,15 @@
 
     /* ========= NEW OVERRIDES (ONLY for the bottom Chelsea image) ========= */
     .corner-showcase{
-      aspect-ratio: 1 / 1; overflow: hidden; border-radius: 12px;
+      aspect-ratio: 1 / 1;             /* force a perfect square */
+      overflow: hidden;
+      border-radius: 12px;
     }
     .corner-showcase img{
-      position:absolute; inset:auto 0 0 0;
+      position:absolute; inset:auto 0 0 0; /* anchor to bottom */
       width:100%; height:118%; object-fit:cover;
-      clip-path: inset(0 0 var(--cut, 0%) 0);
-      transform: translateY(0);
+      clip-path: inset(0 0 var(--cut, 0%) 0);   /* dynamic cut from bottom */
+      transform: translateY(0);                 /* subtle upward drift on hover */
       transition:
         clip-path 520ms cubic-bezier(.25,.46,.45,.94),
         transform 520ms cubic-bezier(.25,.46,.45,.94);
@@ -276,6 +278,11 @@
       .corner-showcase img, .corner-showcase .born-note{
         transition: none !important;
       }
+    }
+    /* Fallback for very old browsers without aspect-ratio support */
+    @supports not (aspect-ratio: 1 / 1){
+      .corner-showcase::before{content:"";display:block;padding-top:100%;}
+      .corner-showcase img{position:absolute;left:0;right:0;bottom:0;}
     }
     /* ========= END NEW OVERRIDES ========= */
   </style>
@@ -484,5 +491,6 @@
   </script>
 </body>
 </html>
+
 
 
