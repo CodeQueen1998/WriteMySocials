@@ -236,53 +236,38 @@
     }
     /* ======================= END ADDITION ======================= */
 
-    /* ==================== ADDED: scoped styles for the square tile ==================== */
-    :root{
-      --tile-shift: 22%;
-      --tile-speed: 480ms;
-      --tile-ease: cubic-bezier(.25,.46,.45,.94);
+    /* ========= NEW OVERRIDES (ONLY for the bottom Chelsea image) ========= */
+    /* Make the bottom showcase square and ready for hover reveal */
+    .corner-showcase{ aspect-ratio: 1 / 1; overflow: hidden; border-radius: 12px; }
+    .corner-showcase img{
+      position:absolute; left:0; right:0; bottom:0;
+      width:100%; height:115%; object-fit:cover;
+      transform:translateY(0);
+      transition:transform 480ms cubic-bezier(.25,.46,.45,.94);
+      will-change:transform;
     }
-    .wms-wrap { max-width: 900px; margin: 0 auto; padding: 0 20px; }
-    .tile {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1 / 1; /* square */
-      overflow: hidden;
-      background: #fff;
-      border-radius: 12px;
-    }
-    .tile img {
-      position: absolute; left:0; right:0; bottom:0;
-      width: 100%; height: 115%; object-fit: cover;
-      transform: translateY(0);
-      transition: transform var(--tile-speed) var(--tile-ease);
-      will-change: transform;
-      display: block;
-    }
-    .tile .in-image-text {
-      position: absolute; left: 28px; right: 28px; bottom: 24px;
-      font-family: Didot, "Bodoni Moda", serif;
-      font-weight: 600;
-      font-size: clamp(1rem, 1.3vw, 1.15rem);
-      line-height: 1.55;
-      color: #000;          /* black */
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 300ms ease, transform 300ms ease;
-      pointer-events: none;
-      text-align: center;
+    /* Turn the "Founded in Chelsea, London" into the in-image text on hover */
+    .corner-showcase .born-note{
+      position:absolute; left:18px; right:18px; bottom:16px;
+      margin:0; background:transparent; border-radius:0; transform:none;
+      font-family:'Playfair Display', serif;  /* small black serif */
+      font-weight:600;
+      font-size:clamp(.9rem,1.1vw,1.05rem);
+      letter-spacing:.02em;
+      color:#000; text-align:center;
+      opacity:0; transform:translateY(8px);
+      transition:opacity 300ms ease, transform 300ms ease;
+      pointer-events:none;
     }
     @media (hover:hover) and (pointer:fine){
-      .tile:hover img { transform: translateY(calc(-1 * var(--tile-shift))); }
-      .tile:hover .in-image-text { opacity: 1; transform: translateY(0); }
+      .corner-showcase:hover img{ transform:translateY(-22%); }
+      .corner-showcase:hover .born-note{ opacity:1; transform:translateY(0); }
     }
-    @media (prefers-reduced-motion: reduce){
-      .tile img, .tile .in-image-text { transition: none !important; }
+    @media (prefers-reduced-motion:reduce){
+      .corner-showcase img, .corner-showcase .born-note{ transition:none !important; }
     }
-    /* ================== END scoped styles for the square tile ================== */
+    /* ========= END NEW OVERRIDES ========= */
   </style>
-  <!-- ADDED: font for the tile text (matches your provided snippet) -->
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600&display=swap" rel="stylesheet" />
 </head>
 
 <body class="preload">
@@ -356,21 +341,11 @@
       “WriteMySocials brings brands to life through creating quality, personality driven strategies that connect, convert and stay true to their voice. We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.”
     </section>
 
+    <!-- Bottom showcase: unchanged HTML order, now interactive via CSS overrides -->
     <div class="corner-showcase reveal">
       <p class="born-note" aria-label="origin">Founded in Chelsea, London</p>
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="Project showcase">
     </div>
-
-    <!-- ================= ADDED: Your Square Case Tile (no other changes) ================= -->
-    <section class="wms-wrap reveal" aria-label="case tile">
-      <figure class="tile">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Case image">
-        <div class="in-image-text">
-          We build marketing that feels considered — pairing strategy, creative and production so brands grow with clarity and consistency.
-        </div>
-      </figure>
-    </section>
-    <!-- ================= END added tile ================= -->
   </div>
 
   <div class="bottom-tagline" aria-hidden="true">
@@ -477,7 +452,6 @@
       if (img.complete) removeWhite(); else img.addEventListener('load', removeWhite);
     })();
   </script>
-  <!-- keeps your images unchanged; adds only the new square tile above -->
 </body>
 </html>
 
