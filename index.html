@@ -235,6 +235,45 @@
       }
     }
     /* ======================= END ADDITION ======================= */
+
+    /* ========== ADDED: tiny, scoped CSS for the square in-image hover tile ========== */
+    .wms-tile{
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;         /* square */
+      overflow: hidden;
+      border-radius: 12px;
+      background: #fff;
+    }
+    .wms-tile img{
+      position: absolute; left:0; right:0; bottom:0;
+      width: 100%; height: 115%; object-fit: cover;
+      transform: translateY(0);
+      transition: transform 480ms cubic-bezier(.25,.46,.45,.94);
+      will-change: transform;
+      display: block;
+    }
+    .wms-intext{
+      position: absolute; left: 18px; right: 18px; bottom: 16px;
+      font-family: 'Playfair Display', serif;  /* uses your already-loaded serif */
+      font-weight: 600;
+      font-size: clamp(.95rem, 1.3vw, 1.15rem);
+      line-height: 1.55;
+      color: #000;                /* pure black */
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 300ms ease, transform 300ms ease;
+      pointer-events: none;
+      text-align: center;
+    }
+    @media (hover:hover) and (pointer:fine){
+      .wms-tile:hover img{ transform: translateY(-22%); }  /* see a bit less image */
+      .wms-tile:hover .wms-intext{ opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .wms-tile img, .wms-intext{ transition: none !important; }
+    }
+    /* ========== END scoped CSS ========== */
   </style>
 </head>
 
@@ -311,7 +350,16 @@
 
     <div class="corner-showcase reveal">
       <p class="born-note" aria-label="origin">Founded in Chelsea, London</p>
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="Project showcase">
+
+      <!-- ===== REPLACED: static <img> with the square in-image hover tile ===== -->
+      <figure class="wms-tile" aria-label="Showcase tile">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Showcase image">
+        <div class="wms-intext">
+          We build thoughtful, strategy-led content that feels human — turning creative ideas into results you can measure.
+        </div>
+      </figure>
+      <!-- ===== END replacement ===== -->
+
     </div>
   </div>
 
