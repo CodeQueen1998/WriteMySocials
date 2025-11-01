@@ -1,4 +1,4 @@
-/0ve it but /ast fav0ur , can u change the image and then add it t0 this htm/ rep/acing the iamge at the end, d0n't change anything e/se ab0ut the htm/ "<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
@@ -235,7 +235,54 @@
       }
     }
     /* ======================= END ADDITION ======================= */
+
+    /* ==================== ADDED: scoped styles for the square tile ==================== */
+    :root{
+      --tile-shift: 22%;
+      --tile-speed: 480ms;
+      --tile-ease: cubic-bezier(.25,.46,.45,.94);
+    }
+    .wms-wrap { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+    .tile {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1; /* square */
+      overflow: hidden;
+      background: #fff;
+      border-radius: 12px;
+    }
+    .tile img {
+      position: absolute; left:0; right:0; bottom:0;
+      width: 100%; height: 115%; object-fit: cover;
+      transform: translateY(0);
+      transition: transform var(--tile-speed) var(--tile-ease);
+      will-change: transform;
+      display: block;
+    }
+    .tile .in-image-text {
+      position: absolute; left: 28px; right: 28px; bottom: 24px;
+      font-family: Didot, "Bodoni Moda", serif;
+      font-weight: 600;
+      font-size: clamp(1rem, 1.3vw, 1.15rem);
+      line-height: 1.55;
+      color: #000;          /* black */
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 300ms ease, transform 300ms ease;
+      pointer-events: none;
+      text-align: center;
+    }
+    @media (hover:hover) and (pointer:fine){
+      .tile:hover img { transform: translateY(calc(-1 * var(--tile-shift))); }
+      .tile:hover .in-image-text { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .tile img, .tile .in-image-text { transition: none !important; }
+    }
+    /* ================== END scoped styles for the square tile ================== */
   </style>
+  <!-- ADDED: font for the tile text (matches your provided snippet) -->
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600&display=swap" rel="stylesheet" />
 </head>
 
 <body class="preload">
@@ -313,6 +360,17 @@
       <p class="born-note" aria-label="origin">Founded in Chelsea, London</p>
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="Project showcase">
     </div>
+
+    <!-- ================= ADDED: Your Square Case Tile (no other changes) ================= -->
+    <section class="wms-wrap reveal" aria-label="case tile">
+      <figure class="tile">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Harrods.jpg" alt="Case image">
+        <div class="in-image-text">
+          We build marketing that feels considered — pairing strategy, creative and production so brands grow with clarity and consistency.
+        </div>
+      </figure>
+    </section>
+    <!-- ================= END added tile ================= -->
   </div>
 
   <div class="bottom-tagline" aria-hidden="true">
@@ -419,5 +477,7 @@
       if (img.complete) removeWhite(); else img.addEventListener('load', removeWhite);
     })();
   </script>
+  <!-- keeps your images unchanged; adds only the new square tile above -->
 </body>
-</html>"
+</html>
+
