@@ -14,6 +14,7 @@
       --menu-scale:1.5;
       --menu-crop-left:3%;
       --menu-crop-right:3%;
+      --cut-lift:6%; /* for the bottom image hover */
     }
 
     html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
@@ -50,7 +51,7 @@
     }
     @media(max-width:960px){.hero{grid-template-columns:1fr;margin-top:110px}}
 
-    /* Circular marquee position on desktop (unchanged) */
+    /* Circular marquee */
     .circle-wrap{justify-self:start; position:relative; top:2px; left:2cm;}
     .circle-wrap svg{width:200px;height:auto;display:block}
     .circle-wrap text{font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;fill:#000}
@@ -237,34 +238,44 @@
     /* ======================= END ADDITION ======================= */
 
     /* ========= NEW OVERRIDES (ONLY for the bottom Chelsea image) ========= */
-    /* Make the bottom showcase square and ready for hover reveal */
-    .corner-showcase{ aspect-ratio: 1 / 1; overflow: hidden; border-radius: 12px; }
-    .corner-showcase img{
-      position:absolute; left:0; right:0; bottom:0;
-      width:100%; height:115%; object-fit:cover;
-      transform:translateY(0);
-      transition:transform 480ms cubic-bezier(.25,.46,.45,.94);
-      will-change:transform;
+    .corner-showcase{
+      aspect-ratio: 1 / 1; overflow: hidden; border-radius: 12px;
     }
-    /* Turn the "Founded in Chelsea, London" into the in-image text on hover */
+    .corner-showcase img{
+      position:absolute; inset:auto 0 0 0;
+      width:100%; height:118%; object-fit:cover;
+      clip-path: inset(0 0 var(--cut, 0%) 0);
+      transform: translateY(0);
+      transition:
+        clip-path 520ms cubic-bezier(.25,.46,.45,.94),
+        transform 520ms cubic-bezier(.25,.46,.45,.94);
+      will-change: clip-path, transform;
+    }
     .corner-showcase .born-note{
-      position:absolute; left:18px; right:18px; bottom:16px;
-      margin:0; background:transparent; border-radius:0; transform:none;
+      position:absolute; left:22px; right:22px; bottom:20px;
+      margin:0; background:transparent; border-radius:0;
+      text-align:center;
       font-family:'Playfair Display', serif;  /* small black serif */
       font-weight:600;
       font-size:clamp(.9rem,1.1vw,1.05rem);
-      letter-spacing:.02em;
-      color:#000; text-align:center;
-      opacity:0; transform:translateY(8px);
-      transition:opacity 300ms ease, transform 300ms ease;
-      pointer-events:none;
+      line-height:1.55; letter-spacing:.02em; color:#000;
+      opacity:0; transform:translateY(12px);
+      transition: opacity 320ms ease, transform 320ms ease;
+      pointer-events:none; z-index:2;
     }
     @media (hover:hover) and (pointer:fine){
-      .corner-showcase:hover img{ transform:translateY(-22%); }
-      .corner-showcase:hover .born-note{ opacity:1; transform:translateY(0); }
+      .corner-showcase:hover img{
+        clip-path: inset(0 0 var(--cut-target, 34%) 0);
+        transform: translateY(calc(-1 * var(--cut-lift)));
+      }
+      .corner-showcase:hover .born-note{
+        opacity:1; transform: translateY(0);
+      }
     }
-    @media (prefers-reduced-motion:reduce){
-      .corner-showcase img, .corner-showcase .born-note{ transition:none !important; }
+    @media (prefers-reduced-motion: reduce){
+      .corner-showcase img, .corner-showcase .born-note{
+        transition: none !important;
+      }
     }
     /* ========= END NEW OVERRIDES ========= */
   </style>
@@ -341,7 +352,6 @@
       “WriteMySocials brings brands to life through creating quality, personality driven strategies that connect, convert and stay true to their voice. We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.”
     </section>
 
-    <!-- Bottom showcase: unchanged HTML order, now interactive via CSS overrides -->
     <div class="corner-showcase reveal">
       <p class="born-note" aria-label="origin">Founded in Chelsea, London</p>
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="Project showcase">
@@ -450,6 +460,26 @@
 
       img.crossOrigin = 'anonymous';
       if (img.complete) removeWhite(); else img.addEventListener('load', removeWhite);
+    })();
+
+    /* === Set crop amount to exactly reveal caption height === */
+    (function(){
+      const card = document.querySelector('.corner-showcase');
+      if(!card) return;
+      const img  = card.querySelector('img');
+      const cap  = card.querySelector('.born-note');
+
+      function updateCutTarget(){
+        if(!cap || !card) return;
+        const cardH = card.clientHeight || img.clientHeight || 1;
+        const captionH = cap.offsetHeight + 20;  // padding allowance
+        const pct = Math.min(50, Math.max(12, Math.round((captionH / cardH) * 100)));
+        card.style.setProperty('--cut-target', pct + '%');
+      }
+
+      window.addEventListener('load', updateCutTarget);
+      window.addEventListener('resize', updateCutTarget);
+      setTimeout(updateCutTarget, 300);
     })();
   </script>
 </body>
