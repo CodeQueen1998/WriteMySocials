@@ -103,12 +103,13 @@
 
     .mission{
       max-width:900px;margin:0 auto;margin-top:calc(var(--gap) - 2cm);margin-bottom:var(--gap);
-      padding:0 20px;text-align:center;line-height:1.9;
+      padding:0 20px;text-align:center;font-family:'Poppins',sans-serif;line-height:1.9;
       color:#111;font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;background:transparent;
-      font-family:'Playfair Display',serif; /* CHANGED: match site writing */
+      /* Make this section match the main writing font */
+      font-family:'Playfair Display',serif; /* added */
     }
 
-    /* NEW: Big stack line with small arrows (capitalized) */
+    /* Big stack line (arrows inline between words) */
     .mission .big-stack{
       display:block;
       font-family:'Playfair Display',serif;
@@ -119,14 +120,15 @@
       margin-bottom:18px;
       color:#000;
     }
-    /* NEW: arrow style used BETWEEN WORDS ONLY (doesn't clash with .arrow buttons) */
-    .mission .big-stack .arrow-word{
-      display:inline;
-      position:static;
-      font:inherit;
-      margin:0 .25em;
-      line-height:inherit;
+    .mission .big-stack .arrow{
+      /* ensure these don't pick up the absolute positioning from .arrow buttons */
+      position:static;      /* added */
+      display:inline;       /* added */
+      font:inherit;         /* added */
+      line-height:inherit;  /* added */
       vertical-align:baseline;
+      font-size:.7em;
+      margin:0 .25em;
       color:#000;
     }
     .mission p{max-width:70ch;margin:.7rem auto}
@@ -134,7 +136,7 @@
 
     /* Caption above the image (Playdot-style) */
     .corner-showcase{position:relative;width:min(360px,70vw);margin:0 auto}
-    .corner-showcase img{width:100%;height:auto;border-radius:12px;display:block}
+    .corner-showcase img{width:100%;height:auto;border-radius:0;display:block} /* border-radius set to 0 (square) */
     .born-note{
       position:static;
       transform:none;
@@ -275,7 +277,7 @@
     .corner-showcase{
       aspect-ratio: 1 / 1;
       overflow: hidden;
-      border-radius: 0; /* CHANGED: square corners */
+      border-radius: 0; /* square corners */
     }
     .corner-showcase img{
       position:absolute; inset:auto 0 0 0;
@@ -286,7 +288,7 @@
         clip-path 520ms cubic-bezier(.25,.46,.45,.94),
         transform 520ms cubic-bezier(.25,.46,.45,.94);
       will-change: clip-path, transform;
-      border-radius: 0; /* CHANGED: square corners */
+      border-radius: 0; /* square corners */
     }
     .corner-showcase .born-note{
       position:absolute; left:22px; right:22px; bottom:20px;
@@ -390,7 +392,7 @@
     <!-- UPDATED: New description replaces the old quote -->
     <section class="mission reveal">
       <span class="big-stack">
-        Analysis <span class="arrow-word">→</span> Audit <span class="arrow-word">→</span> Strategy <span class="arrow-word">→</span> Execution
+        Analysis <span class="arrow">→</span> Audit <span class="arrow">→</span> Strategy <span class="arrow">→</span> Execution
       </span>
       <p>We are a strategy-first agency that treats your business like an ecosystem — every part connected, every decision intentional. Through in-depth analysis, audits, and carefully crafted strategies, we build frameworks that lead to real, measurable results. We don’t believe in one size fits all solutions; instead, we customise every approach to reflect your unique goals, audience, and brand personality. Our focus is on creating strategies that not only work, but work for you.</p>
       <p><em>We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.</em></p>
@@ -406,7 +408,7 @@
     <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
   </div>
 
-  <!-- CTA POPUP: button and modal (unchanged structure) -->
+  <!-- CTA POPUP: button and modal -->
   <button class="cta-fab" id="ctaFab" aria-label="Open contact form">♡ Let's build your strategy ♡</button>
   <div class="cta-modal" id="ctaModal" aria-hidden="true" role="dialog" aria-labelledby="ctaTitle">
     <div class="cta-dialog">
@@ -587,6 +589,5 @@
   </script>
 </body>
 </html>
-
 
 
