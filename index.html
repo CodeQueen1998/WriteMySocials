@@ -103,8 +103,9 @@
 
     .mission{
       max-width:900px;margin:0 auto;margin-top:calc(var(--gap) - 2cm);margin-bottom:var(--gap);
-      padding:0 20px;text-align:center;font-family:'Poppins',sans-serif;line-height:1.9;
+      padding:0 20px;text-align:center;line-height:1.9;
       color:#111;font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;background:transparent;
+      font-family:'Playfair Display',serif; /* CHANGED: match site writing */
     }
 
     /* NEW: Big stack line with small arrows (capitalized) */
@@ -118,10 +119,14 @@
       margin-bottom:18px;
       color:#000;
     }
-    .mission .big-stack .arrow{
-      font-size:.7em; /* small black arrows */
-      vertical-align:baseline;
+    /* NEW: arrow style used BETWEEN WORDS ONLY (doesn't clash with .arrow buttons) */
+    .mission .big-stack .arrow-word{
+      display:inline;
+      position:static;
+      font:inherit;
       margin:0 .25em;
+      line-height:inherit;
+      vertical-align:baseline;
       color:#000;
     }
     .mission p{max-width:70ch;margin:.7rem auto}
@@ -270,7 +275,7 @@
     .corner-showcase{
       aspect-ratio: 1 / 1;
       overflow: hidden;
-      border-radius: 12px;
+      border-radius: 0; /* CHANGED: square corners */
     }
     .corner-showcase img{
       position:absolute; inset:auto 0 0 0;
@@ -281,6 +286,7 @@
         clip-path 520ms cubic-bezier(.25,.46,.45,.94),
         transform 520ms cubic-bezier(.25,.46,.45,.94);
       will-change: clip-path, transform;
+      border-radius: 0; /* CHANGED: square corners */
     }
     .corner-showcase .born-note{
       position:absolute; left:22px; right:22px; bottom:20px;
@@ -384,7 +390,7 @@
     <!-- UPDATED: New description replaces the old quote -->
     <section class="mission reveal">
       <span class="big-stack">
-        Analysis <span class="arrow">→</span> Audit <span class="arrow">→</span> Strategy <span class="arrow">→</span> Execution
+        Analysis <span class="arrow-word">→</span> Audit <span class="arrow-word">→</span> Strategy <span class="arrow-word">→</span> Execution
       </span>
       <p>We are a strategy-first agency that treats your business like an ecosystem — every part connected, every decision intentional. Through in-depth analysis, audits, and carefully crafted strategies, we build frameworks that lead to real, measurable results. We don’t believe in one size fits all solutions; instead, we customise every approach to reflect your unique goals, audience, and brand personality. Our focus is on creating strategies that not only work, but work for you.</p>
       <p><em>We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.</em></p>
@@ -400,12 +406,12 @@
     <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
   </div>
 
-  <!-- CTA POPUP: button and modal (only new UI besides description) -->
-  <button class="cta-fab" id="ctaFab" aria-label="Open contact form">Get in touch</button>
+  <!-- CTA POPUP: button and modal (unchanged structure) -->
+  <button class="cta-fab" id="ctaFab" aria-label="Open contact form">♡ Let's build your strategy ♡</button>
   <div class="cta-modal" id="ctaModal" aria-hidden="true" role="dialog" aria-labelledby="ctaTitle">
     <div class="cta-dialog">
       <button class="cta-close" id="ctaClose" aria-label="Close contact form">&times;</button>
-      <h3 id="ctaTitle">Let's build your strategy</h3>
+      <h3 id="ctaTitle">♡ Let's build your strategy ♡</h3>
       <p>Tell us about your business and how we can help. We’ll be in touch shortly.</p>
       <form class="cta-form" id="ctaForm" method="POST" action="https://formspree.io/f/your-id-here">
         <!-- Replace the action with your real form endpoint -->
@@ -429,7 +435,7 @@
             <input type="tel" id="cf_phone" name="phone" placeholder="+44 7xxx xxx xxx" required>
           </div>
         </div>
-        <label for="cf_notes">What do you need help with?</label>
+        <label for="cf_notes">Tell us about your business goals</label>
         <textarea id="cf_notes" name="notes" placeholder="e.g., Social strategy, content calendar, brand voice…"></textarea>
         <button class="cta-submit" type="submit">Send</button>
       </form>
@@ -581,5 +587,6 @@
   </script>
 </body>
 </html>
+
 
 
