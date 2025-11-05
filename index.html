@@ -105,11 +105,9 @@
       max-width:900px;margin:0 auto;margin-top:calc(var(--gap) - 2cm);margin-bottom:var(--gap);
       padding:0 20px;text-align:center;font-family:'Poppins',sans-serif;line-height:1.9;
       color:#111;font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;background:transparent;
-      /* Make this section match the main writing font */
-      font-family:'Playfair Display',serif; /* added */
     }
 
-    /* Big stack line (arrows inline between words) */
+    /* NEW: Big stack line with small arrows (capitalized) */
     .mission .big-stack{
       display:block;
       font-family:'Playfair Display',serif;
@@ -121,13 +119,8 @@
       color:#000;
     }
     .mission .big-stack .arrow{
-      /* ensure these don't pick up the absolute positioning from .arrow buttons */
-      position:static;      /* added */
-      display:inline;       /* added */
-      font:inherit;         /* added */
-      line-height:inherit;  /* added */
+      font-size:.7em; /* small black arrows */
       vertical-align:baseline;
-      font-size:.7em;
       margin:0 .25em;
       color:#000;
     }
@@ -136,7 +129,7 @@
 
     /* Caption above the image (Playdot-style) */
     .corner-showcase{position:relative;width:min(360px,70vw);margin:0 auto}
-    .corner-showcase img{width:100%;height:auto;border-radius:0;display:block} /* border-radius set to 0 (square) */
+    .corner-showcase img{width:100%;height:auto;border-radius:12px;display:block}
     .born-note{
       position:static;
       transform:none;
@@ -277,7 +270,7 @@
     .corner-showcase{
       aspect-ratio: 1 / 1;
       overflow: hidden;
-      border-radius: 0; /* square corners */
+      border-radius: 12px;
     }
     .corner-showcase img{
       position:absolute; inset:auto 0 0 0;
@@ -288,7 +281,6 @@
         clip-path 520ms cubic-bezier(.25,.46,.45,.94),
         transform 520ms cubic-bezier(.25,.46,.45,.94);
       will-change: clip-path, transform;
-      border-radius: 0; /* square corners */
     }
     .corner-showcase .born-note{
       position:absolute; left:22px; right:22px; bottom:20px;
@@ -400,7 +392,8 @@
 
     <div class="corner-showcase reveal">
       <p class="born-note" aria-label="origin">Founded in Chelsea, London</p>
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="Project showcase">
+      <!-- Swapped image URL per your request -->
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Untitled%20design.jpg" alt="Project showcase">
     </div>
   </div>
 
@@ -408,13 +401,22 @@
     <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
   </div>
 
-  <!-- CTA POPUP: button and modal -->
-  <button class="cta-fab" id="ctaFab" aria-label="Open contact form">♡ Let's build your strategy ♡</button>
+  <!-- CTA POPUP: button and modal (kept structure; only text + payment added) -->
+  <button class="cta-fab" id="ctaFab" aria-label="Open contact form">Book the Brand & Marketing Deep Dive Audit™</button>
   <div class="cta-modal" id="ctaModal" aria-hidden="true" role="dialog" aria-labelledby="ctaTitle">
     <div class="cta-dialog">
       <button class="cta-close" id="ctaClose" aria-label="Close contact form">&times;</button>
-      <h3 id="ctaTitle">♡ Let's build your strategy ♡</h3>
+      <h3 id="ctaTitle">Book the Brand & Marketing Deep Dive Audit™</h3>
       <p>Tell us about your business and how we can help. We’ll be in touch shortly.</p>
+
+      <!-- NEW: Stripe payment button (placeholder link; replace with your real Stripe Payment Link) -->
+      <div style="margin: 6px 0 12px;">
+        <button class="cta-submit" id="payNowBtn" type="button" aria-label="Pay securely with Stripe">
+          Pay securely to book
+        </button>
+      </div>
+
+      <!-- Kept your original form exactly as-is (not removed) -->
       <form class="cta-form" id="ctaForm" method="POST" action="https://formspree.io/f/your-id-here">
         <!-- Replace the action with your real form endpoint -->
         <div class="row">
@@ -437,7 +439,7 @@
             <input type="tel" id="cf_phone" name="phone" placeholder="+44 7xxx xxx xxx" required>
           </div>
         </div>
-        <label for="cf_notes">Tell us about your business goals</label>
+        <label for="cf_notes">What do you need help with?</label>
         <textarea id="cf_notes" name="notes" placeholder="e.g., Social strategy, content calendar, brand voice…"></textarea>
         <button class="cta-submit" type="submit">Send</button>
       </form>
@@ -585,6 +587,17 @@
           setTimeout(()=>{ open(); sessionStorage.setItem(key,'1'); }, 5200);
         }
       }catch(e){}
+    })();
+
+    /* NEW: Stripe payment button click handler */
+    (function(){
+      const payBtn = document.getElementById('payNowBtn');
+      if(!payBtn) return;
+      // Replace with your real Stripe Payment Link URL
+      const STRIPE_LINK = 'https://buy.stripe.com/test_checkout_link';
+      payBtn.addEventListener('click', function(){
+        window.location.href = STRIPE_LINK;
+      });
     })();
   </script>
 </body>
