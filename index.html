@@ -14,7 +14,7 @@
       --menu-scale:1.5;
       --menu-crop-left:3%;
       --menu-crop-right:3%;
-      --cut-lift:6%; /* for the bottom image hover */
+      --cut-lift:6%;
     }
 
     html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
@@ -42,12 +42,11 @@
     .hot{position:absolute;top:0;bottom:0}
     .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
 
-    /* HERO (desktop) */
+    /* HERO */
     .hero{
       max-width:1100px;margin:120px auto 0;padding:0 20px;
       display:grid;grid-template-columns:1fr minmax(300px,680px) 1fr;align-items:center;
-      gap:18px;
-      position: relative; z-index: 1; /* layer control */
+      gap:18px; position: relative; z-index: 1;
     }
     @media(max-width:960px){.hero{grid-template-columns:1fr;margin-top:110px}}
 
@@ -71,7 +70,7 @@
     @media(max-width:600px){.signature{position:static;margin-top:10px;width:min(70vw,300px)}}
 
     .after-hero > *{margin-top:var(--gap)!important;margin-bottom:var(--gap)!important}
-    .after-hero{ position: relative; z-index: 2; } /* layer control */
+    .after-hero{ position: relative; z-index: 2; }
 
     /* Scroll reveal */
     .reveal{opacity:0;transform:translateY(20px);will-change:transform,opacity}
@@ -88,9 +87,8 @@
     .review-slide.active{display:block}
     .review-text{font-family:"Didot","Playfair Display",serif;font-size:clamp(1.1rem,2.6vw,1.7rem);line-height:1.8;margin:0 auto 14px;max-width:48ch}
     .review-meta{font-family:'Poppins',sans-serif;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase}
-    /* scope these so they don't affect inline arrows */
-    .reviews .arrow{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;font-size:1.8rem;color:#000;cursor:pointer}
-    .reviews .arrow.left{left:-30px}.reviews .arrow.right{right:-30px}
+    .arrow{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;font-size:1.8rem;color:#000;cursor:pointer}
+    .arrow.left{left:-30px}.arrow.right{right:-30px}
 
     .marquee-wrap{width:100vw;overflow:hidden}
     .marquee-track{display:flex;gap:2vw;padding:0 2vw;}
@@ -102,48 +100,42 @@
     }
     .marquee-track img.pop-in{opacity:1;transform:none;transition:opacity .6s ease, transform .6s ease}
 
+    /* ===== Mission / Process line ===== */
     .mission{
       max-width:900px;margin:0 auto;margin-top:calc(var(--gap) - 2cm);margin-bottom:var(--gap);
-      padding:0 20px;text-align:center;font-family:'Poppins',sans-serif;line-height:1.9;
-      color:#111;font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;background:transparent;
+      padding:0 20px;text-align:center;font-family:'Poppins',sans-serif;line-height:1.9;color:#111;font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;background:transparent;
     }
 
-    /* Big stack line with small arrows (capitalized, arrows inline) */
-    .mission .big-stack{
-      display:block;
-      font-family:'Playfair Display',serif;
-      font-weight:600;
-      letter-spacing:.02em;
-      font-size:clamp(1.6rem,5.2vw,3rem);
-      line-height:1.15;
-      margin-bottom:18px;
-      color:#000;
+    /* Interactive process: tap-to-spotlight with inline explainer */
+    .process{
+      display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:.35em .5em;
+      margin-bottom:14px;
+      font-family:'Playfair Display',serif;font-weight:600;letter-spacing:.02em;
+      font-size:clamp(1.6rem,5.2vw,3rem);line-height:1.15;color:#000;
     }
-    .mission .big-stack .arrow{
-      font-size:.7em; /* small black arrows */
-      vertical-align:baseline;
-      margin:0 .25em;
-      color:#000;
+    .process .step{
+      appearance:none;border:none;background:transparent;color:inherit;font:inherit;cursor:pointer;padding:.15em .35em;border-radius:999px;position:relative;
+      line-height:1.15;min-height:44px; /* finger target */
     }
-    .mission p{max-width:70ch;margin:.7rem auto}
-    .mission em{font-style:italic}
+    .process .step:focus-visible{outline:2px solid #000;outline-offset:2px;border-radius:12px}
+    .process .step.active{border-bottom:2px solid #000}
+    .process .sep{display:inline-block;min-width:.75em;text-align:center}
+    .process .sep .arr{display:inline-block;transform:translateX(0)}
+    @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+    .process .sep.nudge .arr{animation:nudge 800ms ease-in-out}
+    @media (prefers-reduced-motion: reduce){ .process .sep.nudge .arr{animation:none} }
 
-    /* Caption above the image (Playdot-style) */
-    .corner-showcase{position:relative;width:min(360px,70vw);margin:0 auto; border-radius:0;} /* square corners */
-    .corner-showcase img{width:100%;height:auto;border-radius:0;display:block} /* square corners */
+    .process-note{
+      font-family:'Poppins',sans-serif;font-size:clamp(.95rem,2.2vw,1.05rem);line-height:1.6;max-width:70ch;margin:.25rem auto 0;opacity:.95;
+      min-height:1.6em; /* prevents layout shift */
+    }
+
+    /* Caption/image block (square corners) */
+    .corner-showcase{position:relative;width:min(360px,70vw);margin:0 auto; border-radius:0;}
+    .corner-showcase img{width:100%;height:auto;border-radius:0;display:block}
     .born-note{
-      position:static;
-      transform:none;
-      margin:0 auto 10px;
-      display:block;
-      text-align:center;
-      font-family:'DotGothic16', sans-serif;
-      font-size:clamp(1rem,2.2vw,1.15rem);
-      letter-spacing:.04em;
-      color:#000;
-      background:transparent;
-      padding:0;
-      border-radius:0;
+      position:static;transform:none;margin:0 auto 10px;display:block;text-align:center;
+      font-family:'DotGothic16', sans-serif;font-size:clamp(1rem,2.2vw,1.15rem);letter-spacing:.04em;color:#000;background:transparent;padding:0;border-radius:0;
     }
 
     .bottom-tagline{position:fixed;bottom:0;width:100%;background:#000;color:#fff;font-family:'Poppins',sans-serif;font-size:1rem;white-space:nowrap;overflow:hidden;z-index:900}
@@ -158,29 +150,21 @@
     body.preload .words .l3,
     body.preload .mission { opacity:0; transform:translateY(20px) }
 
-    /* === MOBILE-ONLY (≤600px) — desktop untouched === */
+    /* === MOBILE (≤600px) === */
     @media (max-width: 600px){
-
       :root{ --gap: 2.6cm; }
-
       .logo-wrap{ order: 1; padding-bottom: 3cm; }
       .circle-wrap{ order: 2; left: 0; top: 0; justify-self: start; margin-top: 12px; transform: translateX(-6vw); }
       .circle-wrap svg{ width: 120px; }
       .logo{ width: min(88vw, 560px); }
-      .signature{
-        position: absolute; top: calc(100% + 8px); right: 0; width: min(44vw, 180px); opacity: .95; mix-blend-mode: multiply;
-      }
+      .signature{ position: absolute; top: calc(100% + 8px); right: 0; width: min(44vw, 180px); opacity: .95; mix-blend-mode: multiply; }
 
       .review-container{ padding: 0 28px; }
-      .reviews .arrow.left{ left: 8px; }
-      .reviews .arrow.right{ right: 8px; }
+      .arrow.left{ left: 8px; }
+      .arrow.right{ right: 8px; }
       .review-text{ font-size: clamp(1rem, 4.6vw, 1.2rem); }
 
-      .marquee-track{
-        gap: 3.5vw;
-        animation-duration: 10.7s !important;
-        animation-direction: reverse !important;
-      }
+      .marquee-track{ gap: 3.5vw; animation-duration: 10.7s !important; animation-direction: reverse !important; }
       .marquee-track img{ height: 28vh; border-radius: 6px; box-shadow: 0 6px 16px rgba(0,0,0,.08); }
 
       .corner-showcase{ width: min(92vw, 420px); }
@@ -197,10 +181,10 @@
     @media (max-width: 380px){
       .marquee-track img{ height: 26vh; }
       .review-container{ padding: 0 22px; }
-      .reviews .arrow{ font-size: 1.6rem; }
+      .arrow{ font-size: 1.6rem; }
     }
 
-    /* ===== CTA button (white, thin, Vogue-like) directly under the label ===== */
+    /* ===== CTA button ===== */
     .cta-fab{
       position:fixed; top:90px; right:25px; z-index:3201;
       background:#fff; color:#000; border:1px solid #000; border-radius:6px;
@@ -209,80 +193,49 @@
     }
     .cta-fab:hover{background:#f7f7f7}
 
-    /* ===== CTA POPUP (collects email, phone, business info) ===== */
+    /* ===== CTA POPUP ===== */
     .cta-modal{
       position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
       background:rgba(0,0,0,.52); z-index:4001; opacity:0; visibility:hidden;
       transition:opacity .25s ease, visibility 0s linear .25s;
-      padding:12px; /* helps on very small screens */
     }
     .cta-modal.show{opacity:1; visibility:visible; transition:opacity .25s ease}
+    /* smaller for phones, easier close target */
     .cta-dialog{
-      width:min(520px,92vw);      /* smaller on phones */
-      max-height:88vh;            /* keep close button reachable */
-      overflow:auto;              /* allow internal scroll */
-      background:#fff; color:#000; border-radius:16px; padding:22px 22px 18px;
+      width:min(520px,90vw); background:#fff; color:#000; border-radius:16px; padding:20px 18px 16px;
       box-shadow:0 20px 50px rgba(0,0,0,.35); position:relative; font-family:'Poppins',sans-serif;
     }
     .cta-close{
-      position:absolute; top:10px; right:12px; background:#000; color:#fff; border:none; border-radius:999px;
-      width:32px; height:32px; font-size:20px; line-height:32px; cursor:pointer;
+      position:absolute; top:8px; right:10px; background:#000; color:#fff; border:none; border-radius:999px;
+      width:36px; height:36px; font-size:22px; line-height:36px; cursor:pointer;
     }
-    .cta-dialog h3{font-family:'Playfair Display',serif; font-size:1.6rem; margin:6px 0 6px}
-    .cta-dialog p{font-size:.95rem; margin:0 0 14px}
+    .cta-dialog h3{font-family:'Playfair Display',serif; font-size:1.5rem; margin:4px 0 6px}
+    .cta-dialog p{font-size:.95rem; margin:0 0 12px}
     .cta-form .row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-    @media(max-width:520px){
-      .cta-dialog{ width:92vw; padding:14px 14px; border-radius:12px; }
-      .cta-close{ top:8px; right:8px; width:36px; height:36px; font-size:22px; line-height:36px; }
-      .cta-form .row{ grid-template-columns:1fr; }
-    }
+    @media(max-width:520px){ .cta-form .row{grid-template-columns:1fr} }
     .cta-form label{font-size:.85rem; letter-spacing:.03em; display:block; margin:10px 0 6px}
-    .cta-form input, .cta-form textarea{
-      width:100%; padding:10px 12px; border:1px solid #000; border-radius:10px; font-family:'Poppins',sans-serif; font-size:.95rem;
-    }
+    .cta-form input, .cta-form textarea{ width:100%; padding:10px 12px; border:1px solid #000; border-radius:10px; font-family:'Poppins',sans-serif; font-size:.95rem; }
     .cta-form textarea{min-height:110px; resize:vertical}
-    .cta-submit{
-      margin-top:12px; background:#000; color:#fff; border:1px solid #000; padding:10px 16px; border-radius:12px; cursor:pointer;
-      font-weight:500;
-    }
+    .cta-submit{ margin-top:12px; background:#000; color:#fff; border:1px solid #000; padding:10px 16px; border-radius:12px; cursor:pointer; font-weight:500; }
     .cta-submit:hover{background:#111}
 
-    /* ========= NEW OVERRIDES (ONLY for the bottom Chelsea image) ========= */
-    .corner-showcase{
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      /* corners already square via border-radius:0 above */
-    }
+    /* Bottom image hover (kept) */
+    .corner-showcase{ aspect-ratio: 1 / 1; overflow: hidden; }
     .corner-showcase img{
-      position:absolute; inset:auto 0 0 0;
-      width:100%; height:118%; object-fit:cover;
-      clip-path: inset(0 0 var(--cut, 0%) 0);
-      transform: translateY(0);
-      transition:
-        clip-path 520ms cubic-bezier(.25,.46,.45,.94),
-        transform 520ms cubic-bezier(.25,.46,.45,.94);
+      position:absolute; inset:auto 0 0 0; width:100%; height:118%; object-fit:cover;
+      clip-path: inset(0 0 var(--cut, 0%) 0); transform: translateY(0);
+      transition: clip-path 520ms cubic-bezier(.25,.46,.45,.94), transform 520ms cubic-bezier(.25,.46,.45,.94);
       will-change: clip-path, transform;
     }
     .corner-showcase .born-note{
-      position:absolute; left:22px; right:22px; bottom:20px;
-      margin:0; background:transparent; border-radius:0;
-      text-align:center;
-      font-family:'Playfair Display', serif;
-      font-weight:600;
-      font-size:clamp(.9rem,1.1vw,1.05rem);
-      line-height:1.55; letter-spacing:.02em; color:#000;
-      opacity:0; transform:translateY(12px);
-      transition: opacity 320ms ease, transform 320ms ease;
-      pointer-events:none; z-index:2;
+      position:absolute; left:22px; right:22px; bottom:20px; margin:0; background:transparent; border-radius:0;
+      text-align:center; font-family:'Playfair Display', serif; font-weight:600; font-size:clamp(.9rem,1.1vw,1.05rem);
+      line-height:1.55; letter-spacing:.02em; color:#000; opacity:0; transform:translateY(12px);
+      transition: opacity 320ms ease, transform 320ms ease; pointer-events:none; z-index:2;
     }
     @media (hover:hover) and (pointer:fine){
-      .corner-showcase:hover img{
-        clip-path: inset(0 0 var(--cut-target, 34%) 0);
-        transform: translateY(calc(-1 * var(--cut-lift)));
-      }
-      .corner-showcase:hover .born-note{
-        opacity:1; transform: translateY(0);
-      }
+      .corner-showcase:hover img{ clip-path: inset(0 0 var(--cut-target, 34%) 0); transform: translateY(calc(-1 * var(--cut-lift))); }
+      .corner-showcase:hover .born-note{ opacity:1; transform: translateY(0); }
     }
     @media (prefers-reduced-motion: reduce){
       .corner-showcase img, .corner-showcase .born-note{ transition: none !important; }
@@ -291,7 +244,6 @@
       .corner-showcase::before{content:"";display:block;padding-top:100%;}
       .corner-showcase img{position:absolute;left:0;right:0;bottom:0;}
     }
-    /* ========= END NEW OVERRIDES ========= */
   </style>
 </head>
 
@@ -362,11 +314,19 @@
       </div>
     </div>
 
-    <!-- Description -->
-    <section class="mission reveal">
-      <span class="big-stack">
-        Analysis&nbsp;<span class="arrow" aria-hidden="true">→</span>&nbsp;Audit&nbsp;<span class="arrow" aria-hidden="true">→</span>&nbsp;Strategy&nbsp;<span class="arrow" aria-hidden="true">→</span>&nbsp;Execution
-      </span>
+    <!-- Interactive process line -->
+    <section class="mission reveal" aria-label="our approach">
+      <div class="process" role="tablist" aria-label="Our process">
+        <button class="step active" role="tab" aria-selected="true" data-note="Analysis — clarity through research, data, and audience insights.">Analysis</button>
+        <span class="sep nudge" aria-hidden="true"><span class="arr">→</span></span>
+        <button class="step" role="tab" aria-selected="false" data-note="Audit — a measured review of what works, what doesn’t, and why.">Audit</button>
+        <span class="sep" aria-hidden="true"><span class="arr">→</span></span>
+        <button class="step" role="tab" aria-selected="false" data-note="Strategy — a custom plan built around your goals and brand personality.">Strategy</button>
+        <span class="sep" aria-hidden="true"><span class="arr">→</span></span>
+        <button class="step" role="tab" aria-selected="false" data-note="Execution — creative, content, and campaigns launched with intention.">Execution</button>
+      </div>
+      <p class="process-note" id="processNote">Analysis — clarity through research, data, and audience insights.</p>
+
       <p>We are a strategy-first agency that treats your business like an ecosystem — every part connected, every decision intentional. Through in-depth analysis, audits, and carefully crafted strategies, we build frameworks that lead to real, measurable results. We don’t believe in one size fits all solutions; instead, we customise every approach to reflect your unique goals, audience, and brand personality. Our focus is on creating strategies that not only work, but work for you.</p>
       <p><em>We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.</em></p>
     </section>
@@ -393,7 +353,6 @@
         <button class="cta-submit" id="payNowBtn" type="button" aria-label="Pay securely with Stripe">Pay now to secure your session</button>
       </div>
 
-      <!-- Original form kept exactly, only the label text below is updated -->
       <form class="cta-form" id="ctaForm" method="POST" action="https://formspree.io/f/your-id-here">
         <div class="row">
           <div>
@@ -462,7 +421,7 @@
       els.forEach(el=>io.observe(el));
     })();
 
-    /* Marquee images sequencing & animation start */
+    /* Marquee start */
     (function(){
       const marqueeWrap = document.querySelector('.marquee-wrap');
       if(!marqueeWrap) return;
@@ -488,22 +447,19 @@
       io2.observe(marqueeWrap);
     })();
 
-    /* Optional: client-side logo white-background knockout */
+    /* Optional: client-side logo white knockout */
     (function(){
       const img = document.getElementById('brandLogo');
       if(!img) return;
-
       function removeWhite(){
         const w = img.naturalWidth, h = img.naturalHeight;
         if(!w || !h) return;
-
         const c = document.createElement('canvas');
         const ctx = c.getContext('2d', { willReadFrequently: true });
         c.width = w; c.height = h;
         ctx.drawImage(img, 0, 0);
-
         try{
-          const T = 245; // near-white threshold
+          const T = 245;
           const id = ctx.getImageData(0, 0, w, h);
           const d = id.data;
           for (let i = 0; i < d.length; i += 4){
@@ -513,30 +469,25 @@
           ctx.putImageData(id, 0, 0);
           img.style.mixBlendMode = 'normal';
           img.src = c.toDataURL('image/png');
-        }catch(e){
-          /* If CORS blocks pixel access, we keep the blend fallback. */
-        }
+        }catch(e){ /* CORS fallback */ }
       }
-
       img.crossOrigin = 'anonymous';
       if (img.complete) removeWhite(); else img.addEventListener('load', removeWhite);
     })();
 
-    /* === Set crop amount to exactly reveal caption height === */
+    /* Crop amount for caption */
     (function(){
       const card = document.querySelector('.corner-showcase');
       if(!card) return;
       const img  = card.querySelector('img');
       const cap  = card.querySelector('.born-note');
-
       function updateCutTarget(){
         if(!cap || !card) return;
         const cardH = card.clientHeight || img.clientHeight || 1;
-        const captionH = cap.offsetHeight + 20;  // padding allowance
+        const captionH = cap.offsetHeight + 20;
         const pct = Math.min(50, Math.max(12, Math.round((captionH / cardH) * 100)));
         card.style.setProperty('--cut-target', pct + '%');
       }
-
       window.addEventListener('load', updateCutTarget);
       window.addEventListener('resize', updateCutTarget);
       setTimeout(updateCutTarget, 300);
@@ -547,16 +498,12 @@
       const modal = document.getElementById('ctaModal');
       const fab   = document.getElementById('ctaFab');
       const close = document.getElementById('ctaClose');
-
       function open(){ modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); }
       function hide(){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); }
-
       fab.addEventListener('click', open);
       close.addEventListener('click', hide);
       modal.addEventListener('click', (e)=>{ if(e.target === modal) hide(); });
       document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') hide(); });
-
-      // (Optional) Show once per session after a small delay
       try{
         const key='wms_cta_seen';
         if(!sessionStorage.getItem(key)){
@@ -570,9 +517,34 @@
       const payBtn = document.getElementById('payNowBtn');
       if(!payBtn) return;
       const STRIPE_LINK = 'https://buy.stripe.com/test_checkout_link'; // replace with your real Stripe Payment Link
-      payBtn.addEventListener('click', function(){
-        window.location.href = STRIPE_LINK;
-      });
+      payBtn.addEventListener('click', function(){ window.location.href = STRIPE_LINK; });
+    })();
+
+    /* Interactive process behaviour */
+    (function(){
+      const container = document.querySelector('.process');
+      const steps = Array.from(container?.querySelectorAll('.step')||[]);
+      const seps  = Array.from(container?.querySelectorAll('.sep')||[]);
+      const noteEl = document.getElementById('processNote');
+      if(!container || !steps.length) return;
+
+      const saved = +sessionStorage.getItem('wms_process_idx');
+      let idx = Number.isFinite(saved) && saved>=0 && saved<steps.length ? saved : 0;
+
+      function setActive(i){
+        steps.forEach((b,k)=>{
+          const on = k===i;
+          b.classList.toggle('active', on);
+          b.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        seps.forEach((s,k)=> s.classList.toggle('nudge', k===i)); // nudge arrow between active and next
+        noteEl.textContent = steps[i].dataset.note || '';
+        idx = i;
+        try{ sessionStorage.setItem('wms_process_idx', String(i)); }catch(e){}
+      }
+
+      steps.forEach((b,i)=> b.addEventListener('click', ()=> setActive(i)));
+      setActive(idx);
     })();
   </script>
 </body>
