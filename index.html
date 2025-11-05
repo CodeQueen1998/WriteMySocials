@@ -107,7 +107,7 @@
       color:#111;font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;background:transparent;
     }
 
-    /* NEW: Big stack line with small arrows (capitalized) */
+    /* Big stack line with small arrows (capitalized, arrows inline) */
     .mission .big-stack{
       display:block;
       font-family:'Playfair Display',serif;
@@ -128,8 +128,8 @@
     .mission em{font-style:italic}
 
     /* Caption above the image (Playdot-style) */
-    .corner-showcase{position:relative;width:min(360px,70vw);margin:0 auto}
-    .corner-showcase img{width:100%;height:auto;border-radius:12px;display:block}
+    .corner-showcase{position:relative;width:min(360px,70vw);margin:0 auto; border-radius:0;} /* square corners */
+    .corner-showcase img{width:100%;height:auto;border-radius:0;display:block} /* square corners */
     .born-note{
       position:static;
       transform:none;
@@ -270,7 +270,7 @@
     .corner-showcase{
       aspect-ratio: 1 / 1;
       overflow: hidden;
-      border-radius: 12px;
+      /* corners already square via border-radius:0 above */
     }
     .corner-showcase img{
       position:absolute; inset:auto 0 0 0;
@@ -381,7 +381,7 @@
       </div>
     </div>
 
-    <!-- UPDATED: New description replaces the old quote -->
+    <!-- Description -->
     <section class="mission reveal">
       <span class="big-stack">
         Analysis <span class="arrow">→</span> Audit <span class="arrow">→</span> Strategy <span class="arrow">→</span> Execution
@@ -393,7 +393,7 @@
     <div class="corner-showcase reveal">
       <p class="born-note" aria-label="origin">Founded in Chelsea, London</p>
       <!-- Swapped image URL per your request -->
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Untitled%20design.jpg" alt="Project showcase">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/577119694_1479229746713598_5832292539194464339_n.jpg" alt="Project showcase">
     </div>
   </div>
 
@@ -401,24 +401,20 @@
     <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
   </div>
 
-  <!-- CTA POPUP: button and modal (kept structure; only text + payment added) -->
+  <!-- CTA POPUP -->
   <button class="cta-fab" id="ctaFab" aria-label="Open contact form">Book the Brand & Marketing Deep Dive Audit™</button>
   <div class="cta-modal" id="ctaModal" aria-hidden="true" role="dialog" aria-labelledby="ctaTitle">
     <div class="cta-dialog">
       <button class="cta-close" id="ctaClose" aria-label="Close contact form">&times;</button>
       <h3 id="ctaTitle">Book the Brand & Marketing Deep Dive Audit™</h3>
       <p>Tell us about your business and how we can help. We’ll be in touch shortly.</p>
-
-      <!-- NEW: Stripe payment button (placeholder link; replace with your real Stripe Payment Link) -->
-      <div style="margin: 6px 0 12px;">
-        <button class="cta-submit" id="payNowBtn" type="button" aria-label="Pay securely with Stripe">
-          Pay securely to book
-        </button>
+      <p style="font-size:.85rem;opacity:.9;margin-top:-6px;">Optional — you can also submit the form and we’ll reach out before payment.</p>
+      <div style="margin:10px 0 16px;">
+        <button class="cta-submit" id="payNowBtn" type="button" aria-label="Pay securely with Stripe">Pay now to secure your session</button>
       </div>
 
-      <!-- Kept your original form exactly as-is (not removed) -->
+      <!-- Original form kept exactly, only the label text below is updated -->
       <form class="cta-form" id="ctaForm" method="POST" action="https://formspree.io/f/your-id-here">
-        <!-- Replace the action with your real form endpoint -->
         <div class="row">
           <div>
             <label for="cf_name">Full name</label>
@@ -439,7 +435,7 @@
             <input type="tel" id="cf_phone" name="phone" placeholder="+44 7xxx xxx xxx" required>
           </div>
         </div>
-        <label for="cf_notes">What do you need help with?</label>
+        <label for="cf_notes">Tell us about your business goals</label>
         <textarea id="cf_notes" name="notes" placeholder="e.g., Social strategy, content calendar, brand voice…"></textarea>
         <button class="cta-submit" type="submit">Send</button>
       </form>
@@ -589,12 +585,11 @@
       }catch(e){}
     })();
 
-    /* NEW: Stripe payment button click handler */
+    /* Stripe payment link (placeholder) */
     (function(){
       const payBtn = document.getElementById('payNowBtn');
       if(!payBtn) return;
-      // Replace with your real Stripe Payment Link URL
-      const STRIPE_LINK = 'https://buy.stripe.com/test_checkout_link';
+      const STRIPE_LINK = 'https://buy.stripe.com/test_checkout_link'; // replace with your real Stripe Payment Link
       payBtn.addEventListener('click', function(){
         window.location.href = STRIPE_LINK;
       });
@@ -602,5 +597,3 @@
   </script>
 </body>
 </html>
-
-
