@@ -88,8 +88,9 @@
     .review-slide.active{display:block}
     .review-text{font-family:"Didot","Playfair Display",serif;font-size:clamp(1.1rem,2.6vw,1.7rem);line-height:1.8;margin:0 auto 14px;max-width:48ch}
     .review-meta{font-family:'Poppins',sans-serif;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase}
-    .arrow{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;font-size:1.8rem;color:#000;cursor:pointer}
-    .arrow.left{left:-30px}.arrow.right{right:-30px}
+    /* scope these so they don't affect inline arrows */
+    .reviews .arrow{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;font-size:1.8rem;color:#000;cursor:pointer}
+    .reviews .arrow.left{left:-30px}.reviews .arrow.right{right:-30px}
 
     .marquee-wrap{width:100vw;overflow:hidden}
     .marquee-track{display:flex;gap:2vw;padding:0 2vw;}
@@ -171,8 +172,8 @@
       }
 
       .review-container{ padding: 0 28px; }
-      .arrow.left{ left: 8px; }
-      .arrow.right{ right: 8px; }
+      .reviews .arrow.left{ left: 8px; }
+      .reviews .arrow.right{ right: 8px; }
       .review-text{ font-size: clamp(1rem, 4.6vw, 1.2rem); }
 
       .marquee-track{
@@ -196,35 +197,7 @@
     @media (max-width: 380px){
       .marquee-track img{ height: 26vh; }
       .review-container{ padding: 0 22px; }
-      .arrow{ font-size: 1.6rem; }
-    }
-
-    /* ========= Existing top-right message ========= */
-    body::after{
-      content: "FREE CONSULTATION";
-      position: fixed;
-      top: 60px;
-      right: 25px;
-      max-width: 360px;
-      text-align: right;
-      white-space: pre-line;
-      font-family: Didot, "Playfair Display", serif;
-      font-size: 0.95rem;
-      line-height: 1.55;
-      color: #000;
-      z-index: 3200;
-      pointer-events: none;
-      background: transparent;
-    }
-    @media (max-width: 600px){
-      body::after{
-        top: auto;
-        right: auto;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        max-width: 92vw;
-      }
+      .reviews .arrow{ font-size: 1.6rem; }
     }
 
     /* ===== CTA button (white, thin, Vogue-like) directly under the label ===== */
@@ -241,10 +214,14 @@
       position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
       background:rgba(0,0,0,.52); z-index:4001; opacity:0; visibility:hidden;
       transition:opacity .25s ease, visibility 0s linear .25s;
+      padding:12px; /* helps on very small screens */
     }
     .cta-modal.show{opacity:1; visibility:visible; transition:opacity .25s ease}
     .cta-dialog{
-      width:min(560px,92vw); background:#fff; color:#000; border-radius:16px; padding:22px 22px 18px;
+      width:min(520px,92vw);      /* smaller on phones */
+      max-height:88vh;            /* keep close button reachable */
+      overflow:auto;              /* allow internal scroll */
+      background:#fff; color:#000; border-radius:16px; padding:22px 22px 18px;
       box-shadow:0 20px 50px rgba(0,0,0,.35); position:relative; font-family:'Poppins',sans-serif;
     }
     .cta-close{
@@ -254,7 +231,11 @@
     .cta-dialog h3{font-family:'Playfair Display',serif; font-size:1.6rem; margin:6px 0 6px}
     .cta-dialog p{font-size:.95rem; margin:0 0 14px}
     .cta-form .row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-    @media(max-width:520px){ .cta-form .row{grid-template-columns:1fr} }
+    @media(max-width:520px){
+      .cta-dialog{ width:92vw; padding:14px 14px; border-radius:12px; }
+      .cta-close{ top:8px; right:8px; width:36px; height:36px; font-size:22px; line-height:36px; }
+      .cta-form .row{ grid-template-columns:1fr; }
+    }
     .cta-form label{font-size:.85rem; letter-spacing:.03em; display:block; margin:10px 0 6px}
     .cta-form input, .cta-form textarea{
       width:100%; padding:10px 12px; border:1px solid #000; border-radius:10px; font-family:'Poppins',sans-serif; font-size:.95rem;
@@ -384,7 +365,7 @@
     <!-- Description -->
     <section class="mission reveal">
       <span class="big-stack">
-        Analysis <span class="arrow">→</span> Audit <span class="arrow">→</span> Strategy <span class="arrow">→</span> Execution
+        Analysis&nbsp;<span class="arrow" aria-hidden="true">→</span>&nbsp;Audit&nbsp;<span class="arrow" aria-hidden="true">→</span>&nbsp;Strategy&nbsp;<span class="arrow" aria-hidden="true">→</span>&nbsp;Execution
       </span>
       <p>We are a strategy-first agency that treats your business like an ecosystem — every part connected, every decision intentional. Through in-depth analysis, audits, and carefully crafted strategies, we build frameworks that lead to real, measurable results. We don’t believe in one size fits all solutions; instead, we customise every approach to reflect your unique goals, audience, and brand personality. Our focus is on creating strategies that not only work, but work for you.</p>
       <p><em>We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.</em></p>
@@ -392,7 +373,6 @@
 
     <div class="corner-showcase reveal">
       <p class="born-note" aria-label="origin">Founded in Chelsea, London</p>
-      <!-- Swapped image URL per your request -->
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/577119694_1479229746713598_5832292539194464339_n.jpg" alt="Project showcase">
     </div>
   </div>
