@@ -107,6 +107,26 @@
       color:#111;font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;background:transparent;
     }
 
+    /* NEW: Big stack line with small arrows */
+    .mission .big-stack{
+      display:block;
+      font-family:'Playfair Display',serif;
+      font-weight:600;
+      letter-spacing:.02em;
+      font-size:clamp(1.6rem,5.2vw,3rem);
+      line-height:1.15;
+      margin-bottom:18px;
+    }
+    .mission .big-stack .arrow{
+      font-family:inherit;
+      font-size:.7em; /* smaller black arrows */
+      vertical-align:baseline;
+      margin:0 .25em;
+      color:#000;
+    }
+    .mission p{max-width:70ch;margin:.7rem auto}
+    .mission em{font-style:italic}
+
     /* Caption above the image (Playdot-style) */
     .corner-showcase{position:relative;width:min(360px,70vw);margin:0 auto}
     .corner-showcase img{width:100%;height:auto;border-radius:12px;display:block}
@@ -279,12 +299,49 @@
         transition: none !important;
       }
     }
-    /* Fallback for very old browsers without aspect-ratio support */
     @supports not (aspect-ratio: 1 / 1){
       .corner-showcase::before{content:"";display:block;padding-top:100%;}
       .corner-showcase img{position:absolute;left:0;right:0;bottom:0;}
     }
     /* ========= END NEW OVERRIDES ========= */
+
+    /* ===== CTA POPUP (minimal styles, scoped) ===== */
+    .cta-fab{
+      position:fixed; right:22px; bottom:22px; z-index:1300;
+      background:#000; color:#fff; border:1px solid #000; border-radius:999px;
+      font-family:'Poppins',sans-serif; font-size:.95rem; padding:10px 16px; cursor:pointer;
+      box-shadow:0 8px 20px rgba(0,0,0,.15);
+    }
+    .cta-fab:hover{background:#111}
+
+    .cta-modal{
+      position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+      background:rgba(0,0,0,.52); z-index:4001; opacity:0; visibility:hidden;
+      transition:opacity .25s ease, visibility 0s linear .25s;
+    }
+    .cta-modal.show{opacity:1; visibility:visible; transition:opacity .25s ease}
+    .cta-dialog{
+      width:min(560px,92vw); background:#fff; color:#000; border-radius:16px; padding:22px 22px 18px;
+      box-shadow:0 20px 50px rgba(0,0,0,.35); position:relative; font-family:'Poppins',sans-serif;
+    }
+    .cta-close{
+      position:absolute; top:10px; right:12px; background:#000; color:#fff; border:none; border-radius:999px;
+      width:32px; height:32px; font-size:20px; line-height:32px; cursor:pointer;
+    }
+    .cta-dialog h3{font-family:'Playfair Display',serif; font-size:1.6rem; margin:6px 0 6px}
+    .cta-dialog p{font-size:.95rem; margin:0 0 14px}
+    .cta-form .row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    @media(max-width:520px){ .cta-form .row{grid-template-columns:1fr} }
+    .cta-form label{font-size:.85rem; letter-spacing:.03em; display:block; margin:10px 0 6px}
+    .cta-form input, .cta-form textarea{
+      width:100%; padding:10px 12px; border:1px solid #000; border-radius:10px; font-family:'Poppins',sans-serif; font-size:.95rem;
+    }
+    .cta-form textarea{min-height:110px; resize:vertical}
+    .cta-submit{
+      margin-top:12px; background:#000; color:#fff; border:1px solid #000; padding:10px 16px; border-radius:12px; cursor:pointer;
+      font-weight:500;
+    }
+    .cta-submit:hover{background:#111}
   </style>
 </head>
 
@@ -346,27 +403,57 @@
       </div>
     </section>
 
-    <div class="marquee-wrap reveal" aria-label="work samples">
-      <div class="marquee-track">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work sample 1">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work sample 2">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work sample 3">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work sample 4">
-      </div>
-    </div>
-
+    <!-- UPDATED: New description replaces the old quote -->
     <section class="mission reveal">
-      “WriteMySocials brings brands to life through creating quality, personality driven strategies that connect, convert and stay true to their voice. We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.”
+      <span class="big-stack">
+        analysis <span class="arrow">➝</span> audit <span class="arrow">➝</span> strategy <span class="arrow">➝</span> execution
+      </span>
+      <p>We are a strategy-first agency that treats your business like an ecosystem — every part connected, every decision intentional. Through in-depth analysis, audits, and carefully crafted strategies, we build frameworks that lead to real, measurable results. We don’t believe in one-size-fits-all solutions; instead, we customise every approach to reflect your unique goals, audience, and brand personality. Our focus is on creating strategies that not only work, but work for you.</p>
+      <p><em>We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.</em></p>
     </section>
 
-    <div class="corner-showcase reveal">
-      <p class="born-note" aria-label="origin">Founded in Chelsea, London</p>
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-26%20at%2023.20.39.png" alt="Project showcase">
-    </div>
+    <!-- REMOVED: bottom café image block -->
+    <!-- (corner-showcase section deleted per request) -->
   </div>
 
   <div class="bottom-tagline" aria-hidden="true">
     <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
+  </div>
+
+  <!-- CTA POPUP -->
+  <button class="cta-fab" id="ctaFab" aria-label="Open contact form">Get in touch</button>
+  <div class="cta-modal" id="ctaModal" aria-hidden="true" role="dialog" aria-labelledby="ctaTitle">
+    <div class="cta-dialog">
+      <button class="cta-close" id="ctaClose" aria-label="Close contact form">&times;</button>
+      <h3 id="ctaTitle">Let's build your strategy</h3>
+      <p>Tell us about your business and how we can help. We’ll be in touch shortly.</p>
+      <form class="cta-form" id="ctaForm" method="POST" action="https://formspree.io/f/your-id-here">
+        <!-- Replace action with your form endpoint -->
+        <div class="row">
+          <div>
+            <label for="cf_name">Full name</label>
+            <input type="text" id="cf_name" name="name" placeholder="Jane Smith" required>
+          </div>
+          <div>
+            <label for="cf_business">Business name</label>
+            <input type="text" id="cf_business" name="business" placeholder="Acme Co." required>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="cf_email">Email</label>
+            <input type="email" id="cf_email" name="email" placeholder="you@company.com" required>
+          </div>
+          <div>
+            <label for="cf_phone">Phone</label>
+            <input type="tel" id="cf_phone" name="phone" placeholder="+61 400 000 000" required>
+          </div>
+        </div>
+        <label for="cf_notes">What do you need help with?</label>
+        <textarea id="cf_notes" name="notes" placeholder="e.g., Social strategy, content calendar, brand voice…"></textarea>
+        <button class="cta-submit" type="submit">Send</button>
+      </form>
+    </div>
   </div>
 
   <script>
@@ -488,9 +575,33 @@
       window.addEventListener('resize', updateCutTarget);
       setTimeout(updateCutTarget, 300);
     })();
+
+    /* CTA popup logic */
+    (function(){
+      const modal = document.getElementById('ctaModal');
+      const fab   = document.getElementById('ctaFab');
+      const close = document.getElementById('ctaClose');
+
+      function open(){ modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); }
+      function hide(){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); }
+
+      fab.addEventListener('click', open);
+      close.addEventListener('click', hide);
+      modal.addEventListener('click', (e)=>{ if(e.target === modal) hide(); });
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') hide(); });
+
+      // Open after a short delay once per session
+      try{
+        const key='wms_cta_seen';
+        if(!sessionStorage.getItem(key)){
+          setTimeout(()=>{ open(); sessionStorage.setItem(key,'1'); }, 5200);
+        }
+      }catch(e){}
+    })();
   </script>
 </body>
 </html>
+
 
 
 
