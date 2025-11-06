@@ -15,17 +15,10 @@
       --menu-scale:1.5;
       --menu-crop-left:3%;
       --menu-crop-right:3%;
+      --cut-lift:6%;
     }
 
-    html,body{
-      margin:0;
-      padding:0;
-      background:#fff;
-      color:#000;
-      font-family:'Playfair Display',serif;
-      overflow-x:hidden;
-      max-width:100vw;
-    }
+    html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden;max-width:100vw}
 
     /* Intro overlay */
     .reveal-overlay{
@@ -44,70 +37,151 @@
     .menu-bar{position:fixed;top:0;left:0;right:0;z-index:3000;background:#fff;border-bottom:1px solid rgba(0,0,0,.15);transform:translateY(-100%);transition:transform .35s ease}
     body.menu-open .menu-bar{transform:translateY(0)}
     .menu-inner{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;justify-content:center}
-    .image-menu img{width:100%;display:block}
 
-    /* Hero section */
-    .hero{max-width:1100px;margin:120px auto 0;padding:0 20px;display:grid;grid-template-columns:1fr minmax(300px,680px) 1fr;align-items:center;gap:18px;position:relative;z-index:1;}
+    .image-menu{ position:relative;width:min(300px,60vw); transform:scale(var(--menu-scale)) translateZ(0); transform-origin:top center; overflow:hidden; -webkit-clip-path:inset(0 var(--menu-crop-right) 0 var(--menu-crop-left)); clip-path:inset(0 var(--menu-crop-right) 0 var(--menu-crop-left)); }
+    .image-menu img{width:100%;height:auto;display:block}
+    .hot{position:absolute;top:0;bottom:0}
+    .hot.home{left:0;right:66.67%}.hot.about{left:33.33%;right:33.34%}.hot.services{left:66.66%;right:0}
+
+    /* HERO */
+    .hero{
+      max-width:1100px;margin:120px auto 0;padding:0 20px;
+      display:grid;grid-template-columns:1fr minmax(300px,680px) 1fr;align-items:center;
+      gap:18px; position: relative; z-index: 1;
+    }
     @media(max-width:960px){.hero{grid-template-columns:1fr;margin-top:110px}}
 
-    .circle-wrap{justify-self:start;position:relative;top:2px;left:2cm;}
-    .circle-wrap svg{width:200px;}
+    /* Circular marquee */
+    .circle-wrap{justify-self:start; position:relative; top:2px; left:2cm;}
+    .circle-wrap svg{width:200px;height:auto;display:block}
+    .circle-wrap text{font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;fill:#000}
     .circle-spin{transform-origin:50% 50%;animation:spin 18s linear infinite}
     @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
+    /* Logo */
     .logo-wrap{position:relative;display:grid;place-items:center}
-    .logo{width:min(70vw,680px);max-width:680px;mix-blend-mode:multiply}
-    .signature{position:absolute;right:-8%;top:88%;width:min(42vw,340px);opacity:.95;mix-blend-mode:multiply;}
+    .logo{display:block;margin:0 auto;width:min(70vw,680px);max-width:680px;height:auto;background:transparent;mix-blend-mode:multiply}
+    .signature{
+      position:absolute;right:-8%;top:88%;
+      width:min(42vw,340px);max-width:340px;height:auto;opacity:.95;
+      pointer-events:none;mix-blend-mode:multiply;
+      -webkit-clip-path:inset(3% 0 0 0 round 2px);clip-path:inset(3% 0 0 0 round 2px);
+      z-index:1;
+    }
     @media(max-width:600px){.signature{position:static;margin-top:10px;width:min(70vw,300px)}}
 
-    .after-hero>*{margin-top:var(--gap)!important;margin-bottom:var(--gap)!important}
-    .after-hero{position:relative;z-index:2;padding-bottom:0;}
+    .after-hero > *{margin-top:var(--gap)!important;margin-bottom:var(--gap)!important}
+    .after-hero{ position: relative; z-index: 2; }
 
-    .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
-    .reveal.in{opacity:1;transform:none;}
+    /* Scroll reveal */
+    .reveal{opacity:0;transform:translateY(20px);will-change:transform,opacity}
+    .reveal.in{opacity:1;transform:none;transition:opacity .6s ease, transform .6s ease}
 
-    /* Words */
     .words{text-align:center;max-width:900px;margin:0 auto;padding:0 20px}
-    .words .l1{font-size:clamp(1.3rem,3.2vw,2rem);font-weight:600;}
-    .words .l2{font-size:clamp(1.6rem,3.8vw,2.4rem);margin-top:.5rem;}
+    .words .l1{font-size:clamp(1.3rem,3.2vw,2rem);font-weight:600;letter-spacing:.02em}
+    .words .l2{font-size:clamp(1.6rem,3.8vw,2.4rem);margin-top:.5rem;color:#111}
     .words .l3{font-family:'Poppins',sans-serif;font-size:clamp(1rem,2.2vw,1.4rem);margin-top:.3rem;opacity:.85}
 
-    /* Process section */
-    .mission{max-width:900px;margin:0 auto;padding:0 20px;text-align:center;font-family:'Poppins',sans-serif;line-height:1.9;font-size:clamp(1.05rem,2.3vw,1.15rem);}
-    .process{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:.35em .5em;margin-bottom:14px;font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(0.8rem,2.6vw,1.5rem);}
-    .process .step{border:none;background:transparent;color:inherit;font:inherit;cursor:pointer;padding:.15em .35em;border-radius:999px;min-height:44px;}
-    .process .step.active{border-bottom:2px solid #000;}
-    .process-note{font-family:Didot,"Playfair Display",serif;font-style:italic;font-size:clamp(.95rem,2.2vw,1.05rem);line-height:1.6;max-width:70ch;margin:.25rem auto 0;opacity:.95;}
+    .reviews{max-width:900px;margin:0 auto;padding:0 20px;text-align:center}
+    .review-container{position:relative}
+    .review-slide{display:none}
+    .review-slide.active{display:block}
+    .review-text{font-family:"Didot","Playfair Display",serif;font-size:clamp(1.1rem,2.6vw,1.7rem);line-height:1.8;margin:0 auto 14px;max-width:48ch}
+    .review-meta{font-family:'Poppins',sans-serif;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase}
+    .arrow{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;font-size:1.8rem;color:#000;cursor:pointer}
+    .arrow.left{left:-30px}.arrow.right{right:-30px}
 
-    /* CTA */
-    .cta-section{text-align:center;max-width:900px;margin:0 auto;padding:0 20px;font-family:Didot,"Playfair Display",serif;}
-    .cta-section h3{font-weight:600;margin:0 0 .35rem;font-size:clamp(1.4rem,3.6vw,2rem);}
-    .cta-section p{margin:0 0 .9rem;font-size:clamp(1rem,2.2vw,1.1rem);opacity:.95;}
+    .marquee-wrap{width:100vw;overflow:hidden}
+    .marquee-track{display:flex;gap:2vw;padding:0 2vw;}
+    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    .marquee-track img{
+      height:50vh;width:auto;border-radius:8px;display:block;object-fit:cover;
+      opacity:0;transform:translateY(20px);
+    }
+    .marquee-track img.pop-in{opacity:1;transform:none;transition:opacity .6s ease, transform .6s ease}
+
+    /* ===== Mission / Process line ===== */
+    .mission{
+      max-width:900px;margin:0 auto;margin-top:calc(var(--gap) - 2cm);margin-bottom:var(--gap);
+      padding:0 20px;text-align:center;font-family:'Poppins',sans-serif;line-height:1.9;color:#111;font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;background:transparent;
+    }
+
+    /* Interactive process */
+    .process{
+      display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:.35em .5em;
+      margin-bottom:14px;
+      font-family:'Playfair Display',serif;font-weight:600;letter-spacing:.02em;
+      font-size:clamp(0.8rem,2.6vw,1.5rem);
+      line-height:1.15;color:#000;
+    }
+    .process .step{
+      appearance:none;border:none;background:transparent;color:inherit;font:inherit;cursor:pointer;padding:.15em .35em;border-radius:999px;position:relative;
+      line-height:1.15;min-height:44px;
+    }
+    .process .step:focus-visible{outline:2px solid #000;outline-offset:2px;border-radius:12px}
+    .process .step.active{border-bottom:2px solid #000}
+    .process .sep{display:inline-block;min-width:.75em;text-align:center}
+    .process .sep .arr{display:inline-block;transform:translateX(0)}
+    @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+    .process .sep.nudge .arr{animation:nudge 800ms ease-in-out}
+    @media (prefers-reduced-motion: reduce){ .process .sep.nudge .arr{animation:none} }
+
+    .process-note{
+      font-family: Didot, "Playfair Display", serif;
+      font-style: italic;
+      font-size:clamp(.95rem,2.2vw,1.05rem);
+      line-height:1.6;
+      max-width:70ch;
+      margin:.25rem auto 0;
+      opacity:.95;
+      min-height:1.6em;
+    }
+
+    /* ===== CTA (Didot / Vogue-y) ===== */
+    .cta-section{
+      max-width:900px;margin:0 auto;padding:0 20px;text-align:center;
+      font-family: Didot, "Playfair Display", serif;
+    }
+    .cta-section h3{
+      font-weight:600;letter-spacing:.02em;margin:0 0 .35rem;font-size:clamp(1.4rem,3.6vw,2rem);
+    }
+    .cta-section p{
+      margin:0 0 .9rem;font-size:clamp(1rem,2.2vw,1.1rem);line-height:1.6;opacity:.95;
+    }
+
+    /* CHANGED: white background, black Didot text, not bold, rectangular */
     .cta-button{
       display:inline-block;
       background:#fff;
       color:#000;
       border:1px solid #000;
-      border-radius:0;
+      border-radius:0;                 /* rectangular */
       padding:12px 20px;
       text-decoration:none;
-      font-family:Didot,"Playfair Display",serif;
-      font-weight:400;
+      font-family: Didot, "Playfair Display", serif;
+      font-weight:400;                 /* not bold */
+      letter-spacing:0;
+      text-transform:none;
     }
-    .cta-button:hover{background:#f7f7f7;}
+    .cta-button:hover{background:#f7f7f7}
 
-    /* Bottom image flush */
+    /* === Bottom image block — flush left & bottom, no crop === */
     .corner-showcase{
       position:relative;
-      width:100vw;
-      margin:0;
+      width:100vw;           /* full viewport width */
+      margin:0;              /* flush left */
     }
+    .after-hero > .corner-showcase{ margin-bottom:0 !important; } /* so it kisses the bottom */
+
+    /* CHANGED: keep whole photo, cap height so it's not huge on laptops */
     .corner-showcase img{
+      position:static;
       display:block;
       width:100%;
-      height:auto;
-      max-height:82vh;
-      object-fit:contain;
+      height:auto;           /* preserves full image */
+      max-height:82vh;       /* keeps size reasonable on laptops */
+      object-fit:contain;    /* ensures no cropping */
       border-radius:0;
     }
 
@@ -115,26 +189,81 @@
     .bottom-tagline span{display:inline-block;padding-left:100%;animation:tick 20s linear infinite}
     @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
-    @media(max-width:600px){
-      .after-hero{padding-bottom:0;}
-      .corner-showcase img{max-height:70vh;}
+    /* Keep hidden until preload dropped */
+    body.preload .reveal,
+    body.preload .marquee-track img,
+    body.preload .words .l1,
+    body.preload .words .l2,
+    body.preload .words .l3,
+    body.preload .mission { opacity:0; transform:translateY(20px) }
+
+    /* === MOBILE (≤600px) === */
+    @media (max-width: 600px){
+      :root{ --gap: 2.6cm; }
+      .logo-wrap{ order: 1; padding-bottom: 3cm; }
+      .circle-wrap{ order: 2; left: 0; top: 0; justify-self: start; margin-top: 12px; transform: translateX(-6vw); }
+      .circle-wrap svg{ width: 120px; }
+      .logo{ width: min(88vw, 560px); }
+      .signature{ position: absolute; top: calc(100% + 8px); right: 0; width: min(44vw, 180px); opacity: .95; mix-blend-mode: multiply; }
+
+      .review-container{ padding: 0 28px; }
+      .arrow.left{ left: 8px; }
+      .arrow.right{ right: 8px; }
+      .review-text{ font-size: clamp(1rem, 4.6vw, 1.2rem); }
+
+      .marquee-track{ gap: 3.5vw; animation-duration: 10.7s !important; animation-direction: reverse !important; }
+      .marquee-track img{ height: 28vh; border-radius: 6px; box-shadow: 0 6px 16px rgba(0,0,0,.08); }
+
+      .corner-showcase{ width:100vw; }
+
+      /* CHANGED: remove bottom padding so image touches the bottom on phones */
+      .after-hero{ padding-bottom: 0; }
+
+      /* Slightly smaller cap on phones so it sits nicely above the ticker */
+      .corner-showcase img{ max-height:70vh; }
+
+      .bottom-tagline{ font-size: .85rem; }
+      .menu-btn{ top: 14px; left: 14px; }
+      .social-icons{ top: 14px; right: 16px; gap: 14px; }
     }
+
+    /* Ultra-narrow phones */
+    @media (max-width: 380px){
+      .marquee-track img{ height: 26vh; }
+      .review-container{ padding: 0 22px; }
+      .arrow{ font-size: 1.6rem; }
+    }
+
+    /* (Paid CTA styles left in CSS but element removed) */
+    .cta-fab{ display:none } /* hidden (you removed the paid CTA) */
+    .cta-modal{ display:none }
   </style>
 </head>
 
 <body class="preload">
-  <div class="reveal-overlay" id="introOverlay"></div>
+  <div class="reveal-overlay" id="introOverlay" aria-hidden="true"></div>
 
-  <button class="menu-btn">MENU</button>
-  <div class="social-icons">
-    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/"><i class="fab fa-linkedin"></i></a>
-    <a href="https://www.instagram.com/writemysocials"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.tiktok.com/@writemysocials"><i class="fab fa-tiktok"></i></a>
+  <button class="menu-btn" aria-expanded="false" aria-controls="menuBar">MENU</button>
+  <div class="social-icons" aria-label="social links">
+    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+    <a href="https://www.instagram.com/writemysocials" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+    <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
   </div>
+
+  <nav class="menu-bar" id="menuBar">
+    <div class="menu-inner">
+      <div class="image-menu">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/menu.jpg" alt="Menu navigation"/>
+        <a class="hot home" href="./" aria-label="Home"></a>
+        <a class="hot about" href="./about.html" aria-label="About"></a>
+        <a class="hot services" href="./services.html" aria-label="Services"></a>
+      </div>
+    </div>
+  </nav>
 
   <header class="hero">
     <div class="circle-wrap reveal">
-      <svg viewBox="0 0 220 220">
+      <svg viewBox="0 0 220 220" aria-hidden="true">
         <defs><path id="circlePath" d="M110,110 m-90,0 a90,90 0 1,1 180,0 a90,90 0 1,1 -180,0"/></defs>
         <g class="circle-spin">
           <text><textPath href="#circlePath">WRITE MY SOCIALS • STORIES THAT SELL • BRANDING • CONTENT •</textPath></text>
@@ -142,68 +271,187 @@
       </svg>
     </div>
     <div class="logo-wrap reveal">
-      <img class="logo" id="brandLogo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2011.45.04.png" alt="Logo"/>
-      <img class="signature" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png" alt="signature"/>
+      <img class="logo" id="brandLogo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2011.45.04.png" alt="Write My Socials logo"/>
+      <img class="signature" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png" alt="with love for your brand"/>
     </div>
   </header>
 
   <div class="after-hero">
-    <section class="words reveal">
-      <div class="l1">95% of purchase decisions are driven by emotion.</div>
-      <div class="l2">We are The Storytelling Marketing Studio</div>
-      <div class="l3">where words meet visuals to make brands feel human</div>
+    <section class="words" aria-label="intro quote">
+      <div class="l1 reveal">95% of purchase decisions are driven by emotion.</div>
+      <div class="l2 reveal">We are The Storytelling Marketing Studio</div>
+      <div class="l3 reveal">where words meet visuals to make brands feel human</div>
     </section>
 
-    <section class="mission reveal">
-      <div class="process">
-        <button class="step active" data-note="Analysis — clarity through research, data, and audience insights.">Analysis</button>
-        <span class="sep"><span class="arr">→</span></span>
-        <button class="step" data-note="Audit — a measured review of what works, what doesn’t, and why.">Audit</button>
-        <span class="sep"><span class="arr">→</span></span>
-        <button class="step" data-note="Strategy — a custom plan built around your goals and brand personality.">Strategy</button>
-        <span class="sep"><span class="arr">→</span></span>
-        <button class="step" data-note="Execution — creative, content, and campaigns launched with intention.">Execution</button>
+    <section class="reviews reveal" aria-label="client reviews">
+      <div class="review-container">
+        <button class="arrow left" onclick="prevReview()" aria-label="Previous review">&#8592;</button>
+        <div class="review-slide active">
+          <p class="review-text">"The quality is great; the structure is correct as well. Thank you for following my brief closely!"</p>
+          <p class="review-meta">MARIA — MOVAVI SOFTWARE</p>
+        </div>
+        <div class="review-slide">
+          <p class="review-text">"Siyana was very professional and was able to edit my copy in a very professional manner that spoke to my audience. Pleasure dealing with her."</p>
+          <p class="review-meta">IAN — FACEDUNK</p>
+        </div>
+        <button class="arrow right" onclick="nextReview()" aria-label="Next review">&#8594;</button>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="mission reveal" aria-label="our approach">
+      <div class="process" role="tablist" aria-label="Our process">
+        <button class="step active" role="tab" aria-selected="true" data-note="Analysis — clarity through research, data, and audience insights.">Analysis</button>
+        <span class="sep nudge" aria-hidden="true"><span class="arr">→</span></span>
+        <button class="step" role="tab" aria-selected="false" data-note="Audit — a measured review of what works, what doesn’t, and why.">Audit</button>
+        <span class="sep" aria-hidden="true"><span class="arr">→</span></span>
+        <button class="step" role="tab" aria-selected="false" data-note="Strategy — a custom plan built around your goals and brand personality.">Strategy</button>
+        <span class="sep" aria-hidden="true"><span class="arr">→</span></span>
+        <button class="step" role="tab" aria-selected="false" data-note="Execution — creative, content, and campaigns launched with intention.">Execution</button>
       </div>
       <p class="process-note" id="processNote">Analysis — clarity through research, data, and audience insights.</p>
-      <p>We are a strategy-first agency that treats your business like an ecosystem — every part connected, every decision intentional.</p>
-      <p><em>We don’t sell virality… We sell stories!</em></p>
+
+      <p>We are a strategy-first agency that treats your business like an ecosystem — every part connected, every decision intentional. Through in-depth analysis, audits, and carefully crafted strategies, we build frameworks that lead to real, measurable results. We don’t believe in one size fits all solutions; instead, we customise every approach to reflect your unique goals, audience, and brand personality. Our focus is on creating strategies that not only work, but work for you.</p>
+      <p><em>We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.</em></p>
     </section>
 
-    <section class="cta-section reveal">
+    <!-- CTA (above bottom image) -->
+    <section class="cta-section reveal" aria-label="Free call">
       <h3>Let’s talk strategy in 15 minutes.</h3>
       <p>Book a free discovery call — quick, focused, and tailored to your brand.</p>
-      <a class="cta-button" href="https://calendly.com/your-handle/15min" target="_blank">Book your free 15-minute call</a>
+      <a class="cta-button" href="https://calendly.com/your-handle/15min" target="_blank" rel="noopener">Book your free 15-minute call</a>
     </section>
 
+    <!-- Bottom image (flush left & bottom) -->
     <div class="corner-showcase reveal">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/A8D19E3A-E2FF-4033-91A1-572D64932578.JPG" alt="Project showcase"/>
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/A8D19E3A-E2FF-4033-91A1-572D64932578.JPG" alt="Project showcase">
     </div>
   </div>
 
-  <div class="bottom-tagline"><span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span></div>
+  <div class="bottom-tagline" aria-hidden="true">
+    <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
+  </div>
 
   <script>
-    // Reveal effect
-    const reveals=document.querySelectorAll('.reveal');
-    const io=new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
-      });
-    },{threshold:0.15});
-    reveals.forEach(r=>io.observe(r));
+    /* Overlay timing */
+    (function(){
+      const overlay = document.getElementById('introOverlay');
+      document.addEventListener('DOMContentLoaded', () => { document.body.classList.remove('preload'); });
+      setTimeout(() => overlay && overlay.classList.add('hide'), 250);
+      window.addEventListener('load', () => overlay && overlay.classList.add('hide'));
+      setTimeout(() => document.body.classList.remove('preload'), 400);
+    })();
 
-    // Process toggle
-    const steps=document.querySelectorAll('.process .step');
-    const note=document.getElementById('processNote');
-    steps.forEach((btn,i)=>{
-      btn.addEventListener('click',()=>{
-        steps.forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        note.textContent=btn.dataset.note;
-      });
-    });
+    /* Menu */
+    (function(){
+      const btn=document.querySelector('.menu-btn');const root=document.body;
+      function setOpen(o){root.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',String(o));}
+      btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
+      document.addEventListener('click',e=>{if(e.target.matches('.hot'))setOpen(false)});
+      document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
+    })();
+
+    /* Reviews nav */
+    let currentReview=0; const slides=()=>Array.from(document.querySelectorAll('.review-slide'));
+    function showReview(i){slides().forEach(s=>s.classList.remove('active'));slides()[i].classList.add('active');}
+    function nextReview(){currentReview=(currentReview+1)%slides().length;showReview(currentReview);}
+    function prevReview(){currentReview=(currentReview-1+slides().length)%slides().length;showReview(currentReview);}
+    window.nextReview = nextReview; window.prevReview = prevReview;
+
+    /* Scroll reveal */
+    (function(){
+      const els=document.querySelectorAll('.reveal');
+      const io=new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      },{threshold:0.15, rootMargin:'0px 0px -5% 0px'});
+      els.forEach(el=>io.observe(el));
+    })();
+
+    /* Marquee start */
+    (function(){
+      const marqueeWrap = document.querySelector('.marquee-wrap');
+      if(!marqueeWrap) return;
+      const imgs = Array.from(marqueeWrap.querySelectorAll('.marquee-track img'));
+      let started=false;
+
+      const startSequence = () => {
+        if(started) return; started=true;
+        const perDelay = 380;
+        imgs.forEach((img,i)=> setTimeout(()=> img.classList.add('pop-in'), i*perDelay));
+        const total = (imgs.length-1)*perDelay + 650;
+        setTimeout(() => {
+          const track = marqueeWrap.querySelector('.marquee-track');
+          if (track) track.style.animation = 'scroll 22s linear infinite';
+        }, total);
+      };
+
+      const io2 = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting) { startSequence(); io2.unobserve(e.target); }
+        });
+      },{threshold:0.2});
+      io2.observe(marqueeWrap);
+    })();
+
+    /* Process tabs: click to swap sentence */
+    (function(){
+      const container = document.querySelector('.process');
+      const steps = Array.from(container.querySelectorAll('.step'));
+      const seps  = Array.from(container.querySelectorAll('.sep'));
+      const note  = document.getElementById('processNote');
+
+      function activate(idx){
+        steps.forEach((b,i)=>{
+          const on = i===idx;
+          b.classList.toggle('active', on);
+          b.setAttribute('aria-selected', String(on));
+        });
+        // nudge the arrow after the active word (if any)
+        seps.forEach(s=>s.classList.remove('nudge'));
+        if (seps[idx]) seps[idx].classList.add('nudge');
+
+        const txt = steps[idx].dataset.note || '';
+        note.textContent = txt;
+      }
+
+      steps.forEach((b,i)=> b.addEventListener('click', ()=> activate(i)));
+      // ensure first load is correct
+      activate(0);
+    })();
+
+    /* Optional: client-side logo white knockout */
+    (function(){
+      const img = document.getElementById('brandLogo');
+      if(!img) return;
+      function removeWhite(){
+        const w = img.naturalWidth, h = img.naturalHeight;
+        if(!w || !h) return;
+        const c = document.createElement('canvas');
+        const ctx = c.getContext('2d', { willReadFrequently: true });
+        c.width = w; c.height = h;
+        ctx.drawImage(img, 0, 0);
+        try{
+          const T = 245;
+          const id = ctx.getImageData(0, 0, w, h);
+          const d = id.data;
+          for (let i = 0; i < d.length; i += 4){
+            const r=d[i], g=d[i+1], b=d[i+2];
+            if (r>=T && g>=T && b>=T) d[i+3] = 0;
+          }
+          ctx.putImageData(id, 0, 0);
+          img.style.mixBlendMode = 'normal';
+          img.src = c.toDataURL('image/png');
+        }catch(e){ /* CORS fallback */ }
+      }
+      img.crossOrigin = 'anonymous';
+      if (img.complete) removeWhite(); else img.addEventListener('load', removeWhite);
+    })();
   </script>
 </body>
 </html>
-
-
+ 
