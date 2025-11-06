@@ -111,13 +111,12 @@
       display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:.35em .5em;
       margin-bottom:14px;
       font-family:'Playfair Display',serif;font-weight:600;letter-spacing:.02em;
-      /* 2x smaller than before */
       font-size:clamp(0.8rem,2.6vw,1.5rem);
       line-height:1.15;color:#000;
     }
     .process .step{
       appearance:none;border:none;background:transparent;color:inherit;font:inherit;cursor:pointer;padding:.15em .35em;border-radius:999px;position:relative;
-      line-height:1.15;min-height:44px; /* finger target */
+      line-height:1.15;min-height:44px;
     }
     .process .step:focus-visible{outline:2px solid #000;outline-offset:2px;border-radius:12px}
     .process .step.active{border-bottom:2px solid #000}
@@ -127,7 +126,6 @@
     .process .sep.nudge .arr{animation:nudge 800ms ease-in-out}
     @media (prefers-reduced-motion: reduce){ .process .sep.nudge .arr{animation:none} }
 
-    /* Didot italic for the explainer line */
     .process-note{
       font-family: Didot, "Playfair Display", serif;
       font-style: italic;
@@ -136,15 +134,22 @@
       max-width:70ch;
       margin:.25rem auto 0;
       opacity:.95;
-      min-height:1.6em; /* prevents layout shift */
+      min-height:1.6em;
     }
 
-    /* Caption/image block (square corners) */
-    .corner-showcase{position:relative;width:min(360px,70vw);margin:0 auto; border-radius:0;}
-    .corner-showcase img{width:100%;height:auto;border-radius:0;display:block}
-    .born-note{
-      position:static;transform:none;margin:0 auto 10px;display:block;text-align:center;
-      font-family:'DotGothic16', sans-serif;font-size:clamp(1rem,2.2vw,1.15rem);letter-spacing:.04em;color:#000;background:transparent;padding:0;border-radius:0;
+    /* === Simplified bottom image block (full image, no crop) === */
+    .corner-showcase{
+      position:relative;
+      width:min(900px,92vw);
+      margin:0 auto;
+    }
+    .corner-showcase img{
+      position:static;
+      display:block;
+      width:100%;
+      height:auto;          /* preserves full image */
+      object-fit:contain;   /* ensures no cropping */
+      border-radius:0;
     }
 
     .bottom-tagline{position:fixed;bottom:0;width:100%;background:#000;color:#fff;font-family:'Poppins',sans-serif;font-size:1rem;white-space:nowrap;overflow:hidden;z-index:900}
@@ -177,7 +182,6 @@
       .marquee-track img{ height: 28vh; border-radius: 6px; box-shadow: 0 6px 16px rgba(0,0,0,.08); }
 
       .corner-showcase{ width: min(92vw, 420px); }
-      .born-note{ margin-bottom: 8px; font-size: clamp(.95rem, 3.6vw, 1.05rem); letter-spacing: .03em; }
 
       .bottom-tagline{ font-size: .85rem; }
       .after-hero{ padding-bottom: 64px; }
@@ -193,7 +197,7 @@
       .arrow{ font-size: 1.6rem; }
     }
 
-    /* ===== CTA button (paid) ===== */
+    /* (Paid CTA styles left in CSS but element removed) */
     .cta-fab{
       position:fixed; top:90px; right:25px; z-index:3201;
       background:#fff; color:#000; border:1px solid #000; border-radius:6px;
@@ -202,7 +206,6 @@
     }
     .cta-fab:hover{background:#f7f7f7}
 
-    /* ===== CTA POPUPS (shared base) ===== */
     .cta-modal{
       position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
       background:rgba(0,0,0,.52); z-index:4001; opacity:0; visibility:hidden;
@@ -210,12 +213,10 @@
     }
     .cta-modal.show{opacity:1; visibility:visible; transition:opacity .25s ease}
 
-    /* Paid (audit) dialog size */
     .cta-dialog.paid{
       width:min(420px,90vw); background:#fff; color:#000; border-radius:16px; padding:16px 14px 14px;
       box-shadow:0 20px 50px rgba(0,0,0,.35); position:relative; font-family:'Poppins',sans-serif;
     }
-    /* Free-call dialog: slightly smaller on phones for easier close */
     .cta-dialog.free{
       width:min(380px,90vw); background:#fff; color:#000; border-radius:16px; padding:16px 14px 14px;
       box-shadow:0 20px 50px rgba(0,0,0,.35); position:relative; font-family:'Poppins',sans-serif;
@@ -239,42 +240,6 @@
     .cta-form textarea{min-height:110px; resize:vertical}
     .cta-submit{ margin-top:12px; background:#000; color:#fff; border:1px solid #000; padding:10px 16px; border-radius:12px; cursor:pointer; font-weight:500; }
     .cta-submit:hover{background:#111}
-
-    /* Bottom image hover (kept) */
-    .corner-showcase{ aspect-ratio: 1 / 1; overflow: hidden; }
-    .corner-showcase img{
-      position:absolute; inset:auto 0 0 0; width:100%; height:118%; object-fit:cover;
-      clip-path: inset(0 0 var(--cut, 0%) 0); transform: translateY(0);
-      transition: clip-path 520ms cubic-bezier(.25,.46,.45,.94), transform 520ms cubic-bezier(.25,.46,.45,.94);
-      will-change: clip-path, transform;
-    }
-    .corner-showcase .born-note{
-      position:absolute; left:22px; right:22px; bottom:20px; margin:0; background:transparent; border-radius:0;
-      text-align:center; font-family:'Playfair Display', serif; font-weight:600; font-size:clamp(.9rem,1.1vw,1.05rem);
-      line-height:1.55; letter-spacing:.02em; color:#000; opacity:0; transform:translateY(12px);
-      transition: opacity 320ms ease, transform 320ms ease; pointer-events:none; z-index:2;
-    }
-    @media (hover:hover) and (pointer:fine){
-      .corner-showcase:hover img{ clip-path: inset(0 0 var(--cut-target, 34%) 0); transform: translateY(calc(-1 * var(--cut-lift))); }
-      .corner-showcase:hover .born-note{ opacity:1; transform: translateY(0); }
-    }
-    @media (prefers-reduced-motion: reduce){
-      .corner-showcase img, .corner-showcase .born-note{ transition: none !important; }
-    }
-    @supports not (aspect-ratio: 1 / 1){
-      .corner-showcase::before{content:"";display:block;padding-top:100%;}
-      .corner-showcase img{position:absolute;left:0;right:0;bottom:0;}
-    }
-
-    /* --- Bottom free-call trigger button --- */
-    .free-call-cta{
-      max-width:1100px; margin:50px auto 110px; padding:0 20px; text-align:center;
-    }
-    .free-call-btn{
-      background:#fff; color:#000; border:1px solid #000; border-radius:999px;
-      padding:10px 16px; cursor:pointer; font-family:'Poppins',sans-serif; font-size:.95rem; letter-spacing:.02em;
-    }
-    .free-call-btn:hover{background:#f7f7f7}
   </style>
 </head>
 
@@ -362,16 +327,9 @@
       <p><em>We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.</em></p>
     </section>
 
+    <!-- Bottom image (full, uncropped) -->
     <div class="corner-showcase reveal">
-      <p class="born-note" aria-label="origin">Founded in Chelsea, London</p>
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/A8D19E3A-E2FF-4033-91A1-572D64932578.JPG" alt="Project showcase">
-    </div>
-
-    <!-- Bottom free-call button (opens Free Call modal) -->
-    <div class="free-call-cta">
-      <button class="free-call-btn" id="openFreeCallFromBottom" aria-label="Open free strategy call">
-        Book a Free Strategy Call — No Strings
-      </button>
     </div>
   </div>
 
@@ -379,25 +337,7 @@
     <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
   </div>
 
-  <!-- Floating button (PAID) — REMOVED -->
-
-  <!-- ====== PAID modal — REMOVED ====== -->
-
-  <!-- ====== FREE: Strategy Call (Calendly only) ====== -->
-  <div class="cta-modal" id="ctaModalFree" aria-hidden="true" role="dialog" aria-labelledby="ctaTitleFree">
-    <div class="cta-dialog free">
-      <button class="cta-close" id="ctaCloseFree" aria-label="Close free call popup">&times;</button>
-      <h3 id="ctaTitleFree">Book a Free Strategy Call</h3>
-      <p style="font-family:Didot,'Playfair Display',serif;font-style:italic;opacity:.95;">
-        No pitch. No pressure. A quick chat to see where we can help.
-      </p>
-      <div style="margin-top:6px;">
-        <button class="cta-submit" id="freeCallBtn" type="button" aria-label="Book via Calendly" style="background:#fff;color:#000;">
-          Open Calendly
-        </button>
-      </div>
-    </div>
-  </div>
+  <!-- Paid CTA removed; Free call button & modal removed -->
 
   <script>
     /* Overlay timing */
@@ -492,78 +432,6 @@
       img.crossOrigin = 'anonymous';
       if (img.complete) removeWhite(); else img.addEventListener('load', removeWhite);
     })();
-
-    /* Crop amount for caption */
-    (function(){
-      const card = document.querySelector('.corner-showcase');
-      const img  = card?.querySelector('img');
-      const cap  = card?.querySelector('.born-note');
-      function updateCutTarget(){
-        if(!cap || !card) return;
-        const cardH = card.clientHeight || img?.clientHeight || 1;
-        const captionH = cap.offsetHeight + 20;
-        const pct = Math.min(50, Math.max(12, Math.round((captionH / cardH) * 100)));
-        card.style.setProperty('--cut-target', pct + '%');
-      }
-      window.addEventListener('load', updateCutTarget);
-      window.addEventListener('resize', updateCutTarget);
-      setTimeout(updateCutTarget, 300);
-    })();
-
-    /* ===== Modals: open/close wiring (FREE ONLY) ===== */
-    (function(){
-      const freeModal   = document.getElementById('ctaModalFree');
-      const freeClose   = document.getElementById('ctaCloseFree');
-      const openFreeBottom = document.getElementById('openFreeCallFromBottom');
-
-      function open(modal){ modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); }
-      function hide(modal){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); }
-
-      if(openFreeBottom) openFreeBottom.addEventListener('click', ()=>open(freeModal));
-      freeClose.addEventListener('click', ()=>hide(freeModal));
-      freeModal.addEventListener('click', (e)=>{ if(e.target === freeModal) hide(freeModal); });
-
-      document.addEventListener('keydown', (e)=>{
-        if(e.key==='Escape'){ hide(freeModal); }
-      });
-    })();
-
-    /* Calendly link (FREE ONLY) */
-    (function(){
-      const freeBtn = document.getElementById('freeCallBtn');
-      if(freeBtn){
-        const CALENDLY_LINK = 'https://calendly.com/your-handle/free-strategy-call';
-        freeBtn.addEventListener('click', function(){ window.open(CALENDLY_LINK, '_blank'); });
-      }
-    })();
-
-    /* Interactive process behaviour */
-    (function(){
-      const container = document.querySelector('.process');
-      const steps = Array.from(container?.querySelectorAll('.step')||[]);
-      const seps  = Array.from(container?.querySelectorAll('.sep')||[]);
-      const noteEl = document.getElementById('processNote');
-      if(!container || !steps.length) return;
-
-      const saved = +sessionStorage.getItem('wms_process_idx');
-      let idx = Number.isFinite(saved) && saved>=0 && saved<steps.length ? saved : 0;
-
-      function setActive(i){
-        steps.forEach((b,k)=>{
-          const on = k===i;
-          b.classList.toggle('active', on);
-          b.setAttribute('aria-selected', on ? 'true' : 'false');
-        });
-        seps.forEach((s,k)=> s.classList.toggle('nudge', k===i)); // nudge arrow between active and next
-        noteEl.textContent = steps[i].dataset.note || '';
-        idx = i;
-        try{ sessionStorage.setItem('wms_process_idx', String(i)); }catch(e){}
-      }
-
-      steps.forEach((b,i)=> b.addEventListener('click', ()=> setActive(i)));
-      setActive(idx);
-    })();
   </script>
 </body>
 </html>
-
