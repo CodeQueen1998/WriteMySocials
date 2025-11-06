@@ -364,7 +364,7 @@
 
     <div class="corner-showcase reveal">
       <p class="born-note" aria-label="origin">Founded in Chelsea, London</p>
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/577119694_1479229746713598_5832292539194464339_n.jpg" alt="Project showcase">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/A8D19E3A-E2FF-4033-91A1-572D64932578.JPG" alt="Project showcase">
     </div>
 
     <!-- Bottom free-call button (opens Free Call modal) -->
@@ -379,57 +379,9 @@
     <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
   </div>
 
-  <!-- Floating button → PAID AUDIT modal -->
-  <button class="cta-fab" id="ctaFab" aria-label="Open audit booking">Book the Brand & Marketing Deep Dive Audit™</button>
+  <!-- Floating button (PAID) — REMOVED -->
 
-  <!-- ====== PAID: Brand & Marketing Deep Dive Audit™ ====== -->
-  <div class="cta-modal" id="ctaModalPaid" aria-hidden="true" role="dialog" aria-labelledby="ctaTitlePaid">
-    <div class="cta-dialog paid">
-      <button class="cta-close" id="ctaClosePaid" aria-label="Close audit form">&times;</button>
-      <h3 id="ctaTitlePaid">Book the Brand & Marketing Deep Dive Audit™</h3>
-
-      <!-- Exact outline text (unchanged) -->
-      <p style="font-family:Didot,'Playfair Display',serif;font-style:italic;opacity:.95;">
-        A full-scope brand and marketing audit identifying gaps, strengths, and growth opportunities.
-        Includes: brand identity review, funnel and website analysis, messaging evaluation, SEO
-        insights, and a 30-minute strategy debrief with an actionable roadmap
-      </p>
-
-      <div style="margin:10px 0 16px;">
-        <button class="cta-submit" id="payNowBtn" type="button" aria-label="Pay securely with Stripe">
-          Pay now to secure your session
-        </button>
-      </div>
-
-      <!-- Original form (unchanged) -->
-      <p>Tell us about your business and how we can help. We’ll be in touch shortly.</p>
-      <form class="cta-form" id="ctaFormPaid" method="POST" action="https://formspree.io/f/your-id-here">
-        <div class="row">
-          <div>
-            <label for="cf_name_paid">Full name</label>
-            <input type="text" id="cf_name_paid" name="name" placeholder="Jane Smith" required>
-          </div>
-          <div>
-            <label for="cf_business_paid">Business name</label>
-            <input type="text" id="cf_business_paid" name="business" placeholder="Acme Co." required>
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="cf_email_paid">Email</label>
-            <input type="email" id="cf_email_paid" name="email" placeholder="you@company.com" required>
-          </div>
-          <div>
-            <label for="cf_phone_paid">Phone</label>
-            <input type="tel" id="cf_phone_paid" name="phone" placeholder="+44 7xxx xxx xxx" required>
-          </div>
-        </div>
-        <label for="cf_notes_paid">Tell us about your business goals</label>
-        <textarea id="cf_notes_paid" name="notes" placeholder="e.g., Social strategy, content calendar, brand voice…"></textarea>
-        <button class="cta-submit" type="submit">Send</button>
-      </form>
-    </div>
-  </div>
+  <!-- ====== PAID modal — REMOVED ====== -->
 
   <!-- ====== FREE: Strategy Call (Calendly only) ====== -->
   <div class="cta-modal" id="ctaModalFree" aria-hidden="true" role="dialog" aria-labelledby="ctaTitleFree">
@@ -544,12 +496,11 @@
     /* Crop amount for caption */
     (function(){
       const card = document.querySelector('.corner-showcase');
-      if(!card) return;
-      const img  = card.querySelector('img');
-      const cap  = card.querySelector('.born-note');
+      const img  = card?.querySelector('img');
+      const cap  = card?.querySelector('.born-note');
       function updateCutTarget(){
         if(!cap || !card) return;
-        const cardH = card.clientHeight || img.clientHeight || 1;
+        const cardH = card.clientHeight || img?.clientHeight || 1;
         const captionH = cap.offsetHeight + 20;
         const pct = Math.min(50, Math.max(12, Math.round((captionH / cardH) * 100)));
         card.style.setProperty('--cut-target', pct + '%');
@@ -559,51 +510,27 @@
       setTimeout(updateCutTarget, 300);
     })();
 
-    /* ===== Modals: open/close wiring ===== */
+    /* ===== Modals: open/close wiring (FREE ONLY) ===== */
     (function(){
-      const paidModal   = document.getElementById('ctaModalPaid');
       const freeModal   = document.getElementById('ctaModalFree');
-      const paidFab     = document.getElementById('ctaFab');
-      const paidClose   = document.getElementById('ctaClosePaid');
       const freeClose   = document.getElementById('ctaCloseFree');
       const openFreeBottom = document.getElementById('openFreeCallFromBottom');
 
       function open(modal){ modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); }
       function hide(modal){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); }
 
-      paidFab.addEventListener('click', ()=>open(paidModal));
       if(openFreeBottom) openFreeBottom.addEventListener('click', ()=>open(freeModal));
-
-      paidClose.addEventListener('click', ()=>hide(paidModal));
       freeClose.addEventListener('click', ()=>hide(freeModal));
-
-      paidModal.addEventListener('click', (e)=>{ if(e.target === paidModal) hide(paidModal); });
       freeModal.addEventListener('click', (e)=>{ if(e.target === freeModal) hide(freeModal); });
 
       document.addEventListener('keydown', (e)=>{
-        if(e.key==='Escape'){
-          hide(paidModal);
-          hide(freeModal);
-        }
+        if(e.key==='Escape'){ hide(freeModal); }
       });
-
-      /* Keep your previous auto-open behavior for the paid modal only */
-      try{
-        const key='wms_cta_seen';
-        if(!sessionStorage.getItem(key)){
-          setTimeout(()=>{ open(paidModal); sessionStorage.setItem(key,'1'); }, 5200);
-        }
-      }catch(e){}
     })();
 
-    /* Stripe & Calendly links (placeholders) */
+    /* Calendly link (FREE ONLY) */
     (function(){
-      const payBtn = document.getElementById('payNowBtn');
       const freeBtn = document.getElementById('freeCallBtn');
-      if(payBtn){
-        const STRIPE_LINK = 'https://buy.stripe.com/test_checkout_link';
-        payBtn.addEventListener('click', function(){ window.location.href = STRIPE_LINK; });
-      }
       if(freeBtn){
         const CALENDLY_LINK = 'https://calendly.com/your-handle/free-strategy-call';
         freeBtn.addEventListener('click', function(){ window.open(CALENDLY_LINK, '_blank'); });
@@ -639,3 +566,4 @@
   </script>
 </body>
 </html>
+
