@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Write My Socials — Home</title>
 
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&family=DotGothic16&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
@@ -106,7 +107,7 @@
       padding:0 20px;text-align:center;font-family:'Poppins',sans-serif;line-height:1.9;color:#111;font-size:clamp(1.05rem,2.3vw,1.15rem);font-weight:400;background:transparent;
     }
 
-    /* Interactive process: tap-to-spotlight with inline explainer */
+    /* Interactive process */
     .process{
       display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:.35em .5em;
       margin-bottom:14px;
@@ -137,18 +138,36 @@
       min-height:1.6em;
     }
 
-    /* === Simplified bottom image block (full image, no crop) === */
+    /* ===== CTA (Didot / Vogue-y) ===== */
+    .cta-section{
+      max-width:900px;margin:0 auto;padding:0 20px;text-align:center;
+      font-family: Didot, "Playfair Display", serif;
+    }
+    .cta-section h3{
+      font-weight:600;letter-spacing:.02em;margin:0 0 .35rem;font-size:clamp(1.4rem,3.6vw,2rem);
+    }
+    .cta-section p{
+      margin:0 0 .9rem;font-size:clamp(1rem,2.2vw,1.1rem);line-height:1.6;opacity:.95;
+    }
+    .cta-button{
+      display:inline-block;background:#000;color:#fff;border:1px solid #000;border-radius:999px;
+      padding:12px 20px;text-decoration:none;font-family:'Poppins',sans-serif;font-weight:600;letter-spacing:.06em;
+    }
+    .cta-button:hover{background:#111}
+
+    /* === Bottom image block — flush left & bottom, no crop === */
     .corner-showcase{
       position:relative;
-      width:min(900px,92vw);
-      margin:0 auto;
+      width:100vw;           /* fill full viewport width */
+      margin:0;              /* flush left */
     }
+    .after-hero > .corner-showcase{ margin-bottom:0 !important; } /* so it kisses the bottom */
     .corner-showcase img{
       position:static;
       display:block;
       width:100%;
-      height:auto;          /* preserves full image */
-      object-fit:contain;   /* ensures no cropping */
+      height:auto;           /* keep entire photo */
+      object-fit:contain;    /* never crop */
       border-radius:0;
     }
 
@@ -181,11 +200,9 @@
       .marquee-track{ gap: 3.5vw; animation-duration: 10.7s !important; animation-direction: reverse !important; }
       .marquee-track img{ height: 28vh; border-radius: 6px; box-shadow: 0 6px 16px rgba(0,0,0,.08); }
 
-      .corner-showcase{ width: min(92vw, 420px); }
-
+      .corner-showcase{ width:100vw; }
       .bottom-tagline{ font-size: .85rem; }
       .after-hero{ padding-bottom: 64px; }
-
       .menu-btn{ top: 14px; left: 14px; }
       .social-icons{ top: 14px; right: 16px; gap: 14px; }
     }
@@ -198,48 +215,8 @@
     }
 
     /* (Paid CTA styles left in CSS but element removed) */
-    .cta-fab{
-      position:fixed; top:90px; right:25px; z-index:3201;
-      background:#fff; color:#000; border:1px solid #000; border-radius:6px;
-      padding:6px 12px; cursor:pointer; box-shadow:none;
-      font-family:Didot,'Playfair Display',serif; font-weight:500; font-size:.9rem; letter-spacing:.06em; text-transform:uppercase;
-    }
-    .cta-fab:hover{background:#f7f7f7}
-
-    .cta-modal{
-      position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
-      background:rgba(0,0,0,.52); z-index:4001; opacity:0; visibility:hidden;
-      transition:opacity .25s ease, visibility 0s linear .25s;
-    }
-    .cta-modal.show{opacity:1; visibility:visible; transition:opacity .25s ease}
-
-    .cta-dialog.paid{
-      width:min(420px,90vw); background:#fff; color:#000; border-radius:16px; padding:16px 14px 14px;
-      box-shadow:0 20px 50px rgba(0,0,0,.35); position:relative; font-family:'Poppins',sans-serif;
-    }
-    .cta-dialog.free{
-      width:min(380px,90vw); background:#fff; color:#000; border-radius:16px; padding:16px 14px 14px;
-      box-shadow:0 20px 50px rgba(0,0,0,.35); position:relative; font-family:'Poppins',sans-serif;
-    }
-    @media(max-width:600px){
-      .cta-dialog.paid{ width:min(360px,94vw); padding:16px 14px; border-radius:12px; }
-      .cta-dialog.free{ width:min(330px,94vw); padding:16px 14px; border-radius:12px; }
-    }
-
-    .cta-close{
-      position:absolute; top:8px; right:10px; background:#000; color:#fff; border:none; border-radius:999px;
-      width:36px; height:36px; font-size:22px; line-height:36px; cursor:pointer;
-    }
-    .cta-dialog h3{font-family:'Playfair Display',serif; font-size:1.5rem; margin:4px 0 6px}
-    .cta-dialog p{font-size:.95rem; margin:0 0 12px}
-
-    .cta-form .row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-    @media(max-width:520px){ .cta-form .row{grid-template-columns:1fr} }
-    .cta-form label{font-size:.85rem; letter-spacing:.03em; display:block; margin:10px 0 6px}
-    .cta-form input, .cta-form textarea{ width:100%; padding:10px 12px; border:1px solid #000; border-radius:10px; font-family:'Poppins',sans-serif; font-size:.95rem; }
-    .cta-form textarea{min-height:110px; resize:vertical}
-    .cta-submit{ margin-top:12px; background:#000; color:#fff; border:1px solid #000; padding:10px 16px; border-radius:12px; cursor:pointer; font-weight:500; }
-    .cta-submit:hover{background:#111}
+    .cta-fab{ display:none } /* hidden (you removed the paid CTA) */
+    .cta-modal{ display:none }
   </style>
 </head>
 
@@ -301,16 +278,7 @@
       </div>
     </section>
 
-    <div class="marquee-wrap reveal" aria-label="work samples">
-      <div class="marquee-track">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work sample 1">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work sample 2">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work sample 3">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work sample 4">
-      </div>
-    </div>
-
-    <!-- Interactive process line -->
+    <!-- Process -->
     <section class="mission reveal" aria-label="our approach">
       <div class="process" role="tablist" aria-label="Our process">
         <button class="step active" role="tab" aria-selected="true" data-note="Analysis — clarity through research, data, and audience insights.">Analysis</button>
@@ -327,7 +295,14 @@
       <p><em>We don’t sell virality… We sell stories! We listen to your goals, learn your market and your personality — then craft stories that feel distinctively yours.</em></p>
     </section>
 
-    <!-- Bottom image (full, uncropped) -->
+    <!-- CTA (above bottom image) -->
+    <section class="cta-section reveal" aria-label="Free call">
+      <h3>Let’s talk strategy in 15 minutes.</h3>
+      <p>Book a free discovery call — quick, focused, and tailored to your brand.</p>
+      <a class="cta-button" href="https://calendly.com/your-handle/15min" target="_blank" rel="noopener">Book your free 15-minute call</a>
+    </section>
+
+    <!-- Bottom image (flush left & bottom) -->
     <div class="corner-showcase reveal">
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/A8D19E3A-E2FF-4033-91A1-572D64932578.JPG" alt="Project showcase">
     </div>
@@ -336,8 +311,6 @@
   <div class="bottom-tagline" aria-hidden="true">
     <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
   </div>
-
-  <!-- Paid CTA removed; Free call button & modal removed -->
 
   <script>
     /* Overlay timing */
@@ -403,6 +376,32 @@
         });
       },{threshold:0.2});
       io2.observe(marqueeWrap);
+    })();
+
+    /* Process tabs: click to swap sentence */
+    (function(){
+      const container = document.querySelector('.process');
+      const steps = Array.from(container.querySelectorAll('.step'));
+      const seps  = Array.from(container.querySelectorAll('.sep'));
+      const note  = document.getElementById('processNote');
+
+      function activate(idx){
+        steps.forEach((b,i)=>{
+          const on = i===idx;
+          b.classList.toggle('active', on);
+          b.setAttribute('aria-selected', String(on));
+        });
+        // nudge the arrow after the active word (if any)
+        seps.forEach(s=>s.classList.remove('nudge'));
+        if (seps[idx]) seps[idx].classList.add('nudge');
+
+        const txt = steps[idx].dataset.note || '';
+        note.textContent = txt;
+      }
+
+      steps.forEach((b,i)=> b.addEventListener('click', ()=> activate(i)));
+      // ensure first load is correct
+      activate(0);
     })();
 
     /* Optional: client-side logo white knockout */
