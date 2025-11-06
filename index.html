@@ -68,7 +68,7 @@
       -webkit-clip-path:inset(3% 0 0 0 round 2px);clip-path:inset(3% 0 0 0 round 2px);
       z-index:1;
     }
-    @media(max-width:600px){.signature{position:static;margin-top:10px;width:min(70vw,300px)}}
+    @media(max-width:600px){.signature{position:static;margin-top:10px;width=min(70vw,300px)}}
 
     .after-hero > *{margin-top:var(--gap)!important;margin-bottom:var(--gap)!important}
     .after-hero{ position: relative; z-index: 2; }
@@ -91,10 +91,10 @@
     .arrow{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;font-size:1.8rem;color:#000;cursor:pointer}
     .arrow.left{left:-30px}.arrow.right{right:-30px}
 
+    /* === WORK SAMPLES MARQUEE (RESTORED) === */
     .marquee-wrap{width:100vw;overflow:hidden}
     .marquee-track{display:flex;gap:2vw;padding:0 2vw;}
     @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
     .marquee-track img{
       height:50vh;width:auto;border-radius:8px;display:block;object-fit:cover;
       opacity:0;transform:translateY(20px);
@@ -172,16 +172,13 @@
       width:100vw;           /* full viewport width */
       margin:0;              /* flush left */
     }
-    .after-hero > .corner-showcase{ margin-bottom:0 !important; } /* so it kisses the bottom */
-
-    /* CHANGED: keep whole photo, cap height so it's not huge on laptops */
+    .after-hero > .corner-showcase{ margin-bottom:0 !important; } /* kiss the bottom */
     .corner-showcase img{
       position:static;
       display:block;
       width:100%;
-      height:auto;           /* preserves full image */
-      max-height:82vh;       /* keeps size reasonable on laptops */
-      object-fit:contain;    /* ensures no cropping */
+      height:auto;           /* full photo visible */
+      object-fit:contain;    /* never crop */
       border-radius:0;
     }
 
@@ -215,14 +212,11 @@
       .marquee-track img{ height: 28vh; border-radius: 6px; box-shadow: 0 6px 16px rgba(0,0,0,.08); }
 
       .corner-showcase{ width:100vw; }
+      .bottom-tagline{ font-size: .85rem; }
 
       /* CHANGED: remove bottom padding so image touches the bottom on phones */
       .after-hero{ padding-bottom: 0; }
 
-      /* Slightly smaller cap on phones so it sits nicely above the ticker */
-      .corner-showcase img{ max-height:70vh; }
-
-      .bottom-tagline{ font-size: .85rem; }
       .menu-btn{ top: 14px; left: 14px; }
       .social-icons{ top: 14px; right: 16px; gap: 14px; }
     }
@@ -297,6 +291,16 @@
         <button class="arrow right" onclick="nextReview()" aria-label="Next review">&#8594;</button>
       </div>
     </section>
+
+    <!-- RESTORED: work samples marquee -->
+    <div class="marquee-wrap reveal" aria-label="work samples">
+      <div class="marquee-track">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work sample 1">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample2.jpg" alt="Work sample 2">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample3.jpg" alt="Work sample 3">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample4.jpg" alt="Work sample 4">
+      </div>
+    </div>
 
     <!-- Process -->
     <section class="mission reveal" aria-label="our approach">
@@ -454,4 +458,5 @@
   </script>
 </body>
 </html>
+
 
