@@ -68,7 +68,7 @@
       -webkit-clip-path:inset(3% 0 0 0 round 2px);clip-path:inset(3% 0 0 0 round 2px);
       z-index:1;
     }
-    @media(max-width:600px){.signature{position:static;margin-top:10px;width=min(70vw,300px)}}
+    @media(max-width:600px){.signature{position:static;margin-top:10px;width:min(70vw,300px)}}
 
     .after-hero > *{margin-top:var(--gap)!important;margin-bottom:var(--gap)!important}
     .after-hero{ position: relative; z-index: 2; }
@@ -355,25 +355,33 @@
       document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
     })();
 
-    /* Reviews nav */
-    let currentReview=0; const slides=()=>Array.from(document.querySelectorAll('.review-slide'));
-    function showReview(i){slides().forEach(s=>s.classList.remove('active'));slides()[i].classList.add('active');}
-    function nextReview(){currentReview=(currentReview+1)%slides().length;showReview(currentReview);}
-    function prevReview(){currentReview=(currentReview-1+slides().length)%slides().length;showReview(currentReview);}
-    window.nextReview = nextReview; window.prevReview = prevReview;
-
-    /* Scroll reveal */
+    /* Scroll reveal (fix: ensure in-view elements reveal on first load) */
     (function(){
-      const els=document.querySelectorAll('.reveal');
-      const io=new IntersectionObserver((entries)=>{
+      const els = document.querySelectorAll('.reveal');
+
+      const io = new IntersectionObserver((entries)=>{
         entries.forEach(e=>{
           if(e.isIntersecting){
             e.target.classList.add('in');
             io.unobserve(e.target);
           }
         });
-      },{threshold:0.15, rootMargin:'0px 0px -5% 0px'});
-      els.forEach(el=>io.observe(el));
+      }, { threshold: 0.01, rootMargin: '0px 0px -5% 0px' });
+
+      els.forEach(el => io.observe(el));
+
+      // Kickstart anything already in view so page doesn't feel "stuck"
+      const kick = () => {
+        els.forEach(el => {
+          const r = el.getBoundingClientRect();
+          if (r.top < window.innerHeight * 0.95 && r.bottom > 0) {
+            el.classList.add('in');
+            io.unobserve(el);
+          }
+        });
+      };
+      requestAnimationFrame(kick);
+      window.addEventListener('load', kick, { once: true });
     })();
 
     /* Marquee start */
