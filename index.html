@@ -355,10 +355,30 @@
       document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
     })();
 
-    /* Scroll reveal (fix: ensure in-view elements reveal on first load) */
+    /* Reviews nav (added back) */
+    (function(){
+      let currentReview = 0;
+      const slides = () => Array.from(document.querySelectorAll('.review-slide'));
+      function showReview(i){
+        const s = slides();
+        s.forEach(el => el.classList.remove('active'));
+        s[i].classList.add('active');
+      }
+      window.nextReview = function(){
+        const s = slides();
+        currentReview = (currentReview + 1) % s.length;
+        showReview(currentReview);
+      };
+      window.prevReview = function(){
+        const s = slides();
+        currentReview = (currentReview - 1 + s.length) % s.length;
+        showReview(currentReview);
+      };
+    })();
+
+    /* Scroll reveal (kickstart so page doesn't feel "stuck") */
     (function(){
       const els = document.querySelectorAll('.reveal');
-
       const io = new IntersectionObserver((entries)=>{
         entries.forEach(e=>{
           if(e.isIntersecting){
@@ -367,10 +387,7 @@
           }
         });
       }, { threshold: 0.01, rootMargin: '0px 0px -5% 0px' });
-
       els.forEach(el => io.observe(el));
-
-      // Kickstart anything already in view so page doesn't feel "stuck"
       const kick = () => {
         els.forEach(el => {
           const r = el.getBoundingClientRect();
@@ -423,16 +440,13 @@
           b.classList.toggle('active', on);
           b.setAttribute('aria-selected', String(on));
         });
-        // nudge the arrow after the active word (if any)
         seps.forEach(s=>s.classList.remove('nudge'));
         if (seps[idx]) seps[idx].classList.add('nudge');
-
         const txt = steps[idx].dataset.note || '';
         note.textContent = txt;
       }
 
       steps.forEach((b,i)=> b.addEventListener('click', ()=> activate(i)));
-      // ensure first load is correct
       activate(0);
     })();
 
@@ -466,4 +480,3 @@
   </script>
 </body>
 </html>
-
