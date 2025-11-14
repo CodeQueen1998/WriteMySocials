@@ -5,13 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Soulful brands, built with strategy.</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
   <style>
-    html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden}
+    html,body{
+      margin:0;padding:0;
+      background:#fff;color:#000;
+      font-family:'Playfair Display',serif;
+      overflow-x:hidden;
+    }
 
-    /* === NAV (unchanged from your snippet) === */
+    /* === NAV === */
     .menu-btn{
       position:fixed;top:18px;left:20px;z-index:3100;
       background:#fff;border:1px solid #000;color:#000;
@@ -58,116 +64,184 @@
       .social-icons{top:14px;right:16px;gap:14px;}
     }
 
-    /* === PAGE CONTENT (same layout) === */
+    /* === PAGE LAYOUT === */
     main{
       max-width:1100px;
       margin:0 auto;
-      padding:110px 20px 80px; /* leaves space for fixed nav */
+      padding:120px 20px 80px;
     }
 
     .hero-title{
       text-align:center;
-      font-size:clamp(1.6rem,4vw,2.4rem);
+      font-size:clamp(2rem,4.2vw,2.8rem);
       font-weight:600;
-      letter-spacing:.02em;
-      margin:0 0 18px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin:0 0 6px;
     }
     .hero-sub{
       text-align:center;
       font-family:'Poppins',sans-serif;
-      font-size:clamp(1rem,2.2vw,1.1rem);
-      color:#111; opacity:.9;
-      margin:0 0 36px;
+      font-size:clamp(.95rem,2vw,1.05rem);
+      color:#222;
+      opacity:.9;
+      font-style:italic;
+      margin:0 0 26px;
+    }
+    .hero-divider{
+      max-width:760px;
+      margin:0 auto 40px;
+      border:none;
+      border-top:1px solid rgba(0,0,0,.18);
     }
 
-    .grid{
+    /* === SECTION LAYOUT (menu style) === */
+    .service-section{
       display:grid;
-      grid-template-columns:repeat(12,1fr);
+      grid-template-columns:minmax(150px,220px) minmax(0,1fr);
+      gap:26px;
+      padding:28px 0 36px;
+      border-bottom:1px solid rgba(0,0,0,.14);
+    }
+    .section-label{
+      font-family:'Poppins',sans-serif;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.85rem;
+    }
+    .section-number{
+      font-size:1.2rem;
+      letter-spacing:.16em;
+      margin-bottom:4px;
+    }
+    .section-name{
+      font-size:1.25rem;
+      margin-top:6px;
+    }
+    .section-note{
+      font-family:'Poppins',sans-serif;
+      font-size:.9rem;
+      margin-top:12px;
+      color:#444;
+      line-height:1.6;
+    }
+
+    .section-body{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
       gap:18px;
     }
+
     .card{
-      grid-column:span 12;
       border:1px solid rgba(0,0,0,.12);
       border-radius:14px;
-      padding:20px;
+      padding:18px 18px 20px;
       background:#fff;
       box-shadow:0 8px 24px rgba(0,0,0,.04);
     }
-    @media(min-width:860px){
-      .card{grid-column:span 6}
-      .card.flagship{grid-column:span 12}
-    }
 
-    .card h3{
-      margin:.2rem 0 .6rem;
-      font-size:clamp(1.1rem,2.2vw,1.4rem);
-      font-weight:600;
-      letter-spacing:.01em;
-    }
     .badge{
       display:inline-block;
       font-family:'Poppins',sans-serif;
-      font-size:.8rem;
-      letter-spacing:.08em;
+      font-size:.75rem;
+      letter-spacing:.16em;
       text-transform:uppercase;
       border:1px solid #000;
-      padding:4px 8px;
+      padding:3px 8px;
       border-radius:999px;
       margin-bottom:8px;
     }
+
+    .card h3{
+      margin:.2rem 0 .4rem;
+      font-size:1.05rem;
+      font-weight:600;
+    }
     .for{
       font-family:'Poppins',sans-serif;
-      font-size:.95rem;
-      margin:.3rem 0 .4rem;
-      opacity:.9;
+      font-size:.9rem;
+      margin:.2rem 0 .45rem;
+      color:#333;
     }
-    .deliverables,
-    .addons,
-    .result{
+    .deliverables{
       font-family:'Poppins',sans-serif;
-      font-size:.95rem;
+      font-size:.88rem;
       line-height:1.7;
-      margin:.35rem 0;
     }
-    .deliverables ul,
-    .addons ul{
-      margin:.2rem 0 .2rem 1rem;
-      padding-left:1rem;
+    .deliverables strong{
+      font-weight:500;
     }
-    .deliverables li,
-    .addons li{margin:.2rem 0}
-
+    .deliverables ul{
+      margin:.2rem 0 .2rem 1.1rem;
+      padding-left:0;
+    }
+    .deliverables li{
+      margin:.16rem 0;
+    }
     .note{
       font-family:'Poppins',sans-serif;
-      font-size:.9rem;
-      opacity:.85;
-      margin:.35rem 0 0;
+      font-size:.82rem;
+      opacity:.8;
+      margin-top:.35rem;
     }
 
-    .section-title{
-      margin:46px 0 12px;
-      font-size:clamp(1.2rem,2.6vw,1.6rem);
-      text-align:center;
+    /* === CONTENT CREATION MARQUEE === */
+    .content-marquee{
+      margin:14px 0 24px;
+      overflow:hidden;
+      border-radius:16px;
+      border:1px solid rgba(0,0,0,.12);
+      padding:10px 0;
+      background:#fafafa;
+    }
+    .content-marquee-track{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      animation:marquee-scroll 35s linear infinite;
+    }
+    .content-marquee img{
+      height:200px;
+      max-width:none;
+      flex-shrink:0;
+      border-radius:12px;
+      object-fit:cover;
+      box-shadow:0 6px 18px rgba(0,0,0,.08);
+    }
+    .content-marquee:hover .content-marquee-track{
+      animation-play-state:paused;
+    }
+    @keyframes marquee-scroll{
+      0%{transform:translateX(0);}
+      100%{transform:translateX(-50%);}
+    }
+    @media(max-width:720px){
+      .content-marquee img{height:150px;}
     }
 
-    .list{
+    /* === ADD-ONS LIST === */
+    .addon-list{
       display:grid;
       gap:10px;
-      margin-top:10px;
     }
-    .list-item{
-      border:1px dashed rgba(0,0,0,.18);
+    .addon-item{
+      border:1px dashed rgba(0,0,0,.22);
       border-radius:12px;
-      padding:14px 16px;
+      padding:12px 14px;
       font-family:'Poppins',sans-serif;
-      font-size:.95rem;
+      font-size:.9rem;
+      line-height:1.6;
+    }
+    .addon-item strong{
+      font-weight:500;
     }
 
-    /* Contact */
+    /* CONTACT */
     .contact{
-      margin-top:46px;
+      margin-top:40px;
       text-align:center;
       font-family:'Poppins',sans-serif;
+      font-size:.95rem;
     }
     .contact a{
       color:#000;text-decoration:none;border-bottom:1px solid #000;
@@ -200,115 +274,288 @@
     </div>
   </nav>
 
-  <!-- ===== Services Content (UPDATED to PDF, no prices) ===== -->
+  <!-- ===== SERVICES CONTENT ===== -->
   <main>
-    <h1 class="hero-title">Services</h1>
-    <p class="hero-sub">Signature programs and support — curated for founders, creators, and scaling brands.</p>
+    <h1 class="hero-title">The Digital Runway</h1>
+    <p class="hero-sub">Strategic, fashion-forward branding, content, and copywriting for modern lifestyle brands.</p>
+    <hr class="hero-divider"/>
 
-    <section class="grid">
-      <!-- 1) Brand & Marketing Deep Dive Audit™ -->
-      <article class="card">
-        <span class="badge">Brand &amp; Marketing Deep Dive Audit™</span>
-        <h3>Identify gaps, surface strengths, and map growth</h3>
-        <p class="for"><strong>For:</strong> Brands seeking a full-scope review and a clear, actionable roadmap.</p>
-        <div class="deliverables">
-          <strong>What’s included:</strong>
-          <ul>
-            <li>Brand identity review</li>
-            <li>Funnel &amp; website analysis</li>
-            <li>Messaging evaluation</li>
-            <li>SEO insights</li>
-            <li>30-minute strategy debrief with an actionable roadmap</li>
-          </ul>
+    <!-- 1. BRANDING & AUDITING -->
+    <section class="service-section" aria-label="Branding and auditing services">
+      <div class="section-header">
+        <div class="section-label">
+          <div class="section-number">01.</div>
+          BRANDING &amp;<br/>AUDITING
         </div>
-        <p class="result"><strong>Outcome:</strong> A concise, prioritized plan to resolve friction, focus messaging, and unlock near-term wins.</p>
-      </article>
+        <h2 class="section-name">How your brand looks, feels, and lands.</h2>
+        <p class="section-note">
+          Foundational work to understand how your brand is perceived and to build
+          a cohesive identity that actually matches your vision.
+        </p>
+      </div>
 
-      <!-- 2) Brand Elevation Suites™ -->
-      <article class="card">
-        <span class="badge">Brand Elevation Suites™</span>
-        <h3>Strategy systems that turn content into authority</h3>
-        <p class="for"><strong>For:</strong> Brands ready to scale storytelling and conversion across channels.</p>
-        <div class="deliverables">
-          <strong>Suites:</strong>
-          <ul>
-            <li><strong>Essentials — 6 Pieces</strong>: Core assets to align positioning and launch momentum.</li>
-            <li><strong>Growth — 12 Pieces</strong>: Deeper system for ongoing visibility and conversion.</li>
-            <li><strong>Authority — 20 Pieces</strong>: High-output program for category presence.</li>
-          </ul>
-        </div>
-        <p class="note"><em>Upgrade credit:</em> Apply your Audit fee to any Suite if you upgrade within 14 days.</p>
-      </article>
+      <div class="section-body">
+        <article class="card">
+          <span class="badge">Brand Audit</span>
+          <h3>Full-Scale Brand Audit</h3>
+          <p class="for">A complete review of how your brand currently shows up to your audience – online or in person.</p>
+          <div class="deliverables">
+            <strong>Includes:</strong>
+            <ul>
+              <li>Brand identity and visual impact evaluation</li>
+              <li>Messaging and tone of voice review</li>
+              <li>Consumer perception &amp; first-impression analysis</li>
+              <li>Key insights and priority recommendations</li>
+            </ul>
+          </div>
+        </article>
 
-      <!-- 3) Single-Focus Retainers (Monthly) -->
-      <article class="card">
-        <span class="badge">Single-Focus Retainers (Monthly)</span>
-        <h3>Ongoing optimisation for one strategic pillar</h3>
-        <p class="for"><strong>For:</strong> Teams that want continuous improvement with clear ownership.</p>
-        <div class="deliverables">
-          <strong>Options:</strong>
-          <ul>
-            <li><strong>Visibility Flow Retainer™</strong> — Public Relations &amp; Visibility</li>
-            <li><strong>Conversion Engine Retainer™</strong> — Email Strategy &amp; Conversion Flow</li>
-            <li><strong>Authority Flow Retainer™</strong> — Social Strategy &amp; Caption Suite</li>
-            <li><strong>Message Power Retainer™</strong> — Brand Messaging &amp; Positioning Refresh</li>
-            <li><strong>SEO Flow Retainer™</strong> — SEO Optimisation &amp; Content Flow</li>
-          </ul>
-        </div>
-        <p class="note">Cancel anytime with 30 days’ notice.</p>
-      </article>
+        <article class="card">
+          <span class="badge">Brand Identity</span>
+          <h3>Complete Brand Identity</h3>
+          <p class="for">A cohesive visual identity that covers your logo, colours, type, and overall aesthetic direction.</p>
+          <div class="deliverables">
+            <strong>Includes:</strong>
+            <ul>
+              <li>Logo and submark design</li>
+              <li>Colour palette &amp; typography system</li>
+              <li>Imagery and visual direction</li>
+              <li>Brand identity guidelines for consistent use</li>
+            </ul>
+          </div>
+        </article>
 
-      <!-- 4) The King Suite™ (Flagship) -->
-      <article class="card flagship">
-        <span class="badge">The King Suite™ — Flagship</span>
-        <h3>The complete growth ecosystem</h3>
-        <p class="for"><strong>For:</strong> Brands seeking an elite, full-service program blending psychology, storytelling, and analytics.</p>
-        <div class="deliverables">
-          <strong>What’s inside:</strong>
-          <ul>
-            <li>SEO + buyer-intent mapping</li>
-            <li>PR strategy &amp; outreach</li>
-            <li>Email funnels &amp; list growth</li>
-            <li>Social content suite (multi-platform)</li>
-            <li>Brand messaging overhaul</li>
-            <li>Custom analytics dashboard &amp; reporting</li>
-          </ul>
-        </div>
-        <p class="note">Limited monthly capacity. Recommended: secure your start date in advance.</p>
-      </article>
+        <article class="card">
+          <span class="badge">Positioning</span>
+          <h3>Brand Story &amp; Positioning</h3>
+          <p class="for">Your story, messaging, and brand position clarified so you can speak to the right people in the right way.</p>
+          <div class="deliverables">
+            <strong>Includes:</strong>
+            <ul>
+              <li>Brand story and narrative development</li>
+              <li>Positioning statements &amp; value pillars</li>
+              <li>Audience and emotional alignment</li>
+              <li>Signature tone &amp; language framework</li>
+            </ul>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <!-- Optional one-offs you already had; keeping format but aligned to offer set -->
-    <h2 class="section-title">One-Time Strategy &amp; Support</h2>
-    <div class="list">
-      <div class="list-item"><strong>Launch Strategy Blueprint:</strong> End-to-end launch roadmap for pre-launch and new brands.</div>
-      <div class="list-item"><strong>Brand Voice Workshop (2 hrs):</strong> Deep dive into tone, personality, and messaging.</div>
-      <div class="list-item"><strong>Press Release &amp; Distribution:</strong> Professional press release writing and syndication.</div>
-      <div class="list-item"><strong>Content &amp; SEO Audit:</strong> Audit + optimisation recommendations.</div>
-      <div class="list-item"><strong>Campaign Concept Deck:</strong> Visual and written creative campaign presentation.</div>
-      <div class="list-item"><strong>Creative Team Training Add-On:</strong> Team education on brand tone and content standards.</div>
-    </div>
+    <!-- 2. CONTENT CREATION -->
+    <section class="service-section" aria-label="Content creation services">
+      <div class="section-header">
+        <div class="section-label">
+          <div class="section-number">02.</div>
+          CONTENT<br/>CREATION
+        </div>
+        <h2 class="section-name">Content that looks editorial and sells with ease.</h2>
+        <p class="section-note">
+          Socials, short-form and campaign content built to feel like a digital
+          runway – consistent, styled, and strategically led.
+        </p>
+      </div>
 
+      <div class="section-body">
+        <!-- marquee spans full width above the cards on smaller screens naturally -->
+        <div class="content-marquee" aria-label="Content creation portfolio">
+          <div class="content-marquee-track">
+            <!-- Set 1 -->
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.51.16.png" alt="Content creation example 1"/>
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.54.41.png" alt="Content creation example 2"/>
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.55.01.png" alt="Content creation example 3"/>
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.52.png" alt="Content creation example 4"/>
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.13.png" alt="Content creation example 5"/>
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.50.47.png" alt="Content creation example 6"/>
+            <!-- Set 2 duplicated for smooth loop -->
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.51.16.png" alt="Content creation example 1 repeat"/>
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.54.41.png" alt="Content creation example 2 repeat"/>
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.55.01.png" alt="Content creation example 3 repeat"/>
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.52.png" alt="Content creation example 4 repeat"/>
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.13.png" alt="Content creation example 5 repeat"/>
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.50.47.png" alt="Content creation example 6 repeat"/>
+          </div>
+        </div>
+
+        <article class="card">
+          <span class="badge">Social Media</span>
+          <h3>Social Media Management</h3>
+          <p class="for">Done-for-you management of your Instagram and TikTok presence.</p>
+          <div class="deliverables">
+            <strong>Includes:</strong>
+            <ul>
+              <li>Content planning and scheduling</li>
+              <li>Feed styling and visual direction</li>
+              <li>Caption writing and optimisation</li>
+              <li>Posting and community engagement</li>
+              <li>Monthly performance overview</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="badge">Short-Form Video</span>
+          <h3>Reels &amp; TikTok Content</h3>
+          <p class="for">Short-form video content to keep your brand visible, relevant, and on-trend.</p>
+          <div class="deliverables">
+            <strong>Includes:</strong>
+            <ul>
+              <li>Reels/TikTok concept development</li>
+              <li>Filming and editing support</li>
+              <li>Hooks and caption writing</li>
+              <li>Trend and audio integration</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="badge">Editorial</span>
+          <h3>Editorial Content Production</h3>
+          <p class="for">Campaign-style content that ties your brand story, visuals and strategy together.</p>
+          <div class="deliverables">
+            <strong>Includes:</strong>
+            <ul>
+              <li>Campaign concept development</li>
+              <li>Lifestyle and product-led content ideas</li>
+              <li>Creative direction and guidance</li>
+              <li>Multi-format content outlines</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. COPYWRITING -->
+    <section class="service-section" aria-label="Copywriting services">
+      <div class="section-header">
+        <div class="section-label">
+          <div class="section-number">03.</div>
+          COPYWRITING
+        </div>
+        <h2 class="section-name">Language as luxury. Words as identity.</h2>
+        <p class="section-note">
+          Clear, persuasive copy for web, email, and campaigns – shaped to sound like you,
+          while selling what you do.
+        </p>
+      </div>
+
+      <div class="section-body">
+        <article class="card">
+          <span class="badge">Email</span>
+          <h3>Email &amp; Funnel Copy</h3>
+          <p class="for">Emails that actually get read, remembered, and clicked.</p>
+          <div class="deliverables">
+            <strong>Includes:</strong>
+            <ul>
+              <li>Welcome and nurture sequences</li>
+              <li>Sales and launch email copy</li>
+              <li>Campaign copy and angles</li>
+              <li>Brand voice alignment</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="badge">Web &amp; Packaging</span>
+          <h3>Website &amp; Packaging Copy</h3>
+          <p class="for">Words for your site and packaging that feel like you and sell clearly.</p>
+          <div class="deliverables">
+            <strong>Includes:</strong>
+            <ul>
+              <li>Core website page copy</li>
+              <li>Product and packaging messaging</li>
+              <li>Brand story refinement</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="badge">Sales &amp; Campaigns</span>
+          <h3>Sales Page &amp; Campaign Copy</h3>
+          <p class="for">Conversion-led copy for launches, offers, and campaigns.</p>
+          <div class="deliverables">
+            <strong>Includes:</strong>
+            <ul>
+              <li>Long-form sales pages</li>
+              <li>Landing page copy</li>
+              <li>Campaign messaging and structure</li>
+              <li>Ad copy suggestions</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. ADD-ONS -->
+    <section class="service-section" aria-label="Add-on services">
+      <div class="section-header">
+        <div class="section-label">
+          <div class="section-number">04.</div>
+          ADD-ONS
+        </div>
+        <h2 class="section-name">Extras to extend your runway.</h2>
+        <p class="section-note">
+          Optional support for when you’re ready to expand into web, PR,
+          or deeper customer experience work.
+        </p>
+      </div>
+
+      <div class="section-body addon-list">
+        <div class="addon-item">
+          <strong>Branding Add-Ons</strong><br/>
+          Web design • Extended brand guidelines • Visual identity refinement
+        </div>
+        <div class="addon-item">
+          <strong>Audit Add-Ons</strong><br/>
+          In-person brand review • Secret shopper audit • Customer journey analysis
+        </div>
+        <div class="addon-item">
+          <strong>Content Add-Ons</strong><br/>
+          UGC content packages • Content calendars • Additional content pieces
+        </div>
+        <div class="addon-item">
+          <strong>PR &amp; Visibility Add-Ons</strong><br/>
+          PR outreach support • Press release writing • Influencer gifting / seeding
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
     <div class="contact">
       <p>Questions or ready to start?</p>
       <p><a href="mailto:siyana.deveaux@writemysocials.com.au">siyana.deveaux@writemysocials.com.au</a></p>
-      <p><a href="https://calendly.com/your-link" target="_blank" rel="noopener">Book a Strategy Call</a></p>
-      <p><a href="https://instagram.com/writemysocials" target="_blank" rel="noopener">@writemysocials</a> &middot; <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener">LinkedIn</a></p>
+      <p><a href="https://calendly.com/your-link" target="_blank" rel="noopener">Book a strategy call</a></p>
+      <p>
+        <a href="https://instagram.com/writemysocials" target="_blank" rel="noopener">@writemysocials</a>
+        &middot;
+        <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener">LinkedIn</a>
+      </p>
     </div>
   </main>
 
   <script>
-    /* Menu open/close logic (unchanged) */
+    // Menu open/close logic
     (function(){
-      const btn=document.querySelector('.menu-btn');
-      const root=document.body;
-      function setOpen(o){
-        root.classList.toggle('menu-open',o);
-        btn.setAttribute('aria-expanded',String(o));
+      const btn = document.querySelector('.menu-btn');
+      const root = document.body;
+
+      function setOpen(open){
+        root.classList.toggle('menu-open', open);
+        btn.setAttribute('aria-expanded', String(open));
       }
-      btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
-      document.addEventListener('click',e=>{if(e.target.matches('.hot'))setOpen(false)});
-      document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
+
+      btn.addEventListener('click', () => {
+        const isOpen = root.classList.contains('menu-open');
+        setOpen(!isOpen);
+      });
+
+      document.addEventListener('click', e => {
+        if (e.target.matches('.hot')) setOpen(false);
+      });
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') setOpen(false);
+      });
     })();
   </script>
 </body>
