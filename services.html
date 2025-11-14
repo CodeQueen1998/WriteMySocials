@@ -96,19 +96,19 @@
       opacity:.12;
     }
 
-    /* === SECTION LAYOUT (menu style) === */
+    /* === SECTION LAYOUT === */
     .service-section{
-      display:grid;
-      grid-template-columns:minmax(170px,240px) minmax(0,1fr);
-      gap:32px;
-      padding:28px 0 34px;
       border-top:1px solid #000;
       opacity:.98;
+      padding:32px 0 34px;
     }
     .service-section:first-of-type{
       border-top:none;
     }
 
+    .section-header{
+      margin-bottom:20px;
+    }
     .section-label{
       font-family:'Poppins',sans-serif;
       text-transform:uppercase;
@@ -122,7 +122,7 @@
     }
     .section-name{
       font-size:1.3rem;
-      margin:10px 0 8px;
+      margin:10px 0 6px;
     }
     .section-note{
       font-family:'Poppins',sans-serif;
@@ -130,34 +130,32 @@
       margin-top:4px;
       color:#444;
       line-height:1.7;
+      max-width:620px;
     }
 
     .section-body{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:22px 32px;
+      max-width:700px;
+      display:block;
     }
 
-    /* === SERVICE ITEMS (no boxes) === */
+    /* === SERVICE ITEMS (one column) === */
     .service-item{
       font-family:'Poppins',sans-serif;
       font-size:.9rem;
       line-height:1.8;
+      margin-bottom:26px;
     }
-    .service-kicker{
-      text-transform:uppercase;
-      letter-spacing:.16em;
-      font-size:.78rem;
-      margin-bottom:2px;
-    }
-    .service-item h3{
+    .service-title{
       font-family:'Playfair Display',serif;
-      font-size:1.05rem;
-      margin:.1rem 0 .3rem;
+      font-size:1.15rem;           /* bigger bold service name */
       font-weight:600;
+      margin:0 0 .2rem;
     }
-    .service-lead{
-      margin:0 0 .35rem;
+    .service-desc{
+      font-family:'Poppins',sans-serif;
+      font-style:italic;
+      font-size:.98rem;            /* larger than bullet text */
+      margin:0 0 .4rem;
       color:#333;
     }
     .service-list strong{
@@ -182,10 +180,10 @@
       display:flex;
       align-items:center;
       gap:18px;
-      animation:marquee-scroll 22s linear infinite; /* faster */
+      animation:marquee-scroll 22s linear infinite;
     }
     .content-marquee img{
-      height:320px;          /* ~1.5x bigger than before */
+      height:320px;          /* 1.5x bigger */
       max-width:none;
       flex-shrink:0;
       border-radius:14px;
@@ -206,14 +204,13 @@
       .content-marquee img{height:210px;}
     }
 
-    /* === ADD-ONS LIST (no boxes) === */
-    .addon-list{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:16px 28px;
+    /* === ADD-ONS === */
+    .addon-item{
       font-family:'Poppins',sans-serif;
       font-size:.9rem;
       line-height:1.7;
+      margin-bottom:16px;
+      max-width:700px;
     }
     .addon-item strong{
       font-weight:500;
@@ -270,10 +267,10 @@
 
     <!-- 01. BRANDING & AUDITING -->
     <section class="service-section" aria-label="Branding and auditing services">
-      <div>
+      <div class="section-header">
         <div class="section-label">
           <div class="section-number">01.</div>
-          BRANDING &amp;<br/>AUDITING
+          BRANDING &amp; AUDITING
         </div>
         <h2 class="section-name">How your brand looks, feels, and lands.</h2>
         <p class="section-note">
@@ -284,9 +281,8 @@
 
       <div class="section-body">
         <article class="service-item">
-          <p class="service-kicker">Brand audit</p>
-          <h3>Full-Scale Brand Audit</h3>
-          <p class="service-lead">
+          <h3 class="service-title">Full-Scale Brand Audit</h3>
+          <p class="service-desc">
             A complete review of how your brand currently shows up to your audience – online or in person.
           </p>
           <div class="service-list">
@@ -301,9 +297,8 @@
         </article>
 
         <article class="service-item">
-          <p class="service-kicker">Brand identity</p>
-          <h3>Complete Brand Identity</h3>
-          <p class="service-lead">
+          <h3 class="service-title">Complete Brand Identity</h3>
+          <p class="service-desc">
             A cohesive visual identity that covers your logo, colours, type, and overall aesthetic direction.
           </p>
           <div class="service-list">
@@ -318,9 +313,8 @@
         </article>
 
         <article class="service-item">
-          <p class="service-kicker">Positioning</p>
-          <h3>Brand Story &amp; Positioning</h3>
-          <p class="service-lead">
+          <h3 class="service-title">Brand Story &amp; Positioning</h3>
+          <p class="service-desc">
             Your story, messaging, and brand position clarified so you can speak to the right people in the right way.
           </p>
           <div class="service-list">
@@ -338,10 +332,10 @@
 
     <!-- 02. CONTENT CREATION -->
     <section class="service-section" aria-label="Content creation services">
-      <div>
+      <div class="section-header">
         <div class="section-label">
           <div class="section-number">02.</div>
-          CONTENT<br/>CREATION
+          CONTENT CREATION
         </div>
         <h2 class="section-name">Content that feels personal, not generic.</h2>
         <p class="section-note">
@@ -354,10 +348,9 @@
 
       <div class="section-body">
         <article class="service-item">
-          <p class="service-kicker">Social media</p>
-          <h3>Social Media Management</h3>
-          <p class="service-lead">
-            Done-for-you management of your Instagram and TikTok presence.
+          <h3 class="service-title">Social Media Management</h3>
+          <p class="service-desc">
+            Done-for-you management of your Instagram and TikTok presence with a focus on emotional connection and consistency.
           </p>
           <div class="service-list">
             <strong>Includes:</strong>
@@ -372,9 +365,8 @@
         </article>
 
         <article class="service-item">
-          <p class="service-kicker">Short-form video</p>
-          <h3>Reels &amp; TikTok Content</h3>
-          <p class="service-lead">
+          <h3 class="service-title">Reels &amp; TikTok Content</h3>
+          <p class="service-desc">
             Short-form video content shaped around hooks, pacing, and narratives that resonate with your audience.
           </p>
           <div class="service-list">
@@ -389,10 +381,9 @@
         </article>
 
         <article class="service-item">
-          <p class="service-kicker">Editorial campaigns</p>
-          <h3>Editorial Content Production</h3>
-          <p class="service-lead">
-            Campaign-style content that ties your brand story, visuals and strategy together.
+          <h3 class="service-title">Editorial Content Production</h3>
+          <p class="service-desc">
+            Campaign-style content that ties your brand story, visuals and strategy together across platforms.
           </p>
           <div class="service-list">
             <strong>Includes:</strong>
@@ -429,7 +420,7 @@
 
     <!-- 03. COPYWRITING -->
     <section class="service-section" aria-label="Copywriting services">
-      <div>
+      <div class="section-header">
         <div class="section-label">
           <div class="section-number">03.</div>
           COPYWRITING
@@ -443,9 +434,10 @@
 
       <div class="section-body">
         <article class="service-item">
-          <p class="service-kicker">Email</p>
-          <h3>Email &amp; Funnel Copy</h3>
-          <p class="service-lead">Emails that actually get read, remembered, and clicked.</p>
+          <h3 class="service-title">Email &amp; Funnel Copy</h3>
+          <p class="service-desc">
+            Emails that actually get read, remembered, and clicked by the people you care about most.
+          </p>
           <div class="service-list">
             <strong>Includes:</strong>
             <ul>
@@ -458,10 +450,9 @@
         </article>
 
         <article class="service-item">
-          <p class="service-kicker">Web &amp; packaging</p>
-          <h3>Website &amp; Packaging Copy</h3>
-          <p class="service-lead">
-            Words for your site and packaging that feel like you and sell clearly.
+          <h3 class="service-title">Website &amp; Packaging Copy</h3>
+          <p class="service-desc">
+            Words for your site and packaging that feel like you, while clearly articulating what you offer.
           </p>
           <div class="service-list">
             <strong>Includes:</strong>
@@ -474,10 +465,9 @@
         </article>
 
         <article class="service-item">
-          <p class="service-kicker">Sales &amp; campaigns</p>
-          <h3>Sales Page &amp; Campaign Copy</h3>
-          <p class="service-lead">
-            Conversion-led copy for launches, offers, and campaigns.
+          <h3 class="service-title">Sales Page &amp; Campaign Copy</h3>
+          <p class="service-desc">
+            Conversion-led copy for launches, offers, and campaigns – without losing your brand’s personality.
           </p>
           <div class="service-list">
             <strong>Includes:</strong>
@@ -494,7 +484,7 @@
 
     <!-- 04. ADD-ONS -->
     <section class="service-section" aria-label="Add-on services">
-      <div>
+      <div class="section-header">
         <div class="section-label">
           <div class="section-number">04.</div>
           ADD-ONS
@@ -506,23 +496,23 @@
         </p>
       </div>
 
-      <div class="addon-list">
-        <div class="addon-item">
+      <div class="section-body">
+        <p class="addon-item">
           <strong>Branding Add-Ons</strong><br/>
           Web design • Extended brand guidelines • Visual identity refinement
-        </div>
-        <div class="addon-item">
+        </p>
+        <p class="addon-item">
           <strong>Audit Add-Ons</strong><br/>
           In-person brand review • Secret shopper audit • Customer journey analysis
-        </div>
-        <div class="addon-item">
+        </p>
+        <p class="addon-item">
           <strong>Content Add-Ons</strong><br/>
           UGC content packages • Content calendars • Additional content pieces
-        </div>
-        <div class="addon-item">
+        </p>
+        <p class="addon-item">
           <strong>PR &amp; Visibility Add-Ons</strong><br/>
           PR outreach support • Press release writing • Influencer gifting / seeding
-        </div>
+        </p>
       </div>
     </section>
 
@@ -560,10 +550,9 @@
       });
 
       document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') setOpen(false);
+        if (e.key === 'Escape')setOpen(false);
       });
     })();
   </script>
 </body>
 </html>
-
