@@ -1,421 +1,551 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Soulful brands, built with strategy.</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #fff;
-      color: #000;
-      font-family: 'Poppins', sans-serif;
-      overflow-x: hidden;
+    html,body{
+      margin:0;padding:0;
+      background:#fff;color:#000;
+      font-family:'Playfair Display',serif;
+      overflow-x:hidden;
     }
 
-    /* MENU BUTTON + SOCIAL ICONS (unchanged) */
-    .menu-btn {
-      position: fixed; top: 18px; left: 20px; z-index: 3100;
-      background: #fff; border: 1px solid #000; color: #000;
-      padding: 6px 12px; border-radius: 999px;
-      font-size: .85rem; cursor: pointer; transition: .3s;
+    /* === NAV === */
+    .menu-btn{
+      position:fixed;top:18px;left:20px;z-index:3100;
+      background:#fff;border:1px solid #000;color:#000;
+      padding:6px 12px;border-radius:999px;
+      font-family:'Poppins',sans-serif;font-size:.85rem;
+      letter-spacing:.1em;cursor:pointer;transition:.3s;
     }
-    .menu-btn:hover { background:#000; color:#fff; }
+    .menu-btn:hover{background:#000;color:#fff}
 
-    .social-icons {
-      position: fixed; top: 18px; right: 25px; z-index: 3100;
-      display: flex; gap: 18px;
+    .social-icons{
+      position:fixed;top:18px;right:25px;z-index:3100;
+      display:flex;gap:18px;
     }
-    .social-icons a { color:#000; font-size:1.2rem; transition:.3s; }
-    .social-icons a:hover { color:#ff1493; }
+    .social-icons a{color:#000;font-size:1.2rem;transition:color .3s}
+    .social-icons a:hover{color:#ff1493}
 
-    /* MENU */
-    .menu-bar {
-      position: fixed; top:0; left:0; right:0; z-index:3000;
-      background:#fff; border-bottom:1px solid rgba(0,0,0,.15);
-      transform: translateY(-100%); transition: .35s ease;
+    .menu-bar{
+      position:fixed;top:0;left:0;right:0;z-index:3000;
+      background:#fff;border-bottom:1px solid rgba(0,0,0,.12);
+      transform:translateY(-100%);transition:transform .35s ease;
     }
-    body.menu-open .menu-bar { transform: translateY(0); }
+    body.menu-open .menu-bar{transform:translateY(0)}
 
-    .menu-inner { max-width:1100px; margin:0 auto; padding:10px 20px; display:flex; justify-content:center; }
-    .image-menu { width:min(300px,60vw); transform:scale(1.5); clip-path: inset(0 3%); }
-    .image-menu img { width: 100%; display:block; }
-
-    .hot { position:absolute; top:0; bottom:0; }
-    .hot.home { left:0; right:66.67%; }
-    .hot.about { left:33.33%; right:33.34%; }
-    .hot.services { left:66.66%; right:0; }
-
-    /* PAGE CONTENT */
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 130px 20px 80px;
+    .menu-inner{
+      max-width:1100px;margin:0 auto;padding:10px 20px;
+      display:flex;justify-content:center;
     }
 
-    /* SECTION HEADERS (01., BRANDING & AUDITING) */
-    .section-block {
-      margin: 80px 0 60px;
-      width: 100%;
+    .image-menu{
+      position:relative;width:min(300px,60vw);
+      transform:scale(1.5) translateZ(0);
+      transform-origin:top center;overflow:hidden;
+      -webkit-clip-path:inset(0 3% 0 3%);
+      clip-path:inset(0 3% 0 3%);
+    }
+    .image-menu img{width:100%;height:auto;display:block}
+    .hot{position:absolute;top:0;bottom:0}
+    .hot.home{left:0;right:66.67%}
+    .hot.about{left:33.33%;right:33.34%}
+    .hot.services{left:66.66%;right:0}
+
+    @media(max-width:600px){
+      .menu-btn{top:14px;left:14px;}
+      .social-icons{top:14px;right:16px;gap:14px;}
     }
 
-    .section-number {
-      font-family:'Playfair Display', serif;
-      font-size: 1.4rem;
-      margin-bottom: 6px;
+    /* === PAGE LAYOUT === */
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:120px 20px 80px;
     }
 
-    .section-title {
-      font-family:'Playfair Display', serif;
-      font-size: 2rem;
-      letter-spacing: .03em;
-      margin-bottom: 40px;
-    }
-
-    /* SERVICES SCROLL STRIP */
-    .service-strip {
-      display: flex;
-      overflow-x: auto;
-      gap: 60px;
-      padding-bottom: 10px;
-      scroll-behavior: smooth;
-    }
-
-    .service-strip::-webkit-scrollbar {
-      height: 6px;
-    }
-    .service-strip::-webkit-scrollbar-thumb {
-      background:#000;
-    }
-
-    .service-card {
-      min-width: 320px;
-      max-width: 320px;
-    }
-
-    /* SERVICE TITLES (Full-Scale Brand Audit, etc) */
-    .service-title {
-      font-family:'Playfair Display', serif;
-      font-size: 1.45rem;
-      font-weight: 600;
-      cursor: pointer;
-      margin-bottom: 10px;
-      transition: .3s ease;
-    }
-
-    .service-title:hover {
-      opacity: .6;
-    }
-
-    /* DOT POINTS (hidden until clicked) */
-    .service-points {
-      display: none;
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-left: 0.5rem;
-    }
-
-    .service-points ul { margin:0; padding-left:1rem; }
-    .service-points li { margin: 4px 0; }
-
-    /* MARQUEE */
-    .marquee-container {
-      width: 100%;
-      overflow: hidden;
-      margin-top: 90px;
-      margin-bottom: 120px;
-    }
-
-    .marquee-track {
-      display: flex;
-      gap: 40px;
-      animation: marquee 12s linear infinite;
-      transform: scale(1.7); /* 2× bigger but visually balanced */
-    }
-
-    .marquee-track img {
-      height: 240px; /* larger images */
-      object-fit: cover;
-      border-radius: 6px;
-    }
-
-    @keyframes marquee {
-      0% { transform: translateX(0) scale(1.7); }
-      100% { transform: translateX(-50%) scale(1.7); }
-    }
-
-    /* FOOTER */
-    .contact {
+    .hero-title{
       text-align:center;
-      margin-top:80px;
-      font-size:1rem;
+      font-size:clamp(2rem,4.2vw,2.8rem);
+      font-weight:600;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin:0 0 6px;
     }
-    .contact a {
-      color:#000;
-      border-bottom:1px solid #000;
-      text-decoration:none;
+    .hero-sub{
+      text-align:center;
+      font-family:'Poppins',sans-serif;
+      font-size:clamp(.95rem,2vw,1.05rem);
+      color:#222;
+      opacity:.9;
+      font-style:italic;
+      margin:0 0 26px;
     }
-    .contact a:hover { color:#ff1493; border-color:#ff1493; }
+    .hero-divider{
+      max-width:760px;
+      margin:0 auto 32px;
+      border:none;
+      border-top:1px solid #000;
+      opacity:.12;
+    }
+
+    /* === SECTION LAYOUT (header left, services right) === */
+    .service-section{
+      display:grid;
+      grid-template-columns:minmax(170px,240px) minmax(0,1fr);
+      gap:32px;
+      padding:32px 0 36px;
+      border-top:1px solid #000;
+    }
+    .service-section:first-of-type{
+      border-top:none;
+    }
+
+    .section-label{
+      font-family:'Poppins',sans-serif;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.85rem;
+    }
+    .section-number{
+      font-size:1.1rem;
+      letter-spacing:.16em;
+      margin-bottom:4px;
+    }
+
+    /* previously .section-name existed – removed to avoid duplicate titles */
+
+    /* CONTENT CREATION section gets slightly bigger label if needed */
+    .service-section--content .section-label{
+      letter-spacing:.2em;
+    }
+
+    /* === HORIZONTAL SCROLLER FOR SERVICES === */
+    .section-body{
+      display:flex;
+      gap:24px;
+      overflow-x:auto;
+      padding-bottom:8px;
+      scrollbar-width:thin;
+    }
+    .section-body::-webkit-scrollbar{
+      height:6px;
+    }
+    .section-body::-webkit-scrollbar-track{
+      background:transparent;
+    }
+    .section-body::-webkit-scrollbar-thumb{
+      background:#999;
+    }
+
+    /* === SERVICE ITEMS === */
+    .service-item{
+      font-family:'Poppins',sans-serif;
+      font-size:.9rem;
+      line-height:1.7;
+      min-width:260px;
+      max-width:320px;
+      flex:0 0 auto;
+      padding-bottom:6px;
+      border-bottom:1px solid rgba(0,0,0,.1);
+    }
+
+    .service-title{
+      display:block;
+      width:100%;
+      text-align:left;
+      background:none;
+      border:none;
+      padding:0;
+      margin:0 0 .2rem;
+      cursor:pointer;
+
+      font-family:'Playfair Display',serif; /* same clear serif as section labels */
+      font-size:1.25rem;                   /* closer to section title size */
+      font-weight:500;
+      letter-spacing:.02em;
+    }
+    .service-title:focus{
+      outline:none;
+      text-decoration:underline;
+    }
+
+    .service-list{
+      display:none;
+      margin-top:.25rem;
+      font-family:'Poppins',sans-serif;
+      font-size:.9rem;
+    }
+    .service-item.open .service-list{
+      display:block;
+    }
+    .service-list strong{
+      font-weight:500;
+    }
+    .service-list ul{
+      margin:.2rem 0 .2rem 1.1rem;
+      padding-left:0;
+    }
+    .service-list li{
+      margin:.12rem 0;
+    }
+
+    /* === ADD-ONS === */
+    .addon-item{
+      font-family:'Poppins',sans-serif;
+      font-size:.9rem;
+      line-height:1.7;
+      min-width:260px;
+      max-width:320px;
+      flex:0 0 auto;
+      padding-bottom:6px;
+      border-bottom:1px solid rgba(0,0,0,.1);
+    }
+    .addon-item strong{
+      font-family:'Playfair Display',serif;
+      font-size:1.1rem;
+      font-weight:500;
+      letter-spacing:.02em;
+    }
+
+    /* === BIG MARQUEE AT BOTTOM === */
+    .content-marquee{
+      max-width:1100px;
+      margin:40px auto 40px;
+      overflow:hidden;
+    }
+    .content-marquee-track{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      animation:marquee-scroll 22s linear infinite;
+    }
+    .content-marquee img{
+      height:700px;          /* big, editorial */
+      max-width:none;
+      flex-shrink:0;
+      border-radius:18px;
+      object-fit:cover;
+      box-shadow:0 12px 32px rgba(0,0,0,.2);
+    }
+    .content-marquee:hover .content-marquee-track{
+      animation-play-state:paused;
+    }
+    @keyframes marquee-scroll{
+      0%{transform:translateX(0);}
+      100%{transform:translateX(-50%);}
+    }
+    @media(max-width:1024px){
+      .content-marquee img{height:520px;}
+    }
+    @media(max-width:720px){
+      .content-marquee img{height:360px;}
+    }
+
+    /* CONTACT */
+    .contact{
+      margin-top:36px;
+      padding-top:26px;
+      border-top:1px solid #000;
+      opacity:.9;
+      text-align:center;
+      font-family:'Poppins',sans-serif;
+      font-size:.95rem;
+    }
+    .contact a{
+      color:#000;text-decoration:none;border-bottom:1px solid #000;
+      transition:.3s;
+    }
+    .contact a:hover{color:#ff1493;border-color:#ff1493;}
   </style>
 </head>
 
 <body>
+  <!-- Menu button -->
+  <button class="menu-btn" aria-expanded="false" aria-controls="menuBar">MENU</button>
 
-<!-- MENU BUTTON -->
-<button class="menu-btn">MENU</button>
-
-<!-- SOCIAL ICONS -->
-<div class="social-icons">
-  <a href="#"><i class="fab fa-linkedin"></i></a>
-  <a href="#"><i class="fab fa-instagram"></i></a>
-  <a href="#"><i class="fab fa-tiktok"></i></a>
-</div>
-
-<!-- MENU (unchanged) -->
-<nav class="menu-bar" id="menuBar">
-  <div class="menu-inner">
-    <div class="image-menu">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/menu.jpg" />
-      <a class="hot home" href="./"></a>
-      <a class="hot about" href="./about.html"></a>
-      <a class="hot services" href="./services.html"></a>
-    </div>
-  </div>
-</nav>
-
-<main>
-
-<!-- ========================= -->
-<!-- 01. BRANDING & AUDITING -->
-<!-- ========================= -->
-
-<div class="section-block">
-  <div class="section-number">01.</div>
-  <div class="section-title">BRANDING & AUDITING</div>
-
-  <div class="service-strip">
-
-    <!-- SERVICE 1 -->
-    <div class="service-card">
-      <div class="service-title">Full-Scale Brand Audit</div>
-      <div class="service-points">
-        <ul>
-          <li>Brand identity + visual impact evaluation</li>
-          <li>Messaging & tone analysis</li>
-          <li>Audience perception & first-impression review</li>
-          <li>Priority recommendations</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- SERVICE 2 -->
-    <div class="service-card">
-      <div class="service-title">Complete Brand Identity</div>
-      <div class="service-points">
-        <ul>
-          <li>Logo + submark design</li>
-          <li>Colour palette & typography system</li>
-          <li>Imagery direction</li>
-          <li>Brand identity guidelines</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- SERVICE 3 -->
-    <div class="service-card">
-      <div class="service-title">Brand Story & Positioning</div>
-      <div class="service-points">
-        <ul>
-          <li>Brand story development</li>
-          <li>Positioning statements & value pillars</li>
-          <li>Audience alignment</li>
-          <li>Signature tone & language framework</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ========================= -->
-<!-- 02. CONTENT CREATION -->
-<!-- ========================= -->
-
-<div class="section-block">
-  <div class="section-number">02.</div>
-  <div class="section-title">CONTENT CREATION</div>
-
-  <div class="service-strip">
-    <div class="service-card">
-      <div class="service-title">Social Media Management</div>
-      <div class="service-points">
-        <ul>
-          <li>Instagram & TikTok management</li>
-          <li>Content scheduling</li>
-          <li>Engagement & community flow</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="service-card">
-      <div class="service-title">Reels & TikTok Content</div>
-      <div class="service-points">
-        <ul>
-          <li>Short-form content creation</li>
-          <li>Trend forecasting</li>
-          <li>Editing & creative direction</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="service-card">
-      <div class="service-title">Campaign Content</div>
-      <div class="service-points">
-        <ul>
-          <li>Launch content</li>
-          <li>Campaign angles & messaging</li>
-          <li>High-impact visuals</li>
-        </ul>
-      </div>
-    </div>
+  <!-- Social icons -->
+  <div class="social-icons" aria-label="social links">
+    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+    <a href="https://www.instagram.com/writemysocials" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+    <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
   </div>
 
-</div>
+  <!-- Image-based navigation menu -->
+  <nav class="menu-bar" id="menuBar">
+    <div class="menu-inner">
+      <div class="image-menu">
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/menu.jpg" alt="Menu navigation"/>
+        <a class="hot home" href="./" aria-label="Home"></a>
+        <a class="hot about" href="./about.html" aria-label="About"></a>
+        <a class="hot services" href="./services.html" aria-label="Services"></a>
+      </div>
+    </div>
+  </nav>
 
-<!-- MARQUEE (bigger + centered) -->
-<div class="marquee-container">
-  <div class="marquee-track">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Screenshot%202025-11-14%20at%2013.51.16.png">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Screenshot%202025-11-14%20at%2013.54.41.png">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Screenshot%202025-11-14%20at%2013.55.01.png">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Screenshot%202025-11-14%20at%2013.52.52.png">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Screenshot%202025-11-14%20at%2013.52.13.png">
-    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/Screenshot%202025-11-14%20at%2013.50.47.png">
-  </div>
-</div>
+  <!-- ===== SERVICES CONTENT ===== -->
+  <main>
+    <h1 class="hero-title">The Digital Runway</h1>
+    <p class="hero-sub">Strategic, fashion-forward branding, content, and copywriting for modern lifestyle brands.</p>
+    <hr class="hero-divider"/>
 
-<!-- ========================= -->
-<!-- 03. COPYWRITING -->
-<!-- ========================= -->
+    <!-- 01. BRANDING & AUDITING -->
+    <section class="service-section" aria-label="Branding and auditing services">
+      <div>
+        <div class="section-label">
+          <div class="section-number">01.</div>
+          BRANDING &amp; AUDITING
+        </div>
+      </div>
 
-<div class="section-block">
-  <div class="section-number">03.</div>
-  <div class="section-title">COPYWRITING</div>
+      <div class="section-body">
+        <article class="service-item">
+          <button class="service-title" type="button">Full-Scale Brand Audit</button>
+          <div class="service-list">
+            <strong>Includes:</strong>
+            <ul>
+              <li>Comprehensive review of visual identity</li>
+              <li>Messaging and tone of voice assessment</li>
+              <li>Consumer perception &amp; first-impression analysis</li>
+              <li>Key insights and priority recommendations</li>
+            </ul>
+          </div>
+        </article>
 
-  <div class="service-strip">
+        <article class="service-item">
+          <button class="service-title" type="button">Complete Brand Identity</button>
+          <div class="service-list">
+            <strong>Includes:</strong>
+            <ul>
+              <li>Logo and submark design</li>
+              <li>Colour palette &amp; typography system</li>
+              <li>Imagery and visual direction</li>
+              <li>Brand identity guidelines for consistent use</li>
+            </ul>
+          </div>
+        </article>
 
-    <div class="service-card">
-      <div class="service-title">Email & Funnel Copy</div>
-      <div class="service-points">
-        <ul>
-          <li>Welcome & nurture sequences</li>
-          <li>Sales & launch emails</li>
-          <li>Campaign copy</li>
-        </ul>
+        <article class="service-item">
+          <button class="service-title" type="button">Brand Story &amp; Positioning</button>
+          <div class="service-list">
+            <strong>Includes:</strong>
+            <ul>
+              <li>Brand story and narrative framework</li>
+              <li>Positioning statements &amp; value pillars</li>
+              <li>Audience and emotional alignment</li>
+              <li>Signature tone &amp; language anchors</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 02. CONTENT CREATION -->
+    <section class="service-section service-section--content" aria-label="Content creation services">
+      <div>
+        <div class="section-label">
+          <div class="section-number">02.</div>
+          CONTENT CREATION
+        </div>
+      </div>
+
+      <div class="section-body">
+        <article class="service-item">
+          <button class="service-title" type="button">Social Media Management</button>
+          <div class="service-list">
+            <strong>Includes:</strong>
+            <ul>
+              <li>Instagram and TikTok planning &amp; scheduling</li>
+              <li>Feed styling and visual direction</li>
+              <li>Caption writing &amp; optimisation</li>
+              <li>Publishing and community engagement</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="service-item">
+          <button class="service-title" type="button">Reels &amp; TikTok Content</button>
+          <div class="service-list">
+            <strong>Includes:</strong>
+            <ul>
+              <li>Short-form video concepts &amp; storylines</li>
+              <li>Filming and editing support</li>
+              <li>Hook and caption development</li>
+              <li>Trend and audio integration</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="service-item">
+          <button class="service-title" type="button">Editorial Content Production</button>
+          <div class="service-list">
+            <strong>Includes:</strong>
+            <ul>
+              <li>Campaign content themes &amp; ideas</li>
+              <li>Lifestyle and product-led content outlines</li>
+              <li>Creative direction guidance</li>
+              <li>Multi-format content planning</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 03. COPYWRITING -->
+    <section class="service-section" aria-label="Copywriting services">
+      <div>
+        <div class="section-label">
+          <div class="section-number">03.</div>
+          COPYWRITING
+        </div>
+      </div>
+
+      <div class="section-body">
+        <article class="service-item">
+          <button class="service-title" type="button">Email &amp; Funnel Copy</button>
+          <div class="service-list">
+            <strong>Includes:</strong>
+            <ul>
+              <li>Welcome and nurture sequences</li>
+              <li>Sales and launch email copy</li>
+              <li>Campaign angles and subject lines</li>
+              <li>Brand voice alignment</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="service-item">
+          <button class="service-title" type="button">Website &amp; Packaging Copy</button>
+          <div class="service-list">
+            <strong>Includes:</strong>
+            <ul>
+              <li>Core website page copy</li>
+              <li>Product and packaging messaging</li>
+              <li>Brand story refinement</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="service-item">
+          <button class="service-title" type="button">Sales Page &amp; Campaign Copy</button>
+          <div class="service-list">
+            <strong>Includes:</strong>
+            <ul>
+              <li>Long-form sales pages</li>
+              <li>Landing page copy</li>
+              <li>Campaign messaging and structure</li>
+              <li>Ad copy suggestions</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 04. ADD-ONS -->
+    <section class="service-section" aria-label="Add-on services">
+      <div>
+        <div class="section-label">
+          <div class="section-number">04.</div>
+          ADD-ONS
+        </div>
+      </div>
+
+      <div class="section-body">
+        <div class="addon-item">
+          <strong>Branding Add-Ons</strong><br/>
+          Web design • Extended brand guidelines • Visual identity refinement
+        </div>
+        <div class="addon-item">
+          <strong>Audit Add-Ons</strong><br/>
+          In-person brand review • Secret shopper audit • Customer journey analysis
+        </div>
+        <div class="addon-item">
+          <strong>Content Add-Ons</strong><br/>
+          UGC content packages • Content calendars • Additional content pieces
+        </div>
+        <div class="addon-item">
+          <strong>PR &amp; Visibility Add-Ons</strong><br/>
+          PR outreach support • Press release writing • Influencer gifting / seeding
+        </div>
+      </div>
+    </section>
+
+    <!-- BIG MARQUEE AT BOTTOM -->
+    <div class="content-marquee" aria-label="Content creation portfolio">
+      <div class="content-marquee-track">
+        <!-- Set 1 -->
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.51.16.png" alt="Content creation example 1"/>
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.54.41.png" alt="Content creation example 2"/>
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.55.01.png" alt="Content creation example 3"/>
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.52.png" alt="Content creation example 4"/>
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.13.png" alt="Content creation example 5"/>
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.50.47.png" alt="Content creation example 6"/>
+        <!-- Set 2 duplicated for smooth loop -->
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.51.16.png" alt="Content creation example 1 repeat"/>
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.54.41.png" alt="Content creation example 2 repeat"/>
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.55.01.png" alt="Content creation example 3 repeat"/>
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.52.png" alt="Content creation example 4 repeat"/>
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.13.png" alt="Content creation example 5 repeat"/>
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.50.47.png" alt="Content creation example 6 repeat"/>
       </div>
     </div>
 
-    <div class="service-card">
-      <div class="service-title">Website & Packaging Copy</div>
-      <div class="service-points">
-        <ul>
-          <li>Core website copy</li>
-          <li>Product messaging</li>
-          <li>Brand story refinement</li>
-        </ul>
-      </div>
+    <!-- CONTACT -->
+    <div class="contact">
+      <p>Questions or ready to start?</p>
+      <p><a href="mailto:siyana.deveaux@writemysocials.com.au">siyana.deveaux@writemysocials.com.au</a></p>
+      <p><a href="https://calendly.com/your-link" target="_blank" rel="noopener">Book a strategy call</a></p>
+      <p>
+        <a href="https://instagram.com/writemysocials" target="_blank" rel="noopener">@writemysocials</a>
+        &middot;
+        <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener">LinkedIn</a>
+      </p>
     </div>
+  </main>
 
-    <div class="service-card">
-      <div class="service-title">Sales Page & Campaign Copy</div>
-      <div class="service-points">
-        <ul>
-          <li>Long-form sales pages</li>
-          <li>Landing page copy</li>
-          <li>Campaign structure</li>
-        </ul>
-      </div>
-    </div>
+  <script>
+    // Menu open/close logic
+    (function(){
+      const btn = document.querySelector('.menu-btn');
+      const root = document.body;
 
-  </div>
-</div>
+      function setOpen(open){
+        root.classList.toggle('menu-open', open);
+        btn.setAttribute('aria-expanded', String(open));
+      }
 
-<!-- ========================= -->
-<!-- 04. ADD-ONS -->
-<!-- ========================= -->
+      btn.addEventListener('click', () => {
+        const isOpen = root.classList.contains('menu-open');
+        setOpen(!isOpen);
+      });
 
-<div class="section-block">
-  <div class="section-number">04.</div>
-  <div class="section-title">ADD-ONS</div>
+      document.addEventListener('click', e => {
+        if (e.target.matches('.hot')) setOpen(false);
+      });
 
-  <div class="service-strip">
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') setOpen(false);
+      });
+    })();
 
-    <div class="service-card">
-      <div class="service-title">Branding Add-Ons</div>
-      <div class="service-points">
-        <ul>
-          <li>Web design</li>
-          <li>Brand guidelines</li>
-          <li>Visual identity refinement</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="service-card">
-      <div class="service-title">Audit Add-Ons</div>
-      <div class="service-points">
-        <ul>
-          <li>In-person brand review</li>
-          <li>Secret shopper audit</li>
-          <li>Customer journey analysis</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="service-card">
-      <div class="service-title">Content Add-Ons</div>
-      <div class="service-points">
-        <ul>
-          <li>UGC packages</li>
-          <li>Content calendars</li>
-          <li>Additional content pieces</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<div class="contact">
-  <p>Questions or ready to start?</p>
-  <p><a href="mailto:siyana.deveaux@writemysocials.com.au">siyana.deveaux@writemysocials.com.au</a></p>
-</div>
-
-</main>
-
-<script>
-  /* MENU LOGIC */
-  const btn = document.querySelector('.menu-btn');
-  const body = document.body;
-
-  btn.addEventListener('click', () => {
-    body.classList.toggle('menu-open');
-  });
-
-  /* ACCORDION TOGGLE */
-  document.querySelectorAll('.service-title').forEach(title => {
-    title.addEventListener('click', () => {
-      const box = title.nextElementSibling;
-      box.style.display = box.style.display === 'block' ? 'none' : 'block';
-    });
-  });
-</script>
-
+    // Toggle service "Includes" on click
+    (function(){
+      const titles = document.querySelectorAll('.service-title');
+      titles.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const parent = btn.closest('.service-item');
+          parent.classList.toggle('open');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
 
