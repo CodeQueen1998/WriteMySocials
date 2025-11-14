@@ -1,12 +1,3 @@
-Here’s the full updated HTML with:
-
-* Section labels + service titles in the **uppercase, spaced Poppins** style (like your screenshot).
-* Section names (`<h2 class="section-name">`) visually hidden so the titles don’t repeat.
-* Layout, marquee, click-to-reveal descriptions, and all content kept exactly as in your last file.
-
-You can copy–paste this whole thing over your current `services.html`:
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +6,7 @@ You can copy–paste this whole thing over your current `services.html`:
   <title>Soulful brands, built with strategy.</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
   <style>
@@ -105,7 +96,7 @@ You can copy–paste this whole thing over your current `services.html`:
       opacity:.12;
     }
 
-    /* === SECTION LAYOUT (header left, services right) === */
+    /* === SECTION LAYOUT (number + title left, services right) === */
     .service-section{
       display:grid;
       grid-template-columns:minmax(170px,240px) minmax(0,1fr);
@@ -117,21 +108,22 @@ You can copy–paste this whole thing over your current `services.html`:
       border-top:none;
     }
 
-    .section-label{
-      font-family:'Poppins',sans-serif;
-      text-transform:uppercase;
-      letter-spacing:.18em;
-      font-size:.9rem;
+    .section-header{
+      font-family:'Inter',sans-serif;
     }
+
     .section-number{
-      font-family:'Poppins',sans-serif;
       font-size:1rem;
       letter-spacing:.16em;
       margin-bottom:4px;
+      text-transform:uppercase;
     }
-    /* hide duplicated pretty name so title doesn’t repeat */
+
     .section-name{
-      display:none;
+      margin:6px 0 0;
+      font-size:1.6rem;
+      font-weight:500;
+      letter-spacing:.08em;
     }
 
     /* === HORIZONTAL SCROLLER FOR SERVICES === */
@@ -152,7 +144,7 @@ You can copy–paste this whole thing over your current `services.html`:
       background:#999;
     }
 
-    /* === SERVICE ITEMS (horizontal tiles, click to expand bullets) === */
+    /* === SERVICE ITEMS === */
     .service-item{
       font-family:'Poppins',sans-serif;
       font-size:.9rem;
@@ -174,11 +166,10 @@ You can copy–paste this whole thing over your current `services.html`:
       margin:0 0 .2rem;
       cursor:pointer;
 
-      font-family:'Poppins',sans-serif;
-      text-transform:uppercase;
-      letter-spacing:.16em;
-      font-size:1rem;
+      font-family:'Inter',sans-serif;
+      font-size:1.2rem;
       font-weight:500;
+      letter-spacing:.06em;
     }
 
     .service-title:focus{
@@ -208,7 +199,7 @@ You can copy–paste this whole thing over your current `services.html`:
       margin:.12rem 0;
     }
 
-    /* === CONTENT CREATION MARQUEE (now at bottom, 2x bigger) === */
+    /* === CONTENT CREATION MARQUEE === */
     .content-marquee{
       max-width:1100px;
       margin:40px auto 40px;
@@ -221,7 +212,7 @@ You can copy–paste this whole thing over your current `services.html`:
       animation:marquee-scroll 22s linear infinite;
     }
     .content-marquee img{
-      height:700px;          /* much larger */
+      height:700px;
       max-width:none;
       flex-shrink:0;
       border-radius:18px;
@@ -254,11 +245,10 @@ You can copy–paste this whole thing over your current `services.html`:
       border-bottom:1px solid rgba(0,0,0,.1);
     }
     .addon-item strong{
-      font-family:'Poppins',sans-serif;
-      text-transform:uppercase;
-      letter-spacing:.16em;
-      font-size:1rem;
+      font-family:'Inter',sans-serif;
+      font-size:1.1rem;
       font-weight:500;
+      letter-spacing:.06em;
     }
 
     /* CONTACT */
@@ -310,11 +300,8 @@ You can copy–paste this whole thing over your current `services.html`:
 
     <!-- 01. BRANDING & AUDITING -->
     <section class="service-section" aria-label="Branding and auditing services">
-      <div>
-        <div class="section-label">
-          <div class="section-number">01.</div>
-          BRANDING &amp; AUDITING
-        </div>
+      <div class="section-header">
+        <div class="section-number">01.</div>
         <h2 class="section-name">Branding &amp; Auditing</h2>
       </div>
 
@@ -362,11 +349,8 @@ You can copy–paste this whole thing over your current `services.html`:
 
     <!-- 02. CONTENT CREATION -->
     <section class="service-section service-section--content" aria-label="Content creation services">
-      <div>
-        <div class="section-label">
-          <div class="section-number">02.</div>
-          CONTENT CREATION
-        </div>
+      <div class="section-header">
+        <div class="section-number">02.</div>
         <h2 class="section-name">Content Creation</h2>
       </div>
 
@@ -414,11 +398,8 @@ You can copy–paste this whole thing over your current `services.html`:
 
     <!-- 03. COPYWRITING -->
     <section class="service-section" aria-label="Copywriting services">
-      <div>
-        <div class="section-label">
-          <div class="section-number">03.</div>
-          COPYWRITING
-        </div>
+      <div class="section-header">
+        <div class="section-number">03.</div>
         <h2 class="section-name">Copywriting</h2>
       </div>
 
@@ -465,11 +446,8 @@ You can copy–paste this whole thing over your current `services.html`:
 
     <!-- 04. ADD-ONS -->
     <section class="service-section" aria-label="Add-on services">
-      <div>
-        <div class="section-label">
-          <div class="section-number">04.</div>
-          ADD-ONS
-        </div>
+      <div class="section-header">
+        <div class="section-number">04.</div>
         <h2 class="section-name">Add-Ons</h2>
       </div>
 
@@ -564,4 +542,4 @@ You can copy–paste this whole thing over your current `services.html`:
   </script>
 </body>
 </html>
-```
+
