@@ -6,7 +6,7 @@
   <title>Soulful brands, built with strategy.</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
   <style>
@@ -75,8 +75,9 @@
       text-align:center;
       font-size:clamp(2rem,4.2vw,2.8rem);
       font-weight:600;
-      letter-spacing:.12em;
+      letter-spacing:.08em;
       text-transform:uppercase;
+      font-family:'Cormorant Garamond',serif;
       margin:0 0 6px;
     }
     .hero-sub{
@@ -109,22 +110,24 @@
     }
 
     .section-header{
-      font-family:'Inter',sans-serif;
+      font-family:'Cormorant Garamond',serif;
     }
 
     .section-number{
-      font-size:0.95rem;
-      letter-spacing:.16em;
+      font-family:'Poppins',sans-serif;
+      font-size:0.9rem;
+      letter-spacing:.18em;
       margin-bottom:4px;
       text-transform:uppercase;
     }
 
     .section-name{
       margin:6px 0 0;
-      font-size:1.3rem;
-      font-weight:500;
-      letter-spacing:.18em;
-      text-transform:uppercase;
+      font-size:1.5rem;
+      font-weight:600;
+      letter-spacing:.06em;
+      text-transform:none;
+      font-family:'Cormorant Garamond',serif;
     }
 
     /* === HORIZONTAL SCROLLER FOR SERVICES === */
@@ -167,10 +170,10 @@
       margin:0 0 .2rem;
       cursor:pointer;
 
-      font-family:'Inter',sans-serif;
-      font-size:1.25rem;
-      font-weight:500;
-      letter-spacing:.06em;
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.35rem;
+      font-weight:600;
+      letter-spacing:.04em;
       text-transform:none;
     }
 
@@ -211,7 +214,7 @@
       display:flex;
       align-items:center;
       gap:18px;
-      animation:marquee-scroll 22s linear infinite;
+      animation:marquee-scroll 16s linear infinite; /* faster base */
     }
     .content-marquee img{
       height:700px;
@@ -241,10 +244,10 @@
       border-bottom:1px solid rgba(0,0,0,.1);
     }
     .addon-item strong{
-      font-family:'Inter',sans-serif;
-      font-size:1.1rem;
-      font-weight:500;
-      letter-spacing:.06em;
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.2rem;
+      font-weight:600;
+      letter-spacing:.04em;
     }
 
     /* CONTACT */
@@ -275,8 +278,8 @@
       }
 
       .section-name{
-        font-size:1.1rem;   /* smaller titles on phone */
-        letter-spacing:.16em;
+        font-size:1.15rem;   /* smaller titles on phone */
+        letter-spacing:.06em;
       }
 
       .section-body{
@@ -290,12 +293,12 @@
       }
 
       .service-title{
-        font-size:1.15rem;  /* services more prominent */
+        font-size:1.25rem;  /* services more prominent */
       }
 
       /* marquee 2x faster on phone */
       .content-marquee-track{
-        animation:marquee-scroll 11s linear infinite;
+        animation:marquee-scroll 5s linear infinite;
       }
     }
   </style>
@@ -574,3 +577,4 @@
   </script>
 </body>
 </html>
+
