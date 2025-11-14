@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Soulful brands, built with strategy.</title>
 
-  <!-- Fonts & Icons -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
@@ -96,126 +96,76 @@
       opacity:.12;
     }
 
-    /* === SECTION LAYOUT (header left, services right) === */
+    /* === SECTION LAYOUT === */
     .service-section{
-      display:grid;
-      grid-template-columns:minmax(170px,240px) minmax(0,1fr);
-      gap:32px;
-      padding:32px 0 36px;
+      padding:40px 0 48px;
       border-top:1px solid #000;
     }
-    .service-section:first-of-type{
-      border-top:none;
-    }
+    .service-section:first-of-type{border-top:none;}
 
     .section-label{
       font-family:'Poppins',sans-serif;
       text-transform:uppercase;
       letter-spacing:.18em;
-      font-size:.85rem;
+      font-size:1rem;
+      margin-bottom:10px;
     }
     .section-number{
       font-size:1.1rem;
       letter-spacing:.16em;
       margin-bottom:4px;
     }
-
-    /* previously .section-name existed – removed to avoid duplicate titles */
-
-    /* CONTENT CREATION section gets slightly bigger label if needed */
-    .service-section--content .section-label{
-      letter-spacing:.2em;
+    .section-name{
+      font-size:1.9rem; /* Moderately large (Option B) */
+      font-weight:600;
+      margin:8px 0 20px;
+      letter-spacing:.03em;
     }
 
-    /* === HORIZONTAL SCROLLER FOR SERVICES === */
+    /* HORIZONTAL SERVICES */
     .section-body{
       display:flex;
-      gap:24px;
+      gap:28px;
       overflow-x:auto;
-      padding-bottom:8px;
+      padding-bottom:10px;
       scrollbar-width:thin;
     }
-    .section-body::-webkit-scrollbar{
-      height:6px;
-    }
-    .section-body::-webkit-scrollbar-track{
-      background:transparent;
-    }
-    .section-body::-webkit-scrollbar-thumb{
-      background:#999;
-    }
+    .section-body::-webkit-scrollbar{height:6px;}
+    .section-body::-webkit-scrollbar-thumb{background:#777;}
 
-    /* === SERVICE ITEMS === */
     .service-item{
       font-family:'Poppins',sans-serif;
-      font-size:.9rem;
-      line-height:1.7;
       min-width:260px;
-      max-width:320px;
+      max-width:300px;
       flex:0 0 auto;
       padding-bottom:6px;
       border-bottom:1px solid rgba(0,0,0,.1);
     }
 
     .service-title{
-      display:block;
-      width:100%;
-      text-align:left;
+      font-family:'Playfair Display',serif;
+      font-size:1.25rem;
+      font-weight:600;
       background:none;
       border:none;
       padding:0;
-      margin:0 0 .2rem;
+      margin:0;
       cursor:pointer;
-
-      font-family:'Playfair Display',serif; /* same clear serif as section labels */
-      font-size:1.25rem;                   /* closer to section title size */
-      font-weight:500;
-      letter-spacing:.02em;
-    }
-    .service-title:focus{
-      outline:none;
-      text-decoration:underline;
+      text-align:left;
     }
 
     .service-list{
       display:none;
-      margin-top:.25rem;
-      font-family:'Poppins',sans-serif;
-      font-size:.9rem;
+      margin-top:.45rem;
     }
-    .service-item.open .service-list{
-      display:block;
-    }
-    .service-list strong{
-      font-weight:500;
-    }
+    .service-item.open .service-list{display:block;}
+
     .service-list ul{
       margin:.2rem 0 .2rem 1.1rem;
       padding-left:0;
     }
-    .service-list li{
-      margin:.12rem 0;
-    }
 
-    /* === ADD-ONS === */
-    .addon-item{
-      font-family:'Poppins',sans-serif;
-      font-size:.9rem;
-      line-height:1.7;
-      min-width:260px;
-      max-width:320px;
-      flex:0 0 auto;
-      padding-bottom:6px;
-      border-bottom:1px solid rgba(0,0,0,.1);
-    }
-    .addon-item strong{
-      font-family:'Playfair Display',serif;
-      font-size:1.1rem;
-      font-weight:500;
-      letter-spacing:.02em;
-    }
-
-    /* === BIG MARQUEE AT BOTTOM === */
+    /* MARQUEE */
     .content-marquee{
       max-width:1100px;
       margin:40px auto 40px;
@@ -223,35 +173,24 @@
     }
     .content-marquee-track{
       display:flex;
-      align-items:center;
       gap:18px;
       animation:marquee-scroll 22s linear infinite;
     }
     .content-marquee img{
-      height:700px;          /* big, editorial */
-      max-width:none;
-      flex-shrink:0;
+      height:700px;
       border-radius:18px;
       object-fit:cover;
+      flex-shrink:0;
       box-shadow:0 12px 32px rgba(0,0,0,.2);
-    }
-    .content-marquee:hover .content-marquee-track{
-      animation-play-state:paused;
     }
     @keyframes marquee-scroll{
       0%{transform:translateX(0);}
       100%{transform:translateX(-50%);}
     }
-    @media(max-width:1024px){
-      .content-marquee img{height:520px;}
-    }
-    @media(max-width:720px){
-      .content-marquee img{height:360px;}
-    }
 
     /* CONTACT */
     .contact{
-      margin-top:36px;
+      margin-top:50px;
       padding-top:26px;
       border-top:1px solid #000;
       opacity:.9;
@@ -261,291 +200,221 @@
     }
     .contact a{
       color:#000;text-decoration:none;border-bottom:1px solid #000;
-      transition:.3s;
     }
-    .contact a:hover{color:#ff1493;border-color:#ff1493;}
   </style>
 </head>
 
 <body>
-  <!-- Menu button -->
-  <button class="menu-btn" aria-expanded="false" aria-controls="menuBar">MENU</button>
 
-  <!-- Social icons -->
-  <div class="social-icons" aria-label="social links">
-    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
-    <a href="https://www.instagram.com/writemysocials" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-    <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+<button class="menu-btn">MENU</button>
+
+<div class="social-icons">
+  <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/"><i class="fab fa-linkedin"></i></a>
+  <a href="https://www.instagram.com/writemysocials"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.tiktok.com/@writemysocials"><i class="fab fa-tiktok"></i></a>
+</div>
+
+<nav class="menu-bar" id="menuBar">
+  <div class="menu-inner">
+    <div class="image-menu">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/menu.jpg"/>
+      <a class="hot home" href="./"></a>
+      <a class="hot about" href="./about.html"></a>
+      <a class="hot services" href="./services.html"></a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <h1 class="hero-title">The Digital Runway</h1>
+  <p class="hero-sub">Strategic, fashion-forward branding, content, and copywriting for modern lifestyle brands.</p>
+  <hr class="hero-divider"/>
+
+  <!-- 01 BRANDING & AUDITING -->
+  <section class="service-section">
+    <div class="section-label"><div class="section-number">01.</div> BRANDING & AUDITING</div>
+    <h2 class="section-name">Branding & Auditing</h2>
+
+    <div class="section-body">
+      <article class="service-item">
+        <button class="service-title">Full-Scale Brand Audit</button>
+        <div class="service-list">
+          <strong>Includes:</strong>
+          <ul><li>Visual identity review</li><li>Messaging & tone analysis</li><li>Consumer perception study</li><li>Priority recommendations</li></ul>
+        </div>
+      </article>
+
+      <article class="service-item">
+        <button class="service-title">Complete Brand Identity</button>
+        <div class="service-list">
+          <strong>Includes:</strong>
+          <ul><li>Logo & submark design</li><li>Palette & typography</li><li>Imagery styling</li><li>Brand guidelines</li></ul>
+        </div>
+      </article>
+
+      <article class="service-item">
+        <button class="service-title">Brand Story & Positioning</button>
+        <div class="service-list">
+          <strong>Includes:</strong>
+          <ul><li>Narrative framework</li><li>Positioning statements</li><li>Audience emotional alignment</li><li>Signature language</li></ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 02 CONTENT CREATION -->
+  <section class="service-section">
+    <div class="section-label"><div class="section-number">02.</div> CONTENT CREATION</div>
+    <h2 class="section-name">Content Creation</h2>
+
+    <div class="section-body">
+      <article class="service-item">
+        <button class="service-title">Social Media Management</button>
+        <div class="service-list">
+          <strong>Includes:</strong>
+          <ul><li>Instagram & TikTok strategy</li><li>Feed styling</li><li>Caption optimisation</li><li>Publishing & engagement</li></ul>
+        </div>
+      </article>
+
+      <article class="service-item">
+        <button class="service-title">Reels & TikTok Content</button>
+        <div class="service-list">
+          <strong>Includes:</strong>
+          <ul><li>Video concepts</li><li>Editing support</li><li>Hooks & captions</li><li>Trend integration</li></ul>
+        </div>
+      </article>
+
+      <article class="service-item">
+        <button class="service-title">Editorial Content Production</button>
+        <div class="service-list">
+          <strong>Includes:</strong>
+          <ul><li>Campaign themes</li><li>Lifestyle content</li><li>Creative direction</li><li>Multi-format planning</li></ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 03 COPYWRITING -->
+  <section class="service-section">
+    <div class="section-label"><div class="section-number">03.</div> COPYWRITING</div>
+    <h2 class="section-name">Copywriting</h2>
+
+    <div class="section-body">
+      <article class="service-item">
+        <button class="service-title">Email & Funnel Copy</button>
+        <div class="service-list">
+          <strong>Includes:</strong>
+          <ul><li>Nurture sequences</li><li>Launch emails</li><li>Subject lines</li><li>Voice alignment</li></ul>
+        </div>
+      </article>
+
+      <article class="service-item">
+        <button class="service-title">Website & Packaging Copy</button>
+        <div class="service-list">
+          <strong>Includes:</strong>
+          <ul><li>Website pages</li><li>Product messaging</li><li>Brand story refinement</li></ul>
+        </div>
+      </article>
+
+      <article class="service-item">
+        <button class="service-title">Sales Page & Campaign Copy</button>
+        <div class="service-list">
+          <strong>Includes:</strong>
+          <ul><li>Sales pages</li><li>Landing copy</li><li>Campaign messaging</li><li>Ad copy suggestions</li></ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 04 ADD-ONS -->
+  <section class="service-section">
+    <div class="section-label"><div class="section-number">04.</div> ADD-ONS</div>
+    <h2 class="section-name">Add-Ons</h2>
+
+    <div class="section-body">
+      <div class="service-item">
+        <button class="service-title">Branding Add-Ons</button>
+        <div class="service-list">
+          <strong>Includes:</strong>
+          <ul><li>Web design</li><li>Extended brand guidelines</li><li>Visual identity refinement</li></ul>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <button class="service-title">Audit Add-Ons</button>
+        <div class="service-list">
+          <strong>Includes:</strong>
+          <ul><li>In-person review</li><li>Secret shopper audit</li><li>Journey analysis</li></ul>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <button class="service-title">Content Add-Ons</button>
+        <div class="service-list">
+          <strong>Includes:</strong>
+          <ul><li>UGC packages</li><li>Content calendars</li><li>Extra content</li></ul>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <button class="service-title">PR & Visibility Add-Ons</button>
+        <div class="service-list">
+          <strong>Includes:</strong>
+          <ul><li>PR outreach</li><li>Press writing</li><li>Influencer seeding</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="content-marquee">
+    <div class="content-marquee-track">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.51.16.png"/>
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.54.41.png"/>
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.55.01.png"/>
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.52.png"/>
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.13.png"/>
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.50.47.png"/>
+
+      <!-- Loop set -->
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.51.16.png"/>
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.54.41.png"/>
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.55.01.png"/>
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.52.png"/>
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.13.png"/>
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.50.47.png"/>
+    </div>
   </div>
 
-  <!-- Image-based navigation menu -->
-  <nav class="menu-bar" id="menuBar">
-    <div class="menu-inner">
-      <div class="image-menu">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/menu.jpg" alt="Menu navigation"/>
-        <a class="hot home" href="./" aria-label="Home"></a>
-        <a class="hot about" href="./about.html" aria-label="About"></a>
-        <a class="hot services" href="./services.html" aria-label="Services"></a>
-      </div>
-    </div>
-  </nav>
+  <div class="contact">
+    <p>Questions or ready to start?</p>
+    <p><a href="mailto:siyana.deveaux@writemysocials.com.au">siyana.deveaux@writemysocials.com.au</a></p>
+    <p><a href="https://calendly.com/your-link" target="_blank">Book a strategy call</a></p>
+    <p><a href="https://instagram.com/writemysocials" target="_blank">@writemysocials</a> · <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank">LinkedIn</a></p>
+  </div>
 
-  <!-- ===== SERVICES CONTENT ===== -->
-  <main>
-    <h1 class="hero-title">The Digital Runway</h1>
-    <p class="hero-sub">Strategic, fashion-forward branding, content, and copywriting for modern lifestyle brands.</p>
-    <hr class="hero-divider"/>
+</main>
 
-    <!-- 01. BRANDING & AUDITING -->
-    <section class="service-section" aria-label="Branding and auditing services">
-      <div>
-        <div class="section-label">
-          <div class="section-number">01.</div>
-          BRANDING &amp; AUDITING
-        </div>
-      </div>
+<script>
+(function(){
+  const btn=document.querySelector('.menu-btn');
+  const root=document.body;
+  btn.addEventListener('click',()=>root.classList.toggle('menu-open'));
+  document.addEventListener('click',e=>{if(e.target.matches('.hot'))root.classList.remove('menu-open')});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')root.classList.remove('menu-open')});
+})();
 
-      <div class="section-body">
-        <article class="service-item">
-          <button class="service-title" type="button">Full-Scale Brand Audit</button>
-          <div class="service-list">
-            <strong>Includes:</strong>
-            <ul>
-              <li>Comprehensive review of visual identity</li>
-              <li>Messaging and tone of voice assessment</li>
-              <li>Consumer perception &amp; first-impression analysis</li>
-              <li>Key insights and priority recommendations</li>
-            </ul>
-          </div>
-        </article>
+// ACCORDION
+(function(){
+  const titles=document.querySelectorAll('.service-title');
+  titles.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      btn.closest('.service-item').classList.toggle('open');
+    });
+  });
+})();
+</script>
 
-        <article class="service-item">
-          <button class="service-title" type="button">Complete Brand Identity</button>
-          <div class="service-list">
-            <strong>Includes:</strong>
-            <ul>
-              <li>Logo and submark design</li>
-              <li>Colour palette &amp; typography system</li>
-              <li>Imagery and visual direction</li>
-              <li>Brand identity guidelines for consistent use</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="service-item">
-          <button class="service-title" type="button">Brand Story &amp; Positioning</button>
-          <div class="service-list">
-            <strong>Includes:</strong>
-            <ul>
-              <li>Brand story and narrative framework</li>
-              <li>Positioning statements &amp; value pillars</li>
-              <li>Audience and emotional alignment</li>
-              <li>Signature tone &amp; language anchors</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- 02. CONTENT CREATION -->
-    <section class="service-section service-section--content" aria-label="Content creation services">
-      <div>
-        <div class="section-label">
-          <div class="section-number">02.</div>
-          CONTENT CREATION
-        </div>
-      </div>
-
-      <div class="section-body">
-        <article class="service-item">
-          <button class="service-title" type="button">Social Media Management</button>
-          <div class="service-list">
-            <strong>Includes:</strong>
-            <ul>
-              <li>Instagram and TikTok planning &amp; scheduling</li>
-              <li>Feed styling and visual direction</li>
-              <li>Caption writing &amp; optimisation</li>
-              <li>Publishing and community engagement</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="service-item">
-          <button class="service-title" type="button">Reels &amp; TikTok Content</button>
-          <div class="service-list">
-            <strong>Includes:</strong>
-            <ul>
-              <li>Short-form video concepts &amp; storylines</li>
-              <li>Filming and editing support</li>
-              <li>Hook and caption development</li>
-              <li>Trend and audio integration</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="service-item">
-          <button class="service-title" type="button">Editorial Content Production</button>
-          <div class="service-list">
-            <strong>Includes:</strong>
-            <ul>
-              <li>Campaign content themes &amp; ideas</li>
-              <li>Lifestyle and product-led content outlines</li>
-              <li>Creative direction guidance</li>
-              <li>Multi-format content planning</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- 03. COPYWRITING -->
-    <section class="service-section" aria-label="Copywriting services">
-      <div>
-        <div class="section-label">
-          <div class="section-number">03.</div>
-          COPYWRITING
-        </div>
-      </div>
-
-      <div class="section-body">
-        <article class="service-item">
-          <button class="service-title" type="button">Email &amp; Funnel Copy</button>
-          <div class="service-list">
-            <strong>Includes:</strong>
-            <ul>
-              <li>Welcome and nurture sequences</li>
-              <li>Sales and launch email copy</li>
-              <li>Campaign angles and subject lines</li>
-              <li>Brand voice alignment</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="service-item">
-          <button class="service-title" type="button">Website &amp; Packaging Copy</button>
-          <div class="service-list">
-            <strong>Includes:</strong>
-            <ul>
-              <li>Core website page copy</li>
-              <li>Product and packaging messaging</li>
-              <li>Brand story refinement</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="service-item">
-          <button class="service-title" type="button">Sales Page &amp; Campaign Copy</button>
-          <div class="service-list">
-            <strong>Includes:</strong>
-            <ul>
-              <li>Long-form sales pages</li>
-              <li>Landing page copy</li>
-              <li>Campaign messaging and structure</li>
-              <li>Ad copy suggestions</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- 04. ADD-ONS -->
-    <section class="service-section" aria-label="Add-on services">
-      <div>
-        <div class="section-label">
-          <div class="section-number">04.</div>
-          ADD-ONS
-        </div>
-      </div>
-
-      <div class="section-body">
-        <div class="addon-item">
-          <strong>Branding Add-Ons</strong><br/>
-          Web design • Extended brand guidelines • Visual identity refinement
-        </div>
-        <div class="addon-item">
-          <strong>Audit Add-Ons</strong><br/>
-          In-person brand review • Secret shopper audit • Customer journey analysis
-        </div>
-        <div class="addon-item">
-          <strong>Content Add-Ons</strong><br/>
-          UGC content packages • Content calendars • Additional content pieces
-        </div>
-        <div class="addon-item">
-          <strong>PR &amp; Visibility Add-Ons</strong><br/>
-          PR outreach support • Press release writing • Influencer gifting / seeding
-        </div>
-      </div>
-    </section>
-
-    <!-- BIG MARQUEE AT BOTTOM -->
-    <div class="content-marquee" aria-label="Content creation portfolio">
-      <div class="content-marquee-track">
-        <!-- Set 1 -->
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.51.16.png" alt="Content creation example 1"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.54.41.png" alt="Content creation example 2"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.55.01.png" alt="Content creation example 3"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.52.png" alt="Content creation example 4"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.13.png" alt="Content creation example 5"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.50.47.png" alt="Content creation example 6"/>
-        <!-- Set 2 duplicated for smooth loop -->
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.51.16.png" alt="Content creation example 1 repeat"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.54.41.png" alt="Content creation example 2 repeat"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.55.01.png" alt="Content creation example 3 repeat"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.52.png" alt="Content creation example 4 repeat"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.13.png" alt="Content creation example 5 repeat"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.50.47.png" alt="Content creation example 6 repeat"/>
-      </div>
-    </div>
-
-    <!-- CONTACT -->
-    <div class="contact">
-      <p>Questions or ready to start?</p>
-      <p><a href="mailto:siyana.deveaux@writemysocials.com.au">siyana.deveaux@writemysocials.com.au</a></p>
-      <p><a href="https://calendly.com/your-link" target="_blank" rel="noopener">Book a strategy call</a></p>
-      <p>
-        <a href="https://instagram.com/writemysocials" target="_blank" rel="noopener">@writemysocials</a>
-        &middot;
-        <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener">LinkedIn</a>
-      </p>
-    </div>
-  </main>
-
-  <script>
-    // Menu open/close logic
-    (function(){
-      const btn = document.querySelector('.menu-btn');
-      const root = document.body;
-
-      function setOpen(open){
-        root.classList.toggle('menu-open', open);
-        btn.setAttribute('aria-expanded', String(open));
-      }
-
-      btn.addEventListener('click', () => {
-        const isOpen = root.classList.contains('menu-open');
-        setOpen(!isOpen);
-      });
-
-      document.addEventListener('click', e => {
-        if (e.target.matches('.hot')) setOpen(false);
-      });
-
-      document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') setOpen(false);
-      });
-    })();
-
-    // Toggle service "Includes" on click
-    (function(){
-      const titles = document.querySelectorAll('.service-title');
-      titles.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const parent = btn.closest('.service-item');
-          parent.classList.toggle('open');
-        });
-      });
-    })();
-  </script>
 </body>
 </html>
 
