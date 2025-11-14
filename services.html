@@ -6,7 +6,7 @@
   <title>Soulful brands, built with strategy.</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&family=Bodoni+Moda:wght@500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
   <style>
@@ -77,7 +77,7 @@
       font-weight:600;
       letter-spacing:.08em;
       text-transform:uppercase;
-      font-family:'Cormorant Garamond',serif;
+      font-family:'Bodoni Moda',serif;
       margin:0 0 6px;
     }
     .hero-sub{
@@ -110,7 +110,7 @@
     }
 
     .section-header{
-      font-family:'Cormorant Garamond',serif;
+      font-family:'Bodoni Moda',serif;
     }
 
     .section-number{
@@ -127,7 +127,6 @@
       font-weight:600;
       letter-spacing:.06em;
       text-transform:none;
-      font-family:'Cormorant Garamond',serif;
     }
 
     /* === HORIZONTAL SCROLLER FOR SERVICES === */
@@ -135,17 +134,19 @@
       display:flex;
       gap:24px;
       overflow-x:auto;
-      padding-bottom:8px;
+      padding-bottom:10px;
       scrollbar-width:thin;
+      scrollbar-color:#000 transparent;
     }
     .section-body::-webkit-scrollbar{
-      height:6px;
+      height:2px; /* very thin */
     }
     .section-body::-webkit-scrollbar-track{
       background:transparent;
     }
     .section-body::-webkit-scrollbar-thumb{
-      background:#999;
+      background:#000;
+      border-radius:999px;
     }
 
     /* === SERVICE ITEMS === */
@@ -170,7 +171,7 @@
       margin:0 0 .2rem;
       cursor:pointer;
 
-      font-family:'Cormorant Garamond',serif;
+      font-family:'Bodoni Moda',serif;
       font-size:1.35rem;
       font-weight:600;
       letter-spacing:.04em;
@@ -204,30 +205,28 @@
       margin:.12rem 0;
     }
 
-    /* === CONTENT CREATION MARQUEE === */
+    /* === CONTENT CREATION MARQUEE (stable, mobile-safe) === */
     .content-marquee{
-      max-width:1100px;
-      margin:40px auto 40px;
+      width:100%;
       overflow:hidden;
+      margin:40px auto 40px;
+      position:relative;
+      max-width:1100px;
     }
-    .content-marquee-track{
+    .marquee-track{
       display:flex;
-      align-items:center;
+      width:max-content;
       gap:18px;
-      animation:marquee-scroll 16s linear infinite; /* faster base */
+      animation:marquee-slide 16s linear infinite;
     }
-    .content-marquee img{
+    .marquee-track img{
       height:700px;
-      max-width:none;
       flex-shrink:0;
       border-radius:18px;
       object-fit:cover;
       box-shadow:0 12px 32px rgba(0,0,0,.2);
     }
-    .content-marquee:hover .content-marquee-track{
-      animation-play-state:paused;
-    }
-    @keyframes marquee-scroll{
+    @keyframes marquee-slide{
       0%{transform:translateX(0);}
       100%{transform:translateX(-50%);}
     }
@@ -244,7 +243,7 @@
       border-bottom:1px solid rgba(0,0,0,.1);
     }
     .addon-item strong{
-      font-family:'Cormorant Garamond',serif;
+      font-family:'Bodoni Moda',serif;
       font-size:1.2rem;
       font-weight:600;
       letter-spacing:.04em;
@@ -278,8 +277,8 @@
       }
 
       .section-name{
-        font-size:1.15rem;   /* smaller titles on phone */
-        letter-spacing:.06em;
+        font-size:1.05rem;   /* ~30% smaller on mobile */
+        letter-spacing:.05em;
       }
 
       .section-body{
@@ -293,12 +292,21 @@
       }
 
       .service-title{
-        font-size:1.25rem;  /* services more prominent */
+        font-size:1.2rem;  /* services more prominent */
       }
 
-      /* marquee 2x faster on phone */
-      .content-marquee-track{
-        animation:marquee-scroll 5s linear infinite;
+      /* marquee ~2x faster on phone */
+      .marquee-track{
+        animation:marquee-slide 8s linear infinite;
+      }
+      .marquee-track img{
+        height:360px;
+      }
+    }
+
+    @media(max-width:480px){
+      .marquee-track img{
+        height:320px;
       }
     }
   </style>
@@ -506,17 +514,18 @@
       </div>
     </section>
 
-    <!-- BIG MARQUEE AT BOTTOM -->
+    <!-- MARQUEE (fixed, smooth, faster on mobile) -->
     <div class="content-marquee" aria-label="Content creation portfolio">
-      <div class="content-marquee-track">
-        <!-- Set 1 -->
+      <div class="marquee-track">
+        <!-- Track 1 -->
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.51.16.png" alt="Content creation example 1"/>
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.54.41.png" alt="Content creation example 2"/>
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.55.01.png" alt="Content creation example 3"/>
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.52.png" alt="Content creation example 4"/>
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.13.png" alt="Content creation example 5"/>
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.50.47.png" alt="Content creation example 6"/>
-        <!-- Set 2 duplicated for smooth loop -->
+
+        <!-- Track 2 (duplicate for seamless loop) -->
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.51.16.png" alt="Content creation example 1 repeat"/>
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.54.41.png" alt="Content creation example 2 repeat"/>
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.55.01.png" alt="Content creation example 3 repeat"/>
