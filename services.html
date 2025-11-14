@@ -96,7 +96,7 @@
       opacity:.12;
     }
 
-    /* === SECTION LAYOUT (number + title left, services right) === */
+    /* === SECTION LAYOUT === */
     .service-section{
       display:grid;
       grid-template-columns:minmax(170px,240px) minmax(0,1fr);
@@ -113,7 +113,7 @@
     }
 
     .section-number{
-      font-size:1rem;
+      font-size:0.95rem;
       letter-spacing:.16em;
       margin-bottom:4px;
       text-transform:uppercase;
@@ -121,9 +121,10 @@
 
     .section-name{
       margin:6px 0 0;
-      font-size:1.6rem;
+      font-size:1.3rem;
       font-weight:500;
-      letter-spacing:.08em;
+      letter-spacing:.18em;
+      text-transform:uppercase;
     }
 
     /* === HORIZONTAL SCROLLER FOR SERVICES === */
@@ -167,9 +168,10 @@
       cursor:pointer;
 
       font-family:'Inter',sans-serif;
-      font-size:1.2rem;
+      font-size:1.25rem;
       font-weight:500;
       letter-spacing:.06em;
+      text-transform:none;
     }
 
     .service-title:focus{
@@ -226,12 +228,6 @@
       0%{transform:translateX(0);}
       100%{transform:translateX(-50%);}
     }
-    @media(max-width:1024px){
-      .content-marquee img{height:520px;}
-    }
-    @media(max-width:720px){
-      .content-marquee img{height:360px;}
-    }
 
     /* === ADD-ONS === */
     .addon-item{
@@ -266,6 +262,42 @@
       transition:.3s;
     }
     .contact a:hover{color:#ff1493;border-color:#ff1493;}
+
+    /* ===== MOBILE TWEAKS ===== */
+    @media(max-width:768px){
+      .service-section{
+        grid-template-columns:1fr;
+        gap:18px;
+      }
+
+      .section-header{
+        text-align:left;
+      }
+
+      .section-name{
+        font-size:1.1rem;   /* smaller titles on phone */
+        letter-spacing:.16em;
+      }
+
+      .section-body{
+        justify-content:flex-start;
+      }
+
+      .service-item{
+        min-width:80%;
+        max-width:85%;
+        margin:0 auto;      /* centre the scroll tiles */
+      }
+
+      .service-title{
+        font-size:1.15rem;  /* services more prominent */
+      }
+
+      /* marquee 2x faster on phone */
+      .content-marquee-track{
+        animation:marquee-scroll 11s linear infinite;
+      }
+    }
   </style>
 </head>
 
