@@ -1,1 +1,86 @@
 
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hero Image</title>
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --text: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* "Front" section */
+    .hero {
+      min-height: 100vh;            /* takes the full first screen */
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;            /* crops nicely instead of stretching */
+      display: block;
+    }
+
+    /* optional: subtle dark overlay for readability if you add text later */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.25),
+        rgba(0,0,0,0.45)
+      );
+      pointer-events: none;
+    }
+
+    /* below-the-fold content (example) */
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <img
+      id="frontImage"
+      src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/ok.jpg"
+      alt="Front image"
+      loading="eager"
+    />
+  </header>
+
+  <main class="content">
+    <h1>Welcome</h1>
+    <p>Your page content goes here below the image.</p>
+  </main>
+
+  <script>
+    // Optional: basic error handling (shows a message if the image fails to load)
+    const img = document.getElementById("frontImage");
+    img.addEventListener("error", () => {
+      const msg = document.createElement("div");
+      msg.style.padding = "24px";
+      msg.style.textAlign = "center";
+      msg.textContent = "Image failed to load. Check the URL or CORS settings.";
+      img.replaceWith(msg);
+    });
+  </script>
+</body>
+</html>
