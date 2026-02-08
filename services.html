@@ -72,22 +72,29 @@
       .social-icons{top:14px;right:16px;gap:14px;}
     }
 
-    /* === TOP HERO IMAGE (RESPONSIVE / MOBILE-SAFE) === */
+    /* === TOP HERO IMAGE (FULL IMAGE SHOWN, NO CROPPING) ===
+       This guarantees the entire image is visible on ALL screens.
+       You may see "letterboxing" (extra space) depending on screen ratio (that’s normal when not cropping).
+    */
     .top-hero{
       width:100%;
-      height: clamp(260px, 55svh, 700px); /* works better than vh on phones */
+      height: clamp(260px, 70svh, 820px);
+      display:flex;
+      justify-content:center;
+      align-items:flex-start; /* keeps it from looking "misplaced" by starting at the top */
       overflow:hidden;
-      position:relative;
+      background:#fff;
     }
     @supports (height: 1dvh){
       .top-hero{
-        height: clamp(260px, 55dvh, 700px);
+        height: clamp(260px, 70dvh, 820px);
       }
     }
     .top-hero img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
+      max-width:100%;
+      max-height:100%;
+      width:auto;     /* IMPORTANT: prevents weird scaling/misplacement */
+      height:auto;
       display:block;
     }
 
@@ -162,7 +169,7 @@
       padding-bottom:10px;
       scrollbar-width:thin;
       scrollbar-color:#000 transparent;
-      -webkit-overflow-scrolling: touch; /* smoother on iOS */
+      -webkit-overflow-scrolling: touch;
     }
     .section-body::-webkit-scrollbar{ height:2px; }
     .section-body::-webkit-scrollbar-track{ background:transparent; }
@@ -285,13 +292,19 @@
         letter-spacing:.04em;
       }
 
+      .section-body{
+        justify-content:flex-start;
+      }
+
       .service-item{
         min-width:80%;
         max-width:85%;
         margin:0 auto;
       }
 
-      .service-title{ font-size:1.1rem; }
+      .service-title{
+        font-size:1.1rem;
+      }
 
       .marquee-track{
         animation:marquee-slide 14s linear infinite;
@@ -301,7 +314,6 @@
       }
     }
 
-    /* ===== SMALL SCREEN FIXES ===== */
     @media(max-width:480px){
       main{
         padding:40px 16px 70px;
@@ -342,7 +354,7 @@
     </div>
   </nav>
 
-  <!-- TOP IMAGE -->
+  <!-- TOP IMAGE (FULL IMAGE, NEVER CROPPED) -->
   <section class="top-hero" aria-label="Top hero image">
     <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/ok.jpg" alt="Write My Socials hero image">
   </section>
