@@ -72,15 +72,14 @@
       .social-icons{top:14px;right:16px;gap:14px;}
     }
 
-    /* === TOP HERO IMAGE (RESPONSIVE) === */
+    /* === TOP HERO IMAGE (RESPONSIVE / MOBILE-SAFE) === */
     .top-hero{
       width:100%;
-      /* Better than plain vh on mobile browsers */
-      height: clamp(260px, 55svh, 700px);
+      height: clamp(260px, 55svh, 700px); /* works better than vh on phones */
       overflow:hidden;
       position:relative;
     }
-    @supports (height: 1dvh) {
+    @supports (height: 1dvh){
       .top-hero{
         height: clamp(260px, 55dvh, 700px);
       }
@@ -165,12 +164,8 @@
       scrollbar-color:#000 transparent;
       -webkit-overflow-scrolling: touch; /* smoother on iOS */
     }
-    .section-body::-webkit-scrollbar{
-      height:2px;
-    }
-    .section-body::-webkit-scrollbar-track{
-      background:transparent;
-    }
+    .section-body::-webkit-scrollbar{ height:2px; }
+    .section-body::-webkit-scrollbar-track{ background:transparent; }
     .section-body::-webkit-scrollbar-thumb{
       background:#000;
       border-radius:999px;
@@ -196,7 +191,6 @@
       padding:0;
       margin:0 0 .25rem;
       cursor:pointer;
-
       font-weight:700;
       font-size:1.2rem;
     }
@@ -212,19 +206,13 @@
       font-size:.85rem;
       font-weight:400;
     }
-    .service-item.open .service-list{
-      display:block;
-    }
-    .service-list strong{
-      font-weight:600;
-    }
+    .service-item.open .service-list{ display:block; }
+    .service-list strong{ font-weight:600; }
     .service-list ul{
       margin:.2rem 0 .2rem 1.1rem;
       padding-left:0;
     }
-    .service-list li{
-      margin:.12rem 0;
-    }
+    .service-list li{ margin:.12rem 0; }
 
     /* === CONTENT CREATION MARQUEE === */
     .content-marquee{
@@ -290,9 +278,7 @@
         padding:22px 0 24px;
       }
 
-      .section-header{
-        text-align:left;
-      }
+      .section-header{ text-align:left; }
 
       .section-name{
         font-size:1rem;
@@ -305,9 +291,7 @@
         margin:0 auto;
       }
 
-      .service-title{
-        font-size:1.1rem;
-      }
+      .service-title{ font-size:1.1rem; }
 
       .marquee-track{
         animation:marquee-slide 14s linear infinite;
@@ -318,18 +302,18 @@
     }
 
     /* ===== SMALL SCREEN FIXES ===== */
-    @media (max-width: 480px){
+    @media(max-width:480px){
       main{
-        padding: 40px 16px 70px;
+        padding:40px 16px 70px;
       }
 
       .section-body{
-        gap: 16px;
+        gap:16px;
       }
 
       .marquee-track img{
-        height: 280px;
-        border-radius: 14px;
+        height:280px;
+        border-radius:14px;
       }
     }
   </style>
