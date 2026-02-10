@@ -65,20 +65,38 @@
 
     .menu-inner{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;justify-content:center}
 
-    .image-menu{
-      position:relative;
-      width:min(300px,60vw);
-      transform:scale(var(--menu-scale)) translateZ(0);
-      transform-origin:top center;
-      overflow:hidden;
-      -webkit-clip-path:inset(0 var(--menu-crop-right) 0 var(--menu-crop-left));
-      clip-path:inset(0 var(--menu-crop-right) 0 var(--menu-crop-left));
+    /* ===== SWAPPED MENU STYLE (PILL LINKS) ===== */
+    .menu-links{
+      width: min(560px, 100%);
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
     }
-    .image-menu img{width:100%;height:auto;display:block}
-    .hot{position:absolute;top:0;bottom:0}
-    .hot.home{left:0;right:66.67%}
-    .hot.about{left:33.33%;right:33.34%}
-    .hot.services{left:66.66%;right:0}
+    .menu-links a{
+      text-decoration:none;
+      color:#000;
+      border:1px solid rgba(0,0,0,.12);
+      border-radius:999px;
+      padding:10px 12px;
+      text-align:center;
+      font-family:'Poppins',sans-serif;
+      font-size:.95rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      transition:.25s;
+      background:rgba(255,255,255,.6);
+    }
+    .menu-links a:hover{
+      border-color:#000;
+      background:#000;
+      color:#fff;
+    }
+
+    @media(max-width:600px){
+      .menu-links{ grid-template-columns: 1fr; }
+      .menu-links a{ font-size:.9rem; }
+    }
+    /* ===== /SWAPPED MENU STYLE ===== */
 
     /* HERO */
     .hero{
@@ -441,15 +459,14 @@
     <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
   </div>
 
-  <nav class="menu-bar" id="menuBar">
+  <!-- ✅ SWAPPED MENU (LINKS WORKING) -->
+  <nav class="menu-bar" id="menuBar" aria-label="Primary">
     <div class="menu-inner">
-      <div class="image-menu">
-        <!-- UPDATED MENU IMAGE (same size & hotspots, new font) -->
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-12-11%20at%2017.59.09.png" alt="Menu navigation"/>
-        <a class="hot home" href="./" aria-label="Home"></a>
-        <a class="hot about" href="./about.html" aria-label="About"></a>
-        <a class="hot services" href="./services.html" aria-label="Services"></a>
-         <a class="hot brand diagnostic" href="./360° Brand Diagnostic™.html" aria-label="360° Brand Diagnostic™"></a>
+      <div class="menu-links">
+        <a href="./" aria-label="Home">Home</a>
+        <a href="./about.html" aria-label="About">About</a>
+        <a href="./services.html" aria-label="Services">Services</a>
+        <a href="./360%C2%B0%20Brand%20Diagnostic%E2%84%A2.html" aria-label="360° Brand Diagnostic™">360° Brand Diagnostic™</a>
       </div>
     </div>
   </nav>
@@ -561,7 +578,9 @@
       const btn=document.querySelector('.menu-btn');const root=document.body;
       function setOpen(o){root.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',String(o));}
       btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
-      document.addEventListener('click',e=>{if(e.target.matches('.hot'))setOpen(false)});
+      document.addEventListener('click',e=>{
+        if (e.target.closest('.menu-links a')) setOpen(false);
+      });
       document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
     })();
 
@@ -690,3 +709,4 @@
   </script>
 </body>
 </html>
+
