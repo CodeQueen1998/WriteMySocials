@@ -161,6 +161,89 @@
       opacity:.12;
     }
 
+    /* ===== EDITORIAL MARQUEE ===== */
+    .editorial-marquee{
+      border-top:1px solid rgba(0,0,0,.12);
+      border-bottom:1px solid rgba(0,0,0,.12);
+      margin: 8px auto 44px;
+      padding: 14px 0;
+      overflow:hidden;
+      background:var(--paper);
+    }
+    .marquee-track{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      width:max-content;
+      will-change: transform;
+      animation: marquee 26s linear infinite;
+    }
+    .editorial-marquee:hover .marquee-track{ animation-play-state: paused; }
+
+    @keyframes marquee{
+      0%{ transform: translateX(0); }
+      100%{ transform: translateX(-50%); }
+    }
+
+    .mq-item{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      flex: 0 0 auto;
+      padding-right: 10px;
+    }
+
+    .mq-img{
+      width: clamp(170px, 22vw, 260px);
+      height: clamp(110px, 16vw, 170px);
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,.12);
+      overflow:hidden;
+      background: rgba(0,0,0,.04);
+      flex: 0 0 auto;
+    }
+    .mq-img img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      filter: saturate(1.02) contrast(1.02);
+    }
+
+    .mq-text{
+      font-family: 'Bodoni Moda', serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      line-height: 1;
+      white-space: nowrap;
+      font-size: clamp(1.15rem, 2.4vw, 2.1rem);
+    }
+    .mq-dot{
+      width:6px;height:6px;border-radius:999px;background:rgba(0,0,0,.25);
+      flex:0 0 auto;
+    }
+
+    /* Mobile: keep it clean + not chunky */
+    @media (max-width: 600px){
+      .editorial-marquee{ margin: 2px auto 34px; padding: 10px 0; }
+      .marquee-track{ gap: 12px; animation-duration: 22s; }
+      .mq-item{ gap: 12px; }
+      .mq-img{
+        width: 150px;
+        height: 98px;
+        border-radius: 14px;
+      }
+      .mq-text{ letter-spacing:.07em; }
+    }
+
+    /* Reduced motion accessibility */
+    @media (prefers-reduced-motion: reduce){
+      .marquee-track{ animation:none; }
+      .editorial-marquee{ overflow:auto; }
+      .marquee-track{ width:auto; }
+    }
+
     /* ===== SECTION LAYOUT ===== */
     .service-section{
       display:grid;
@@ -335,6 +418,67 @@
     <h1 class="hero-title">Brand Strategy &amp; Content Studio</h1>
     <p class="hero-sub">Branding, content, and copywriting for feminine-led brands in beauty, fashion, and health &amp; wellness.</p>
     <hr class="hero-divider"/>
+
+    <!-- ===== EDITORIAL MARQUEE (3 IMAGES + BIG TEXT BETWEEN) ===== -->
+    <section class="editorial-marquee" aria-label="Services marquee">
+      <div class="marquee-track" id="marqueeTrack">
+        <!-- Set A -->
+        <div class="mq-item">
+          <div class="mq-img">
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg"
+                 alt="Marquee image 1" loading="lazy" decoding="async"/>
+          </div>
+          <span class="mq-dot" aria-hidden="true"></span>
+          <div class="mq-text">Content Creation</div>
+        </div>
+
+        <div class="mq-item">
+          <div class="mq-img">
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg.png"
+                 alt="Marquee image 2" loading="lazy" decoding="async"/>
+          </div>
+          <span class="mq-dot" aria-hidden="true"></span>
+          <div class="mq-text">Social Media Marketing</div>
+        </div>
+
+        <div class="mq-item">
+          <div class="mq-img">
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heyya.jpg"
+                 alt="Marquee image 3" loading="lazy" decoding="async"/>
+          </div>
+          <span class="mq-dot" aria-hidden="true"></span>
+          <div class="mq-text">TikTok &amp; Instagram</div>
+        </div>
+
+        <!-- Set B (duplicate for seamless loop) -->
+        <div class="mq-item" aria-hidden="true">
+          <div class="mq-img">
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg"
+                 alt="" loading="lazy" decoding="async"/>
+          </div>
+          <span class="mq-dot" aria-hidden="true"></span>
+          <div class="mq-text">Content Creation</div>
+        </div>
+
+        <div class="mq-item" aria-hidden="true">
+          <div class="mq-img">
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg.png"
+                 alt="" loading="lazy" decoding="async"/>
+          </div>
+          <span class="mq-dot" aria-hidden="true"></span>
+          <div class="mq-text">Social Media Marketing</div>
+        </div>
+
+        <div class="mq-item" aria-hidden="true">
+          <div class="mq-img">
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heyya.jpg"
+                 alt="" loading="lazy" decoding="async"/>
+          </div>
+          <span class="mq-dot" aria-hidden="true"></span>
+          <div class="mq-text">TikTok &amp; Instagram</div>
+        </div>
+      </div>
+    </section>
 
     <!-- 01. BRANDING & AUDITING -->
     <section class="service-section" aria-label="Branding and auditing services">
@@ -548,8 +692,31 @@
         });
       });
     })();
+
+    // Make marquee seamless by ensuring the track is wide enough on load (optional safety)
+    (function(){
+      const track = document.getElementById('marqueeTrack');
+      if(!track) return;
+
+      // If reduced motion, do nothing
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(reduce) return;
+
+      // Ensure track content is at least 2x viewport width (helps avoid any tiny gaps on huge screens)
+      const ensureWidth = () => {
+        const vw = window.innerWidth || 1200;
+        // Duplicate once more if needed
+        if (track.scrollWidth < vw * 2.2) {
+          track.insertAdjacentHTML('beforeend', track.innerHTML);
+        }
+      };
+      ensureWidth();
+      window.addEventListener('resize', () => {
+        // soft refresh: only add more if still too small
+        ensureWidth();
+      });
+    })();
   </script>
 </body>
 </html>
-
 
