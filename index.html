@@ -146,6 +146,43 @@
     .arrow{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;font-size:1.8rem;color:#000;cursor:pointer}
     .arrow.left{left:-30px}.arrow.right{right:-30px}
 
+    /* === Editorial client categories marquee (new, separate from work samples marquee) === */
+    .editorial-marquee{
+      width:100vw;
+      overflow:hidden;
+      background:#fff;
+      border-top:1px solid rgba(0,0,0,.12);
+      border-bottom:1px solid rgba(0,0,0,.12);
+    }
+    .editorial-track{
+      display:flex;
+      width:max-content;
+      white-space:nowrap;
+      will-change:transform;
+      animation: editorial-tick 26s linear infinite;
+    }
+    .editorial-track span{
+      display:inline-block;
+      padding:14px 0;
+      font-family: Didot, "Playfair Display", serif;
+      font-size:clamp(1rem,2.2vw,1.25rem);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:#000;
+      opacity:.95;
+    }
+    .editorial-track .bullet{
+      padding:0 18px;
+      opacity:.55;
+    }
+    @keyframes editorial-tick{
+      from{ transform:translateX(0); }
+      to{ transform:translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .editorial-track{ animation:none; }
+    }
+
     /* === WORK SAMPLES MARQUEE (RESTORED) === */
     .marquee-wrap{width:100vw;overflow:hidden}
     .marquee-track{display:flex;gap:2vw;padding:0 2vw;}
@@ -507,6 +544,30 @@
       </div>
     </section>
 
+    <!-- Editorial client categories marquee (new) -->
+    <section class="editorial-marquee reveal" aria-label="Client categories">
+      <div class="editorial-track" aria-hidden="true">
+        <span>
+          We work with beauty &amp; fashion brands<span class="bullet">•</span>
+          health &amp; wellness<span class="bullet">•</span>
+          retail<span class="bullet">•</span>
+          celebrities<span class="bullet">•</span>
+          influencers
+          <span class="bullet">•</span>
+        </span>
+
+        <!-- Duplicate for seamless loop -->
+        <span>
+          We work with beauty &amp; fashion brands<span class="bullet">•</span>
+          health &amp; wellness<span class="bullet">•</span>
+          retail<span class="bullet">•</span>
+          celebrities<span class="bullet">•</span>
+          influencers
+          <span class="bullet">•</span>
+        </span>
+      </div>
+    </section>
+
     <!-- RESTORED: work samples marquee -->
     <div class="marquee-wrap reveal" aria-label="work samples">
       <div class="marquee-track">
@@ -709,5 +770,6 @@
   </script>
 </body>
 </html>
+
 
 
