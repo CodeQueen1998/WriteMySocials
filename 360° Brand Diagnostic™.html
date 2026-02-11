@@ -1,270 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>360° Brand Diagnostic™ | Write My Socials</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>360° Brand Diagnostic™ | Write My Socials</title>
 
-  <!-- Fonts + Icons (same as your other pages) -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
-  <style>
-    :root{
-      --ink:#1b1b1b;
-      --line:#2b2b2b;
-    }
+<style>
 
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-    }
+:root{
+  --ink:#1b1b1b;
+}
 
-    body{
-      background:#fff;
-      color:var(--ink);
-      font-family:'Playfair Display',serif;
-      line-height:1.6;
-      overflow-x:hidden;
-    }
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    /* ===== MENU BAR ===== */
+body{
+  background:#fff;
+  color:var(--ink);
+  font-family:'Playfair Display',serif;
+  line-height:1.65;
+  overflow-x:hidden;
+}
 
-    .menu-btn{
-      position:fixed;
-      top:18px;
-      left:20px;
-      z-index:3100;
-      background:#fff;
-      border:1px solid #000;
-      color:#000;
-      padding:6px 12px;
-      border-radius:999px;
-      font-family:'Poppins',sans-serif;
-      font-size:.85rem;
-      letter-spacing:.1em;
-      cursor:pointer;
-      transition:.3s;
-    }
-    .menu-btn:hover{background:#000;color:#fff}
+/* ===== MENU ===== */
 
-    .social-icons{
-      position:fixed;
-      top:18px;
-      right:25px;
-      z-index:3100;
-      display:flex;
-      gap:18px;
-    }
-    .social-icons a{
-      color:#000;
-      font-size:1.2rem;
-      transition:color .3s
-    }
-    .social-icons a:hover{color:#ff1493}
+.menu-btn{
+  position:fixed;
+  top:18px;
+  left:20px;
+  z-index:3100;
+  background:#fff;
+  border:1px solid #000;
+  padding:6px 12px;
+  border-radius:999px;
+  font-family:'Poppins',sans-serif;
+  font-size:.85rem;
+  letter-spacing:.1em;
+  cursor:pointer;
+}
 
-    .menu-bar{
-      position:fixed;
-      top:0;
-      left:0;
-      right:0;
-      z-index:3000;
-      background:#fff;
-      border-bottom:1px solid rgba(0,0,0,.15);
-      transform:translateY(-100%);
-      transition:transform .35s ease;
-    }
-    body.menu-open .menu-bar{transform:translateY(0)}
+.social-icons{
+  position:fixed;
+  top:18px;
+  right:25px;
+  z-index:3100;
+  display:flex;
+  gap:18px;
+}
 
-    .menu-inner{
-      max-width:1100px;
-      margin:0 auto;
-      padding:10px 20px;
-      display:flex;
-      justify-content:center;
-    }
+.social-icons a{
+  color:#000;
+  font-size:1.2rem;
+}
 
-    .menu-links{
-      width:min(820px,100%);
-      display:grid;
-      grid-template-columns:1fr 1fr 1fr 1.4fr;
-      gap:10px;
-    }
+.menu-bar{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:3000;
+  background:#fff;
+  border-bottom:1px solid rgba(0,0,0,.15);
+  transform:translateY(-100%);
+  transition:.35s;
+}
 
-    .menu-links a{
-      text-decoration:none;
-      color:#000;
-      border:1px solid rgba(0,0,0,.12);
-      border-radius:999px;
-      padding:10px 12px;
-      text-align:center;
-      font-family:'Poppins',sans-serif;
-      font-size:.95rem;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      transition:.25s;
-      background:rgba(255,255,255,.6);
-    }
+body.menu-open .menu-bar{
+  transform:translateY(0);
+}
 
-    .menu-links a:hover{
-      border-color:#000;
-      background:#000;
-      color:#fff;
-    }
+.menu-inner{
+  max-width:1100px;
+  margin:auto;
+  padding:10px 20px;
+  display:flex;
+  justify-content:center;
+}
 
-    @media(max-width:600px){
-      .menu-links{grid-template-columns:1fr;}
-      .menu-links a{font-size:.9rem;}
-    }
+.menu-links{
+  width:min(820px,100%);
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1.4fr;
+  gap:10px;
+}
 
-    /* ===== PAGE ===== */
+.menu-links a{
+  text-decoration:none;
+  color:#000;
+  border:1px solid rgba(0,0,0,.12);
+  border-radius:999px;
+  padding:10px;
+  text-align:center;
+  font-family:'Poppins',sans-serif;
+  font-size:.9rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
 
-    .page-wrapper{
-      max-width:900px;
-      margin:0 auto;
-      padding:120px 20px 80px;
-      text-align:center;
-    }
+@media(max-width:600px){
+  .menu-links{grid-template-columns:1fr;}
+}
 
-    h1{
-      font-size:2.5rem;
-      font-weight:500;
-      margin-bottom:20px;
-    }
+/* ===== PAGE ===== */
 
-    .subtitle{
-      font-family:'Poppins',sans-serif;
-      font-size:1rem;
-      max-width:650px;
-      margin:0 auto 50px;
-      color:#333;
-    }
+.page{
+  max-width:760px;
+  margin:auto;
+  padding:140px 22px 80px;
+}
 
-    .brand-diagnostic{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      margin:40px 0 50px;
-    }
+/* Hero */
 
-    .diagnostic-image{
-      width:100%;
-      max-width:420px;
-      height:auto;
-      object-fit:contain;
-    }
+.hero{
+  text-align:center;
+  margin-bottom:70px;
+}
 
-    .content{
-      max-width:700px;
-      margin:0 auto;
-      text-align:left;
-      font-family:'Poppins',sans-serif;
-      font-size:1rem;
-    }
+.hero h1{
+  font-size:clamp(2.2rem,4vw,3rem);
+  font-weight:600;
+  margin-bottom:22px;
+}
 
-    .content h2{
-      font-family:'Playfair Display',serif;
-      font-size:1.3rem;
-      margin-bottom:15px;
-      font-weight:600;
-    }
+.hero p{
+  font-family:'Poppins',sans-serif;
+  font-size:1.05rem;
+  color:#333;
+  max-width:620px;
+  margin:auto;
+}
 
-    .content p{
-      margin-bottom:18px;
-    }
+/* Divider */
 
-    @media(max-width:480px){
-      h1{font-size:2rem;}
-      .diagnostic-image{max-width:280px;}
-      .page-wrapper{padding:110px 16px 60px;}
-    }
-  </style>
+.divider{
+  width:60px;
+  height:1px;
+  background:#000;
+  margin:60px auto;
+}
+
+/* Content */
+
+.content h2{
+  font-size:1.6rem;
+  margin-bottom:18px;
+}
+
+.content p{
+  font-family:'Poppins',sans-serif;
+  margin-bottom:18px;
+  color:#222;
+}
+
+/* Improve readability */
+
+.content{
+  font-size:1.05rem;
+}
+
+</style>
 </head>
 
 <body>
 
-  <!-- MENU -->
-  <button class="menu-btn" aria-expanded="false" aria-controls="menuBar">MENU</button>
+<button class="menu-btn">MENU</button>
 
-  <div class="social-icons">
-    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/"><i class="fab fa-linkedin"></i></a>
-    <a href="https://www.instagram.com/writemysocials"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.tiktok.com/@writemysocials"><i class="fab fa-tiktok"></i></a>
-  </div>
+<div class="social-icons">
+  <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/"><i class="fab fa-linkedin"></i></a>
+  <a href="https://www.instagram.com/writemysocials"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.tiktok.com/@writemysocials"><i class="fab fa-tiktok"></i></a>
+</div>
 
-  <nav class="menu-bar" id="menuBar">
-    <div class="menu-inner">
-      <div class="menu-links">
-        <a href="./">Home</a>
-        <a href="./about.html">About</a>
-        <a href="./services.html">Services</a>
-        <a href="./360%C2%B0%20Brand%20Diagnostic%E2%84%A2.html">360° Brand Diagnostic™</a>
-      </div>
+<nav class="menu-bar">
+  <div class="menu-inner">
+    <div class="menu-links">
+      <a href="./">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./services.html">Services</a>
+      <a href="./360%C2%B0%20Brand%20Diagnostic%E2%84%A2.html">360° Brand Diagnostic™</a>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- PAGE CONTENT -->
-  <main class="page-wrapper">
-    <h1>360° Brand Diagnostic™</h1>
+<main class="page">
 
-    <p class="subtitle">
-      A deep forensic audit of your brand to uncover what is weakening your positioning,
-      limiting growth, and costing you revenue — followed by a clear strategic roadmap.
-    </p>
+<section class="hero">
+  <h1>360° Brand Diagnostic™</h1>
 
-    <section class="brand-diagnostic">
-      <img
-        src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/jeueu.jpg"
-        alt="360 Brand Diagnostic"
-        class="diagnostic-image"
-      />
-    </section>
+  <p>
+    A deep forensic audit of your brand to uncover what is weakening your positioning,
+    limiting growth, and costing you revenue — followed by a clear strategic roadmap.
+  </p>
+</section>
 
-    <section class="content">
-      <h2>Why Every Client Begins With the 360° Brand Diagnostic™</h2>
+<div class="divider"></div>
 
-      <p>We don’t execute without clarity.</p>
+<section class="content">
 
-      <p>
-        The 360° Brand Diagnostic™ gives us a clear understanding of how your brand is currently
-        perceived, where your positioning stands, and what may be limiting your growth. From
-        there, every decision we make is intentional and aligned with where your brand is meant
-        to go.
-      </p>
+<h2>Why Every Client Begins With the 360° Brand Diagnostic™</h2>
 
-      <p>
-        We believe strong execution starts with strong direction. When strategy leads, results follow.
-      </p>
+<p>We don’t execute without clarity.</p>
 
-      <p>
-        This is how we ensure we are not guessing, but building your brand with insight, purpose,
-        and a defined path forward. This is why every new partnership begins here.
-      </p>
-    </section>
-  </main>
+<p>
+The 360° Brand Diagnostic™ gives us a clear understanding of how your brand is currently perceived,
+where your positioning stands, and what may be limiting your growth. From there, every decision we make
+is intentional and aligned with where your brand is meant to go.
+</p>
 
-  <script>
-    (function(){
-      const btn=document.querySelector('.menu-btn');
-      const root=document.body;
+<p>
+We believe strong execution starts with strong direction. When strategy leads, results follow.
+</p>
 
-      function setOpen(o){
-        root.classList.toggle('menu-open',o);
-        btn.setAttribute('aria-expanded',String(o));
-      }
+<p>
+This is how we ensure we are not guessing, but building your brand with insight, purpose,
+and a defined path forward. This is why every new partnership begins here.
+</p>
 
-      btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
+</section>
+</main>
 
-      document.addEventListener('click',e=>{
-        if (e.target.closest('.menu-links a')) setOpen(false);
-      });
+<script>
+const btn=document.querySelector('.menu-btn');
 
-      document.addEventListener('keydown',e=>{
-        if(e.key==='Escape') setOpen(false);
-      });
-    })();
-  </script>
+btn.addEventListener('click',()=>{
+ document.body.classList.toggle('menu-open');
+});
+</script>
 
 </body>
 </html>
