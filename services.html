@@ -17,6 +17,11 @@
       --muted2: rgba(0,0,0,.08);
       --accent:#ff1493;
 
+      /* --- marquee premium tones (NEW) --- */
+      --marquee-ink: rgba(0,0,0,.72);
+      --marquee-border: rgba(0,0,0,.10);
+      --marquee-chip: rgba(0,0,0,.035);
+
       --max:1100px;
       --pad:20px;
 
@@ -161,12 +166,12 @@
       opacity:.12;
     }
 
-    /* ===== EDITORIAL MARQUEE ===== */
+    /* ===== EDITORIAL MARQUEE (UPDATED ONLY) ===== */
     .editorial-marquee{
-      border-top:1px solid rgba(0,0,0,.12);
-      border-bottom:1px solid rgba(0,0,0,.12);
+      border-top:1px solid var(--marquee-border);
+      border-bottom:1px solid var(--marquee-border);
       margin: 8px auto 44px;
-      padding: 14px 0;
+      padding: 12px 0;
       overflow:hidden;
       background:var(--paper);
     }
@@ -176,7 +181,7 @@
       gap:16px;
       width:max-content;
       will-change: transform;
-      animation: marquee 26s linear infinite;
+      animation: marquee 32s linear infinite; /* slower = more luxe */
     }
     .editorial-marquee:hover .marquee-track{ animation-play-state: paused; }
 
@@ -188,7 +193,7 @@
     .mq-item{
       display:flex;
       align-items:center;
-      gap:16px;
+      gap:14px;
       flex: 0 0 auto;
       padding-right: 10px;
     }
@@ -197,44 +202,55 @@
       width: clamp(170px, 22vw, 260px);
       height: clamp(110px, 16vw, 170px);
       border-radius: 16px;
-      border: 1px solid rgba(0,0,0,.12);
+      border: 1px solid var(--marquee-border);
       overflow:hidden;
-      background: rgba(0,0,0,.04);
+      background: var(--marquee-chip);
       flex: 0 0 auto;
+
+      /* center + allow full image without cropping */
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px;
+      box-sizing:border-box;
     }
     .mq-img img{
       width:100%;
       height:100%;
-      object-fit: cover;
+      object-fit: contain;      /* shows full image */
+      object-position: center;
       display:block;
       filter: saturate(1.02) contrast(1.02);
     }
 
     .mq-text{
-      font-family: 'Bodoni Moda', serif;
-      font-weight: 700;
+      /* different from title: premium sans, smaller */
+      font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-weight:600;
       text-transform: uppercase;
-      letter-spacing: .08em;
+      letter-spacing: .14em;
       line-height: 1;
       white-space: nowrap;
-      font-size: clamp(1.15rem, 2.4vw, 2.1rem);
+      font-size: clamp(.9rem, 1.5vw, 1.15rem);
+      color: var(--marquee-ink);
     }
     .mq-dot{
-      width:6px;height:6px;border-radius:999px;background:rgba(0,0,0,.25);
+      width:5px;height:5px;border-radius:999px;background:rgba(0,0,0,.22);
       flex:0 0 auto;
     }
 
     /* Mobile: keep it clean + not chunky */
     @media (max-width: 600px){
       .editorial-marquee{ margin: 2px auto 34px; padding: 10px 0; }
-      .marquee-track{ gap: 12px; animation-duration: 22s; }
+      .marquee-track{ gap: 12px; animation-duration: 26s; }
       .mq-item{ gap: 12px; }
       .mq-img{
         width: 150px;
         height: 98px;
         border-radius: 14px;
+        padding:8px;
       }
-      .mq-text{ letter-spacing:.07em; }
+      .mq-text{ letter-spacing:.12em; font-size:.9rem; }
     }
 
     /* Reduced motion accessibility */
@@ -434,7 +450,8 @@
 
         <div class="mq-item">
           <div class="mq-img">
-            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg.png"
+            <!-- FIXED: removed .jpg.png so it actually loads -->
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg"
                  alt="Marquee image 2" loading="lazy" decoding="async"/>
           </div>
           <span class="mq-dot" aria-hidden="true"></span>
@@ -462,7 +479,7 @@
 
         <div class="mq-item" aria-hidden="true">
           <div class="mq-img">
-            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg.png"
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg"
                  alt="" loading="lazy" decoding="async"/>
           </div>
           <span class="mq-dot" aria-hidden="true"></span>
