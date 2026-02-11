@@ -36,128 +36,76 @@
       padding-top: env(safe-area-inset-top);
     }
 
-    /* ===== FIXED HEADER (MENU + SOCIALS) ===== */
-    .site-header{
-      position:fixed;
-      top: env(safe-area-inset-top);
-      left:0; right:0;
-      height:var(--header-h);
-      z-index:3100;
-      background:rgba(255,255,255,.92);
-      backdrop-filter: blur(8px);
-      border-bottom:1px solid var(--muted);
-    }
-
-    .header-inner{
-      max-width:var(--max);
-      height:100%;
-      margin:0 auto;
-      padding:0 var(--pad);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
-
+    /* ======= FIXED MENU + SOCIAL ICONS (FROM ABOUT PAGE) ======= */
     .menu-btn{
-      background:transparent;
-      border:1px solid var(--ink);
-      color:var(--ink);
-      padding:8px 14px;
+      position:fixed;
+      top: calc(env(safe-area-inset-top) + 18px);
+      left:20px;
+      z-index:3100;
+      background:#fff;
+      border:1px solid #000;
+      color:#000;
+      padding:6px 12px;
       border-radius:999px;
       font-size:.85rem;
-      letter-spacing:.12em;
+      letter-spacing:.1em;
       cursor:pointer;
-      transition:.25s;
+      transition:.3s;
       text-transform:uppercase;
     }
-    .menu-btn:hover{background:var(--ink);color:var(--paper)}
+    .menu-btn:hover{background:#000;color:#fff}
 
     .social-icons{
-      display:flex;
-      align-items:center;
-      gap:16px;
-    }
-    .social-icons a{
-      color:var(--ink);
-      font-size:1.15rem;
-      transition:color .25s, transform .25s;
-    }
-    .social-icons a:hover{
-      color:var(--ink);
-      transform: translateY(-1px);
-    }
-
-    /* ===== DROPDOWN MENU BAR ===== */
-    .menu-bar{
       position:fixed;
-      top: calc(env(safe-area-inset-top) + var(--header-h));
-      left:0; right:0;
-      z-index:3000;
-
-      background:rgba(255,255,255,.96);
-      backdrop-filter: blur(10px);
-      border-bottom:1px solid var(--muted);
-
-      transform:translateY(-16px);
-      opacity:0;
-      pointer-events:none;
-      transition: transform .25s ease, opacity .25s ease;
-    }
-    body.menu-open .menu-bar{
-      transform:translateY(0);
-      opacity:1;
-      pointer-events:auto;
-    }
-
-    .menu-inner{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:14px var(--pad) 16px;
+      top: calc(env(safe-area-inset-top) + 18px);
+      right:25px;
+      z-index:3100;
       display:flex;
-      justify-content:center;
+      gap:18px;
     }
+    .social-icons a{color:#000;font-size:1.2rem;transition:color .3s}
+    .social-icons a:hover{color:#ff1493}
+
+    .menu-bar{
+      position:fixed;top:0;left:0;right:0;z-index:3000;
+      background:#fff;border-bottom:1px solid rgba(0,0,0,.15);
+      transform:translateY(-100%);transition:transform .35s ease;
+    }
+    body.menu-open .menu-bar{transform:translateY(0)}
+    .menu-inner{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;justify-content:center}
 
     .menu-links{
-      width: min(560px, 100%);
+      width: min(820px, 100%);
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1fr 1fr 1.4fr;
       gap:10px;
     }
-
     .menu-links a{
       text-decoration:none;
-      color:var(--ink);
-      border:1px solid var(--muted);
+      color:#000;
+      border:1px solid rgba(0,0,0,.12);
       border-radius:999px;
       padding:10px 12px;
       text-align:center;
       font-size:.95rem;
       letter-spacing:.08em;
       text-transform:uppercase;
-      transition: .25s;
+      transition:.25s;
       background:rgba(255,255,255,.6);
     }
     .menu-links a:hover{
-      border-color:var(--ink);
-      background:var(--ink);
-      color:var(--paper);
+      border-color:#000;
+      background:#000;
+      color:#fff;
     }
 
     @media(max-width:600px){
-      :root{ --header-h:58px; --pad:16px; }
-      .social-icons{gap:14px;}
-      .menu-links{
-        grid-template-columns: 1fr;
-      }
-      .menu-links a{
-        font-size:.9rem;
-      }
+      .menu-links{ grid-template-columns: 1fr; }
+      .menu-links a{ font-size:.9rem; }
     }
+    /* ======= /MENU ======= */
 
-    /* ===== TOP HERO IMAGE (FULL IMAGE SHOWN, NO CROPPING) =====
-      Key change: remove stray <br> spacing + ensure hero sits right under header.
-    */
+    /* ===== TOP HERO IMAGE (FULL IMAGE SHOWN, NO CROPPING) ===== */
     .top-hero{
       width:100%;
       height: clamp(260px, 70svh, 820px);
@@ -167,8 +115,8 @@
       overflow:hidden;
       background:var(--paper);
 
-      /* This is the "not so spaced" fix */
-      margin-top: calc(var(--header-h) + env(safe-area-inset-top));
+      /* keep hero snug under fixed menu bar */
+      margin-top: 64px;
     }
     @supports (height: 1dvh){
       .top-hero{ height: clamp(260px, 70dvh, 820px); }
@@ -185,7 +133,7 @@
     main{
       max-width:var(--max);
       margin:0 auto;
-      padding:70px var(--pad) 80px; /* slightly tighter up top */
+      padding:70px var(--pad) 80px;
     }
 
     .hero-title{
@@ -297,33 +245,6 @@
     }
     .service-list li{ margin:.12rem 0; }
 
-    /* ===== CONTENT CREATION MARQUEE ===== */
-    .content-marquee{
-      width:100%;
-      overflow:hidden;
-      margin:40px auto 40px;
-      position:relative;
-      max-width:var(--max);
-    }
-    .marquee-track{
-      display:flex;
-      width:max-content;
-      gap:18px;
-      animation:marquee-slide 24s linear infinite;
-      padding: 4px 0;
-    }
-    .marquee-track img{
-      height:700px;
-      flex-shrink:0;
-      border-radius:var(--radius);
-      object-fit:cover;
-      box-shadow:0 12px 32px rgba(0,0,0,.2);
-    }
-    @keyframes marquee-slide{
-      0%{transform:translateX(0);}
-      100%{transform:translateX(-50%);}
-    }
-
     /* ===== ADD-ONS ===== */
     .addon-item{
       font-size:.9rem;
@@ -373,49 +294,38 @@
         margin:0 auto;
       }
       .service-title{ font-size:1.1rem; }
-
-      .marquee-track{ animation:marquee-slide 14s linear infinite; }
-      .marquee-track img{ height:360px; }
     }
 
     @media(max-width:480px){
       main{ padding:40px 16px 70px; }
       .section-body{ gap:16px; }
-      .marquee-track img{
-        height:280px;
-        border-radius:14px;
-      }
     }
   </style>
 </head>
 
 <body>
-  <!-- FIXED HEADER -->
-  <header class="site-header" role="banner">
-    <div class="header-inner">
-      <button class="menu-btn" aria-expanded="false" aria-controls="menuBar">Menu</button>
+  <!-- MENU + SOCIAL (FROM ABOUT PAGE) -->
+  <button class="menu-btn" aria-expanded="false" aria-controls="menuBar">MENU</button>
+  <div class="social-icons" aria-label="social links">
+    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn" rel="noopener">
+      <i class="fab fa-linkedin" aria-hidden="true"></i>
+    </a>
+    <a href="https://www.instagram.com/writemysocials" aria-label="Instagram" rel="noopener">
+      <i class="fab fa-instagram" aria-hidden="true"></i>
+    </a>
+    <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok" rel="noopener">
+      <i class="fab fa-tiktok" aria-hidden="true"></i>
+    </a>
+  </div>
 
-      <div class="social-icons" aria-label="social links">
-        <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn" rel="noopener">
-          <i class="fab fa-linkedin" aria-hidden="true"></i>
-        </a>
-        <a href="https://www.instagram.com/writemysocials" aria-label="Instagram" rel="noopener">
-          <i class="fab fa-instagram" aria-hidden="true"></i>
-        </a>
-        <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok" rel="noopener">
-          <i class="fab fa-tiktok" aria-hidden="true"></i>
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- ORGANIZED MENU -->
+  <!-- Drop-down menu (FROM ABOUT PAGE) -->
   <nav class="menu-bar" id="menuBar" aria-label="Primary">
     <div class="menu-inner">
       <div class="menu-links">
         <a href="./" aria-label="Home">Home</a>
         <a href="./about.html" aria-label="About">About</a>
         <a href="./services.html" aria-label="Services">Services</a>
+        <a href="./360%C2%B0%20Brand%20Diagnostic%E2%84%A2.html" aria-label="360° Brand Diagnostic™">360° Brand Diagnostic™</a>
       </div>
     </div>
   </nav>
@@ -599,27 +509,6 @@
       </div>
     </section>
 
-    <!-- MARQUEE -->
-    <div class="content-marquee" aria-label="Content creation portfolio">
-      <div class="marquee-track">
-        <!-- Track 1 -->
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.51.16.png" alt="Content creation example 1"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.54.41.png" alt="Content creation example 2"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.55.01.png" alt="Content creation example 3"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.52.png" alt="Content creation example 4"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.13.png" alt="Content creation example 5"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.50.47.png" alt="Content creation example 6"/>
-
-        <!-- Track 2 duplicate -->
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.51.16.png" alt="Content creation example 1 repeat"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.54.41.png" alt="Content creation example 2 repeat"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.55.01.png" alt="Content creation example 3 repeat"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.52.png" alt="Content creation example 4 repeat"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.52.13.png" alt="Content creation example 5 repeat"/>
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-11-14%20at%2013.50.47.png" alt="Content creation example 6 repeat"/>
-      </div>
-    </div>
-
     <!-- CONTACT -->
     <div class="contact">
       <p>Questions or ready to start?</p>
@@ -634,29 +523,19 @@
   </main>
 
   <script>
-    // Menu open/close logic
+    /* Menu toggle (FROM ABOUT PAGE) */
     (function(){
-      const btn = document.querySelector('.menu-btn');
-      const root = document.body;
-
-      function setOpen(open){
-        root.classList.toggle('menu-open', open);
-        btn.setAttribute('aria-expanded', String(open));
+      const btn=document.querySelector('.menu-btn');
+      const root=document.body;
+      function setOpen(o){
+        root.classList.toggle('menu-open',o);
+        btn.setAttribute('aria-expanded',String(o));
       }
-
-      btn.addEventListener('click', () => {
-        const isOpen = root.classList.contains('menu-open');
-        setOpen(!isOpen);
-      });
-
-      // Close menu when clicking a menu link
-      document.addEventListener('click', e => {
+      btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
+      document.addEventListener('click',e=>{
         if (e.target.closest('.menu-links a')) setOpen(false);
       });
-
-      document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') setOpen(false);
-      });
+      document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
     })();
 
     // Toggle service "Includes" on click
@@ -672,4 +551,5 @@
   </script>
 </body>
 </html>
+
 
