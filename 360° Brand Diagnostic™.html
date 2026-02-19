@@ -6,175 +6,84 @@
 <title>360° Brand Diagnostic™ | Write My Socials</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
 <style>
-:root{
-  --ink:#1b1b1b;
-  --border: rgba(0,0,0,.14);
-  --soft: rgba(0,0,0,.06);
-  --muted:#333;
-}
-*{ box-sizing:border-box; margin:0; padding:0; }
 body{
-  background:#fff;
-  color:var(--ink);
-  font-family:'Playfair Display',serif;
-  line-height:1.65;
-}
-.page{
+  font-family:'Poppins',sans-serif;
   max-width:760px;
   margin:auto;
-  padding:120px 22px 80px;
+  padding:120px 20px;
 }
-.hero{text-align:center;margin-bottom:60px;}
-.hero h1{font-size:clamp(2.2rem,4vw,3rem);margin-bottom:20px;}
-.hero p{font-family:'Poppins',sans-serif;color:var(--muted);}
-
-.form-wrap{margin-top:60px;padding-top:40px;border-top:1px solid var(--soft);}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.full{grid-column:1/-1;}
-@media(max-width:760px){.grid{grid-template-columns:1fr;}}
-
-label{display:block;font-family:'Poppins',sans-serif;font-size:.9rem;margin:10px 0 6px;}
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:2.6rem;
+  margin-bottom:30px;
+}
+form{
+  display:grid;
+  gap:16px;
+}
 input,textarea,select{
-  width:100%;
-  border:1px solid var(--border);
-  border-radius:10px;
   padding:12px;
-  font-family:'Poppins',sans-serif;
+  border-radius:10px;
+  border:1px solid #ddd;
 }
-textarea{min-height:120px;resize:vertical;}
-
-.actions{margin-top:20px;display:flex;gap:14px;align-items:center;}
-button.submit{
-  background:#111;color:#fff;border:none;
-  padding:12px 18px;border-radius:999px;
-  font-family:'Poppins',sans-serif;
-  letter-spacing:.08em;text-transform:uppercase;
+button{
+  padding:14px;
+  border-radius:999px;
+  background:#111;
+  color:#fff;
+  border:none;
   cursor:pointer;
+  letter-spacing:.08em;
 }
-button.submit[disabled]{opacity:.6;cursor:not-allowed;}
-.status{font-family:'Poppins',sans-serif;font-size:.9rem;color:#333;}
+button:disabled{opacity:.6}
+.status{margin-top:12px;}
 </style>
 </head>
-
 <body>
 
-<main class="page">
+<h1>360° Brand Diagnostic™</h1>
 
-<section class="hero">
-  <h1>360° Brand Diagnostic™</h1>
-  <p>
-    A deep forensic audit of your brand to uncover what is weakening your positioning,
-    limiting growth, and costing you revenue.
-  </p>
-</section>
+<form id="brandForm">
 
-<section class="form-wrap">
+<input name="first_name" placeholder="First Name"/>
+<input name="last_name" placeholder="Last Name"/>
+<input name="email" type="email" placeholder="Email" required/>
+<input name="phone" placeholder="Phone"/>
+<input name="business_name" placeholder="Business Name"/>
+<textarea name="business_desc" placeholder="What does your business do?"></textarea>
+<input name="website" placeholder="Website"/>
+<input name="social_handle" placeholder="Instagram / TikTok"/>
 
-<form id="brandForm" novalidate>
-<div class="grid">
-
-<div>
-<label>First Name</label>
-<input name="first_name" type="text"/>
-</div>
-
-<div>
-<label>Last Name</label>
-<input name="last_name" type="text"/>
-</div>
-
-<div class="full">
-<label>Email</label>
-<input name="email" type="email" required/>
-</div>
-
-<div class="full">
-<label>Phone</label>
-<input name="phone" type="text"/>
-</div>
-
-<div class="full">
-<label>Business Name</label>
-<input name="business_name" type="text"/>
-</div>
-
-<div class="full">
-<label>What does your business do?</label>
-<textarea name="business_desc"></textarea>
-</div>
-
-<div class="full">
-<label>Website</label>
-<input name="website" type="text"/>
-</div>
-
-<div class="full">
-<label>Instagram / TikTok</label>
-<input name="social_handle" type="text"/>
-</div>
-
-<div class="full">
-<label>Monthly Budget</label>
 <select name="budget">
-<option value="">—</option>
+<option value="">Budget</option>
 <option>Under $1k</option>
 <option>$1k–$3k</option>
 <option>$3k–$6k</option>
 <option>$6k–$10k</option>
 <option>$10k+</option>
 </select>
-</div>
 
-</div>
+<label>
+<input type="checkbox" id="marketingConsent"/>
+ Subscribe to email marketing
+</label>
 
-<div class="actions">
-<button class="submit" id="submitBtn" type="submit">LET’S GET STARTED</button>
+<button type="submit" id="submitBtn">LET’S GET STARTED</button>
 <div class="status" id="status"></div>
-</div>
 
 </form>
-</section>
-</main>
 
 <script>
-/* ========= KLAVIYO SUBMIT ========= */
-
-const KLAVIYO_COMPANY_ID = "RYm8PD"; // Your Klaviyo Site ID
+const KLAVIYO_PUBLIC_KEY = "RYm8PD"; // your public Site ID
 
 const form = document.getElementById("brandForm");
 const statusEl = document.getElementById("status");
 const submitBtn = document.getElementById("submitBtn");
 
-function setStatus(msg){ statusEl.textContent = msg; }
-
-async function parseError(res){
-  const text = await res.text();
-  try{
-    const j = JSON.parse(text);
-    return j?.errors?.[0]?.detail || text;
-  }catch{
-    return text;
-  }
-}
-
-async function postJson(url, body){
-  const res = await fetch(url,{
-    method:"POST",
-    headers:{
-      "Accept":"application/vnd.api+json",
-      "Content-Type":"application/vnd.api+json"
-    },
-    body:JSON.stringify(body)
-  });
-
-  if(!res.ok){
-    throw new Error(await parseError(res));
-  }
-
-  return {};
+function setStatus(msg){
+  statusEl.textContent = msg;
 }
 
 form.addEventListener("submit", async (e)=>{
@@ -186,45 +95,49 @@ form.addEventListener("submit", async (e)=>{
   try{
     const data = new FormData(form);
     const base = Object.fromEntries(data.entries());
+    const wantsMarketing = document.getElementById("marketingConsent").checked;
 
-    const email = (base.email || "").trim();
-    if(!email){
-      setStatus("Please enter your email.");
-      submitBtn.disabled = false;
-      return;
-    }
-
-    const profileBody = {
-      data:{
-        type:"profile",
-        attributes:{
-          email:email,
-          first_name:base.first_name || "",
-          last_name:base.last_name || "",
-          properties:{
-            business_name:base.business_name || "",
-            business_desc:base.business_desc || "",
-            website:base.website || "",
-            social_handle:base.social_handle || "",
-            phone:base.phone || "",
-            monthly_budget:base.budget || "",
-            submitted_at:new Date().toISOString()
-          }
-        }
+    const payload = {
+      token: KLAVIYO_PUBLIC_KEY,
+      properties: {
+        $email: base.email,
+        $first_name: base.first_name || "",
+        $last_name: base.last_name || "",
+        phone: base.phone || "",
+        business_name: base.business_name || "",
+        business_desc: base.business_desc || "",
+        website: base.website || "",
+        social_handle: base.social_handle || "",
+        monthly_budget: base.budget || "",
+        submitted_at: new Date().toISOString()
       }
     };
 
-    await postJson(
-      `https://a.klaviyo.com/client/profiles?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`,
-      profileBody
-    );
+    // Identify profile (no revision header required)
+    await fetch("https://a.klaviyo.com/api/identify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    // Optional subscribe
+    if(wantsMarketing){
+      await fetch("https://a.klaviyo.com/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          token: KLAVIYO_PUBLIC_KEY,
+          email: base.email
+        })
+      });
+    }
 
     setStatus("Submitted ✅ Thank you — we’ll be in touch.");
     form.reset();
 
   }catch(err){
     console.error(err);
-    setStatus("Something went wrong. " + err.message);
+    setStatus("Something went wrong. Please try again.");
   }finally{
     submitBtn.disabled = false;
   }
@@ -233,6 +146,7 @@ form.addEventListener("submit", async (e)=>{
 
 </body>
 </html>
+
 
 
 
