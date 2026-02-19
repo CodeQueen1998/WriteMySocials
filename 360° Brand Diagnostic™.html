@@ -13,13 +13,11 @@
   --ink:#1b1b1b;
   --border: rgba(0,0,0,.14);
   --soft: rgba(0,0,0,.06);
+  --muted:#333;
+  --danger:#b00020;
 }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{ box-sizing:border-box; margin:0; padding:0; }
 
 body{
   background:#fff;
@@ -30,11 +28,9 @@ body{
 }
 
 /* ===== MENU ===== */
-
 .menu-btn{
   position:fixed;
-  top:18px;
-  left:20px;
+  top:18px; left:20px;
   z-index:3100;
   background:#fff;
   border:1px solid #000;
@@ -48,23 +44,17 @@ body{
 
 .social-icons{
   position:fixed;
-  top:18px;
-  right:25px;
+  top:18px; right:25px;
   z-index:3100;
   display:flex;
   gap:18px;
 }
 
-.social-icons a{
-  color:#000;
-  font-size:1.2rem;
-}
+.social-icons a{ color:#000; font-size:1.2rem; }
 
 .menu-bar{
   position:fixed;
-  top:0;
-  left:0;
-  right:0;
+  top:0; left:0; right:0;
   z-index:3000;
   background:#fff;
   border-bottom:1px solid rgba(0,0,0,.15);
@@ -72,9 +62,7 @@ body{
   transition:.35s;
 }
 
-body.menu-open .menu-bar{
-  transform:translateY(0);
-}
+body.menu-open .menu-bar{ transform:translateY(0); }
 
 .menu-inner{
   max-width:1100px;
@@ -105,11 +93,10 @@ body.menu-open .menu-bar{
 }
 
 @media(max-width:600px){
-  .menu-links{grid-template-columns:1fr;}
+  .menu-links{ grid-template-columns:1fr; }
 }
 
 /* ===== PAGE ===== */
-
 .page{
   max-width:760px;
   margin:auto;
@@ -117,7 +104,6 @@ body.menu-open .menu-bar{
 }
 
 /* Hero */
-
 .hero{
   text-align:center;
   margin-bottom:70px;
@@ -132,16 +118,13 @@ body.menu-open .menu-bar{
 .hero p{
   font-family:'Poppins',sans-serif;
   font-size:1.05rem;
-  color:#333;
+  color:var(--muted);
   max-width:620px;
   margin:auto;
 }
 
 /* Content */
-
-.content{
-  font-size:1.05rem;
-}
+.content{ font-size:1.05rem; }
 
 .content h2{
   font-size:1.6rem;
@@ -155,7 +138,6 @@ body.menu-open .menu-bar{
 }
 
 /* ===== FORM ===== */
-
 .form-wrap{
   margin-top:54px;
   padding-top:40px;
@@ -169,13 +151,11 @@ body.menu-open .menu-bar{
 
 .form-wrap .sub{
   font-family:'Poppins',sans-serif;
-  color:#333;
+  color:var(--muted);
   margin-bottom:26px;
 }
 
-.form{
-  margin-top:10px;
-}
+.form{ margin-top:10px; }
 
 .grid{
   display:grid;
@@ -183,12 +163,10 @@ body.menu-open .menu-bar{
   gap:16px;
 }
 
-.full{
-  grid-column:1/-1;
-}
+.full{ grid-column:1/-1; }
 
 @media(max-width:760px){
-  .grid{grid-template-columns:1fr;}
+  .grid{ grid-template-columns:1fr; }
 }
 
 label{
@@ -199,12 +177,9 @@ label{
   color:#111;
 }
 
-.req{
-  color:#b00020;
-  margin-left:4px;
-}
+.req{ color:var(--danger); margin-left:4px; }
 
-input, textarea{
+input, textarea, select{
   width:100%;
   border:1px solid var(--border);
   border-radius:10px;
@@ -216,14 +191,11 @@ input, textarea{
   outline:none;
 }
 
-input:focus, textarea:focus{
+input:focus, textarea:focus, select:focus{
   border-color:rgba(0,0,0,.45);
 }
 
-textarea{
-  min-height:150px;
-  resize:vertical;
-}
+textarea{ min-height:140px; resize:vertical; }
 
 .smallnote{
   font-family:'Poppins',sans-serif;
@@ -232,6 +204,75 @@ textarea{
   margin-top:10px;
 }
 
+/* Choice blocks (checkbox / radio) */
+.choice-block{
+  border:1px solid var(--soft);
+  border-radius:14px;
+  padding:14px 14px 10px;
+  background:#fff;
+}
+
+.choice-title{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.choice-title strong{
+  font-family:'Playfair Display',serif;
+  font-size:1.08rem;
+  font-weight:600;
+}
+
+.choice-title span{
+  font-family:'Poppins',sans-serif;
+  font-size:.82rem;
+  color:#555;
+}
+
+.choice-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+@media(max-width:560px){
+  .choice-grid{ grid-template-columns:1fr; }
+}
+
+.choice{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  font-family:'Poppins',sans-serif;
+  font-size:.95rem;
+  color:#111;
+  padding:8px 10px;
+  border-radius:10px;
+  border:1px solid transparent;
+  user-select:none;
+}
+
+.choice:hover{
+  border-color:rgba(0,0,0,.10);
+  background:rgba(0,0,0,.02);
+}
+
+.choice input{
+  width:auto;
+  margin-top:3px;
+}
+
+.inline-note{
+  margin-top:10px;
+  font-family:'Poppins',sans-serif;
+  font-size:.86rem;
+  color:#444;
+}
+
+/* Consent */
 .checkrow{
   display:flex;
   gap:10px;
@@ -239,16 +280,15 @@ textarea{
   margin-top:14px;
 }
 
-.checkrow input{
-  width:auto;
-  margin-top:5px;
-}
+.checkrow input{ width:auto; margin-top:5px; }
 
+/* Actions */
 .actions{
   display:flex;
   gap:14px;
   align-items:center;
   margin-top:18px;
+  flex-wrap:wrap;
 }
 
 button.submit{
@@ -262,17 +302,34 @@ button.submit{
   letter-spacing:.08em;
   text-transform:uppercase;
   cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
 }
 
-button.submit[disabled]{
-  opacity:.6;
-  cursor:not-allowed;
+button.submit .cute{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transform:translateY(1px);
 }
+
+button.submit i{ font-size:1rem; }
+
+button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
 
 .status{
   font-family:'Poppins',sans-serif;
   font-size:.92rem;
   color:#333;
+  min-height:1.2em;
+}
+
+/* Tiny sparkle divider (optional vibe) */
+.spark{
+  display:inline-block;
+  margin:0 8px;
+  opacity:.9;
 }
 </style>
 </head>
@@ -302,7 +359,6 @@ button.submit[disabled]{
 
 <section class="hero">
   <h1>360° Brand Diagnostic™</h1>
-
   <p>
     A deep forensic audit of your brand to uncover what is weakening your positioning,
     limiting growth, and costing you revenue — followed by a clear strategic roadmap.
@@ -331,11 +387,10 @@ button.submit[disabled]{
 </section>
 
 <!-- ===== APPLICATION FORM (Klaviyo) ===== -->
-
 <section class="form-wrap" id="apply">
-  <h2>Apply to Begin</h2>
+  <h2>Okay, gorgeous — let’s get started <span class="spark">✶</span></h2>
   <p class="sub">
-    Share a few details below. If it’s aligned, we’ll be in touch with next steps.
+    Quick & cute questions so we can understand your brand and recommend the right next step.
   </p>
 
   <form class="form" id="brandForm">
@@ -343,17 +398,22 @@ button.submit[disabled]{
 
       <div>
         <label>First Name<span class="req">*</span></label>
-        <input name="first_name" required />
+        <input name="first_name" required autocomplete="given-name" />
       </div>
 
       <div>
         <label>Last Name<span class="req">*</span></label>
-        <input name="last_name" required />
+        <input name="last_name" required autocomplete="family-name" />
       </div>
 
       <div class="full">
-        <label>Email Address<span class="req">*</span></label>
-        <input type="email" name="email" required />
+        <label>Email<span class="req">*</span></label>
+        <input type="email" name="email" required autocomplete="email" placeholder="you@brand.com"/>
+      </div>
+
+      <div class="full">
+        <label>Phone<span class="req">*</span></label>
+        <input type="tel" name="phone" required autocomplete="tel" placeholder="+61…" />
       </div>
 
       <div class="full">
@@ -362,28 +422,75 @@ button.submit[disabled]{
       </div>
 
       <div class="full">
-        <label>Location & Timezone<span class="req">*</span></label>
-        <input name="location_timezone" required placeholder="e.g., Sydney, Australia (AEST)" />
+        <label>What does your business do?<span class="req">*</span></label>
+        <textarea name="business_desc" required placeholder="Beauty, fashion, wellness… what do you sell / offer?"></textarea>
       </div>
 
       <div>
-        <label>Website<span class="req">*</span></label>
-        <input name="website" required placeholder="https://..." />
+        <label>Website (if you have one)</label>
+        <input name="website" placeholder="https://..." />
       </div>
 
       <div>
-        <label>Instagram<span class="req">*</span></label>
-        <input name="instagram" required placeholder="@handle or link" />
+        <label>Instagram / TikTok<span class="req">*</span></label>
+        <input name="social_handle" required placeholder="@yourhandle or link" />
       </div>
 
       <div class="full">
-        <label>What services do you offer or products do you sell?<span class="req">*</span></label>
-        <textarea name="offerings" required></textarea>
+        <div class="choice-block">
+          <div class="choice-title">
+            <strong>What are you interested in?</strong>
+            <span>(pick all that apply)</span>
+          </div>
+
+          <div class="choice-grid" role="group" aria-label="Services Interested">
+            <label class="choice"><input type="checkbox" name="services" value="Branding & Auditing"> Branding & Auditing</label>
+            <label class="choice"><input type="checkbox" name="services" value="Content Creation"> Content Creation</label>
+            <label class="choice"><input type="checkbox" name="services" value="Social Media Marketing"> Social Media Marketing</label>
+            <label class="choice"><input type="checkbox" name="services" value="TikTok & Instagram"> TikTok & Instagram</label>
+            <label class="choice"><input type="checkbox" name="services" value="Copywriting"> Copywriting</label>
+            <label class="choice"><input type="checkbox" name="services" value="Add-Ons / Support"> Add-Ons / Support</label>
+          </div>
+
+          <p class="inline-note">If it’s not listed, drop it below 👇</p>
+          <textarea name="services_other" placeholder="Anything else you want support with? (optional)"></textarea>
+        </div>
       </div>
 
       <div class="full">
-        <label>What do your current marketing efforts look like and why are you looking for a Social Media Manager?<span class="req">*</span></label>
-        <textarea name="marketing_context" required></textarea>
+        <label>What’s your monthly budget for support?<span class="req">*</span></label>
+        <select name="budget" required>
+          <option value="" selected disabled>Select one</option>
+          <option value="Under $1k">Under $1k</option>
+          <option value="$1k–$3k">$1k–$3k</option>
+          <option value="$3k–$6k">$3k–$6k</option>
+          <option value="$6k–$10k">$6k–$10k</option>
+          <option value="$10k+">$10k+</option>
+          <option value="Not sure yet">Not sure yet</option>
+        </select>
+      </div>
+
+      <div class="full">
+        <div class="choice-block">
+          <div class="choice-title">
+            <strong>How did you find Write My Socials?</strong>
+            <span>(one is fine)</span>
+          </div>
+
+          <div class="choice-grid" role="radiogroup" aria-label="Discovery Source">
+            <label class="choice"><input type="radio" name="discovery" value="Instagram" required> Instagram</label>
+            <label class="choice"><input type="radio" name="discovery" value="TikTok"> TikTok</label>
+            <label class="choice"><input type="radio" name="discovery" value="Google"> Google</label>
+            <label class="choice"><input type="radio" name="discovery" value="Referral"> Referral</label>
+            <label class="choice"><input type="radio" name="discovery" value="Client / Friend"> Client / Friend</label>
+            <label class="choice"><input type="radio" name="discovery" value="Other"> Other</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="full">
+        <label>On a scale of 1 to 1,000,000 — how excited are you to build together? ;)<span class="req">*</span></label>
+        <input name="excitement" required inputmode="numeric" placeholder="e.g., 900000" />
       </div>
 
     </div>
@@ -391,17 +498,23 @@ button.submit[disabled]{
     <!-- Optional marketing consent checkbox -->
     <div class="checkrow">
       <input type="checkbox" id="marketingConsent" />
-      <label for="marketingConsent">
-        I agree to receive emails (marketing + updates). I can unsubscribe at any time.
+      <label for="marketingConsent" style="font-family:'Poppins',sans-serif; font-size:.92rem; color:#111;">
+        I’m happy to receive emails (updates + occasional marketing). I can unsubscribe anytime.
       </label>
     </div>
 
     <p class="smallnote">
-      We use the information above to review fit and respond with next steps.
+      We’ll review your application and reply with next steps if it’s aligned.
     </p>
 
     <div class="actions">
-      <button class="submit" type="submit" id="submitBtn">Submit</button>
+      <button class="submit" type="submit" id="submitBtn">
+        LET’S GET STARTED
+        <span class="cute" aria-hidden="true">
+          <i class="fa-solid fa-arrow-right"></i>
+          <i class="fa-solid fa-heart"></i>
+        </span>
+      </button>
       <div class="status" id="status"></div>
     </div>
   </form>
@@ -412,9 +525,7 @@ button.submit[disabled]{
 <script>
 /* ===== MENU TOGGLE ===== */
 const btn=document.querySelector('.menu-btn');
-btn.addEventListener('click',()=>{
-  document.body.classList.toggle('menu-open');
-});
+btn.addEventListener('click',()=>{ document.body.classList.toggle('menu-open'); });
 
 /* ===== KLAVIYO FORM SUBMIT =====
    Replace YOUR_COMPANY_ID with your Klaviyo Public API Key / Site ID
@@ -425,7 +536,16 @@ const submitBtn = document.getElementById("submitBtn");
 
 function setStatus(msg){ statusEl.textContent = msg; }
 
-async function klaviyoCreateOrUpdateProfile(data){
+function getCheckedValues(name){
+  return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
+}
+
+function getRadioValue(name){
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? el.value : "";
+}
+
+async function klaviyoCreateOrUpdateProfile(payload){
   const res = await fetch(`https://a.klaviyo.com/client/profiles?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`, {
     method: "POST",
     headers: {
@@ -437,17 +557,21 @@ async function klaviyoCreateOrUpdateProfile(data){
       data: {
         type: "profile",
         attributes: {
-          email: data.email,
-          first_name: data.first_name,
-          last_name: data.last_name,
+          email: payload.email,
+          first_name: payload.first_name,
+          last_name: payload.last_name,
+          phone_number: payload.phone, /* stored on profile */
           properties: {
             lead_type: "360 Brand Diagnostic Application",
-            business_name: data.business_name,
-            location_timezone: data.location_timezone,
-            website: data.website,
-            instagram: data.instagram,
-            offerings: data.offerings,
-            marketing_context: data.marketing_context,
+            business_name: payload.business_name,
+            business_desc: payload.business_desc,
+            website: payload.website || "",
+            social_handle: payload.social_handle,
+            services_interested: payload.services_interested,
+            services_other: payload.services_other || "",
+            monthly_budget: payload.budget,
+            discovery_source: payload.discovery,
+            excitement_level: payload.excitement,
             submitted_at_iso: new Date().toISOString()
           }
         }
@@ -476,9 +600,7 @@ async function klaviyoCreateSubscription(email){
         attributes: {
           email: email,
           subscriptions: {
-            email: {
-              marketing: { consent: "SUBSCRIBED" }
-            }
+            email: { marketing: { consent: "SUBSCRIBED" } }
           }
         }
       }
@@ -496,25 +618,59 @@ document.getElementById("brandForm").addEventListener("submit", async (e)=>{
   e.preventDefault();
 
   if(!KLAVIYO_COMPANY_ID || KLAVIYO_COMPANY_ID === "YOUR_COMPANY_ID"){
-    setStatus("Please add your Klaviyo Company ID (Public API Key / Site ID) in the code.");
+    setStatus("Add your Klaviyo Company ID (Public API Key / Site ID) in the code, then try again.");
     return;
   }
+
+  // Collect base fields
+  const fd = new FormData(e.target);
+  const base = Object.fromEntries(fd.entries());
+
+  // Collect checkbox/radio values
+  const services = getCheckedValues("services");
+  const discovery = getRadioValue("discovery");
+
+  if(services.length === 0){
+    setStatus("Please select at least one service you’re interested in.");
+    return;
+  }
+
+  // Light “numeric-ish” check for excitement (still allows fun input)
+  const excitementTrim = (base.excitement || "").toString().trim();
+  if(excitementTrim.length === 0){
+    setStatus("Pop in your excitement score 😉");
+    return;
+  }
+
+  const wantsMarketing = document.getElementById("marketingConsent").checked;
+
+  const payload = {
+    first_name: base.first_name,
+    last_name: base.last_name,
+    email: base.email,
+    phone: base.phone,
+    business_name: base.business_name,
+    business_desc: base.business_desc,
+    website: base.website,
+    social_handle: base.social_handle,
+    services_interested: services,
+    services_other: base.services_other,
+    budget: base.budget,
+    discovery: discovery,
+    excitement: excitementTrim
+  };
 
   submitBtn.disabled = true;
   setStatus("Submitting…");
 
-  const fd = new FormData(e.target);
-  const data = Object.fromEntries(fd.entries());
-  const wantsMarketing = document.getElementById("marketingConsent").checked;
-
   try{
-    await klaviyoCreateOrUpdateProfile(data);
+    await klaviyoCreateOrUpdateProfile(payload);
 
     if(wantsMarketing){
-      await klaviyoCreateSubscription(data.email);
+      await klaviyoCreateSubscription(payload.email);
     }
 
-    setStatus("Submitted ✅ Thank you — we’ll be in touch soon.");
+    setStatus("Submitted ✅ We got you — keep an eye on your inbox.");
     e.target.reset();
 
     // Optional: redirect to a thank-you page
@@ -531,3 +687,4 @@ document.getElementById("brandForm").addEventListener("submit", async (e)=>{
 
 </body>
 </html>
+
