@@ -14,6 +14,7 @@
   --border: rgba(0,0,0,.14);
   --soft: rgba(0,0,0,.06);
   --muted:#333;
+  --danger:#b00020;
 }
 
 *{ box-sizing:border-box; margin:0; padding:0; }
@@ -201,7 +202,7 @@ textarea{ min-height:140px; resize:vertical; }
   margin-top:10px;
 }
 
-/* Choice blocks */
+/* Choice blocks (checkbox / radio) */
 .choice-block{
   border:1px solid var(--soft);
   border-radius:14px;
@@ -276,6 +277,7 @@ textarea{ min-height:140px; resize:vertical; }
   align-items:flex-start;
   margin-top:14px;
 }
+
 .checkrow input{ width:auto; margin-top:5px; }
 
 /* Actions */
@@ -321,6 +323,7 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
   min-height:1.2em;
 }
 
+/* Tiny sparkle divider (optional vibe) */
 .spark{
   display:inline-block;
   margin:0 8px;
@@ -381,14 +384,14 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
   </p>
 </section>
 
+<!-- ===== APPLICATION FORM (Klaviyo) ===== -->
 <section class="form-wrap" id="apply">
-  <h2>Sweet — tell me a little about you <span class="spark">✶</span></h2>
+  <h2>Let’s make magic <span class="spark">✶</span></h2>
   <p class="sub">
-    Totally relaxed. Fill what you want, skip what you don’t — it just helps us understand your brand.
+    Pop in as much (or as little) as you’d like — it helps us understand what you’re building and how we can support you.
   </p>
 
-  <!-- novalidate = no browser “pattern” errors -->
-  <form class="form" id="brandForm" novalidate>
+  <form class="form" id="brandForm">
     <div class="grid">
 
       <div>
@@ -403,14 +406,12 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
 
       <div class="full">
         <label>Email</label>
-        <!-- text to avoid browser pattern issues -->
-        <input type="text" name="email" autocomplete="email" placeholder="you@brand.com"/>
+        <input type="email" name="email" autocomplete="email" placeholder="you@brand.com" />
       </div>
 
       <div class="full">
-        <label>Phone (optional)</label>
-        <!-- text to avoid pattern issues -->
-        <input type="text" name="phone" autocomplete="tel" placeholder="+61…" />
+        <label>Phone</label>
+        <input type="tel" name="phone" autocomplete="tel" placeholder="+61412345678" />
       </div>
 
       <div class="full">
@@ -420,24 +421,24 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
 
       <div class="full">
         <label>What does your business do?</label>
-        <textarea name="business_desc" placeholder="Beauty, fashion, wellness… what do you sell / offer?"></textarea>
+        <textarea name="business_desc" placeholder="Beauty, fashion, wellness… tell us the vibe ✨"></textarea>
       </div>
 
       <div>
-        <label>Website (optional)</label>
+        <label>Website</label>
         <input type="text" name="website" placeholder="https://..." />
       </div>
 
       <div>
-        <label>Instagram / TikTok (optional)</label>
-        <input type="text" name="social_handle" placeholder="@yourhandle or link" />
+        <label>Instagram / TikTok</label>
+        <input type="text" name="social_handle" placeholder="@yourhandle" />
       </div>
 
       <div class="full">
         <div class="choice-block">
           <div class="choice-title">
             <strong>What are you interested in?</strong>
-            <span>(optional)</span>
+            <span>(pick what fits)</span>
           </div>
 
           <div class="choice-grid" role="group" aria-label="Services Interested">
@@ -449,15 +450,15 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
             <label class="choice"><input type="checkbox" name="services" value="Add-Ons / Support"> Add-Ons / Support</label>
           </div>
 
-          <p class="inline-note">Anything else? (optional)</p>
-          <textarea name="services_other" placeholder="Tell us what you’re dreaming up…"></textarea>
+          <p class="inline-note">Want something else? Add it here 👇</p>
+          <textarea name="services_other" placeholder=""></textarea>
         </div>
       </div>
 
       <div class="full">
-        <label>Monthly budget (optional)</label>
+        <label>Monthly budget for support</label>
         <select name="budget">
-          <option value="" selected>Select one (optional)</option>
+          <option value="" selected>—</option>
           <option value="Under $1k">Under $1k</option>
           <option value="$1k–$3k">$1k–$3k</option>
           <option value="$3k–$6k">$3k–$6k</option>
@@ -471,7 +472,7 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
         <div class="choice-block">
           <div class="choice-title">
             <strong>How did you find Write My Socials?</strong>
-            <span>(optional)</span>
+            <span>(if you remember)</span>
           </div>
 
           <div class="choice-grid" role="radiogroup" aria-label="Discovery Source">
@@ -495,7 +496,7 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
     </div>
 
     <p class="smallnote">
-      If you include your email, we can reply with next steps 💌
+      When you hit submit, it’ll land safely in our system — and we’ll follow up by email.
     </p>
 
     <div class="actions">
@@ -515,11 +516,11 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
 
 <script>
 /* ===== MENU TOGGLE ===== */
-const btn = document.querySelector('.menu-btn');
-btn.addEventListener('click', ()=>{ document.body.classList.toggle('menu-open'); });
+const btnEl = document.querySelector('.menu-btn');
+btnEl.addEventListener('click',()=>{ document.body.classList.toggle('menu-open'); });
 
-/* ===== KLAVIYO SUBMIT ===== */
-const KLAVIYO_COMPANY_ID = "RYm8PD";
+/* ===== KLAVIYO FORM SUBMIT ===== */
+const KLAVIYO_COMPANY_ID = "RYm8PD"; // your Public API Key / Site ID
 const statusEl = document.getElementById("status");
 const submitBtn = document.getElementById("submitBtn");
 
@@ -528,10 +529,14 @@ function setStatus(msg){ statusEl.textContent = msg; }
 function getCheckedValues(name){
   return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
 }
-
 function getRadioValue(name){
   const el = document.querySelector(`input[name="${name}"]:checked`);
   return el ? el.value : "";
+}
+
+/* E.164 phone format: + then 7–15 digits */
+function isE164(phone){
+  return /^\+[1-9]\d{6,14}$/.test(phone);
 }
 
 async function klaviyoCreateOrUpdateProfile(payload){
@@ -553,8 +558,9 @@ async function klaviyoCreateOrUpdateProfile(payload){
     }
   };
 
-  if(payload.phone && payload.phone.trim().length){
-    attributes.phone_number = payload.phone.trim();
+  // Only include phone_number if it matches E.164 so Klaviyo won't error
+  if(payload.phone && isE164(payload.phone)){
+    attributes.phone_number = payload.phone;
   }
 
   const res = await fetch(
@@ -635,11 +641,16 @@ document.getElementById("brandForm").addEventListener("submit", async (e)=>{
   };
 
   try{
-    // If they don’t provide an email, we can’t create a Klaviyo profile.
+    // Klaviyo needs an email to save the profile
     if(!payload.email){
-      setStatus("All saved on your end ✨ Add an email if you want us to reply with next steps.");
+      setStatus("Add your email so we can reply 💌");
       submitBtn.disabled = false;
       return;
+    }
+
+    // If phone is filled but not E.164, silently ignore it
+    if(payload.phone && !isE164(payload.phone)){
+      payload.phone = "";
     }
 
     await klaviyoCreateOrUpdateProfile(payload);
@@ -648,7 +659,7 @@ document.getElementById("brandForm").addEventListener("submit", async (e)=>{
       await klaviyoCreateSubscription(payload.email);
     }
 
-    setStatus("Sent ✅ We’ve got it — keep an eye on your inbox.");
+    setStatus("Sent ✅ We’ve got it — check your inbox soon.");
     e.target.reset();
   }catch(err){
     console.error(err);
