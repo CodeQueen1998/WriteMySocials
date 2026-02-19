@@ -248,11 +248,11 @@
       background:#fff;
       color:#000;
       border:1px solid #000;
-      border-radius:0;
+      border-radius:0;                 /* rectangular */
       padding:12px 20px;
       text-decoration:none;
       font-family: Didot, "Playfair Display", serif;
-      font-weight:400;
+      font-weight:400;                 /* not bold */
       letter-spacing:0;
       text-transform:none;
     }
@@ -299,51 +299,6 @@
     body.preload .words .l2,
     body.preload .words .l3,
     body.preload .mission { opacity:0; transform:translateY(20px) }
-
-    /* ===== Floating CTA (appears after 4s) ===== */
-    .floating-cta{
-      position:fixed;
-      left:20px;
-      bottom:72px; /* above the black bottom tagline */
-      z-index:2000;
-
-      background:#000;
-      color:#fff;
-      border:1px solid #000;
-      padding:10px 14px;
-      text-decoration:none;
-
-      font-family: Didot, "Playfair Display", serif;
-      font-weight:400;
-      font-size:.98rem;
-      border-radius:0;
-
-      opacity:0;
-      transform:translateY(10px);
-      pointer-events:none;
-      transition:opacity .35s ease, transform .35s ease;
-    }
-    .floating-cta.show{
-      opacity:1;
-      transform:none;
-      pointer-events:auto;
-    }
-    .floating-cta:hover{opacity:.92}
-
-    @media(max-width:600px){
-      .floating-cta{
-        left:50%;
-        transform:translate(-50%, 10px);
-        bottom:76px;
-        text-align:center;
-        width: calc(100% - 32px);
-        max-width: 420px;
-      }
-      .floating-cta.show{
-        transform:translate(-50%, 0);
-      }
-    }
-    /* ===== /Floating CTA ===== */
 
     /* === MOBILE (≤600px) — tweaks only for phones (desktop untouched) === */
     @media (max-width: 600px){
@@ -531,7 +486,6 @@
   </style>
 
   <!-- Klaviyo onsite script (fixed placement + correct URL) -->
-  <!-- IMPORTANT: To remove your popup, UNPUBLISH the popup form in Klaviyo (Signup Forms). -->
   <script async type="text/javascript"
     src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RYm8PD"></script>
 
@@ -655,13 +609,13 @@
     </div>
     
     <!-- CTA (above bottom image) -->
-    <section class="cta-section reveal" id="diagnosticCtaSection" aria-label="Free call">
+    <section class="cta-section reveal" aria-label="Free call">
       <h3>We Don't Work With Brands Until They've Done The 360° Brand Diagnostic™</h3>
       <p>Like how realtors don't rent or sell homes without an inspection, we don't work with brands until you've had a "360° Brand Diagnostic™". 
         Our audit is a deep forensic analysis of your brand to uncover what is weakening your positioning, limiting growth, and costing you revenue — 
        followed by a clear strategic roadmap.
 </p>
-      <a class="cta-button" href="./360%C2%B0%20Brand%20Diagnostic%E2%84%A2.html">Book your 360° Brand Diagnostic™ to start</a>
+      <a class="cta-button" href="https://writemysocials.com.au/360°%20Brand%20Diagnostic™.html" target="_blank" rel="noopener">Book your 360° Brand Diagnostic™ to start</a>
     </section>
 
     <!-- Bottom image (flush left & bottom) -->
@@ -674,13 +628,6 @@
   <div class="bottom-tagline" aria-hidden="true">
     <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
   </div>
-
-  <!-- Floating CTA (appears after 4 seconds; hides when main CTA section is in view) -->
-  <a class="floating-cta" id="floatingCta"
-     href="./360%C2%B0%20Brand%20Diagnostic%E2%84%A2.html"
-     aria-label="Begin the 360° Brand Diagnostic™">
-    Begin the 360° Brand Diagnostic™
-  </a>
 
   <script>
     /* Overlay timing */
@@ -824,33 +771,6 @@
       }
       img.crossOrigin = 'anonymous';
       if (img.complete) removeWhite(); else img.addEventListener('load', removeWhite);
-    })();
-
-    /* Floating CTA appears after 4 seconds */
-    (function(){
-      const cta = document.getElementById('floatingCta');
-      if(!cta) return;
-      setTimeout(()=> cta.classList.add('show'), 4000);
-    })();
-
-    /* Hide floating CTA when the main CTA section is in view */
-    (function(){
-      const cta = document.getElementById('floatingCta');
-      const target = document.getElementById('diagnosticCtaSection');
-      if(!cta || !target) return;
-
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting){
-            cta.classList.remove('show');
-          } else {
-            if(cta.dataset.armed === "1") cta.classList.add('show');
-          }
-        });
-      }, { threshold: 0.2 });
-
-      setTimeout(()=>{ cta.dataset.armed="1"; }, 4000);
-      io.observe(target);
     })();
   </script>
 </body>
