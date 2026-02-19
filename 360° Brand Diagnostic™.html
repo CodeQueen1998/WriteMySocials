@@ -388,12 +388,12 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
 
 <!-- ===== APPLICATION FORM (Klaviyo) ===== -->
 <section class="form-wrap" id="apply">
-  <h2>Okay, gorgeous — let’s get started <span class="spark">✶</span></h2>
+  <h2>Let’s map out what you need <span class="spark">✶</span></h2>
   <p class="sub">
-    Quick & cute questions so we can understand your brand and recommend the right next step.
+    Share a few details below and we’ll point you toward the best next step for your brand.
   </p>
 
-  <form class="form" id="brandForm">
+  <form class="form" id="brandForm" novalidate>
     <div class="grid">
 
       <div>
@@ -412,8 +412,8 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
       </div>
 
       <div class="full">
-        <label>Phone<span class="req">*</span></label>
-        <input type="tel" name="phone" required autocomplete="tel" placeholder="+61…" />
+        <label>Phone (optional)</label>
+        <input type="text" name="phone" autocomplete="tel" placeholder="+61…" />
       </div>
 
       <div class="full">
@@ -428,12 +428,12 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
 
       <div>
         <label>Website (if you have one)</label>
-        <input name="website" placeholder="https://..." />
+        <input type="text" name="website" placeholder="https://..." />
       </div>
 
       <div>
-        <label>Instagram / TikTok<span class="req">*</span></label>
-        <input name="social_handle" required placeholder="@yourhandle or link" />
+        <label>Instagram / TikTok (optional)</label>
+        <input type="text" name="social_handle" placeholder="@yourhandle or link" />
       </div>
 
       <div class="full">
@@ -452,7 +452,7 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
             <label class="choice"><input type="checkbox" name="services" value="Add-Ons / Support"> Add-Ons / Support</label>
           </div>
 
-          <p class="inline-note">If it’s not listed, drop it below 👇</p>
+          <p class="inline-note">If it’s not listed, pop it below 👇</p>
           <textarea name="services_other" placeholder="Anything else you want support with? (optional)"></textarea>
         </div>
       </div>
@@ -486,11 +486,6 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
             <label class="choice"><input type="radio" name="discovery" value="Other"> Other</label>
           </div>
         </div>
-      </div>
-
-      <div class="full">
-        <label>Any info you want to add :) <span class="req">*</span></label>
-        <input name="excitement" required inputmode="numeric" placeholder="e.g., 900000" />
       </div>
 
     </div>
@@ -527,9 +522,7 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
 const btn=document.querySelector('.menu-btn');
 btn.addEventListener('click',()=>{ document.body.classList.toggle('menu-open'); });
 
-/* ===== KLAVIYO FORM SUBMIT =====
-   Replace YOUR_COMPANY_ID with your Klaviyo Public API Key / Site ID
-*/
+/* ===== KLAVIYO FORM SUBMIT ===== */
 const KLAVIYO_COMPANY_ID = "RYm8PD";
 const statusEl = document.getElementById("status");
 const submitBtn = document.getElementById("submitBtn");
@@ -546,6 +539,29 @@ function getRadioValue(name){
 }
 
 async function klaviyoCreateOrUpdateProfile(payload){
+  const attributes = {
+    email: payload.email,
+    first_name: payload.first_name,
+    last_name: payload.last_name,
+    properties: {
+      lead_type: "360 Brand Diagnostic Application",
+      business_name: payload.business_name,
+      business_desc: payload.business_desc,
+      website: payload.website || "",
+      social_handle: payload.social_handle || "",
+      services_interested: payload.services_interested,
+      services_other: payload.services_other || "",
+      monthly_budget: payload.budget,
+      discovery_source: payload.discovery,
+      submitted_at_iso: new Date().toISOString()
+    }
+  };
+
+  // only include phone if provided (keeps profiles clean)
+  if(payload.phone && payload.phone.trim().length){
+    attributes.phone_number = payload.phone.trim();
+  }
+
   const res = await fetch(`https://a.klaviyo.com/client/profiles?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`, {
     method: "POST",
     headers: {
@@ -554,28 +570,7 @@ async function klaviyoCreateOrUpdateProfile(payload){
       "revision": "2025-10-15"
     },
     body: JSON.stringify({
-      data: {
-        type: "profile",
-        attributes: {
-          email: payload.email,
-          first_name: payload.first_name,
-          last_name: payload.last_name,
-          phone_number: payload.phone, /* stored on profile */
-          properties: {
-            lead_type: "360 Brand Diagnostic Application",
-            business_name: payload.business_name,
-            business_desc: payload.business_desc,
-            website: payload.website || "",
-            social_handle: payload.social_handle,
-            services_interested: payload.services_interested,
-            services_other: payload.services_other || "",
-            monthly_budget: payload.budget,
-            discovery_source: payload.discovery,
-            excitement_level: payload.excitement,
-            submitted_at_iso: new Date().toISOString()
-          }
-        }
-      }
+      data: { type: "profile", attributes }
     })
   });
 
@@ -598,10 +593,8 @@ async function klaviyoCreateSubscription(email){
       data: {
         type: "subscription",
         attributes: {
-          email: email,
-          subscriptions: {
-            email: { marketing: { consent: "SUBSCRIBED" } }
-          }
+          email,
+          subscriptions: { email: { marketing: { consent: "SUBSCRIBED" } } }
         }
       }
     })
@@ -617,31 +610,27 @@ async function klaviyoCreateSubscription(email){
 document.getElementById("brandForm").addEventListener("submit", async (e)=>{
   e.preventDefault();
 
-  if(!KLAVIYO_COMPANY_ID || KLAVIYO_COMPANY_ID === "YOUR_COMPANY_ID"){
-    setStatus("Add your Klaviyo Company ID (Public API Key / Site ID) in the code, then try again.");
+  // Friendly validation (no browser pattern errors)
+  const email = (document.querySelector('input[name="email"]').value || "").trim();
+  if(!email || !email.includes("@")){
+    setStatus("Please enter a real email address 💌");
     return;
   }
 
-  // Collect base fields
+  const services = getCheckedValues("services");
+  if(services.length === 0){
+    setStatus("Please select at least one service ✨");
+    return;
+  }
+
+  const discovery = getRadioValue("discovery");
+  if(!discovery){
+    setStatus("Quick one — how did you find us? 🫶");
+    return;
+  }
+
   const fd = new FormData(e.target);
   const base = Object.fromEntries(fd.entries());
-
-  // Collect checkbox/radio values
-  const services = getCheckedValues("services");
-  const discovery = getRadioValue("discovery");
-
-  if(services.length === 0){
-    setStatus("Please select at least one service you’re interested in.");
-    return;
-  }
-
-  // Light “numeric-ish” check for excitement (still allows fun input)
-  const excitementTrim = (base.excitement || "").toString().trim();
-  if(excitementTrim.length === 0){
-    setStatus("Pop in your excitement score 😉");
-    return;
-  }
-
   const wantsMarketing = document.getElementById("marketingConsent").checked;
 
   const payload = {
@@ -656,8 +645,7 @@ document.getElementById("brandForm").addEventListener("submit", async (e)=>{
     services_interested: services,
     services_other: base.services_other,
     budget: base.budget,
-    discovery: discovery,
-    excitement: excitementTrim
+    discovery
   };
 
   submitBtn.disabled = true;
@@ -672,15 +660,10 @@ document.getElementById("brandForm").addEventListener("submit", async (e)=>{
 
     setStatus("Submitted ✅ We got you — keep an eye on your inbox.");
     e.target.reset();
-
-    // Optional: redirect to a thank-you page
-    // window.location.href = "YOUR_THANKYOU_URL";
-
- }catch(err){
-  console.error(err);
-  setStatus("Error: " + (err.message || err));
-}finally{
-
+  }catch(err){
+    console.error(err);
+    setStatus("Error: " + (err.message || err));
+  }finally{
     submitBtn.disabled = false;
   }
 });
@@ -688,4 +671,5 @@ document.getElementById("brandForm").addEventListener("submit", async (e)=>{
 
 </body>
 </html>
+
 
