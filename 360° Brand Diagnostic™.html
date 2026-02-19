@@ -9,9 +9,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
 <style>
-
 :root{
   --ink:#1b1b1b;
+  --border: rgba(0,0,0,.14);
+  --soft: rgba(0,0,0,.06);
 }
 
 *{
@@ -138,6 +139,10 @@ body.menu-open .menu-bar{
 
 /* Content */
 
+.content{
+  font-size:1.05rem;
+}
+
 .content h2{
   font-size:1.6rem;
   margin-bottom:18px;
@@ -149,12 +154,126 @@ body.menu-open .menu-bar{
   color:#222;
 }
 
-/* Improve readability */
+/* ===== FORM ===== */
 
-.content{
-  font-size:1.05rem;
+.form-wrap{
+  margin-top:54px;
+  padding-top:40px;
+  border-top:1px solid var(--soft);
 }
 
+.form-wrap h2{
+  font-size:1.55rem;
+  margin-bottom:10px;
+}
+
+.form-wrap .sub{
+  font-family:'Poppins',sans-serif;
+  color:#333;
+  margin-bottom:26px;
+}
+
+.form{
+  margin-top:10px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+@media(max-width:760px){
+  .grid{grid-template-columns:1fr;}
+}
+
+label{
+  display:block;
+  font-family:'Poppins',sans-serif;
+  font-size:.92rem;
+  margin:10px 0 7px;
+  color:#111;
+}
+
+.req{
+  color:#b00020;
+  margin-left:4px;
+}
+
+input, textarea{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px 12px;
+  font-family:'Poppins',sans-serif;
+  font-size:.98rem;
+  color:#111;
+  background:#fff;
+  outline:none;
+}
+
+input:focus, textarea:focus{
+  border-color:rgba(0,0,0,.45);
+}
+
+textarea{
+  min-height:150px;
+  resize:vertical;
+}
+
+.smallnote{
+  font-family:'Poppins',sans-serif;
+  font-size:.86rem;
+  color:#444;
+  margin-top:10px;
+}
+
+.checkrow{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  margin-top:14px;
+}
+
+.checkrow input{
+  width:auto;
+  margin-top:5px;
+}
+
+.actions{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  margin-top:18px;
+}
+
+button.submit{
+  border:1px solid #111;
+  background:#111;
+  color:#fff;
+  padding:12px 18px;
+  border-radius:999px;
+  font-family:'Poppins',sans-serif;
+  font-size:.92rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+
+button.submit[disabled]{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.status{
+  font-family:'Poppins',sans-serif;
+  font-size:.92rem;
+  color:#333;
+}
 </style>
 </head>
 
@@ -191,37 +310,224 @@ body.menu-open .menu-bar{
 </section>
 
 <section class="content">
+  <h2>Why Every Client Begins With the 360° Brand Diagnostic™</h2>
 
-<h2>Why Every Client Begins With the 360° Brand Diagnostic™</h2>
+  <p>We don’t execute without clarity.</p>
 
-<p>We don’t execute without clarity.</p>
+  <p>
+    The 360° Brand Diagnostic™ gives us a clear understanding of how your brand is currently perceived,
+    where your positioning stands, and what may be limiting your growth. From there, every decision we make
+    is intentional and aligned with where your brand is meant to go.
+  </p>
 
-<p>
-The 360° Brand Diagnostic™ gives us a clear understanding of how your brand is currently perceived,
-where your positioning stands, and what may be limiting your growth. From there, every decision we make
-is intentional and aligned with where your brand is meant to go.
-</p>
+  <p>
+    We believe strong execution starts with strong direction. When strategy leads, results follow.
+  </p>
 
-<p>
-We believe strong execution starts with strong direction. When strategy leads, results follow.
-</p>
-
-<p>
-This is how we ensure we are not guessing, but building your brand with insight, purpose,
-and a defined path forward. This is why every new partnership begins here.
-</p>
-
+  <p>
+    This is how we ensure we are not guessing, but building your brand with insight, purpose,
+    and a defined path forward. This is why every new partnership begins here.
+  </p>
 </section>
+
+<!-- ===== APPLICATION FORM (Klaviyo) ===== -->
+
+<section class="form-wrap" id="apply">
+  <h2>Apply to Begin</h2>
+  <p class="sub">
+    Share a few details below. If it’s aligned, we’ll be in touch with next steps.
+  </p>
+
+  <form class="form" id="brandForm">
+    <div class="grid">
+
+      <div>
+        <label>First Name<span class="req">*</span></label>
+        <input name="first_name" required />
+      </div>
+
+      <div>
+        <label>Last Name<span class="req">*</span></label>
+        <input name="last_name" required />
+      </div>
+
+      <div class="full">
+        <label>Email Address<span class="req">*</span></label>
+        <input type="email" name="email" required />
+      </div>
+
+      <div class="full">
+        <label>Business Name<span class="req">*</span></label>
+        <input name="business_name" required />
+      </div>
+
+      <div class="full">
+        <label>Location & Timezone<span class="req">*</span></label>
+        <input name="location_timezone" required placeholder="e.g., Sydney, Australia (AEST)" />
+      </div>
+
+      <div>
+        <label>Website<span class="req">*</span></label>
+        <input name="website" required placeholder="https://..." />
+      </div>
+
+      <div>
+        <label>Instagram<span class="req">*</span></label>
+        <input name="instagram" required placeholder="@handle or link" />
+      </div>
+
+      <div class="full">
+        <label>What services do you offer or products do you sell?<span class="req">*</span></label>
+        <textarea name="offerings" required></textarea>
+      </div>
+
+      <div class="full">
+        <label>What do your current marketing efforts look like and why are you looking for a Social Media Manager?<span class="req">*</span></label>
+        <textarea name="marketing_context" required></textarea>
+      </div>
+
+    </div>
+
+    <!-- Optional marketing consent checkbox -->
+    <div class="checkrow">
+      <input type="checkbox" id="marketingConsent" />
+      <label for="marketingConsent">
+        I agree to receive emails (marketing + updates). I can unsubscribe at any time.
+      </label>
+    </div>
+
+    <p class="smallnote">
+      We use the information above to review fit and respond with next steps.
+    </p>
+
+    <div class="actions">
+      <button class="submit" type="submit" id="submitBtn">Submit</button>
+      <div class="status" id="status"></div>
+    </div>
+  </form>
+</section>
+
 </main>
 
 <script>
+/* ===== MENU TOGGLE ===== */
 const btn=document.querySelector('.menu-btn');
-
 btn.addEventListener('click',()=>{
- document.body.classList.toggle('menu-open');
+  document.body.classList.toggle('menu-open');
+});
+
+/* ===== KLAVIYO FORM SUBMIT =====
+   Replace YOUR_COMPANY_ID with your Klaviyo Public API Key / Site ID
+*/
+const KLAVIYO_COMPANY_ID = "YOUR_COMPANY_ID";
+const statusEl = document.getElementById("status");
+const submitBtn = document.getElementById("submitBtn");
+
+function setStatus(msg){ statusEl.textContent = msg; }
+
+async function klaviyoCreateOrUpdateProfile(data){
+  const res = await fetch(`https://a.klaviyo.com/client/profiles?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`, {
+    method: "POST",
+    headers: {
+      "Accept": "application/vnd.api+json",
+      "Content-Type": "application/vnd.api+json",
+      "revision": "2025-10-15"
+    },
+    body: JSON.stringify({
+      data: {
+        type: "profile",
+        attributes: {
+          email: data.email,
+          first_name: data.first_name,
+          last_name: data.last_name,
+          properties: {
+            lead_type: "360 Brand Diagnostic Application",
+            business_name: data.business_name,
+            location_timezone: data.location_timezone,
+            website: data.website,
+            instagram: data.instagram,
+            offerings: data.offerings,
+            marketing_context: data.marketing_context,
+            submitted_at_iso: new Date().toISOString()
+          }
+        }
+      }
+    })
+  });
+
+  if(!res.ok){
+    const text = await res.text();
+    throw new Error(text || `Profile call failed (${res.status})`);
+  }
+  return res.json();
+}
+
+async function klaviyoCreateSubscription(email){
+  const res = await fetch(`https://a.klaviyo.com/client/subscriptions?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`, {
+    method: "POST",
+    headers: {
+      "Accept": "application/vnd.api+json",
+      "Content-Type": "application/vnd.api+json",
+      "revision": "2025-10-15"
+    },
+    body: JSON.stringify({
+      data: {
+        type: "subscription",
+        attributes: {
+          email: email,
+          subscriptions: {
+            email: {
+              marketing: { consent: "SUBSCRIBED" }
+            }
+          }
+        }
+      }
+    })
+  });
+
+  if(!res.ok){
+    const text = await res.text();
+    throw new Error(text || `Subscription call failed (${res.status})`);
+  }
+  return res.json();
+}
+
+document.getElementById("brandForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+
+  if(!KLAVIYO_COMPANY_ID || KLAVIYO_COMPANY_ID === "YOUR_COMPANY_ID"){
+    setStatus("Please add your Klaviyo Company ID (Public API Key / Site ID) in the code.");
+    return;
+  }
+
+  submitBtn.disabled = true;
+  setStatus("Submitting…");
+
+  const fd = new FormData(e.target);
+  const data = Object.fromEntries(fd.entries());
+  const wantsMarketing = document.getElementById("marketingConsent").checked;
+
+  try{
+    await klaviyoCreateOrUpdateProfile(data);
+
+    if(wantsMarketing){
+      await klaviyoCreateSubscription(data.email);
+    }
+
+    setStatus("Submitted ✅ Thank you — we’ll be in touch soon.");
+    e.target.reset();
+
+    // Optional: redirect to a thank-you page
+    // window.location.href = "YOUR_THANKYOU_URL";
+
+  }catch(err){
+    console.error(err);
+    setStatus("Something went wrong. Please try again or email us.");
+  }finally{
+    submitBtn.disabled = false;
+  }
 });
 </script>
 
 </body>
 </html>
-
