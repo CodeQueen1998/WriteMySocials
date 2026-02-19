@@ -6,147 +6,649 @@
 <title>360° Brand Diagnostic™ | Write My Socials</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
 <style>
+:root{
+  --ink:#1b1b1b;
+  --border: rgba(0,0,0,.14);
+  --soft: rgba(0,0,0,.06);
+  --muted:#333;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+
 body{
+  background:#fff;
+  color:var(--ink);
+  font-family:'Playfair Display',serif;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+
+/* ===== MENU ===== */
+.menu-btn{
+  position:fixed;
+  top:18px; left:20px;
+  z-index:3100;
+  background:#fff;
+  border:1px solid #000;
+  padding:6px 12px;
+  border-radius:999px;
   font-family:'Poppins',sans-serif;
+  font-size:.85rem;
+  letter-spacing:.1em;
+  cursor:pointer;
+}
+
+.social-icons{
+  position:fixed;
+  top:18px; right:25px;
+  z-index:3100;
+  display:flex;
+  gap:18px;
+}
+
+.social-icons a{ color:#000; font-size:1.2rem; }
+
+.menu-bar{
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:3000;
+  background:#fff;
+  border-bottom:1px solid rgba(0,0,0,.15);
+  transform:translateY(-100%);
+  transition:.35s;
+}
+
+body.menu-open .menu-bar{ transform:translateY(0); }
+
+.menu-inner{
+  max-width:1100px;
+  margin:auto;
+  padding:10px 20px;
+  display:flex;
+  justify-content:center;
+}
+
+.menu-links{
+  width:min(820px,100%);
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1.4fr;
+  gap:10px;
+}
+
+.menu-links a{
+  text-decoration:none;
+  color:#000;
+  border:1px solid rgba(0,0,0,.12);
+  border-radius:999px;
+  padding:10px;
+  text-align:center;
+  font-family:'Poppins',sans-serif;
+  font-size:.9rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+@media(max-width:600px){
+  .menu-links{ grid-template-columns:1fr; }
+}
+
+/* ===== PAGE ===== */
+.page{
   max-width:760px;
   margin:auto;
-  padding:120px 20px;
+  padding:140px 22px 80px;
 }
-h1{
-  font-family:'Playfair Display',serif;
-  font-size:2.6rem;
-  margin-bottom:30px;
+
+/* Hero */
+.hero{
+  text-align:center;
+  margin-bottom:70px;
 }
-form{
+
+.hero h1{
+  font-size:clamp(2.2rem,4vw,3rem);
+  font-weight:600;
+  margin-bottom:22px;
+}
+
+.hero p{
+  font-family:'Poppins',sans-serif;
+  font-size:1.05rem;
+  color:var(--muted);
+  max-width:620px;
+  margin:auto;
+}
+
+/* Content */
+.content{ font-size:1.05rem; }
+
+.content h2{
+  font-size:1.6rem;
+  margin-bottom:18px;
+}
+
+.content p{
+  font-family:'Poppins',sans-serif;
+  margin-bottom:18px;
+  color:#222;
+}
+
+/* ===== FORM ===== */
+.form-wrap{
+  margin-top:54px;
+  padding-top:40px;
+  border-top:1px solid var(--soft);
+}
+
+.form-wrap h2{
+  font-size:1.55rem;
+  margin-bottom:10px;
+}
+
+.form-wrap .sub{
+  font-family:'Poppins',sans-serif;
+  color:var(--muted);
+  margin-bottom:26px;
+}
+
+.form{ margin-top:10px; }
+
+.grid{
   display:grid;
+  grid-template-columns:1fr 1fr;
   gap:16px;
 }
-input,textarea,select{
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #ddd;
+
+.full{ grid-column:1/-1; }
+
+@media(max-width:760px){
+  .grid{ grid-template-columns:1fr; }
 }
-button{
-  padding:14px;
-  border-radius:999px;
+
+label{
+  display:block;
+  font-family:'Poppins',sans-serif;
+  font-size:.92rem;
+  margin:10px 0 7px;
+  color:#111;
+}
+
+input, textarea, select{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px 12px;
+  font-family:'Poppins',sans-serif;
+  font-size:.98rem;
+  color:#111;
+  background:#fff;
+  outline:none;
+}
+
+input:focus, textarea:focus, select:focus{
+  border-color:rgba(0,0,0,.45);
+}
+
+textarea{ min-height:140px; resize:vertical; }
+
+.smallnote{
+  font-family:'Poppins',sans-serif;
+  font-size:.86rem;
+  color:#444;
+  margin-top:10px;
+}
+
+/* Choice blocks (checkbox / radio) */
+.choice-block{
+  border:1px solid var(--soft);
+  border-radius:14px;
+  padding:14px 14px 10px;
+  background:#fff;
+}
+
+.choice-title{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.choice-title strong{
+  font-family:'Playfair Display',serif;
+  font-size:1.08rem;
+  font-weight:600;
+}
+
+.choice-title span{
+  font-family:'Poppins',sans-serif;
+  font-size:.82rem;
+  color:#555;
+}
+
+.choice-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+@media(max-width:560px){
+  .choice-grid{ grid-template-columns:1fr; }
+}
+
+.choice{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  font-family:'Poppins',sans-serif;
+  font-size:.95rem;
+  color:#111;
+  padding:8px 10px;
+  border-radius:10px;
+  border:1px solid transparent;
+  user-select:none;
+}
+
+.choice:hover{
+  border-color:rgba(0,0,0,.10);
+  background:rgba(0,0,0,.02);
+}
+
+.choice input{
+  width:auto;
+  margin-top:3px;
+}
+
+.inline-note{
+  margin-top:10px;
+  font-family:'Poppins',sans-serif;
+  font-size:.86rem;
+  color:#444;
+}
+
+/* Consent */
+.checkrow{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  margin-top:14px;
+}
+
+.checkrow input{ width:auto; margin-top:5px; }
+
+/* Actions */
+.actions{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  margin-top:18px;
+  flex-wrap:wrap;
+}
+
+button.submit{
+  border:1px solid #111;
   background:#111;
   color:#fff;
-  border:none;
-  cursor:pointer;
+  padding:12px 18px;
+  border-radius:999px;
+  font-family:'Poppins',sans-serif;
+  font-size:.92rem;
   letter-spacing:.08em;
+  text-transform:uppercase;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
 }
-button:disabled{opacity:.6}
-.status{margin-top:12px;}
+
+button.submit .cute{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transform:translateY(1px);
+}
+
+button.submit i{ font-size:1rem; }
+
+button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
+
+.status{
+  font-family:'Poppins',sans-serif;
+  font-size:.92rem;
+  color:#333;
+  min-height:1.2em;
+  max-width:560px;
+  white-space:pre-line;
+}
+
+/* Tiny sparkle divider */
+.spark{
+  display:inline-block;
+  margin:0 8px;
+  opacity:.9;
+}
 </style>
 </head>
+
 <body>
 
-<h1>360° Brand Diagnostic™</h1>
+<button class="menu-btn" type="button">MENU</button>
 
-<form id="brandForm">
+<div class="social-icons">
+  <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+  <a href="https://www.instagram.com/writemysocials" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.tiktok.com/@writemysocials" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
+</div>
 
-<input name="first_name" placeholder="First Name"/>
-<input name="last_name" placeholder="Last Name"/>
-<input name="email" type="email" placeholder="Email" required/>
-<input name="phone" placeholder="Phone"/>
-<input name="business_name" placeholder="Business Name"/>
-<textarea name="business_desc" placeholder="What does your business do?"></textarea>
-<input name="website" placeholder="Website"/>
-<input name="social_handle" placeholder="Instagram / TikTok"/>
+<nav class="menu-bar">
+  <div class="menu-inner">
+    <div class="menu-links">
+      <a href="./">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./services.html">Services</a>
+      <a href="./360%C2%B0%20Brand%20Diagnostic%E2%84%A2.html">360° Brand Diagnostic™</a>
+    </div>
+  </div>
+</nav>
 
-<select name="budget">
-<option value="">Budget</option>
-<option>Under $1k</option>
-<option>$1k–$3k</option>
-<option>$3k–$6k</option>
-<option>$6k–$10k</option>
-<option>$10k+</option>
-</select>
+<main class="page">
 
-<label>
-<input type="checkbox" id="marketingConsent"/>
- Subscribe to email marketing
-</label>
+<section class="hero">
+  <h1>360° Brand Diagnostic™</h1>
+  <p>
+    A deep forensic audit of your brand to uncover what is weakening your positioning,
+    limiting growth, and costing you revenue — followed by a clear strategic roadmap.
+  </p>
+</section>
 
-<button type="submit" id="submitBtn">LET’S GET STARTED</button>
-<div class="status" id="status"></div>
+<section class="content">
+  <h2>Why Every Client Begins With the 360° Brand Diagnostic™</h2>
 
-</form>
+  <p>We don’t execute without clarity.</p>
+
+  <p>
+    The 360° Brand Diagnostic™ gives us a clear understanding of how your brand is currently perceived,
+    where your positioning stands, and what may be limiting your growth. From there, every decision we make
+    is intentional and aligned with where your brand is meant to go.
+  </p>
+
+  <p>
+    We believe strong execution starts with strong direction. When strategy leads, results follow.
+  </p>
+
+  <p>
+    This is how we ensure we are not guessing, but building your brand with insight, purpose,
+    and a defined path forward. This is why every new partnership begins here.
+  </p>
+</section>
+
+<!-- ===== APPLICATION FORM (Klaviyo) ===== -->
+<section class="form-wrap" id="apply">
+  <h2>Let’s make magic together <span class="spark">✶</span></h2>
+  <p class="sub">
+    Share what you’d like — we’ll take it from there.
+  </p>
+
+  <form class="form" id="brandForm" novalidate>
+    <div class="grid">
+
+      <div>
+        <label for="first_name">First Name</label>
+        <input id="first_name" name="first_name" autocomplete="given-name" />
+      </div>
+
+      <div>
+        <label for="last_name">Last Name</label>
+        <input id="last_name" name="last_name" autocomplete="family-name" />
+      </div>
+
+      <div class="full">
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" autocomplete="email" placeholder="you@brand.com"/>
+      </div>
+
+      <div class="full">
+        <label for="phone">Phone</label>
+        <input id="phone" type="tel" name="phone" autocomplete="tel" placeholder="+61…" />
+      </div>
+
+      <div class="full">
+        <label for="business_name">Business Name</label>
+        <input id="business_name" name="business_name" />
+      </div>
+
+      <div class="full">
+        <label for="business_desc">What does your business do?</label>
+        <textarea id="business_desc" name="business_desc" placeholder="Beauty, fashion, wellness… what do you sell / offer?"></textarea>
+      </div>
+
+      <div>
+        <label for="website">Website</label>
+        <input id="website" name="website" placeholder="https://..." />
+      </div>
+
+      <div>
+        <label for="social_handle">Instagram / TikTok</label>
+        <input id="social_handle" name="social_handle" placeholder="@yourhandle or link" />
+      </div>
+
+      <div class="full">
+        <div class="choice-block">
+          <div class="choice-title">
+            <strong>What are you interested in?</strong>
+            <span>(choose any)</span>
+          </div>
+
+          <div class="choice-grid" role="group" aria-label="Services Interested">
+            <label class="choice"><input type="checkbox" name="services" value="Branding & Auditing"> Branding & Auditing</label>
+            <label class="choice"><input type="checkbox" name="services" value="Content Creation"> Content Creation</label>
+            <label class="choice"><input type="checkbox" name="services" value="Social Media Marketing"> Social Media Marketing</label>
+            <label class="choice"><input type="checkbox" name="services" value="TikTok & Instagram"> TikTok & Instagram</label>
+            <label class="choice"><input type="checkbox" name="services" value="Copywriting"> Copywriting</label>
+            <label class="choice"><input type="checkbox" name="services" value="Add-Ons / Support"> Add-Ons / Support</label>
+          </div>
+
+          <p class="inline-note">If there’s something else on your mind, drop it here 👇</p>
+          <textarea name="services_other" placeholder=""></textarea>
+        </div>
+      </div>
+
+      <div class="full">
+        <label for="budget">Monthly budget range</label>
+        <select id="budget" name="budget">
+          <option value="" selected>—</option>
+          <option value="Under $1k">Under $1k</option>
+          <option value="$1k–$3k">$1k–$3k</option>
+          <option value="$3k–$6k">$3k–$6k</option>
+          <option value="$6k–$10k">$6k–$10k</option>
+          <option value="$10k+">$10k+</option>
+          <option value="Not sure yet">Not sure yet</option>
+        </select>
+      </div>
+
+      <div class="full">
+        <div class="choice-block">
+          <div class="choice-title">
+            <strong>How did you find Write My Socials?</strong>
+            <span>(choose one)</span>
+          </div>
+
+          <div class="choice-grid" role="radiogroup" aria-label="Discovery Source">
+            <label class="choice"><input type="radio" name="discovery" value="Instagram"> Instagram</label>
+            <label class="choice"><input type="radio" name="discovery" value="TikTok"> TikTok</label>
+            <label class="choice"><input type="radio" name="discovery" value="Google"> Google</label>
+            <label class="choice"><input type="radio" name="discovery" value="Referral"> Referral</label>
+            <label class="choice"><input type="radio" name="discovery" value="Client / Friend"> Client / Friend</label>
+            <label class="choice"><input type="radio" name="discovery" value="Other"> Other</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="checkrow">
+      <input type="checkbox" id="marketingConsent" />
+      <label for="marketingConsent" style="font-family:'Poppins',sans-serif; font-size:.92rem; color:#111;">
+        I’m happy to receive emails (updates + occasional marketing). I can unsubscribe anytime.
+      </label>
+    </div>
+
+    <p class="smallnote">
+      If you include your email, we’ll send through next steps 💌
+    </p>
+
+    <div class="actions">
+      <button class="submit" type="submit" id="submitBtn">
+        LET’S GET STARTED
+        <span class="cute" aria-hidden="true">
+          <i class="fa-solid fa-arrow-right"></i>
+          <i class="fa-solid fa-heart"></i>
+        </span>
+      </button>
+      <div class="status" id="status" aria-live="polite"></div>
+    </div>
+  </form>
+</section>
+
+</main>
 
 <script>
-const KLAVIYO_PUBLIC_KEY = "RYm8PD"; // your public Site ID
+/* ===== MENU TOGGLE ===== */
+(() => {
+  const btn = document.querySelector('.menu-btn');
+  if (btn) btn.addEventListener('click', () => document.body.classList.toggle('menu-open'));
+})();
 
-const form = document.getElementById("brandForm");
-const statusEl = document.getElementById("status");
-const submitBtn = document.getElementById("submitBtn");
+/* ===== PREVENT DOUBLE-BINDING (avoids duplicate error messages) ===== */
+if (!window.__wmsBrandFormBound) {
+  window.__wmsBrandFormBound = true;
 
-function setStatus(msg){
-  statusEl.textContent = msg;
-}
+  /* ===== KLAVIYO CLIENT PROFILE SETTINGS ===== */
+  const KLAVIYO_COMPANY_ID = "RYm8PD";      // your public site ID / company_id
+  const KLAVIYO_REVISION   = "2026-01-15";  // must be YYYY-MM-DD
 
-form.addEventListener("submit", async (e)=>{
-  e.preventDefault();
+  const statusEl  = document.getElementById("status");
+  const submitBtn = document.getElementById("submitBtn");
+  const formEl    = document.getElementById("brandForm");
 
-  submitBtn.disabled = true;
-  setStatus("Submitting…");
+  function setStatus(msg){ statusEl.textContent = msg; }
 
-  try{
-    const data = new FormData(form);
-    const base = Object.fromEntries(data.entries());
-    const wantsMarketing = document.getElementById("marketingConsent").checked;
+  function getCheckedValues(name){
+    return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
+  }
+  function getRadioValue(name){
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : "";
+  }
 
-    const payload = {
-      token: KLAVIYO_PUBLIC_KEY,
-      properties: {
-        $email: base.email,
-        $first_name: base.first_name || "",
-        $last_name: base.last_name || "",
-        phone: base.phone || "",
-        business_name: base.business_name || "",
-        business_desc: base.business_desc || "",
-        website: base.website || "",
-        social_handle: base.social_handle || "",
-        monthly_budget: base.budget || "",
-        submitted_at: new Date().toISOString()
-      }
-    };
+  // Keep these simple + Safari-safe
+  function trimOrEmpty(v){ return (v || "").toString().trim(); }
+  function sanitizeWebsite(v){
+    const s = trimOrEmpty(v);
+    if (!s || s === "https://..." || s === "http://...") return "";
+    return /^https?:\/\/\S+$/i.test(s) ? s : "";
+  }
 
-    // Identify profile (no revision header required)
-    await fetch("https://a.klaviyo.com/api/identify", {
+  async function parseError(res){
+    const text = await res.text().catch(() => "");
+    if (!text) return `HTTP ${res.status}`;
+    try{
+      const j = JSON.parse(text);
+      return j?.errors?.[0]?.detail || j?.errors?.[0]?.title || text;
+    }catch{
+      return text;
+    }
+  }
+
+  async function postProfile(body){
+    const url = `https://a.klaviyo.com/client/profiles?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`;
+
+    const res = await fetch(url, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
+      headers: {
+        "Accept": "application/vnd.api+json",
+        "Content-Type": "application/vnd.api+json",
+        "revision": KLAVIYO_REVISION
+      },
+      body: JSON.stringify(body)
     });
 
-    // Optional subscribe
-    if(wantsMarketing){
-      await fetch("https://a.klaviyo.com/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          token: KLAVIYO_PUBLIC_KEY,
-          email: base.email
-        })
-      });
+    if (!res.ok) {
+      throw new Error(await parseError(res));
     }
 
-    setStatus("Submitted ✅ Thank you — we’ll be in touch.");
-    form.reset();
-
-  }catch(err){
-    console.error(err);
-    setStatus("Something went wrong. Please try again.");
-  }finally{
-    submitBtn.disabled = false;
+    return true;
   }
-});
+
+  formEl.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    setStatus("Submitting…");
+
+    try{
+      const fd = new FormData(formEl);
+      const base = Object.fromEntries(fd.entries());
+
+      const email = trimOrEmpty(base.email);
+      if (!email){
+        setStatus("Please add your email so we can send next steps 💌");
+        submitBtn.disabled = false;
+        return;
+      }
+
+      const services  = getCheckedValues("services");
+      const discovery = getRadioValue("discovery");
+      const wantsMarketing = document.getElementById("marketingConsent").checked;
+
+      // Put EVERYTHING in properties (safe)
+      const props = {
+        lead_type: "360 Brand Diagnostic Application",
+        phone: trimOrEmpty(base.phone),
+        business_name: trimOrEmpty(base.business_name),
+        business_desc: trimOrEmpty(base.business_desc),
+        website: sanitizeWebsite(base.website),
+        social_handle: trimOrEmpty(base.social_handle),
+        services_interested: services,
+        services_other: trimOrEmpty(base.services_other),
+        monthly_budget: trimOrEmpty(base.budget),
+        discovery_source: discovery,
+        marketing_consent_checkbox: wantsMarketing ? "yes" : "no",
+        submitted_at_iso: new Date().toISOString()
+      };
+
+      // Client Profile body (JSON:API)
+      const body = {
+        data: {
+          type: "profile",
+          attributes: {
+            email,
+            first_name: trimOrEmpty(base.first_name),
+            last_name: trimOrEmpty(base.last_name),
+            properties: props
+          }
+        }
+      };
+
+      await postProfile(body);
+
+      setStatus("Submitted ✅ Thank you — we’ll be in touch.");
+      formEl.reset();
+
+    }catch(err){
+      console.error(err);
+      setStatus("Something went wrong.\n" + (err?.message || "Please try again."));
+    }finally{
+      submitBtn.disabled = false;
+    }
+  });
+}
 </script>
 
 </body>
 </html>
-
-
 
 
