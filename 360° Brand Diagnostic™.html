@@ -676,10 +676,11 @@ document.getElementById("brandForm").addEventListener("submit", async (e)=>{
     // Optional: redirect to a thank-you page
     // window.location.href = "YOUR_THANKYOU_URL";
 
-  }catch(err){
-    console.error(err);
-    setStatus("Something went wrong. Please try again or email us.");
-  }finally{
+ }catch(err){
+  console.error(err);
+  setStatus("Error: " + (err.message || err));
+}finally{
+
     submitBtn.disabled = false;
   }
 });
