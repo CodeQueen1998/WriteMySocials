@@ -333,12 +333,12 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
 
 <body>
 
-<button class="menu-btn">MENU</button>
+<button class="menu-btn" type="button">MENU</button>
 
 <div class="social-icons">
-  <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/"><i class="fab fa-linkedin"></i></a>
-  <a href="https://www.instagram.com/writemysocials"><i class="fab fa-instagram"></i></a>
-  <a href="https://www.tiktok.com/@writemysocials"><i class="fab fa-tiktok"></i></a>
+  <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+  <a href="https://www.instagram.com/writemysocials" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.tiktok.com/@writemysocials" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
 </div>
 
 <nav class="menu-bar">
@@ -394,43 +394,43 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
     <div class="grid">
 
       <div>
-        <label>First Name</label>
-        <input name="first_name" autocomplete="given-name" />
+        <label for="first_name">First Name</label>
+        <input id="first_name" name="first_name" type="text" autocomplete="given-name" />
       </div>
 
       <div>
-        <label>Last Name</label>
-        <input name="last_name" autocomplete="family-name" />
+        <label for="last_name">Last Name</label>
+        <input id="last_name" name="last_name" type="text" autocomplete="family-name" />
       </div>
 
       <div class="full">
-        <label>Email</label>
-        <input type="email" name="email" autocomplete="email" placeholder="you@brand.com"/>
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" autocomplete="email" placeholder="you@brand.com"/>
       </div>
 
       <div class="full">
-        <label>Phone</label>
-        <input type="tel" name="phone" autocomplete="tel" placeholder="+61…" />
+        <label for="phone">Phone</label>
+        <input id="phone" type="tel" name="phone" autocomplete="tel" placeholder="+61…" />
       </div>
 
       <div class="full">
-        <label>Business Name</label>
-        <input name="business_name" />
+        <label for="business_name">Business Name</label>
+        <input id="business_name" name="business_name" type="text" />
       </div>
 
       <div class="full">
-        <label>What does your business do?</label>
-        <textarea name="business_desc" placeholder="Beauty, fashion, wellness… what do you sell / offer?"></textarea>
+        <label for="business_desc">What does your business do?</label>
+        <textarea id="business_desc" name="business_desc" placeholder="Beauty, fashion, wellness… what do you sell / offer?"></textarea>
       </div>
 
       <div>
-        <label>Website</label>
-        <input name="website" placeholder="https://..." />
+        <label for="website">Website</label>
+        <input id="website" name="website" type="url" placeholder="https://..." />
       </div>
 
       <div>
-        <label>Instagram / TikTok</label>
-        <input name="social_handle" placeholder="@yourhandle or link" />
+        <label for="social_handle">Instagram / TikTok</label>
+        <input id="social_handle" name="social_handle" type="text" placeholder="@yourhandle or link" />
       </div>
 
       <div class="full">
@@ -455,8 +455,8 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
       </div>
 
       <div class="full">
-        <label>Monthly budget range</label>
-        <select name="budget">
+        <label for="budget">Monthly budget range</label>
+        <select id="budget" name="budget">
           <option value="" selected>—</option>
           <option value="Under $1k">Under $1k</option>
           <option value="$1k–$3k">$1k–$3k</option>
@@ -488,7 +488,7 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
     </div>
 
     <div class="checkrow">
-      <input type="checkbox" id="marketingConsent" />
+      <input type="checkbox" id="marketingConsent" name="marketingConsent" />
       <label for="marketingConsent" style="font-family:'Poppins',sans-serif; font-size:.92rem; color:#111;">
         I’m happy to receive emails (updates + occasional marketing). I can unsubscribe anytime.
       </label>
@@ -506,7 +506,7 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
           <i class="fa-solid fa-heart"></i>
         </span>
       </button>
-      <div class="status" id="status"></div>
+      <div class="status" id="status" aria-live="polite"></div>
     </div>
   </form>
 </section>
@@ -515,11 +515,13 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
 
 <script>
 /* ===== MENU TOGGLE ===== */
-const btn = document.querySelector('.menu-btn');
-btn.addEventListener('click', () => { document.body.classList.toggle('menu-open'); });
+const menuBtn = document.querySelector('.menu-btn');
+menuBtn.addEventListener('click', () => { document.body.classList.toggle('menu-open'); });
 
-/* ===== KLAVIYO FORM SUBMIT ===== */
-const KLAVIYO_COMPANY_ID = "RYm8PD"; // your Public API Key / Site ID
+/* ===== KLAVIYO FORM SUBMIT (FIXED) ===== */
+const KLAVIYO_COMPANY_ID = "RYm8PD";         // your Klaviyo "Site ID" (public)
+const KLAVIYO_REVISION  = "2026-01-15";      // use a supported revision
+
 const statusEl = document.getElementById("status");
 const submitBtn = document.getElementById("submitBtn");
 
@@ -534,75 +536,102 @@ function getRadioValue(name){
   return el ? el.value : "";
 }
 
+async function readErrorText(res){
+  try{
+    const txt = await res.text();
+    return txt || `HTTP ${res.status}`;
+  }catch{
+    return `HTTP ${res.status}`;
+  }
+}
+
 async function klaviyoCreateOrUpdateProfile(payload){
-  const res = await fetch(`https://a.klaviyo.com/client/profiles?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`, {
-    method: "POST",
-    headers: {
-      "Accept": "application/vnd.api+json",
-      "Content-Type": "application/vnd.api+json",
-      "revision": "2025-10-15"
-    },
-    body: JSON.stringify({
-      data: {
-        type: "profile",
-        attributes: {
-          email: payload.email,
-          first_name: payload.first_name || "",
-          last_name: payload.last_name || "",
-          properties: {
-            lead_type: "360 Brand Diagnostic Application",
-            business_name: payload.business_name || "",
-            business_desc: payload.business_desc || "",
-            website: payload.website || "",
-            social_handle: payload.social_handle || "",
-            phone: payload.phone || "",
-            services_interested: payload.services_interested,
-            services_other: payload.services_other || "",
-            monthly_budget: payload.budget || "",
-            discovery_source: payload.discovery || "",
-            submitted_at_iso: new Date().toISOString()
+  const res = await fetch(
+    `https://a.klaviyo.com/client/profiles?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`,
+    {
+      method: "POST",
+      headers: {
+        "Accept": "application/vnd.api+json",
+        "Content-Type": "application/vnd.api+json",
+        "revision": KLAVIYO_REVISION
+      },
+      body: JSON.stringify({
+        data: {
+          type: "profile",
+          attributes: {
+            email: payload.email,
+            first_name: payload.first_name || "",
+            last_name: payload.last_name || "",
+            properties: {
+              lead_type: "360 Brand Diagnostic Application",
+              business_name: payload.business_name || "",
+              business_desc: payload.business_desc || "",
+              website: payload.website || "",
+              social_handle: payload.social_handle || "",
+              phone: payload.phone || "",
+              services_interested: payload.services_interested || [],
+              services_other: payload.services_other || "",
+              monthly_budget: payload.budget || "",
+              discovery_source: payload.discovery || "",
+              submitted_at_iso: new Date().toISOString()
+            }
           }
         }
-      }
-    })
-  });
+      })
+    }
+  );
 
   if(!res.ok){
-    const text = await res.text();
-    throw new Error(text || `Profile call failed (${res.status})`);
+    throw new Error(await readErrorText(res));
   }
   return res.json();
 }
 
+/**
+ * FIXED subscription payload:
+ * /client/subscriptions expects data.attributes.profile.data.attributes.email
+ * and subscriptions nested under that profile.
+ */
 async function klaviyoCreateSubscription(email){
-  const res = await fetch(`https://a.klaviyo.com/client/subscriptions?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`, {
-    method: "POST",
-    headers: {
-      "Accept": "application/vnd.api+json",
-      "Content-Type": "application/vnd.api+json",
-      "revision": "2025-10-15"
-    },
-    body: JSON.stringify({
-      data: {
-        type: "subscription",
-        attributes: {
-          email: email,
-          subscriptions: {
-            email: { marketing: { consent: "SUBSCRIBED" } }
+  const res = await fetch(
+    `https://a.klaviyo.com/client/subscriptions?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`,
+    {
+      method: "POST",
+      headers: {
+        "Accept": "application/vnd.api+json",
+        "Content-Type": "application/vnd.api+json",
+        "revision": KLAVIYO_REVISION
+      },
+      body: JSON.stringify({
+        data: {
+          type: "subscription",
+          attributes: {
+            profile: {
+              data: {
+                type: "profile",
+                attributes: {
+                  email,
+                  subscriptions: {
+                    email: {
+                      marketing: { consent: "SUBSCRIBED" }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
-      }
-    })
-  });
+      })
+    }
+  );
 
   if(!res.ok){
-    const text = await res.text();
-    throw new Error(text || `Subscription call failed (${res.status})`);
+    throw new Error(await readErrorText(res));
   }
   return res.json();
 }
 
-document.getElementById("brandForm").addEventListener("submit", async (e)=>{
+document.getElementById("brandForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
   submitBtn.disabled = true;
@@ -615,8 +644,9 @@ document.getElementById("brandForm").addEventListener("submit", async (e)=>{
   const discovery = getRadioValue("discovery");
   const wantsMarketing = document.getElementById("marketingConsent").checked;
 
-  // Klaviyo needs an email to create a profile.
   const email = (base.email || "").toString().trim();
+
+  // Keep your original intent: allow submit with no email, but no Klaviyo call.
   if(!email){
     setStatus("If you include your email, we’ll send through next steps 💌");
     submitBtn.disabled = false;
@@ -626,23 +656,23 @@ document.getElementById("brandForm").addEventListener("submit", async (e)=>{
   const payload = {
     first_name: base.first_name,
     last_name: base.last_name,
-    email: email,
+    email,
     phone: base.phone,
     business_name: base.business_name,
     business_desc: base.business_desc,
     website: base.website,
     social_handle: base.social_handle,
-    services_interested: services,     // can be empty
+    services_interested: services,
     services_other: base.services_other,
     budget: base.budget,
-    discovery: discovery
+    discovery
   };
 
   try{
     await klaviyoCreateOrUpdateProfile(payload);
 
     if(wantsMarketing){
-      await klaviyoCreateSubscription(payload.email);
+      await klaviyoCreateSubscription(email);
     }
 
     setStatus("Submitted ✅ Thank you — we’ll be in touch.");
@@ -650,7 +680,10 @@ document.getElementById("brandForm").addEventListener("submit", async (e)=>{
 
   }catch(err){
     console.error(err);
-    setStatus("Something went wrong. Please try again or email us.");
+
+    // Show a short diagnostic snippet (helps you fix instantly if Klaviyo rejects something)
+    const msg = (err && err.message) ? String(err.message) : "Please try again or email us.";
+    setStatus("Something went wrong. " + msg.slice(0, 140));
   }finally{
     submitBtn.disabled = false;
   }
