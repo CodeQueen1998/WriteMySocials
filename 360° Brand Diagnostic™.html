@@ -320,6 +320,7 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
   font-size:.92rem;
   color:#333;
   min-height:1.2em;
+  max-width:520px;
 }
 
 /* Tiny sparkle divider */
@@ -518,9 +519,9 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
 const menuBtn = document.querySelector('.menu-btn');
 menuBtn.addEventListener('click', () => { document.body.classList.toggle('menu-open'); });
 
-/* ===== KLAVIYO FORM SUBMIT (FIXED) ===== */
-const KLAVIYO_COMPANY_ID = "RYm8PD";         // your Klaviyo "Site ID" (public)
-const KLAVIYO_REVISION  = "2026-01-15";      // use a supported revision
+/* ===== KLAVIYO FORM SUBMIT (WORKING + RETRY) ===== */
+const KLAVIYO_COMPANY_ID = "RYm8PD";     // your Klaviyo Site ID (public)
+const KLAVIYO_REVISION  = "2025-01-15";  // known valid example revision
 
 const statusEl = document.getElementById("status");
 const submitBtn = document.getElementById("submitBtn");
@@ -536,99 +537,116 @@ function getRadioValue(name){
   return el ? el.value : "";
 }
 
-async function readErrorText(res){
+async function parseKlaviyoError(res){
+  // Try JSON:API error format first
+  const text = await res.text().catch(() => "");
+  if(!text) return `HTTP ${res.status}`;
+
   try{
-    const txt = await res.text();
-    return txt || `HTTP ${res.status}`;
+    const j = JSON.parse(text);
+    const detail = j?.errors?.[0]?.detail || j?.errors?.[0]?.title;
+    return detail || text;
   }catch{
-    return `HTTP ${res.status}`;
+    return text;
   }
+}
+
+function makeHeaders(useRevision){
+  const h = {
+    "Accept": "application/vnd.api+json",
+    "Content-Type": "application/vnd.api+json"
+  };
+  if(useRevision) h["revision"] = KLAVIYO_REVISION;
+  return h;
+}
+
+async function postJsonWithRetry(url, bodyObj){
+  // Attempt 1: with revision header (preferred)
+  let res = await fetch(url, {
+    method: "POST",
+    headers: makeHeaders(true),
+    body: JSON.stringify(bodyObj)
+  });
+
+  if(res.ok) return res.json();
+
+  // If Klaviyo complains about the revision header format, retry without it.
+  const err1 = await parseKlaviyoError(res);
+  const looksLikeRevisionProblem =
+    /expected pattern/i.test(err1) ||
+    /revision/i.test(err1) ||
+    /did not match/i.test(err1);
+
+  if(looksLikeRevisionProblem){
+    res = await fetch(url, {
+      method: "POST",
+      headers: makeHeaders(false),
+      body: JSON.stringify(bodyObj)
+    });
+    if(res.ok) return res.json();
+    const err2 = await parseKlaviyoError(res);
+    throw new Error(err2);
+  }
+
+  throw new Error(err1);
 }
 
 async function klaviyoCreateOrUpdateProfile(payload){
-  const res = await fetch(
-    `https://a.klaviyo.com/client/profiles?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`,
-    {
-      method: "POST",
-      headers: {
-        "Accept": "application/vnd.api+json",
-        "Content-Type": "application/vnd.api+json",
-        "revision": KLAVIYO_REVISION
-      },
-      body: JSON.stringify({
-        data: {
-          type: "profile",
-          attributes: {
-            email: payload.email,
-            first_name: payload.first_name || "",
-            last_name: payload.last_name || "",
-            properties: {
-              lead_type: "360 Brand Diagnostic Application",
-              business_name: payload.business_name || "",
-              business_desc: payload.business_desc || "",
-              website: payload.website || "",
-              social_handle: payload.social_handle || "",
-              phone: payload.phone || "",
-              services_interested: payload.services_interested || [],
-              services_other: payload.services_other || "",
-              monthly_budget: payload.budget || "",
-              discovery_source: payload.discovery || "",
-              submitted_at_iso: new Date().toISOString()
-            }
-          }
-        }
-      })
-    }
-  );
+  const url = `https://a.klaviyo.com/client/profiles?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`;
 
-  if(!res.ok){
-    throw new Error(await readErrorText(res));
-  }
-  return res.json();
+  const body = {
+    data: {
+      type: "profile",
+      attributes: {
+        email: payload.email,
+        first_name: payload.first_name || "",
+        last_name: payload.last_name || "",
+        properties: {
+          lead_type: "360 Brand Diagnostic Application",
+          business_name: payload.business_name || "",
+          business_desc: payload.business_desc || "",
+          website: payload.website || "",
+          social_handle: payload.social_handle || "",
+          phone: payload.phone || "",
+          services_interested: payload.services_interested || [],
+          services_other: payload.services_other || "",
+          monthly_budget: payload.budget || "",
+          discovery_source: payload.discovery || "",
+          submitted_at_iso: new Date().toISOString()
+        }
+      }
+    }
+  };
+
+  return postJsonWithRetry(url, body);
 }
 
-/**
- * FIXED subscription payload:
- * /client/subscriptions expects data.attributes.profile.data.attributes.email
- * and subscriptions nested under that profile.
- */
 async function klaviyoCreateSubscription(email){
-  const res = await fetch(
-    `https://a.klaviyo.com/client/subscriptions?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`,
-    {
-      method: "POST",
-      headers: {
-        "Accept": "application/vnd.api+json",
-        "Content-Type": "application/vnd.api+json",
-        "revision": KLAVIYO_REVISION
-      },
-      body: JSON.stringify({
-        data: {
-          type: "subscription",
-          attributes: {
-            profile: {
-              data: {
-                type: "profile",
-                attributes: {
-                  email,
-                  subscriptions: {
-                    email: {
-                      marketing: { consent: "SUBSCRIBED" }
-                    }
-                  }
+  const url = `https://a.klaviyo.com/client/subscriptions?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`;
+
+  // Correct shape for client subscriptions (profile nested)
+  const body = {
+    data: {
+      type: "subscription",
+      attributes: {
+        profile: {
+          data: {
+            type: "profile",
+            attributes: {
+              email: email,
+              subscriptions: {
+                email: {
+                  marketing: { consent: "SUBSCRIBED" }
                 }
               }
             }
           }
         }
-      })
+      }
     }
-  );
+  };
 
-  if(!res.ok){
-    throw new Error(await readErrorText(res));
-  }
-  return res.json();
+  return postJsonWithRetry(url, body);
 }
 
 document.getElementById("brandForm").addEventListener("submit", async (e) => {
@@ -646,7 +664,7 @@ document.getElementById("brandForm").addEventListener("submit", async (e) => {
 
   const email = (base.email || "").toString().trim();
 
-  // Keep your original intent: allow submit with no email, but no Klaviyo call.
+  // Keep your original behavior: no email => no Klaviyo call.
   if(!email){
     setStatus("If you include your email, we’ll send through next steps 💌");
     submitBtn.disabled = false;
@@ -680,10 +698,8 @@ document.getElementById("brandForm").addEventListener("submit", async (e) => {
 
   }catch(err){
     console.error(err);
-
-    // Show a short diagnostic snippet (helps you fix instantly if Klaviyo rejects something)
     const msg = (err && err.message) ? String(err.message) : "Please try again or email us.";
-    setStatus("Something went wrong. " + msg.slice(0, 140));
+    setStatus("Something went wrong. " + msg.slice(0, 160));
   }finally{
     submitBtn.disabled = false;
   }
