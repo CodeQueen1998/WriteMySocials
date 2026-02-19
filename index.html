@@ -258,6 +258,18 @@
     }
     .cta-button:hover{background:#f7f7f7}
 
+    /* NEW: mini diagnostic block (uses your same CTA style, just a light border) */
+    .mini-diagnostic{
+      max-width:900px;
+      margin:0 auto;
+      padding:18px 20px;
+      text-align:center;
+      border:1px solid rgba(0,0,0,.12);
+      background:rgba(255,255,255,.75);
+    }
+    .mini-diagnostic h3{ margin:0 0 .35rem; }
+    .mini-diagnostic p{ margin:0 0 .9rem; }
+
     /* === Bottom image block — flush left & bottom, no crop === */
     .corner-showcase{
       position:relative;
@@ -306,15 +318,19 @@
         --gap: 2.2cm; /* slightly tighter vertical rhythm on mobile */
       }
 
+      .mini-diagnostic{
+        padding:16px 16px;
+      }
+
       /* Hero spacing on phones */
       .hero{
-        margin-top: 90px;            /* less dead space on small screens */
-        grid-template-columns: 1fr;  /* same single-column layout, just explicit */
+        margin-top: 90px;
+        grid-template-columns: 1fr;
       }
 
       .logo-wrap{
         order: 1;
-        padding-bottom: 2.4cm;       /* slightly less than before */
+        padding-bottom: 2.4cm;
       }
 
       .circle-wrap{
@@ -323,27 +339,26 @@
         top: 0;
         justify-self: start;
         margin-top: 10px;
-        transform: translateX(-4vw); /* a bit less offset so it doesn’t hang off the edge */
+        transform: translateX(-4vw);
       }
 
       .circle-wrap svg{
-        width: 110px;                /* a touch smaller so it doesn’t crash into the logo */
+        width: 110px;
       }
 
       .logo{
-        width: min(86vw, 520px);     /* overall slightly reduced for narrow screens */
+        width: min(86vw, 520px);
       }
 
       .signature{
         position: absolute;
         top: calc(100% + 10px);
         right: 0;
-        width: min(46vw, 190px);     /* a bit more presence but still tucked in */
+        width: min(46vw, 190px);
         opacity: .96;
         mix-blend-mode: multiply;
       }
 
-      /* Intro copy sizing */
       .words{
         padding: 0 18px;
       }
@@ -357,7 +372,6 @@
         font-size: clamp(0.95rem, 3.2vw, 1.1rem);
       }
 
-      /* Reviews */
       .reviews{
         padding: 0 16px;
       }
@@ -371,7 +385,6 @@
         line-height: 1.7;
       }
 
-      /* Work samples marquee */
       .marquee-track{
         gap: 3vw;
         animation-duration: 12s !important;
@@ -383,7 +396,6 @@
         box-shadow: 0 6px 16px rgba(0,0,0,.08);
       }
 
-      /* Mission & process */
       .mission{
         margin-top: calc(var(--gap) - 1.4cm);
         padding: 0 18px;
@@ -405,7 +417,6 @@
         font-size: clamp(0.9rem, 2.9vw, 1rem);
       }
 
-      /* Process visual */
       .process-image{
         margin-top: 1.4cm !important;
         margin-bottom: 1.4cm !important;
@@ -415,7 +426,6 @@
         max-width: 340px;
       }
 
-      /* CTA */
       .cta-section{
         margin-top: 1.6cm;
         margin-bottom: 2cm;
@@ -428,7 +438,6 @@
         font-size: 0.95rem;
       }
 
-      /* Bottom image */
       .corner-showcase{
         width: 100vw;
       }
@@ -438,18 +447,15 @@
         object-fit: contain;
       }
 
-      /* Bottom tagline */
       .bottom-tagline{
         font-size: 0.8rem;
         padding: 0.35rem 0;
       }
 
-      /* Keep content clear of fixed bottom strip */
       .after-hero{
         padding-bottom: 2.4rem;
       }
 
-      /* Header controls on phones */
       .menu-btn{
         top: 14px;
         left: 14px;
@@ -461,7 +467,6 @@
       }
     }
 
-    /* Ultra-narrow phones */
     @media (max-width: 380px){
       .marquee-track img{
         height: 24vh;
@@ -480,12 +485,11 @@
       }
     }
 
-    /* (Paid CTA styles left in CSS but element removed) */
-    .cta-fab{ display:none } /* hidden (you removed the paid CTA) */
+    .cta-fab{ display:none }
     .cta-modal{ display:none }
   </style>
 
-  <!-- Klaviyo onsite script (fixed placement + correct URL) -->
+  <!-- Klaviyo onsite script (keep ONE copy only) -->
   <script async type="text/javascript"
     src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RYm8PD"></script>
 
@@ -529,6 +533,19 @@
   </header>
 
   <div class="after-hero">
+
+    <!-- NEW: Mini Diagnostic CTA (added, nothing removed) -->
+    <section class="mini-diagnostic reveal" aria-label="Start with diagnostic">
+      <h3>Start With The 360° Brand Diagnostic™</h3>
+      <p>
+        A deep forensic audit + roadmap that shows what’s weakening your positioning,
+        limiting growth, and costing revenue.
+      </p>
+      <a class="cta-button" href="https://writemysocials.com.au/360°%20Brand%20Diagnostic™.html" target="_blank" rel="noopener">
+        Book your 360° Brand Diagnostic™
+      </a>
+    </section>
+
     <section class="words" aria-label="intro quote">
       <div class="l2 reveal">We turn social media into a growth channel.</div>
       <div class="l3 reveal">Built on strategy. Powered by execution.</div>
@@ -561,7 +578,6 @@
           <span class="bullet">•</span>
         </span>
 
-        <!-- Duplicate for seamless loop -->
         <span>
           Beauty<span class="bullet">•</span>
           Fashion<span class="bullet">•</span>
@@ -573,7 +589,6 @@
       </div>
     </section>
 
-    <!-- RESTORED: work samples marquee -->
     <div class="marquee-wrap reveal" aria-label="work samples">
       <div class="marquee-track">
         <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/main/Images/work%20sample1.jpg" alt="Work sample 1">
@@ -583,7 +598,6 @@
       </div>
     </div>
 
-    <!-- Process -->
     <section class="mission reveal" aria-label="our approach">
       <div class="process" role="tablist" aria-label="Our process">
         <button class="step" role="tab" aria-selected="false" data-note="Audit — a measured review of what works, what doesn’t, and why.">Audit</button>
@@ -608,7 +622,7 @@
       >
     </div>
     
-    <!-- CTA (above bottom image) -->
+    <!-- ORIGINAL long CTA stays (nothing removed) -->
     <section class="cta-section reveal" aria-label="Free call">
       <h3>We Don't Work With Brands Until They've Done The 360° Brand Diagnostic™</h3>
       <p>Like how realtors don't rent or sell homes without an inspection, we don't work with brands until you've had a "360° Brand Diagnostic™". 
@@ -618,13 +632,11 @@
       <a class="cta-button" href="https://writemysocials.com.au/360°%20Brand%20Diagnostic™.html" target="_blank" rel="noopener">Book your 360° Brand Diagnostic™ to start</a>
     </section>
 
-    <!-- Bottom image (flush left & bottom) -->
     <div class="corner-showcase reveal">
       <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/A8D19E3A-E2FF-4033-91A1-572D64932578.JPG" alt="Project showcase">
     </div>
   </div>
 
-  <!-- fixed marquee bar at very bottom of screen -->
   <div class="bottom-tagline" aria-hidden="true">
     <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
   </div>
@@ -671,7 +683,7 @@
       };
     })();
 
-    /* Scroll reveal (kickstart so page doesn't feel "stuck") */
+    /* Scroll reveal */
     (function(){
       const els = document.querySelectorAll('.reveal');
       const io = new IntersectionObserver((entries)=>{
@@ -722,7 +734,7 @@
       io2.observe(marqueeWrap);
     })();
 
-    /* Process tabs: click to swap sentence */
+    /* Process tabs */
     (function(){
       const container = document.querySelector('.process');
       const steps = Array.from(container.querySelectorAll('.step'));
@@ -767,7 +779,7 @@
           ctx.putImageData(id, 0, 0);
           img.style.mixBlendMode = 'normal';
           img.src = c.toDataURL('image/png');
-        }catch(e){ /* CORS fallback */ }
+        }catch(e){ }
       }
       img.crossOrigin = 'anonymous';
       if (img.complete) removeWhite(); else img.addEventListener('load', removeWhite);
@@ -775,5 +787,6 @@
   </script>
 </body>
 </html>
+
 
 
