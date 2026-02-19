@@ -14,7 +14,6 @@
   --border: rgba(0,0,0,.14);
   --soft: rgba(0,0,0,.06);
   --muted:#333;
-  --danger:#b00020;
 }
 
 *{ box-sizing:border-box; margin:0; padding:0; }
@@ -177,8 +176,6 @@ label{
   color:#111;
 }
 
-.req{ color:var(--danger); margin-left:4px; }
-
 input, textarea, select{
   width:100%;
   border:1px solid var(--border);
@@ -204,7 +201,7 @@ textarea{ min-height:140px; resize:vertical; }
   margin-top:10px;
 }
 
-/* Choice blocks (checkbox / radio) */
+/* Choice blocks */
 .choice-block{
   border:1px solid var(--soft);
   border-radius:14px;
@@ -279,7 +276,6 @@ textarea{ min-height:140px; resize:vertical; }
   align-items:flex-start;
   margin-top:14px;
 }
-
 .checkrow input{ width:auto; margin-top:5px; }
 
 /* Actions */
@@ -325,7 +321,6 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
   min-height:1.2em;
 }
 
-/* Tiny sparkle divider (optional vibe) */
 .spark{
   display:inline-block;
   margin:0 8px;
@@ -386,48 +381,50 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
   </p>
 </section>
 
-<!-- ===== APPLICATION FORM (Klaviyo) ===== -->
 <section class="form-wrap" id="apply">
-  <h2>Let’s map out what you need <span class="spark">✶</span></h2>
+  <h2>Sweet — tell me a little about you <span class="spark">✶</span></h2>
   <p class="sub">
-    Share a few details below and we’ll point you toward the best next step for your brand.
+    Totally relaxed. Fill what you want, skip what you don’t — it just helps us understand your brand.
   </p>
 
+  <!-- novalidate = no browser “pattern” errors -->
   <form class="form" id="brandForm" novalidate>
     <div class="grid">
 
       <div>
-        <label>First Name<span class="req">*</span></label>
-        <input name="first_name" required autocomplete="given-name" />
+        <label>First Name</label>
+        <input name="first_name" autocomplete="given-name" />
       </div>
 
       <div>
-        <label>Last Name<span class="req">*</span></label>
-        <input name="last_name" required autocomplete="family-name" />
+        <label>Last Name</label>
+        <input name="last_name" autocomplete="family-name" />
       </div>
 
       <div class="full">
-        <label>Email<span class="req">*</span></label>
-        <input type="email" name="email" required autocomplete="email" placeholder="you@brand.com"/>
+        <label>Email</label>
+        <!-- text to avoid browser pattern issues -->
+        <input type="text" name="email" autocomplete="email" placeholder="you@brand.com"/>
       </div>
 
       <div class="full">
         <label>Phone (optional)</label>
+        <!-- text to avoid pattern issues -->
         <input type="text" name="phone" autocomplete="tel" placeholder="+61…" />
       </div>
 
       <div class="full">
-        <label>Business Name<span class="req">*</span></label>
-        <input name="business_name" required />
+        <label>Business Name</label>
+        <input name="business_name" />
       </div>
 
       <div class="full">
-        <label>What does your business do?<span class="req">*</span></label>
-        <textarea name="business_desc" required placeholder="Beauty, fashion, wellness… what do you sell / offer?"></textarea>
+        <label>What does your business do?</label>
+        <textarea name="business_desc" placeholder="Beauty, fashion, wellness… what do you sell / offer?"></textarea>
       </div>
 
       <div>
-        <label>Website (if you have one)</label>
+        <label>Website (optional)</label>
         <input type="text" name="website" placeholder="https://..." />
       </div>
 
@@ -440,7 +437,7 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
         <div class="choice-block">
           <div class="choice-title">
             <strong>What are you interested in?</strong>
-            <span>(pick all that apply)</span>
+            <span>(optional)</span>
           </div>
 
           <div class="choice-grid" role="group" aria-label="Services Interested">
@@ -452,15 +449,15 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
             <label class="choice"><input type="checkbox" name="services" value="Add-Ons / Support"> Add-Ons / Support</label>
           </div>
 
-          <p class="inline-note">If it’s not listed, pop it below 👇</p>
-          <textarea name="services_other" placeholder="Anything else you want support with? (optional)"></textarea>
+          <p class="inline-note">Anything else? (optional)</p>
+          <textarea name="services_other" placeholder="Tell us what you’re dreaming up…"></textarea>
         </div>
       </div>
 
       <div class="full">
-        <label>What’s your monthly budget for support?<span class="req">*</span></label>
-        <select name="budget" required>
-          <option value="" selected disabled>Select one</option>
+        <label>Monthly budget (optional)</label>
+        <select name="budget">
+          <option value="" selected>Select one (optional)</option>
           <option value="Under $1k">Under $1k</option>
           <option value="$1k–$3k">$1k–$3k</option>
           <option value="$3k–$6k">$3k–$6k</option>
@@ -474,11 +471,11 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
         <div class="choice-block">
           <div class="choice-title">
             <strong>How did you find Write My Socials?</strong>
-            <span>(one is fine)</span>
+            <span>(optional)</span>
           </div>
 
           <div class="choice-grid" role="radiogroup" aria-label="Discovery Source">
-            <label class="choice"><input type="radio" name="discovery" value="Instagram" required> Instagram</label>
+            <label class="choice"><input type="radio" name="discovery" value="Instagram"> Instagram</label>
             <label class="choice"><input type="radio" name="discovery" value="TikTok"> TikTok</label>
             <label class="choice"><input type="radio" name="discovery" value="Google"> Google</label>
             <label class="choice"><input type="radio" name="discovery" value="Referral"> Referral</label>
@@ -490,7 +487,6 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
 
     </div>
 
-    <!-- Optional marketing consent checkbox -->
     <div class="checkrow">
       <input type="checkbox" id="marketingConsent" />
       <label for="marketingConsent" style="font-family:'Poppins',sans-serif; font-size:.92rem; color:#111;">
@@ -499,7 +495,7 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
     </div>
 
     <p class="smallnote">
-      We’ll review your application and reply with next steps if it’s aligned.
+      If you include your email, we can reply with next steps 💌
     </p>
 
     <div class="actions">
@@ -519,10 +515,10 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
 
 <script>
 /* ===== MENU TOGGLE ===== */
-const btn=document.querySelector('.menu-btn');
-btn.addEventListener('click',()=>{ document.body.classList.toggle('menu-open'); });
+const btn = document.querySelector('.menu-btn');
+btn.addEventListener('click', ()=>{ document.body.classList.toggle('menu-open'); });
 
-/* ===== KLAVIYO FORM SUBMIT ===== */
+/* ===== KLAVIYO SUBMIT ===== */
 const KLAVIYO_COMPANY_ID = "RYm8PD";
 const statusEl = document.getElementById("status");
 const submitBtn = document.getElementById("submitBtn");
@@ -541,38 +537,38 @@ function getRadioValue(name){
 async function klaviyoCreateOrUpdateProfile(payload){
   const attributes = {
     email: payload.email,
-    first_name: payload.first_name,
-    last_name: payload.last_name,
+    first_name: payload.first_name || "",
+    last_name: payload.last_name || "",
     properties: {
       lead_type: "360 Brand Diagnostic Application",
-      business_name: payload.business_name,
-      business_desc: payload.business_desc,
+      business_name: payload.business_name || "",
+      business_desc: payload.business_desc || "",
       website: payload.website || "",
       social_handle: payload.social_handle || "",
-      services_interested: payload.services_interested,
+      services_interested: payload.services_interested || [],
       services_other: payload.services_other || "",
-      monthly_budget: payload.budget,
-      discovery_source: payload.discovery,
+      monthly_budget: payload.budget || "",
+      discovery_source: payload.discovery || "",
       submitted_at_iso: new Date().toISOString()
     }
   };
 
-  // only include phone if provided (keeps profiles clean)
   if(payload.phone && payload.phone.trim().length){
     attributes.phone_number = payload.phone.trim();
   }
 
-  const res = await fetch(`https://a.klaviyo.com/client/profiles?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`, {
-    method: "POST",
-    headers: {
-      "Accept": "application/vnd.api+json",
-      "Content-Type": "application/vnd.api+json",
-      "revision": "2025-10-15"
-    },
-    body: JSON.stringify({
-      data: { type: "profile", attributes }
-    })
-  });
+  const res = await fetch(
+    `https://a.klaviyo.com/client/profiles?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`,
+    {
+      method: "POST",
+      headers: {
+        "Accept": "application/vnd.api+json",
+        "Content-Type": "application/vnd.api+json",
+        "revision": "2025-10-15"
+      },
+      body: JSON.stringify({ data: { type: "profile", attributes } })
+    }
+  );
 
   if(!res.ok){
     const text = await res.text();
@@ -582,23 +578,26 @@ async function klaviyoCreateOrUpdateProfile(payload){
 }
 
 async function klaviyoCreateSubscription(email){
-  const res = await fetch(`https://a.klaviyo.com/client/subscriptions?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`, {
-    method: "POST",
-    headers: {
-      "Accept": "application/vnd.api+json",
-      "Content-Type": "application/vnd.api+json",
-      "revision": "2025-10-15"
-    },
-    body: JSON.stringify({
-      data: {
-        type: "subscription",
-        attributes: {
-          email,
-          subscriptions: { email: { marketing: { consent: "SUBSCRIBED" } } }
+  const res = await fetch(
+    `https://a.klaviyo.com/client/subscriptions?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`,
+    {
+      method: "POST",
+      headers: {
+        "Accept": "application/vnd.api+json",
+        "Content-Type": "application/vnd.api+json",
+        "revision": "2025-10-15"
+      },
+      body: JSON.stringify({
+        data: {
+          type: "subscription",
+          attributes: {
+            email,
+            subscriptions: { email: { marketing: { consent: "SUBSCRIBED" } } }
+          }
         }
-      }
-    })
-  });
+      })
+    }
+  );
 
   if(!res.ok){
     const text = await res.text();
@@ -610,55 +609,46 @@ async function klaviyoCreateSubscription(email){
 document.getElementById("brandForm").addEventListener("submit", async (e)=>{
   e.preventDefault();
 
-  // Friendly validation (no browser pattern errors)
-  const email = (document.querySelector('input[name="email"]').value || "").trim();
-  if(!email || !email.includes("@")){
-    setStatus("Please enter a real email address 💌");
-    return;
-  }
-
-  const services = getCheckedValues("services");
-  if(services.length === 0){
-    setStatus("Please select at least one service ✨");
-    return;
-  }
-
-  const discovery = getRadioValue("discovery");
-  if(!discovery){
-    setStatus("Quick one — how did you find us? 🫶");
-    return;
-  }
+  submitBtn.disabled = true;
+  setStatus("Sending…");
 
   const fd = new FormData(e.target);
   const base = Object.fromEntries(fd.entries());
+
+  const services = getCheckedValues("services");
+  const discovery = getRadioValue("discovery");
   const wantsMarketing = document.getElementById("marketingConsent").checked;
 
   const payload = {
-    first_name: base.first_name,
-    last_name: base.last_name,
-    email: base.email,
-    phone: base.phone,
-    business_name: base.business_name,
-    business_desc: base.business_desc,
-    website: base.website,
-    social_handle: base.social_handle,
+    first_name: (base.first_name || "").trim(),
+    last_name: (base.last_name || "").trim(),
+    email: (base.email || "").trim(),
+    phone: (base.phone || "").trim(),
+    business_name: (base.business_name || "").trim(),
+    business_desc: (base.business_desc || "").trim(),
+    website: (base.website || "").trim(),
+    social_handle: (base.social_handle || "").trim(),
     services_interested: services,
-    services_other: base.services_other,
-    budget: base.budget,
+    services_other: (base.services_other || "").trim(),
+    budget: (base.budget || "").trim(),
     discovery
   };
 
-  submitBtn.disabled = true;
-  setStatus("Submitting…");
-
   try{
+    // If they don’t provide an email, we can’t create a Klaviyo profile.
+    if(!payload.email){
+      setStatus("All saved on your end ✨ Add an email if you want us to reply with next steps.");
+      submitBtn.disabled = false;
+      return;
+    }
+
     await klaviyoCreateOrUpdateProfile(payload);
 
     if(wantsMarketing){
       await klaviyoCreateSubscription(payload.email);
     }
 
-    setStatus("Submitted ✅ We got you — keep an eye on your inbox.");
+    setStatus("Sent ✅ We’ve got it — keep an eye on your inbox.");
     e.target.reset();
   }catch(err){
     console.error(err);
