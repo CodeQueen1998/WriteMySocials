@@ -3,678 +3,713 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Soulful brands, built with strategy.</title>
+  <title>Services | Write My Socials</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
   <style>
     :root{
-      --ink:#000;
-      --paper:#fff;
-      --muted: rgba(0,0,0,.12);
-      --muted2: rgba(0,0,0,.08);
+      --ink:#0a0a0a;
+      --paper:#ffffff;
+      --soft: rgba(10,10,10,.10);
+      --soft2: rgba(10,10,10,.06);
+      --muted: rgba(10,10,10,.70);
       --accent:#ff1493;
 
-      /* --- marquee premium tones (NEW) --- */
-      --marquee-ink: rgba(0,0,0,.72);
-      --marquee-border: rgba(0,0,0,.10);
-      --marquee-chip: rgba(0,0,0,.035);
+      --max:1120px;
+      --pad:22px;
 
-      --max:1100px;
-      --pad:20px;
-
-      --header-h:64px; /* keeps hero snug under fixed header */
+      --nav-h:66px;
       --radius:18px;
     }
 
     html,body{
       margin:0;padding:0;
-      background:var(--paper);color:var(--ink);
+      background:var(--paper);
+      color:var(--ink);
       font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
       overflow-x:hidden;
     }
 
-    /* iPhone notch safe-area support */
-    body{
-      padding-top: env(safe-area-inset-top);
-    }
-
-    /* ======= FIXED MENU + SOCIAL ICONS (FROM ABOUT PAGE) ======= */
-    .menu-btn{
+    /* ===== TOP BAR (minimal + Vogue) ===== */
+    .topbar{
       position:fixed;
-      top: calc(env(safe-area-inset-top) + 18px);
-      left:20px;
-      z-index:3100;
-      background:#fff;
-      border:1px solid #000;
-      color:#000;
-      padding:6px 12px;
-      border-radius:999px;
-      font-size:.85rem;
-      letter-spacing:.1em;
-      cursor:pointer;
-      transition:.3s;
-      text-transform:uppercase;
+      top:0; left:0; right:0;
+      height:var(--nav-h);
+      z-index:2000;
+      background: rgba(255,255,255,.86);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--soft2);
     }
-    .menu-btn:hover{background:#000;color:#fff}
-
-    .social-icons{
-      position:fixed;
-      top: calc(env(safe-area-inset-top) + 18px);
-      right:25px;
-      z-index:3100;
+    .topbar-inner{
+      max-width:var(--max);
+      height:100%;
+      margin:0 auto;
+      padding:0 var(--pad);
       display:flex;
+      align-items:center;
+      justify-content:space-between;
       gap:18px;
     }
-    .social-icons a{color:#000;font-size:1.2rem;transition:color .3s}
-    .social-icons a:hover{color:#ff1493}
 
-    .menu-bar{
-      position:fixed;top:0;left:0;right:0;z-index:3000;
-      background:#fff;border-bottom:1px solid rgba(0,0,0,.15);
-      transform:translateY(-100%);transition:transform .35s ease;
-    }
-    body.menu-open .menu-bar{transform:translateY(0)}
-    .menu-inner{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;justify-content:center}
-
-    .menu-links{
-      width: min(820px, 100%);
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr 1.4fr;
-      gap:10px;
-    }
-    .menu-links a{
-      text-decoration:none;
-      color:#000;
-      border:1px solid rgba(0,0,0,.12);
-      border-radius:999px;
-      padding:10px 12px;
-      text-align:center;
-      font-size:.95rem;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      transition:.25s;
-      background:rgba(255,255,255,.6);
-    }
-    .menu-links a:hover{
-      border-color:#000;
-      background:#000;
-      color:#fff;
-    }
-
-    @media(max-width:600px){
-      .menu-links{ grid-template-columns: 1fr; }
-      .menu-links a{ font-size:.9rem; }
-    }
-    /* ======= /MENU ======= */
-
-    /* ===== TOP HERO IMAGE (FULL IMAGE SHOWN, NO CROPPING) ===== */
-    .top-hero{
-      width:100%;
-      height: clamp(260px, 70svh, 820px);
+    .nav-left{
       display:flex;
-      justify-content:center;
-      align-items:flex-start;
-      overflow:hidden;
-      background:var(--paper);
-
-      /* keep hero snug under fixed menu bar */
-      margin-top: 64px;
+      align-items:center;
+      gap:14px;
+      min-width: 220px;
     }
-    @supports (height: 1dvh){
-      .top-hero{ height: clamp(260px, 70dvh, 820px); }
-    }
-    .top-hero img{
-      max-width:100%;
-      max-height:100%;
-      width:auto;
-      height:auto;
-      display:block;
-    }
-
-    /* ===== PAGE LAYOUT ===== */
-    main{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:70px var(--pad) 80px;
-    }
-
-    .hero-title{
-      text-align:center;
-      font-size:clamp(2rem,4.2vw,2.6rem);
-      font-family:'Bodoni Moda',serif;
-      font-weight:700;
-      letter-spacing:.08em;
+    .brandmark{
+      font-family:"Bodoni Moda", serif;
+      letter-spacing:.18em;
       text-transform:uppercase;
-      margin:0 0 6px;
-    }
-    .hero-sub{
-      text-align:center;
-      font-size:clamp(.95rem,2vw,1.05rem);
-      color:#222;
-      opacity:.9;
-      font-style:italic;
-      margin:0 0 26px;
-    }
-    .hero-divider{
-      max-width:760px;
-      margin:0 auto 32px;
-      border:none;
-      border-top:1px solid var(--ink);
-      opacity:.12;
+      font-size:.95rem;
+      font-weight:600;
+      white-space:nowrap;
     }
 
-    /* ===== EDITORIAL MARQUEE (UPDATED ONLY) ===== */
-    .editorial-marquee{
-      border-top:1px solid var(--marquee-border);
-      border-bottom:1px solid var(--marquee-border);
-      margin: 8px auto 44px;
-      padding: 12px 0;
-      overflow:hidden;
-      background:var(--paper);
+    .nav-center{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      flex:1;
     }
-    .marquee-track{
+    .nav-center a{
+      text-decoration:none;
+      color:var(--ink);
+      font-size:.78rem;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      padding:10px 10px;
+      border-radius:999px;
+      transition:.25s ease;
+      opacity:.88;
+    }
+    .nav-center a:hover{
+      background: rgba(10,10,10,.04);
+      opacity:1;
+    }
+    .nav-center a[aria-current="page"]{
+      background: rgba(10,10,10,.06);
+      opacity:1;
+    }
+
+    .nav-right{
       display:flex;
       align-items:center;
       gap:16px;
-      width:max-content;
-      will-change: transform;
-      animation: marquee 32s linear infinite; /* slower = more luxe */
+      min-width: 220px;
+      justify-content:flex-end;
     }
-    .editorial-marquee:hover .marquee-track{ animation-play-state: paused; }
+    .nav-right a{
+      color:var(--ink);
+      font-size:1.05rem;
+      opacity:.85;
+      transition:.25s ease;
+    }
+    .nav-right a:hover{ color:var(--accent); opacity:1; }
 
+    @media (max-width: 780px){
+      .nav-left{ min-width:auto; }
+      .nav-right{ min-width:auto; }
+      .brandmark{ display:none; }
+      .nav-center{ justify-content:flex-start; overflow:auto; scrollbar-width:none; }
+      .nav-center::-webkit-scrollbar{ display:none; }
+    }
+
+    /* ===== PAGE ===== */
+    main{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: calc(var(--nav-h) + 56px) var(--pad) 88px;
+    }
+
+    .kicker{
+      text-align:center;
+      font-size:.78rem;
+      letter-spacing:.26em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin:0 0 10px;
+    }
+
+    h1{
+      margin:0;
+      text-align:center;
+      font-family:"Bodoni Moda", serif;
+      font-weight:600;
+      font-size:clamp(2.2rem, 4.4vw, 3.2rem);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      line-height:1.12;
+    }
+
+    .sub{
+      text-align:center;
+      margin:14px auto 0;
+      max-width: 760px;
+      color: rgba(10,10,10,.78);
+      font-size:clamp(.98rem, 1.8vw, 1.05rem);
+      font-style:italic;
+      line-height:1.65;
+    }
+
+    /* NEW: organic + intentional note above marquee */
+    .note{
+      text-align:center;
+      margin: 22px auto 0;
+      max-width: 860px;
+      color: rgba(10,10,10,.74);
+      font-size: .95rem;
+      line-height: 1.8;
+    }
+    .note strong{
+      font-weight:600;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-size:.78rem;
+      color: rgba(10,10,10,.70);
+      display:block;
+      margin-bottom: 8px;
+    }
+
+    .rule{
+      border:none;
+      border-top:1px solid var(--soft2);
+      margin:32px auto 28px;
+      max-width: 860px;
+    }
+
+    /* ===== MARQUEE (editorial, not chunky) ===== */
+    .marquee{
+      border-top:1px solid var(--soft2);
+      border-bottom:1px solid var(--soft2);
+      padding:16px 0;
+      margin: 14px auto 46px;
+      overflow:hidden;
+    }
+    .track{
+      display:flex;
+      gap:18px;
+      width:max-content;
+      align-items:center;
+      will-change: transform;
+      animation: marquee 34s linear infinite;
+    }
+    .marquee:hover .track{ animation-play-state: paused; }
     @keyframes marquee{
       0%{ transform: translateX(0); }
       100%{ transform: translateX(-50%); }
     }
-
-    .mq-item{
+    .mq{
       display:flex;
       align-items:center;
       gap:14px;
+      padding-right: 6px;
       flex: 0 0 auto;
-      padding-right: 10px;
     }
-
     .mq-img{
-      width: clamp(170px, 22vw, 260px);
-      height: clamp(110px, 16vw, 170px);
-      border-radius: 16px;
-      border: 1px solid var(--marquee-border);
+      width: clamp(180px, 22vw, 290px);
+      height: clamp(118px, 14vw, 180px);
+      border-radius: 14px;
       overflow:hidden;
-      background: var(--marquee-chip);
-      flex: 0 0 auto;
-
-      /* center + allow full image without cropping */
+      background: rgba(10,10,10,.03);
+      border: 1px solid rgba(10,10,10,.07);
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:10px;
+      padding: 10px;
       box-sizing:border-box;
     }
     .mq-img img{
       width:100%;
       height:100%;
-      object-fit: contain;      /* shows full image */
-      object-position: center;
+      object-fit: contain;
+      object-position:center;
       display:block;
       filter: saturate(1.02) contrast(1.02);
     }
-
-    .mq-text{
-      /* different from title: premium sans, smaller */
-      font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
-      font-weight:600;
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      line-height: 1;
-      white-space: nowrap;
-      font-size: clamp(.9rem, 1.5vw, 1.15rem);
-      color: var(--marquee-ink);
-    }
     .mq-dot{
-      width:5px;height:5px;border-radius:999px;background:rgba(0,0,0,.22);
-      flex:0 0 auto;
+      width:4px;height:4px;border-radius:999px;
+      background: rgba(10,10,10,.25);
     }
-
-    /* Mobile: keep it clean + not chunky */
-    @media (max-width: 600px){
-      .editorial-marquee{ margin: 2px auto 34px; padding: 10px 0; }
-      .marquee-track{ gap: 12px; animation-duration: 26s; }
-      .mq-item{ gap: 12px; }
+    .mq-text{
+      font-size:.76rem;
+      letter-spacing:.26em;
+      text-transform:uppercase;
+      color: rgba(10,10,10,.72);
+      white-space:nowrap;
+    }
+    @media (max-width:600px){
+      .track{ animation-duration: 26s; gap:14px; }
       .mq-img{
-        width: 150px;
-        height: 98px;
-        border-radius: 14px;
+        width: 160px; height: 104px;
+        border-radius: 12px;
         padding:8px;
       }
-      .mq-text{ letter-spacing:.12em; font-size:.9rem; }
+      .mq-text{ letter-spacing:.22em; font-size:.74rem; }
+      .note{ font-size:.94rem; }
     }
-
-    /* Reduced motion accessibility */
     @media (prefers-reduced-motion: reduce){
-      .marquee-track{ animation:none; }
-      .editorial-marquee{ overflow:auto; }
-      .marquee-track{ width:auto; }
+      .track{ animation:none; }
+      .marquee{ overflow:auto; }
     }
 
-    /* ===== SECTION LAYOUT ===== */
-    .service-section{
+    /* ===== SERVICES (Vogue minimal, airy) ===== */
+    .section{
+      padding: 34px 0;
+      border-top: 1px solid var(--soft2);
       display:grid;
-      grid-template-columns:minmax(150px,220px) minmax(0,1fr);
-      gap:28px;
-      padding:26px 0 30px;
-      border-top:1px solid var(--ink);
+      grid-template-columns: 240px 1fr;
+      gap: 34px;
+      align-items:start;
     }
-    .service-section:first-of-type{ border-top:none; }
+    .section:first-of-type{ border-top:none; padding-top: 10px; }
+    .sec-meta{
+      position: sticky;
+      top: calc(var(--nav-h) + 18px);
+      align-self:start;
+    }
 
-    .section-header{ padding-top:4px; }
-    .section-number{
-      font-size:0.85rem;
-      letter-spacing:.18em;
+    .sec-num{
+      font-size:.72rem;
+      letter-spacing:.28em;
       text-transform:uppercase;
-      margin-bottom:4px;
+      color: rgba(10,10,10,.68);
+      margin:0 0 10px;
     }
-    .section-name{
-      margin:4px 0 0;
-      font-family:'Bodoni Moda',serif;
-      font-weight:700;
+    .sec-title{
+      font-family:"Bodoni Moda", serif;
+      font-weight:600;
+      letter-spacing:.06em;
+      text-transform:uppercase;
       font-size:1.35rem;
-      letter-spacing:.04em;
+      margin:0 0 10px;
+      line-height:1.2;
     }
-
-    /* ===== HORIZONTAL SCROLLER ===== */
-    .section-body{
-      display:flex;
-      gap:24px;
-      overflow-x:auto;
-      padding-bottom:10px;
-      scrollbar-width:thin;
-      scrollbar-color:var(--ink) transparent;
-      -webkit-overflow-scrolling: touch;
-    }
-    .section-body::-webkit-scrollbar{ height:2px; }
-    .section-body::-webkit-scrollbar-track{ background:transparent; }
-    .section-body::-webkit-scrollbar-thumb{
-      background:var(--ink);
-      border-radius:999px;
-    }
-
-    /* ===== SERVICE ITEMS ===== */
-    .service-item{
-      font-size:.9rem;
+    .sec-desc{
+      margin:0;
+      color: rgba(10,10,10,.72);
+      font-size:.95rem;
       line-height:1.7;
-      min-width:260px;
-      max-width:320px;
-      flex:0 0 auto;
-      padding-bottom:6px;
-      border-bottom:1px solid var(--muted2);
+      max-width: 320px;
     }
 
-    .service-title{
-      display:block;
+    .items{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .item{
+      border-top: 1px solid rgba(10,10,10,.08);
+      padding-top: 14px;
+    }
+    .item:first-child{ border-top: 0; padding-top: 0; }
+
+    .item button{
       width:100%;
       text-align:left;
       background:none;
       border:none;
       padding:0;
-      margin:0 0 .25rem;
       cursor:pointer;
-      font-weight:700;
-      font-size:1.2rem;
-    }
-    .service-title:focus{
-      outline:none;
-      text-decoration:underline;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 16px;
+      color: var(--ink);
     }
 
-    .service-list{
-      display:none;
-      margin-top:.2rem;
-      font-size:.85rem;
-      font-weight:400;
-    }
-    .service-item.open .service-list{ display:block; }
-    .service-list strong{ font-weight:600; }
-    .service-list ul{
-      margin:.2rem 0 .2rem 1.1rem;
-      padding-left:0;
-    }
-    .service-list li{ margin:.12rem 0; }
-
-    /* ===== ADD-ONS ===== */
-    .addon-item{
-      font-size:.9rem;
-      line-height:1.7;
-      min-width:260px;
-      max-width:320px;
-      flex:0 0 auto;
-      padding-bottom:6px;
-      border-bottom:1px solid var(--muted2);
-    }
-    .addon-item strong{
-      font-weight:700;
+    .item h3{
+      margin:0;
+      font-weight:600;
       font-size:1.05rem;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      line-height:1.35;
+    }
+
+    .toggle{
+      font-size:.78rem;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color: rgba(10,10,10,.55);
+      white-space:nowrap;
+      margin-top: 2px;
+    }
+
+    .details{
+      display:none;
+      margin-top: 10px;
+      color: rgba(10,10,10,.76);
+      font-size:.95rem;
+      line-height:1.75;
+      max-width: 860px;
+    }
+    .item.open .details{ display:block; }
+
+    .details strong{
+      font-weight:600;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-size:.82rem;
+      color: rgba(10,10,10,.72);
+      display:block;
+      margin: 12px 0 6px;
+    }
+    .details ul{
+      margin:0 0 0 18px;
+      padding:0;
+    }
+    .details li{ margin: 6px 0; }
+
+    .micro{
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(10,10,10,.06);
+      font-size: .92rem;
+      color: rgba(10,10,10,.74);
+    }
+
+    @media (max-width: 880px){
+      .section{
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      .sec-meta{
+        position: static;
+        max-width: 720px;
+      }
+      .sec-desc{ max-width: 680px; }
     }
 
     /* ===== CONTACT ===== */
     .contact{
-      margin-top:36px;
-      padding-top:26px;
-      border-top:1px solid var(--ink);
-      opacity:.9;
+      margin-top:56px;
+      padding-top:28px;
+      border-top:1px solid var(--soft2);
       text-align:center;
-      font-size:.95rem;
+      color: rgba(10,10,10,.78);
     }
+    .contact p{ margin: 8px 0; }
     .contact a{
       color:var(--ink);
       text-decoration:none;
-      border-bottom:1px solid var(--ink);
-      transition:.25s;
+      border-bottom:1px solid rgba(10,10,10,.35);
+      transition:.25s ease;
     }
-    .contact a:hover{color:var(--accent);border-color:var(--accent);}
-
-    /* ===== MOBILE TWEAKS ===== */
-    @media(max-width:768px){
-      main{ padding:50px var(--pad) 70px; }
-
-      .service-section{
-        grid-template-columns:1fr;
-        gap:16px;
-        padding:22px 0 24px;
-      }
-      .section-name{ font-size:1rem; letter-spacing:.04em; }
-      .section-body{ justify-content:flex-start; }
-      .service-item{
-        min-width:80%;
-        max-width:85%;
-        margin:0 auto;
-      }
-      .service-title{ font-size:1.1rem; }
-    }
-
-    @media(max-width:480px){
-      main{ padding:40px 16px 70px; }
-      .section-body{ gap:16px; }
+    .contact a:hover{
+      color:var(--accent);
+      border-color:var(--accent);
     }
   </style>
 </head>
 
 <body>
-  <!-- MENU + SOCIAL (FROM ABOUT PAGE) -->
-  <button class="menu-btn" aria-expanded="false" aria-controls="menuBar">MENU</button>
-  <div class="social-icons" aria-label="social links">
-    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn" rel="noopener">
-      <i class="fab fa-linkedin" aria-hidden="true"></i>
-    </a>
-    <a href="https://www.instagram.com/writemysocials" aria-label="Instagram" rel="noopener">
-      <i class="fab fa-instagram" aria-hidden="true"></i>
-    </a>
-    <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok" rel="noopener">
-      <i class="fab fa-tiktok" aria-hidden="true"></i>
-    </a>
-  </div>
+  <!-- TOP BAR -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+      <div class="nav-left">
+        <div class="brandmark">Write My Socials</div>
+      </div>
 
-  <!-- Drop-down menu (FROM ABOUT PAGE) -->
-  <nav class="menu-bar" id="menuBar" aria-label="Primary">
-    <div class="menu-inner">
-      <div class="menu-links">
+      <nav class="nav-center" aria-label="Primary">
         <a href="./" aria-label="Home">Home</a>
         <a href="./about.html" aria-label="About">About</a>
-        <a href="./services.html" aria-label="Services">Services</a>
-        <a href="./360%C2%B0%20Brand%20Diagnostic%E2%84%A2.html" aria-label="360° Brand Diagnostic™">360° Brand Diagnostic™</a>
+        <a href="./services.html" aria-current="page" aria-label="Services">Services</a>
+        <a href="./360%C2%B0%20Brand%20Diagnostic%E2%84%A2.html" aria-label="360° Brand Diagnostic™">Diagnostic</a>
+      </nav>
+
+      <div class="nav-right" aria-label="Social links">
+        <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn" rel="noopener">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.instagram.com/writemysocials" aria-label="Instagram" rel="noopener">
+          <i class="fab fa-instagram" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok" rel="noopener">
+          <i class="fab fa-tiktok" aria-hidden="true"></i>
+        </a>
       </div>
     </div>
-  </nav>
+  </header>
 
-  <!-- ===== SERVICES CONTENT ===== -->
   <main>
-    <h1 class="hero-title">Brand Strategy &amp; Content Studio</h1>
-    <p class="hero-sub">Branding, content, and copywriting for feminine-led brands in beauty, fashion, and health &amp; wellness.</p>
-    <hr class="hero-divider"/>
+    <p class="kicker">Services</p>
+    <h1>Brand Strategy &amp; Content Studio</h1>
+    <p class="sub">Brand positioning, content direction, and conversion-led messaging for feminine-led brands in beauty, fashion, and health &amp; wellness.</p>
 
-    <!-- ===== EDITORIAL MARQUEE (SERVICES - UPDATED) ===== -->
-    <section class="editorial-marquee" aria-label="Services marquee">
-      <div class="marquee-track" id="marqueeTrack">
+    <!-- NEW: Organic + intentional positioning statement ABOVE the marquee -->
+    <p class="note">
+      <strong>Organic by design</strong>
+      Everything we create is organic — strategically and intentionally planned to speak to your audience, build trust, and position your brand with clarity (not chaos).
+    </p>
+
+    <hr class="rule"/>
+
+    <!-- MARQUEE (UPDATED: includes your new image) -->
+    <section class="marquee" aria-label="Services marquee">
+      <div class="track" id="marqueeTrack">
         <!-- Set A -->
-        <div class="mq-item">
+        <div class="mq">
           <div class="mq-img">
             <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg"
                  alt="Marquee image 1" loading="lazy" decoding="async"/>
           </div>
           <span class="mq-dot" aria-hidden="true"></span>
-          <div class="mq-text">360° Brand Diagnostic™</div>
+          <div class="mq-text">The Diagnostic</div>
         </div>
 
-        <div class="mq-item">
+        <div class="mq">
           <div class="mq-img">
-            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg"
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/sodhj.jpg"
                  alt="Marquee image 2" loading="lazy" decoding="async"/>
           </div>
           <span class="mq-dot" aria-hidden="true"></span>
-          <div class="mq-text">Brand Authority Retainer</div>
+          <div class="mq-text">Organic Content</div>
         </div>
 
-        <div class="mq-item">
+        <div class="mq">
           <div class="mq-img">
-            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heyya.jpg"
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg"
                  alt="Marquee image 3" loading="lazy" decoding="async"/>
           </div>
           <span class="mq-dot" aria-hidden="true"></span>
-          <div class="mq-text">Campaigns &amp; Conversion Copy</div>
+          <div class="mq-text">The Retainer</div>
         </div>
 
-        <!-- Set B (duplicate for seamless loop) -->
-        <div class="mq-item" aria-hidden="true">
+        <div class="mq">
+          <div class="mq-img">
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heyya.jpg"
+                 alt="Marquee image 4" loading="lazy" decoding="async"/>
+          </div>
+          <span class="mq-dot" aria-hidden="true"></span>
+          <div class="mq-text">Launch &amp; Campaigns</div>
+        </div>
+
+        <!-- Set B (duplicate) -->
+        <div class="mq" aria-hidden="true">
           <div class="mq-img">
             <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg"
                  alt="" loading="lazy" decoding="async"/>
           </div>
           <span class="mq-dot" aria-hidden="true"></span>
-          <div class="mq-text">360° Brand Diagnostic™</div>
+          <div class="mq-text">The Diagnostic</div>
         </div>
 
-        <div class="mq-item" aria-hidden="true">
+        <div class="mq" aria-hidden="true">
+          <div class="mq-img">
+            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/sodhj.jpg"
+                 alt="" loading="lazy" decoding="async"/>
+          </div>
+          <span class="mq-dot" aria-hidden="true"></span>
+          <div class="mq-text">Organic Content</div>
+        </div>
+
+        <div class="mq" aria-hidden="true">
           <div class="mq-img">
             <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg"
                  alt="" loading="lazy" decoding="async"/>
           </div>
           <span class="mq-dot" aria-hidden="true"></span>
-          <div class="mq-text">Brand Authority Retainer</div>
+          <div class="mq-text">The Retainer</div>
         </div>
 
-        <div class="mq-item" aria-hidden="true">
+        <div class="mq" aria-hidden="true">
           <div class="mq-img">
             <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heyya.jpg"
                  alt="" loading="lazy" decoding="async"/>
           </div>
           <span class="mq-dot" aria-hidden="true"></span>
-          <div class="mq-text">Campaigns &amp; Conversion Copy</div>
+          <div class="mq-text">Launch &amp; Campaigns</div>
         </div>
       </div>
     </section>
 
-    <!-- 01. FOUNDATION -->
-    <section class="service-section" aria-label="Foundation services">
-      <div class="section-header">
-        <div class="section-number">01.</div>
-        <h2 class="section-name">Foundation</h2>
+    <!-- 01 THE DIAGNOSTIC -->
+    <section class="section" aria-label="The Diagnostic">
+      <div class="sec-meta">
+        <p class="sec-num">01</p>
+        <h2 class="sec-title">The Diagnostic</h2>
+        <p class="sec-desc">A clarity-first audit that reveals what’s weakening positioning, limiting growth, and costing revenue — with a roadmap to fix it.</p>
       </div>
 
-      <div class="section-body">
-        <article class="service-item">
-          <button class="service-title" type="button">360° Brand Diagnostic™ (Required Start)</button>
-          <div class="service-list">
-            <strong>Includes:</strong>
+      <div class="items">
+        <article class="item">
+          <button type="button" class="toggle-btn" aria-expanded="false">
+            <h3>360° Brand Diagnostic™ (Required Start)</h3>
+            <span class="toggle">View</span>
+          </button>
+          <div class="details">
+            <strong>Includes</strong>
             <ul>
-              <li>Positioning + messaging audit (what you stand for &amp; why you win)</li>
-              <li>Social presence + content effectiveness review</li>
-              <li>Audience perception &amp; brand clarity gaps</li>
+              <li>Positioning + messaging review (what you stand for, why you win)</li>
+              <li>Social + content effectiveness audit (what’s working, what isn’t, why)</li>
+              <li>Audience perception gaps + clarity fixes</li>
               <li>Competitive landscape + category opportunity</li>
-              <li>90-day roadmap: priorities, content direction, and growth levers</li>
+              <li>90-day strategic roadmap (priorities, content direction, growth levers)</li>
             </ul>
-            <strong>Outcome:</strong>
-            <ul>
-              <li>Immediate clarity on what to say, what to show, and what to stop doing.</li>
-            </ul>
-          </div>
-        </article>
 
-        <article class="service-item">
-          <button class="service-title" type="button">Brand Positioning &amp; Narrative</button>
-          <div class="service-list">
-            <strong>Includes:</strong>
+            <strong>Outcome</strong>
             <ul>
-              <li>Brand story framework + founder narrative</li>
-              <li>Value pillars, differentiators, and proof points</li>
-              <li>Voice &amp; tone guidelines (so everything sounds like you)</li>
-              <li>Signature messaging for website + socials</li>
+              <li>Clear direction on what to say, what to show, and what to stop doing.</li>
             </ul>
-            <strong>Outcome:</strong>
-            <ul>
-              <li>A brand that feels premium, clear, and instantly recognisable.</li>
-            </ul>
-          </div>
-        </article>
 
-        <article class="service-item">
-          <button class="service-title" type="button">Visual Direction &amp; Brand System</button>
-          <div class="service-list">
-            <strong>Includes:</strong>
-            <ul>
-              <li>Visual direction for content (styling, composition, aesthetic rules)</li>
-              <li>Brand system guidance: colour, typography, imagery direction</li>
-              <li>Creative references + content “lookbook” guidance</li>
-              <li>Consistency standards for a polished brand presence</li>
-            </ul>
-            <strong>Outcome:</strong>
-            <ul>
-              <li>A cohesive visual identity that looks expensive without trying.</li>
-            </ul>
+            <div class="micro">
+              *All retainers begin with the Diagnostic to ensure strategy leads execution.
+            </div>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- 02. ONGOING PARTNERSHIP -->
-    <section class="service-section service-section--content" aria-label="Ongoing partnership services">
-      <div class="section-header">
-        <div class="section-number">02.</div>
-        <h2 class="section-name">Ongoing Partnership</h2>
+    <!-- 02 THE RETAINER -->
+    <section class="section" aria-label="The Retainer">
+      <div class="sec-meta">
+        <p class="sec-num">02</p>
+        <h2 class="sec-title">The Retainer</h2>
+        <p class="sec-desc">Monthly execution guided by strategy — designed to build authority, deepen trust, and grow organically with intention.</p>
       </div>
 
-      <div class="section-body">
-        <article class="service-item">
-          <button class="service-title" type="button">Brand Authority Retainer</button>
-          <div class="service-list">
-            <strong>Includes:</strong>
+      <div class="items">
+        <article class="item">
+          <button type="button" class="toggle-btn" aria-expanded="false">
+            <h3>Brand Authority Retainer</h3>
+            <span class="toggle">View</span>
+          </button>
+          <div class="details">
+            <strong>Includes</strong>
             <ul>
-              <li>Monthly strategy + campaign direction</li>
-              <li>Content planning mapped to brand positioning</li>
-              <li>Publishing, optimisation, and performance insights</li>
-              <li>Copy + captions aligned to conversion and authority</li>
-              <li>Community support (engagement direction + brand voice)</li>
+              <li>Monthly strategy + content direction aligned to positioning</li>
+              <li>Publishing plan, optimisation, and performance review</li>
+              <li>Copywriting for captions + brand voice consistency</li>
+              <li>Creative guidance to keep visuals premium and cohesive</li>
+              <li>Light community direction (brand-aligned engagement cues)</li>
             </ul>
-            <strong>Outcome:</strong>
+
+            <strong>Outcome</strong>
             <ul>
-              <li>Your socials become a brand asset — not a content treadmill.</li>
+              <li>Your social presence becomes an authority asset — not a posting schedule.</li>
             </ul>
           </div>
         </article>
 
-        <article class="service-item">
-          <button class="service-title" type="button">Short-Form Video Strategy (Reels/TikTok)</button>
-          <div class="service-list">
-            <strong>Includes:</strong>
+        <article class="item">
+          <button type="button" class="toggle-btn" aria-expanded="false">
+            <h3>Short-Form Video Strategy (Reels / TikTok)</h3>
+            <span class="toggle">View</span>
+          </button>
+          <div class="details">
+            <strong>Includes</strong>
             <ul>
-              <li>Hook frameworks + repeatable content formats</li>
-              <li>Concepts that build desire, trust, and brand authority</li>
-              <li>Editing guidance + structure templates</li>
-              <li>Trend integration (only when it fits the brand)</li>
+              <li>Repeatable formats + hook frameworks tailored to your audience</li>
+              <li>Concept direction that builds desire, trust, and conversion</li>
+              <li>Structure templates for filming and editing consistency</li>
+              <li>Trend integration only when it fits the brand (never random)</li>
             </ul>
-            <strong>Outcome:</strong>
+
+            <strong>Outcome</strong>
             <ul>
-              <li>High-performing short-form that still feels premium and on-brand.</li>
+              <li>Video content that performs — and still feels expensive and on-brand.</li>
             </ul>
           </div>
         </article>
 
-        <article class="service-item">
-          <button class="service-title" type="button">Editorial Content Direction</button>
-          <div class="service-list">
-            <strong>Includes:</strong>
+        <article class="item">
+          <button type="button" class="toggle-btn" aria-expanded="false">
+            <h3>Editorial Content Direction</h3>
+            <span class="toggle">View</span>
+          </button>
+          <div class="details">
+            <strong>Includes</strong>
             <ul>
-              <li>Seasonal themes + brand storytelling arcs</li>
+              <li>Seasonal storytelling arcs + campaign themes</li>
               <li>Product-led + lifestyle-led content mapping</li>
               <li>Creative direction for shoots and content days</li>
-              <li>Multi-format planning (video, carousel, story, email angles)</li>
+              <li>Multi-format planning (reels, carousel, stories, email angles)</li>
             </ul>
-            <strong>Outcome:</strong>
+
+            <strong>Outcome</strong>
             <ul>
-              <li>A content ecosystem that looks elevated and sells naturally.</li>
+              <li>A content ecosystem that looks refined and sells naturally.</li>
             </ul>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- 03. LAUNCH & CONVERSION -->
-    <section class="service-section" aria-label="Launch and conversion services">
-      <div class="section-header">
-        <div class="section-number">03.</div>
-        <h2 class="section-name">Launch &amp; Conversion</h2>
+    <!-- 03 LAUNCH & CAMPAIGNS -->
+    <section class="section" aria-label="Launch and campaigns">
+      <div class="sec-meta">
+        <p class="sec-num">03</p>
+        <h2 class="sec-title">Launch &amp; Campaigns</h2>
+        <p class="sec-desc">For launches, offers, and moments that need conversion-led messaging — while still feeling editorial and premium.</p>
       </div>
 
-      <div class="section-body">
-        <article class="service-item">
-          <button class="service-title" type="button">Website Copy &amp; Messaging</button>
-          <div class="service-list">
-            <strong>Includes:</strong>
+      <div class="items">
+        <article class="item">
+          <button type="button" class="toggle-btn" aria-expanded="false">
+            <h3>Website Messaging &amp; Offer Clarity</h3>
+            <span class="toggle">View</span>
+          </button>
+          <div class="details">
+            <strong>Includes</strong>
             <ul>
-              <li>Homepage + key page messaging (clarity, confidence, conversion)</li>
-              <li>Brand story refinement for premium perception</li>
-              <li>Offer articulation (so it’s instantly understood)</li>
-              <li>Voice consistency across the entire site</li>
+              <li>Homepage + key pages messaging refinement</li>
+              <li>Offer articulation (what it is, who it’s for, why it matters)</li>
+              <li>Brand story + premium perception upgrades</li>
+              <li>Voice consistency across the full site</li>
             </ul>
-            <strong>Outcome:</strong>
+
+            <strong>Outcome</strong>
             <ul>
-              <li>A website that sells your value without you explaining it.</li>
+              <li>A website that communicates value instantly — and converts cleanly.</li>
             </ul>
           </div>
         </article>
 
-        <article class="service-item">
-          <button class="service-title" type="button">Email &amp; Funnel Copy</button>
-          <div class="service-list">
-            <strong>Includes:</strong>
+        <article class="item">
+          <button type="button" class="toggle-btn" aria-expanded="false">
+            <h3>Email &amp; Funnel Copy</h3>
+            <span class="toggle">View</span>
+          </button>
+          <div class="details">
+            <strong>Includes</strong>
             <ul>
-              <li>Welcome sequence + nurture structure</li>
-              <li>Launch / sales sequence copy</li>
+              <li>Welcome + nurture sequence structure and copy</li>
+              <li>Launch / sales email sequence messaging</li>
               <li>Subject lines, angles, and conversion flow</li>
-              <li>Voice alignment (luxury, feminine, authority-led)</li>
+              <li>Brand voice alignment for consistency</li>
             </ul>
-            <strong>Outcome:</strong>
+
+            <strong>Outcome</strong>
             <ul>
-              <li>Emails that feel like your brand — and drive revenue.</li>
+              <li>Email that feels like your brand — and drives revenue.</li>
             </ul>
           </div>
         </article>
 
-        <article class="service-item">
-          <button class="service-title" type="button">Campaign Messaging &amp; Sales Pages</button>
-          <div class="service-list">
-            <strong>Includes:</strong>
+        <article class="item">
+          <button type="button" class="toggle-btn" aria-expanded="false">
+            <h3>Campaign Messaging &amp; Sales Pages</h3>
+            <span class="toggle">View</span>
+          </button>
+          <div class="details">
+            <strong>Includes</strong>
             <ul>
               <li>Campaign concept + messaging hierarchy</li>
-              <li>Sales/landing page structure + persuasive flow</li>
+              <li>Sales / landing page structure + persuasive flow</li>
               <li>Offer positioning (why now, why you, why this)</li>
-              <li>Ad copy prompts + creative direction notes (optional)</li>
+              <li>Optional ad angles + creative cues</li>
             </ul>
-            <strong>Outcome:</strong>
+
+            <strong>Outcome</strong>
             <ul>
-              <li>A campaign that looks premium and converts cleanly.</li>
+              <li>A campaign that looks premium — and converts without shouting.</li>
             </ul>
           </div>
         </article>
@@ -692,57 +727,43 @@
         <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener">LinkedIn</a>
       </p>
     </div>
+
   </main>
 
   <script>
-    /* Menu toggle (FROM ABOUT PAGE) */
+    // Toggle open/close details
     (function(){
-      const btn=document.querySelector('.menu-btn');
-      const root=document.body;
-      function setOpen(o){
-        root.classList.toggle('menu-open',o);
-        btn.setAttribute('aria-expanded',String(o));
-      }
-      btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
-      document.addEventListener('click',e=>{
-        if (e.target.closest('.menu-links a')) setOpen(false);
-      });
-      document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
-    })();
+      const items = document.querySelectorAll('.item');
+      items.forEach(item => {
+        const btn = item.querySelector('button');
+        const details = item.querySelector('.details');
+        if(!btn || !details) return;
 
-    // Toggle service "Includes" on click
-    (function(){
-      const titles = document.querySelectorAll('.service-title');
-      titles.forEach(btn => {
         btn.addEventListener('click', () => {
-          const parent = btn.closest('.service-item');
-          parent.classList.toggle('open');
+          const isOpen = item.classList.toggle('open');
+          btn.setAttribute('aria-expanded', String(isOpen));
+          const label = btn.querySelector('.toggle');
+          if(label) label.textContent = isOpen ? 'Close' : 'View';
         });
       });
     })();
 
-    // Make marquee seamless by ensuring the track is wide enough on load (optional safety)
+    // Marquee width safety (optional)
     (function(){
       const track = document.getElementById('marqueeTrack');
       if(!track) return;
 
-      // If reduced motion, do nothing
       const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if(reduce) return;
 
-      // Ensure track content is at least 2x viewport width (helps avoid any tiny gaps on huge screens)
       const ensureWidth = () => {
         const vw = window.innerWidth || 1200;
-        // Duplicate once more if needed
         if (track.scrollWidth < vw * 2.2) {
           track.insertAdjacentHTML('beforeend', track.innerHTML);
         }
       };
       ensureWidth();
-      window.addEventListener('resize', () => {
-        // soft refresh: only add more if still too small
-        ensureWidth();
-      });
+      window.addEventListener('resize', () => ensureWidth());
     })();
   </script>
 </body>
