@@ -33,7 +33,6 @@
       overflow-x:hidden;
     }
 
-    /* ===== TOP BAR (minimal + Vogue) ===== */
     .topbar{
       position:fixed;
       top:0; left:0; right:0;
@@ -120,7 +119,6 @@
       .nav-center::-webkit-scrollbar{ display:none; }
     }
 
-    /* ===== PAGE ===== */
     main{
       max-width:var(--max);
       margin:0 auto;
@@ -157,7 +155,6 @@
       line-height:1.65;
     }
 
-    /* NEW: organic + intentional note above marquee */
     .note{
       text-align:center;
       margin: 22px auto 0;
@@ -183,7 +180,6 @@
       max-width: 860px;
     }
 
-    /* ===== MARQUEE (editorial, not chunky) ===== */
     .marquee{
       border-top:1px solid var(--soft2);
       border-bottom:1px solid var(--soft2);
@@ -243,22 +239,7 @@
       color: rgba(10,10,10,.72);
       white-space:nowrap;
     }
-    @media (max-width:600px){
-      .track{ animation-duration: 26s; gap:14px; }
-      .mq-img{
-        width: 160px; height: 104px;
-        border-radius: 12px;
-        padding:8px;
-      }
-      .mq-text{ letter-spacing:.22em; font-size:.74rem; }
-      .note{ font-size:.94rem; }
-    }
-    @media (prefers-reduced-motion: reduce){
-      .track{ animation:none; }
-      .marquee{ overflow:auto; }
-    }
 
-    /* ===== SERVICES (Vogue minimal, airy) ===== */
     .section{
       padding: 34px 0;
       border-top: 1px solid var(--soft2);
@@ -375,19 +356,6 @@
       color: rgba(10,10,10,.74);
     }
 
-    @media (max-width: 880px){
-      .section{
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-      .sec-meta{
-        position: static;
-        max-width: 720px;
-      }
-      .sec-desc{ max-width: 680px; }
-    }
-
-    /* ===== CONTACT ===== */
     .contact{
       margin-top:56px;
       padding-top:28px;
@@ -410,367 +378,231 @@
 </head>
 
 <body>
-  <!-- TOP BAR -->
-  <header class="topbar" role="banner">
-    <div class="topbar-inner">
-      <div class="nav-left">
-        <div class="brandmark">Write My Socials</div>
-      </div>
-
-      <nav class="nav-center" aria-label="Primary">
-        <a href="./" aria-label="Home">Home</a>
-        <a href="./about.html" aria-label="About">About</a>
-        <a href="./services.html" aria-current="page" aria-label="Services">Services</a>
-        <a href="./360%C2%B0%20Brand%20Diagnostic%E2%84%A2.html" aria-label="360° Brand Diagnostic™">Diagnostic</a>
-      </nav>
-
-      <div class="nav-right" aria-label="Social links">
-        <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" aria-label="LinkedIn" rel="noopener">
-          <i class="fab fa-linkedin" aria-hidden="true"></i>
-        </a>
-        <a href="https://www.instagram.com/writemysocials" aria-label="Instagram" rel="noopener">
-          <i class="fab fa-instagram" aria-hidden="true"></i>
-        </a>
-        <a href="https://www.tiktok.com/@writemysocials" aria-label="TikTok" rel="noopener">
-          <i class="fab fa-tiktok" aria-hidden="true"></i>
-        </a>
-      </div>
+<header class="topbar" role="banner">
+  <div class="topbar-inner">
+    <div class="nav-left">
+      <div class="brandmark">Write My Socials</div>
     </div>
-  </header>
+    <nav class="nav-center" aria-label="Primary">
+      <a href="./">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./services.html" aria-current="page">Services</a>
+      <a href="./360%C2%B0%20Brand%20Diagnostic%E2%84%A2.html">Diagnostic</a>
+    </nav>
+    <div class="nav-right">
+      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/writemysocials"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@writemysocials"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </div>
+</header>
 
-  <main>
-    <p class="kicker">Services</p>
-    <h1>Brand Strategy &amp; Content Studio</h1>
-    <p class="sub">Brand positioning, content direction, and conversion-led messaging for feminine-led brands in beauty, fashion, and health &amp; wellness.</p>
+<main>
+  <p class="kicker">Services</p>
+  <h1>Brand Strategy &amp; Content Studio</h1>
+  <p class="sub">Brand direction, content systems, and launch strategy for feminine-led brands in beauty, fashion, and health &amp; wellness — designed to look premium, feel cohesive, and grow with intention.</p>
 
-    <!-- NEW: Organic + intentional positioning statement ABOVE the marquee -->
-    <p class="note">
-      <strong>Organic by design</strong>
-      Everything we create is organic — strategically and intentionally planned to speak to your audience, build trust, and position your brand with clarity (not chaos).
-    </p>
+  <p class="note">
+    <strong>Organic by design</strong>
+    Everything we create is organic — strategically and intentionally directed to elevate perception, strengthen trust, and position your brand with clarity.
+  </p>
 
-    <!-- NEW: Selective client fit note -->
-    <p class="note">
-      <strong>Selective by intention</strong>
-      We don’t accept every brand — we choose to work with founders and teams we truly believe in. If we see strong potential and a clear path to elevate your positioning, we’ll invite you in.
-    </p>
+  <p class="note">
+    <strong>Selective by intention</strong>
+    We partner with founders and teams we genuinely believe in — where we see strong potential and a clear opportunity to elevate the brand visually and strategically.
+  </p>
 
-    <hr class="rule"/>
+  <hr class="rule"/>
 
-    <!-- MARQUEE (UPDATED: includes your new image) -->
-    <section class="marquee" aria-label="Services marquee">
-      <div class="track" id="marqueeTrack">
-        <!-- Set A -->
-        <div class="mq">
-          <div class="mq-img">
-            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg"
-                 alt="Marquee image 1" loading="lazy" decoding="async"/>
-          </div>
-          <span class="mq-dot" aria-hidden="true"></span>
-          <div class="mq-text">The Diagnostic</div>
-        </div>
-
-        <div class="mq">
-          <div class="mq-img">
-            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/sodhj.jpg"
-                 alt="Marquee image 2" loading="lazy" decoding="async"/>
-          </div>
-          <span class="mq-dot" aria-hidden="true"></span>
-          <div class="mq-text">Organic Content</div>
-        </div>
-
-        <div class="mq">
-          <div class="mq-img">
-            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg"
-                 alt="Marquee image 3" loading="lazy" decoding="async"/>
-          </div>
-          <span class="mq-dot" aria-hidden="true"></span>
-          <div class="mq-text">The Retainer</div>
-        </div>
-
-        <div class="mq">
-          <div class="mq-img">
-            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heyya.jpg"
-                 alt="Marquee image 4" loading="lazy" decoding="async"/>
-          </div>
-          <span class="mq-dot" aria-hidden="true"></span>
-          <div class="mq-text">Launch &amp; Campaigns</div>
-        </div>
-
-        <!-- Set B (duplicate) -->
-        <div class="mq" aria-hidden="true">
-          <div class="mq-img">
-            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg"
-                 alt="" loading="lazy" decoding="async"/>
-          </div>
-          <span class="mq-dot" aria-hidden="true"></span>
-          <div class="mq-text">The Diagnostic</div>
-        </div>
-
-        <div class="mq" aria-hidden="true">
-          <div class="mq-img">
-            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/sodhj.jpg"
-                 alt="" loading="lazy" decoding="async"/>
-          </div>
-          <span class="mq-dot" aria-hidden="true"></span>
-          <div class="mq-text">Organic Content</div>
-        </div>
-
-        <div class="mq" aria-hidden="true">
-          <div class="mq-img">
-            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heya.jpg"
-                 alt="" loading="lazy" decoding="async"/>
-          </div>
-          <span class="mq-dot" aria-hidden="true"></span>
-          <div class="mq-text">The Retainer</div>
-        </div>
-
-        <div class="mq" aria-hidden="true">
-          <div class="mq-img">
-            <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heyya.jpg"
-                 alt="" loading="lazy" decoding="async"/>
-          </div>
-          <span class="mq-dot" aria-hidden="true"></span>
-          <div class="mq-text">Launch &amp; Campaigns</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 01 THE DIAGNOSTIC -->
-    <section class="section" aria-label="The Diagnostic">
-      <div class="sec-meta">
-        <p class="sec-num">01</p>
-        <h2 class="sec-title">The Diagnostic</h2>
-        <p class="sec-desc">A clarity-first audit that reveals what’s weakening positioning, limiting growth, and costing revenue — with a roadmap to fix it.</p>
-      </div>
-
-      <div class="items">
-        <article class="item">
-          <button type="button" class="toggle-btn" aria-expanded="false">
-            <h3>360° Brand Diagnostic™ (Required Start)</h3>
-            <span class="toggle">View</span>
-          </button>
-          <div class="details">
-            <strong>Includes</strong>
-            <ul>
-              <li>Positioning + messaging review (what you stand for, why you win)</li>
-              <li>Social + content effectiveness audit (what’s working, what isn’t, why)</li>
-              <li>Audience perception gaps + clarity fixes</li>
-              <li>Competitive landscape + category opportunity</li>
-              <li>90-day strategic roadmap (priorities, content direction, growth levers)</li>
-            </ul>
-
-            <strong>Outcome</strong>
-            <ul>
-              <li>Clear direction on what to say, what to show, and what to stop doing.</li>
-            </ul>
-
-            <div class="micro">
-              *All retainers begin with the Diagnostic to ensure strategy leads execution.
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- 02 THE RETAINER -->
-    <section class="section" aria-label="The Retainer">
-      <div class="sec-meta">
-        <p class="sec-num">02</p>
-        <h2 class="sec-title">The Retainer</h2>
-        <p class="sec-desc">Monthly execution guided by strategy — designed to build authority, deepen trust, and grow organically with intention.</p>
-      </div>
-
-      <div class="items">
-        <article class="item">
-          <button type="button" class="toggle-btn" aria-expanded="false">
-            <h3>Brand Authority Retainer</h3>
-            <span class="toggle">View</span>
-          </button>
-          <div class="details">
-            <strong>Includes</strong>
-            <ul>
-              <li>Monthly strategy + content direction aligned to positioning</li>
-              <li>Publishing plan, optimisation, and performance review</li>
-              <li>Copywriting for captions + brand voice consistency</li>
-              <li>Creative guidance to keep visuals premium and cohesive</li>
-              <li>Light community direction (brand-aligned engagement cues)</li>
-            </ul>
-
-            <strong>Outcome</strong>
-            <ul>
-              <li>Your social presence becomes an authority asset — not a posting schedule.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="item">
-          <button type="button" class="toggle-btn" aria-expanded="false">
-            <h3>Short-Form Video Strategy (Reels / TikTok)</h3>
-            <span class="toggle">View</span>
-          </button>
-          <div class="details">
-            <strong>Includes</strong>
-            <ul>
-              <li>Repeatable formats + hook frameworks tailored to your audience</li>
-              <li>Concept direction that builds desire, trust, and conversion</li>
-              <li>Structure templates for filming and editing consistency</li>
-              <li>Trend integration only when it fits the brand (never random)</li>
-            </ul>
-
-            <strong>Outcome</strong>
-            <ul>
-              <li>Video content that performs — and still feels expensive and on-brand.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="item">
-          <button type="button" class="toggle-btn" aria-expanded="false">
-            <h3>Editorial Content Direction</h3>
-            <span class="toggle">View</span>
-          </button>
-          <div class="details">
-            <strong>Includes</strong>
-            <ul>
-              <li>Seasonal storytelling arcs + campaign themes</li>
-              <li>Product-led + lifestyle-led content mapping</li>
-              <li>Creative direction for shoots and content days</li>
-              <li>Multi-format planning (reels, carousel, stories, email angles)</li>
-            </ul>
-
-            <strong>Outcome</strong>
-            <ul>
-              <li>A content ecosystem that looks refined and sells naturally.</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- 03 LAUNCH & CAMPAIGNS -->
-    <section class="section" aria-label="Launch and campaigns">
-      <div class="sec-meta">
-        <p class="sec-num">03</p>
-        <h2 class="sec-title">Launch &amp; Campaigns</h2>
-        <p class="sec-desc">For launches, offers, and moments that need conversion-led messaging — while still feeling editorial and premium.</p>
-      </div>
-
-      <div class="items">
-        <article class="item">
-          <button type="button" class="toggle-btn" aria-expanded="false">
-            <h3>Website Messaging &amp; Offer Clarity</h3>
-            <span class="toggle">View</span>
-          </button>
-          <div class="details">
-            <strong>Includes</strong>
-            <ul>
-              <li>Homepage + key pages messaging refinement</li>
-              <li>Offer articulation (what it is, who it’s for, why it matters)</li>
-              <li>Brand story + premium perception upgrades</li>
-              <li>Voice consistency across the full site</li>
-            </ul>
-
-            <strong>Outcome</strong>
-            <ul>
-              <li>A website that communicates value instantly — and converts cleanly.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="item">
-          <button type="button" class="toggle-btn" aria-expanded="false">
-            <h3>Email &amp; Funnel Copy</h3>
-            <span class="toggle">View</span>
-          </button>
-          <div class="details">
-            <strong>Includes</strong>
-            <ul>
-              <li>Welcome + nurture sequence structure and copy</li>
-              <li>Launch / sales email sequence messaging</li>
-              <li>Subject lines, angles, and conversion flow</li>
-              <li>Brand voice alignment for consistency</li>
-            </ul>
-
-            <strong>Outcome</strong>
-            <ul>
-              <li>Email that feels like your brand — and drives revenue.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="item">
-          <button type="button" class="toggle-btn" aria-expanded="false">
-            <h3>Campaign Messaging &amp; Sales Pages</h3>
-            <span class="toggle">View</span>
-          </button>
-          <div class="details">
-            <strong>Includes</strong>
-            <ul>
-              <li>Campaign concept + messaging hierarchy</li>
-              <li>Sales / landing page structure + persuasive flow</li>
-              <li>Offer positioning (why now, why you, why this)</li>
-              <li>Optional ad angles + creative cues</li>
-            </ul>
-
-            <strong>Outcome</strong>
-            <ul>
-              <li>A campaign that looks premium — and converts without shouting.</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <div class="contact">
-      <p>Questions or ready to start?</p>
-      <p><a href="mailto:siyana.deveaux@writemysocials.com.au">siyana.deveaux@writemysocials.com.au</a></p>
-      <p><a href="https://calendly.com/your-link" target="_blank" rel="noopener">Book a strategy call</a></p>
-      <p>
-        <a href="https://instagram.com/writemysocials" target="_blank" rel="noopener">@writemysocials</a>
-        &middot;
-        <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener">LinkedIn</a>
-      </p>
+  <!-- DIAGNOSTIC -->
+  <section class="section">
+    <div class="sec-meta">
+      <p class="sec-num">01</p>
+      <h2 class="sec-title">The Diagnostic</h2>
+      <p class="sec-desc">A clarity-first brand and content audit designed to uncover what’s weakening positioning, limiting growth, and disrupting visual cohesion — followed by a focused strategic and creative roadmap.</p>
     </div>
 
-  </main>
+    <div class="items">
+      <article class="item">
+        <button type="button" class="toggle-btn">
+          <h3>360° Brand Diagnostic™ (Required Start)</h3>
+          <span class="toggle">View</span>
+        </button>
+        <div class="details">
+          <strong>Includes</strong>
+          <ul>
+            <li>Brand positioning + messaging review</li>
+            <li>Social + content effectiveness audit</li>
+            <li>Visual cohesion + perception review</li>
+            <li>Audience alignment gaps + clarity refinement</li>
+            <li>Competitive landscape insights</li>
+            <li>90-day roadmap (creative direction, content focus, growth priorities)</li>
+          </ul>
+          <strong>Outcome</strong>
+          <ul>
+            <li>Clear direction on what to say, what to show, and how to elevate your brand presence.</li>
+          </ul>
+          <div class="micro">
+            *All retainers begin with the Diagnostic to ensure strategy leads execution.
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
 
-  <script>
-    // Toggle open/close details
-    (function(){
-      const items = document.querySelectorAll('.item');
-      items.forEach(item => {
-        const btn = item.querySelector('button');
-        const details = item.querySelector('.details');
-        if(!btn || !details) return;
+  <!-- RETAINER -->
+  <section class="section">
+    <div class="sec-meta">
+      <p class="sec-num">02</p>
+      <h2 class="sec-title">The Retainer</h2>
+      <p class="sec-desc">Monthly brand and content execution guided by direction — designed to build authority, deepen trust, and elevate your presence visually and strategically.</p>
+    </div>
 
-        btn.addEventListener('click', () => {
-          const isOpen = item.classList.toggle('open');
-          btn.setAttribute('aria-expanded', String(isOpen));
-          const label = btn.querySelector('.toggle');
-          if(label) label.textContent = isOpen ? 'Close' : 'View';
-        });
-      });
-    })();
+    <div class="items">
+      <article class="item">
+        <button type="button" class="toggle-btn">
+          <h3>Brand Authority Retainer</h3>
+          <span class="toggle">View</span>
+        </button>
+        <div class="details">
+          <strong>Includes</strong>
+          <ul>
+            <li>Monthly brand + editorial content direction</li>
+            <li>Publishing plan, optimisation, and performance review</li>
+            <li>Art direction guidance for content shoots</li>
+            <li>Professional hairstyling for content days and filming sessions</li>
+            <li>Wardrobe styling guidance to maintain brand alignment</li>
+            <li>Caption and messaging refinement for cohesion</li>
+          </ul>
+          <strong>Outcome</strong>
+          <ul>
+            <li>A cohesive, polished presence that feels intentional and authority-led.</li>
+          </ul>
+        </div>
+      </article>
 
-    // Marquee width safety (optional)
-    (function(){
-      const track = document.getElementById('marqueeTrack');
-      if(!track) return;
+      <article class="item">
+        <button type="button" class="toggle-btn">
+          <h3>Short-Form Video Strategy (Reels / TikTok)</h3>
+          <span class="toggle">View</span>
+        </button>
+        <div class="details">
+          <strong>Includes</strong>
+          <ul>
+            <li>Repeatable formats aligned to brand identity</li>
+            <li>Concept direction balancing storytelling and conversion</li>
+            <li>Filming structure and visual pacing guidance</li>
+            <li>Professional hairstyling for filming days</li>
+            <li>Wardrobe guidance for brand consistency</li>
+          </ul>
+          <strong>Outcome</strong>
+          <ul>
+            <li>Short-form content that performs while maintaining a refined aesthetic.</li>
+          </ul>
+        </div>
+      </article>
 
-      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if(reduce) return;
+      <article class="item">
+        <button type="button" class="toggle-btn">
+          <h3>Editorial Content Direction</h3>
+          <span class="toggle">View</span>
+        </button>
+        <div class="details">
+          <strong>Includes</strong>
+          <ul>
+            <li>Seasonal storytelling arcs + campaign themes</li>
+            <li>Creative direction for shoots and content days</li>
+            <li>Art direction oversight for visual cohesion</li>
+            <li>Professional hairstyling as part of shoot execution</li>
+            <li>Wardrobe guidance to maintain alignment</li>
+            <li>Multi-format content ecosystem planning</li>
+          </ul>
+          <strong>Outcome</strong>
+          <ul>
+            <li>A curated content world that feels elevated and brand-led.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
 
-      const ensureWidth = () => {
-        const vw = window.innerWidth || 1200;
-        if (track.scrollWidth < vw * 2.2) {
-          track.insertAdjacentHTML('beforeend', track.innerHTML);
-        }
-      };
-      ensureWidth();
-      window.addEventListener('resize', () => ensureWidth());
-    })();
-  </script>
+  <!-- LAUNCH -->
+  <section class="section">
+    <div class="sec-meta">
+      <p class="sec-num">03</p>
+      <h2 class="sec-title">Launch &amp; Campaigns</h2>
+      <p class="sec-desc">For launches and key brand moments that require strategic clarity — while maintaining a premium, editorial feel.</p>
+    </div>
+
+    <div class="items">
+      <article class="item">
+        <button type="button" class="toggle-btn">
+          <h3>Website Messaging &amp; Offer Clarity</h3>
+          <span class="toggle">View</span>
+        </button>
+        <div class="details">
+          <strong>Includes</strong>
+          <ul>
+            <li>Homepage + key page messaging refinement</li>
+            <li>Offer positioning and clarity direction</li>
+            <li>Brand story development</li>
+            <li>Voice consistency across site touchpoints</li>
+          </ul>
+          <strong>Outcome</strong>
+          <ul>
+            <li>A website that communicates value clearly and elevates perception instantly.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="item">
+        <button type="button" class="toggle-btn">
+          <h3>Email &amp; Funnel Copy</h3>
+          <span class="toggle">View</span>
+        </button>
+        <div class="details">
+          <strong>Includes</strong>
+          <ul>
+            <li>Welcome + nurture sequence direction</li>
+            <li>Launch sequence messaging</li>
+            <li>Conversion flow structure</li>
+            <li>Brand voice consistency</li>
+          </ul>
+          <strong>Outcome</strong>
+          <ul>
+            <li>Email communication that feels elevated and revenue-aligned.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="item">
+        <button type="button" class="toggle-btn">
+          <h3>Campaign Messaging &amp; Sales Pages</h3>
+          <span class="toggle">View</span>
+        </button>
+        <div class="details">
+          <strong>Includes</strong>
+          <ul>
+            <li>Campaign concept + messaging hierarchy</li>
+            <li>Sales / landing page structure</li>
+            <li>Offer positioning strategy</li>
+            <li>Creative direction cues for rollout</li>
+          </ul>
+          <strong>Outcome</strong>
+          <ul>
+            <li>A premium-feeling campaign that converts with clarity and confidence.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="contact">
+    <p>Questions or ready to start?</p>
+    <p><a href="mailto:siyana.deveaux@writemysocials.com.au">siyana.deveaux@writemysocials.com.au</a></p>
+    <p><a href="https://calendly.com/your-link" target="_blank">Book a strategy call</a></p>
+  </div>
+
+</main>
 </body>
 </html>
