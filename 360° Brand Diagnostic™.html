@@ -366,13 +366,6 @@ textarea{ min-height:160px; resize:vertical; line-height:1.7; }
   accent-color:#111;
 }
 
-.inline-note{
-  margin-top:10px;
-  font-family:'Poppins',sans-serif;
-  font-size:.86rem;
-  color:rgba(0,0,0,.62);
-}
-
 /* Consent */
 .checkrow{
   display:flex;
@@ -519,7 +512,7 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
 <section class="form-wrap" id="apply">
   <h2>Audit Intake Form</h2>
   <p class="sub">
-    Quick + easy — this takes ~2 minutes.
+    Super quick — just 3 questions.
   </p>
 
   <div class="callout" role="note" aria-label="Important delivery information">
@@ -530,6 +523,25 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
   <form class="form" id="brandForm" novalidate>
     <div class="grid">
 
+      <!-- Q1 -->
+      <div class="full">
+        <label for="q1">1) Paste your website + your main social link(s)</label>
+        <textarea id="q1" name="q1" placeholder="Website: https://…&#10;Instagram/TikTok: https://… / @handle" required></textarea>
+      </div>
+
+      <!-- Q2 -->
+      <div class="full">
+        <label for="q2">2) What do you sell + who is it for? (one sentence)</label>
+        <textarea id="q2" name="q2" placeholder="Example: “I sell ___ to ___ who want ___.”" required></textarea>
+      </div>
+
+      <!-- Q3 -->
+      <div class="full">
+        <label for="q3">3) What do you want the audit to help you fix first?</label>
+        <textarea id="q3" name="q3" placeholder="Example: “More sales from content”, “Make my brand feel premium”, “Fix my messaging”, “Improve conversion”, etc." required></textarea>
+      </div>
+
+      <!-- Contact (kept minimal, but necessary for delivery) -->
       <div>
         <label for="first_name">First Name</label>
         <input id="first_name" name="first_name" autocomplete="given-name" required />
@@ -541,66 +553,9 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
       </div>
 
       <div class="full">
-        <label for="email">Checkout / Best Email</label>
+        <label for="email">Checkout / Best Email (for delivery)</label>
         <input id="email" type="email" name="email" autocomplete="email" placeholder="you@brand.com" required />
-      </div>
-
-      <div class="full">
-        <label for="business_name">Business / Brand Name</label>
-        <input id="business_name" name="business_name" required />
-      </div>
-
-      <div>
-        <label for="website">Website</label>
-        <input id="website" name="website" placeholder="https://..." />
-      </div>
-
-      <div>
-        <label for="social_handle">Main Social Handle(s)</label>
-        <input id="social_handle" name="social_handle" placeholder="@yourhandle or link(s)" />
-      </div>
-
-      <div class="full">
-        <label for="business_desc">In one sentence: what do you sell + who is it for?</label>
-        <textarea id="business_desc" name="business_desc" placeholder="Example: “I sell ___ to ___ who want ___.”" required></textarea>
-      </div>
-
-      <div class="full">
-        <label for="offer_list">Link your #1 offer (or best-selling product/service)</label>
-        <input id="offer_list" name="offer_list" placeholder="Paste the link (or write the offer + price if no link)" required />
-      </div>
-
-      <div class="full">
-        <label for="primary_goal">What do you want more of right now?</label>
-        <select id="primary_goal" name="primary_goal" required>
-          <option value="" selected>—</option>
-          <option value="More sales">More sales</option>
-          <option value="More qualified leads">More qualified leads</option>
-          <option value="Clearer premium positioning">Clearer premium positioning</option>
-          <option value="Content that converts">Content that converts</option>
-          <option value="Bigger audience (right people)">Bigger audience (right people)</option>
-          <option value="Not sure — I need clarity">Not sure — I need clarity</option>
-        </select>
-      </div>
-
-      <div class="full">
-        <label for="biggest_problem">What feels like the biggest block?</label>
-        <select id="biggest_problem" name="biggest_problem" required>
-          <option value="" selected>—</option>
-          <option value="My message isn’t landing">My message isn’t landing</option>
-          <option value="People watch but don’t buy">People watch but don’t buy</option>
-          <option value="My offer feels hard to explain">My offer feels hard to explain</option>
-          <option value="I’m attracting the wrong audience">I’m attracting the wrong audience</option>
-          <option value="My brand doesn’t feel premium yet">My brand doesn’t feel premium yet</option>
-          <option value="I don’t know what content to post">I don’t know what content to post</option>
-          <option value="Other">Other</option>
-        </select>
-        <p class="smallnote">If “Other”, add a quick note below.</p>
-      </div>
-
-      <div class="full">
-        <label for="notes">Anything else I should know? (optional)</label>
-        <textarea id="notes" name="notes" placeholder="One or two sentences is perfect."></textarea>
+        <p class="smallnote">This is where your audit will be delivered.</p>
       </div>
 
       <div class="full">
@@ -680,13 +635,7 @@ if (!window.__wmsBrandFormBound) {
     return el ? el.value : "";
   }
 
-  // Keep these simple + Safari-safe
   function trimOrEmpty(v){ return (v || "").toString().trim(); }
-  function sanitizeWebsite(v){
-    const s = trimOrEmpty(v);
-    if (!s || s === "https://..." || s === "http://...") return "";
-    return /^https?:\/\/\S+$/i.test(s) ? s : "";
-  }
 
   async function parseError(res){
     const text = await res.text().catch(() => "");
@@ -731,7 +680,7 @@ if (!window.__wmsBrandFormBound) {
 
       const email = trimOrEmpty(base.email);
       if (!email){
-        setStatus("Please add your email so we can send next steps 💌");
+        setStatus("Please add your email so I can deliver your audit 💌");
         submitBtn.disabled = false;
         return;
       }
@@ -741,14 +690,9 @@ if (!window.__wmsBrandFormBound) {
 
       const props = {
         lead_type: "360 Brand Diagnostic Intake",
-        business_name: trimOrEmpty(base.business_name),
-        website: sanitizeWebsite(base.website),
-        social_handle: trimOrEmpty(base.social_handle),
-        business_desc_one_sentence: trimOrEmpty(base.business_desc),
-        primary_offer_link_or_details: trimOrEmpty(base.offer_list),
-        primary_goal: trimOrEmpty(base.primary_goal),
-        biggest_block: trimOrEmpty(base.biggest_problem),
-        extra_notes: trimOrEmpty(base.notes),
+        q1_links: trimOrEmpty(base.q1),
+        q2_offer_one_sentence: trimOrEmpty(base.q2),
+        q3_priority_fix: trimOrEmpty(base.q3),
         turnaround_preference: trimOrEmpty(base.turnaround),
         discovery_source: discovery,
         marketing_consent_checkbox: wantsMarketing ? "yes" : "no",
