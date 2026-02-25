@@ -110,7 +110,7 @@ body.menu-open .menu-bar{ transform:translateY(0); }
 /* Hero */
 .hero{
   text-align:center;
-  margin-bottom:70px;
+  margin-bottom:52px;
 }
 
 .hero h1{
@@ -141,9 +141,76 @@ body.menu-open .menu-bar{ transform:translateY(0); }
   color:#222;
 }
 
+/* ===== PURCHASE CTA ===== */
+.purchase{
+  margin: 22px 0 70px;
+  padding: 22px 22px 20px;
+  border:1px solid var(--hairline);
+  border-radius:22px;
+  background:#fff;
+}
+
+.purchase h2{
+  font-size:1.55rem;
+  margin-bottom:10px;
+}
+
+.purchase .note{
+  font-family:'Poppins',sans-serif;
+  color:rgba(0,0,0,.68);
+  margin-bottom:16px;
+}
+
+.purchase .bullets{
+  font-family:'Poppins',sans-serif;
+  color:#222;
+  margin: 0 0 18px 18px;
+}
+
+.pay-cta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+}
+
+a.pay-btn{
+  text-decoration:none;
+  border:1px solid #111;
+  background:#111;
+  color:#fff;
+  padding:13px 18px;
+  border-radius:999px;
+  font-family:'Poppins',sans-serif;
+  font-size:.92rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+}
+
+a.pay-btn:hover{ transform:translateY(-1px); }
+
+a.jump-link{
+  font-family:'Poppins',sans-serif;
+  color:#111;
+  text-decoration:none;
+  border-bottom:1px solid rgba(0,0,0,.25);
+}
+
+small.fineprint{
+  display:block;
+  margin-top:12px;
+  font-family:'Poppins',sans-serif;
+  color:rgba(0,0,0,.62);
+  font-size:.88rem;
+  line-height:1.6;
+}
+
 /* ===== FORM ===== */
 .form-wrap{
-  margin-top:70px;
+  margin-top:10px;
   padding-top:52px;
   border-top:1px solid var(--hairline);
 }
@@ -157,9 +224,25 @@ body.menu-open .menu-bar{ transform:translateY(0); }
 .form-wrap .sub{
   font-family:'Poppins',sans-serif;
   color:rgba(0,0,0,.62);
-  margin-bottom:30px;
+  margin-bottom:18px;
   letter-spacing:.01em;
 }
+
+.callout{
+  border:1px solid var(--hairline);
+  border-radius:18px;
+  padding:16px 16px 14px;
+  background:#fff;
+  margin-bottom:22px;
+}
+
+.callout p{
+  font-family:'Poppins',sans-serif;
+  color:#222;
+  margin-bottom:10px;
+}
+
+.callout p:last-child{ margin-bottom:0; }
 
 .form{ margin-top:10px; }
 
@@ -415,90 +498,189 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
   </p>
 </section>
 
+<!-- ===== PURCHASE CTA (Stripe) ===== -->
+<section class="purchase" id="purchase">
+  <h2>Purchase the 360° Brand Diagnostic™</h2>
+  <p class="note">
+    Once you purchase, please fill out the intake form below so I can deliver your audit successfully.
+  </p>
+  <ul class="bullets">
+    <li>Your audit is delivered within <strong>7 days</strong> after your form is submitted.</li>
+    <li>Need it fast? <strong>$299 extra</strong> for a <strong>48-hour</strong> turnaround (rush add-on).</li>
+  </ul>
+
+  <div class="pay-cta">
+    <a class="pay-btn" href="https://buy.stripe.com/5kQcN5g4cckx81g2Mz24000" target="_blank" rel="noopener">
+      PURCHASE NOW <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+    </a>
+    <a class="jump-link" href="#apply">Already purchased? Jump to the intake form</a>
+  </div>
+
+  <small class="fineprint">
+    Tip: use the same email on the form as your checkout email (so I can match your purchase instantly).
+    If you want the 48-hour rush add-on, submit the form first, then reply to your receipt/confirmation email and request “Rush (48h)”.
+  </small>
+</section>
+
 <!-- ===== APPLICATION FORM (Klaviyo) ===== -->
 <section class="form-wrap" id="apply">
-  <h2>Let’s Bring Your Vision to Life <span class=""></span></h2>
+  <h2>Audit Intake Form</h2>
   <p class="sub">
-    Share what you’d like — we’ll take it from there.
+    The more detail you share, the sharper (and more actionable) your audit will be.
   </p>
+
+  <div class="callout" role="note" aria-label="Important delivery information">
+    <p><strong>Purchased the audit?</strong> Please complete this form so I can deliver your audit successfully.</p>
+    <p><strong>Delivery:</strong> within 7 days of form submission. <strong>Rush:</strong> $299 extra for delivery within 48 hours.</p>
+  </div>
 
   <form class="form" id="brandForm" novalidate>
     <div class="grid">
 
+      <!-- Identification -->
       <div>
         <label for="first_name">First Name</label>
-        <input id="first_name" name="first_name" autocomplete="given-name" />
+        <input id="first_name" name="first_name" autocomplete="given-name" required />
       </div>
 
       <div>
         <label for="last_name">Last Name</label>
-        <input id="last_name" name="last_name" autocomplete="family-name" />
+        <input id="last_name" name="last_name" autocomplete="family-name" required />
       </div>
 
       <div class="full">
-        <label for="email">Email</label>
-        <input id="email" type="email" name="email" autocomplete="email" placeholder="you@brand.com"/>
+        <label for="email">Checkout / Best Email</label>
+        <input id="email" type="email" name="email" autocomplete="email" placeholder="you@brand.com" required />
       </div>
 
       <div class="full">
-        <label for="phone">Phone</label>
+        <label for="phone">Phone (optional)</label>
         <input id="phone" type="tel" name="phone" autocomplete="tel" placeholder="+61…" />
       </div>
 
+      <!-- Brand basics -->
       <div class="full">
-        <label for="business_name">Business Name</label>
-        <input id="business_name" name="business_name" />
-      </div>
-
-      <div class="full">
-        <label for="business_desc">What does your business do?</label>
-        <textarea id="business_desc" name="business_desc" placeholder="Beauty, fashion, wellness… what do you sell / offer?"></textarea>
+        <label for="business_name">Business / Brand Name</label>
+        <input id="business_name" name="business_name" required />
       </div>
 
       <div>
-        <label for="website">Website</label>
+        <label for="website">Website (if live)</label>
         <input id="website" name="website" placeholder="https://..." />
       </div>
 
       <div>
-        <label for="social_handle">Instagram / TikTok</label>
-        <input id="social_handle" name="social_handle" placeholder="@yourhandle or link" />
+        <label for="social_handle">Main Social Handle(s)</label>
+        <input id="social_handle" name="social_handle" placeholder="@yourhandle or link(s)" />
       </div>
 
       <div class="full">
+        <label for="business_desc">What do you sell / offer? (be specific)</label>
+        <textarea id="business_desc" name="business_desc" placeholder="What it is, who it’s for, price range, and what makes it different." required></textarea>
+      </div>
+
+      <div class="full">
+        <label for="offer_list">List your core offers (with prices + links if possible)</label>
+        <textarea id="offer_list" name="offer_list" placeholder="Offer 1: … / Price: … / Link: …&#10;Offer 2: …" required></textarea>
+      </div>
+
+      <!-- Goals -->
+      <div class="full">
+        <label for="primary_goal">What is your #1 goal for the next 90 days?</label>
+        <textarea id="primary_goal" name="primary_goal" placeholder="Examples: consistent leads, higher conversion, launch prep, premium positioning, growing TikTok…" required></textarea>
+      </div>
+
+      <div class="full">
+        <label for="biggest_problem">What feels hardest right now?</label>
+        <textarea id="biggest_problem" name="biggest_problem" placeholder="Be honest — what’s not working (messaging, content, sales, confidence, audience quality, inconsistency, etc.)?" required></textarea>
+      </div>
+
+      <!-- Audience -->
+      <div class="full">
+        <label for="target_audience">Describe your ideal customer</label>
+        <textarea id="target_audience" name="target_audience" placeholder="Who they are, what they value, what they’re struggling with, what they want, what they’re willing to pay for." required></textarea>
+      </div>
+
+      <div class="full">
+        <label for="objections">Top 3 objections you hear (or assume they have)</label>
+        <textarea id="objections" name="objections" placeholder="Example: “Too expensive”, “I’m not sure it’ll work for me”, “I can do it myself”, etc." required></textarea>
+      </div>
+
+      <!-- Positioning -->
+      <div class="full">
+        <label for="differentiator">What makes you different from competitors?</label>
+        <textarea id="differentiator" name="differentiator" placeholder="Your unique approach, your POV, your edge, your promise, your proof." required></textarea>
+      </div>
+
+      <div class="full">
+        <label for="brand_voice">How should your brand feel? (voice + vibe)</label>
+        <textarea id="brand_voice" name="brand_voice" placeholder="Words like: luxe, warm, blunt, witty, editorial, playful, bold, minimal… plus examples of brands you love." required></textarea>
+      </div>
+
+      <!-- Metrics + channels -->
+      <div class="full">
+        <label for="channels">Where do you want to grow most right now?</label>
+        <select id="channels" name="channels" required>
+          <option value="" selected>—</option>
+          <option value="Instagram">Instagram</option>
+          <option value="TikTok">TikTok</option>
+          <option value="Both">Both</option>
+          <option value="Website/SEO">Website/SEO</option>
+          <option value="Email Marketing">Email Marketing</option>
+          <option value="Not sure">Not sure</option>
+        </select>
+      </div>
+
+      <div class="full">
+        <label for="current_metrics">Current numbers (approx.)</label>
+        <textarea id="current_metrics" name="current_metrics" placeholder="Followers, average views, email list size, typical monthly revenue, conversion rate, leads/week (whatever you track)." required></textarea>
+      </div>
+
+      <!-- Competitors -->
+      <div class="full">
+        <label for="competitors">3–5 competitors or “brands your customers buy instead”</label>
+        <textarea id="competitors" name="competitors" placeholder="Links preferred. This helps me audit your category and positioning." required></textarea>
+      </div>
+
+      <!-- Assets -->
+      <div class="full">
+        <label for="brand_assets">Links to key brand assets (if you have them)</label>
+        <textarea id="brand_assets" name="brand_assets" placeholder="Brand guidelines, media kit, pitch deck, offer deck, best performing posts, product pages, lead magnet, etc. (paste links)" ></textarea>
+      </div>
+
+      <!-- Audit preference -->
+      <div class="full">
         <div class="choice-block">
           <div class="choice-title">
-            <strong>What are you interested in?</strong>
+            <strong>Audit focus areas</strong>
             <span>(choose any)</span>
           </div>
 
-          <div class="choice-grid" role="group" aria-label="Services Interested">
-            <label class="choice"><input type="checkbox" name="services" value="Branding & Auditing"> Branding & Auditing</label>
-            <label class="choice"><input type="checkbox" name="services" value="Content Creation"> Content Creation</label>
-            <label class="choice"><input type="checkbox" name="services" value="Social Media Marketing"> Social Media Marketing</label>
-            <label class="choice"><input type="checkbox" name="services" value="TikTok & Instagram"> TikTok & Instagram</label>
-            <label class="choice"><input type="checkbox" name="services" value="Copywriting"> Copywriting</label>
-            <label class="choice"><input type="checkbox" name="services" value="Add-Ons / Support"> Add-Ons / Support</label>
+          <div class="choice-grid" role="group" aria-label="Audit Focus Areas">
+            <label class="choice"><input type="checkbox" name="audit_focus" value="Positioning & Differentiation"> Positioning & Differentiation</label>
+            <label class="choice"><input type="checkbox" name="audit_focus" value="Messaging & Copy"> Messaging & Copy</label>
+            <label class="choice"><input type="checkbox" name="audit_focus" value="Offer & Pricing Perception"> Offer & Pricing Perception</label>
+            <label class="choice"><input type="checkbox" name="audit_focus" value="Content Strategy"> Content Strategy</label>
+            <label class="choice"><input type="checkbox" name="audit_focus" value="Profile / Bio / Funnel"> Profile / Bio / Funnel</label>
+            <label class="choice"><input type="checkbox" name="audit_focus" value="Conversion & Sales Flow"> Conversion & Sales Flow</label>
           </div>
 
-          <p class="inline-note">If there’s something else on your mind...</p>
-          <textarea name="services_other" placeholder=""></textarea>
+          <p class="inline-note">Anything specific you want me to look at?</p>
+          <textarea name="audit_focus_other" placeholder="Example: “My website isn’t converting”, “My content isn’t attracting buyers”, “I want to go premium”, etc."></textarea>
         </div>
       </div>
 
       <div class="full">
-        <label for="budget">Monthly budget range</label>
-        <select id="budget" name="budget">
+        <label for="turnaround">Turnaround preference</label>
+        <select id="turnaround" name="turnaround" required>
           <option value="" selected>—</option>
-          <option value="Under $1k">Under $1k</option>
-          <option value="$1k–$3k">$1k–$3k</option>
-          <option value="$3k–$6k">$3k–$6k</option>
-          <option value="$6k–$10k">$6k–$10k</option>
-          <option value="$10k+">$10k+</option>
-          <option value="Not sure yet">Not sure yet</option>
+          <option value="Standard (within 7 days)">Standard (within 7 days)</option>
+          <option value="Rush (48 hours) — $299 extra">Rush (48 hours) — $299 extra</option>
         </select>
+        <p class="smallnote">If you select Rush, I’ll confirm the $299 rush add-on details by email.</p>
       </div>
 
+      <!-- Discovery (kept) -->
       <div class="full">
         <div class="choice-block">
           <div class="choice-title">
@@ -526,13 +708,11 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
       </label>
     </div>
 
-    <p class="smallnote">
-   
-    </p>
+    <p class="smallnote"></p>
 
     <div class="actions">
       <button class="submit" type="submit" id="submitBtn">
-        LET’S GET STARTED
+        SUBMIT INTAKE
         <span class="cute" aria-hidden="true">
           <i class="fa-solid fa-arrow-right"></i>
           <i class="fa-solid fa-heart"></i>
@@ -630,21 +810,36 @@ if (!window.__wmsBrandFormBound) {
         return;
       }
 
-      const services  = getCheckedValues("services");
-      const discovery = getRadioValue("discovery");
+      const auditFocus  = getCheckedValues("audit_focus");
+      const discovery   = getRadioValue("discovery");
       const wantsMarketing = document.getElementById("marketingConsent").checked;
 
       // Put EVERYTHING in properties (safe)
       const props = {
-        lead_type: "360 Brand Diagnostic Application",
+        lead_type: "360 Brand Diagnostic Intake",
         phone: trimOrEmpty(base.phone),
         business_name: trimOrEmpty(base.business_name),
-        business_desc: trimOrEmpty(base.business_desc),
         website: sanitizeWebsite(base.website),
         social_handle: trimOrEmpty(base.social_handle),
-        services_interested: services,
-        services_other: trimOrEmpty(base.services_other),
-        monthly_budget: trimOrEmpty(base.budget),
+
+        business_desc: trimOrEmpty(base.business_desc),
+        offer_list: trimOrEmpty(base.offer_list),
+        primary_goal_90_days: trimOrEmpty(base.primary_goal),
+        biggest_problem: trimOrEmpty(base.biggest_problem),
+        target_audience: trimOrEmpty(base.target_audience),
+        objections_top3: trimOrEmpty(base.objections),
+        differentiator: trimOrEmpty(base.differentiator),
+        brand_voice: trimOrEmpty(base.brand_voice),
+
+        channel_priority: trimOrEmpty(base.channels),
+        current_metrics: trimOrEmpty(base.current_metrics),
+        competitors: trimOrEmpty(base.competitors),
+        brand_assets_links: trimOrEmpty(base.brand_assets),
+
+        audit_focus_areas: auditFocus,
+        audit_focus_other: trimOrEmpty(base.audit_focus_other),
+        turnaround_preference: trimOrEmpty(base.turnaround),
+
         discovery_source: discovery,
         marketing_consent_checkbox: wantsMarketing ? "yes" : "no",
         submitted_at_iso: new Date().toISOString()
@@ -665,7 +860,7 @@ if (!window.__wmsBrandFormBound) {
 
       await postProfile(body);
 
-      setStatus("Submitted ✅ Thank you — we’ll be in touch.");
+      setStatus("Submitted ✅ Thank you — your intake is in. I’ll email your audit within 7 days (or 48 hours if Rush is confirmed).");
       formEl.reset();
 
     }catch(err){
