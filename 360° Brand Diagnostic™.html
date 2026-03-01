@@ -12,10 +12,7 @@
 :root{
   --ink:#141414;
   --muted:rgba(0,0,0,.68);
-  --muted2:rgba(0,0,0,.56);
   --line:rgba(0,0,0,.14);
-  --line2:rgba(0,0,0,.22);
-  --placeholder:rgba(0,0,0,.38);
 }
 
 *{ box-sizing:border-box; margin:0; padding:0; }
@@ -28,7 +25,7 @@ body{
   overflow-x:hidden;
 }
 
-/* ===== MENU (kept) ===== */
+/* ===== MENU ===== */
 .menu-btn{
   position:fixed;
   top:18px; left:20px;
@@ -109,374 +106,114 @@ body.menu-open .menu-bar{ transform:translateY(0); }
   margin-bottom:44px;
 }
 
-.eyebrow{
-  display:inline-block;
-  font-family:'Poppins',sans-serif;
-  font-size:.78rem;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  color:rgba(0,0,0,.62);
-  border:1px solid var(--line);
-  border-radius:999px;
-  padding:7px 12px;
-  margin-bottom:18px;
-}
-
 .hero h1{
-  font-size:clamp(2.25rem,4.2vw,3.2rem);
+  font-size:clamp(2.3rem,4.5vw,3.3rem);
   font-weight:600;
-  letter-spacing:.01em;
-  margin-bottom:14px;
+  margin-bottom:16px;
 }
 
 .hero p{
   font-family:'Poppins',sans-serif;
   font-size:1.05rem;
   color:var(--muted);
-  max-width:680px;
+  max-width:700px;
   margin:0 auto;
 }
 
 .divider{
   height:1px;
   background:linear-gradient(to right, transparent, rgba(0,0,0,.16), transparent);
-  margin:46px 0;
+  margin:48px 0;
 }
 
-/* ===== SECTIONS ===== */
-.section h2{
-  font-size:1.55rem;
-  font-weight:600;
-  letter-spacing:.01em;
-  margin-bottom:12px;
+/* ===== VALUE SECTION ===== */
+.value{
+  text-align:center;
+  margin-bottom:48px;
 }
 
-.section p{
-  font-family:'Poppins',sans-serif;
-  font-size:1.02rem;
-  color:rgba(0,0,0,.78);
+.value h2{
+  font-size:1.6rem;
   margin-bottom:14px;
 }
 
-.two-col{
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:20px;
-  align-items:start;
+.value p{
+  font-family:'Poppins',sans-serif;
+  color:var(--muted);
+  max-width:700px;
+  margin:0 auto 18px;
 }
 
-@media(max-width:860px){
-  .two-col{ grid-template-columns:1fr; }
+.value-list{
+  margin-top:20px;
+  font-family:'Poppins',sans-serif;
+  color:#222;
+  line-height:1.8;
 }
 
-/* ===== CARDS ===== */
-.card{
+.value-list div{
+  margin-bottom:8px;
+}
+
+/* ===== PURCHASE SECTION ===== */
+.purchase{
   border:1px solid var(--line);
-  border-radius:22px;
-  background:#fff;
-  padding:22px;
+  border-radius:24px;
+  padding:32px;
 }
 
-.card.soft{
-  background:linear-gradient(180deg, rgba(0,0,0,.015), rgba(0,0,0,0));
+.purchase h2{
+  font-size:1.5rem;
+  margin-bottom:12px;
 }
 
-.mini-title{
+.purchase p{
   font-family:'Poppins',sans-serif;
-  font-size:.78rem;
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:rgba(0,0,0,.62);
-  margin-bottom:10px;
+  color:var(--muted);
+  margin-bottom:22px;
 }
 
-.list{
-  margin:10px 0 0 18px;
-  font-family:'Poppins',sans-serif;
-  color:rgba(0,0,0,.8);
-  line-height:1.75;
-}
-
-.list li{ margin:6px 0; }
-
-.pill-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:14px;
-}
-
-.pill{
-  font-family:'Poppins',sans-serif;
-  font-size:.88rem;
-  color:#111;
-  border:1px solid var(--line);
-  background:#fff;
-  border-radius:999px;
-  padding:9px 12px;
-}
-
-/* ===== PURCHASE ===== */
-.purchase .cta-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  align-items:center;
-  margin-top:14px;
-}
-
-/* Two-button layout */
+/* Two button layout */
 .purchase-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:14px;
+  gap:16px;
 }
+
 @media(max-width:760px){
   .purchase-grid{ grid-template-columns:1fr; }
 }
 
+/* Buttons */
 a.pay-btn{
   text-decoration:none;
   border:1px solid #111;
-  background:#111;
-  color:#fff;
-  padding:14px 18px;
-  border-radius:18px;
+  background:#fff;
+  color:#111;
+  padding:18px;
+  border-radius:20px;
   font-family:'Poppins',sans-serif;
-  font-size:.92rem;
-  letter-spacing:.06em;
+  font-size:.9rem;
+  letter-spacing:.14em;
   text-transform:uppercase;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:12px;
-  transition:transform .15s ease, background .2s ease;
+  transition:all .25s ease;
 }
 
-a.pay-btn:hover{ transform:translateY(-1px); }
-
-a.pay-btn.alt{
-  background:#fff;
-  color:#111;
-}
-
-a.pay-btn.alt:hover{
-  background:rgba(0,0,0,.02);
-}
-
-.btn-text{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-}
-.btn-text .top{
-  font-size:.82rem;
-  letter-spacing:.18em;
-}
-.btn-text .price{
-  font-size:1rem;
-  letter-spacing:.02em;
-  text-transform:none;
-  opacity:.92;
+a.pay-btn:hover{
+  background:#111;
+  color:#fff;
 }
 
 a.jump-link{
+  display:inline-block;
+  margin-top:20px;
   font-family:'Poppins',sans-serif;
   color:#111;
   text-decoration:none;
   border-bottom:1px solid rgba(0,0,0,.25);
-}
-
-small.fineprint{
-  display:block;
-  margin-top:12px;
-  font-family:'Poppins',sans-serif;
-  color:var(--muted2);
-  font-size:.9rem;
-  line-height:1.65;
-}
-
-/* ===== FORM ===== */
-.form-wrap{
-  margin-top:22px;
-  padding-top:54px;
-  border-top:1px solid var(--line);
-}
-
-.form-wrap .sub{
-  font-family:'Poppins',sans-serif;
-  color:var(--muted2);
-  margin-bottom:18px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-}
-
-.full{ grid-column:1/-1; }
-
-@media(max-width:760px){
-  .grid{ grid-template-columns:1fr; }
-}
-
-label{
-  display:block;
-  font-family:'Poppins',sans-serif;
-  font-size:.76rem;
-  margin:14px 0 8px;
-  color:rgba(0,0,0,.78);
-  letter-spacing:.18em;
-  text-transform:uppercase;
-}
-
-input, textarea, select{
-  width:100%;
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:14px 14px;
-  font-family:'Poppins',sans-serif;
-  font-size:.98rem;
-  color:#111;
-  background:#fff;
-  outline:none;
-  transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
-}
-
-input::placeholder, textarea::placeholder{ color:var(--placeholder); }
-
-input:focus, textarea:focus, select:focus{
-  border-color:var(--line2);
-  box-shadow:0 0 0 3px rgba(0,0,0,.06);
-}
-
-textarea{ min-height:160px; resize:vertical; line-height:1.75; }
-
-.smallnote{
-  font-family:'Poppins',sans-serif;
-  font-size:.88rem;
-  color:var(--muted2);
-  margin-top:10px;
-}
-
-/* Choice block */
-.choice-block{
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:18px;
-  background:#fff;
-}
-
-.choice-title{
-  display:flex;
-  align-items:baseline;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:12px;
-}
-
-.choice-title strong{
-  font-family:'Playfair Display',serif;
-  font-size:1.15rem;
-  font-weight:600;
-  letter-spacing:.01em;
-}
-
-.choice-title span{
-  font-family:'Poppins',sans-serif;
-  font-size:.78rem;
-  color:rgba(0,0,0,.55);
-  letter-spacing:.10em;
-  text-transform:uppercase;
-}
-
-.choice-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-@media(max-width:560px){
-  .choice-grid{ grid-template-columns:1fr; }
-}
-
-.choice{
-  display:flex;
-  gap:10px;
-  align-items:flex-start;
-  font-family:'Poppins',sans-serif;
-  font-size:.95rem;
-  color:#111;
-  padding:10px 12px;
-  border-radius:12px;
-  border:1px solid transparent;
-  user-select:none;
-  transition:background .2s ease, border-color .2s ease;
-}
-
-.choice:hover{
-  border-color:rgba(0,0,0,.10);
-  background:rgba(0,0,0,.015);
-}
-
-.choice input{
-  width:auto;
-  margin-top:3px;
-  accent-color:#111;
-}
-
-/* Consent */
-.checkrow{
-  display:flex;
-  gap:12px;
-  align-items:flex-start;
-  margin-top:18px;
-}
-
-.checkrow input{
-  width:auto;
-  margin-top:5px;
-  accent-color:#111;
-}
-
-/* Actions */
-.actions{
-  display:flex;
-  gap:16px;
-  align-items:center;
-  margin-top:22px;
-  flex-wrap:wrap;
-}
-
-button.submit{
-  border:1px solid #111;
-  background:#111;
-  color:#fff;
-  padding:13px 20px;
-  border-radius:999px;
-  font-family:'Poppins',sans-serif;
-  font-size:.92rem;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  cursor:pointer;
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  transition:transform .15s ease, opacity .2s ease;
-}
-
-button.submit:hover{ transform:translateY(-1px); }
-button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
-
-.status{
-  font-family:'Poppins',sans-serif;
-  font-size:.92rem;
-  color:rgba(0,0,0,.68);
-  min-height:1.2em;
-  max-width:560px;
-  white-space:pre-line;
 }
 </style>
 </head>
@@ -486,9 +223,9 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
 <button class="menu-btn" type="button">MENU</button>
 
 <div class="social-icons">
-  <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
-  <a href="https://www.instagram.com/writemysocials" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-  <a href="https://www.tiktok.com/@writemysocials" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
+  <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank"><i class="fab fa-linkedin"></i></a>
+  <a href="https://www.instagram.com/writemysocials" target="_blank"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.tiktok.com/@writemysocials" target="_blank"><i class="fab fa-tiktok"></i></a>
 </div>
 
 <nav class="menu-bar">
@@ -505,292 +242,61 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
 <main class="page">
 
   <section class="hero">
-    <span class="eyebrow">Strategic Audit + Roadmap</span>
     <h1>360° Brand Diagnostic™</h1>
     <p>
-      A focused audit of your online brand presence — how you show up on social, how you’re perceived at first glance,
-      and how you compare to competitors — followed by a clear roadmap for what to improve first.
+      A strategic audit of your online presence — how your brand is perceived,
+      how your positioning compares to competitors, and what needs refinement —
+      followed by a clear roadmap forward.
     </p>
   </section>
 
-  <div class="divider" aria-hidden="true"></div>
+  <div class="divider"></div>
 
-  <section class="section two-col">
-    <div>
-      <h2>Why Every Client Begins Here</h2>
-      <p>We don’t execute without clarity.</p>
-      <p>
-        Before content, offers, or strategy, we establish exactly how your brand is currently landing online — what’s working,
-        what’s weakening your positioning, and what’s most likely costing you attention, trust, and sales.
-      </p>
-      <p>
-        This diagnostic removes the guesswork and gives you a defined path forward — so execution is intentional, not experimental.
-      </p>
-
-      <div class="pill-row" aria-label="Key outcomes">
-        <span class="pill">Clarity on perception</span>
-        <span class="pill">Competitive context</span>
-        <span class="pill">Priority fixes</span>
-        <span class="pill">Actionable roadmap</span>
-      </div>
-    </div>
-
-    <aside class="card soft">
-      <div class="mini-title">What I review</div>
-      <ul class="list">
-        <li>Your social media presence (positioning, consistency, authority, content quality)</li>
-        <li>How your brand is perceived at first glance (clarity, trust, premium feel)</li>
-        <li>Your competitive landscape — and where you’re ahead / behind online</li>
-        <li>Key gaps that may be limiting conversion, growth, or demand</li>
-      </ul>
-    </aside>
-  </section>
-
-  <div class="divider" aria-hidden="true"></div>
-
-  <section class="section card purchase" id="purchase">
-    <h2>Purchase the 360° Brand Diagnostic™</h2>
+  <section class="value">
+    <h2>What’s Included</h2>
     <p>
-      Choose your preferred turnaround. After purchase, complete the intake form below so I can deliver your audit successfully.
+      This is not just a written audit. You’ll receive clarity and live strategic direction.
     </p>
 
-    <div class="purchase-grid" role="group" aria-label="Purchase options">
-      <!-- Button 1: Base product (no rush) -->
-      <a class="pay-btn alt" href="https://buy.stripe.com/14AeVd3hq4S55T83QD24003" target="_blank" rel="noopener">
-        <span class="btn-text">
-          <span class="top">Get 360° Brand Diagnostic</span>
-          <span class="price">A$2,200</span>
-        </span>
-        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-      </a>
-
-      <!-- Button 2: Product + Rush (includes rush) -->
-      <a class="pay-btn" href="https://buy.stripe.com/cNi3cvcS02JX1CS0Er24002" target="_blank" rel="noopener">
-        <span class="btn-text">
-          <span class="top">Get 360° Brand Diagnostic + 48hr Rush</span>
-          <span class="price">A$2,499</span>
-        </span>
-        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-      </a>
+    <div class="value-list">
+      <div>• Full review of your social media presence</div>
+      <div>• Brand perception & positioning analysis</div>
+      <div>• Competitive comparison breakdown</div>
+      <div>• Clear strategic roadmap with priority actions</div>
+      <div><strong>• 90-Minute Private Strategy Session</strong> where I walk you through the findings, break everything down, and answer your questions in depth.</div>
     </div>
-
-    <div class="cta-row" style="margin-top:16px;">
-      <a class="jump-link" href="#apply">Already purchased? Jump to the intake form</a>
-    </div>
-
-    <small class="fineprint">
-      Standard delivery: within 7 days of form submission. Rush delivery: within 48 hours (when Rush option is purchased).
-      Tip: use the same email on the form as your checkout email so I can match your purchase quickly.
-    </small>
   </section>
 
-  <section class="form-wrap" id="apply">
-    <h2>Audit Intake Form</h2>
-    <p class="sub">Super quick — just 3 questions.</p>
+  <div class="divider"></div>
 
-    <div class="card" role="note" aria-label="Important delivery information">
-      <p style="font-family:'Poppins',sans-serif; color:rgba(0,0,0,.78); margin-bottom:10px;">
-        <strong>Purchased the audit?</strong> Complete this form so I can deliver your diagnostic successfully.
-      </p>
-      <p style="font-family:'Poppins',sans-serif; color:rgba(0,0,0,.68);">
-        <strong>Delivery:</strong> within 7 days of form submission. <strong>Rush:</strong> within 48 hours (when Rush is purchased).
-      </p>
+  <section class="purchase">
+    <h2>Choose Your Turnaround</h2>
+    <p>
+      Select your preferred delivery speed below. Full pricing is shown securely at checkout.
+    </p>
+
+    <div class="purchase-grid">
+      <a class="pay-btn" href="https://buy.stripe.com/14AeVd3hq4S55T83QD24003" target="_blank">
+        Get 360° Brand Diagnostic
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+
+      <a class="pay-btn" href="https://buy.stripe.com/cNi3cvcS02JX1CS0Er24002" target="_blank">
+        Get 360° Brand Diagnostic + 48hr Rush
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
     </div>
 
-    <form class="form" id="brandForm" novalidate>
-      <div class="grid">
-
-        <div class="full">
-          <label for="q1">1) Paste your website + your main social link(s)</label>
-          <textarea id="q1" name="q1" placeholder="Website: https://…&#10;Instagram/TikTok: https://… / @handle" required></textarea>
-        </div>
-
-        <div class="full">
-          <label for="q2">2) What do you sell + who is it for? (one sentence)</label>
-          <textarea id="q2" name="q2" placeholder="Example: “I sell ___ to ___ who want ___.”" required></textarea>
-        </div>
-
-        <div class="full">
-          <label for="q3">3) What do you want the audit to help you fix first?</label>
-          <textarea id="q3" name="q3" placeholder="Example: “Make my brand feel premium”, “Fix messaging”, “Improve conversion”, “Increase demand”, etc." required></textarea>
-        </div>
-
-        <div>
-          <label for="first_name">First Name</label>
-          <input id="first_name" name="first_name" autocomplete="given-name" required />
-        </div>
-
-        <div>
-          <label for="last_name">Last Name</label>
-          <input id="last_name" name="last_name" autocomplete="family-name" required />
-        </div>
-
-        <div class="full">
-          <label for="email">Checkout / Best Email (for delivery)</label>
-          <input id="email" type="email" name="email" autocomplete="email" placeholder="you@brand.com" required />
-          <p class="smallnote">This is where your audit will be delivered.</p>
-        </div>
-
-        <div class="full">
-          <label for="turnaround">Turnaround preference</label>
-          <select id="turnaround" name="turnaround" required>
-            <option value="" selected>—</option>
-            <option value="Standard (within 7 days)">Standard (within 7 days)</option>
-            <option value="Rush (48 hours) — included with Rush purchase">Rush (48 hours) — included with Rush purchase</option>
-          </select>
-        </div>
-
-        <div class="full">
-          <div class="choice-block">
-            <div class="choice-title">
-              <strong>How did you find Write My Socials?</strong>
-              <span>(choose one)</span>
-            </div>
-
-            <div class="choice-grid" role="radiogroup" aria-label="Discovery Source">
-              <label class="choice"><input type="radio" name="discovery" value="Instagram"> Instagram</label>
-              <label class="choice"><input type="radio" name="discovery" value="TikTok"> TikTok</label>
-              <label class="choice"><input type="radio" name="discovery" value="Google"> Google</label>
-              <label class="choice"><input type="radio" name="discovery" value="Referral"> Referral</label>
-              <label class="choice"><input type="radio" name="discovery" value="Client / Friend"> Client / Friend</label>
-              <label class="choice"><input type="radio" name="discovery" value="Other"> Other</label>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="checkrow">
-        <input type="checkbox" id="marketingConsent" />
-        <label for="marketingConsent" style="font-family:'Poppins',sans-serif; font-size:.92rem; color:#111; letter-spacing:0; text-transform:none; margin:0;">
-          I’m happy to receive emails (updates + occasional marketing). I can unsubscribe anytime.
-        </label>
-      </div>
-
-      <div class="actions">
-        <button class="submit" type="submit" id="submitBtn">
-          SUBMIT INTAKE
-          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-        </button>
-        <div class="status" id="status" aria-live="polite"></div>
-      </div>
-    </form>
+    <a class="jump-link" href="#apply">Already purchased? Jump to the intake form</a>
   </section>
 
 </main>
 
 <script>
-/* ===== MENU TOGGLE (kept) ===== */
 (() => {
   const btn = document.querySelector('.menu-btn');
   if (btn) btn.addEventListener('click', () => document.body.classList.toggle('menu-open'));
 })();
-
-/* ===== PREVENT DOUBLE-BINDING (kept) ===== */
-if (!window.__wmsBrandFormBound) {
-  window.__wmsBrandFormBound = true;
-
-  /* ===== KLAVIYO CLIENT PROFILE SETTINGS (kept) ===== */
-  const KLAVIYO_COMPANY_ID = "RYm8PD";
-  const KLAVIYO_REVISION   = "2026-01-15";
-
-  const statusEl  = document.getElementById("status");
-  const submitBtn = document.getElementById("submitBtn");
-  const formEl    = document.getElementById("brandForm");
-
-  function setStatus(msg){ statusEl.textContent = msg; }
-
-  function getRadioValue(name){
-    const el = document.querySelector(`input[name="${name}"]:checked`);
-    return el ? el.value : "";
-  }
-
-  function trimOrEmpty(v){ return (v || "").toString().trim(); }
-
-  async function parseError(res){
-    const text = await res.text().catch(() => "");
-    if (!text) return `HTTP ${res.status}`;
-    try{
-      const j = JSON.parse(text);
-      return j?.errors?.[0]?.detail || j?.errors?.[0]?.title || text;
-    }catch{
-      return text;
-    }
-  }
-
-  async function postProfile(body){
-    const url = `https://a.klaviyo.com/client/profiles?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`;
-
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Accept": "application/vnd.api+json",
-        "Content-Type": "application/vnd.api+json",
-        "revision": KLAVIYO_REVISION
-      },
-      body: JSON.stringify(body)
-    });
-
-    if (!res.ok) throw new Error(await parseError(res));
-    return true;
-  }
-
-  formEl.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    submitBtn.disabled = true;
-    setStatus("Submitting…");
-
-    try{
-      const fd = new FormData(formEl);
-      const base = Object.fromEntries(fd.entries());
-
-      const email = trimOrEmpty(base.email);
-      if (!email){
-        setStatus("Please add your email so I can deliver your audit.");
-        submitBtn.disabled = false;
-        return;
-      }
-
-      const discovery   = getRadioValue("discovery");
-      const wantsMarketing = document.getElementById("marketingConsent").checked;
-
-      const props = {
-        lead_type: "360 Brand Diagnostic Intake",
-        q1_links: trimOrEmpty(base.q1),
-        q2_offer_one_sentence: trimOrEmpty(base.q2),
-        q3_priority_fix: trimOrEmpty(base.q3),
-        turnaround_preference: trimOrEmpty(base.turnaround),
-        discovery_source: discovery,
-        marketing_consent_checkbox: wantsMarketing ? "yes" : "no",
-        submitted_at_iso: new Date().toISOString()
-      };
-
-      const body = {
-        data: {
-          type: "profile",
-          attributes: {
-            email,
-            first_name: trimOrEmpty(base.first_name),
-            last_name: trimOrEmpty(base.last_name),
-            properties: props
-          }
-        }
-      };
-
-      await postProfile(body);
-
-      setStatus("Submitted ✅ Thank you — your intake is in. You’ll receive your audit within 7 days (or within 48 hours if Rush was purchased).");
-      formEl.reset();
-
-    }catch(err){
-      console.error(err);
-      setStatus("Something went wrong.\n" + (err?.message || "Please try again."));
-    }finally{
-      submitBtn.disabled = false;
-    }
-  });
-}
 </script>
 
 </body>
