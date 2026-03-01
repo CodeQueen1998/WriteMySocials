@@ -15,8 +15,6 @@
   --muted2:rgba(0,0,0,.56);
   --line:rgba(0,0,0,.14);
   --line2:rgba(0,0,0,.22);
-  --soft:rgba(0,0,0,.04);
-  --soft2:rgba(0,0,0,.06);
   --placeholder:rgba(0,0,0,.38);
 }
 
@@ -146,8 +144,6 @@ body.menu-open .menu-bar{ transform:translateY(0); }
 }
 
 /* ===== SECTIONS ===== */
-.section{ margin-top:0; }
-
 .section h2{
   font-size:1.55rem;
   font-weight:600;
@@ -173,7 +169,7 @@ body.menu-open .menu-bar{ transform:translateY(0); }
   .two-col{ grid-template-columns:1fr; }
 }
 
-/* ===== CARDS / CALLOUTS ===== */
+/* ===== CARDS ===== */
 .card{
   border:1px solid var(--line);
   border-radius:22px;
@@ -221,10 +217,6 @@ body.menu-open .menu-bar{ transform:translateY(0); }
 }
 
 /* ===== PURCHASE ===== */
-.purchase{
-  margin-top:10px;
-}
-
 .purchase .cta-row{
   display:flex;
   flex-wrap:wrap;
@@ -233,24 +225,61 @@ body.menu-open .menu-bar{ transform:translateY(0); }
   margin-top:14px;
 }
 
+/* Two-button layout */
+.purchase-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:14px;
+}
+@media(max-width:760px){
+  .purchase-grid{ grid-template-columns:1fr; }
+}
+
 a.pay-btn{
   text-decoration:none;
   border:1px solid #111;
   background:#111;
   color:#fff;
-  padding:13px 18px;
-  border-radius:999px;
+  padding:14px 18px;
+  border-radius:18px;
   font-family:'Poppins',sans-serif;
   font-size:.92rem;
-  letter-spacing:.16em;
+  letter-spacing:.06em;
   text-transform:uppercase;
-  display:inline-flex;
+  display:flex;
   align-items:center;
-  gap:10px;
-  transition:transform .15s ease;
+  justify-content:space-between;
+  gap:12px;
+  transition:transform .15s ease, background .2s ease;
 }
 
 a.pay-btn:hover{ transform:translateY(-1px); }
+
+a.pay-btn.alt{
+  background:#fff;
+  color:#111;
+}
+
+a.pay-btn.alt:hover{
+  background:rgba(0,0,0,.02);
+}
+
+.btn-text{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.btn-text .top{
+  font-size:.82rem;
+  letter-spacing:.18em;
+}
+.btn-text .price{
+  font-size:1rem;
+  letter-spacing:.02em;
+  text-transform:none;
+  opacity:.92;
+}
 
 a.jump-link{
   font-family:'Poppins',sans-serif;
@@ -439,8 +468,6 @@ button.submit{
 }
 
 button.submit:hover{ transform:translateY(-1px); }
-
-button.submit i{ font-size:1rem; }
 button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
 
 .status{
@@ -524,24 +551,36 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
   <section class="section card purchase" id="purchase">
     <h2>Purchase the 360° Brand Diagnostic™</h2>
     <p>
-      Once you purchase, please complete the intake form below so I can deliver your audit successfully.
+      Choose your preferred turnaround. After purchase, complete the intake form below so I can deliver your audit successfully.
     </p>
 
-    <ul class="list">
-      <li>Delivery: within <strong>7 days</strong> of submitting your intake form.</li>
-      <li>Rush option: <strong>$299</strong> for delivery within <strong>48 hours</strong> (add-on).</li>
-    </ul>
-
-    <div class="cta-row">
-      <a class="pay-btn" href="https://buy.stripe.com/cNi3cvcS02JX1CS0Er24002" target="_blank" rel="noopener">
-        PURCHASE NOW <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+    <div class="purchase-grid" role="group" aria-label="Purchase options">
+      <!-- Button 1: Base product (no rush) -->
+      <a class="pay-btn alt" href="https://buy.stripe.com/14AeVd3hq4S55T83QD24003" target="_blank" rel="noopener">
+        <span class="btn-text">
+          <span class="top">Get 360° Brand Diagnostic</span>
+          <span class="price">A$2,200</span>
+        </span>
+        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
       </a>
+
+      <!-- Button 2: Product + Rush (includes rush) -->
+      <a class="pay-btn" href="https://buy.stripe.com/cNi3cvcS02JX1CS0Er24002" target="_blank" rel="noopener">
+        <span class="btn-text">
+          <span class="top">Get 360° Brand Diagnostic + 48hr Rush</span>
+          <span class="price">A$2,499</span>
+        </span>
+        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+      </a>
+    </div>
+
+    <div class="cta-row" style="margin-top:16px;">
       <a class="jump-link" href="#apply">Already purchased? Jump to the intake form</a>
     </div>
 
     <small class="fineprint">
-      Tip: use the same email on the form as your checkout email (so I can match your purchase quickly).
-      For the 48-hour rush add-on: submit the form first, then reply to your receipt/confirmation email and request “Rush (48h)”.
+      Standard delivery: within 7 days of form submission. Rush delivery: within 48 hours (when Rush option is purchased).
+      Tip: use the same email on the form as your checkout email so I can match your purchase quickly.
     </small>
   </section>
 
@@ -554,7 +593,7 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
         <strong>Purchased the audit?</strong> Complete this form so I can deliver your diagnostic successfully.
       </p>
       <p style="font-family:'Poppins',sans-serif; color:rgba(0,0,0,.68);">
-        <strong>Delivery:</strong> within 7 days of form submission. <strong>Rush:</strong> $299 extra for delivery within 48 hours.
+        <strong>Delivery:</strong> within 7 days of form submission. <strong>Rush:</strong> within 48 hours (when Rush is purchased).
       </p>
     </div>
 
@@ -597,7 +636,7 @@ button.submit[disabled]{ opacity:.6; cursor:not-allowed; }
           <select id="turnaround" name="turnaround" required>
             <option value="" selected>—</option>
             <option value="Standard (within 7 days)">Standard (within 7 days)</option>
-            <option value="Rush (48 hours) — $299 extra">Rush (48 hours) — $299 extra</option>
+            <option value="Rush (48 hours) — included with Rush purchase">Rush (48 hours) — included with Rush purchase</option>
           </select>
         </div>
 
@@ -741,7 +780,7 @@ if (!window.__wmsBrandFormBound) {
 
       await postProfile(body);
 
-      setStatus("Submitted ✅ Thank you — your intake is in. You’ll receive your audit within 7 days (or within 48 hours if Rush is confirmed).");
+      setStatus("Submitted ✅ Thank you — your intake is in. You’ll receive your audit within 7 days (or within 48 hours if Rush was purchased).");
       formEl.reset();
 
     }catch(err){
