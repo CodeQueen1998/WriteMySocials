@@ -5,525 +5,202 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Services | Write My Socials</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <style>
-    :root{
-      --ink:#0a0a0a;
-      --paper:#ffffff;
-      --soft: rgba(10,10,10,.10);
-      --soft2: rgba(10,10,10,.06);
-      --muted: rgba(10,10,10,.70);
-      --accent:#ff1493;
-
-      --max:1120px;
-      --pad:22px;
-
-      --nav-h:66px;
-      --radius:18px;
+    :root {
+      --ink: #1a1a1a;
+      --paper: #fdfdfd;
+      --muted: #6a6a6a;
+      --line: rgba(0,0,0,0.06);
     }
 
-    html,body{
-      margin:0;padding:0;
-      background:var(--paper);
-      color:var(--ink);
-      font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
-      overflow-x:hidden;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      background: var(--paper); 
+      color: var(--ink); 
+      font-family: 'Poppins', sans-serif; 
+      line-height: 1.6; 
+      overflow-x: hidden;
     }
 
-    .topbar{
-      position:fixed;
-      top:0; left:0; right:0;
-      height:var(--nav-h);
-      z-index:2000;
-      background: rgba(255,255,255,.86);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom:1px solid var(--soft2);
+    /* ===== SIDEBAR NAV ===== */
+    .menu-btn {
+      position: fixed; top: 35px; right: 40px;
+      background: transparent; border: none; cursor: pointer;
+      z-index: 2000; display: flex; align-items: center; gap: 12px;
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
     }
-    .topbar-inner{
-      max-width:var(--max);
-      height:100%;
-      margin:0 auto;
-      padding:0 var(--pad);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
+    .menu-icon { width: 20px; height: 1px; background: var(--ink); position: relative; }
+    .menu-icon::before { content: ''; position: absolute; top: -6px; left: 0; width: 100%; height: 1px; background: var(--ink); }
+
+    .sidebar {
+      position: fixed; top: 0; right: 0; width: 320px; height: 100%;
+      background: #fff; z-index: 1500; padding: 120px 50px;
+      transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      display: flex; flex-direction: column;
+    }
+    .menu-open .sidebar { transform: translateX(0); }
+    .sidebar-links { list-style: none; flex-grow: 1; }
+    .sidebar-links li { margin-bottom: 25px; }
+    .sidebar-links a { 
+      text-decoration: none; color: var(--muted); 
+      font-family: 'Playfair Display', serif; font-size: 1.1rem; 
+      transition: 0.3s; 
+    }
+    .sidebar-links a:hover { color: var(--ink); }
+
+    /* ===== HERO ===== */
+    .topbar { position: fixed; top: 0; left: 0; padding: 35px 40px; z-index: 1000; }
+    .logo { 
+      font-family: 'Playfair Display', serif; font-size: 0.95rem; 
+      letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; color: var(--ink);
     }
 
-    .nav-left{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      min-width: 220px;
-    }
-    .brandmark{
-      font-family:"Bodoni Moda", serif;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      font-size:.95rem;
-      font-weight:600;
-      white-space:nowrap;
+    main { max-width: 1100px; margin: 0 auto; padding: 220px 24px 140px; }
+
+    .eyebrow { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.5em; color: var(--muted); margin-bottom: 40px; display: block; text-align: center; }
+    
+    h1 { 
+      font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); 
+      font-weight: 400; text-transform: uppercase; letter-spacing: 0.15em; 
+      text-align: center; margin-bottom: 100px; line-height: 1.1;
     }
 
-    .nav-center{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      flex:1;
+    /* ===== SERVICE SECTION ===== */
+    .service-row {
+      display: grid; grid-template-columns: 300px 1fr;
+      gap: 80px; padding: 80px 0; border-top: 1px solid var(--line);
     }
-    .nav-center a{
-      text-decoration:none;
-      color:var(--ink);
-      font-size:.78rem;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      padding:10px 10px;
-      border-radius:999px;
-      transition:.25s ease;
-      opacity:.88;
+    .service-row:first-of-type { border-top: none; }
+
+    .service-meta h2 {
+      font-family: 'Playfair Display', serif; font-size: 1.4rem;
+      text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500;
     }
-    .nav-center a:hover{
-      background: rgba(10,10,10,.04);
-      opacity:1;
-    }
-    .nav-center a[aria-current="page"]{
-      background: rgba(10,10,10,.06);
-      opacity:1;
+    .service-num { font-size: 0.7rem; letter-spacing: 0.3em; color: var(--muted); margin-bottom: 15px; display: block; }
+
+    .service-content h3 {
+      font-family: 'Playfair Display', serif; font-size: 1rem;
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px;
     }
 
-    .nav-right{
-      display:flex;
-      align-items:center;
-      gap:16px;
-      min-width: 220px;
-      justify-content:flex-end;
-    }
-    .nav-right a{
-      color:var(--ink);
-      font-size:1.05rem;
-      opacity:.85;
-      transition:.25s ease;
-    }
-    .nav-right a:hover{ color:var(--accent); opacity:1; }
+    .service-details { font-weight: 300; font-size: 0.95rem; color: var(--muted); margin-bottom: 40px; max-width: 600px; }
+    
+    .list-title { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--ink); font-weight: 600; margin-bottom: 15px; display: block; }
+    
+    ul { list-style: none; margin-bottom: 40px; }
+    ul li { font-size: 0.9rem; color: var(--muted); margin-bottom: 10px; position: relative; padding-left: 20px; }
+    ul li::before { content: '—'; position: absolute; left: 0; color: var(--line); }
 
-    @media (max-width: 780px){
-      .nav-left{ min-width:auto; }
-      .nav-right{ min-width:auto; }
-      .brandmark{ display:none; }
-      .nav-center{ justify-content:flex-start; overflow:auto; scrollbar-width:none; }
-      .nav-center::-webkit-scrollbar{ display:none; }
+    .cta-link {
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.3em;
+      text-decoration: none; color: var(--ink); border-bottom: 1px solid var(--ink);
+      padding-bottom: 5px; transition: 0.3s;
     }
+    .cta-link:hover { opacity: 0.5; }
 
-    main{
-      max-width:var(--max);
-      margin:0 auto;
-      padding: calc(var(--nav-h) + 56px) var(--pad) 88px;
-    }
-
-    .kicker{
-      text-align:center;
-      font-size:.78rem;
-      letter-spacing:.26em;
-      text-transform:uppercase;
-      color:var(--muted);
-      margin:0 0 10px;
-    }
-
-    h1{
-      margin:0;
-      text-align:center;
-      font-family:"Bodoni Moda", serif;
-      font-weight:600;
-      font-size:clamp(2.2rem, 4.4vw, 3.2rem);
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      line-height:1.12;
-    }
-
-    .sub{
-      text-align:center;
-      margin:14px auto 0;
-      max-width: 760px;
-      color: rgba(10,10,10,.78);
-      font-size:clamp(.98rem, 1.8vw, 1.05rem);
-      font-style:italic;
-      line-height:1.65;
-    }
-
-    .note{
-      text-align:center;
-      margin: 22px auto 0;
-      max-width: 860px;
-      color: rgba(10,10,10,.74);
-      font-size: .95rem;
-      line-height: 1.8;
-    }
-    .note strong{
-      font-weight:600;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      font-size:.78rem;
-      color: rgba(10,10,10,.70);
-      display:block;
-      margin-bottom: 8px;
-    }
-
-    .rule{
-      border:none;
-      border-top:1px solid var(--soft2);
-      margin:32px auto 28px;
-      max-width: 860px;
-    }
-
-    /* Sections */
-    .section{
-      padding: 34px 0;
-      border-top: 1px solid var(--soft2);
-      display:grid;
-      grid-template-columns: 240px 1fr;
-      gap: 34px;
-      align-items:start;
-    }
-    .section:first-of-type{ border-top:none; padding-top: 10px; }
-
-    .sec-meta{
-      position: sticky;
-      top: calc(var(--nav-h) + 18px);
-      align-self:start;
-    }
-
-    .sec-num{
-      font-size:.72rem;
-      letter-spacing:.28em;
-      text-transform:uppercase;
-      color: rgba(10,10,10,.68);
-      margin:0 0 10px;
-    }
-    .sec-title{
-      font-family:"Bodoni Moda", serif;
-      font-weight:600;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      font-size:1.35rem;
-      margin:0 0 10px;
-      line-height:1.2;
-    }
-    .sec-desc{
-      margin:0;
-      color: rgba(10,10,10,.72);
-      font-size:.95rem;
-      line-height:1.7;
-      max-width: 320px;
-    }
-
-    .items{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-    }
-
-    .item{
-      border-top: 1px solid rgba(10,10,10,.08);
-      padding-top: 18px;
-    }
-    .item:first-child{ border-top: 0; padding-top: 0; }
-
-    /* Premium cards */
-    .item-head{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:16px;
-    }
-
-    .item h3{
-      margin:0;
-      font-weight:600;
-      font-size:1.05rem;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      line-height:1.35;
-    }
-
-    .details{
-      display:block;
-      margin-top: 10px;
-      color: rgba(10,10,10,.76);
-      font-size:.95rem;
-      line-height:1.75;
-      max-width: 860px;
-    }
-
-    .details strong{
-      font-weight:600;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      font-size:.82rem;
-      color: rgba(10,10,10,.72);
-      display:block;
-      margin: 12px 0 6px;
-    }
-    .details ul{
-      margin:0 0 0 18px;
-      padding:0;
-    }
-    .details li{ margin: 6px 0; }
-
-    .micro{
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px solid rgba(10,10,10,.06);
-      font-size: .92rem;
-      color: rgba(10,10,10,.74);
-    }
-
-    /* Responsive layout */
-    @media (max-width: 900px){
-      .section{
-        grid-template-columns: 1fr;
-      }
-      .sec-meta{
-        position: static;
-      }
-      .sec-desc{
-        max-width: 100%;
-      }
-    }
-
-    .contact{
-      margin-top:56px;
-      padding-top:28px;
-      border-top:1px solid var(--soft2);
-      text-align:center;
-      color: rgba(10,10,10,.78);
-    }
-    .contact p{ margin: 8px 0; }
-    .contact a{
-      color:var(--ink);
-      text-decoration:none;
-      border-bottom:1px solid rgba(10,10,10,.35);
-      transition:.25s ease;
-    }
-    .contact a:hover{
-      color:var(--accent);
-      border-color:var(--accent);
+    @media (max-width: 850px) {
+      .service-row { grid-template-columns: 1fr; gap: 40px; }
     }
   </style>
 </head>
+<body id="body">
 
-<body>
-<header class="topbar" role="banner">
-  <div class="topbar-inner">
-    <div class="nav-left">
-      <div class="brandmark">Write My Socials</div>
-    </div>
-    <nav class="nav-center" aria-label="Primary">
-      <a href="./">Home</a>
-      <a href="./about.html">About</a>
-      <a href="./services.html" aria-current="page">Services</a>
-      <a href="./360%C2%B0%20Brand%20Diagnostic%E2%84%A2.html">Diagnostic</a>
-    </nav>
-    <div class="nav-right">
-      <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/"><i class="fab fa-linkedin"></i></a>
-      <a href="https://www.instagram.com/writemysocials"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.tiktok.com/@writemysocials"><i class="fab fa-tiktok"></i></a>
-    </div>
-  </div>
-</header>
+  <header class="topbar"><a href="/" class="logo">WRITE MY SOCIALS</a></header>
 
-<main>
-  <p class="kicker">Services</p>
-  <h1>Brand Strategy &amp; Content Studio</h1>
-  <p class="sub">Brand direction, content systems, and launch strategy for feminine-led brands in beauty, fashion, and health &amp; wellness — designed to look premium, feel cohesive, and grow with intention.</p>
+  <button class="menu-btn" onclick="document.getElementById('body').classList.toggle('menu-open')">
+    <span>Menu</span><div class="menu-icon"></div>
+  </button>
 
-  <p class="note">
-    <strong>Organic by design</strong>
-    Everything we create is organic — strategically and intentionally directed to elevate perception, strengthen trust, and position your brand with clarity.
-  </p>
+  <nav class="sidebar">
+    <ul class="sidebar-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="#audit">Brand Diagnostic</a></li>
+      <li><a href="#copy">Copy & Email</a></li>
+      <li><a href="#content">Studio & SMM</a></li>
+      <li><a href="#consulting">Consulting</a></li>
+    </ul>
+  </nav>
 
-  <p class="note">
-    <strong>Selective by intention</strong>
-    We partner with founders and teams we genuinely believe in — where we see strong potential and a clear opportunity to elevate the brand visually and strategically.
-  </p>
+  <main>
+    <span class="eyebrow">Strategic Content Studio</span>
+    <h1>The Service Menu</h1>
 
-  <hr class="rule"/>
+    <section class="service-row" id="audit">
+      <div class="service-meta">
+        <span class="service-num">01</span>
+        <h2>Branding & Audit</h2>
+      </div>
+      <div class="service-content">
+        <h3>360° Brand Diagnostic™</h3>
+        <p class="service-details">A clarity-first high-fidelity audit designed to identify the friction points in your current digital ecosystem.</p>
+        <span class="list-title">What it entails</span>
+        <ul>
+          <li>Visual perception & authority review</li>
+          <li>Competitive landscape & gap analysis</li>
+          <li>Revenue-leak identification</li>
+          <li>90-Day strategic roadmap</li>
+        </ul>
+        <a href="/diagnostic" class="cta-link">View Diagnostic</a>
+      </div>
+    </section>
 
-  <section class="section">
-    <div class="sec-meta">
-      <p class="sec-num">01</p>
-      <h2 class="sec-title">The Diagnostic</h2>
-      <p class="sec-desc">A clarity-first brand and content audit designed to uncover what’s weakening positioning, limiting growth, and disrupting visual cohesion.</p>
-    </div>
+    <section class="service-row" id="copy">
+      <div class="service-meta">
+        <span class="service-num">02</span>
+        <h2>Copywriting</h2>
+      </div>
+      <div class="service-content">
+        <h3>Strategic Narrative & Email Marketing</h3>
+        <p class="service-details">Transforming your brand story into a conversion engine through high-level storytelling and hard data.</p>
+        <span class="list-title">What it entails</span>
+        <ul>
+          <li>Homepage & sales page architecture</li>
+          <li>Welcome & nurture email sequences</li>
+          <li>Brand voice consistency manual</li>
+        </ul>
+        <a href="mailto:siyana@writemysocials.com" class="cta-link">Inquire Now</a>
+      </div>
+    </section>
 
-    <div class="items">
-      <article class="item">
-        <div class="item-head">
-          <h3>360° Brand Diagnostic™ (Recommended Start)</h3>
-        </div>
-        <div class="details">
-          <strong>Includes</strong>
-          <ul>
-            <li>Brand positioning + messaging review</li>
-            <li>Social + content effectiveness audit</li>
-            <li>Visual cohesion + perception review</li>
-            <li>Audience alignment gaps + clarity refinement</li>
-            <li>Competitive landscape insights</li>
-            <li>90-day roadmap (creative direction, content focus, growth priorities)</li>
-          </ul>
-          <strong>Outcome</strong>
-          <ul>
-            <li>Clear direction on what to say, what to show, and how to elevate your brand presence.</li>
-          </ul>
-          <div class="micro">
-            *All retainers begin with the Diagnostic to ensure strategy leads execution.
-          </div>
-        </div>
-      </article>
-    </div>
-  </section>
+    <section class="service-row" id="consulting">
+      <div class="service-meta">
+        <span class="service-num">03</span>
+        <h2>Consulting</h2>
+      </div>
+      <div class="service-content">
+        <h3>Private Strategy Sessions</h3>
+        <p class="service-details">1:1 high-impact sessions for founders needing clinical clarity on positioning or creative direction.</p>
+        <span class="list-title">Best For</span>
+        <ul>
+          <li>Established brands undergoing a pivot</li>
+          <li>Founders seeking a strategic second opinion</li>
+          <li>Campaign concept development</li>
+        </ul>
+        <a href="#" class="cta-link">Book a Session</a>
+      </div>
+    </section>
 
-  <section class="section">
-    <div class="sec-meta">
-      <p class="sec-num">02</p>
-      <h2 class="sec-title">The Retainer</h2>
-      <p class="sec-desc">Monthly brand and content execution designed to build authority and elevate your presence through premium short-form video.</p>
-    </div>
+    <section class="service-row" id="content">
+      <div class="service-meta">
+        <span class="service-num">04</span>
+        <h2>Content & SMM</h2>
+      </div>
+      <div class="service-content">
+        <h3>Content Creation & Managed Growth</h3>
+        <p class="service-details">We don't just post; we architect ecosystems. Full-service production from organic viral reels to targeted paid media.</p>
+        <span class="list-title">Includes</span>
+        <ul>
+          <li>Cinematic Short-Form Video (TikTok/Reels)</li>
+          <li>Full-cycle Social Media Stewardship</li>
+          <li>Paid Ads Strategy & Execution</li>
+        </ul>
+        <a href="mailto:siyana@writemysocials.com" class="cta-link">Get a Quote</a>
+      </div>
+    </section>
 
-    <div class="items">
-      <article class="item">
-        <div class="item-head">
-          <h3>Brand Authority Retainer (Full-Service SMM)</h3>
-        </div>
-        <div class="details">
-          <strong>Includes</strong>
-          <ul>
-            <li>Full-cycle account stewardship (Instagram & TikTok)</li>
-            <li>Strategic content distribution and automated publishing</li>
-            <li>SEO-optimized caption development and messaging</li>
-            <li>Daily community cultivation and engagement</li>
-            <li>Monthly performance analytics and strategy refinement</li>
-          </ul>
-          <strong>Outcome</strong>
-          <ul>
-            <li>A polished, managed presence that feels intentional and authority-led.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="item">
-        <div class="item-head">
-          <h3>Short-Form Video Production (20 Reels / TikToks)</h3>
-        </div>
-        <div class="details">
-          <strong>Includes</strong>
-          <ul>
-            <li>Full-service videography and production of 20 Reels per month</li>
-            <li>High-end editing, sound selection, and visual pacing</li>
-            <li>Repeatable formats aligned to brand identity</li>
-            <li>On-set art direction, hairstyling, and wardrobe guidance</li>
-            <li>Concept direction balancing storytelling and conversion</li>
-          </ul>
-          <strong>Outcome</strong>
-          <ul>
-            <li>High-performing cinematic content that maintains a refined aesthetic.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="item">
-        <div class="item-head">
-          <h3>Editorial Content Direction & Photography</h3>
-        </div>
-        <div class="details">
-          <strong>Includes</strong>
-          <ul>
-            <li>Seasonal storytelling arcs + campaign themes</li>
-            <li>Creative direction and photography for content days</li>
-            <li>Art direction oversight for visual cohesion</li>
-            <li>Multi-format content ecosystem planning</li>
-          </ul>
-          <strong>Outcome</strong>
-          <ul>
-            <li>A curated content world that feels elevated and brand-led.</li>
-          </ul>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="sec-meta">
-      <p class="sec-num">03</p>
-      <h2 class="sec-title">Conversion & Amplification</h2>
-      <p class="sec-desc">Strategic assets and performance marketing designed to turn engagement into revenue.</p>
-    </div>
-
-    <div class="items">
-      <article class="item">
-        <div class="item-head">
-          <h3>Website Messaging &amp; Strategic Copywriting</h3>
-        </div>
-        <div class="details">
-          <strong>Includes</strong>
-          <ul>
-            <li>Homepage + key page messaging refinement</li>
-            <li>Offer positioning and sales page hierarchy</li>
-            <li>Brand story development and voice consistency</li>
-          </ul>
-          <strong>Outcome</strong>
-          <ul>
-            <li>A website that communicates value clearly and elevates perception instantly.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="item">
-        <div class="item-head">
-          <h3>Email Marketing &amp; Funnel Copy</h3>
-        </div>
-        <div class="details">
-          <strong>Includes</strong>
-          <ul>
-            <li>Welcome + nurture sequence development</li>
-            <li>Monthly newsletter curation and launch messaging</li>
-            <li>Conversion flow structure and brand voice alignment</li>
-          </ul>
-          <strong>Outcome</strong>
-          <ul>
-            <li>Email communication that feels elevated and revenue-aligned.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="item">
-        <div class="item-head">
-          <h3>Paid Media &amp; Campaigns (Ads)</h3>
-        </div>
-        <div class="details">
-          <strong>Includes</strong>
-          <ul>
-            <li>Paid Social strategy (Meta/TikTok)</li>
-            <li>Performance-led ad copywriting and creative cues</li>
-            <li>Targeted amplification of high-performing organic assets</li>
-          </ul>
-          <strong>Outcome</strong>
-          <ul>
-            <li>Strategic reach that scales brand authority to new audiences.</li>
-          </ul>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <div class="contact">
-    <p>Questions or ready to start?</p>
-    <p><a href="mailto:siyana.deveaux@writemysocials.com.au">siyana.deveaux@writemysocials.com.au</a></p>
-    <p><a href="https://calendly.com/your-link" target="_blank" rel="noopener">Book a strategy call</a></p>
-  </div>
-</main>
+  </main>
 </body>
 </html>
