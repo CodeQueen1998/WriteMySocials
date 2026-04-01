@@ -195,6 +195,7 @@ h2 {
   transition: all 0.3s;
   display: inline-block;
   border: 1px solid var(--ink);
+  cursor: pointer;
 }
 
 .cta-button.secondary {
@@ -208,14 +209,25 @@ h2 {
   transform: translateY(-2px);
 }
 
-/* ===== FORM DESIGN ===== */
+/* ===== FORM DESIGN (High Ticket discovery) ===== */
 .form-section {
-  max-width: 700px;
+  max-width: 800px;
   margin: 0 auto;
+  padding-top: 40px;
 }
 
 .form-group {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+}
+
+.form-step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
 }
 
 label {
@@ -224,7 +236,7 @@ label {
   letter-spacing: 0.2em;
   color: var(--muted);
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 input, textarea, select {
@@ -237,6 +249,7 @@ input, textarea, select {
   font-size: 1rem;
   transition: border-color 0.3s;
   outline: none;
+  border-radius: 0;
 }
 
 input:focus, textarea:focus {
@@ -247,13 +260,14 @@ input:focus, textarea:focus {
   background: var(--ink);
   color: #fff;
   border: none;
-  padding: 20px 50px;
+  padding: 22px 50px;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.3em;
   font-size: 0.8rem;
   cursor: pointer;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 40px;
+  transition: opacity 0.3s;
 }
 
 .status-msg {
@@ -261,6 +275,15 @@ input:focus, textarea:focus {
   font-size: 0.9rem;
   font-style: italic;
   color: var(--muted);
+  text-align: center;
+}
+
+.discovery-note {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: -30px;
+    margin-bottom: 40px;
+    font-style: italic;
 }
 </style>
 </head>
@@ -272,12 +295,12 @@ input:focus, textarea:focus {
   <div class="nav-links">
     <a href="./about.html">About</a>
     <a href="./services.html">Services</a>
-    <a href="#apply">Intake Form</a>
+    <a href="#apply">Discovery Intake</a>
   </div>
 </nav>
 
 <header class="page-header">
-  <span class="eyebrow">Strategic Audit • 90-Minute Strategy</span>
+  <span class="eyebrow">Strategic Audit • 90-Minute Private Strategy</span>
   <h1>360° Brand Diagnostic™</h1>
   <p class="hero-sub">A high-fidelity audit of your digital presence, competitor landscape, and conversion architecture.</p>
 </header>
@@ -288,28 +311,28 @@ input:focus, textarea:focus {
     <div class="content-text">
       <h2>Clarity over Guesswork.</h2>
       <p>In the world of premium branding, art must meet commerce with absolute intention. Before we create, we must diagnose.</p>
-      <p>This audit identifies exactly where your brand is leaking authority, trust, and sales. It provides the "why" behind your current performance and a clinical roadmap for what to fix first.</p>
+      <p>This $2,200 audit identifies exactly where your brand is leaking authority, trust, and sales. It provides the "why" behind your current performance and a clinical roadmap for what to fix first.</p>
       <p><i>"People don’t buy from logos; they buy from people. I make sure they feel the person behind your brand."</i></p>
     </div>
 
     <div class="deliverables-card">
-      <h3 style="font-family:'Playfair Display'; margin-bottom:30px;">Tangible Deliverables</h3>
+      <h3 style="font-family:'Playfair Display'; margin-bottom:30px;">Your Deliverables</h3>
       <ul class="deliverables-list">
         <li>
-          <strong>The Perception Report</strong>
-          <span>A visual teardown of your current positioning and first-impression authority.</span>
-        </li>
-        <li>
-          <strong>The Competitor Gap Analysis</strong>
-          <span>Identification of the "white space" your brand can claim in your specific niche.</span>
+          <strong>The Visual Perception Report</strong>
+          <span>A high-fidelity breakdown of your brand’s current first-impression authority vs. top competitors.</span>
         </li>
         <li>
           <strong>The Revenue-Leak Checklist</strong>
-          <span>Technical and psychological gaps currently limiting your conversions.</span>
+          <span>A granular audit of the technical and psychological friction points costing you conversions.</span>
         </li>
         <li>
-          <strong>The 90-Day Roadmap</strong>
-          <span>A prioritized action plan for content, messaging, and organic growth.</span>
+          <strong>The 90-Day Best Seller Roadmap</strong>
+          <span>A customized action plan for content pillars, creative direction, and narrative scaling.</span>
+        </li>
+        <li>
+          <strong>The Private Strategy Session</strong>
+          <span>A 90-minute recorded deep-dive to walk through the findings and answer execution questions.</span>
         </li>
       </ul>
     </div>
@@ -317,30 +340,56 @@ input:focus, textarea:focus {
 
   <section class="pricing-box">
     <h2>Secure Your Diagnostic</h2>
-    <p style="color:var(--muted); font-size:0.9rem;">Turnaround: 7 Days (Standard) or 48 Hours (Rush)</p>
+    <p style="color:var(--muted); font-size:0.9rem; margin-bottom: 20px;">Current Investment: $2,200.00 AUD</p>
     <div class="btn-group">
-      <a href="https://buy.stripe.com/14AeVd3hq4S55T83QD24003" class="cta-button">Standard Delivery</a>
+      <a href="https://buy.stripe.com/14AeVd3hq4S55T83QD24003" class="cta-button">Standard Delivery (7 Days)</a>
       <a href="https://buy.stripe.com/cNi3cvcS02JX1CS0Er24002" class="cta-button secondary">Priority 48hr Rush</a>
     </div>
   </section>
 
   <section class="form-section" id="apply">
-    <h2 style="text-align:center; margin-bottom:40px;">Intake Information</h2>
+    <h2 style="text-align:center; margin-bottom:10px;">Phase 01: Strategic Discovery</h2>
+    <p class="discovery-note" style="text-align:center;">This intake allows me to perform a high-fidelity audit before our private session.</p>
+    
     <form id="brandForm">
+      
+      <div class="form-step-title"><span>01. Digital Footprint</span> <span>— Background</span></div>
+      
       <div class="form-group">
-        <label>01. Digital Footprint (Website + Social Links)</label>
-        <textarea name="q1" placeholder="https://..." required></textarea>
+        <label>Primary Website & Social Ecosystem</label>
+        <textarea name="q1" placeholder="Please list your URL, Instagram, and TikTok handles..." required></textarea>
       </div>
 
       <div class="form-group">
-        <label>02. The Offer & Audience</label>
-        <input type="text" name="q2" placeholder="I sell [product] to [demographic]..." required>
+        <label>The Competitive Landscape</label>
+        <textarea name="q_competitors" placeholder="Who are 2-3 competitors winning the attention you want?"></textarea>
+      </div>
+
+      <div class="form-step-title"><span>02. Business Pulse</span> <span>— The Data</span></div>
+
+      <div class="form-group">
+        <label>Current Revenue & 6-Month Objective</label>
+        <input type="text" name="q_revenue" placeholder="What is your current monthly baseline and where are we scaling to?">
       </div>
 
       <div class="form-group">
-        <label>03. Primary Objective</label>
-        <input type="text" name="q3" placeholder="e.g. Increase premium feel, fix conversion..." required>
+        <label>The Core Offer & "Ideal Client" Psychographics</label>
+        <textarea name="q2" placeholder="What do you sell, and what is the #1 emotional trigger that makes your client buy?" required></textarea>
       </div>
+
+      <div class="form-step-title"><span>03. Friction Points</span> <span>— The Gap</span></div>
+
+      <div class="form-group">
+        <label>The Biggest Roadblock</label>
+        <textarea name="q3" placeholder="What is currently the most frustrating part of your digital presence? (e.g. Content feels cheap, low conversion, high views but zero sales)" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Primary Diagnostic Goal</label>
+        <input type="text" name="q_goal" placeholder="If this audit solves ONE thing for you, what must it be?" required>
+      </div>
+
+      <div class="form-step-title"><span>04. Client Details</span> <span>— Finalize</span></div>
 
       <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
         <div class="form-group">
@@ -354,11 +403,11 @@ input:focus, textarea:focus {
       </div>
 
       <div class="form-group">
-        <label>Email Address</label>
+        <label>Best Email for Delivery</label>
         <input type="email" name="email" placeholder="you@brand.com" required>
       </div>
 
-      <button type="submit" class="submit-btn" id="submitBtn">Submit Intake</button>
+      <button type="submit" class="submit-btn" id="submitBtn">Complete Discovery Intake</button>
       <div class="status-msg" id="status"></div>
     </form>
   </section>
@@ -366,15 +415,16 @@ input:focus, textarea:focus {
 </main>
 
 <script>
-// Klaviyo Integration Logic (Consolidated)
 const KLAVIYO_ID = "RYm8PD";
 const form = document.getElementById('brandForm');
 const status = document.getElementById('status');
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  document.getElementById('submitBtn').disabled = true;
-  status.textContent = "Processing...";
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.style.opacity = "0.5";
+  status.textContent = "Securing discovery data...";
 
   const formData = new FormData(form);
   const data = Object.fromEntries(formData.entries());
@@ -395,10 +445,13 @@ form.addEventListener('submit', async (e) => {
             first_name: data.first_name,
             last_name: data.last_name,
             properties: {
-              lead_type: "360 Brand Diagnostic",
+              lead_type: "360 Brand Diagnostic ($2200)",
               links: data.q1,
-              offer: data.q2,
-              goal: data.q3
+              competitors: data.q_competitors,
+              revenue_goals: data.q_revenue,
+              offer_psychographics: data.q2,
+              primary_roadblock: data.q3,
+              diagnostic_priority: data.q_goal
             }
           }
         }
@@ -406,15 +459,16 @@ form.addEventListener('submit', async (e) => {
     });
 
     if (response.ok) {
-      status.textContent = "Success. Your intake is received. Check your email for next steps.";
+      status.textContent = "Discovery intake received. I will begin your audit shortly. Expect a confirmation email within 12 hours.";
       form.reset();
     } else {
-      throw new Error("Submission failed.");
+      throw new Error("Submission error.");
     }
   } catch (err) {
-    status.textContent = "Error. Please try again or contact support.";
+    status.textContent = "Something went wrong. Please refresh or email direct.";
   } finally {
-    document.getElementById('submitBtn').disabled = false;
+    btn.disabled = false;
+    btn.style.opacity = "1";
   }
 });
 </script>
