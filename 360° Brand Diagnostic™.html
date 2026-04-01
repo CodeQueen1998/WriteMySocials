@@ -1,224 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>360° Brand Diagnostic™ | WRITE MY SOCIALS</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>360° Brand Diagnostic™ | WRITE MY SOCIALS</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet"/>
 
-<style>
-:root {
-  --ink: #1a1a1a;
-  --cream: #fdfdfd;
-  --muted: #6a6a6a;
-  --line: rgba(0,0,0,0.06);
-}
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --cream: #fdfdfd;
+            --muted: #6a6a6a;
+            --line: rgba(0,0,0,0.06);
+        }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-  background: var(--cream);
-  color: var(--ink);
-  font-family: 'Poppins', sans-serif;
-  line-height: 1.6;
-  overflow-x: hidden;
-}
+        body {
+            background: var(--cream);
+            color: var(--ink);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-/* ===== NAVIGATION ===== */
-.top-bar {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  padding: 35px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1000;
-  background: rgba(253, 253, 253, 0.8);
-  backdrop-filter: blur(10px);
-}
+        /* ===== NAVIGATION ===== */
+        .top-bar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 35px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(253, 253, 253, 0.8);
+            backdrop-filter: blur(10px);
+        }
 
-.logo {
-  font-family: 'Playfair Display', serif;
-  font-weight: 500;
-  font-size: 0.95rem;
-  letter-spacing: 0.2em;
-  text-decoration: none;
-  color: var(--ink);
-  text-transform: uppercase;
-}
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.2em;
+            text-decoration: none;
+            color: var(--ink);
+            text-transform: uppercase;
+        }
 
-.menu-btn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-}
+        .menu-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+        }
 
-.menu-icon { width: 20px; height: 1px; background: var(--ink); position: relative; }
-.menu-icon::before { content: ''; position: absolute; top: -6px; left: 0; width: 100%; height: 1px; background: var(--ink); }
+        .menu-icon { width: 20px; height: 1px; background: var(--ink); position: relative; }
+        .menu-icon::before { content: ''; position: absolute; top: -6px; left: 0; width: 100%; height: 1px; background: var(--ink); }
 
-/* SIDEBAR */
-.sidebar {
-  position: fixed;
-  top: 0; right: 0;
-  width: 300px; height: 100%;
-  background: #fff;
-  z-index: 2000;
-  padding: 100px 40px;
-  transform: translateX(100%);
-  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  box-shadow: -10px 0 30px rgba(0,0,0,0.03);
-}
+        /* SIDEBAR */
+        .sidebar {
+            position: fixed;
+            top: 0; right: 0;
+            width: 300px; height: 100%;
+            background: #fff;
+            z-index: 2000;
+            padding: 100px 40px;
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.03);
+        }
 
-.menu-open .sidebar { transform: translateX(0); }
+        .menu-open .sidebar { transform: translateX(0); }
 
-.sidebar-links { list-style: none; }
-.sidebar-links li { margin-bottom: 25px; }
-.sidebar-links a { 
-    text-decoration: none; color: var(--muted); 
-    font-family: 'Playfair Display', serif; font-size: 1.1rem; 
-}
+        .sidebar-links { list-style: none; }
+        .sidebar-links li { margin-bottom: 25px; }
+        .sidebar-links a { 
+            text-decoration: none; color: var(--muted); 
+            font-family: 'Playfair Display', serif; font-size: 1.1rem; 
+        }
 
-/* ===== HERO ===== */
-.page-header {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 220px 24px 100px;
-  text-align: center;
-}
+        /* ===== HERO ===== */
+        .page-header {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 220px 24px 100px;
+            text-align: center;
+        }
 
-.eyebrow {
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5em;
-  color: var(--muted);
-  margin-bottom: 40px;
-  display: block;
-}
+        .eyebrow {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5em;
+            color: var(--muted);
+            margin-bottom: 40px;
+            display: block;
+        }
 
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  line-height: 1.2;
-  margin-bottom: 40px;
-}
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            line-height: 1.2;
+            margin-bottom: 40px;
+        }
 
-/* ===== CONTENT ===== */
-.container { max-width: 1100px; margin: 0 auto; padding: 0 24px 140px; }
+        /* ===== CONTENT ===== */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px 140px; }
 
-.grid-2 {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 120px;
-  align-items: start;
-}
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 120px;
+            align-items: start;
+            margin-bottom: 120px;
+        }
 
-.deliverables-card {
-  background: #fff;
-  border: 1px solid var(--line);
-  padding: 60px;
-}
+        .deliverables-card {
+            background: #fff;
+            border: 1px solid var(--line);
+            padding: 60px;
+        }
 
-.deliverables-list { list-style: none; }
-.deliverables-list li { margin-bottom: 35px; }
-.deliverables-list strong {
-  display: block;
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 10px;
-}
+        .deliverables-list { list-style: none; }
+        .deliverables-list li { margin-bottom: 35px; }
+        .deliverables-list strong {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+        }
 
-/* ===== BUTTONS (STANSTORE LINKS) ===== */
-.pricing-box {
-  text-align: center;
-  padding: 100px 0;
-  border-top: 1px solid var(--line);
-}
+        /* ===== QUESTIONNAIRE ===== */
+        .form-section {
+            max-width: 850px;
+            margin: 0 auto 120px;
+            padding: 80px 60px;
+            background: #fff;
+            border: 1px solid var(--line);
+        }
 
-.cta-button {
-  text-decoration: none;
-  background: var(--ink);
-  color: #fff;
-  padding: 22px 45px;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  transition: all 0.4s ease;
-  display: inline-block;
-  border: 1px solid var(--ink);
-}
+        .form-intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
 
-.cta-button.secondary { background: transparent; color: var(--ink); margin-left: 20px; }
+        .form-group {
+            margin-bottom: 50px;
+        }
 
-@media (max-width: 850px) {
-  .grid-2 { grid-template-columns: 1fr; gap: 60px; }
-  .cta-button.secondary { margin-left: 0; margin-top: 20px; width: 100%; }
-  .cta-button { width: 100%; text-align: center; }
-}
-</style>
+        .form-group label {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 15px;
+            color: var(--ink);
+        }
+
+        .form-group input, 
+        .form-group textarea, 
+        .form-group select {
+            width: 100%;
+            padding: 15px 0;
+            border: none;
+            border-bottom: 1px solid var(--line);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            background: transparent;
+            outline: none;
+            transition: border-color 0.4s ease;
+            color: var(--muted);
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            border-bottom-color: var(--ink);
+            color: var(--ink);
+        }
+
+        .form-group textarea {
+            height: 80px;
+            resize: none;
+        }
+
+        /* ===== BUTTONS ===== */
+        .pricing-box {
+            text-align: center;
+            padding: 100px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .cta-button {
+            text-decoration: none;
+            background: var(--ink);
+            color: #fff;
+            padding: 22px 45px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            transition: all 0.4s ease;
+            display: inline-block;
+            border: 1px solid var(--ink);
+        }
+
+        .cta-button.secondary { background: transparent; color: var(--ink); margin-left: 20px; }
+
+        .cta-button:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 850px) {
+            .grid-2 { grid-template-columns: 1fr; gap: 60px; }
+            .form-section { padding: 40px 24px; }
+            .cta-button.secondary { margin-left: 0; margin-top: 20px; width: 100%; }
+            .cta-button { width: 100%; text-align: center; }
+        }
+    </style>
 </head>
 
 <body id="body">
 
 <header class="top-bar">
-  <a href="/" class="logo">WRITE MY SOCIALS</a>
-  <button class="menu-btn" onclick="document.getElementById('body').classList.toggle('menu-open')">
-    <span>Menu</span>
-    <div class="menu-icon"></div>
-  </button>
+    <a href="/" class="logo">WRITE MY SOCIALS</a>
+    <button class="menu-btn" onclick="document.getElementById('body').classList.toggle('menu-open')">
+        <span>Menu</span>
+        <div class="menu-icon"></div>
+    </button>
 </header>
 
 <nav class="sidebar">
-  <ul class="sidebar-links">
-    <li><a href="/">Home</a></li>
-    <li><a href="/services.html">Services</a></li>
-    <li><a href="/about.html">About</a></li>
-  </ul>
+    <ul class="sidebar-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/about.html">About</a></li>
+    </ul>
 </nav>
 
 <header class="page-header">
-  <span class="eyebrow">Strategic Audit • Private Strategy</span>
-  <h1>360° Brand Diagnostic™</h1>
-  <p style="color: var(--muted); max-width: 580px; margin: 0 auto; font-weight: 300;">An immersive, high-fidelity audit of your digital ecosystem, market positioning, and conversion architecture.</p>
+    <span class="eyebrow">Strategic Audit • Private Strategy</span>
+    <h1>360° Brand Diagnostic™</h1>
+    <p style="color: var(--muted); max-width: 580px; margin: 0 auto; font-weight: 300;">An immersive, high-fidelity audit of your digital ecosystem, market positioning, and conversion architecture.</p>
 </header>
 
 <main class="container">
-  <div class="grid-2">
-    <div>
-      <h2 style="font-family:'Playfair Display'; font-weight:400; text-transform:uppercase; margin-bottom:30px;">Clarity over Guesswork.</h2>
-      <p style="color:var(--muted); margin-bottom:20px;">This audit identifies exactly where your brand is leaking authority, trust, and sales. It provides the "why" behind your current performance and a defined roadmap for what to fix first.</p>
+    <div class="grid-2">
+        <div>
+            <h2 style="font-family:'Playfair Display'; font-weight:400; text-transform:uppercase; margin-bottom:30px;">Clarity over Guesswork.</h2>
+            <p style="color:var(--muted); margin-bottom:20px;">This audit identifies exactly where your brand is leaking authority, trust, and sales. It provides the "why" behind your current performance and a defined roadmap for what to fix first.</p>
+        </div>
+
+        <div class="deliverables-card">
+            <ul class="deliverables-list">
+                <li>
+                    <strong>The Perception Audit</strong>
+                    <span style="font-size:0.85rem; color:var(--muted);">A clinical teardown of your current positioning vs. market leaders.</span>
+                </li>
+                <li>
+                    <strong>The 90-Day Roadmap</strong>
+                    <span style="font-size:0.85rem; color:var(--muted);">A prioritized action plan for immediate content pillars and growth.</span>
+                </li>
+            </ul>
+        </div>
     </div>
 
-    <div class="deliverables-card">
-      <ul class="deliverables-list">
-        <li>
-          <strong>The Perception Audit</strong>
-          <span style="font-size:0.85rem; color:var(--muted);">A clinical teardown of your current positioning vs. market leaders.</span>
-        </li>
-        <li>
-          <strong>The 90-Day Roadmap</strong>
-          <span style="font-size:0.85rem; color:var(--muted);">A prioritized action plan for immediate content pillars and growth.</span>
-        </li>
-      </ul>
-    </div>
-  </div>
+    <section class="form-section">
+        <div class="form-intro">
+            <span class="eyebrow" style="margin-bottom: 20px;">The Intake</span>
+            <h2 style="font-family:'Playfair Display'; font-weight:400; text-transform:uppercase;">Defining the Scope</h2>
+            <p style="color:var(--muted); font-size: 0.85rem; margin-top: 15px;">Please review the information required to execute your diagnostic.</p>
+        </div>
 
-  <section class="pricing-box">
-    <a href="https://buy.stripe.com/14AeVd3hq4S55T83QD24003" class="cta-button">Standard Delivery</a>
-    <a href="https://buy.stripe.com/cNi3cvcS02JX1CS0Er24002" class="cta-button secondary">Priority 48hr Rush</a>
-  </section>
+        <form>
+            <div class="form-group">
+                <label>Digital Footprint</label>
+                <textarea placeholder="List your Website URL and primary Social Media handles (Instagram, LinkedIn, etc.)"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Primary Business Objective</label>
+                <select>
+                    <option value="" disabled selected>Select your current focus</option>
+                    <option>Establish Authority & Thought Leadership</option>
+                    <option>Lead Generation for High-Ticket Services</option>
+                    <option>Product Sales / E-commerce Scaling</option>
+                    <option>Community Growth & Engagement</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>The Target Audience</label>
+                <textarea placeholder="Who are you speaking to? Describe your ideal client's biggest pain point."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Market Comparison</label>
+                <textarea placeholder="Identify 2-3 brands or competitors you admire or want to outperform."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Revenue Gap</label>
+                <input type="text" placeholder="What is your current monthly revenue vs. your 12-month goal?">
+            </div>
+
+            <div class="form-group">
+                <label>The Top Objection</label>
+                <textarea placeholder="What is the #1 reason people hesitate to buy from you?"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Current Frustration</label>
+                <textarea placeholder="What part of your digital presence feels the most 'off' to you right now?"></textarea>
+            </div>
+        </form>
+    </section>
+
+    <section class="pricing-box">
+        <p style="font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 40px; color: var(--muted);">Ready to begin the diagnostic?</p>
+        <a href="https://buy.stripe.com/14AeVd3hq4S55T83QD24003" class="cta-button">Standard Delivery</a>
+        <a href="https://buy.stripe.com/cNi3cvcS02JX1CS0Er24002" class="cta-button secondary">Priority 48hr Rush</a>
+    </section>
 </main>
 
 </body>
