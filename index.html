@@ -17,7 +17,6 @@
       --cut-lift:6%;
     }
 
-    /* FIX — hide menu image when menu is closed */
     body:not(.menu-open) .image-menu {
       opacity: 0;
       pointer-events: none;
@@ -30,7 +29,6 @@
 
     html,body{margin:0;padding:0;background:#fff;color:#000;font-family:'Playfair Display',serif;overflow-x:hidden;max-width:100vw}
 
-    /* Intro overlay */
     .reveal-overlay{
       position:fixed;inset:0;background:#000;z-index:4000;
       opacity:1;visibility:visible;
@@ -87,7 +85,7 @@
       color:#fff;
     }
 
-    /* HERO - Adjusted to prevent overlap */
+    /* HERO FIX: circle is moved to ensure visibility */
     .hero{
       max-width:1100px;margin:120px auto 0;padding:0 20px;
       display:grid;grid-template-columns:1fr minmax(300px,680px) 1fr;align-items:center;
@@ -95,8 +93,8 @@
     }
     @media(max-width:960px){.hero{grid-template-columns:1fr;margin-top:110px}}
 
-    .circle-wrap{justify-self:start; position:relative; top:2px; left:0.5cm; z-index: 10;}
-    .circle-wrap svg{width:200px;height:auto;display:block}
+    .circle-wrap{justify-self:start; position:relative; top:2px; left:0; z-index: 10;}
+    .circle-wrap svg{width:180px;height:auto;display:block}
     .circle-wrap text{font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;fill:#000}
     .circle-spin{transform-origin:50% 50%;animation:spin 18s linear infinite}
     @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
@@ -104,10 +102,10 @@
     .logo-wrap{position:relative;display:grid;place-items:center}
     .logo{display:block;margin:0 auto;width:min(70vw,680px);max-width:680px;height:auto;background:transparent;mix-blend-mode:multiply}
     .signature{
-      position:absolute;right:-5%;top:90%;
-      width:min(42vw,300px);max-width:300px;height:auto;opacity:.95;
+      position:absolute;right:-5%;top:85%;
+      width:min(42vw,320px);max-width:320px;height:auto;opacity:.95;
       pointer-events:none;mix-blend-mode:multiply;
-      z-index:1;
+      z-index:5;
     }
 
     .after-hero > *{margin-top:var(--gap)!important;margin-bottom:var(--gap)!important}
@@ -116,24 +114,25 @@
     .reveal{opacity:0;transform:translateY(20px);will-change:transform,opacity}
     .reveal.in{opacity:1;transform:none;transition:opacity .6s ease, transform .6s ease}
 
-    /* Professional Statement */
+    /* Professional Intro */
     .words{text-align:center;max-width:900px;margin:0 auto;padding:0 20px}
-    .words .l1{font-size:clamp(1.3rem,3.2vw,2rem);font-weight:600;letter-spacing:.02em}
-    .words .l2{font-size:clamp(1.6rem,3.8vw,2.4rem);margin-top:.5rem;color:#111}
-    .words .l3{font-family:'Poppins',sans-serif;font-size:clamp(1rem,2.2vw,1.4rem);margin-top:.3rem;opacity:.85}
+    .words .l2{font-size:clamp(1.6rem,3.8vw,2.4rem);margin-top:.5rem;color:#111;line-height:1.2;}
+    .words .l3{font-family:'Poppins',sans-serif;font-size:clamp(1rem,2.2vw,1.4rem);margin-top:1.5rem;opacity:.85;line-height:1.6;}
 
+    /* Service Pillars */
     .pillars-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       max-width: 1000px;
       margin: 0 auto;
-      gap: 40px;
+      gap: 60px;
       text-align: center;
     }
-    .pillar-box h3 { font-family: 'Poppins'; font-size: 0.8rem; letter-spacing: 0.3em; color: #999; margin-bottom: 10px; }
-    .pillar-box h4 { font-size: 1.5rem; text-transform: uppercase; margin-bottom: 15px; }
+    .pillar-box h3 { font-family: 'Poppins'; font-size: 0.75rem; letter-spacing: 0.3em; color: #999; margin-bottom: 10px; }
+    .pillar-box h4 { font-size: 1.6rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 0.05em; }
     .pillar-box p { font-family: 'Poppins'; font-size: 0.95rem; line-height: 1.6; color: #444; }
 
+    /* Reviews Styles */
     .reviews{max-width:900px;margin:0 auto;padding:0 20px;text-align:center}
     .review-container{position:relative}
     .review-slide{display:none}
@@ -152,48 +151,29 @@
     }
     .marquee-track img.pop-in{opacity:1;transform:none;transition:opacity .6s ease, transform .6s ease}
 
-    .corner-showcase{
-      position:relative;
-      width:100vw;
-      margin:0;
-    }
-    .after-hero > .corner-showcase{ margin-bottom:0 !important; }
-    .corner-showcase img{
-      display:block;
-      width:100%;
-      height:auto;
-      object-fit:contain;
-    }
+    .corner-showcase{width:100vw; margin:0;}
+    .after-hero > .corner-showcase{ margin-bottom:0 !important; margin-top: 3cm !important; }
+    .corner-showcase img{display:block; width:100%; height:auto; object-fit:contain;}
 
     .bottom-tagline{
-      position:fixed;
-      left:0; right:0; bottom:0;
-      width:100%;
-      background:#000;
-      color:#fff;
-      font-family:'Poppins',sans-serif;
-      font-size:1rem;
-      white-space:nowrap;
-      overflow:hidden;
-      z-index:900;
+      position:fixed; left:0; right:0; bottom:0; width:100%;
+      background:#000; color:#fff; font-family:'Poppins',sans-serif;
+      font-size:1rem; white-space:nowrap; overflow:hidden; z-index:900;
     }
     .bottom-tagline span{display:inline-block;padding-left:100%;animation:tick 20s linear infinite}
     @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
     @media(max-width:600px){
       .hero{grid-template-columns: 1fr; margin-top: 90px;}
-      .circle-wrap{left:0; justify-self:center; margin-bottom:20px;}
+      .circle-wrap{justify-self:center; margin-bottom:30px;}
+      .pillars-grid{grid-template-columns: 1fr; gap: 40px;}
       .signature{position:relative; right:0; top:0; margin: 10px auto; width: 220px;}
-      .pillars-grid{grid-template-columns: 1fr;}
-      .menu-links{ grid-template-columns: 1fr; }
     }
   </style>
-
-  <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RYm8PD"></script>
 </head>
 
 <body class="preload">
-  <div class="reveal-overlay" id="introOverlay" aria-hidden="true"></div>
+  <div class="reveal-overlay" id="introOverlay"></div>
 
   <button class="menu-btn" aria-expanded="false" aria-controls="menuBar">MENU</button>
   <div class="social-icons">
@@ -224,27 +204,27 @@
       </svg>
     </div>
     <div class="logo-wrap reveal">
-      <img class="logo" id="brandLogo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2011.45.04.png" alt="Write My Socials"/>
-      <img class="signature" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png" alt="signature"/>
+      <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2011.45.04.png" alt="Write My Socials"/>
+      <img class="signature" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png" alt="With love"/>
     </div>
   </header>
 
   <div class="after-hero">
-    <section class="words" aria-label="intro quote">
-      <div class="l2 reveal">Scale your revenue while I handle the narrative.</div>
-      <div class="l3 reveal">I manage your socials and emails, so you can focus on your business.</div>
+    <section class="words">
+      <div class="l2 reveal">I handle your narrative. You handle the business.</div>
+      <div class="l3 reveal">Premium social media management and conversion-led email marketing designed to turn digital presence into measurable growth. I handle the end-to-end execution so you stay focused on operations.</div>
     </section>
 
     <section class="pillars-grid reveal">
       <div class="pillar-box">
         <h3>01</h3>
-        <h4>Content Management</h4>
-        <p>I handle the end-to-end execution of your social presence—from high-end art direction and bespoke reels to strategic carousels that ensure your brand lingers.</p>
+        <h4>Social Management</h4>
+        <p>Complete execution of your content strategy—including bespoke reels, art direction, and high-authority carousels that stop the scroll.</p>
       </div>
       <div class="pillar-box">
         <h3>02</h3>
-        <h4>Direct Response</h4>
-        <p>I manage your conversion email marketing and brand voice architecture, turning your narrative into a consistent sales engine.</p>
+        <h4>Email & Copy</h4>
+        <p>Full-service conversion email marketing and brand voice architecture that captures the heart of your audience and drives revenue.</p>
       </div>
     </section>
 
@@ -273,7 +253,7 @@
     </section>
 
     <div class="corner-showcase reveal">
-      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/A8D19E3A-E2FF-4033-91A1-572D64932578.JPG" alt="Project">
+      <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/A8D19E3A-E2FF-4033-91A1-572D64932578.JPG" alt="Project Showcase">
     </div>
   </div>
 
@@ -290,34 +270,27 @@
 
     (function(){
       const btn=document.querySelector('.menu-btn');const root=document.body;
-      function setOpen(o){root.classList.toggle('menu-open',o);btn.setAttribute('aria-expanded',String(o));}
-      btn.addEventListener('click',()=>setOpen(!root.classList.contains('menu-open')));
+      btn.addEventListener('click',()=>root.classList.toggle('menu-open'));
     })();
 
     let currentReview = 0;
-    function showReview(i){
-      const slides = document.querySelectorAll('.review-slide');
-      slides.forEach(el => el.classList.remove('active'));
-      slides[i].classList.add('active');
-    }
     window.nextReview = function(){
-      const slides = document.querySelectorAll('.review-slide');
-      currentReview = (currentReview + 1) % slides.length;
-      showReview(currentReview);
+      const s = document.querySelectorAll('.review-slide');
+      s[currentReview].classList.remove('active');
+      currentReview = (currentReview + 1) % s.length;
+      s[currentReview].classList.add('active');
     };
     window.prevReview = function(){
-      const slides = document.querySelectorAll('.review-slide');
-      currentReview = (currentReview - 1 + slides.length) % slides.length;
-      showReview(currentReview);
+      const s = document.querySelectorAll('.review-slide');
+      s[currentReview].classList.remove('active');
+      currentReview = (currentReview - 1 + s.length) % s.length;
+      s[currentReview].classList.add('active');
     };
 
-    (function(){
-      const els = document.querySelectorAll('.reveal');
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-      }, { threshold: 0.1 });
-      els.forEach(el => io.observe(el));
-    })();
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   </script>
 </body>
 </html>
