@@ -85,7 +85,6 @@
       color:#fff;
     }
 
-    /* HERO FIX: circle is moved to ensure visibility */
     .hero{
       max-width:1100px;margin:120px auto 0;padding:0 20px;
       display:grid;grid-template-columns:1fr minmax(300px,680px) 1fr;align-items:center;
@@ -114,25 +113,58 @@
     .reveal{opacity:0;transform:translateY(20px);will-change:transform,opacity}
     .reveal.in{opacity:1;transform:none;transition:opacity .6s ease, transform .6s ease}
 
-    /* Professional Intro */
     .words{text-align:center;max-width:900px;margin:0 auto;padding:0 20px}
     .words .l2{font-size:clamp(1.6rem,3.8vw,2.4rem);margin-top:.5rem;color:#111;line-height:1.2;}
     .words .l3{font-family:'Poppins',sans-serif;font-size:clamp(1rem,2.2vw,1.4rem);margin-top:1.5rem;opacity:.85;line-height:1.6;}
 
-    /* Service Pillars */
+    /* UPDATED 3-COLUMN PILLARS */
     .pillars-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      max-width: 1000px;
+      grid-template-columns: 1fr 1fr 1fr;
+      max-width: 1200px;
       margin: 0 auto;
-      gap: 60px;
+      gap: 30px;
       text-align: center;
+      padding: 0 20px;
+    }
+    .pillar-box {
+      padding: 40px 20px;
+      border: 1px solid transparent;
+      transition: all 0.4s ease;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .pillar-box:hover {
+      background: #fafafa;
+      border-color: rgba(0,0,0,0.05);
     }
     .pillar-box h3 { font-family: 'Poppins'; font-size: 0.75rem; letter-spacing: 0.3em; color: #999; margin-bottom: 10px; }
-    .pillar-box h4 { font-size: 1.6rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 0.05em; }
-    .pillar-box p { font-family: 'Poppins'; font-size: 0.95rem; line-height: 1.6; color: #444; }
+    .pillar-box h4 { font-size: 1.5rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 0.05em; min-height: 3em; display: flex; align-items: center; justify-content: center; }
+    
+    .pillar-box .benefit-text {
+      font-family: 'Poppins'; font-size: 0.95rem; line-height: 1.6; color: #444;
+      transition: opacity 0.3s ease;
+    }
+    .pillar-box .service-list {
+      margin-top: 20px;
+      padding: 0;
+      list-style: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease;
+      font-family: 'Poppins';
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 2.2;
+    }
+    .pillar-box:hover .service-list {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-    /* Reviews Styles */
     .reviews{max-width:900px;margin:0 auto;padding:0 20px;text-align:center}
     .review-container{position:relative}
     .review-slide{display:none}
@@ -144,7 +176,6 @@
 
     .marquee-wrap{width:100vw;overflow:hidden}
     .marquee-track{display:flex;gap:2vw;padding:0 2vw;}
-    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
     .marquee-track img{
       height:50vh;width:auto;border-radius:8px;display:block;object-fit:cover;
       opacity:0;transform:translateY(20px);
@@ -163,10 +194,12 @@
     .bottom-tagline span{display:inline-block;padding-left:100%;animation:tick 20s linear infinite}
     @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
-    @media(max-width:600px){
+    @media(max-width:900px){
       .hero{grid-template-columns: 1fr; margin-top: 90px;}
       .circle-wrap{justify-self:center; margin-bottom:30px;}
-      .pillars-grid{grid-template-columns: 1fr; gap: 40px;}
+      .pillars-grid{grid-template-columns: 1fr; gap: 20px;}
+      .pillar-box{min-height: auto; padding: 20px;}
+      .pillar-box .service-list{opacity: 1; transform: none;}
       .signature{position:relative; right:0; top:0; margin: 10px auto; width: 220px;}
     }
   </style>
@@ -218,13 +251,38 @@
     <section class="pillars-grid reveal">
       <div class="pillar-box">
         <h3>01</h3>
-        <h4>Social Management</h4>
-        <p>Complete execution of your content strategy—including bespoke reels, art direction, and high-authority carousels that stop the scroll.</p>
+        <h4>Branding & Strategy</h4>
+        <p class="benefit-text">I build the foundation so your brand doesn't just look premium—it acts premium.</p>
+        <ul class="service-list">
+          <li>Brand Audit</li>
+          <li>90-Day Growth Plan</li>
+          <li>Brand Voice Architecture</li>
+          <li>Visual Identity Direction</li>
+        </ul>
       </div>
+
       <div class="pillar-box">
         <h3>02</h3>
-        <h4>Email & Copy</h4>
-        <p>Full-service conversion email marketing and brand voice architecture that captures the heart of your audience and drives revenue.</p>
+        <h4>Copywriting & Email</h4>
+        <p class="benefit-text">I take care of your emails and sales writing so your brand captures hearts and revenue.</p>
+        <ul class="service-list">
+          <li>Conversion Email Marketing</li>
+          <li>Direct Response Copy</li>
+          <li>Newsletter Management</li>
+          <li>Sales Page Scripting</li>
+        </ul>
+      </div>
+
+      <div class="pillar-box">
+        <h3>03</h3>
+        <h4>Content & Paid Ads</h4>
+        <p class="benefit-text">I handle the end-to-end execution of your visuals to stop the scroll and scale reach.</p>
+        <ul class="service-list">
+          <li>Short Form Content (Reels)</li>
+          <li>Art Direction for Photography</li>
+          <li>Paid Ad Creative</li>
+          <li>Strategic Content Batching</li>
+        </ul>
       </div>
     </section>
 
@@ -293,4 +351,4 @@
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   </script>
 </body>
-</html> 
+</html>
