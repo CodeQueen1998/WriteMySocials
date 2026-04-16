@@ -117,48 +117,50 @@
     .words .l2{font-size:clamp(1.6rem,3.8vw,2.4rem);margin-top:.5rem;color:#111;line-height:1.2;}
     .words .l3{font-family:'Poppins',sans-serif;font-size:clamp(1rem,2.2vw,1.4rem);margin-top:1.5rem;opacity:.85;line-height:1.6;}
 
-    /* UPDATED 3-COLUMN PILLARS */
+    /* PILLAR BOX STYLING */
     .pillars-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      max-width: 1200px;
+      max-width: 1250px;
       margin: 0 auto;
-      gap: 30px;
+      gap: 40px;
       text-align: center;
-      padding: 0 20px;
+      padding: 0 40px;
     }
     .pillar-box {
-      padding: 40px 20px;
+      padding: 50px 30px;
       border: 1px solid transparent;
-      transition: all 0.4s ease;
-      min-height: 380px;
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      min-height: 420px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+      position: relative;
     }
     .pillar-box:hover {
-      background: #fafafa;
-      border-color: rgba(0,0,0,0.05);
+      background: #fcfcfc;
+      border-color: rgba(0,0,0,0.08);
     }
-    .pillar-box h3 { font-family: 'Poppins'; font-size: 0.75rem; letter-spacing: 0.3em; color: #999; margin-bottom: 10px; }
-    .pillar-box h4 { font-size: 1.5rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 0.05em; min-height: 3em; display: flex; align-items: center; justify-content: center; }
+    .pillar-box h3 { font-family: 'Poppins'; font-size: 0.7rem; letter-spacing: 0.4em; color: #bbb; margin-bottom: 20px; }
+    .pillar-box h4 { font-size: 1.4rem; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 0.1em; line-height: 1.3; font-weight: 500; }
     
     .pillar-box .benefit-text {
-      font-family: 'Poppins'; font-size: 0.95rem; line-height: 1.6; color: #444;
-      transition: opacity 0.3s ease;
+      font-family: 'Poppins'; font-size: 0.9rem; line-height: 1.8; color: #555;
+      font-weight: 300;
     }
     .pillar-box .service-list {
-      margin-top: 20px;
+      margin-top: 30px;
       padding: 0;
       list-style: none;
       opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.4s ease;
+      transform: translateY(15px);
+      transition: all 0.5s ease;
       font-family: 'Poppins';
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      line-height: 2.2;
+      letter-spacing: 0.15em;
+      line-height: 2.5;
+      color: #000;
     }
     .pillar-box:hover .service-list {
       opacity: 1;
@@ -177,7 +179,7 @@
     .marquee-wrap{width:100vw;overflow:hidden}
     .marquee-track{display:flex;gap:2vw;padding:0 2vw;}
     .marquee-track img{
-      height:50vh;width:auto;border-radius:8px;display:block;object-fit:cover;
+      height:50vh;width:auto;border-radius:2px;display:block;object-fit:cover;
       opacity:0;transform:translateY(20px);
     }
     .marquee-track img.pop-in{opacity:1;transform:none;transition:opacity .6s ease, transform .6s ease}
@@ -189,17 +191,18 @@
     .bottom-tagline{
       position:fixed; left:0; right:0; bottom:0; width:100%;
       background:#000; color:#fff; font-family:'Poppins',sans-serif;
-      font-size:1rem; white-space:nowrap; overflow:hidden; z-index:900;
+      font-size:0.8rem; letter-spacing: 0.2em; white-space:nowrap; overflow:hidden; z-index:900;
+      padding: 8px 0;
     }
-    .bottom-tagline span{display:inline-block;padding-left:100%;animation:tick 20s linear infinite}
+    .bottom-tagline span{display:inline-block;padding-left:100%;animation:tick 25s linear infinite}
     @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
     @media(max-width:900px){
       .hero{grid-template-columns: 1fr; margin-top: 90px;}
       .circle-wrap{justify-self:center; margin-bottom:30px;}
-      .pillars-grid{grid-template-columns: 1fr; gap: 20px;}
-      .pillar-box{min-height: auto; padding: 20px;}
-      .pillar-box .service-list{opacity: 1; transform: none;}
+      .pillars-grid{grid-template-columns: 1fr; gap: 20px; padding: 0 20px;}
+      .pillar-box{min-height: auto; padding: 40px 20px;}
+      .pillar-box .service-list{opacity: 1; transform: none; margin-top: 20px;}
       .signature{position:relative; right:0; top:0; margin: 10px auto; width: 220px;}
     }
   </style>
@@ -244,44 +247,44 @@
 
   <div class="after-hero">
     <section class="words">
-      <div class="l2 reveal">I handle your narrative. You handle the business.</div>
-      <div class="l3 reveal">Premium social media management and conversion-led email marketing designed to turn digital presence into measurable growth. I handle the end-to-end execution so you stay focused on operations.</div>
+      <div class="l2 reveal">The Narrative Architect for Elevated Brands.</div>
+      <div class="l3 reveal">Fusing marketing psychology with editorial art direction to curate digital spaces that don't just capture attention—they command it. I manage your entire ecosystem while you focus on high-level growth.</div>
     </section>
 
     <section class="pillars-grid reveal">
       <div class="pillar-box">
         <h3>01</h3>
-        <h4>Branding & Strategy</h4>
-        <p class="benefit-text">I build the foundation so your brand doesn't just look premium—it acts premium.</p>
+        <h4>Social & Ad<br>Creative</h4>
+        <p class="benefit-text">High-performance content designed to scale organic reach and maximize ad spend through cinematic short-form storytelling.</p>
         <ul class="service-list">
-          <li>Brand Audit</li>
-          <li>90-Day Growth Plan</li>
-          <li>Brand Voice Architecture</li>
-          <li>Visual Identity Direction</li>
+          <li>Bespoke Short-Form Video</li>
+          <li>Art Direction & Styling</li>
+          <li>Paid Ad Creative Scaling</li>
+          <li>Strategic Content Batching</li>
         </ul>
       </div>
 
       <div class="pillar-box">
         <h3>02</h3>
-        <h4>Copywriting & Email</h4>
-        <p class="benefit-text">I take care of your emails and sales writing so your brand captures hearts and revenue.</p>
+        <h4>Copywriting &<br>Conversion</h4>
+        <p class="benefit-text">Retention-focused email architecture and persuasive brand narratives that turn silent followers into high-LTV customers.</p>
         <ul class="service-list">
-          <li>Conversion Email Marketing</li>
-          <li>Direct Response Copy</li>
+          <li>Conversion Email Flows</li>
+          <li>Brand Voice Architecture</li>
           <li>Newsletter Management</li>
-          <li>Sales Page Scripting</li>
+          <li>Paid Ad Scripting</li>
         </ul>
       </div>
 
       <div class="pillar-box">
         <h3>03</h3>
-        <h4>Content & Paid Ads</h4>
-        <p class="benefit-text">I handle the end-to-end execution of your visuals to stop the scroll and scale reach.</p>
+        <h4>Branding &<br>Strategy</h4>
+        <p class="benefit-text">Comprehensive market positioning and data-driven roadmaps that ensure your brand doesn't just scroll by—it lingers.</p>
         <ul class="service-list">
-          <li>Short Form Content (Reels)</li>
-          <li>Art Direction for Photography</li>
-          <li>Paid Ad Creative</li>
-          <li>Strategic Content Batching</li>
+          <li>360° Brand Diagnostic™</li>
+          <li>90-Day Market Strategy</li>
+          <li>Competitive Analysis</li>
+          <li>Visual Identity Systems</li>
         </ul>
       </div>
     </section>
@@ -299,11 +302,11 @@
       <div class="review-container">
         <button class="arrow left" onclick="prevReview()">&#8592;</button>
         <div class="review-slide active">
-          <p class="review-text">"The quality is great; the structure is correct as well. Thank you for following my brief closely!"</p>
+          <p class="review-text">"The quality is exceptional; the structure is impeccable. Thank you for executing the brief with such precision."</p>
           <p class="review-meta">MARIA — MOVAVI SOFTWARE</p>
         </div>
         <div class="review-slide">
-          <p class="review-text">"Siyana was very professional and was able to edit my copy in a professional manner that spoke to my audience."</p>
+          <p class="review-text">"Siyana is highly professional—shaping our brand narrative into a voice that truly resonates with our target audience."</p>
           <p class="review-meta">IAN — FACEDUNK</p>
         </div>
         <button class="arrow right" onclick="nextReview()">&#8594;</button>
@@ -316,7 +319,7 @@
   </div>
 
   <div class="bottom-tagline">
-    <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
+    <span>CULTIVATING DIGITAL AUTHORITY THROUGH NARRATIVE EXCELLENCE — CULTIVATING DIGITAL AUTHORITY THROUGH NARRATIVE EXCELLENCE —</span>
   </div>
 
   <script>
