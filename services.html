@@ -12,7 +12,7 @@
             --ink: #1a1a1a;
             --cream: #fdfdfd;
             --muted: #6a6a6a;
-            --line: rgba(0,0,0,0.06);
+            --line: rgba(0,0,0,0.1);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,45 +29,35 @@
         .top-bar {
             position: fixed;
             top: 0; left: 0; right: 0;
-            padding: 35px 40px;
+            padding: 30px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(253, 253, 253, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(253, 253, 253, 0.9);
+            border-bottom: 1px solid var(--line);
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
             font-weight: 500;
-            font-size: 0.95rem;
-            letter-spacing: 0.2em;
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
             text-decoration: none;
             color: var(--ink);
             text-transform: uppercase;
         }
 
-        .menu-btn {
-            background: transparent; border: none; cursor: pointer;
-            display: flex; align-items: center; gap: 12px;
-            font-family: 'Poppins', sans-serif; font-size: 0.65rem;
-            letter-spacing: 0.25em; text-transform: uppercase;
-        }
-
-        .menu-icon { width: 20px; height: 1px; background: var(--ink); position: relative; }
-        .menu-icon::before { content: ''; position: absolute; top: -6px; left: 0; width: 100%; height: 1px; background: var(--ink); }
-
         /* ===== HERO ===== */
         .page-header {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 220px 24px 80px;
+            padding: 180px 24px 60px;
             text-align: center;
         }
 
         .eyebrow {
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 0.5em;
             color: var(--muted);
@@ -77,226 +67,232 @@
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.2rem, 5vw, 3rem);
+            font-size: clamp(2rem, 5vw, 2.5rem);
             font-weight: 400;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            line-height: 1.2;
+            letter-spacing: 0.2em;
         }
 
-        /* ===== SERVICE GRID ===== */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px 140px; }
-
-        .service-row {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 100px;
-            padding: 100px 0;
+        /* ===== THREE PILLAR GRID ===== */
+        .pillar-container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
             border-top: 1px solid var(--line);
-            align-items: start;
+            border-bottom: 1px solid var(--line);
+            min-height: 600px;
         }
 
-        .service-info h2 {
+        .pillar {
+            flex: 1;
+            padding: 80px 40px;
+            border-right: 1px solid var(--line);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            background: var(--cream);
+            display: flex;
+            flex-direction: column;
+            cursor: default;
+        }
+
+        .pillar:last-child { border-right: none; }
+
+        /* Pillar Content */
+        .pillar-head span { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.2em; }
+        
+        .pillar h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 400;
+            font-size: 1.6rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: 25px;
-            line-height: 1.3;
+            margin: 20px 0;
+            font-weight: 400;
         }
 
-        .service-description {
+        .pillar-summary {
+            font-size: 0.9rem;
             color: var(--muted);
             font-weight: 300;
-            margin-bottom: 30px;
-            font-size: 0.95rem;
+            max-width: 280px;
+            margin-bottom: 40px;
+            transition: opacity 0.3s ease;
         }
 
-        .deliverables-card {
-            background: #fff;
-            border: 1px solid var(--line);
-            padding: 50px;
+        /* Hidden Details on Hover */
+        .pillar-details {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            pointer-events: none;
         }
 
-        .section-label {
+        .detail-section { margin-bottom: 30px; }
+        
+        .detail-label {
             display: block;
             font-family: 'Playfair Display', serif;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 15px;
-            color: var(--ink);
             border-bottom: 1px solid var(--line);
-            padding-bottom: 10px;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            letter-spacing: 0.1em;
         }
 
-        .list-items {
+        .pillar ul {
             list-style: none;
-            font-size: 0.85rem;
-            color: var(--muted);
-            margin-bottom: 30px;
+            font-size: 0.8rem;
+            color: var(--ink);
         }
 
-        .list-items li {
-            margin-bottom: 8px;
+        .pillar ul li {
+            margin-bottom: 10px;
+            padding-left: 18px;
             position: relative;
-            padding-left: 15px;
         }
 
-        .list-items li::before {
-            content: '—';
+        .pillar ul li::before {
+            content: "";
             position: absolute;
-            left: 0;
-            color: var(--line);
+            left: 0; top: 10px;
+            width: 8px; height: 1px;
+            background: var(--ink);
         }
 
-        /* ===== CTA SECTION ===== */
+        /* Hover Interaction */
+        .pillar:hover {
+            background: #fff;
+            flex: 1.3;
+        }
+
+        .pillar:hover .pillar-details {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* ===== CTA ===== */
         .footer-cta {
             text-align: center;
-            padding: 120px 24px;
-            background: #f9f9f9;
+            padding: 100px 24px;
         }
 
         .cta-button {
             text-decoration: none;
             background: var(--ink);
             color: #fff;
-            padding: 22px 50px;
+            padding: 20px 60px;
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.3em;
             display: inline-block;
-            transition: all 0.4s ease;
+            transition: 0.4s;
         }
 
         .cta-button:hover {
-            opacity: 0.9;
-            transform: translateY(-3px);
+            letter-spacing: 0.4em;
+            background: #000;
         }
 
-        @media (max-width: 850px) {
-            .service-row { grid-template-columns: 1fr; gap: 50px; padding: 60px 0; }
-            .deliverables-card { padding: 30px; }
+        @media (max-width: 900px) {
+            .pillar-container { flex-direction: column; }
+            .pillar { border-right: none; border-bottom: 1px solid var(--line); min-height: auto; }
+            .pillar-details { opacity: 1; transform: none; pointer-events: auto; }
+            .pillar:hover { flex: 1; }
         }
     </style>
 </head>
 <body>
 
 <header class="top-bar">
-    <a href="/" class="logo">WRITE MY SOCIALS</a>
-    <button class="menu-btn">
-        <span>Menu</span>
-        <div class="menu-icon"></div>
-    </button>
+    <a href="#" class="logo">WRITE MY SOCIALS</a>
+    <div style="font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;">Creative Studio</div>
 </header>
 
 <header class="page-header">
     <span class="eyebrow">The Collective Offerings</span>
     <h1>The Studio Menu</h1>
-    <p style="color: var(--muted); max-width: 600px; margin: 40px auto 0; font-weight: 300;">Architecture for entire content ecosystems that move your audience closer to purchase.</p>
 </header>
 
-<main class="container">
+<main class="pillar-container">
 
-    <section class="service-row">
-        <div class="service-info">
-            <span class="eyebrow">01. Branding & Audit</span>
-            <h2>360° Brand Diagnostic™</h2>
-            <p class="service-description">A clarity-first audit designed to identify the friction points in your current digital ecosystem and market perception.</p>
+    <section class="pillar">
+        <div class="pillar-head">
+            <span>01</span>
+            <h2>Audit & <br>Architecture</h2>
+            <p class="pillar-summary">Diagnosing the friction in your brand ecosystem and mapping the next 90 days of growth.</p>
         </div>
-        <div class="deliverables-card">
-            <span class="section-label">What it entails</span>
-            <ul class="list-items">
-                <li>Visual perception & authority review</li>
-                <li>Competitive landscape & gap analysis</li>
-                <li>Revenue-leak identification</li>
-                <li>90-Day strategic roadmap</li>
-            </ul>
-            <span class="section-label">Who it's best for</span>
-            <p style="font-size: 0.85rem; color: var(--muted);">Founders feeling "stuck" or stagnant, or those preparing for a major market pivot.</p>
+        
+        <div class="pillar-details">
+            <div class="detail-section">
+                <span class="detail-label">The Diagnostic™</span>
+                <ul>
+                    <li>360° Visual & Authority Review</li>
+                    <li>Competitive Gap Analysis</li>
+                    <li>Revenue-Leak Identification</li>
+                    <li>90-Day Execution Roadmap</li>
+                </ul>
+            </div>
+            <div class="detail-section">
+                <span class="detail-label">Best For</span>
+                <p style="font-size: 0.75rem; color: var(--muted);">Founders preparing for a pivot or those feeling stagnant in their current market position.</p>
+            </div>
         </div>
     </section>
 
-    <section class="service-row">
-        <div class="service-info">
-            <span class="eyebrow">02. Narrative</span>
-            <h2>Copywriting & Email</h2>
-            <p class="service-description">Turning brand story into conversion engines through high-level storytelling and psychological triggers.</p>
+    <section class="pillar">
+        <div class="pillar-head">
+            <span>02</span>
+            <h2>Narrative & <br>Conversion</h2>
+            <p class="pillar-summary">High-level storytelling that turns cold traffic into loyal brand advocates through words.</p>
         </div>
-        <div class="deliverables-card">
-            <span class="section-label">What it entails</span>
-            <ul class="list-items">
-                <li>Homepage & sales page architecture</li>
-                <li>Welcome & nurture sequences</li>
-                <li>Brand voice consistency manuals</li>
-            </ul>
-            <span class="section-label">Who it's best for</span>
-            <p style="font-size: 0.85rem; color: var(--muted);">Service-based feminine led brands and E-commerce seeking elevated product stories.</p>
-        </div>
-    </section>
-
-    <section class="service-row">
-        <div class="service-info">
-            <span class="eyebrow">03. Private Strategy</span>
-            <h2>Consulting Sessions</h2>
-            <p class="service-description">1:1 high-impact sessions for founders needing clinical clarity on positioning and creative direction.</p>
-        </div>
-        <div class="deliverables-card">
-            <span class="section-label">What it entails</span>
-            <ul class="list-items">
-                <li>Deep-dive positioning strategy</li>
-                <li>Campaign concept development</li>
-                <li>Creative direction second-opinion</li>
-            </ul>
-            <span class="section-label">Who it's best for</span>
-            <p style="font-size: 0.85rem; color: var(--muted);">Established brands undergoing a launch or founders seeking a clinical second opinion.</p>
+        
+        <div class="pillar-details">
+            <div class="detail-section">
+                <span class="detail-label">The Copy Suite</span>
+                <ul>
+                    <li>Sales Page & Website Architecture</li>
+                    <li>Email Welcome & Nurture Sequences</li>
+                    <li>Brand Voice & Messaging Manuals</li>
+                    <li>Product Storytelling (E-comm)</li>
+                </ul>
+            </div>
+            <div class="detail-section">
+                <span class="detail-label">Best For</span>
+                <p style="font-size: 0.75rem; color: var(--muted);">Service-based brands seeking elevated positioning and consistent email revenue.</p>
+            </div>
         </div>
     </section>
 
-    <section class="service-row">
-        <div class="service-info">
-            <span class="eyebrow">04. Growth</span>
-            <h2>Social & Paid Ads</h2>
-            <p class="service-description">Architecting ecosystems that move your audience closer to purchase with every single impression.</p>
+    <section class="pillar">
+        <div class="pillar-head">
+            <span>03</span>
+            <h2>Growth & <br>Intelligence</h2>
+            <p class="pillar-summary">Cinematic visibility and AI optimization to ensure you are the #1 recommendation in your niche.</p>
         </div>
-        <div class="deliverables-card">
-            <span class="section-label">What it entails</span>
-            <ul class="list-items">
-                <li>Cinematic Reels & TikTok production</li>
-                <li>Full-cycle stewardship (SMM)</li>
-                <li>Targeted paid media strategy</li>
-            </ul>
-            <span class="section-label">Who it's best for</span>
-            <p style="font-size: 0.85rem; color: var(--muted);">Scalable brands ready for consistent high-volume visibility and lead flow.</p>
-        </div>
-    </section>
-
-    <section class="service-row">
-        <div class="service-info">
-            <span class="eyebrow">05. Intelligence</span>
-            <h2>AI Search & LLM Optimization™</h2>
-            <p class="service-description">Ensuring your brand is the primary recommendation in the "Post-Google" era of AI-driven search.</p>
-        </div>
-        <div class="deliverables-card">
-            <span class="section-label">What it entails</span>
-            <ul class="list-items">
-                <li>Synthetic Search Optimization (SSEO)</li>
-                <li>LLM Authority seeding (ChatGPT/Perplexity)</li>
-                <li>AI-sentiment brand monitoring</li>
-                <li>Citation-driven lead architecture</li>
-            </ul>
-            <span class="section-label">Who it's best for</span>
-            <p style="font-size: 0.85rem; color: var(--muted);">Modern authorities looking for a first-mover advantage in AI discovery engines.</p>
+        
+        <div class="pillar-details">
+            <div class="detail-section">
+                <span class="detail-label">The Content Machine</span>
+                <ul>
+                    <li>16 Cinematic Reels / TikToks per month</li>
+                    <li>4 Strategic Educational Carousels</li>
+                    <li>Paid Ad Stewardship (Top-performer scaling)</li>
+                    <li>SSEO (AI Search Engine Optimization)</li>
+                </ul>
+            </div>
+            <div class="detail-section">
+                <span class="detail-label">Best For</span>
+                <p style="font-size: 0.75rem; color: var(--muted);">Brands ready for high-volume lead flow and "Post-Google" search dominance.</p>
+            </div>
         </div>
     </section>
 
 </main>
 
 <section class="footer-cta">
-    <span class="eyebrow" style="margin-bottom: 30px;">Inquire</span>
-    <h2 style="font-family:'Playfair Display'; font-weight: 400; text-transform: uppercase; margin-bottom: 40px; letter-spacing: 0.1em;">Request a Diagnostic</h2>
-    <a href="/contact.html" class="cta-button">Begin the Intake</a>
+    <h2 style="font-family:'Playfair Display'; font-weight: 400; text-transform: uppercase; margin-bottom: 40px; letter-spacing: 0.1em;">Secure Your Diagnostic</h2>
+    <a href="#" class="cta-button">Begin the Intake</a>
 </section>
 
 </body>
