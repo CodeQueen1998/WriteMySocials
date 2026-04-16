@@ -1,300 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>The Studio Menu | WRITE MY SOCIALS</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services — Write My Socials</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Inter:wght@200;300;400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
-    <style>
-        :root {
-            --ink: #1a1a1a;
-            --cream: #ffffff;
-            --muted: #6a6a6a;
-            --line: rgba(0,0,0,0.08);
-        }
+  <style>
+    :root {
+      --gap: 4cm;
+      --ink: #000;
+      --muted: #666;
+    }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      margin: 0; padding: 0; background: #fff; color: #000;
+      font-family: 'Playfair Display', serif; overflow-x: hidden;
+    }
 
-        body {
-            background: var(--cream);
-            color: var(--ink);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    /* --- Navigation & Icons (Matching Homepage) --- */
+    .menu-btn {
+      position: fixed; top: 18px; left: 20px; z-index: 3100;
+      background: #fff; border: 1px solid #000; color: #000;
+      padding: 6px 12px; border-radius: 999px; font-family: 'Poppins', sans-serif;
+      font-size: .85rem; letter-spacing: .1em; cursor: pointer; transition: .3s;
+    }
+    .menu-btn:hover { background: #000; color: #fff; }
 
-        /* ===== NAVIGATION (RESTORED TO ORIGINAL) ===== */
-        .top-bar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            padding: 35px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-        }
+    .social-icons {
+      position: fixed; top: 18px; right: 25px; z-index: 3100;
+      display: flex; gap: 18px;
+    }
+    .social-icons a { color: #000; font-size: 1.2rem; transition: .3s; }
+    .social-icons a:hover { color: #ff1493; }
 
-        .logo {
-            font-family: 'Tenor Sans', sans-serif;
-            font-weight: 400;
-            font-size: 1rem;
-            letter-spacing: 0.3em;
-            text-decoration: none;
-            color: var(--ink);
-            text-transform: uppercase;
-        }
+    .menu-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 3000;
+      background: #fff; border-bottom: 1px solid rgba(0,0,0,.15);
+      transform: translateY(-100%); transition: transform .35s ease;
+    }
+    body.menu-open .menu-bar { transform: translateY(0); }
 
-        .menu-btn {
-            background: transparent; border: none; cursor: pointer;
-            display: flex; align-items: center; gap: 12px;
-            font-family: 'Inter', sans-serif; font-size: 0.65rem;
-            letter-spacing: 0.25em; text-transform: uppercase;
-        }
+    .menu-inner { max-width: 1100px; margin: 0 auto; padding: 10px 20px; display: flex; justify-content: center; }
+    .menu-links { width: min(820px, 100%); display: grid; grid-template-columns: 1fr 1fr 1fr 1.4fr; gap: 10px; }
+    .menu-links a {
+      text-decoration: none; color: #000; border: 1px solid rgba(0,0,0,.12);
+      border-radius: 999px; padding: 10px 12px; text-align: center;
+      font-family: 'Poppins', sans-serif; font-size: .95rem; text-transform: uppercase; transition: .25s;
+    }
+    .menu-links a:hover { background: #000; color: #fff; }
 
-        .menu-icon { width: 20px; height: 1px; background: var(--ink); position: relative; }
-        .menu-icon::before { content: ''; position: absolute; top: -6px; left: 0; width: 100%; height: 1px; background: var(--ink); }
+    /* --- Services Header --- */
+    header.services-hero {
+      margin-top: 120px; text-align: center; padding: 0 20px;
+    }
+    header.services-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 500; letter-spacing: -0.02em; margin-bottom: 10px;
+    }
+    header.services-hero p {
+      font-family: 'Poppins', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.6;
+    }
 
-        /* ===== HERO ===== */
-        .page-header {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 220px 24px 80px;
-            text-align: center;
-        }
+    /* --- THE THREE PILLARS --- */
+    .pillars-container {
+      max-width: 1300px; margin: 80px auto; display: flex;
+      border-top: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .pillar {
+      flex: 1; padding: 80px 40px; border-right: 1px solid rgba(0,0,0,0.06);
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      text-align: center; min-height: 550px; display: flex; flex-direction: column; background: #fff;
+    }
+    .pillar:last-child { border-right: none; }
+    .pillar-num {
+      font-family: 'Poppins', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em;
+      color: var(--muted); margin-bottom: 30px; display: block;
+    }
+    .pillar-title {
+      font-family: 'Playfair Display', serif; font-size: 1.8rem;
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 40px;
+    }
+    .pillar-details {
+      opacity: 0; transform: translateY(20px); transition: 0.5s ease;
+    }
+    .pillar:hover { background: #fcfcfc; }
+    .pillar:hover .pillar-details { opacity: 1; transform: translateY(0); }
 
-        .eyebrow {
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5em;
-            color: var(--muted);
-            margin-bottom: 20px;
-            display: block;
-        }
+    .service-list { list-style: none; padding: 0; margin: 0 auto 40px; max-width: 280px; }
+    .service-list li {
+      font-family: 'Poppins', sans-serif; font-size: 0.8rem; text-transform: uppercase;
+      letter-spacing: 0.08em; margin-bottom: 15px; color: var(--muted);
+      border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 8px;
+    }
 
-        h1 {
-            font-family: 'Tenor Sans', sans-serif;
-            font-size: clamp(2.2rem, 5vw, 3rem);
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            line-height: 1.1;
-        }
+    .pillar-cta { margin-top: auto; }
+    .cta-link {
+      font-family: 'Poppins', sans-serif; font-size: 0.75rem; text-transform: uppercase;
+      letter-spacing: 0.15em; text-decoration: none; color: #000;
+      border: 1px solid #000; padding: 12px 25px; transition: .3s;
+    }
+    .cta-link:hover { background: #000; color: #fff; }
 
-        /* ===== THREE PILLAR GLIDE GRID ===== */
-        .pillar-container {
-            display: flex;
-            width: 100%;
-            min-height: 650px;
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
-            background: var(--cream);
-        }
+    /* --- Mobile Tweak --- */
+    @media (max-width: 900px) {
+      .pillars-container { flex-direction: column; }
+      .pillar { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); min-height: auto; padding: 60px 20px; }
+      .pillar-details { opacity: 1; transform: none; }
+      .menu-links { grid-template-columns: 1fr; }
+    }
 
-        .pillar {
-            flex: 1;
-            padding: 80px 50px;
-            border-right: 1px solid var(--line);
-            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            background: #fff;
-        }
-
-        .pillar:last-child { border-right: none; }
-
-        .pillar-head span { 
-            font-size: 0.7rem; 
-            color: var(--muted); 
-            letter-spacing: 0.3em; 
-            display: block;
-            margin-bottom: 30px;
-        }
-        
-        .pillar h2 {
-            font-family: 'Tenor Sans', sans-serif;
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 20px;
-            font-weight: 400;
-        }
-
-        .pillar-summary {
-            font-size: 0.9rem;
-            color: var(--muted);
-            font-weight: 300;
-            max-width: 280px;
-            transition: opacity 0.4s ease;
-        }
-
-        /* ===== HOVER DETAILS (THE POP) ===== */
-        .pillar-details {
-            margin-top: 50px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .detail-label {
-            display: block;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            border-bottom: 1px solid var(--line);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            letter-spacing: 0.2em;
-            color: var(--ink);
-        }
-
-        .pillar ul {
-            list-style: none;
-        }
-
-        .pillar ul li {
-            font-size: 0.85rem;
-            color: var(--ink);
-            margin-bottom: 12px;
-            font-weight: 300;
-            position: relative;
-            padding-left: 15px;
-        }
-
-        .pillar ul li::before {
-            content: '—';
-            position: absolute;
-            left: 0;
-            color: var(--line);
-        }
-
-        /* Hover States */
-        .pillar:hover {
-            flex: 1.5;
-            background: #fcfcfc;
-        }
-
-        .pillar:hover .pillar-details {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .pillar:hover .pillar-summary {
-            opacity: 0.3;
-        }
-
-        /* ===== FOOTER CTA ===== */
-        .footer-cta {
-            text-align: center;
-            padding: 120px 24px;
-        }
-
-        .cta-button {
-            text-decoration: none;
-            background: var(--ink);
-            color: #fff;
-            padding: 22px 60px;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            display: inline-block;
-            transition: all 0.4s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        @media (max-width: 1024px) {
-            .pillar-container { flex-direction: column; }
-            .pillar { border-right: none; border-bottom: 1px solid var(--line); min-height: 400px; }
-            .pillar:hover { flex: 1; }
-            .pillar-details { opacity: 1; transform: none; }
-        }
-    </style>
+    /* --- Footer Tagline --- */
+    .bottom-tagline {
+      position: fixed; left: 0; right: 0; bottom: 0; width: 100%;
+      background: #000; color: #fff; font-family: 'Poppins', sans-serif;
+      font-size: 0.8rem; white-space: nowrap; overflow: hidden; z-index: 900; padding: 8px 0;
+    }
+    .bottom-tagline span { display: inline-block; padding-left: 100%; animation: tick 20s linear infinite; }
+    @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+  </style>
 </head>
 <body>
 
-<header class="top-bar">
-    <a href="/" class="logo">WRITE MY SOCIALS</a>
-    <button class="menu-btn">
-        <span>Menu</span>
-        <div class="menu-icon"></div>
-    </button>
-</header>
+  <button class="menu-btn" onclick="document.body.classList.toggle('menu-open')">MENU</button>
+  
+  <div class="social-icons">
+    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/"><i class="fab fa-linkedin"></i></a>
+    <a href="https://www.instagram.com/writemysocials"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.tiktok.com/@writemysocials"><i class="fab fa-tiktok"></i></a>
+  </div>
 
-<header class="page-header">
-    <span class="eyebrow">The Studio Menu</span>
-    <h1>The Core Pillars</h1>
-</header>
+  <nav class="menu-bar">
+    <div class="menu-inner">
+      <div class="menu-links">
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./services.html">Services</a>
+        <a href="./Email Marketing.html">Email Marketing</a>
+        <a href="./360° Brand Diagnostic™.html">360° Brand Diagnostic™</a>
+      </div>
+    </div>
+  </nav>
 
-<main class="pillar-container">
+  <header class="services-hero">
+    <p>Our Offerings</p>
+    <h1>Strategic Execution</h1>
+  </header>
 
-    <section class="pillar">
-        <div class="pillar-head">
-            <span>01</span>
-            <h2>Content <br>Creation</h2>
-            <p class="pillar-summary">Architecting visual authority through high-volume, cinematic storytelling.</p>
-        </div>
+  <main>
+    <section class="pillars-container">
+      <div class="pillar">
+        <span class="pillar-num">01</span>
+        <h2 class="pillar-title">Content Creation</h2>
         <div class="pillar-details">
-            <span class="detail-label">The Service Bundle</span>
-            <ul>
-                <li>16 Cinematic Reels / TikToks per month</li>
-                <li>Art-Directed Brand Photography</li>
-                <li>4 Strategy-led Carousels</li>
-                <li>Paid Ads Creative Stewardship</li>
-                <li>Instagram Aesthetic Curation</li>
-            </ul>
+          <ul class="service-list">
+            <li>16 Bespoke Reels</li>
+            <li>4 Strategic Carousels</li>
+            <li>Short form content (TikTok/IG)</li>
+            <li>Photography & Art Direction</li>
+            <li>Paid Ads Management</li>
+          </ul>
+          <div class="pillar-cta">
+            <a href="mailto:hello@writemysocials.com" class="cta-link">Inquire</a>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <section class="pillar">
-        <div class="pillar-head">
-            <span>02</span>
-            <h2>Copywriting <br>& Narrative</h2>
-            <p class="pillar-summary">Psychology-driven storytelling that converts attention into brand equity.</p>
-        </div>
+      <div class="pillar">
+        <span class="pillar-num">02</span>
+        <h2 class="pillar-title">Copywriting</h2>
         <div class="pillar-details">
-            <span class="detail-label">The Service Bundle</span>
-            <ul>
-                <li>Email Marketing & Nurture Sequences</li>
-                <li>Paid Ad Scripting & Conversion Copy</li>
-                <li>Website & Sales Page Architecture</li>
-                <li>Brand Voice Manual Development</li>
-                <li>Full-Cycle Email Automation</li>
-            </ul>
+          <ul class="service-list">
+            <li>High-Conversion Email Marketing</li>
+            <li>Paid Ad Scripting</li>
+            <li>General Copywriting Packages</li>
+            <li>Brand Voice Architecture</li>
+          </ul>
+          <div class="pillar-cta">
+            <a href="./Email Marketing.html" class="cta-link">View Email</a>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <section class="pillar">
-        <div class="pillar-head">
-            <span>03</span>
-            <h2>Branding & <br>Consulting</h2>
-            <p class="pillar-summary">The clinical foundation. Auditing the gaps to build a 90-day roadmap.</p>
-        </div>
+      <div class="pillar">
+        <span class="pillar-num">03</span>
+        <h2 class="pillar-title">Branding</h2>
         <div class="pillar-details">
-            <span class="detail-label">The Service Bundle</span>
-            <ul>
-                <li>360° Brand Diagnostic™</li>
-                <li>Competitive Landscape Audit</li>
-                <li>1:1 Private Strategy Sessions</li>
-                <li>Revenue Leak Identification</li>
-                <li>90-Day Strategic Roadmap</li>
-            </ul>
+          <ul class="service-list">
+            <li>360° Brand Diagnostic™</li>
+            <li>Founder Consulting</li>
+            <li>Diagnostic - Standard Delivery</li>
+            <li>Diagnostic - Priority Delivery</li>
+          </ul>
+          <div class="pillar-cta">
+            <a href="./360° Brand Diagnostic™.html" class="cta-link">Book Now</a>
+          </div>
         </div>
+      </div>
     </section>
+  </main>
 
-</main>
-
-<section class="footer-cta">
-    <h2 style="font-family:'Tenor Sans'; font-weight: 400; text-transform: uppercase; margin-bottom: 40px; letter-spacing: 0.1em;">Ready to Scale?</h2>
-    <a href="/diagnostic" class="cta-button">Request a Diagnostic</a>
-</section>
+  <div class="bottom-tagline">
+    <span>TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER — TRANSFORMING YOUR BRAND'S NARRATIVE INTO A BEST SELLER —</span>
+  </div>
 
 </body>
 </html>
