@@ -36,6 +36,7 @@
             z-index: 1000;
             background: rgba(253, 253, 253, 0.9);
             border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(10px);
         }
 
         .logo {
@@ -52,7 +53,7 @@
         .page-header {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 180px 24px 60px;
+            padding: 180px 24px 80px;
             text-align: center;
         }
 
@@ -67,10 +68,11 @@
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-size: clamp(2rem, 5vw, 2.8rem);
             font-weight: 400;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.15em;
+            line-height: 1.2;
         }
 
         /* ===== THREE PILLAR GRID ===== */
@@ -80,89 +82,95 @@
             margin: 0 auto;
             border-top: 1px solid var(--line);
             border-bottom: 1px solid var(--line);
-            min-height: 600px;
+            min-height: 650px;
         }
 
         .pillar {
             flex: 1;
-            padding: 80px 40px;
+            padding: 80px 50px;
             border-right: 1px solid var(--line);
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
             position: relative;
             background: var(--cream);
             display: flex;
             flex-direction: column;
-            cursor: default;
+            overflow: hidden;
         }
 
         .pillar:last-child { border-right: none; }
 
-        /* Pillar Content */
-        .pillar-head span { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.2em; }
+        .pillar-head span { 
+            font-family: 'Playfair Display', serif;
+            font-size: 0.8rem; 
+            color: var(--muted); 
+            letter-spacing: 0.2em; 
+        }
         
         .pillar h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin: 20px 0;
+            letter-spacing: 0.05em;
+            margin: 25px 0;
             font-weight: 400;
+            line-height: 1.1;
         }
 
         .pillar-summary {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--muted);
             font-weight: 300;
-            max-width: 280px;
-            margin-bottom: 40px;
+            max-width: 300px;
+            margin-bottom: 50px;
             transition: opacity 0.3s ease;
         }
 
-        /* Hidden Details on Hover */
+        /* ===== HOVER DETAILS ===== */
         .pillar-details {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
             pointer-events: none;
         }
 
-        .detail-section { margin-bottom: 30px; }
+        .detail-section { margin-bottom: 40px; }
         
         .detail-label {
             display: block;
             font-family: 'Playfair Display', serif;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             border-bottom: 1px solid var(--line);
-            padding-bottom: 8px;
-            margin-bottom: 15px;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
             letter-spacing: 0.1em;
+            color: var(--ink);
         }
 
         .pillar ul {
             list-style: none;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--ink);
         }
 
         .pillar ul li {
-            margin-bottom: 10px;
-            padding-left: 18px;
+            margin-bottom: 12px;
+            padding-left: 20px;
             position: relative;
+            font-weight: 300;
         }
 
         .pillar ul li::before {
-            content: "";
+            content: "—";
             position: absolute;
-            left: 0; top: 10px;
-            width: 8px; height: 1px;
-            background: var(--ink);
+            left: 0;
+            color: var(--muted);
         }
 
-        /* Hover Interaction */
+        /* Hover States */
         .pillar:hover {
-            background: #fff;
-            flex: 1.3;
+            background: #ffffff;
+            flex: 1.4;
         }
 
         .pillar:hover .pillar-details {
@@ -171,32 +179,38 @@
             pointer-events: auto;
         }
 
-        /* ===== CTA ===== */
+        .pillar:hover .pillar-summary {
+            opacity: 0.5;
+        }
+
+        /* ===== FOOTER CTA ===== */
         .footer-cta {
             text-align: center;
-            padding: 100px 24px;
+            padding: 120px 24px;
         }
 
         .cta-button {
             text-decoration: none;
             background: var(--ink);
             color: #fff;
-            padding: 20px 60px;
-            font-size: 0.7rem;
+            padding: 22px 60px;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.3em;
             display: inline-block;
-            transition: 0.4s;
+            transition: all 0.4s ease;
         }
 
         .cta-button:hover {
-            letter-spacing: 0.4em;
             background: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
 
-        @media (max-width: 900px) {
+        /* Responsive */
+        @media (max-width: 1024px) {
             .pillar-container { flex-direction: column; }
-            .pillar { border-right: none; border-bottom: 1px solid var(--line); min-height: auto; }
+            .pillar { border-right: none; border-bottom: 1px solid var(--line); padding: 60px 30px; }
             .pillar-details { opacity: 1; transform: none; pointer-events: auto; }
             .pillar:hover { flex: 1; }
         }
@@ -206,12 +220,12 @@
 
 <header class="top-bar">
     <a href="#" class="logo">WRITE MY SOCIALS</a>
-    <div style="font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;">Creative Studio</div>
+    <div style="font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted);">The Studio Menu</div>
 </header>
 
 <header class="page-header">
-    <span class="eyebrow">The Collective Offerings</span>
-    <h1>The Studio Menu</h1>
+    <span class="eyebrow">Services & Solutions</span>
+    <h1>The Core Pillars</h1>
 </header>
 
 <main class="pillar-container">
@@ -219,23 +233,23 @@
     <section class="pillar">
         <div class="pillar-head">
             <span>01</span>
-            <h2>Audit & <br>Architecture</h2>
-            <p class="pillar-summary">Diagnosing the friction in your brand ecosystem and mapping the next 90 days of growth.</p>
+            <h2>Branding & <br>Strategy</h2>
+            <p class="pillar-summary">We audit your current brand image, find the gaps, and build your 90-day growth plan.</p>
         </div>
         
         <div class="pillar-details">
             <div class="detail-section">
-                <span class="detail-label">The Diagnostic™</span>
+                <span class="detail-label">Exactly what I do</span>
                 <ul>
-                    <li>360° Visual & Authority Review</li>
+                    <li>Full Brand Audit & Diagnostic</li>
                     <li>Competitive Gap Analysis</li>
-                    <li>Revenue-Leak Identification</li>
-                    <li>90-Day Execution Roadmap</li>
+                    <li>90-Day Strategic Roadmap</li>
+                    <li>1:1 Private Consulting Sessions</li>
                 </ul>
             </div>
             <div class="detail-section">
-                <span class="detail-label">Best For</span>
-                <p style="font-size: 0.75rem; color: var(--muted);">Founders preparing for a pivot or those feeling stagnant in their current market position.</p>
+                <span class="detail-label">Results</span>
+                <p style="font-size: 0.8rem; color: var(--muted);">Total clarity on your positioning and a professional second-opinion on your creative direction.</p>
             </div>
         </div>
     </section>
@@ -243,23 +257,23 @@
     <section class="pillar">
         <div class="pillar-head">
             <span>02</span>
-            <h2>Narrative & <br>Conversion</h2>
-            <p class="pillar-summary">High-level storytelling that turns cold traffic into loyal brand advocates through words.</p>
+            <h2>Copywriting <br>& Email</h2>
+            <p class="pillar-summary">Expert storytelling and sales writing that turns your brand voice into a revenue engine.</p>
         </div>
         
         <div class="pillar-details">
             <div class="detail-section">
-                <span class="detail-label">The Copy Suite</span>
+                <span class="detail-label">Exactly what I do</span>
                 <ul>
-                    <li>Sales Page & Website Architecture</li>
+                    <li>Website & Sales Page Writing</li>
                     <li>Email Welcome & Nurture Sequences</li>
-                    <li>Brand Voice & Messaging Manuals</li>
-                    <li>Product Storytelling (E-comm)</li>
+                    <li>Brand Voice Consistency Manuals</li>
+                    <li>Email Marketing Automation</li>
                 </ul>
             </div>
             <div class="detail-section">
-                <span class="detail-label">Best For</span>
-                <p style="font-size: 0.75rem; color: var(--muted);">Service-based brands seeking elevated positioning and consistent email revenue.</p>
+                <span class="detail-label">Results</span>
+                <p style="font-size: 0.8rem; color: var(--muted);">A high-end brand voice that converts window-shoppers into loyal, paying customers.</p>
             </div>
         </div>
     </section>
@@ -267,23 +281,23 @@
     <section class="pillar">
         <div class="pillar-head">
             <span>03</span>
-            <h2>Growth & <br>Intelligence</h2>
-            <p class="pillar-summary">Cinematic visibility and AI optimization to ensure you are the #1 recommendation in your niche.</p>
+            <h2>Short-Form <br>& Paid Ads</h2>
+            <p class="pillar-summary">High-volume content creation and paid ad scaling to maximize your brand's reach.</p>
         </div>
         
         <div class="pillar-details">
             <div class="detail-section">
-                <span class="detail-label">The Content Machine</span>
+                <span class="detail-label">Exactly what I do</span>
                 <ul>
                     <li>16 Cinematic Reels / TikToks per month</li>
-                    <li>4 Strategic Educational Carousels</li>
-                    <li>Paid Ad Stewardship (Top-performer scaling)</li>
-                    <li>SSEO (AI Search Engine Optimization)</li>
+                    <li>4 Strategy-led Carousels</li>
+                    <li>Paid Ads (Scaling your top-performing Reel)</li>
+                    <li>AI Search & ChatGPT Optimization</li>
                 </ul>
             </div>
             <div class="detail-section">
-                <span class="detail-label">Best For</span>
-                <p style="font-size: 0.75rem; color: var(--muted);">Brands ready for high-volume lead flow and "Post-Google" search dominance.</p>
+                <span class="detail-label">Results</span>
+                <p style="font-size: 0.8rem; color: var(--muted);">Consistent visibility and lead flow, ensuring you are the primary recommendation in your niche.</p>
             </div>
         </div>
     </section>
@@ -291,8 +305,8 @@
 </main>
 
 <section class="footer-cta">
-    <h2 style="font-family:'Playfair Display'; font-weight: 400; text-transform: uppercase; margin-bottom: 40px; letter-spacing: 0.1em;">Secure Your Diagnostic</h2>
-    <a href="#" class="cta-button">Begin the Intake</a>
+    <h2 style="font-family:'Playfair Display'; font-weight: 400; text-transform: uppercase; margin-bottom: 40px; letter-spacing: 0.1em;">Ready to Begin?</h2>
+    <a href="#" class="cta-button">Request a Diagnostic</a>
 </section>
 
 </body>
