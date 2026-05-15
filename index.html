@@ -1,1 +1,33 @@
-https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heyya.jpg
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Image</title>
+    <style>
+        /* Remove default margins and hide scrollbars */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000; /* Dark background while image loads */
+        }
+
+        /* Make the image dominate the entire viewport */
+        .fullscreen-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Covers the screen perfectly without distortion */
+            object-position: center; /* Centers the image */
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/heyya.jpg" alt="Dominant Background" class="fullscreen-bg">
+
+</body>
+</html>
