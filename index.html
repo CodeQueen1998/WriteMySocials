@@ -143,8 +143,8 @@
     }
     @media(max-width:960px){.hero{grid-template-columns:1fr;margin-top:110px}}
 
-    .circle-wrap{justify-self:end; position:relative; top:20px; left:0; margin-right:-10px; z-index: 10;}
-    .circle-wrap svg{width:180px;height:auto;display:block}
+    .circle-wrap{position:absolute; left:-6%; top:85%; z-index: 10;}
+    .circle-wrap svg{width:min(18vw,140px);height:auto;display:block}
     .circle-wrap text{font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;fill:#000}
     .circle-spin{transform-origin:50% 50%;animation:spin 18s linear infinite}
     @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
@@ -395,7 +395,7 @@
 
     @media(max-width:900px){
       .hero{grid-template-columns: 1fr; margin-top: 90px;}
-      .circle-wrap{justify-self:center; margin-bottom:30px;}
+      .circle-wrap{left:-2%; top:88%;}
       .pillars-grid{grid-template-columns: 1fr; gap: 14px; padding: 0 20px;}
       .pillar-box{min-height: auto; padding: 30px 20px;}
       .pillar-box .service-list{opacity: 1; transform: none; margin-top: 18px;}
@@ -440,17 +440,17 @@
   </nav>
 
   <header class="hero">
-    <div class="circle-wrap">
-      <svg viewBox="0 0 220 220">
-        <defs><path id="circlePath" d="M110,110 m-90,0 a90,90 0 1,1 180,0 a90,90 0 1,1 -180,0"/></defs>
-        <g class="circle-spin">
-          <text><textPath href="#circlePath">WRITE MY SOCIALS • SHORT-FORM CONTENT • UGC • PAID SOCIAL •</textPath></text>
-        </g>
-      </svg>
-    </div>
     <div class="logo-wrap stagger">
       <img class="logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2011.45.04.png" alt="Write My Socials"/>
       <img class="signature" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png" alt="With love"/>
+      <div class="circle-wrap">
+        <svg viewBox="0 0 220 220">
+          <defs><path id="circlePath" d="M110,110 m-90,0 a90,90 0 1,1 180,0 a90,90 0 1,1 -180,0"/></defs>
+          <g class="circle-spin">
+            <text><textPath href="#circlePath">WRITE MY SOCIALS • SHORT-FORM CONTENT • UGC • PAID SOCIAL •</textPath></text>
+          </g>
+        </svg>
+      </div>
     </div>
   </header>
 <br>
