@@ -143,7 +143,7 @@
     }
     @media(max-width:960px){.hero{grid-template-columns:1fr;margin-top:110px}}
 
-    .circle-wrap{justify-self:start; position:relative; top:2px; left:0; z-index: 10;}
+    .circle-wrap{justify-self:start; position:relative; top:2px; left:0; margin-left:12%; z-index: 10;}
     .circle-wrap svg{width:180px;height:auto;display:block}
     .circle-wrap text{font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;fill:#000}
     .circle-spin{transform-origin:50% 50%;animation:spin 18s linear infinite}
@@ -326,6 +326,45 @@
       .marquee-track{animation:none}
     }
 
+    /* ---------- clients featured: land one-by-one, hold, vanish together ---------- */
+    .clients-featured{max-width:680px;margin:0 auto;padding:0 20px;text-align:center}
+    .clients-heading{
+      font-family:'Playfair Display',serif;font-weight:600;
+      font-size:clamp(1.15rem,2.4vw,1.5rem);
+      color:#000;margin:0 0 28px;
+    }
+    .clients-stack{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      align-items:center;
+      row-gap:22px;
+      column-gap:38px;
+      max-width:600px;
+      margin:0 auto;
+    }
+    .client-name{
+      white-space:nowrap;
+      font-family:'Playfair Display',serif;
+      font-weight:400;
+      font-size:clamp(1.05rem,2.4vw,1.35rem);
+      color:#000;
+      opacity:0;
+      transform:scale(.8);
+      transition:opacity .3s ease, transform .3s ease;
+    }
+    .client-name.show{
+      opacity:1;
+      transform:scale(1);
+    }
+
+    @media(prefers-reduced-motion: reduce){
+      .client-name{transition:none;opacity:1;transform:none}
+    }
+    @media(max-width:600px){
+      .clients-stack{column-gap:24px;row-gap:16px}
+    }
+
     /* ---------- CTA ---------- */
     .cta{max-width:700px;margin:0 auto;padding:0 20px;text-align:center}
     .cta-eyebrow{
@@ -368,7 +407,7 @@
 <body class="preload">
   <div class="reveal-overlay" id="introOverlay">
     <div class="intro-stage" id="introStage">
-      <img class="intro-img intro-left" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/hello1.jpg" alt=""/>
+      <img class="intro-img intro-left" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/hello.jpg" alt=""/>
       <div class="intro-center">
         <img class="intro-logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2011.45.04.png" alt="Write My Socials"/>
         <svg class="intro-circle" viewBox="0 0 220 220">
@@ -379,7 +418,7 @@
         </svg>
         <img class="intro-sig" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png" alt="With love"/>
       </div>
-      <img class="intro-img intro-right" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/hello.jpg" alt=""/>
+      <img class="intro-img intro-right" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/hello1.jpg" alt=""/>
     </div>
   </div>
 
@@ -423,11 +462,11 @@
 
     <section class="content-duo reveal">
       <div class="content-duo-item" tabindex="0">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/hello1.jpg" alt="Write My Socials content example"/>
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/hello.jpg" alt="Write My Socials content example"/>
         <div class="content-duo-caption"><span>Let us look after your content</span></div>
       </div>
       <div class="content-duo-item" tabindex="0">
-        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/hello.jpg" alt="Write My Socials content example"/>
+        <img src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/hello1.jpg" alt="Write My Socials content example"/>
         <div class="content-duo-caption"><span>Let us look after your content</span></div>
       </div>
     </section>
@@ -498,6 +537,20 @@
           <p class="review-meta">IAN — FACEDUNK</p>
         </div>
         <button class="arrow right" onclick="nextReview()">&#8594;</button>
+      </div>
+    </section>
+
+    <section class="clients-featured reveal">
+      <h3 class="clients-heading">Clients Featured On</h3>
+      <div class="clients-stack">
+        <span class="client-name">Vanity Fair</span>
+        <span class="client-name">Marie Claire</span>
+        <span class="client-name">Hello May</span>
+        <span class="client-name">Sunrise</span>
+        <span class="client-name">TechRadar</span>
+        <span class="client-name">PCMag</span>
+        <span class="client-name">Home and Away</span>
+        <span class="client-name">The Gadget Flow</span>
       </div>
     </section>
 
@@ -588,6 +641,35 @@
       currentReview = (currentReview - 1 + s.length) % s.length;
       s[currentReview].classList.add('active');
     };
+
+    // clients-featured: land one by one, hold together, vanish together, repeat
+    (function(){
+      var names = document.querySelectorAll('.client-name');
+      if(!names.length) return;
+      var appearStep = 800;   // ms between each name landing (slightly slower)
+      var holdTime = 1800;    // ms all names stay together once fully landed
+      var restTime = 700;     // ms blank pause before the next round begins
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function cycle(){
+        if(reduceMotion) return; // names stay statically visible, no looping
+        var i = 0;
+        function landNext(){
+          if(i < names.length){
+            names[i].classList.add('show');
+            i++;
+            setTimeout(landNext, appearStep);
+          } else {
+            setTimeout(function(){
+              names.forEach(function(el){ el.classList.remove('show'); });
+              setTimeout(cycle, restTime);
+            }, holdTime);
+          }
+        }
+        landNext();
+      }
+      cycle();
+    })();
 
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
