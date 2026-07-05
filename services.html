@@ -95,15 +95,19 @@
       letter-spacing: 0.4em; text-transform: uppercase; opacity: 0.4;
     }
 
-    .pillars-container {
-      max-width: 1300px; margin: 40px auto 0; display: flex;
+    /* Slider Container */
+    .slider-container {
+      max-width: 1300px; margin: 40px auto 0;
+      display: flex; gap: 0; overflow-x: auto;
       border-top: 1px solid rgba(0,0,0,0.1);
       border-bottom: 1px solid rgba(0,0,0,0.1);
+      scroll-snap-type: x mandatory;
     }
     .pillar {
-      flex: 1; padding: 80px 40px; border-right: 1px solid rgba(0,0,0,0.06);
+      flex: 0 0 33.33%; padding: 80px 40px; border-right: 1px solid rgba(0,0,0,0.06);
       transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-      text-align: center; min-height: 580px; display: flex; flex-direction: column; background: #fff;
+      text-align: center; display: flex; flex-direction: column; background: #fff;
+      scroll-snap-align: start; min-height: 500px;
     }
     .pillar:last-child { border-right: none; }
 
@@ -121,22 +125,6 @@
       line-height: 1.8; color: #555; font-weight: 300;
       max-width: 280px; margin: 0 auto 30px;
     }
-
-    .pillar-details {
-      opacity: 0; transform: translateY(15px); transition: 0.5s ease;
-    }
-    .pillar:hover { background: #fcfcfc; }
-    .pillar:hover .pillar-details { opacity: 1; transform: translateY(0); }
-
-    .service-list {
-      list-style: none; padding: 0; margin: 0 auto 40px; max-width: 260px;
-    }
-    .service-list li {
-      font-family: 'Poppins', sans-serif; font-size: 0.75rem; text-transform: uppercase;
-      letter-spacing: 0.12em; margin-bottom: 14px; color: #000;
-      border-bottom: 1px solid rgba(0,0,0,0.07); padding-bottom: 10px;
-    }
-    .service-list li:last-child { border-bottom: none; }
 
     .pillar-cta { margin-top: auto; }
     .cta-link {
@@ -203,12 +191,11 @@
     .reveal.in { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s ease; }
 
     @media (max-width: 900px) {
-      .pillars-container { flex-direction: column; }
+      .slider-container { flex-direction: column; overflow-x: visible; }
       .pillar {
-        border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06);
+        flex: 0 0 auto; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06);
         min-height: auto; padding: 60px 20px;
       }
-      .pillar-details { opacity: 1; transform: none; }
       .process-strip { grid-template-columns: 1fr 1fr; }
       .process-step { border-bottom: 1px solid rgba(0,0,0,0.08); }
       .menu-links { grid-template-columns: 1fr 1fr; }
@@ -249,56 +236,32 @@
   <p class="section-label reveal">What We Do</p>
 
   <main>
-    <section class="pillars-container reveal">
+    <section class="slider-container reveal">
 
       <div class="pillar">
         <span class="pillar-num">01</span>
-        <h2 class="pillar-title">Short-Form Content<br>Organic</h2>
-        <p class="pillar-intro">Short-form video written and produced around your brand's voice — built to grow the right audience, not just any audience.</p>
-        <div class="pillar-details">
-          <ul class="service-list">
-            <li>Social Media Content Production</li>
-            <li>Hook and Script Writing</li>
-            <li>SEO and Caption Strategy</li>
-            <li>Strategic Content Batching</li>
-          </ul>
-          <div class="pillar-cta">
-            <a href="mailto:hello@writemysocials.com" class="cta-link">Inquire</a>
-          </div>
+        <h2 class="pillar-title">Content</h2>
+        <p class="pillar-intro">Content that stops the scroll and starts the sale. I produce short-form video and photography — organic and paid — built to capture attention and hold it long enough to convert.</p>
+        <div class="pillar-cta">
+          <a href="mailto:hello@writemysocials.com" class="cta-link">View Service —</a>
         </div>
       </div>
 
       <div class="pillar">
         <span class="pillar-num">02</span>
-        <h2 class="pillar-title">Paid Social<br>and Ads</h2>
-        <p class="pillar-intro">Meta and TikTok campaigns where the creative does the heavy lifting — so your budget goes further and the results speak for themselves.</p>
-        <div class="pillar-details">
-          <ul class="service-list">
-            <li>Social Media Ad Creative</li>
-            <li>Campaign Strategy and Setup</li>
-            <li>Direct-Response Ad Copy</li>
-            <li>Performance Creative Testing</li>
-          </ul>
-          <div class="pillar-cta">
-            <a href="mailto:hello@writemysocials.com" class="cta-link">Inquire</a>
-          </div>
+        <h2 class="pillar-title">Copy</h2>
+        <p class="pillar-intro">Words that do the selling before you say a thing. From inboxes to packaging, I write copy that sounds like your brand and reads like it means it — clear, considered, and built to convert.</p>
+        <div class="pillar-cta">
+          <a href="mailto:hello@writemysocials.com" class="cta-link">View Service —</a>
         </div>
       </div>
 
       <div class="pillar">
         <span class="pillar-num">03</span>
-        <h2 class="pillar-title">UGC<br>Production</h2>
-        <p class="pillar-intro">Content that feels real because it is — filmed, scripted, and delivered ready to run as an ad or post organically. Briefed, produced, and handled end to end.</p>
-        <div class="pillar-details">
-          <ul class="service-list">
-            <li>UGC Video and Photo</li>
-            <li>Ad-Ready UGC Packages</li>
-            <li>Product Testimonial Content</li>
-            <li>Creator Brief Development</li>
-          </ul>
-          <div class="pillar-cta">
-            <a href="mailto:hello@writemysocials.com" class="cta-link">Inquire</a>
-          </div>
+        <h2 class="pillar-title">Branding</h2>
+        <p class="pillar-intro">Every brand needs a backbone. I audit, design, and consult on the story, purpose, values, and aesthetic that hold your brand together — so every touchpoint feels like the same brand, on purpose.</p>
+        <div class="pillar-cta">
+          <a href="mailto:hello@writemysocials.com" class="cta-link">View Service —</a>
         </div>
       </div>
 
@@ -335,7 +298,7 @@
   </main>
 
   <div class="bottom-tagline">
-    <span>SHORT-FORM CONTENT • ORGANIC GROWTH • PAID SOCIAL • UGC PRODUCTION • SHORT-FORM CONTENT • ORGANIC GROWTH • PAID SOCIAL • UGC PRODUCTION •&nbsp;</span>
+    <span>CONTENT • COPY • BRANDING • STRATEGY • CONTENT • COPY • BRANDING • STRATEGY •&nbsp;</span>
   </div>
 
   <script>
