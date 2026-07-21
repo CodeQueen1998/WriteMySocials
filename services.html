@@ -85,9 +85,7 @@
       max-width: 540px; margin: 0 auto; line-height: 1.8; opacity: 0.65; font-weight: 300;
     }
 
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
     .section-label {
       text-align: center; padding: 80px 20px 0;
@@ -95,19 +93,15 @@
       letter-spacing: 0.4em; text-transform: uppercase; opacity: 0.4;
     }
 
-    /* Slider Container */
     .slider-container {
       max-width: 1300px; margin: 40px auto 0;
-      display: flex; gap: 0; overflow-x: auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
       border-top: 1px solid rgba(0,0,0,0.1);
       border-bottom: 1px solid rgba(0,0,0,0.1);
-      scroll-snap-type: x mandatory;
     }
     .pillar {
-      flex: 0 0 33.33%; padding: 80px 40px; border-right: 1px solid rgba(0,0,0,0.06);
-      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      padding: 60px 40px; border-right: 1px solid rgba(0,0,0,0.06);
       text-align: center; display: flex; flex-direction: column; background: #fff;
-      scroll-snap-align: start; min-height: 500px;
     }
     .pillar:last-child { border-right: none; }
 
@@ -116,16 +110,16 @@
       color: var(--muted); margin-bottom: 30px; display: block;
     }
     .pillar-title {
-      font-family: 'Playfair Display', serif; font-size: 1.55rem;
+      font-family: 'Playfair Display', serif; font-size: 1.4rem;
       text-transform: uppercase; letter-spacing: 0.08em;
-      margin-bottom: 22px; line-height: 1.3; font-weight: 500;
+      margin-bottom: 22px; font-weight: 500;
     }
-    .pillar-intro {
-      font-family: 'Poppins', sans-serif; font-size: 0.88rem;
-      line-height: 1.8; color: #555; font-weight: 300;
-      max-width: 280px; margin: 0 auto 30px;
+    .service-list {
+      list-style: none; padding: 0; margin: 0 0 30px 0;
+      font-family: 'Poppins', sans-serif; font-size: 0.8rem;
+      line-height: 2.2; color: #555; text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
-
     .pillar-cta { margin-top: auto; }
     .cta-link {
       font-family: 'Poppins', sans-serif; font-size: 0.7rem; text-transform: uppercase;
@@ -139,76 +133,38 @@
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
       border-top: 1px solid rgba(0,0,0,0.08);
     }
-    .process-step {
-      padding: 50px 30px;
-      border-right: 1px solid rgba(0,0,0,0.08);
-      text-align: center;
-    }
+    .process-step { padding: 50px 30px; border-right: 1px solid rgba(0,0,0,0.08); text-align: center; }
     .process-step:last-child { border-right: none; }
-    .process-step .step-num {
-      font-family: 'Poppins', sans-serif; font-size: 0.65rem;
-      letter-spacing: 0.3em; opacity: 0.35; display: block; margin-bottom: 18px;
-    }
-    .process-step h4 {
-      font-family: 'Playfair Display', serif; font-size: 1.1rem;
-      font-weight: 500; margin: 0 0 12px; text-transform: uppercase; letter-spacing: 0.05em;
-    }
-    .process-step p {
-      font-family: 'Poppins', sans-serif; font-size: 0.8rem;
-      line-height: 1.7; color: #666; margin: 0; font-weight: 300;
-    }
+    .process-step .step-num { font-family: 'Poppins', sans-serif; font-size: 0.65rem; letter-spacing: 0.3em; opacity: 0.35; display: block; margin-bottom: 18px; }
+    .process-step h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 500; margin: 0 0 12px; text-transform: uppercase; }
+    .process-step p { font-family: 'Poppins', sans-serif; font-size: 0.8rem; line-height: 1.7; color: #666; margin: 0; font-weight: 300; }
 
-    .cta-band {
-      background: #000; color: #fff; text-align: center;
-      padding: 80px 20px 100px; margin-bottom: 60px;
-    }
-    .cta-band p {
-      font-family: 'Poppins', sans-serif; font-size: 0.75rem;
-      letter-spacing: 0.35em; text-transform: uppercase; opacity: 0.5; margin-bottom: 18px;
-    }
-    .cta-band h2 {
-      font-size: clamp(1.6rem, 4vw, 2.8rem); font-weight: 500;
-      letter-spacing: -0.02em; margin: 0 auto 30px; max-width: 520px; line-height: 1.25;
-    }
-    .cta-band .cta-link {
-      color: #fff; border-color: rgba(255,255,255,0.5);
-    }
+    .cta-band { background: #000; color: #fff; text-align: center; padding: 80px 20px 100px; margin-bottom: 60px; }
+    .cta-band p { font-family: 'Poppins', sans-serif; font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase; opacity: 0.5; margin-bottom: 18px; }
+    .cta-band h2 { font-size: clamp(1.6rem, 4vw, 2.8rem); font-weight: 500; letter-spacing: -0.02em; margin: 0 auto 30px; max-width: 520px; line-height: 1.25; }
+    .cta-band .cta-link { color: #fff; border-color: rgba(255,255,255,0.5); }
     .cta-band .cta-link:hover { background: #fff; color: #000; border-color: #fff; }
 
-    .bottom-tagline {
-      position: fixed; left: 0; right: 0; bottom: 0; width: 100%;
-      background: #000; color: #fff; font-family: 'Poppins', sans-serif;
-      font-size: 0.8rem; letter-spacing: 0.2em; white-space: nowrap;
-      overflow: hidden; z-index: 900; padding: 8px 0;
-    }
-    .bottom-tagline span {
-      display: inline-block; padding-left: 100%;
-      animation: tick 25s linear infinite;
-    }
+    .bottom-tagline { position: fixed; left: 0; right: 0; bottom: 0; width: 100%; background: #000; color: #fff; font-family: 'Poppins', sans-serif; font-size: 0.8rem; letter-spacing: 0.2em; white-space: nowrap; overflow: hidden; z-index: 900; padding: 8px 0; }
+    .bottom-tagline span { display: inline-block; padding-left: 100%; animation: tick 25s linear infinite; }
     @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-100%); } }
 
     .reveal { opacity: 0; transform: translateY(20px); will-change: transform, opacity; }
     .reveal.in { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s ease; }
 
     @media (max-width: 900px) {
-      .slider-container { flex-direction: column; overflow-x: visible; }
-      .pillar {
-        flex: 0 0 auto; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06);
-        min-height: auto; padding: 60px 20px;
-      }
+      .slider-container { grid-template-columns: 1fr; }
+      .pillar { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); padding: 50px 20px; }
       .process-strip { grid-template-columns: 1fr 1fr; }
       .process-step { border-bottom: 1px solid rgba(0,0,0,0.08); }
       .menu-links { grid-template-columns: 1fr 1fr; }
     }
-    @media (max-width: 600px) {
-      .process-strip { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 600px) { .process-strip { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
 
   <div class="reveal-overlay" id="introOverlay"></div>
-
   <button class="menu-btn" aria-expanded="false" aria-controls="menuBar">MENU</button>
 
   <div class="social-icons">
@@ -237,31 +193,50 @@
 
   <main>
     <section class="slider-container reveal">
-
+      
+      <!-- Content Creation & Management -->
       <div class="pillar">
         <span class="pillar-num">01</span>
-        <h2 class="pillar-title">Content</h2>
-        <p class="pillar-intro">Content that stops the scroll and starts the sale. I produce short-form video and photography — organic and paid — built to capture attention and hold it long enough to convert.</p>
+        <h2 class="pillar-title">Content Creation</h2>
+        <ul class="service-list">
+          <li>Content Production</li>
+          <li>UGC Production</li>
+          <li>Social Media Management</li>
+          <li>Asset Development</li>
+        </ul>
         <div class="pillar-cta">
-          <a href="mailto:hello@writemysocials.com" class="cta-link">View Service —</a>
+          <a href="mailto:hello@writemysocials.com" class="cta-link">Inquire —</a>
         </div>
       </div>
 
+      <!-- Copywriting -->
       <div class="pillar">
         <span class="pillar-num">02</span>
-        <h2 class="pillar-title">Copy</h2>
-        <p class="pillar-intro">Words that do the selling before you say a thing. From inboxes to packaging, I write copy that sounds like your brand and reads like it means it — clear, considered, and built to convert.</p>
+        <h2 class="pillar-title">Copywriting</h2>
+        <ul class="service-list">
+          <li>Brand Copy</li>
+          <li>Web & Commercial Copy</li>
+          <li>Marketing & Social Copy</li>
+          <li>Voice Consistency</li>
+        </ul>
         <div class="pillar-cta">
-          <a href="mailto:hello@writemysocials.com" class="cta-link">View Service —</a>
+          <a href="mailto:hello@writemysocials.com" class="cta-link">Inquire —</a>
         </div>
       </div>
 
+      <!-- Brand Strategy & Analytics -->
       <div class="pillar">
         <span class="pillar-num">03</span>
-        <h2 class="pillar-title">Branding</h2>
-        <p class="pillar-intro">Every brand needs a backbone. I audit, design, and consult on the story, purpose, values, and aesthetic that hold your brand together — so every touchpoint feels like the same brand, on purpose.</p>
+        <h2 class="pillar-title">Brand Strategy</h2>
+        <ul class="service-list">
+          <li>Brand Strategy & Positioning</li>
+          <li>Target Audience Research</li>
+          <li>Brand Identity</li>
+          <li>Brand Audits</li>
+          <li>Analytics & Data Reporting</li>
+        </ul>
         <div class="pillar-cta">
-          <a href="mailto:hello@writemysocials.com" class="cta-link">View Service —</a>
+          <a href="mailto:hello@writemysocials.com" class="cta-link">Inquire —</a>
         </div>
       </div>
 
@@ -308,7 +283,6 @@
         setTimeout(function(){ if(overlay) overlay.classList.add('hide'); }, 200);
       });
     })();
-
     (function(){
       var btn = document.querySelector('.menu-btn');
       var root = document.body;
@@ -316,16 +290,7 @@
         var open = root.classList.toggle('menu-open');
         btn.setAttribute('aria-expanded', open);
       });
-      document.addEventListener('click', function(e){
-        if(root.classList.contains('menu-open') &&
-           !e.target.closest('#menuBar') &&
-           !e.target.closest('.menu-btn')){
-          root.classList.remove('menu-open');
-          btn.setAttribute('aria-expanded', 'false');
-        }
-      });
     })();
-
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
@@ -333,6 +298,5 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   </script>
-
 </body>
 </html>
