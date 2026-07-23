@@ -100,25 +100,35 @@
       border-bottom: 1px solid rgba(0,0,0,0.1);
     }
     .pillar {
-      padding: 60px 40px; border-right: 1px solid rgba(0,0,0,0.06);
-      text-align: center; display: flex; flex-direction: column; background: #fff;
+      padding: 70px 44px 56px; border-right: 1px solid rgba(0,0,0,0.06);
+      text-align: left; display: flex; flex-direction: column; background: #fff;
+      position: relative;
     }
+    .pillar:nth-child(even) { background: #fafafa; }
     .pillar:last-child { border-right: none; }
 
     .pillar-num {
-      font-family: 'Poppins', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em;
-      color: var(--muted); margin-bottom: 30px; display: block;
+      font-family: 'Playfair Display', serif; font-size: 3.4rem; font-weight: 500;
+      color: rgba(0,0,0,0.08); margin-bottom: -10px; display: block; line-height: 1;
     }
     .pillar-title {
-      font-family: 'Playfair Display', serif; font-size: 1.4rem;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      margin-bottom: 22px; font-weight: 500;
+      font-family: 'Playfair Display', serif; font-size: 1.3rem;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      margin: 10px 0 12px; font-weight: 600;
+    }
+    .pillar-benefit {
+      font-family: 'Poppins', sans-serif; font-size: 0.82rem; line-height: 1.75;
+      color: #666; font-weight: 300; margin: 0 0 26px;
+      border-bottom: 1px solid rgba(0,0,0,0.08); padding-bottom: 24px;
     }
     .service-list {
       list-style: none; padding: 0; margin: 0 0 30px 0;
-      font-family: 'Poppins', sans-serif; font-size: 0.8rem;
-      line-height: 2.2; color: #555; text-transform: uppercase;
-      letter-spacing: 0.05em;
+      font-family: 'Poppins', sans-serif; font-size: 0.78rem;
+      line-height: 2.3; color: #333; letter-spacing: 0.04em;
+    }
+    .service-list li { position: relative; padding-left: 16px; }
+    .service-list li::before {
+      content: "—"; position: absolute; left: 0; color: rgba(0,0,0,0.3);
     }
     .pillar-cta { margin-top: auto; }
     .cta-link {
@@ -128,15 +138,27 @@
     }
     .cta-link:hover { background: #000; color: #fff; }
 
-    .process-strip {
-      max-width: 1100px; margin: 80px auto; padding: 0 40px;
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
-      border-top: 1px solid rgba(0,0,0,0.08);
+    .process-band { background: #f6f6f4; padding: 90px 0 100px; margin: 0 0 60px; }
+    .process-label {
+      text-align: center; font-family: 'Poppins', sans-serif; font-size: 0.7rem;
+      letter-spacing: 0.4em; text-transform: uppercase; opacity: 0.4; margin-bottom: 50px;
     }
-    .process-step { padding: 50px 30px; border-right: 1px solid rgba(0,0,0,0.08); text-align: center; }
-    .process-step:last-child { border-right: none; }
-    .process-step .step-num { font-family: 'Poppins', sans-serif; font-size: 0.65rem; letter-spacing: 0.3em; opacity: 0.35; display: block; margin-bottom: 18px; }
-    .process-step h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 500; margin: 0 0 12px; text-transform: uppercase; }
+    .process-strip {
+      max-width: 1100px; margin: 0 auto; padding: 0 40px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;
+      position: relative;
+    }
+    .process-strip::before {
+      content: ""; position: absolute; top: 10px; left: 40px; right: 40px;
+      height: 1px; background: rgba(0,0,0,0.12);
+    }
+    .process-step { text-align: left; position: relative; padding-top: 32px; }
+    .process-step::before {
+      content: ""; position: absolute; top: 4px; left: 0;
+      width: 11px; height: 11px; border-radius: 50%; background: #000;
+    }
+    .process-step .step-num { font-family: 'Poppins', sans-serif; font-size: 0.65rem; letter-spacing: 0.3em; opacity: 0.4; display: block; margin-bottom: 14px; }
+    .process-step h4 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600; margin: 0 0 10px; text-transform: uppercase; letter-spacing: 0.04em; }
     .process-step p { font-family: 'Poppins', sans-serif; font-size: 0.8rem; line-height: 1.7; color: #666; margin: 0; font-weight: 300; }
 
     .cta-band { background: #000; color: #fff; text-align: center; padding: 80px 20px 100px; margin-bottom: 60px; }
@@ -154,9 +176,10 @@
 
     @media (max-width: 900px) {
       .slider-container { grid-template-columns: 1fr; }
-      .pillar { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); padding: 50px 20px; }
+      .pillar { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); padding: 50px 30px; }
       .process-strip { grid-template-columns: 1fr 1fr; }
-      .process-step { border-bottom: 1px solid rgba(0,0,0,0.08); }
+      .process-strip::before { display: none; }
+      .process-step { padding-top: 26px; margin-bottom: 20px; }
       .menu-links { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 600px) { .process-strip { grid-template-columns: 1fr; } }
@@ -186,94 +209,99 @@
   <header class="services-hero">
     <p>Our Offerings</p>
     <h1>Services</h1>
-    <p class="hero-sub">Content and Strategy for brands with a purpose</p>
+    <p class="hero-sub">Email, ads, and content — built on strategy and sharp copy.</p>
   </header>
 
   <p class="section-label reveal">What We Do</p>
 
   <main>
     <section class="slider-container reveal">
-      
-      <!-- Content Creation & Management -->
+
+      <!-- Email Marketing -->
       <div class="pillar">
         <span class="pillar-num">01</span>
-        <h2 class="pillar-title">Content Creation</h2>
+        <h2 class="pillar-title">Email Marketing</h2>
+        <p class="pillar-benefit">Words that turn subscribers into customers.</p>
         <ul class="service-list">
-          <li>Content Production</li>
-          <li>UGC Production</li>
-          <li>Social Media Management</li>
-         
+          <li>Email Flows & Sequences</li>
+          <li>Newsletter Copy & Management</li>
+          <li>List Segmentation</li>
+          <li>Retention Strategy</li>
         </ul>
         <div class="pillar-cta">
-          <a href="mailto:hello@writemysocials.com" class="cta-link">Inquire —</a>
+          <a href="mailto:hello@writemysocials.com.au" class="cta-link">Inquire —</a>
         </div>
       </div>
 
-      <!-- Copywriting -->
+      <!-- Paid Ads -->
       <div class="pillar">
         <span class="pillar-num">02</span>
-        <h2 class="pillar-title">Copywriting</h2>
+        <h2 class="pillar-title">Paid Ads</h2>
+        <p class="pillar-benefit">Strategic copy that stops the scroll and converts.</p>
         <ul class="service-list">
-          <li>Brand Copy</li>
-          <li>Web & Commercial Copy</li>
-          <li>Marketing & Social Copy</li>
-          <li>Voice Consistency</li>
+          <li>Ad Copywriting & Hooks</li>
+          <li>Campaign Strategy</li>
+          <li>Creative Testing</li>
+          <li>Performance Reporting</li>
         </ul>
         <div class="pillar-cta">
-          <a href="mailto:hello@writemysocials.com" class="cta-link">Inquire —</a>
+          <a href="mailto:hello@writemysocials.com.au" class="cta-link">Inquire —</a>
         </div>
       </div>
 
-      <!-- Brand Strategy & Analytics -->
+      <!-- Content Creation & Social Media Management -->
       <div class="pillar">
         <span class="pillar-num">03</span>
-        <h2 class="pillar-title">Brand Strategy</h2>
+        <h2 class="pillar-title">Content & Social</h2>
+        <p class="pillar-benefit">Bringing the strategy and copy to life.</p>
         <ul class="service-list">
-          <li>Brand Strategy & Positioning</li>
-          <li>Target Audience Research</li>
-          <li>Brand Identity</li>
-          <li>Brand Audits</li>
-          <li>Analytics & Data Reporting</li>
+          <li>Content Production</li>
+          <li>Social Media Management</li>
+          <li>Caption & Hook Copywriting</li>
+          <li>Content Calendars</li>
         </ul>
         <div class="pillar-cta">
-          <a href="mailto:hello@writemysocials.com" class="cta-link">Inquire —</a>
+          <a href="mailto:hello@writemysocials.com.au" class="cta-link">Inquire —</a>
         </div>
       </div>
 
     </section>
 
-    <section class="process-strip reveal">
-      <div class="process-step">
-        <span class="step-num">STEP 01</span>
-        <h4>Discovery</h4>
-        <p>We take the time to understand your brand properly — so you're not explaining yourself twice.</p>
-      </div>
-      <div class="process-step">
-        <span class="step-num">STEP 02</span>
-        <h4>Strategy</h4>
-        <p>A clear plan mapped to where you want to grow — no guesswork, no generic templates.</p>
-      </div>
-      <div class="process-step">
-        <span class="step-num">STEP 03</span>
-        <h4>Production</h4>
-        <p>Everything written, shot, and delivered on brief — ready to go without the usual revision spiral.</p>
-      </div>
-      <div class="process-step">
-        <span class="step-num">STEP 04</span>
-        <h4>Compound</h4>
-        <p>The longer we work together, the sharper it gets. Each piece builds on the last.</p>
+    <section class="process-band reveal">
+      <p class="process-label">How We Work</p>
+      <div class="process-strip">
+        <div class="process-step">
+          <span class="step-num">STEP 01</span>
+          <h4>Discovery</h4>
+          <p>We take the time to understand your brand properly — so you're not explaining yourself twice.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">STEP 02</span>
+          <h4>Strategy</h4>
+          <p>A clear plan mapped to where you want to grow — no guesswork, no generic templates.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">STEP 03</span>
+          <h4>Production</h4>
+          <p>Everything written, shot, and delivered on brief — ready to go without the usual revision spiral.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">STEP 04</span>
+          <h4>Compound</h4>
+          <p>The longer we work together, the sharper it gets. Each piece builds on the last.</p>
+        </div>
       </div>
     </section>
 
     <section class="cta-band reveal">
       <p>Ready to Start</p>
       <h2>Let's make it easy from the first conversation.</h2>
-      <a href="mailto:hello@writemysocials.com" class="cta-link">Work With Us</a>
+      <a href="mailto:hello@writemysocials.com.au" class="cta-link">Work With Us</a>
     </section>
   </main>
 
   <div class="bottom-tagline">
-    <span>CONTENT • COPY • BRANDING • STRATEGY • CONTENT • COPY • BRANDING • STRATEGY •&nbsp;</span>
+    <span>EMAIL MARKETING • PAID ADS • CONTENT CREATION • SOCIAL MEDIA MANAGEMENT • EMAIL MARKETING • PAID ADS • CONTENT CREATION • SOCIAL MEDIA MANAGEMENT •&nbsp;</span>
   </div>
 
   <script>
