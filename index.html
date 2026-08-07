@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>Write My Socials — E-commerce Email Marketing</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&family=DotGothic16&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500;600&family=DotGothic16&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
   <style>
@@ -50,11 +48,12 @@
     }
 
     .intro-img{
-      width:min(18vw,160px);height:auto;
+      width:min(22vw,200px);height:auto;
       mix-blend-mode:multiply;
       opacity:0;
       transition:transform .55s cubic-bezier(.19,1,.22,1), opacity .4s ease;
       flex-shrink:0;
+      object-fit:contain;
     }
     .intro-img.intro-left{transform:translateX(-55vw)}
     .intro-img.intro-right{transform:translateX(55vw)}
@@ -74,7 +73,7 @@
 
     @media(max-width:760px){
       .intro-stage{flex-direction:column;gap:18px}
-      .intro-img{width:min(38vw,150px)}
+      .intro-img{width:min(42vw,160px)}
       .intro-img.intro-left{transform:translateY(-45vh)}
       .intro-img.intro-right{transform:translateY(45vh)}
       .intro-stage.slide .intro-img{transform:translateY(0)}
@@ -115,7 +114,7 @@
     .menu-links{
       width: min(820px, 100%);
       display:grid;
-      grid-template-columns: 1fr 1fr 1fr 1.4fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap:10px;
     }
     .menu-links a{
@@ -351,8 +350,8 @@
 
     .cta{max-width:700px;margin:0 auto;padding:0 20px;text-align:center}
     .cta-eyebrow{
-      font-family:'Poppins',sans-serif;font-weight:400;font-size:.68rem;
-      letter-spacing:.4em;text-transform:uppercase;color:#bbb;margin-bottom:18px;
+      font-family:'Poppins',sans-serif;font-weight:500;font-size:.68rem;
+      letter-spacing:.4em;text-transform:uppercase;color:#888;margin-bottom:18px;
     }
     .cta-heading{
       font-family:'Playfair Display',serif;font-weight:500;
@@ -360,12 +359,13 @@
     }
     .cta-button{
       display:inline-block;
-      font-family:'Poppins',sans-serif;font-size:.72rem;font-weight:500;
-      letter-spacing:.2em;text-transform:uppercase;text-decoration:none;
-      color:#000;border:1px solid #000;border-radius:999px;
-      padding:14px 34px;transition:.3s;
+      font-family:'Poppins',sans-serif;font-size:.75rem;font-weight:600;
+      letter-spacing:.22em;text-transform:uppercase;text-decoration:none;
+      color:#fff;background:#000;border:1px solid #000;border-radius:999px;
+      padding:16px 36px;transition:all .3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
-    .cta-button:hover{background:#000;color:#fff}
+    .cta-button:hover{background:#fff;color:#000;box-shadow: 0 6px 20px rgba(0,0,0,0.15);}
 
     .bottom-tagline{
       position:fixed; left:0; right:0; bottom:0; width:100%;
@@ -383,6 +383,7 @@
       .pillar-box{min-height: auto; padding: 30px 20px;}
       .pillar-box .service-list{opacity: 1; transform: none; margin-top: 18px;}
       .signature{position:relative; right:0; top:0; margin: 10px auto; width: 220px;}
+      .cta-button{padding:14px 28px; font-size:.7rem;}
     }
   </style>
 </head>
@@ -390,7 +391,7 @@
 <body class="preload">
   <div class="reveal-overlay" id="introOverlay">
     <div class="intro-stage" id="introStage">
-      <img class="intro-img intro-left" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/hello.jpg" alt=""/>
+      <img class="intro-img intro-left" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/enve.jpg" alt="Envelope left"/>
       <div class="intro-center">
         <img class="intro-logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2011.45.04.png" alt="Write My Socials"/>
         <svg class="intro-circle" viewBox="0 0 220 220">
@@ -401,15 +402,15 @@
         </svg>
         <img class="intro-sig" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png" alt="With love"/>
       </div>
-      <img class="intro-img intro-right" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/hello1.jpg" alt=""/>
+      <img class="intro-img intro-right" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/enve2.jpg" alt="Envelope right"/>
     </div>
   </div>
 
   <button class="menu-btn" aria-expanded="false" aria-controls="menuBar">MENU</button>
   <div class="social-icons">
-    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/"><i class="fab fa-linkedin"></i></a>
-    <a href="https://www.instagram.com/writemysocials"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.tiktok.com/@writemysocials"><i class="fab fa-tiktok"></i></a>
+    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+    <a href="https://www.instagram.com/writemysocials" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.tiktok.com/@writemysocials" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
   </div>
 
   <nav class="menu-bar" id="menuBar">
@@ -525,9 +526,9 @@
     </section>
 
     <section class="cta reveal">
-      <p class="cta-eyebrow">Ready When You Are</p>
+      <p class="cta-eyebrow">Ready To Partner?</p>
       <h2 class="cta-heading">Scale Your Email Revenue</h2>
-      <a href="mailto:hello@writemysocials.com.au" class="cta-button">Start a Project —</a>
+      <a href="mailto:hello@writemysocials.com.au" class="cta-button">CLAIM YOUR STRATEGY AUDIT —</a>
     </section>
   </div>
 
