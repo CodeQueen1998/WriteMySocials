@@ -43,34 +43,12 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:clamp(16px,4vw,60px);
       position:relative;
       padding:0 24px;
       width:100%;
       max-width:1200px;
       margin:0 auto;
     }
-
-    .intro-img-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: min(22vw, 180px);
-      height: min(22vw, 180px);
-      flex-shrink: 0;
-    }
-
-    .intro-img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      mix-blend-mode:multiply;
-      opacity:0;
-      transition:transform .55s cubic-bezier(.19,1,.22,1), opacity .4s ease;
-    }
-    .intro-img.intro-left{transform:translateX(-55vw)}
-    .intro-img.intro-right{transform:translateX(55vw)}
-    .intro-stage.slide .intro-img{opacity:1;transform:translateX(0)}
 
     .intro-center{
       display:flex;flex-direction:column;align-items:center;
@@ -80,20 +58,16 @@
       text-align:center;
     }
     .intro-center > *{opacity:0;transform:translateY(8px);transition:opacity .35s ease,transform .35s ease}
-    .intro-logo{width:min(46vw,440px);height:auto;mix-blend-mode:multiply}
+    .intro-logo{width:min(50vw,460px);height:auto;mix-blend-mode:multiply}
     .intro-circle{width:min(12vw,86px);height:auto}
     .intro-circle text{font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;fill:#000}
     .intro-circle-spin{transform-origin:50% 50%;animation:spin 18s linear infinite}
     .intro-sig{width:min(28vw,260px);height:auto;opacity:.95;mix-blend-mode:multiply}
 
     @media(max-width:760px){
-      .intro-stage{flex-direction:column;gap:24px;padding:20px 16px}
-      .intro-img-wrap{width:min(38vw,140px);height:min(38vw,140px)}
-      .intro-img.intro-left{transform:translateY(-35vh)}
-      .intro-img.intro-right{transform:translateY(35vh)}
-      .intro-stage.slide .intro-img{transform:translateY(0)}
-      .intro-logo{width:min(68vw,320px)}
-      .intro-sig{width:min(42vw,180px)}
+      .intro-stage{padding:20px 16px}
+      .intro-logo{width:min(72vw,320px)}
+      .intro-sig{width:min(46vw,180px)}
     }
 
     .intro-stage.show-logo .intro-logo{opacity:1;transform:none}
@@ -504,9 +478,6 @@
 <body class="preload">
   <div class="reveal-overlay" id="introOverlay">
     <div class="intro-stage" id="introStage">
-      <div class="intro-img-wrap">
-        <img class="intro-img intro-left" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/enve.jpg" alt="Envelope left"/>
-      </div>
       <div class="intro-center">
         <img class="intro-logo" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-27%20at%2011.45.04.png" alt="Write My Socials"/>
         <svg class="intro-circle" viewBox="0 0 220 220">
@@ -516,9 +487,6 @@
           </g>
         </svg>
         <img class="intro-sig" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png" alt="With love"/>
-      </div>
-      <div class="intro-img-wrap">
-        <img class="intro-img intro-right" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/enve2.jpg" alt="Envelope right"/>
       </div>
     </div>
   </div>
@@ -555,26 +523,7 @@
       <img class="signature" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png" alt="With love"/>
     </div>
   </header>
-<br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  
-  <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+
   <div class="after-hero">
     <section class="words">
       <div class="l2 stagger">Automated Email Marketing That Captures Attention and Drives Recurring Revenue !!</div>
@@ -624,13 +573,17 @@
     <section class="work-samples reveal" id="work-samples">
       <p class="work-samples-eyebrow">Portfolio Spotlight</p>
       <h2 class="work-samples-title">Work Samples</h2>
-      <p class="work-samples-desc">A deep dive into bespoke email marketing layouts designed to merge high-converting direct-response copywriting with luxury, editorial aesthetics.</p>
+      <p class="work-samples-desc">A deep dive into bespoke lifecycle marketing layouts designed to merge high-converting direct-response copywriting with luxury, editorial aesthetics.</p>
       
       <div class="work-sample-card">
         <div class="work-sample-img-wrap">
           <img class="work-sample-img" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Genevieve-2.png" alt="Genevieve Luxury Bridal Email Marketing Campaign Sample"/>
         </div>
-       
+        <div class="work-sample-details">
+          <span class="work-sample-tag">Luxury Bridal & High-End Couture</span>
+          <h5>Bespoke Bridal Email Design & Sequence</h5>
+          <p>Created for high-end luxury bridal and fine jewellery brands, this campaign showcases editorial storytelling, sophisticated bridal styling, and high-converting direct-response triggers tailored to modern brides.</p>
+        </div>
       </div>
     </section>
 
@@ -693,14 +646,13 @@
       var stage = document.getElementById('introStage');
       document.addEventListener('DOMContentLoaded', function(){
         document.body.classList.remove('preload');
-        setTimeout(function(){ stage.classList.add('slide'); }, 100);
-        setTimeout(function(){ stage.classList.add('show-logo'); }, 900);
-        setTimeout(function(){ stage.classList.add('show-circle'); }, 1500);
-        setTimeout(function(){ stage.classList.add('show-sig'); }, 2100);
+        setTimeout(function(){ stage.classList.add('show-logo'); }, 200);
+        setTimeout(function(){ stage.classList.add('show-circle'); }, 800);
+        setTimeout(function(){ stage.classList.add('show-sig'); }, 1400);
         setTimeout(function(){
           overlay.classList.add('hide');
           document.body.classList.add('loaded');
-        }, 2600);
+        }, 2200);
       });
     })();
 
