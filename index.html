@@ -180,10 +180,11 @@
       z-index:5;
     }
 
+    /* Pushed after-hero further down to create prominent white space below hero elements */
     .after-hero{ 
       position: relative; 
       z-index: 2; 
-      margin-top: clamp(140px, 18vh, 260px); 
+      margin-top: clamp(180px, 24vh, 280px); 
       display:flex; 
       flex-direction:column; 
       gap: clamp(120px, 16vw, 240px); 
@@ -280,7 +281,7 @@
     }
     .pillar-link:hover { opacity: 0.6; }
 
-    /* ---------- Work Samples Section (Spacious, Compact & High-Res) ---------- */
+    /* ---------- Work Samples Section ---------- */
     .work-samples {
       max-width: 1080px;
       margin: 0 auto;
@@ -310,7 +311,7 @@
       font-weight: 300;
       font-size: clamp(0.9rem, 1.6vw, 1.05rem);
       color: #555;
-      max-width: 640px;
+      max-width: 680px;
       margin: 0 auto clamp(50px, 8vw, 90px);
       line-height: 1.9;
     }
@@ -329,7 +330,7 @@
     }
     .work-sample-img-wrap {
       width: 100%;
-      max-width: 540px; /* Controlled smaller image width */
+      max-width: 540px;
       margin: 0 auto;
       overflow: hidden;
       border-radius: 2px;
@@ -343,7 +344,6 @@
       display: block;
       margin: 0 auto;
       object-fit: contain;
-      /* Maximize Sharpness & Prevent Downsampling Blur */
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
       transform: translateZ(0);
@@ -482,7 +482,7 @@
     @media(max-width:900px){
       .hero{margin-top: 100px;}
       .circle-wrap{position: static; margin: 24px auto 0; left:auto; top:auto;}
-      .after-hero{ margin-top: 100px; gap: 90px; padding-bottom: 100px; }
+      .after-hero{ margin-top: 180px; gap: 90px; padding-bottom: 100px; }
       .pillars-grid{grid-template-columns: 1fr; gap: 24px; padding: 0 20px;}
       .pillar-box{min-height: auto; padding: 32px 20px;}
       .pillar-box .service-list{opacity: 1; transform: none; margin-top: 20px;}
@@ -593,7 +593,7 @@
       </div>
     </section>
 
-    <!-- ---------- Work Samples Section (Spacious, Compact & High-Res) ---------- -->
+    <!-- ---------- Work Samples Section ---------- -->
     <section class="work-samples reveal">
       <p class="work-samples-eyebrow">Portfolio Spotlight</p>
       <h2 class="work-samples-title">Work Samples</h2>
@@ -601,12 +601,12 @@
       
       <div class="work-sample-card">
         <div class="work-sample-img-wrap">
-          <img class="work-sample-img" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Genevieve-2.png" alt="Genevieve Email Marketing Campaign Sample"/>
+          <img class="work-sample-img" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Genevieve-2.png" alt="Genevieve Luxury Bridal Email Marketing Campaign Sample"/>
         </div>
         <div class="work-sample-details">
-          <span class="work-sample-tag">E-Commerce & Brand Strategy</span>
-          <h5>Bespoke Brand Email Design & Flow</h5>
-          <p>Designed for premium luxury and lifestyle brands, this sample highlights strategic editorial layouting, compelling story-driven messaging, and high-intent CTAs engineered to maximize engagement and conversion.</p>
+          <span class="work-sample-tag">Luxury Bridal & High-End Couture</span>
+          <h5>Bespoke Bridal Email Design & Sequence</h5>
+          <p>Created for high-end luxury bridal and fine jewellery brands, this campaign showcases editorial storytelling, sophisticated bridal styling, and high-converting direct-response triggers tailored to modern brides.</p>
         </div>
       </div>
     </section>
