@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Services — Write My Socials</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Services: Write My Socials</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
   <style>
@@ -57,13 +57,14 @@
     .menu-inner { max-width: 1100px; margin: 0 auto; padding: 10px 20px; display: flex; justify-content: center; }
     .menu-links {
       width: min(820px, 100%); display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1.4fr; gap: 10px;
+      grid-template-columns: repeat(3, 1fr); gap: 10px;
     }
     .menu-links a {
       text-decoration: none; color: #000; border: 1px solid rgba(0,0,0,.12);
       border-radius: 999px; padding: 10px 12px; text-align: center;
-      font-family: 'Poppins', sans-serif; font-size: .95rem; letter-spacing: .08em;
+      font-family: 'Poppins', sans-serif; font-size: .85rem; letter-spacing: .08em;
       text-transform: uppercase; transition: .25s; background: rgba(255,255,255,.6);
+      white-space: nowrap;
     }
     .menu-links a:hover { border-color: #000; background: #000; color: #fff; }
 
@@ -82,7 +83,7 @@
     }
     header.services-hero .hero-sub {
       font-family: 'Poppins', sans-serif; font-size: clamp(0.85rem, 1.8vw, 1rem);
-      max-width: 580px; margin: 0 auto; line-height: 1.8; opacity: 0.65; font-weight: 300;
+      max-width: 620px; margin: 0 auto; line-height: 1.8; opacity: 0.65; font-weight: 300;
     }
 
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
@@ -94,8 +95,8 @@
     }
 
     .slider-container {
-      max-width: 1500px; margin: 40px auto 0;
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+      max-width: 1300px; margin: 40px auto 0;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
       border-top: 1px solid rgba(0,0,0,0.1);
       border-bottom: 1px solid rgba(0,0,0,0.1);
     }
@@ -128,7 +129,7 @@
     }
     .service-list li { position: relative; padding-left: 16px; }
     .service-list li::before {
-      content: "—"; position: absolute; left: 0; color: rgba(0,0,0,0.3);
+      content: "•"; position: absolute; left: 0; color: rgba(0,0,0,0.4);
     }
     .pillar-cta { margin-top: auto; }
     .cta-link {
@@ -174,18 +175,13 @@
     .reveal { opacity: 0; transform: translateY(20px); will-change: transform, opacity; }
     .reveal.in { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s ease; }
 
-    @media (max-width: 1100px) {
-      .slider-container { grid-template-columns: 1fr 1fr; }
-      .pillar:nth-child(2) { border-right: none; }
-      .pillar:nth-child(1), .pillar:nth-child(2) { border-bottom: 1px solid rgba(0,0,0,0.06); }
-    }
-    @media (max-width: 900px) {
+    @media (max-width: 990px) {
       .slider-container { grid-template-columns: 1fr; }
       .pillar { border-right: none !important; border-bottom: 1px solid rgba(0,0,0,0.06); padding: 50px 30px; }
       .process-strip { grid-template-columns: 1fr 1fr; }
       .process-strip::before { display: none; }
       .process-step { padding-top: 26px; margin-bottom: 20px; }
-      .menu-links { grid-template-columns: 1fr 1fr; }
+      .menu-links { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) { .process-strip { grid-template-columns: 1fr; } }
   </style>
@@ -196,9 +192,9 @@
   <button class="menu-btn" aria-expanded="false" aria-controls="menuBar">MENU</button>
 
   <div class="social-icons">
-    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/"><i class="fab fa-linkedin"></i></a>
-    <a href="https://www.instagram.com/writemysocials"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.tiktok.com/@writemysocials"><i class="fab fa-tiktok"></i></a>
+    <a href="https://www.linkedin.com/in/siyana-deveaux-29a058279/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+    <a href="https://www.instagram.com/writemysocials" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.tiktok.com/@writemysocials" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
   </div>
 
   <nav class="menu-bar" id="menuBar">
@@ -214,7 +210,7 @@
   <header class="services-hero">
     <p>Our Offerings</p>
     <h1>Services</h1>
-    <p class="hero-sub">Driven by revenue-focused email systems and supported by high-converting top-of-funnel angles.</p>
+    <p class="hero-sub">Custom visual identities, revenue-generating email marketing flows, and strategic social content engineered to elevate modern brands.</p>
   </header>
 
   <p class="section-label reveal">What We Do</p>
@@ -222,67 +218,54 @@
   <main>
     <section class="slider-container reveal">
 
-      <!-- Email Automation & Flows -->
+      <!-- 01 Branding & Identity -->
       <div class="pillar">
         <span class="pillar-num">01</span>
-        <h2 class="pillar-title">Email Flows & Retention</h2>
-        <p class="pillar-benefit">Turning one-time buyers into repeat, high-LTV brand advocates.</p>
+        <h2 class="pillar-title">Branding & Identity</h2>
+        <p class="pillar-benefit">Crafting distinct visual identities that elevate your presence and resonate with your target audience.</p>
         <ul class="service-list">
-          <li>Welcome & High-Intent Onboarding</li>
-          <li>Abandoned Cart & Checkout Recovery</li>
-          <li>Browse Abandonment Sequences</li>
-          <li>Post-Purchase & Cross-Sell Retention</li>
+          <li>60-Minute Brand Strategy Session</li>
+          <li>Full Logo Suite & Submarks</li>
+          <li>Visual Identity Guidelines</li>
+          <li>Business Cards & Brand Assets</li>
+          <li>Social Media Launch Kit</li>
         </ul>
         <div class="pillar-cta">
-          <a href="mailto:hello@writemysocials.com.au" class="cta-link">Inquire —</a>
+          <a href="mailto:info@writemysocials.com.au" class="cta-link">Inquire &rarr;</a>
         </div>
       </div>
 
-      <!-- Campaign Strategy & Copy -->
+      <!-- 02 Email Marketing -->
       <div class="pillar">
         <span class="pillar-num">02</span>
-        <h2 class="pillar-title">Campaigns & Broadcasts</h2>
-        <p class="pillar-benefit">High-converting email copy and strategy built to drive immediate revenue spikes.</p>
+        <h2 class="pillar-title">Email Marketing</h2>
+        <p class="pillar-benefit">Unlocking predictable lifecycle revenue through high-converting automated flows and campaigns.</p>
         <ul class="service-list">
-          <li>Weekly Promotional Broadcasts</li>
-          <li>Product Launch Copy & Strategy</li>
-          <li>VIP & Customer Segmentation</li>
-          <li>A/B Testing & Revenue Analytics</li>
+          <li>ESP Setup & Technical Audit</li>
+          <li>3 Core Automated Flow Sequences</li>
+          <li>4 Custom Monthly Broadcasts</li>
+          <li>A/B Testing & Optimization</li>
+          <li>Monthly Analytics & Revenue Reports</li>
         </ul>
         <div class="pillar-cta">
-          <a href="mailto:hello@writemysocials.com.au" class="cta-link">Inquire —</a>
+          <a href="mailto:info@writemysocials.com.au" class="cta-link">Inquire &rarr;</a>
         </div>
       </div>
 
-      <!-- Paid Ad Angles & List Capture -->
+      <!-- 03 Content Creation & Strategy -->
       <div class="pillar">
         <span class="pillar-num">03</span>
-        <h2 class="pillar-title">Ad Strategy & List Capture</h2>
-        <p class="pillar-benefit">Capturing high-intent traffic to fuel and grow your core email subscriber base.</p>
+        <h2 class="pillar-title">Content & Social Strategy</h2>
+        <p class="pillar-benefit">Engaging video, graphics, and direct copywriting designed to build and nurture organic communities.</p>
         <ul class="service-list">
-          <li>High-Converting Popups & Forms</li>
-          <li>Paid Ad Copywriting & Hook Ideation</li>
-          <li>Lead Magnet Strategy</li>
-          <li>Offer & Landing Page Alignment</li>
+          <li>Tailored Monthly Content Strategy</li>
+          <li>12 High-Quality Reels, TikToks & Graphics</li>
+          <li>SEO Copywriting & Hashtag Research</li>
+          <li>Full Scheduling Across 2 Platforms</li>
+          <li>Community Engagement & Performance Tracker</li>
         </ul>
         <div class="pillar-cta">
-          <a href="mailto:hello@writemysocials.com.au" class="cta-link">Inquire —</a>
-        </div>
-      </div>
-
-      <!-- Brand Strategy & List Optimization -->
-      <div class="pillar">
-        <span class="pillar-num">04</span>
-        <h2 class="pillar-title">Brand Messaging & List Health</h2>
-        <p class="pillar-benefit">Protecting deliverability while refining messaging to maximize conversion rates.</p>
-        <ul class="service-list">
-          <li>Email Deliverability & Domain Audits</li>
-          <li>Brand Voice & Copy Guidelines</li>
-          <li>List Cleaning & Unengaged Scrubbing</li>
-          <li>Retention & Offer Strategy</li>
-        </ul>
-        <div class="pillar-cta">
-          <a href="mailto:hello@writemysocials.com.au" class="cta-link">Inquire —</a>
+          <a href="mailto:info@writemysocials.com.au" class="cta-link">Inquire &rarr;</a>
         </div>
       </div>
 
@@ -294,35 +277,35 @@
         <div class="process-step">
           <span class="step-num">STEP 01</span>
           <h4>Discovery & Audit</h4>
-          <p>We analyze your list, past email performance, and core audience to uncover hidden revenue drops.</p>
+          <p>We analyze your brand footprint, target audience, and current messaging to uncover core growth opportunities.</p>
         </div>
         <div class="process-step">
           <span class="step-num">STEP 02</span>
-          <h4>Strategy & Flow Build</h4>
-          <p>A custom lifecycle plan designed specifically for your store — zero generic templates or copy-paste strategy.</p>
+          <h4>Strategic Blueprint</h4>
+          <p>A custom positioning and execution strategy built specifically for your brand: zero generic templates.</p>
         </div>
         <div class="process-step">
           <span class="step-num">STEP 03</span>
-          <h4>Production & Setup</h4>
-          <p>Persuasive direct-response copy, clean segmentation, and setup delivered ready to launch smoothly.</p>
+          <h4>Creative Production</h4>
+          <p>Designing high-converting graphics, writing persuasive direct-response copy, and building seamless automated systems.</p>
         </div>
         <div class="process-step">
           <span class="step-num">STEP 04</span>
-          <h4>Optimize & Compound</h4>
-          <p>We analyze real-world conversion metrics and optimize campaigns over time to maximize recurring sales.</p>
+          <h4>Optimize & Scale</h4>
+          <p>We analyze real-world conversion metrics and continuously refine content and campaigns to compound your growth.</p>
         </div>
       </div>
     </section>
 
     <section class="cta-band reveal">
       <p>Ready to Scale</p>
-      <h2>Unlock predictable revenue from your email subscriber list.</h2>
-      <a href="mailto:hello@writemysocials.com.au" class="cta-link">Work With Us</a>
+      <h2>Elevate your brand with data-backed creative strategy.</h2>
+      <a href="mailto:info@writemysocials.com.au" class="cta-link">Work With Us</a>
     </section>
   </main>
 
   <div class="bottom-tagline">
-    <span>EMAIL MARKETING • RETENTION FLOWS • CAMPAIGN COPYWRITING • LIST OPTIMIZATION • EMAIL MARKETING • RETENTION FLOWS • CAMPAIGN COPYWRITING • LIST OPTIMIZATION •&nbsp;</span>
+    <span>BRANDING & IDENTITY • EMAIL MARKETING • CONTENT CREATION • SOCIAL MEDIA STRATEGY • BRANDING & IDENTITY • EMAIL MARKETING • CONTENT CREATION • SOCIAL MEDIA STRATEGY •&nbsp;</span>
   </div>
 
   <script>
@@ -339,6 +322,12 @@
         var open = root.classList.toggle('menu-open');
         btn.setAttribute('aria-expanded', open);
       });
+      document.addEventListener('click', function(e){
+        if(root.classList.contains('menu-open') && !e.target.closest('#menuBar') && !e.target.closest('.menu-btn')){
+          root.classList.remove('menu-open');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
     })();
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
@@ -349,4 +338,3 @@
   </script>
 </body>
 </html>
-
