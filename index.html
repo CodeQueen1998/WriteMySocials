@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>Write My Socials — Strategy, Branding, Email Marketing & Content</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500;600&family=DotGothic16&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&family=DotGothic16&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
   <style>
@@ -74,22 +74,43 @@
     .intro-stage.show-circle .intro-circle{opacity:1;transform:none}
     .intro-stage.show-sig .intro-sig{opacity:1;transform:none}
 
-    .menu-btn{position:fixed;top:22px;left:24px;z-index:3100;background:#fff;border:1px solid #000;color:#000;padding:8px 16px;border-radius:999px;font-family:'Poppins',sans-serif;font-size:.85rem;letter-spacing:.1em;cursor:pointer;transition:.3s}
-    .menu-btn:hover{background:#000;color:#fff}
+    /* Minimalistic Glassy Menu Toggle & Social Icons */
+    .menu-btn{
+      position:fixed;top:22px;left:24px;z-index:3100;
+      background:rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      color:#000;
+      padding:8px 18px;
+      border-radius:999px;
+      font-family:'Poppins',sans-serif;
+      font-size:.8rem;
+      letter-spacing:.12em;
+      cursor:pointer;
+      transition:all .3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    }
+    .menu-btn:hover{background:rgba(0, 0, 0, 0.85);color:#fff;border-color:transparent;}
+
     .social-icons{position:fixed;top:22px;right:28px;z-index:3100;display:flex;gap:20px;align-items:center}
     .social-icons a{color:#000;font-size:1.2rem;transition:color .3s}
     .social-icons a:hover{color:#ff1493}
 
+    /* Minimalistic Glassy Navigation Bar */
     .menu-bar{
       position:fixed;
       top:0; left:0; right:0;
       z-index:3000;
-      background:#fff;
-      border-bottom:1px solid rgba(0,0,0,.15);
+      background: rgba(250, 248, 245, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom:1px solid rgba(0,0,0,.06);
       opacity:0;
       visibility:hidden;
       transform:translateY(-100%);
       transition:transform .35s ease, opacity .35s ease, visibility 0s linear .35s;
+      padding: 12px 0;
     }
     body.menu-open .menu-bar{
       opacity:1;
@@ -98,7 +119,7 @@
       transition:transform .35s ease, opacity .35s ease, visibility 0s linear 0s;
     }
 
-    .menu-inner{max-width:1100px;margin:0 auto;padding:16px 20px;display:flex;justify-content:center}
+    .menu-inner{max-width:1100px;margin:0 auto;padding:12px 20px;display:flex;justify-content:center}
 
     .menu-links{
       width: min(880px, 100%);
@@ -109,22 +130,23 @@
     .menu-links a{
       text-decoration:none;
       color:#000;
-      border:1px solid rgba(0,0,0,.12);
+      border:1px solid rgba(0,0,0,.08);
       border-radius:999px;
-      padding:12px 14px;
+      padding:10px 14px;
       text-align:center;
       font-family:'Poppins',sans-serif;
-      font-size:.85rem;
-      letter-spacing:.06em;
+      font-size:.8rem;
+      letter-spacing:.08em;
       text-transform:uppercase;
-      transition:.25s;
-      background:rgba(255,255,255,.6);
+      transition:all .3s ease;
+      background:rgba(255, 255, 255, 0.5);
       white-space: nowrap;
     }
     .menu-links a:hover{
-      border-color:#000;
-      background:#000;
-      color:#fff;
+      border-color:rgba(0,0,0,0.2);
+      background:rgba(255, 255, 255, 0.9);
+      color:#000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
     @media(max-width: 768px) {
@@ -293,9 +315,11 @@
 
     .clients-featured{max-width:720px;margin:0 auto;padding:0 24px;text-align:center;width:100%;box-sizing:border-box;}
     .clients-heading{
-      font-family:'Playfair Display',serif;font-weight:600;
-      font-size:clamp(1.2rem,2.5vw,1.6rem);
-      color:#000;margin:0 0 32px;
+      font-family:'Poppins',sans-serif;font-weight:400;
+      font-size:clamp(1.35rem,2.8vw,1.8rem);
+      letter-spacing:.01em;
+      color:#111;line-height:1.55;
+      margin:0 0 32px;
     }
     .clients-stack{
       display:flex;
@@ -309,34 +333,68 @@
     }
     .client-name{
       white-space:nowrap;
-      font-family:'Playfair Display',serif;
-      font-weight:400;
-      font-size:clamp(1.1rem,2.5vw,1.4rem);
-      color:#000;
+      font-family:'Poppins',sans-serif;font-weight:300;
+      font-size:clamp(.95rem,1.8vw,1.1rem);
+      color:#111;
       opacity:0;
       transform:scale(.8);
       transition:opacity .3s ease, transform .3s ease;
+      letter-spacing:.01em;
     }
     .client-name.show{opacity:1;transform:scale(1)}
 
-    .cta{max-width:720px;margin:0 auto;padding:0 24px;text-align:center;width:100%;box-sizing:border-box;}
+    /* Aesthetic Glassy CTA Box */
+    .cta{
+      max-width:760px;
+      margin:0 auto;
+      padding: 60px 40px;
+      text-align:center;
+      width:100%;
+      box-sizing:border-box;
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+    }
     .cta-eyebrow{
-      font-family:'Poppins',sans-serif;font-weight:500;font-size:.7rem;
-      letter-spacing:.4em;text-transform:uppercase;color:#888;margin-bottom:20px;
+      font-family:'Poppins',sans-serif;font-weight:400;
+      font-size:clamp(1.35rem,2.8vw,1.8rem);
+      letter-spacing:.01em;
+      color:#111;line-height:1.55;
+      margin-bottom:16px;
+      text-transform: none;
     }
     .cta-heading{
-      font-family:'Playfair Display',serif;font-weight:500;
-      font-size:clamp(1.5rem,3.2vw,2.2rem);line-height:1.4;color:#000;margin:0 0 36px;
+      font-family:'Poppins',sans-serif;font-weight:300;
+      font-size:clamp(.95rem,1.8vw,1.1rem);
+      line-height:1.95;
+      color:#111;
+      margin:0 0 36px;
+      opacity:.85;
+      letter-spacing:.01em;
     }
     .cta-button{
       display:inline-block;
-      font-family:'Poppins',sans-serif;font-size:.75rem;font-weight:600;
-      letter-spacing:.22em;text-transform:uppercase;text-decoration:none;
-      color:#fff;background:#000;border:1px solid #000;border-radius:999px;
-      padding:18px 40px;transition:all .3s ease;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      font-family:'Poppins',sans-serif;font-size:.75rem;font-weight:500;
+      letter-spacing:.2em;text-transform:uppercase;text-decoration:none;
+      color:#000;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border:1px solid rgba(0, 0, 0, 0.15);
+      border-radius:999px;
+      padding:18px 42px;
+      transition:all .3s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
     }
-    .cta-button:hover{background:#fff;color:#000;box-shadow: 0 6px 20px rgba(0,0,0,0.15);}
+    .cta-button:hover{
+      background:#000;
+      color:#fff;
+      border-color:#000;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
 
     .bottom-tagline{
       position:fixed; left:0; right:0; bottom:0; width:100%;
@@ -355,6 +413,7 @@
       .pillar-box{min-height: auto; padding: 32px 20px;}
       .pillar-box .service-list{opacity: 1; transform: none; margin-top: 20px;}
       .signature{position:relative; right:0; top:0; margin: 16px auto 0; width: 220px;}
+      .cta{padding: 40px 20px;}
       .cta-button{padding:16px 32px; font-size:.72rem;}
       .arrow.left{left:-10px}
       .arrow.right{right:-10px}
@@ -420,37 +479,40 @@
     <section class="pillars-grid">
       <div class="pillar-box reveal">
         <h3>01</h3>
-        <h4>Brand Strategy & Design</h4>
+        <h4>Branding Core Deliverables</h4>
         <p class="benefit-text">Developing intentional visual identities that elevate your presence and reflect the true quality of your brand.</p>
         <ul class="service-list">
-          <li>Visual Identity & Logo Suites</li>
-          <li>Brand Strategy & Guidelines</li>
-          <li>Custom Digital Assets</li>
-          <li>Launch Direction & Templates</li>
+          <li>Brand Strategy Session & Positioning</li>
+          <li>Primary, Secondary & Submark Logo Suite</li>
+          <li>Visual Identity Guidelines</li>
+          <li>Custom Web Design, Letterhead & Signature</li>
+          <li>Business Card & Packaging Add-Ons</li>
         </ul>
         <a href="./services.html" class="pillar-link">Explore Service —</a>
       </div>
       <div class="pillar-box reveal">
         <h3>02</h3>
-        <h4>Email Marketing Strategy</h4>
+        <h4>Email Marketing Core Deliverables</h4>
         <p class="benefit-text">Crafting targeted email experiences that build genuine relationships with your audience while driving steady revenue.</p>
         <ul class="service-list">
-          <li>Email Platform Setup</li>
-          <li>Automated Customer Journeys</li>
-          <li>Newsletter Strategy & Writing</li>
-          <li>Campaign Strategy & Copy</li>
+          <li>Audit & ESP Tech Setup</li>
+          <li>Core Automated Flows (Welcome, Cart, Post-Purchase)</li>
+          <li>Four Custom Monthly Campaigns</li>
+          <li>A/B Testing & Subject Line Optimisation</li>
+          <li>Monthly Analytics & Revenue Reports</li>
         </ul>
         <a href="./services.html" class="pillar-link">Explore Service —</a>
       </div>
       <div class="pillar-box reveal">
         <h3>03</h3>
-        <h4>Social Media & Content Strategy</h4>
+        <h4>Content Creation Core Deliverables</h4>
         <p class="benefit-text">Curating short form video and clear social strategy designed to expand your reach and engage your ideal clients.</p>
         <ul class="service-list">
-          <li>Content Strategy & Direction</li>
-          <li>Reels & TikTok Planning</li>
-          <li>Copywriting & Messaging</li>
-          <li>Full Management Options</li>
+          <li>Tailored Monthly Content Strategy & Calendar</li>
+          <li>12 High Quality Posts (Reels, Carousels, Graphics)</li>
+          <li>Engaging Copywriting, Hashtags & SEO Keywords</li>
+          <li>Full Management & Automated Scheduling</li>
+          <li>Daily Community Engagement & Monthly Tracker</li>
         </ul>
         <a href="./services.html" class="pillar-link">Explore Service —</a>
       </div>
@@ -485,8 +547,8 @@
 
     <section class="cta reveal">
       <p class="cta-eyebrow">Work With Me</p>
-      <h2 class="cta-heading">Ready to Elevate Your Brand Strategy?</h2>
-      <a href="mailto:info@writemysocials.com.au" class="cta-button">BOOK A DISCOVERY CALL —</a>
+      <h2 class="cta-heading">Ready to Elevate Your Brand Strategy? Claim your free strategy consultation to discover how we can add tailored value to your brand.</h2>
+      <a href="https://linktr.ee/siyanadeveaux" target="_blank" rel="noopener" class="cta-button">BOOK A DISCOVERY CALL —</a>
     </section>
   </div>
 
