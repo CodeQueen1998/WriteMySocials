@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>Write My Socials — Strategy, Branding, Email Marketing & Content</title>
+  <title>Write My Socials — Copywriting, Email & SMS Marketing, and Visual Design</title>
 
   <!-- Cleaned unused fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -295,6 +295,7 @@
       width: 100%;
     }
     .pillar-box {
+      position: relative;
       padding: 40px 28px;
       border: 1px solid rgba(0,0,0,0.06);
       transition: all 0.4s ease;
@@ -307,6 +308,38 @@
       background: #fff;
       border-color: rgba(0,0,0,0.2);
       box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+    .pillar-box.featured-pillar {
+      border: 1px solid #000;
+      background: #fff;
+    }
+    .pillar-box.featured-pillar:hover {
+      border-color: #000;
+    }
+    .popular-circle-badge {
+      position: absolute;
+      top: -36px;
+      right: -22px;
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid #000;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8px;
+      font-family: var(--font-body);
+      font-size: 0.56rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      line-height: 1.35;
+      text-transform: uppercase;
+      z-index: 10;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      transform: rotate(8deg);
     }
     .pillar-box h3 {
       font-family: var(--font-body);
@@ -482,8 +515,9 @@
       .hero { margin-top: 100px; }
       .circle-wrap { position: static; margin: 24px auto 0; }
       .after-hero { margin-top: 140px; gap: 80px; padding-bottom: 90px; }
-      .pillars-grid { grid-template-columns: 1fr; gap: 24px; padding: 0 20px; }
+      .pillars-grid { grid-template-columns: 1fr; gap: 36px; padding: 0 20px; }
       .pillar-box { padding: 32px 20px; }
+      .popular-circle-badge { top: -28px; right: 12px; width: 76px; height: 76px; font-size: 0.52rem; }
       .signature { position: relative; right: 0; top: 0; margin: 16px auto 0; width: 220px; }
       .menu-links { grid-template-columns: 1fr; }
     }
@@ -499,7 +533,7 @@
         <svg class="intro-circle" viewBox="0 0 220 220">
           <defs><path id="introCirclePath" d="M110,110 m-90,0 a90,90 0 1,1 180,0 a90,90 0 1,1 -180,0"/></defs>
           <g class="intro-circle-spin">
-            <text><textPath href="#introCirclePath">WRITE MY SOCIALS • BRAND STRATEGY • EMAIL MARKETING • SOCIAL MEDIA •</textPath></text>
+            <text><textPath href="#introCirclePath">WRITE MY SOCIALS • COPYWRITING • EMAIL & SMS MARKETING • VISUAL DESIGN •</textPath></text>
           </g>
         </svg>
         <img class="intro-sig" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png" alt="With love"/>
@@ -533,7 +567,7 @@
         <svg viewBox="0 0 220 220">
           <defs><path id="circlePath" d="M110,110 m-90,0 a90,90 0 1,1 180,0 a90,90 0 1,1 -180,0"/></defs>
           <g class="circle-spin">
-            <text><textPath href="#circlePath">WRITE MY SOCIALS • BRAND STRATEGY • EMAIL MARKETING • SOCIAL MEDIA •</textPath></text>
+            <text><textPath href="#circlePath">WRITE MY SOCIALS • COPYWRITING • EMAIL & SMS MARKETING • VISUAL DESIGN •</textPath></text>
           </g>
         </svg>
       </div>
@@ -544,47 +578,48 @@
 
   <div class="after-hero">
     <section class="words">
-      <div class="l2 stagger">Brand Strategy & Creative Direction for Premium Brands</div>
-      <div class="l3 stagger">I work as a dedicated strategist for luxury and premium brands. I help you craft intentional visual identities, write emails that turn subscribers into loyal customers, and build social media content that elevates your presence with effortless style.</div>
+      <div class="l2 stagger">Copywriting, Email &amp; SMS Marketing, and Visual Design for Premium Brands</div>
+      <div class="l3 stagger">My core focus is conversion-led copywriting and email &amp; SMS marketing—writing words that turn subscribers into loyal customers—paired with intentional visual design and social content that elevate your brand with effortless style.</div>
     </section>
 
     <section class="pillars-grid">
       <div class="pillar-box reveal">
         <h3>01</h3>
-        <h4>Branding Core Deliverables</h4>
-        <p class="benefit-text">Developing intentional visual identities that elevate your presence and reflect the true quality of your brand.</p>
+        <h4>Visual Design &amp; Branding</h4>
+        <p class="benefit-text">Developing intentional visual identities and brand aesthetics that elevate your presence and reflect the true quality of your brand.</p>
         <ul class="service-list">
-          <li>Brand Strategy Session & Positioning</li>
-          <li>Primary, Secondary & Submark Logo Suite</li>
+          <li>Brand Strategy Session &amp; Positioning</li>
+          <li>Primary, Secondary &amp; Submark Logo Suite</li>
           <li>Visual Identity Guidelines</li>
-          <li>Custom Web Design, Letterhead & Signature</li>
-          <li>Business Card & Packaging Add-Ons</li>
+          <li>Custom Web Design, Letterhead &amp; Signature</li>
+          <li>Business Card &amp; Packaging Add-Ons</li>
         </ul>
         <a href="./services.html" class="pillar-link">Explore Service —</a>
       </div>
-      <div class="pillar-box reveal">
+      <div class="pillar-box featured-pillar reveal">
+        <div class="popular-circle-badge">Most Popular Service</div>
         <h3>02</h3>
-        <h4>Email Marketing Core Deliverables</h4>
-        <p class="benefit-text">Crafting targeted email experiences that build genuine relationships with your audience while driving steady revenue.</p>
+        <h4>Email &amp; SMS Marketing</h4>
+        <p class="benefit-text">Crafting copy-driven email and SMS experiences that build genuine relationships with your audience while driving steady revenue.</p>
         <ul class="service-list">
-          <li>Audit & ESP Tech Setup</li>
+          <li>Audit &amp; ESP / SMS Tech Setup</li>
           <li>Core Automated Flows (Welcome, Cart, Post-Purchase)</li>
-          <li>Four Custom Monthly Campaigns</li>
-          <li>A/B Testing & Subject Line Optimisation</li>
-          <li>Monthly Analytics & Revenue Reports</li>
+          <li>Four Custom Monthly Email &amp; SMS Campaigns</li>
+          <li>Copywriting, A/B Testing &amp; Subject Line Optimisation</li>
+          <li>Monthly Analytics &amp; Revenue Reports</li>
         </ul>
         <a href="./services.html" class="pillar-link">Explore Service —</a>
       </div>
       <div class="pillar-box reveal">
         <h3>03</h3>
-        <h4>Content Creation Core Deliverables</h4>
-        <p class="benefit-text">Curating short form video and clear social strategy designed to expand your reach and engage your ideal clients.</p>
+        <h4>Copywriting &amp; Content Creation</h4>
+        <p class="benefit-text">Writing compelling brand copy and curating short-form social content designed to expand your reach and convert your ideal clients.</p>
         <ul class="service-list">
-          <li>Tailored Monthly Content Strategy & Calendar</li>
+          <li>Tailored Monthly Copy &amp; Content Strategy</li>
           <li>12 High Quality Posts (Reels, Carousels, Graphics)</li>
-          <li>Engaging Copywriting, Hashtags & SEO Keywords</li>
-          <li>Full Management & Automated Scheduling</li>
-          <li>Daily Community Engagement & Monthly Tracker</li>
+          <li>Conversion Copywriting, Hashtags &amp; SEO Keywords</li>
+          <li>Full Management &amp; Automated Scheduling</li>
+          <li>Daily Community Engagement &amp; Monthly Tracker</li>
         </ul>
         <a href="./services.html" class="pillar-link">Explore Service —</a>
       </div>
@@ -625,7 +660,7 @@
   </div>
 
   <div class="bottom-tagline">
-    <span>BRAND STRATEGY • EMAIL MARKETING • CONTENT DIRECTION • BRAND STRATEGY • EMAIL MARKETING • CONTENT DIRECTION •&nbsp;</span>
+    <span>COPYWRITING • EMAIL & SMS MARKETING • VISUAL DESIGN • COPYWRITING • EMAIL & SMS MARKETING • VISUAL DESIGN •&nbsp;</span>
   </div>
 
   <script>
