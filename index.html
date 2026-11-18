@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>Write My Socials — Copywriting, Email & SMS Marketing, and Visual Design</title>
+  <title>Write My Socials — Conversion Copy, Email & SMS Marketing, and Editorial Design</title>
 
   <!-- Cleaned unused fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -284,14 +284,18 @@
     }
 
     /* ---------- Service Pillars Grid ---------- */
+    .services-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      width: 100%;
+    }
+
     .pillars-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      max-width: 1200px;
-      margin: 0 auto;
       gap: 32px;
       text-align: center;
-      padding: 0 32px;
       width: 100%;
     }
     .pillar-box {
@@ -391,6 +395,76 @@
       transition: opacity 0.3s;
     }
     .pillar-link:hover { opacity: 0.6; }
+
+    /* ---------- Strategic Add-Ons & Brand Foundations Bar ---------- */
+    .addons-bar {
+      margin-top: 32px;
+      padding: 40px 44px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: #fafafa;
+      transition: all 0.4s ease;
+    }
+    .addons-bar:hover {
+      background: #fff;
+      border-color: rgba(0,0,0,0.2);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+    .addons-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .addons-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #999;
+      margin: 0 0 10px;
+    }
+    .addons-title {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin: 0 0 8px;
+      color: #111;
+    }
+    .addons-subtitle {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: #666;
+      margin: 0;
+    }
+    .addons-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 36px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .addon-item h5 {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin: 0 0 10px;
+      color: #000;
+    }
+    .addon-item p {
+      font-family: var(--font-body);
+      font-size: 0.86rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: #555;
+      margin: 0;
+    }
+    .addons-footer {
+      text-align: center;
+      margin-top: 28px;
+    }
 
     /* ---------- Portfolio Marquee ---------- */
     .marquee-wrap {
@@ -515,9 +589,12 @@
       .hero { margin-top: 100px; }
       .circle-wrap { position: static; margin: 24px auto 0; }
       .after-hero { margin-top: 140px; gap: 80px; padding-bottom: 90px; }
-      .pillars-grid { grid-template-columns: 1fr; gap: 36px; padding: 0 20px; }
+      .services-wrapper { padding: 0 20px; }
+      .pillars-grid { grid-template-columns: 1fr; gap: 36px; }
       .pillar-box { padding: 32px 20px; }
       .popular-circle-badge { top: -28px; right: 12px; width: 76px; height: 76px; font-size: 0.52rem; }
+      .addons-bar { padding: 32px 20px; }
+      .addons-grid { grid-template-columns: 1fr; gap: 24px; text-align: center; }
       .signature { position: relative; right: 0; top: 0; margin: 16px auto 0; width: 220px; }
       .menu-links { grid-template-columns: 1fr; }
     }
@@ -533,7 +610,7 @@
         <svg class="intro-circle" viewBox="0 0 220 220">
           <defs><path id="introCirclePath" d="M110,110 m-90,0 a90,90 0 1,1 180,0 a90,90 0 1,1 -180,0"/></defs>
           <g class="intro-circle-spin">
-            <text><textPath href="#introCirclePath">WRITE MY SOCIALS • COPYWRITING • EMAIL & SMS MARKETING • VISUAL DESIGN •</textPath></text>
+            <text><textPath href="#introCirclePath">WRITE MY SOCIALS • CONVERSION COPY • EMAIL & SMS MARKETING • PAID AD CREATIVE •</textPath></text>
           </g>
         </svg>
         <img class="intro-sig" src="https://raw.githubusercontent.com/CodeQueen1998/WriteMySocials/refs/heads/main/Images/Screenshot%202025-10-29%20at%2004.14.31.png" alt="With love"/>
@@ -567,7 +644,7 @@
         <svg viewBox="0 0 220 220">
           <defs><path id="circlePath" d="M110,110 m-90,0 a90,90 0 1,1 180,0 a90,90 0 1,1 -180,0"/></defs>
           <g class="circle-spin">
-            <text><textPath href="#circlePath">WRITE MY SOCIALS • COPYWRITING • EMAIL & SMS MARKETING • VISUAL DESIGN •</textPath></text>
+            <text><textPath href="#circlePath">WRITE MY SOCIALS • CONVERSION COPY • EMAIL & SMS MARKETING • PAID AD CREATIVE •</textPath></text>
           </g>
         </svg>
       </div>
@@ -578,50 +655,76 @@
 
   <div class="after-hero">
     <section class="words">
-      <div class="l2 stagger">Copywriting, Email &amp; SMS Marketing, and Visual Design for Premium Brands</div>
-      <div class="l3 stagger">My core focus is conversion-led copywriting and email &amp; SMS marketing—writing words that turn subscribers into loyal customers—paired with intentional visual design and social content that elevate your brand with effortless style.</div>
+      <div class="l2 stagger">Conversion Copy &amp; Editorial Design for Premium Brands</div>
+      <div class="l3 stagger">I work as a dedicated copywriter and creative strategist for luxury and lifestyle brands—crafting high-converting Email &amp; SMS ecosystems, direct-response Paid Ad creative, and intentional brand messaging that turn browsers into loyal customers.</div>
     </section>
 
-    <section class="pillars-grid">
-      <div class="pillar-box reveal">
-        <h3>01</h3>
-        <h4>Visual Design &amp; Branding</h4>
-        <p class="benefit-text">Developing intentional visual identities and brand aesthetics that elevate your presence and reflect the true quality of your brand.</p>
-        <ul class="service-list">
-          <li>Brand Strategy Session &amp; Positioning</li>
-          <li>Primary, Secondary &amp; Submark Logo Suite</li>
-          <li>Visual Identity Guidelines</li>
-          <li>Custom Web Design, Letterhead &amp; Signature</li>
-          <li>Business Card &amp; Packaging Add-Ons</li>
-        </ul>
-        <a href="./services.html" class="pillar-link">Explore Service —</a>
+    <section class="services-wrapper">
+      <div class="pillars-grid">
+        <div class="pillar-box featured-pillar reveal">
+          <div class="popular-circle-badge">Core Retainer Focus</div>
+          <h3>01</h3>
+          <h4>Email &amp; SMS Retention Marketing</h4>
+          <p class="benefit-text">Turning your subscriber list into your store's highest-performing revenue channel through editorial design, consumer psychology, and conversion-focused copywriting.</p>
+          <ul class="service-list">
+            <li>Klaviyo / ESP Audit &amp; Revenue Opportunity Map</li>
+            <li>Core Flows (Welcome, Cart, Browse, Post-Purchase &amp; Win-Back)</li>
+            <li>8–12 Editorial Email Campaigns &amp; 4 SMS Drops Monthly</li>
+            <li>Copywriting, A/B Testing &amp; List Segmentation</li>
+            <li>Monthly Revenue Attribution &amp; Psychology Reports</li>
+          </ul>
+          <a href="./services.html" class="pillar-link">Explore Retainer —</a>
+        </div>
+
+        <div class="pillar-box reveal">
+          <h3>02</h3>
+          <h4>Paid Ad Copy &amp; Creative Direction</h4>
+          <p class="benefit-text">Direct-response hooks, video scripts, and editorial static ad creative engineered to stop the scroll, lower acquisition costs, and send high-intent buyers straight to your store.</p>
+          <ul class="service-list">
+            <li>8–12 UGC &amp; Short-Form Video Ad Scripts Monthly</li>
+            <li>Visual Shot Lists &amp; Briefs for Creators or Internal Teams</li>
+            <li>Static &amp; Carousel Ad Copy &amp; Editorial Layouts</li>
+            <li>Psychology-Led Hook &amp; Angle Testing Matrix</li>
+            <li>Monthly Creative Performance Review &amp; Iteration</li>
+          </ul>
+          <a href="./services.html" class="pillar-link">Explore Service —</a>
+        </div>
+
+        <div class="pillar-box reveal">
+          <h3>03</h3>
+          <h4>Landing Page, Website &amp; Launch Copy</h4>
+          <p class="benefit-text">Ensuring the pages your ads and emails click through to convert at their highest potential—aligning your product storytelling, visual layout, and checkout flow.</p>
+          <ul class="service-list">
+            <li>High-Converting Sales &amp; Advertorial Landing Pages</li>
+            <li>Website &amp; Product Description (PDP) Copy Overhauls</li>
+            <li>Product Launch &amp; Seasonal Campaign Messaging Sprints</li>
+            <li>Brand Voice, Tone &amp; Messaging Playbooks</li>
+            <li>Conversion-Focused Editorial Page Direction</li>
+          </ul>
+          <a href="./services.html" class="pillar-link">Explore Service —</a>
+        </div>
       </div>
-      <div class="pillar-box featured-pillar reveal">
-        <div class="popular-circle-badge">Most Popular Service</div>
-        <h3>02</h3>
-        <h4>Email &amp; SMS Marketing</h4>
-        <p class="benefit-text">Crafting copy-driven email and SMS experiences that build genuine relationships with your audience while driving steady revenue.</p>
-        <ul class="service-list">
-          <li>Audit &amp; ESP / SMS Tech Setup</li>
-          <li>Core Automated Flows (Welcome, Cart, Post-Purchase)</li>
-          <li>Four Custom Monthly Email &amp; SMS Campaigns</li>
-          <li>Copywriting, A/B Testing &amp; Subject Line Optimisation</li>
-          <li>Monthly Analytics &amp; Revenue Reports</li>
-        </ul>
-        <a href="./services.html" class="pillar-link">Explore Service —</a>
-      </div>
-      <div class="pillar-box reveal">
-        <h3>03</h3>
-        <h4>Copywriting &amp; Content Creation</h4>
-        <p class="benefit-text">Writing compelling brand copy and curating short-form social content designed to expand your reach and convert your ideal clients.</p>
-        <ul class="service-list">
-          <li>Tailored Monthly Copy &amp; Content Strategy</li>
-          <li>12 High Quality Posts (Reels, Carousels, Graphics)</li>
-          <li>Conversion Copywriting, Hashtags &amp; SEO Keywords</li>
-          <li>Full Management &amp; Automated Scheduling</li>
-          <li>Daily Community Engagement &amp; Monthly Tracker</li>
-        </ul>
-        <a href="./services.html" class="pillar-link">Explore Service —</a>
+
+      <!-- Bespoke Add-Ons & Brand Foundations Bar -->
+      <div class="addons-bar reveal">
+        <div class="addons-header">
+          <p class="addons-eyebrow">Exclusively For Retainer Clients &amp; Scaling Brands</p>
+          <h4 class="addons-title">Bespoke Add-Ons &amp; Brand Foundations</h4>
+          <p class="addons-subtitle">Available as strategic add-ons alongside your core copy retainer or as a foundational refresh prior to scaling traffic.</p>
+        </div>
+        <div class="addons-grid">
+          <div class="addon-item">
+            <h5>Organic Social Copy &amp; Direction</h5>
+            <p>Monthly hook banks, editorial captions, and visual content briefs designed for your internal social team to execute effortlessly—keeping your organic presence aligned with your paid and email voice.</p>
+          </div>
+          <div class="addon-item">
+            <h5>Brand Strategy &amp; Visual Identity</h5>
+            <p>Brand positioning sessions, primary/secondary/submark logo suites, editorial typography guidelines, custom web design, letterhead, and packaging add-ons for brands launching or elevating before scaling.</p>
+          </div>
+        </div>
+        <div class="addons-footer">
+          <a href="./services.html" class="pillar-link" style="padding-top: 0;">Inquire About Custom Add-Ons —</a>
+        </div>
       </div>
     </section>
 
@@ -654,13 +757,13 @@
 
     <section class="cta reveal">
       <p class="cta-eyebrow">Work With Me</p>
-      <h2 class="cta-heading">Ready to Elevate Your Brand Strategy? Claim your free strategy consultation to discover how we can add tailored value to your brand.</h2>
+      <h2 class="cta-heading">Ready to Turn More Browsers Into Repeat Buyers? Claim your complimentary Email &amp; Conversion Diagnostic to uncover exactly where your brand is leaving revenue on the table.</h2>
       <a href="https://linktr.ee/siyanadeveaux" target="_blank" rel="noopener" class="cta-button">BOOK A DISCOVERY CALL —</a>
     </section>
   </div>
 
   <div class="bottom-tagline">
-    <span>COPYWRITING • EMAIL & SMS MARKETING • VISUAL DESIGN • COPYWRITING • EMAIL & SMS MARKETING • VISUAL DESIGN •&nbsp;</span>
+    <span>CONVERSION COPYWRITING • EMAIL &amp; SMS MARKETING • PAID AD CREATIVE • EDITORIAL DESIGN • CONVERSION COPYWRITING • EMAIL &amp; SMS MARKETING • PAID AD CREATIVE • EDITORIAL DESIGN •&nbsp;</span>
   </div>
 
   <script>
