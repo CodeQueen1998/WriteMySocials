@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>Services: Write My Socials</title>
+  <title>Services — Write My Socials</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
@@ -83,7 +83,7 @@
     }
     header.services-hero .hero-sub {
       font-family: 'Poppins', sans-serif; font-size: clamp(0.85rem, 1.8vw, 1rem);
-      max-width: 620px; margin: 0 auto; line-height: 1.8; opacity: 0.65; font-weight: 300;
+      max-width: 660px; margin: 0 auto; line-height: 1.8; opacity: 0.65; font-weight: 300;
     }
 
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
@@ -107,6 +107,14 @@
     }
     .pillar:nth-child(even) { background: #fafafa; }
     .pillar:last-child { border-right: none; }
+
+    .core-tag {
+      font-family: 'Poppins', sans-serif; font-size: 0.62rem;
+      text-transform: uppercase; letter-spacing: 0.22em;
+      color: #000; border: 1px solid #000;
+      padding: 4px 10px; display: inline-block;
+      margin-bottom: 16px; width: fit-content;
+    }
 
     .pillar-num {
       font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 500;
@@ -139,6 +147,54 @@
     }
     .cta-link:hover { background: #000; color: #fff; }
 
+    /* ---------- Strategic Add-Ons & Brand Foundations ---------- */
+    .addons-section {
+      max-width: 1300px; margin: 0 auto;
+      padding: 70px 40px 80px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      background: #fff;
+    }
+    .addons-header {
+      text-align: center; max-width: 640px; margin: 0 auto 48px;
+    }
+    .addons-eyebrow {
+      font-family: 'Poppins', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.35em; text-transform: uppercase; opacity: 0.45;
+      margin: 0 0 12px;
+    }
+    .addons-header h2 {
+      font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 500; margin: 0 0 14px; letter-spacing: -0.01em;
+    }
+    .addons-header p {
+      font-family: 'Poppins', sans-serif; font-size: 0.82rem;
+      line-height: 1.75; color: #666; font-weight: 300; margin: 0;
+    }
+    .addons-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px;
+    }
+    .addon-card {
+      padding: 40px 36px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: #fafafa;
+      display: flex; flex-direction: column;
+    }
+    .addon-card h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.1rem;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      margin: 0 0 12px; font-weight: 600;
+    }
+    .addon-card p {
+      font-family: 'Poppins', sans-serif; font-size: 0.78rem;
+      line-height: 1.75; color: #666; font-weight: 300;
+      margin: 0 0 20px; padding-bottom: 18px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .addons-cta-wrap {
+      text-align: center; margin-top: 44px;
+    }
+
     .process-band { background: #f6f6f4; padding: 90px 0 100px; margin: 0 0 60px; }
     .process-label {
       text-align: center; font-family: 'Poppins', sans-serif; font-size: 0.7rem;
@@ -164,7 +220,7 @@
 
     .cta-band { background: #000; color: #fff; text-align: center; padding: 80px 20px 100px; margin-bottom: 60px; }
     .cta-band p { font-family: 'Poppins', sans-serif; font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase; opacity: 0.5; margin-bottom: 18px; }
-    .cta-band h2 { font-size: clamp(1.6rem, 4vw, 2.8rem); font-weight: 500; letter-spacing: -0.02em; margin: 0 auto 30px; max-width: 520px; line-height: 1.25; }
+    .cta-band h2 { font-size: clamp(1.6rem, 4vw, 2.8rem); font-weight: 500; letter-spacing: -0.02em; margin: 0 auto 30px; max-width: 560px; line-height: 1.25; }
     .cta-band .cta-link { color: #fff; border-color: rgba(255,255,255,0.5); }
     .cta-band .cta-link:hover { background: #fff; color: #000; border-color: #fff; }
 
@@ -178,6 +234,9 @@
     @media (max-width: 990px) {
       .slider-container { grid-template-columns: 1fr; }
       .pillar { border-right: none !important; border-bottom: 1px solid rgba(0,0,0,0.06); padding: 50px 30px; }
+      .addons-section { padding: 50px 24px 60px; }
+      .addons-grid { grid-template-columns: 1fr; gap: 24px; }
+      .addon-card { padding: 30px 24px; }
       .process-strip { grid-template-columns: 1fr 1fr; }
       .process-strip::before { display: none; }
       .process-step { padding-top: 26px; margin-bottom: 20px; }
@@ -211,65 +270,103 @@
   <header class="services-hero">
     <p>Our Offerings</p>
     <h1>Services</h1>
-    <p class="hero-sub">Custom visual identities, revenue-generating email marketing flows, and strategic social content engineered to elevate modern brands.</p>
+    <p class="hero-sub">Conversion-led Email &amp; SMS ecosystems, direct-response Paid Ad creative, and editorial brand messaging engineered to turn browsers into loyal customers.</p>
   </header>
 
-  <p class="section-label reveal">What We Do</p>
+  <p class="section-label reveal">Core Retainers &amp; Conversion Pillars</p>
 
   <main>
     <section class="slider-container reveal">
 
-      <!-- 01 Branding & Identity -->
+      <!-- 01 Email & SMS Retention Marketing -->
       <div class="pillar">
+        <span class="core-tag">Core Retainer Focus</span>
         <span class="pillar-num">01</span>
-        <h2 class="pillar-title">Branding & Identity</h2>
-        <p class="pillar-benefit">Crafting distinct visual identities that elevate your presence and resonate with your target audience.</p>
+        <h2 class="pillar-title">Email &amp; SMS Retention Marketing</h2>
+        <p class="pillar-benefit">Turning your subscriber list into your store's highest-performing revenue channel through editorial design, consumer psychology, and conversion-focused copywriting.</p>
         <ul class="service-list">
-          <li>60-Minute Brand Strategy Session</li>
-          <li>Full Logo Suite & Submarks</li>
-          <li>Visual Identity Guidelines</li>
-          <li>Business Cards & Brand Assets</li>
-          <li>Social Media Launch Kit</li>
+          <li>Klaviyo / ESP Audit &amp; Revenue Opportunity Map</li>
+          <li>Core Automated Flows (Welcome, Cart, Browse, Post-Purchase &amp; Win-Back)</li>
+          <li>8–12 Custom Editorial Email Campaigns &amp; 4 SMS Drops Monthly</li>
+          <li>Copywriting, A/B Testing &amp; List Segmentation</li>
+          <li>Monthly Revenue Attribution &amp; Psychology Reports</li>
         </ul>
         <div class="pillar-cta">
-          <a href="mailto:info@writemysocials.com.au" class="cta-link">Inquire &rarr;</a>
+          <a href="mailto:info@writemysocials.com.au?subject=Email%20%26%20SMS%20Retainer%20Inquiry" class="cta-link">Inquire &rarr;</a>
         </div>
       </div>
 
-      <!-- 02 Email Marketing -->
+      <!-- 02 Paid Ad Copy & Creative Direction -->
       <div class="pillar">
         <span class="pillar-num">02</span>
-        <h2 class="pillar-title">Email Marketing</h2>
-        <p class="pillar-benefit">Unlocking predictable lifecycle revenue through high-converting automated flows and campaigns.</p>
+        <h2 class="pillar-title">Paid Ad Copy &amp; Creative Direction</h2>
+        <p class="pillar-benefit">Direct-response hooks, video scripts, and editorial static ad creative engineered to stop the scroll, lower acquisition costs, and send high-intent buyers straight to your store.</p>
         <ul class="service-list">
-          <li>ESP Setup & Technical Audit</li>
-          <li>3 Core Automated Flow Sequences</li>
-          <li>4 Custom Monthly Broadcasts</li>
-          <li>A/B Testing & Optimization</li>
-          <li>Monthly Analytics & Revenue Reports</li>
+          <li>8–12 UGC &amp; Short-Form Video Ad Scripts Monthly</li>
+          <li>Visual Shot Lists &amp; Creative Briefs for Creators or Internal Teams</li>
+          <li>Static &amp; Carousel Ad Copy &amp; Editorial Layouts</li>
+          <li>Psychology-Led Hook &amp; Angle Testing Matrix</li>
+          <li>Monthly Creative Performance Review &amp; Iteration</li>
         </ul>
         <div class="pillar-cta">
-          <a href="mailto:info@writemysocials.com.au" class="cta-link">Inquire &rarr;</a>
+          <a href="mailto:info@writemysocials.com.au?subject=Paid%20Ad%20Copy%20Inquiry" class="cta-link">Inquire &rarr;</a>
         </div>
       </div>
 
-      <!-- 03 Content Creation & Strategy -->
+      <!-- 03 Landing Page, Website & Launch Copy -->
       <div class="pillar">
         <span class="pillar-num">03</span>
-        <h2 class="pillar-title">Content & Social Strategy</h2>
-        <p class="pillar-benefit">Engaging video, graphics, and direct copywriting designed to build and nurture organic communities.</p>
+        <h2 class="pillar-title">Landing Page, Website &amp; Launch Copy</h2>
+        <p class="pillar-benefit">Ensuring the pages your ads and emails click through to convert at their highest potential—aligning your product storytelling, visual layout, and checkout flow.</p>
         <ul class="service-list">
-          <li>Tailored Monthly Content Strategy</li>
-          <li>12 High-Quality Reels, TikToks & Graphics</li>
-          <li>SEO Copywriting & Hashtag Research</li>
-          <li>Full Scheduling Across 2 Platforms</li>
-          <li>Community Engagement & Performance Tracker</li>
+          <li>High-Converting Sales &amp; Advertorial Landing Pages</li>
+          <li>Website &amp; Product Description (PDP) Copy Overhauls</li>
+          <li>Product Launch &amp; Seasonal Campaign Messaging Sprints</li>
+          <li>Brand Voice, Tone &amp; Messaging Playbooks</li>
+          <li>Conversion-Focused Editorial Page Direction</li>
         </ul>
         <div class="pillar-cta">
-          <a href="mailto:info@writemysocials.com.au" class="cta-link">Inquire &rarr;</a>
+          <a href="mailto:info@writemysocials.com.au?subject=Landing%20Page%20%26%20Launch%20Copy%20Inquiry" class="cta-link">Inquire &rarr;</a>
         </div>
       </div>
 
+    </section>
+
+    <!-- Bespoke Add-Ons & Brand Foundations -->
+    <section class="addons-section reveal">
+      <div class="addons-header">
+        <p class="addons-eyebrow">Exclusively For Retainer Clients &amp; Scaling Brands</p>
+        <h2>Bespoke Add-Ons &amp; Brand Foundations</h2>
+        <p>Available as strategic add-ons alongside your core retention retainer or as a foundational visual refresh prior to scaling traffic.</p>
+      </div>
+
+      <div class="addons-grid">
+        <div class="addon-card">
+          <h3>Organic Social Copy &amp; Direction</h3>
+          <p>Keeping your organic presence cohesive with your paid ads and email voice—without pulling your team away from core operations.</p>
+          <ul class="service-list" style="margin-bottom: 0;">
+            <li>Monthly Organic Social Hook Banks</li>
+            <li>Editorial Captions &amp; Storytelling Copy</li>
+            <li>Visual Content Briefs for Internal Teams</li>
+            <li>Campaign &amp; Launch Rollout Alignment</li>
+          </ul>
+        </div>
+
+        <div class="addon-card">
+          <h3>Brand Strategy &amp; Visual Identity</h3>
+          <p>Developing intentional visual identities that elevate your presence and reflect the true quality of your brand before scaling.</p>
+          <ul class="service-list" style="margin-bottom: 0;">
+            <li>Brand Strategy Session &amp; Market Positioning</li>
+            <li>Primary, Secondary &amp; Submark Logo Suite</li>
+            <li>Visual Identity &amp; Editorial Typography Guidelines</li>
+            <li>Custom Web Design, Letterhead, Business Cards &amp; Packaging</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="addons-cta-wrap">
+        <a href="mailto:info@writemysocials.com.au?subject=Custom%20Add-On%20%26%20Brand%20Foundation%20Inquiry" class="cta-link">Inquire About Custom Add-Ons &rarr;</a>
+      </div>
     </section>
 
     <section class="process-band reveal">
@@ -277,36 +374,36 @@
       <div class="process-strip">
         <div class="process-step">
           <span class="step-num">STEP 01</span>
-          <h4>Discovery & Audit</h4>
-          <p>We analyze your brand footprint, target audience, and current messaging to uncover core growth opportunities.</p>
+          <h4>Discovery &amp; Audit</h4>
+          <p>We analyze your current Klaviyo flows, ad messaging, and customer journey to uncover immediate revenue opportunities.</p>
         </div>
         <div class="process-step">
           <span class="step-num">STEP 02</span>
           <h4>Strategic Blueprint</h4>
-          <p>A custom positioning and execution strategy built specifically for your brand: zero generic templates.</p>
+          <p>A custom retention and conversion copy roadmap built specifically around your brand psychology—zero generic templates.</p>
         </div>
         <div class="process-step">
           <span class="step-num">STEP 03</span>
-          <h4>Creative Production</h4>
-          <p>Designing high-converting graphics, writing persuasive direct-response copy, and building seamless automated systems.</p>
+          <h4>Copy &amp; Editorial Design</h4>
+          <p>Writing persuasive direct-response copy, designing editorial email and static ad layouts, and building automated lifecycle flows.</p>
         </div>
         <div class="process-step">
           <span class="step-num">STEP 04</span>
-          <h4>Optimize & Scale</h4>
-          <p>We analyze real-world conversion metrics and continuously refine content and campaigns to compound your growth.</p>
+          <h4>Optimize &amp; Scale</h4>
+          <p>We track real-world revenue attribution, A/B test angles and subject lines, and continuously refine campaigns to compound growth.</p>
         </div>
       </div>
     </section>
 
     <section class="cta-band reveal">
       <p>Ready to Scale</p>
-      <h2>Elevate your brand with data-backed creative strategy.</h2>
-      <a href="mailto:info@writemysocials.com.au" class="cta-link">Work With Us</a>
+      <h2>Turn more browsers into repeat buyers with conversion-led copy and design.</h2>
+      <a href="mailto:info@writemysocials.com.au?subject=Discovery%20Call%20Inquiry" class="cta-link">Work With Us</a>
     </section>
   </main>
 
   <div class="bottom-tagline">
-    <span>BRANDING & IDENTITY • EMAIL MARKETING • CONTENT CREATION • SOCIAL MEDIA STRATEGY • BRANDING & IDENTITY • EMAIL MARKETING • CONTENT CREATION • SOCIAL MEDIA STRATEGY •&nbsp;</span>
+    <span>CONVERSION COPYWRITING • EMAIL &amp; SMS MARKETING • PAID AD CREATIVE • EDITORIAL DESIGN • CONVERSION COPYWRITING • EMAIL &amp; SMS MARKETING • PAID AD CREATIVE • EDITORIAL DESIGN •&nbsp;</span>
   </div>
 
   <script>
